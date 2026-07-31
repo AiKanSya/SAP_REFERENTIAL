@@ -98,10 +98,60 @@ Il est insuffisant lorsque le processus exige :
 - Les événements permettent des adaptations, mais augmentent la maintenance.
 - SM30 ne remplace pas une application métier complexe.
 
+## 🌺 CAS D’USAGE
+
+Dans un contexte où une application Z nécessite un modèle de données partagé, cohérent et réutilisable dans plusieurs programmes, le besoin consiste à **générer puis tester un dialogue de maintenance autorisé pour une table Z**. Cette notion est pertinente lorsque le lecteur doit pouvoir relier la syntaxe ou l’outil à une situation professionnelle concrète.
+
+## 🌺 PROCÉDURE PAS À PAS
+
+1. Saisir `/nSE11`.
+2. Choisir le type d’objet DDIC correspondant au chapitre.
+3. Entrer le nom technique ; utiliser **Afficher** pour un objet existant ou **Créer** pour un objet Z autorisé.
+4. Renseigner les attributs et composants en suivant les règles du chapitre.
+5. Lancer le contrôle de cohérence.
+6. Activer l’objet et traiter chaque message avant de poursuivre.
+7. Utiliser la liste d’utilisation et, pour les tables, vérifier les paramètres techniques et la structure physique.
+
+## 🌺 VÉRIFICATION
+
+- Le contrôle de cohérence ne retourne aucune erreur bloquante.
+- L’objet est actif et son entrée de répertoire pointe vers le package attendu.
+- La liste d’utilisation et les dépendances correspondent au périmètre prévu.
+- Pour une table Z, la structure active et la structure de base sont cohérentes.
+
+## 🌺 ERREURS FRÉQUENTES
+
+- Modifier un objet standard au lieu d’utiliser une extension.
+- Activer une table sans vérifier clé, paramètres techniques et impact base.
+
+## 🌺 FICHE DE CONTRÔLE À COPIER
+
+```text
+Système / SID       :
+Mandant             :
+Utilisateur         :
+Transaction / outil :
+Objet technique     :
+Jeu de données      :
+Résultat attendu    :
+Résultat observé    :
+Horodatage          :
+Ordre de transport  :
+```
+
+## 🌺 TERMES DU LEXIQUE
+
+- [ABAP Dictionary](<../└─ 🧩 00 - LEXIQUE SAP ET ABAP/05 - 🍧 DONNEES DICTIONNAIRE ET BASE DE DONNEES.md#abap-dictionary>)
+- [Domaine](<../└─ 🧩 00 - LEXIQUE SAP ET ABAP/05 - 🍧 DONNEES DICTIONNAIRE ET BASE DE DONNEES.md#domaine>)
+- [Élément de données](<../└─ 🧩 00 - LEXIQUE SAP ET ABAP/05 - 🍧 DONNEES DICTIONNAIRE ET BASE DE DONNEES.md#element-donnees>)
+- [Table transparente](<../└─ 🧩 00 - LEXIQUE SAP ET ABAP/05 - 🍧 DONNEES DICTIONNAIRE ET BASE DE DONNEES.md#table-transparente>)
+- [MANDT](<../└─ 🧩 00 - LEXIQUE SAP ET ABAP/05 - 🍧 DONNEES DICTIONNAIRE ET BASE DE DONNEES.md#mandt>)
+
 ## 🌺 RÉFÉRENCES OFFICIELLES SAP
 
 - [Table Maintenance Generator — SAP Help Portal](https://help.sap.com/docs/SUPPORT_CONTENT/abap/3353525944.html)
 - [Maintenance Views — SAP Help Portal](https://help.sap.com/docs/SAP_NETWEAVER_731_BW_ABAP/ec1c9c8191b74de98feb94001a95dd76/cf21ecdf446011d189700000e8322d00.html)
+
 
 ---
 

@@ -63,7 +63,7 @@ La transaction `SE14` fournit l’utilitaire de base de données permettant nota
 
 ```mermaid
 flowchart TD
-    A["Définition DDIC modifiée"] --> BCompatible avec la structure physique ?
+    A["Définition DDIC modifiée"] --> B["Compatible avec la structure physique ?"]
     B -->|"Oui"| C["Ajustement direct"]
     B -->|"Non"| D["Conversion ou traitement technique"]
     D --> E["Contrôle des données et de l’indisponibilité"]
@@ -106,11 +106,61 @@ Après l’activation :
 - SE14 est un outil technique puissant et potentiellement destructif.
 - La liste d’utilisation et les tests de non-régression sont obligatoires avant une modification structurante.
 
+## 🌺 CAS D’USAGE
+
+Dans un contexte où une application Z nécessite un modèle de données partagé, cohérent et réutilisable dans plusieurs programmes, le besoin consiste à **analyser ou modéliser activation, ajustement base et analyse des dépendances dans l’ABAP Dictionary avec des dépendances cohérentes**. Cette notion est pertinente lorsque le lecteur doit pouvoir relier la syntaxe ou l’outil à une situation professionnelle concrète.
+
+## 🌺 PROCÉDURE PAS À PAS
+
+1. Saisir `/nSE11`.
+2. Choisir le type d’objet DDIC correspondant au chapitre.
+3. Entrer le nom technique ; utiliser **Afficher** pour un objet existant ou **Créer** pour un objet Z autorisé.
+4. Renseigner les attributs et composants en suivant les règles du chapitre.
+5. Lancer le contrôle de cohérence.
+6. Activer l’objet et traiter chaque message avant de poursuivre.
+7. Utiliser la liste d’utilisation et, pour les tables, vérifier les paramètres techniques et la structure physique.
+
+## 🌺 VÉRIFICATION
+
+- Le contrôle de cohérence ne retourne aucune erreur bloquante.
+- L’objet est actif et son entrée de répertoire pointe vers le package attendu.
+- La liste d’utilisation et les dépendances correspondent au périmètre prévu.
+- Pour une table Z, la structure active et la structure de base sont cohérentes.
+
+## 🌺 ERREURS FRÉQUENTES
+
+- Modifier un objet standard au lieu d’utiliser une extension.
+- Activer une table sans vérifier clé, paramètres techniques et impact base.
+
+## 🌺 FICHE DE CONTRÔLE À COPIER
+
+```text
+Système / SID       :
+Mandant             :
+Utilisateur         :
+Transaction / outil :
+Objet technique     :
+Jeu de données      :
+Résultat attendu    :
+Résultat observé    :
+Horodatage          :
+Ordre de transport  :
+```
+
+## 🌺 TERMES DU LEXIQUE
+
+- [ABAP Dictionary](<../└─ 🧩 00 - LEXIQUE SAP ET ABAP/05 - 🍧 DONNEES DICTIONNAIRE ET BASE DE DONNEES.md#abap-dictionary>)
+- [Domaine](<../└─ 🧩 00 - LEXIQUE SAP ET ABAP/05 - 🍧 DONNEES DICTIONNAIRE ET BASE DE DONNEES.md#domaine>)
+- [Élément de données](<../└─ 🧩 00 - LEXIQUE SAP ET ABAP/05 - 🍧 DONNEES DICTIONNAIRE ET BASE DE DONNEES.md#element-donnees>)
+- [Table transparente](<../└─ 🧩 00 - LEXIQUE SAP ET ABAP/05 - 🍧 DONNEES DICTIONNAIRE ET BASE DE DONNEES.md#table-transparente>)
+- [MANDT](<../└─ 🧩 00 - LEXIQUE SAP ET ABAP/05 - 🍧 DONNEES DICTIONNAIRE ET BASE DE DONNEES.md#mandt>)
+
 ## 🌺 RÉFÉRENCES OFFICIELLES SAP
 
 - [Adjustment of Database Structures — SAP Help Portal](https://help.sap.com/docs/SAP_NETWEAVER_740/ec1c9c8191b74de98feb94001a95dd76/cf21f1ab446011d189700000e8322d00.html)
 - [Handling Changes to Database Tables — SAP Learning](https://learning.sap.com/courses/building-data-models-with-the-abap-dictionary-and-abap-core-data-services/handling-changes-to-database-tables_d6d6d97a-979e-4efe-b5c3-f3e3d85332fb)
 
+
 ---
 
-➡️ [Chapitre suivant — BONNES PRATIQUES DE MODELISATION DDIC](<./17 - 🍧 BONNES PRATIQUES DE MODELISATION DDIC.md>)
+➡️ [Chapitre suivant — BONNES PRATIQUES DE MODÉLISATION DDIC](<./17 - 🍧 BONNES PRATIQUES DE MODELISATION DDIC.md>)

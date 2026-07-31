@@ -12,14 +12,14 @@
 
 ```mermaid
 flowchart TD
-    A[LOAD-OF-PROGRAM] --> B[INITIALIZATION]
-    B --> C[Affichage de l’écran de sélection]
-    C --> D[AT SELECTION-SCREEN OUTPUT]
-    D --> E[Action utilisateur]
-    E --> F[AT SELECTION-SCREEN]
+    A["LOAD-OF-PROGRAM"] --> B["INITIALIZATION"]
+    B --> C["Affichage de l’écran de sélection"]
+    C --> D["AT SELECTION-SCREEN OUTPUT"]
+    D --> E["Action utilisateur"]
+    E --> F["AT SELECTION-SCREEN"]
     F -->|Erreur| C
-    F -->|Validation réussie| G[START-OF-SELECTION]
-    G --> H[END-OF-SELECTION]
+    F -->|Validation réussie| G["START-OF-SELECTION"]
+    G --> H["END-OF-SELECTION"]
 ```
 
 ## 🌺 BLOC D’ÉVÉNEMENT
@@ -185,6 +185,70 @@ Flux :
 - ne pas utiliser `END-OF-SELECTION` sans besoin réel ;
 - garder le flux visible et testable.
 
+## 🌺 CAS D’USAGE
+
+Dans un contexte où une intervention de correction doit être réalisée dans le bon système et sur le bon objet sans affecter un environnement non autorisé, le besoin consiste à **appliquer événements d’un programme exécutable dans un scénario SAP contrôlé**. Cette notion est pertinente lorsque le lecteur doit pouvoir relier la syntaxe ou l’outil à une situation professionnelle concrète.
+
+## 🌺 PROCÉDURE PAS À PAS
+
+1. Créer un report Z avec un `PARAMETERS` simple.
+2. Ajouter `INITIALIZATION`, `AT SELECTION-SCREEN` et `START-OF-SELECTION`.
+3. Insérer un breakpoint dans chaque bloc.
+4. Activer puis exécuter le report.
+5. Observer que `INITIALIZATION` prépare l’écran, que `AT SELECTION-SCREEN` valide la saisie et que `START-OF-SELECTION` lance le traitement principal.
+6. Tester une valeur invalide pour confirmer que le traitement principal n’est pas exécuté.
+
+## 🌺 VÉRIFICATION
+
+- Le contrôle syntaxique réussit.
+- La version active correspond au code sauvegardé.
+- L’exécution produit le résultat décrit dans le chapitre.
+- Les cas vide, limite et erreur sont testés séparément lorsque la syntaxe le permet.
+
+## 🌺 ERREURS FRÉQUENTES
+
+- Copier un exemple sans adapter les types, noms d’objets et données disponibles dans le système.
+- Tester uniquement le cas nominal et ignorer les valeurs initiales, absentes ou invalides.
+- Intervenir dans le mauvais système ou mandant.
+- Confondre sauvegarde et activation.
+
+## 🌺 SNIPPET À RÉUTILISER
+
+> [!NOTE]
+> Adapter les noms `Z*`, les types DDIC, les données et les autorisations au système cible. Effectuer un contrôle syntaxique avant activation.
+
+```abap
+REPORT zdemo_events.
+
+PARAMETERS p_limit TYPE i.
+
+INITIALIZATION.
+  p_limit = 10.
+
+AT SELECTION-SCREEN ON p_limit.
+  IF p_limit < 1 OR p_limit > 100.
+    MESSAGE 'Saisir une valeur comprise entre 1 et 100' TYPE 'E'.
+  ENDIF.
+
+START-OF-SELECTION.
+  WRITE: / 'Valeur validée :', p_limit.
+```
+
+## 🌺 TERMES DU LEXIQUE
+
+- [Programme exécutable](<../└─ 🧩 00 - LEXIQUE SAP ET ABAP/06 - 🍧 PROGRAMMES CLASSES ET OBJETS TECHNIQUES.md#programme-executable>)
+- [Système SAP](<../└─ 🧩 00 - LEXIQUE SAP ET ABAP/01 - 🍧 SYSTEMES ENVIRONNEMENTS ET MANDANTS.md#systeme-sap>)
+- [Mandant](<../└─ 🧩 00 - LEXIQUE SAP ET ABAP/01 - 🍧 SYSTEMES ENVIRONNEMENTS ET MANDANTS.md#mandant>)
+- [SAP GUI](<../└─ 🧩 00 - LEXIQUE SAP ET ABAP/02 - 🍧 SAP GUI NAVIGATION ET TRANSACTIONS.md#sap-gui>)
+- [Transaction](<../└─ 🧩 00 - LEXIQUE SAP ET ABAP/02 - 🍧 SAP GUI NAVIGATION ET TRANSACTIONS.md#transaction>)
+- [Repository ABAP](<../└─ 🧩 00 - LEXIQUE SAP ET ABAP/03 - 🍧 REPOSITORY PACKAGES ET TRANSPORTS.md#repository-abap>)
+
+## 🌺 À RETENIR
+
+- À l’issue du chapitre, le lecteur sait **appliquer événements d’un programme exécutable dans un scénario SAP contrôlé**.
+- Toujours tester sur un objet Z ou un jeu de données sans impact avant d’intervenir sur un traitement réel.
+- La documentation `F1` du système reste la référence pour la syntaxe disponible dans sa release.
+
 ## 🌺 RÉFÉRENCES OFFICIELLES SAP
 
 - [Event Control](https://help.sap.com/docs/ABAP_PLATFORM_NEW/7bfe8cdcfbb040dcb6702dada8c3e2f0/0b32146b63054bb293de32877a6ebfe9.html)
@@ -192,6 +256,7 @@ Flux :
 - [AT SELECTION-SCREEN](https://help.sap.com/docs/SAP_NETWEAVER_731_BW_ABAP/cfae740a0a21455dbe6e510c2d86e36a/9fdb9a2e35c111d1829f0000e829fbfe.html)
 - [Description of Reporting Events](https://help.sap.com/docs/SAP_NETWEAVER_731_BW_ABAP/cfae740a0a21455dbe6e510c2d86e36a/9fdb9a1435c111d1829f0000e829fbfe.html)
 
+
 ---
 
-➡️ [Chapitre suivant — ECRAN DE SELECTION SIMPLE](<./11 - 🍧 ECRAN DE SELECTION SIMPLE.md>)
+➡️ [Chapitre suivant — ÉCRAN DE SÉLECTION SIMPLE](<./11 - 🍧 ECRAN DE SELECTION SIMPLE.md>)

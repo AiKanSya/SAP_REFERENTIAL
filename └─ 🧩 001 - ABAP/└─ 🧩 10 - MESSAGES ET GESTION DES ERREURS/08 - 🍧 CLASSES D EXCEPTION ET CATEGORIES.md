@@ -75,12 +75,49 @@ Une classe d’exception peut être créée avec les outils du Workbench, notamm
 
 La création détaillée des classes sera approfondie dans le dossier ABAP Objects. Dans ce dossier, l’objectif est d’utiliser correctement leur contrat d’erreur.
 
+## 🌺 CAS D’USAGE
+
+Dans un contexte où un import doit signaler clairement les erreurs, permettre leur traitement et éviter les arrêts non maîtrisés, le besoin consiste à **gérer une situation d’erreur avec classes d’exception et catégories et produire une information exploitable par l’appelant ou l’utilisateur**. Cette notion est pertinente lorsque le lecteur doit pouvoir relier la syntaxe ou l’outil à une situation professionnelle concrète.
+
+## 🌺 PROCÉDURE PAS À PAS
+
+1. Lire la définition et identifier les prérequis du chapitre.
+2. Choisir un objet Z ou un scénario de démonstration sans impact métier.
+3. Reproduire l’exemple dans un système de développement et relever les données d’entrée.
+4. Contrôler la syntaxe ou la configuration avant activation/exécution.
+5. Comparer le résultat observé avec la section **Vérification**.
+6. Documenter toute différence liée à la release, aux autorisations ou au paramétrage du système.
+
+## 🌺 VÉRIFICATION
+
+- Le lecteur peut expliquer la différence entre cette notion et les concepts proches.
+- Le choix technique est justifié par un besoin concret, pas uniquement par habitude.
+- Les limites liées à la release, aux autorisations et au contexte d’exécution sont identifiées.
+
+## 🌺 ERREURS FRÉQUENTES
+
+- Afficher un message technique incompréhensible à l’utilisateur.
+- Attraper une exception sans action ni propagation.
+
+## 🌺 TERMES DU LEXIQUE
+
+- [Classe](<../└─ 🧩 00 - LEXIQUE SAP ET ABAP/04 - 🍧 LANGAGE ET DEVELOPPEMENT ABAP.md#classe>)
+- [Exception](<../└─ 🧩 00 - LEXIQUE SAP ET ABAP/04 - 🍧 LANGAGE ET DEVELOPPEMENT ABAP.md#exception>)
+- [Dump ABAP](<../└─ 🧩 00 - LEXIQUE SAP ET ABAP/08 - 🍧 EXECUTION EXPLOITATION ET ADMINISTRATION.md#dump-abap>)
+
+## 🌺 À RETENIR
+
+- À l’issue du chapitre, le lecteur sait **gérer une situation d’erreur avec classes d’exception et catégories et produire une information exploitable par l’appelant ou l’utilisateur**.
+- Toujours tester sur un objet Z ou un jeu de données sans impact avant d’intervenir sur un traitement réel.
+- La documentation `F1` du système reste la référence pour la syntaxe disponible dans sa release.
+
 ## 🌺 RÉFÉRENCES OFFICIELLES SAP
 
 - [Exception Categories — ABAP Keyword Documentation](https://help.sap.com/doc/abapdocu_latest_index_htm/latest/en-US/ABENEXCEPTION_CATEGORIES.html)
 - [Exception Classes for ABAP Statements — ABAP Keyword Documentation](https://help.sap.com/doc/abapdocu_latest_index_htm/latest/en-US/ABENABAP_EXCEPTION_CLASSES.html)
 - [Creating an Exception Class — SAP Help Portal](https://help.sap.com/docs/ABAP_PLATFORM_NEW/bd833c8355f34e96a6e83096b38bf192/92823e6017aa11d5969b00a0c94260a5.html)
 
+
 ---
 
-➡️ [Chapitre suivant — TRY CATCH ET ENDTRY](<./09 - 🍧 TRY CATCH ET ENDTRY.md>)
+➡️ [Chapitre suivant — TRY, CATCH ET ENDTRY](<./09 - 🍧 TRY CATCH ET ENDTRY.md>)

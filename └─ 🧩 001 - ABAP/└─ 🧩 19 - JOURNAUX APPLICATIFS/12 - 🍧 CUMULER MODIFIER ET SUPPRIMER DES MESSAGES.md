@@ -39,11 +39,64 @@ La modification d’un message est utile lorsqu’un traitement ajoute d’abord
 
 Ne pas supprimer une erreur uniquement pour produire un journal « vert ». Le journal doit refléter le résultat réel du traitement.
 
+## 🌺 CAS D’USAGE
+
+Dans un contexte où un traitement automatique doit produire un historique exploitable par le support avec contexte, messages et identifiants, le besoin consiste à **effectuer « cumuler, modifier et supprimer des messages » en limitant l’action au périmètre prévu**. Cette notion est pertinente lorsque une modification trop large peut altérer des données ou des usages non prévus.
+
+## 🌺 PROCÉDURE PAS À PAS
+
+1. Lire la définition et identifier les prérequis du chapitre.
+2. Choisir un objet Z ou un scénario de démonstration sans impact métier.
+3. Reproduire l’exemple dans un système de développement et relever les données d’entrée.
+4. Contrôler la syntaxe ou la configuration avant activation/exécution.
+5. Comparer le résultat observé avec la section **Vérification**.
+6. Documenter toute différence liée à la release, aux autorisations ou au paramétrage du système.
+
+## 🌺 VÉRIFICATION
+
+- Le journal est retrouvable dans `SLG1` avec objet, sous-objet et période.
+- Chaque erreur contient un contexte permettant d’identifier l’enregistrement concerné.
+- Le log est sauvegardé même lorsque le traitement se termine avec des erreurs gérées.
+- Aucune donnée sensible inutile n’est enregistrée.
+
+## 🌺 ERREURS FRÉQUENTES
+
+- Enregistrer uniquement un texte générique sans clé métier.
+- Journaliser des mots de passe, tokens ou données personnelles inutiles.
+
+## 🌺 FICHE DE CONTRÔLE À COPIER
+
+```text
+Système / SID       :
+Mandant             :
+Utilisateur         :
+Transaction / outil :
+Objet technique     :
+Jeu de données      :
+Résultat attendu    :
+Résultat observé    :
+Horodatage          :
+Ordre de transport  :
+```
+
+## 🌺 TERMES DU LEXIQUE
+
+- [Application Log](<../└─ 🧩 00 - LEXIQUE SAP ET ABAP/08 - 🍧 EXECUTION EXPLOITATION ET ADMINISTRATION.md#application-log>)
+- [BAL](<../└─ 🧩 00 - LEXIQUE SAP ET ABAP/10 - 🍧 ACRONYMES SAP.md#acro-bal>)
+- [Job](<../└─ 🧩 00 - LEXIQUE SAP ET ABAP/06 - 🍧 PROGRAMMES CLASSES ET OBJETS TECHNIQUES.md#job>)
+
+## 🌺 À RETENIR
+
+- À l’issue du chapitre, le lecteur sait **effectuer « cumuler, modifier et supprimer des messages » en limitant l’action au périmètre prévu**.
+- Toujours tester sur un objet Z ou un jeu de données sans impact avant d’intervenir sur un traitement réel.
+- La documentation `F1` du système reste la référence pour la syntaxe disponible dans sa release.
+
 ## 🌺 RÉFÉRENCES OFFICIELLES SAP
 
 - [Function Module Overview — SAP Help Portal](https://help.sap.com/docs/ABAP_PLATFORM_NEW/addb96cd90c945dfb3182865363bbc47/4e23b1720771417fe10000000a15822b.html)
 - [Basics — SAP Help Portal](https://help.sap.com/docs/ABAP_PLATFORM_NEW/addb96cd90c945dfb3182865363bbc47/4e21029235d44180e10000000a15822b.html)
 
+
 ---
 
-➡️ [Chapitre suivant — AFFICHER UN JOURNAL EN MEMOIRE](<./13 - 🍧 AFFICHER UN JOURNAL EN MEMOIRE.md>)
+➡️ [Chapitre suivant — AFFICHER UN JOURNAL EN MÉMOIRE](<./13 - 🍧 AFFICHER UN JOURNAL EN MEMOIRE.md>)

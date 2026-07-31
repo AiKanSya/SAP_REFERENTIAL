@@ -1,10 +1,10 @@
-# 🍧 EXTENDED PROGRAM CHECK AVEC SLIN
+# 🌸 EXTENDED PROGRAM CHECK AVEC SLIN
 
-## 🎯 Objectif
+## 🌺 Objectif
 
 Exécuter les contrôles approfondis de la transaction `SLIN` sur des sources actives.
 
-## 🛠️ Exécution
+## 🌺 Exécution
 
 - appeler directement `SLIN` ;
 - ou utiliser le menu **Programme > Vérifier > Vérification étendue du programme** dans l’éditeur ABAP ;
@@ -12,7 +12,7 @@ Exécuter les contrôles approfondis de la transaction `SLIN` sur des sources ac
 - lancer l’analyse ;
 - ouvrir chaque message et naviguer vers la source.
 
-## 🔍 Catégories rencontrées
+## 🌺 Catégories rencontrées
 
 Les options exactes dépendent de la release. Elles peuvent couvrir :
 
@@ -23,11 +23,11 @@ Les options exactes dépendent de la release. Elles peuvent couvrir :
 - package et dépendances ;
 - instructions problématiques.
 
-## 📌 Source active
+## 🌺 Source active
 
 La vérification étendue s’appuie sur la version active. Activer les objets avant l’analyse, sinon les résultats peuvent ne pas correspondre au code en cours de modification.
 
-## 🧭 Traiter un message
+## 🌺 Traiter un message
 
 1. Comprendre la règle et le scénario détecté.
 2. Vérifier si le chemin est réellement possible.
@@ -35,14 +35,67 @@ La vérification étendue s’appuie sur la version active. Activer les objets a
 4. Relancer le contrôle.
 5. Documenter toute suppression autorisée.
 
-## ⚠️ SLIN n’est pas un test fonctionnel
+## 🌺 SLIN n’est pas un test fonctionnel
 
 Il détecte des problèmes reconnaissables statiquement. Il ne valide ni le résultat métier ni la qualité des données produites.
 
-## 🔗 Références SAP officielles
+## 🌺 Références SAP officielles
 
 - [ABAP Keyword Documentation — Extended Program Check](https://help.sap.com/doc/abapdocu_latest_index_htm/latest/en-US/ABENEXTENDED_PROGRAM_CHECK_GUIDL.html)
 
+## 🌺 CAS D’USAGE
+
+Dans un contexte où un programme critique doit conserver ses résultats tout en respectant les exigences de performance, qualité et non-régression, le besoin consiste à **appliquer extended program check avec slin pour mesurer, contrôler et sécuriser la qualité d’une livraison ABAP**. Cette notion est pertinente lorsque le lecteur doit pouvoir relier la syntaxe ou l’outil à une situation professionnelle concrète.
+
+## 🌺 PROCÉDURE PAS À PAS
+
+1. Lire la définition et identifier les prérequis du chapitre.
+2. Choisir un objet Z ou un scénario de démonstration sans impact métier.
+3. Reproduire l’exemple dans un système de développement et relever les données d’entrée.
+4. Contrôler la syntaxe ou la configuration avant activation/exécution.
+5. Comparer le résultat observé avec la section **Vérification**.
+6. Documenter toute différence liée à la release, aux autorisations ou au paramétrage du système.
+
+## 🌺 VÉRIFICATION
+
+- Le résultat fonctionnel est identique avant et après optimisation.
+- La mesure est répétée avec le même jeu de données et le même contexte.
+- Les contrôles statiques ne retournent plus de finding bloquant.
+- Les tests automatiques couvrent les cas nominal, limites et erreurs attendues.
+
+## 🌺 ERREURS FRÉQUENTES
+
+- Optimiser sans mesure de référence.
+- Accepter un finding critique sans correction ni justification formelle.
+
+## 🌺 FICHE DE CONTRÔLE À COPIER
+
+```text
+Système / SID       :
+Mandant             :
+Utilisateur         :
+Transaction / outil :
+Objet technique     :
+Jeu de données      :
+Résultat attendu    :
+Résultat observé    :
+Horodatage          :
+Ordre de transport  :
+```
+
+## 🌺 TERMES DU LEXIQUE
+
+- [ATC](<../└─ 🧩 00 - LEXIQUE SAP ET ABAP/10 - 🍧 ACRONYMES SAP.md#acro-atc>)
+- [ABAP](<../└─ 🧩 00 - LEXIQUE SAP ET ABAP/10 - 🍧 ACRONYMES SAP.md#acro-abap>)
+- [Trace](<../└─ 🧩 00 - LEXIQUE SAP ET ABAP/08 - 🍧 EXECUTION EXPLOITATION ET ADMINISTRATION.md#trace>)
+
+## 🌺 À RETENIR
+
+- À l’issue du chapitre, le lecteur sait **appliquer extended program check avec slin pour mesurer, contrôler et sécuriser la qualité d’une livraison ABAP**.
+- Toujours tester sur un objet Z ou un jeu de données sans impact avant d’intervenir sur un traitement réel.
+- La documentation `F1` du système reste la référence pour la syntaxe disponible dans sa release.
+
+
 ---
 
-➡️ [Chapitre suivant : CODE INSPECTOR AVEC SCI](<13 - 🍧 CODE INSPECTOR AVEC SCI.md>)
+➡️ [Chapitre suivant — CODE INSPECTOR AVEC SCI](<./13 - 🍧 CODE INSPECTOR AVEC SCI.md>)

@@ -86,11 +86,62 @@ Depuis la table :
 - Les index accélèrent certains accès mais ralentissent les écritures.
 - Toute création d’index doit être justifiée par une analyse mesurable.
 
+## 🌺 CAS D’USAGE
+
+Dans un contexte où une application Z nécessite un modèle de données partagé, cohérent et réutilisable dans plusieurs programmes, le besoin consiste à **analyser ou modéliser clés, index et dépendance au mandant dans l’ABAP Dictionary avec des dépendances cohérentes**. Cette notion est pertinente lorsque le lecteur doit pouvoir relier la syntaxe ou l’outil à une situation professionnelle concrète.
+
+## 🌺 PROCÉDURE PAS À PAS
+
+1. Saisir `/nSE11`.
+2. Choisir le type d’objet DDIC correspondant au chapitre.
+3. Entrer le nom technique ; utiliser **Afficher** pour un objet existant ou **Créer** pour un objet Z autorisé.
+4. Renseigner les attributs et composants en suivant les règles du chapitre.
+5. Lancer le contrôle de cohérence.
+6. Activer l’objet et traiter chaque message avant de poursuivre.
+7. Utiliser la liste d’utilisation et, pour les tables, vérifier les paramètres techniques et la structure physique.
+
+## 🌺 VÉRIFICATION
+
+- Le contrôle de cohérence ne retourne aucune erreur bloquante.
+- L’objet est actif et son entrée de répertoire pointe vers le package attendu.
+- La liste d’utilisation et les dépendances correspondent au périmètre prévu.
+- Pour une table Z, la structure active et la structure de base sont cohérentes.
+
+## 🌺 ERREURS FRÉQUENTES
+
+- Modifier un objet standard au lieu d’utiliser une extension.
+- Activer une table sans vérifier clé, paramètres techniques et impact base.
+
+## 🌺 FICHE DE CONTRÔLE À COPIER
+
+```text
+Système / SID       :
+Mandant             :
+Utilisateur         :
+Transaction / outil :
+Objet technique     :
+Jeu de données      :
+Résultat attendu    :
+Résultat observé    :
+Horodatage          :
+Ordre de transport  :
+```
+
+## 🌺 TERMES DU LEXIQUE
+
+- [Mandant](<../└─ 🧩 00 - LEXIQUE SAP ET ABAP/01 - 🍧 SYSTEMES ENVIRONNEMENTS ET MANDANTS.md#mandant>)
+- [ABAP Dictionary](<../└─ 🧩 00 - LEXIQUE SAP ET ABAP/05 - 🍧 DONNEES DICTIONNAIRE ET BASE DE DONNEES.md#abap-dictionary>)
+- [Domaine](<../└─ 🧩 00 - LEXIQUE SAP ET ABAP/05 - 🍧 DONNEES DICTIONNAIRE ET BASE DE DONNEES.md#domaine>)
+- [Élément de données](<../└─ 🧩 00 - LEXIQUE SAP ET ABAP/05 - 🍧 DONNEES DICTIONNAIRE ET BASE DE DONNEES.md#element-donnees>)
+- [Table transparente](<../└─ 🧩 00 - LEXIQUE SAP ET ABAP/05 - 🍧 DONNEES DICTIONNAIRE ET BASE DE DONNEES.md#table-transparente>)
+- [MANDT](<../└─ 🧩 00 - LEXIQUE SAP ET ABAP/05 - 🍧 DONNEES DICTIONNAIRE ET BASE DE DONNEES.md#mandt>)
+
 ## 🌺 RÉFÉRENCES OFFICIELLES SAP
 
 - [Creating Database Tables — SAP Learning](https://learning.sap.com/courses/building-data-models-with-the-abap-dictionary-and-abap-core-data-services/creating-database-tables_ebc1477d-96ed-414b-82d4-4171da43f4a6)
 - [Tables and Indexes — ABAP Dictionary — SAP Help Portal](https://help.sap.com/docs/SAP_NETWEAVER_740/ec1c9c8191b74de98feb94001a95dd76/cf21e9fe446011d189700000e8322d00.html)
 
+
 ---
 
-➡️ [Chapitre suivant — PARAMETRES TECHNIQUES ET BUFFERISATION](<./09 - 🍧 PARAMETRES TECHNIQUES ET BUFFERISATION.md>)
+➡️ [Chapitre suivant — PARAMÈTRES TECHNIQUES ET BUFFERISATION](<./09 - 🍧 PARAMETRES TECHNIQUES ET BUFFERISATION.md>)

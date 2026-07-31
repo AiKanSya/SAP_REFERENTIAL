@@ -73,11 +73,61 @@ Les détails varient selon la version du débogueur et le type de donnée.
 - documenter la valeur attendue ;
 - vérifier la pile d’appels au déclenchement.
 
+## 🌺 CAS D’USAGE
+
+Dans un contexte où un incident ne se produit que pour certaines données et doit être reproduit puis localisé sans modifier le comportement métier, le besoin consiste à **exécuter les contrôles qualité, analyser les findings et corriger les causes**. Cette notion est pertinente lorsque le lecteur doit pouvoir relier la syntaxe ou l’outil à une situation professionnelle concrète.
+
+## 🌺 PROCÉDURE PAS À PAS
+
+1. Saisir `/nATC` ou utiliser l’entrée ATC disponible dans le système.
+2. Choisir une variante de contrôle autorisée.
+3. Lancer le contrôle sur l’objet, le package ou l’ordre de transport.
+4. Classer les findings par priorité et corriger d’abord les erreurs bloquantes.
+5. Demander une exemption uniquement avec justification, propriétaire et échéance.
+6. Relancer le contrôle avant libération.
+
+## 🌺 VÉRIFICATION
+
+- Le scénario reproduit correspond au même utilisateur, mandant, transaction et jeu de données.
+- L’horodatage et l’identifiant de l’analyse sont conservés.
+- La cause retenue est soutenue par une ligne source, une trace ou une valeur observée.
+- Après correction, le même scénario ne reproduit plus le défaut et le résultat métier reste identique.
+
+## 🌺 ERREURS FRÉQUENTES
+
+- Copier un exemple sans adapter les types, noms d’objets et données disponibles dans le système.
+- Tester uniquement le cas nominal et ignorer les valeurs initiales, absentes ou invalides.
+- Modifier les données dans le débogueur puis considérer le résultat comme reproductible.
+- Laisser une trace active trop longtemps.
+
+## 🌺 SNIPPET À RÉUTILISER
+
+> [!NOTE]
+> Adapter les noms `Z*`, les types DDIC, les données et les autorisations au système cible. Effectuer un contrôle syntaxique avant activation.
+
+```abap
+lv_quantity < 0
+```
+
+## 🌺 TERMES DU LEXIQUE
+
+- [Watchpoint](<../└─ 🧩 00 - LEXIQUE SAP ET ABAP/08 - 🍧 EXECUTION EXPLOITATION ET ADMINISTRATION.md#watchpoint>)
+- [Breakpoint](<../└─ 🧩 00 - LEXIQUE SAP ET ABAP/08 - 🍧 EXECUTION EXPLOITATION ET ADMINISTRATION.md#breakpoint>)
+- [Dump ABAP](<../└─ 🧩 00 - LEXIQUE SAP ET ABAP/08 - 🍧 EXECUTION EXPLOITATION ET ADMINISTRATION.md#dump-abap>)
+- [Trace](<../└─ 🧩 00 - LEXIQUE SAP ET ABAP/08 - 🍧 EXECUTION EXPLOITATION ET ADMINISTRATION.md#trace>)
+
+## 🌺 À RETENIR
+
+- À l’issue du chapitre, le lecteur sait **exécuter les contrôles qualité, analyser les findings et corriger les causes**.
+- Toujours tester sur un objet Z ou un jeu de données sans impact avant d’intervenir sur un traitement réel.
+- La documentation `F1` du système reste la référence pour la syntaxe disponible dans sa release.
+
 ## 🌺 RÉFÉRENCES OFFICIELLES SAP
 
 - [Watchpoints — SAP Help Portal](https://help.sap.com/docs/ABAP_PLATFORM_NEW/ba879a6e2ea04d9bb94c7ccd7cdac446/4926d933c93016b8e10000000a42189d.html)
 - [Breakpoints Tool — SAP Help Portal](https://help.sap.com/docs/ABAP_PLATFORM_NEW/ba879a6e2ea04d9bb94c7ccd7cdac446/492535784d7216b5e10000000a42189d.html)
 
+
 ---
 
-➡️ [Chapitre suivant — PILOTER L EXECUTION DU PROGRAMME](<./06 - 🍧 PILOTER L EXECUTION DU PROGRAMME.md>)
+➡️ [Chapitre suivant — PILOTER L’EXÉCUTION DU PROGRAMME](<./06 - 🍧 PILOTER L EXECUTION DU PROGRAMME.md>)

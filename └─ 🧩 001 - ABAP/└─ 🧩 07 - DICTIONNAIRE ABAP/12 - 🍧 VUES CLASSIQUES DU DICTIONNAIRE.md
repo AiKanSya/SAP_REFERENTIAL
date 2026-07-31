@@ -58,7 +58,7 @@ Elle permet de réunir des données de plusieurs tables en tenant compte des rel
 
 ```mermaid
 flowchart TD
-    A["Besoin"] --> BObjectif principal
+    A["Besoin"] --> B["Objectif principal"]
     B -->|"Lecture en base"| C["Vue de base de données"]
     B -->|"Sous-ensemble d’une table"| D["Vue de projection"]
     B -->|"Maintenance SM30"| E["Vue de maintenance"]
@@ -79,10 +79,60 @@ Pour de nouveaux modèles de lecture, SAP privilégie les vues CDS. Leur concept
 - Une vue de projection ne porte que sur une table.
 - Les vues CDS ne sont pas traitées dans ce dossier SAP GUI.
 
+## 🌺 CAS D’USAGE
+
+Dans un contexte où une application Z nécessite un modèle de données partagé, cohérent et réutilisable dans plusieurs programmes, le besoin consiste à **analyser ou modéliser vues classiques du dictionnaire dans l’ABAP Dictionary avec des dépendances cohérentes**. Cette notion est pertinente lorsque le lecteur doit pouvoir relier la syntaxe ou l’outil à une situation professionnelle concrète.
+
+## 🌺 PROCÉDURE PAS À PAS
+
+1. Saisir `/nSE11`.
+2. Choisir le type d’objet DDIC correspondant au chapitre.
+3. Entrer le nom technique ; utiliser **Afficher** pour un objet existant ou **Créer** pour un objet Z autorisé.
+4. Renseigner les attributs et composants en suivant les règles du chapitre.
+5. Lancer le contrôle de cohérence.
+6. Activer l’objet et traiter chaque message avant de poursuivre.
+7. Utiliser la liste d’utilisation et, pour les tables, vérifier les paramètres techniques et la structure physique.
+
+## 🌺 VÉRIFICATION
+
+- Le contrôle de cohérence ne retourne aucune erreur bloquante.
+- L’objet est actif et son entrée de répertoire pointe vers le package attendu.
+- La liste d’utilisation et les dépendances correspondent au périmètre prévu.
+- Pour une table Z, la structure active et la structure de base sont cohérentes.
+
+## 🌺 ERREURS FRÉQUENTES
+
+- Modifier un objet standard au lieu d’utiliser une extension.
+- Activer une table sans vérifier clé, paramètres techniques et impact base.
+
+## 🌺 FICHE DE CONTRÔLE À COPIER
+
+```text
+Système / SID       :
+Mandant             :
+Utilisateur         :
+Transaction / outil :
+Objet technique     :
+Jeu de données      :
+Résultat attendu    :
+Résultat observé    :
+Horodatage          :
+Ordre de transport  :
+```
+
+## 🌺 TERMES DU LEXIQUE
+
+- [ABAP Dictionary](<../└─ 🧩 00 - LEXIQUE SAP ET ABAP/05 - 🍧 DONNEES DICTIONNAIRE ET BASE DE DONNEES.md#abap-dictionary>)
+- [Domaine](<../└─ 🧩 00 - LEXIQUE SAP ET ABAP/05 - 🍧 DONNEES DICTIONNAIRE ET BASE DE DONNEES.md#domaine>)
+- [Élément de données](<../└─ 🧩 00 - LEXIQUE SAP ET ABAP/05 - 🍧 DONNEES DICTIONNAIRE ET BASE DE DONNEES.md#element-donnees>)
+- [Table transparente](<../└─ 🧩 00 - LEXIQUE SAP ET ABAP/05 - 🍧 DONNEES DICTIONNAIRE ET BASE DE DONNEES.md#table-transparente>)
+- [MANDT](<../└─ 🧩 00 - LEXIQUE SAP ET ABAP/05 - 🍧 DONNEES DICTIONNAIRE ET BASE DE DONNEES.md#mandt>)
+
 ## 🌺 RÉFÉRENCES OFFICIELLES SAP
 
 - [Views — ABAP Dictionary — SAP Help Portal](https://help.sap.com/docs/SAP_NETWEAVER_AS_ABAP_FOR_SOH_740/ec1c9c8191b74de98feb94001a95dd76/cf21ec5d446011d189700000e8322d00.html?version=7.40.30)
 - [Maintenance Views — SAP Help Portal](https://help.sap.com/docs/SAP_NETWEAVER_731_BW_ABAP/ec1c9c8191b74de98feb94001a95dd76/cf21ecdf446011d189700000e8322d00.html)
+
 
 ---
 

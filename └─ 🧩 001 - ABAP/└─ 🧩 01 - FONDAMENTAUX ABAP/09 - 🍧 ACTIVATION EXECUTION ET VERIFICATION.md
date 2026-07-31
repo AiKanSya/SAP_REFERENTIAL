@@ -12,12 +12,12 @@
 
 ```mermaid
 flowchart LR
-    A[Modifier] --> B[Enregistrer]
-    B --> C[Contrôler]
-    C --> D[Activer]
-    D --> E[Exécuter]
-    E --> F[Tester]
-    F --> G[Contrôles qualité]
+    A["Modifier"] --> B["Enregistrer"]
+    B --> C["Contrôler"]
+    C --> D["Activer"]
+    D --> E["Exécuter"]
+    E --> F["Tester"]
+    F --> G["Contrôles qualité"]
 ```
 
 ## 🌺 ENREGISTREMENT
@@ -98,9 +98,9 @@ L’exécution normale utilise la version active disponible.
 
 ```mermaid
 flowchart TD
-    A[Modification enregistrée] --> B{Activée ?}
-    B -- Non --> C[Version active précédente utilisée]
-    B -- Oui --> D[Nouvelle version active utilisée]
+    A["Modification enregistrée"] --> B{"Activée ?"}
+    B -->|"Non"| C["Version active précédente utilisée"]
+    B -->|"Oui"| D["Nouvelle version active utilisée"]
 ```
 
 C’est la cause classique d’un test qui semble ignorer une correction récente.
@@ -175,12 +175,67 @@ Selon le programme, analyser également :
 - [ ] aucun objet sans rapport n’est présent dans la requête ;
 - [ ] le test après import est défini.
 
+## 🌺 CAS D’USAGE
+
+Dans un contexte où une intervention de correction doit être réalisée dans le bon système et sur le bon objet sans affecter un environnement non autorisé, le besoin consiste à **appliquer activation, exécution et vérification dans un scénario SAP contrôlé**. Cette notion est pertinente lorsque le lecteur doit pouvoir relier la syntaxe ou l’outil à une situation professionnelle concrète.
+
+## 🌺 PROCÉDURE PAS À PAS
+
+1. Ouvrir un report Z actif dans `SE38`.
+2. Modifier une valeur sans activer puis enregistrer.
+3. Vérifier que le système distingue la version inactive de la version active.
+4. Exécuter le contrôle syntaxique.
+5. Activer le programme et traiter les éventuelles erreurs de dépendance.
+6. Exécuter avec `F8` et confirmer que la version active produit le résultat attendu.
+7. Utiliser la gestion des versions si une comparaison avec une version antérieure est nécessaire.
+
+## 🌺 VÉRIFICATION
+
+- Le contrôle syntaxique réussit.
+- La version active correspond au code sauvegardé.
+- L’exécution produit le résultat décrit dans le chapitre.
+- Les cas vide, limite et erreur sont testés séparément lorsque la syntaxe le permet.
+
+## 🌺 ERREURS FRÉQUENTES
+
+- Copier un exemple sans adapter les types, noms d’objets et données disponibles dans le système.
+- Tester uniquement le cas nominal et ignorer les valeurs initiales, absentes ou invalides.
+- Intervenir dans le mauvais système ou mandant.
+- Confondre sauvegarde et activation.
+
+## 🌺 SNIPPET À RÉUTILISER
+
+> [!NOTE]
+> Adapter les noms `Z*`, les types DDIC, les données et les autorisations au système cible. Effectuer un contrôle syntaxique avant activation.
+
+```abap
+DATA gv_value TYPE i
+
+gv_value = 'ABC'.
+```
+
+## 🌺 TERMES DU LEXIQUE
+
+- [Système SAP](<../└─ 🧩 00 - LEXIQUE SAP ET ABAP/01 - 🍧 SYSTEMES ENVIRONNEMENTS ET MANDANTS.md#systeme-sap>)
+- [Mandant](<../└─ 🧩 00 - LEXIQUE SAP ET ABAP/01 - 🍧 SYSTEMES ENVIRONNEMENTS ET MANDANTS.md#mandant>)
+- [SAP GUI](<../└─ 🧩 00 - LEXIQUE SAP ET ABAP/02 - 🍧 SAP GUI NAVIGATION ET TRANSACTIONS.md#sap-gui>)
+- [Transaction](<../└─ 🧩 00 - LEXIQUE SAP ET ABAP/02 - 🍧 SAP GUI NAVIGATION ET TRANSACTIONS.md#transaction>)
+- [Repository ABAP](<../└─ 🧩 00 - LEXIQUE SAP ET ABAP/03 - 🍧 REPOSITORY PACKAGES ET TRANSPORTS.md#repository-abap>)
+- [Package](<../└─ 🧩 00 - LEXIQUE SAP ET ABAP/03 - 🍧 REPOSITORY PACKAGES ET TRANSPORTS.md#package>)
+
+## 🌺 À RETENIR
+
+- À l’issue du chapitre, le lecteur sait **appliquer activation, exécution et vérification dans un scénario SAP contrôlé**.
+- Toujours tester sur un objet Z ou un jeu de données sans impact avant d’intervenir sur un traitement réel.
+- La documentation `F1` du système reste la référence pour la syntaxe disponible dans sa release.
+
 ## 🌺 RÉFÉRENCES OFFICIELLES SAP
 
 - [ABAP Source Code Editor](https://help.sap.com/docs/ABAP_PLATFORM_NEW/c238d694b825421f940829321ffa326a/9ac600a0fad14967aaf2964be5a21963.html)
 - [Starting and Directly Debugging ABAP Programs](https://help.sap.com/docs/ABAP_PLATFORM_NEW/ba879a6e2ea04d9bb94c7ccd7cdac446/a95208086a6e448aa35f08357d958af5.html)
 - [Running Local Quality Checks with the ATC](https://help.sap.com/docs/ABAP_PLATFORM_NEW/ba879a6e2ea04d9bb94c7ccd7cdac446/ca5e041535c0491db596d3ca6658cd7d.html)
 
+
 ---
 
-➡️ [Chapitre suivant — EVENEMENTS D UN PROGRAMME EXECUTABLE](<./10 - 🍧 EVENEMENTS D UN PROGRAMME EXECUTABLE.md>)
+➡️ [Chapitre suivant — ÉVÉNEMENTS D’UN PROGRAMME EXÉCUTABLE](<./10 - 🍧 EVENEMENTS D UN PROGRAMME EXECUTABLE.md>)

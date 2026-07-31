@@ -100,10 +100,56 @@ Type de table : `ZTT_MESSAGE`
 - Il ne crée aucun objet physique en base.
 - Les opérations sur les tables internes restent détaillées dans le dossier dédié.
 
+## 🌺 CAS D’USAGE
+
+Dans un contexte où une application Z nécessite un modèle de données partagé, cohérent et réutilisable dans plusieurs programmes, le besoin consiste à **analyser ou modéliser types de table du dictionnaire dans l’ABAP Dictionary avec des dépendances cohérentes**. Cette notion est pertinente lorsque le lecteur doit pouvoir relier la syntaxe ou l’outil à une situation professionnelle concrète.
+
+## 🌺 PROCÉDURE PAS À PAS
+
+1. Saisir `/nSE11`.
+2. Choisir le type d’objet DDIC correspondant au chapitre.
+3. Entrer le nom technique ; utiliser **Afficher** pour un objet existant ou **Créer** pour un objet Z autorisé.
+4. Renseigner les attributs et composants en suivant les règles du chapitre.
+5. Lancer le contrôle de cohérence.
+6. Activer l’objet et traiter chaque message avant de poursuivre.
+7. Utiliser la liste d’utilisation et, pour les tables, vérifier les paramètres techniques et la structure physique.
+
+## 🌺 VÉRIFICATION
+
+- Le contrôle de cohérence ne retourne aucune erreur bloquante.
+- L’objet est actif et son entrée de répertoire pointe vers le package attendu.
+- La liste d’utilisation et les dépendances correspondent au périmètre prévu.
+- Pour une table Z, la structure active et la structure de base sont cohérentes.
+
+## 🌺 ERREURS FRÉQUENTES
+
+- Copier un exemple sans adapter les types, noms d’objets et données disponibles dans le système.
+- Tester uniquement le cas nominal et ignorer les valeurs initiales, absentes ou invalides.
+- Modifier un objet standard au lieu d’utiliser une extension.
+- Activer une table sans vérifier clé, paramètres techniques et impact base.
+
+## 🌺 SNIPPET À RÉUTILISER
+
+> [!NOTE]
+> Adapter les noms `Z*`, les types DDIC, les données et les autorisations au système cible. Effectuer un contrôle syntaxique avant activation.
+
+```abap
+DATA lt_messages TYPE ztt_message.
+```
+
+## 🌺 TERMES DU LEXIQUE
+
+- [ABAP Dictionary](<../└─ 🧩 00 - LEXIQUE SAP ET ABAP/05 - 🍧 DONNEES DICTIONNAIRE ET BASE DE DONNEES.md#abap-dictionary>)
+- [Domaine](<../└─ 🧩 00 - LEXIQUE SAP ET ABAP/05 - 🍧 DONNEES DICTIONNAIRE ET BASE DE DONNEES.md#domaine>)
+- [Élément de données](<../└─ 🧩 00 - LEXIQUE SAP ET ABAP/05 - 🍧 DONNEES DICTIONNAIRE ET BASE DE DONNEES.md#element-donnees>)
+- [Table transparente](<../└─ 🧩 00 - LEXIQUE SAP ET ABAP/05 - 🍧 DONNEES DICTIONNAIRE ET BASE DE DONNEES.md#table-transparente>)
+- [MANDT](<../└─ 🧩 00 - LEXIQUE SAP ET ABAP/05 - 🍧 DONNEES DICTIONNAIRE ET BASE DE DONNEES.md#mandt>)
+
 ## 🌺 RÉFÉRENCES OFFICIELLES SAP
 
 - [Defining Dictionary Table Types — SAP Learning](https://learning.sap.com/courses/building-data-models-with-the-abap-dictionary-and-abap-core-data-services/defining-dictionary-table-types_df502cc6-441f-4fdc-aa9e-cc81caf6919c)
 - [Data Types in the ABAP Dictionary — SAP Help Portal](https://help.sap.com/docs/SAP_NETWEAVER_740/ec1c9c8191b74de98feb94001a95dd76/cf21f2e5446011d189700000e8322d00.html)
+
 
 ---
 

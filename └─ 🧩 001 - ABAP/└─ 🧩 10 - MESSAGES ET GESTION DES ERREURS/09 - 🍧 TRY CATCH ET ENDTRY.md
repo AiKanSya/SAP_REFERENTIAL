@@ -83,11 +83,65 @@ Meilleur : protéger uniquement l’instruction ou l’appel dont l’exception 
 
 Un bloc court permet d’identifier clairement la cause et évite d’intercepter une exception inattendue provenant d’une autre opération.
 
+## 🌺 CAS D’USAGE
+
+Dans un contexte où un import doit signaler clairement les erreurs, permettre leur traitement et éviter les arrêts non maîtrisés, le besoin consiste à **exécuter les contrôles qualité, analyser les findings et corriger les causes**. Cette notion est pertinente lorsque le lecteur doit pouvoir relier la syntaxe ou l’outil à une situation professionnelle concrète.
+
+## 🌺 PROCÉDURE PAS À PAS
+
+1. Saisir `/nATC` ou utiliser l’entrée ATC disponible dans le système.
+2. Choisir une variante de contrôle autorisée.
+3. Lancer le contrôle sur l’objet, le package ou l’ordre de transport.
+4. Classer les findings par priorité et corriger d’abord les erreurs bloquantes.
+5. Demander une exemption uniquement avec justification, propriétaire et échéance.
+6. Relancer le contrôle avant libération.
+
+## 🌺 VÉRIFICATION
+
+- Le contrôle syntaxique réussit.
+- La version active correspond au code sauvegardé.
+- L’exécution produit le résultat décrit dans le chapitre.
+- Les cas vide, limite et erreur sont testés séparément lorsque la syntaxe le permet.
+
+## 🌺 ERREURS FRÉQUENTES
+
+- Copier un exemple sans adapter les types, noms d’objets et données disponibles dans le système.
+- Tester uniquement le cas nominal et ignorer les valeurs initiales, absentes ou invalides.
+- Afficher un message technique incompréhensible à l’utilisateur.
+- Attraper une exception sans action ni propagation.
+
+## 🌺 SNIPPET À RÉUTILISER
+
+> [!NOTE]
+> Adapter les noms `Z*`, les types DDIC, les données et les autorisations au système cible. Effectuer un contrôle syntaxique avant activation.
+
+```abap
+TRY.
+    lo_service->execute( ).
+  CATCH zcx_dev_invalid_input INTO DATA(lx_input).
+    MESSAGE lx_input->get_text( ) TYPE 'E'.
+  CATCH zcx_dev_not_found INTO DATA(lx_not_found).
+    MESSAGE lx_not_found->get_text( ) TYPE 'S' DISPLAY LIKE 'W'.
+ENDTRY.
+```
+
+## 🌺 TERMES DU LEXIQUE
+
+- [Exception](<../└─ 🧩 00 - LEXIQUE SAP ET ABAP/04 - 🍧 LANGAGE ET DEVELOPPEMENT ABAP.md#exception>)
+- [Dump ABAP](<../└─ 🧩 00 - LEXIQUE SAP ET ABAP/08 - 🍧 EXECUTION EXPLOITATION ET ADMINISTRATION.md#dump-abap>)
+
+## 🌺 À RETENIR
+
+- À l’issue du chapitre, le lecteur sait **exécuter les contrôles qualité, analyser les findings et corriger les causes**.
+- Toujours tester sur un objet Z ou un jeu de données sans impact avant d’intervenir sur un traitement réel.
+- La documentation `F1` du système reste la référence pour la syntaxe disponible dans sa release.
+
 ## 🌺 RÉFÉRENCES OFFICIELLES SAP
 
 - [TRY — ABAP Keyword Documentation](https://help.sap.com/doc/abapdocu_latest_index_htm/latest/en-US/ABAPTRY.html)
 - [System Response After a Class-Based Exception — ABAP Keyword Documentation](https://help.sap.com/doc/abapdocu_latest_index_htm/latest/en-US/ABENEXCEPTIONS_SYSTEM_RESPONSE.html)
 - [Handling and Propagating Exceptions — ABAP Programming Guideline](https://help.sap.com/doc/abapdocu_latest_index_htm/latest/en-US/ABENHANDL_PROP_EXCEPT_GUIDL.html)
+
 
 ---
 

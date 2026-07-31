@@ -86,11 +86,60 @@ La journalisation technique ne remplace pas une traçabilité applicative compl�
 - La catégorie de taille est une estimation, pas une limite fonctionnelle.
 - La journalisation doit être activée de manière ciblée.
 
+## 🌺 CAS D’USAGE
+
+Dans un contexte où une application Z nécessite un modèle de données partagé, cohérent et réutilisable dans plusieurs programmes, le besoin consiste à **mesurer le temps d’exécution d’un scénario reproductible**. Cette notion est pertinente lorsque le lecteur doit pouvoir relier la syntaxe ou l’outil à une situation professionnelle concrète.
+
+## 🌺 PROCÉDURE PAS À PAS
+
+1. Saisir `/nSAT`.
+2. Créer ou sélectionner une variante de mesure adaptée.
+3. Définir le programme, la transaction ou l’utilisateur à mesurer.
+4. Démarrer la mesure puis reproduire une seule fois le scénario.
+5. Arrêter et analyser le hit list, la hiérarchie d’appels et les temps nets.
+6. Répéter la mesure après correction avec les mêmes données et le même contexte.
+
+## 🌺 VÉRIFICATION
+
+- Le contrôle de cohérence ne retourne aucune erreur bloquante.
+- L’objet est actif et son entrée de répertoire pointe vers le package attendu.
+- La liste d’utilisation et les dépendances correspondent au périmètre prévu.
+- Pour une table Z, la structure active et la structure de base sont cohérentes.
+
+## 🌺 ERREURS FRÉQUENTES
+
+- Modifier un objet standard au lieu d’utiliser une extension.
+- Activer une table sans vérifier clé, paramètres techniques et impact base.
+
+## 🌺 FICHE DE CONTRÔLE À COPIER
+
+```text
+Système / SID       :
+Mandant             :
+Utilisateur         :
+Transaction / outil :
+Objet technique     :
+Jeu de données      :
+Résultat attendu    :
+Résultat observé    :
+Horodatage          :
+Ordre de transport  :
+```
+
+## 🌺 TERMES DU LEXIQUE
+
+- [ABAP Dictionary](<../└─ 🧩 00 - LEXIQUE SAP ET ABAP/05 - 🍧 DONNEES DICTIONNAIRE ET BASE DE DONNEES.md#abap-dictionary>)
+- [Domaine](<../└─ 🧩 00 - LEXIQUE SAP ET ABAP/05 - 🍧 DONNEES DICTIONNAIRE ET BASE DE DONNEES.md#domaine>)
+- [Élément de données](<../└─ 🧩 00 - LEXIQUE SAP ET ABAP/05 - 🍧 DONNEES DICTIONNAIRE ET BASE DE DONNEES.md#element-donnees>)
+- [Table transparente](<../└─ 🧩 00 - LEXIQUE SAP ET ABAP/05 - 🍧 DONNEES DICTIONNAIRE ET BASE DE DONNEES.md#table-transparente>)
+- [MANDT](<../└─ 🧩 00 - LEXIQUE SAP ET ABAP/05 - 🍧 DONNEES DICTIONNAIRE ET BASE DE DONNEES.md#mandt>)
+
 ## 🌺 RÉFÉRENCES OFFICIELLES SAP
 
 - [Technical Settings — SAP Help Portal](https://help.sap.com/docs/SAP_NETWEAVER_740/ec1c9c8191b74de98feb94001a95dd76/cf21eba2446011d189700000e8322d00.html)
 - [Creating Database Tables — Technical Table Settings — SAP Learning](https://learning.sap.com/courses/building-data-models-with-the-abap-dictionary-and-abap-core-data-services/creating-database-tables_ebc1477d-96ed-414b-82d4-4171da43f4a6)
 
+
 ---
 
-➡️ [Chapitre suivant — CLES ETRANGERES TABLES DE CONTROLE ET TABLES DE TEXTE](<./10 - 🍧 CLES ETRANGERES TABLES DE CONTROLE ET TABLES DE TEXTE.md>)
+➡️ [Chapitre suivant — CLÉS ÉTRANGÈRES, TABLES DE CONTRÔLE ET TABLES DE TEXTE](<./10 - 🍧 CLES ETRANGERES TABLES DE CONTROLE ET TABLES DE TEXTE.md>)

@@ -115,11 +115,52 @@ Ces outils seront approfondis dans le dossier consacré au débogage et à l’a
 - Le passage par référence et `VALUE(...)` produisent des comportements distincts dans le débogueur.
 - Les appels dynamiques exigent une vérification des noms au runtime.
 
+## 🌺 CAS D’USAGE
+
+Dans un contexte où un report devenu long doit être découpé en unités compréhensibles et testables sans modifier son résultat, le besoin consiste à **arrêter l’exécution au bon endroit et observer les données utiles**. Cette notion est pertinente lorsque le lecteur doit pouvoir relier la syntaxe ou l’outil à une situation professionnelle concrète.
+
+## 🌺 VÉRIFICATION
+
+- Le contrôle syntaxique réussit.
+- La version active correspond au code sauvegardé.
+- L’exécution produit le résultat décrit dans le chapitre.
+- Les cas vide, limite et erreur sont testés séparément lorsque la syntaxe le permet.
+
+## 🌺 ERREURS FRÉQUENTES
+
+- Copier un exemple sans adapter les types, noms d’objets et données disponibles dans le système.
+- Tester uniquement le cas nominal et ignorer les valeurs initiales, absentes ou invalides.
+- Créer des sous-programmes avec trop de paramètres globaux.
+- Utiliser des appels externes ou dynamiques sans contrôle du nom et de l’existence.
+
+## 🌺 SNIPPET À RÉUTILISER
+
+> [!NOTE]
+> Adapter les noms `Z*`, les types DDIC, les données et les autorisations au système cible. Effectuer un contrôle syntaxique avant activation.
+
+```abap
+FORM calculate_total
+  USING    iv_quantity TYPE i
+           iv_price    TYPE ty_amount
+  CHANGING cv_total    TYPE ty_amount.
+
+  BREAK-POINT.
+  cv_total = iv_quantity * iv_price.
+ENDFORM.
+```
+
+## 🌺 TERMES DU LEXIQUE
+
+- [Programme exécutable](<../└─ 🧩 00 - LEXIQUE SAP ET ABAP/06 - 🍧 PROGRAMMES CLASSES ET OBJETS TECHNIQUES.md#programme-executable>)
+- [Module fonction](<../└─ 🧩 00 - LEXIQUE SAP ET ABAP/06 - 🍧 PROGRAMMES CLASSES ET OBJETS TECHNIQUES.md#module-fonction>)
+- [ABAP](<../└─ 🧩 00 - LEXIQUE SAP ET ABAP/10 - 🍧 ACRONYMES SAP.md#acro-abap>)
+
 ## 🌺 RÉFÉRENCES OFFICIELLES SAP
 
 - [PERFORM — ABAP Keyword Documentation](https://help.sap.com/doc/abapdocu_latest_index_htm/latest/en-US/ABAPPERFORM.html)
 - [Source Code Organization — ABAP Keyword Documentation](https://help.sap.com/doc/abapdocu_latest_index_htm/latest/en-US/ABENSOURCE_CODE_ORGA_GDL.html)
 - [Utilities for Technical Information About a Program — SAP Help Portal](https://help.sap.com/docs/ABAP_PLATFORM_NEW/bd833c8355f34e96a6e83096b38bf192/d1801b0a454211d189710000e8322d00.html)
+
 
 ---
 

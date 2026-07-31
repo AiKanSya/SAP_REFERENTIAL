@@ -103,12 +103,68 @@ Préférer :
 - Les dépendances globales réduisent l’intérêt de la modularisation.
 - Pour du nouveau développement, les méthodes offrent généralement une interface plus robuste ; elles seront étudiées dans le dossier ABAP Objects.
 
+## 🌺 CAS D’USAGE
+
+Dans un contexte où un report devenu long doit être découpé en unités compréhensibles et testables sans modifier son résultat, le besoin consiste à **mesurer le temps d’exécution d’un scénario reproductible**. Cette notion est pertinente lorsque le choix technique doit être compris avant d’appliquer une procédure.
+
+## 🌺 PROCÉDURE PAS À PAS
+
+1. Saisir `/nSAT`.
+2. Créer ou sélectionner une variante de mesure adaptée.
+3. Définir le programme, la transaction ou l’utilisateur à mesurer.
+4. Démarrer la mesure puis reproduire une seule fois le scénario.
+5. Arrêter et analyser le hit list, la hiérarchie d’appels et les temps nets.
+6. Répéter la mesure après correction avec les mêmes données et le même contexte.
+
+## 🌺 VÉRIFICATION
+
+- Le scénario reproduit correspond au même utilisateur, mandant, transaction et jeu de données.
+- L’horodatage et l’identifiant de l’analyse sont conservés.
+- La cause retenue est soutenue par une ligne source, une trace ou une valeur observée.
+- Après correction, le même scénario ne reproduit plus le défaut et le résultat métier reste identique.
+
+## 🌺 ERREURS FRÉQUENTES
+
+- Copier un exemple sans adapter les types, noms d’objets et données disponibles dans le système.
+- Tester uniquement le cas nominal et ignorer les valeurs initiales, absentes ou invalides.
+- Créer des sous-programmes avec trop de paramètres globaux.
+- Utiliser des appels externes ou dynamiques sans contrôle du nom et de l’existence.
+
+## 🌺 SNIPPET À RÉUTILISER
+
+> [!NOTE]
+> Adapter les noms `Z*`, les types DDIC, les données et les autorisations au système cible. Effectuer un contrôle syntaxique avant activation.
+
+```abap
+REPORT z_demo_modular_01.
+
+PARAMETERS: p_qty   TYPE i,
+            p_price TYPE p LENGTH 8 DECIMALS 2.
+
+DATA lv_total TYPE p LENGTH 10 DECIMALS 2.
+
+START-OF-SELECTION.
+  IF p_qty < 0 OR p_price < 0.
+    MESSAGE 'Valeurs négatives interdites' TYPE 'E'.
+  ENDIF.
+
+  lv_total = p_qty * p_price.
+  WRITE: / 'Total :', lv_total.
+```
+
+## 🌺 TERMES DU LEXIQUE
+
+- [Programme exécutable](<../└─ 🧩 00 - LEXIQUE SAP ET ABAP/06 - 🍧 PROGRAMMES CLASSES ET OBJETS TECHNIQUES.md#programme-executable>)
+- [Module fonction](<../└─ 🧩 00 - LEXIQUE SAP ET ABAP/06 - 🍧 PROGRAMMES CLASSES ET OBJETS TECHNIQUES.md#module-fonction>)
+- [ABAP](<../└─ 🧩 00 - LEXIQUE SAP ET ABAP/10 - 🍧 ACRONYMES SAP.md#acro-abap>)
+
 ## 🌺 RÉFÉRENCES OFFICIELLES SAP
 
 - [Source Code Modularization — ABAP Keyword Documentation](https://help.sap.com/doc/abapdocu_latest_index_htm/latest/en-US/ABENSOURCE_CODE_MODULAR_GUIDL.html)
 - [Source Code Organization — ABAP Keyword Documentation](https://help.sap.com/doc/abapdocu_latest_index_htm/latest/en-US/ABENSOURCE_CODE_ORGA_GDL.html)
 - [ABAP Objects as a Programming Model — ABAP Keyword Documentation](https://help.sap.com/doc/abapdocu_latest_index_htm/latest/en-US/ABENABAP_OBJ_PROGR_MODEL_GUIDL.html)
 
+
 ---
 
-➡️ [Chapitre suivant — BLOCS DE TRAITEMENT ET PROCEDURES](<./02 - 🍧 BLOCS DE TRAITEMENT ET PROCEDURES.md>)
+➡️ [Chapitre suivant — BLOCS DE TRAITEMENT ET PROCÉDURES](<./02 - 🍧 BLOCS DE TRAITEMENT ET PROCEDURES.md>)

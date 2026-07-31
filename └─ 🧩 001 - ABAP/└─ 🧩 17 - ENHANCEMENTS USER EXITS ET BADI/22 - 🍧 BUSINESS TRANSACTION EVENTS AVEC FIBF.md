@@ -39,12 +39,66 @@ SAP fournit généralement un module exemple décrivant l’interface. Le module
 - contrôler le mandant et le transport du Customizing ;
 - documenter l’ordre d’exécution observé.
 
+## 🌺 CAS D’USAGE
+
+Dans un contexte où un besoin client doit compléter le comportement standard SAP sans modifier directement le code livré par SAP, le besoin consiste à **utiliser business transaction events avec `fibf` pour étendre le standard sans créer de modification directe ni d’effet de bord hors périmètre**. Cette notion est pertinente lorsque le lecteur doit pouvoir relier la syntaxe ou l’outil à une situation professionnelle concrète.
+
+## 🌺 PROCÉDURE PAS À PAS
+
+1. Saisir `/nSE80`.
+2. Sélectionner le type d’objet ou le package dans la liste de gauche.
+3. Entrer le nom technique puis valider.
+4. Commencer en mode **Afficher** pour analyser l’objet et ses sous-objets.
+5. Passer en modification uniquement dans un système et un objet autorisés.
+6. Contrôler la syntaxe, activer les objets modifiés puis vérifier leur statut actif.
+
+## 🌺 VÉRIFICATION
+
+- L’implémentation ou le projet est actif et transporté dans le bon ordre.
+- Un breakpoint confirme que le point d’extension est appelé dans le scénario visé.
+- Le comportement standard reste inchangé hors du périmètre fonctionnel prévu.
+- Aucune modification directe d’un objet SAP standard n’a été créée.
+
+## 🌺 ERREURS FRÉQUENTES
+
+- Choisir le premier exit trouvé sans vérifier le moment exact de l’appel.
+- Créer plusieurs implémentations concurrentes sans règles de filtre.
+
+## 🌺 FICHE DE CONTRÔLE À COPIER
+
+```text
+Système / SID       :
+Mandant             :
+Utilisateur         :
+Transaction / outil :
+Objet technique     :
+Jeu de données      :
+Résultat attendu    :
+Résultat observé    :
+Horodatage          :
+Ordre de transport  :
+```
+
+## 🌺 TERMES DU LEXIQUE
+
+- [Transaction](<../└─ 🧩 00 - LEXIQUE SAP ET ABAP/02 - 🍧 SAP GUI NAVIGATION ET TRANSACTIONS.md#transaction>)
+- [BAdI](<../└─ 🧩 00 - LEXIQUE SAP ET ABAP/10 - 🍧 ACRONYMES SAP.md#acro-badi>)
+- [BTE](<../└─ 🧩 00 - LEXIQUE SAP ET ABAP/10 - 🍧 ACRONYMES SAP.md#acro-bte>)
+- [Objet Repository](<../└─ 🧩 00 - LEXIQUE SAP ET ABAP/03 - 🍧 REPOSITORY PACKAGES ET TRANSPORTS.md#objet-repository>)
+
+## 🌺 À RETENIR
+
+- À l’issue du chapitre, le lecteur sait **utiliser business transaction events avec `fibf` pour étendre le standard sans créer de modification directe ni d’effet de bord hors périmètre**.
+- Toujours tester sur un objet Z ou un jeu de données sans impact avant d’intervenir sur un traitement réel.
+- La documentation `F1` du système reste la référence pour la syntaxe disponible dans sa release.
+
 ## 🌺 RÉFÉRENCES OFFICIELLES SAP
 
 - [BTE - Business Transaction Event — SAP Help Portal](https://help.sap.com/docs/SUPPORT_CONTENT/abap/3353525100.html)
 - [Events, Business Transaction Events — SAP Help Portal](https://help.sap.com/docs/SAP_S4HANA_ON-PREMISE/e200555127f24878bed8d1481c9d5a0b/9601c5536a51204be10000000a174cb4.html)
 - [Defining a Business Transaction Event — SAP Help Portal](https://help.sap.com/docs/SAP_S4HANA_ON-PREMISE/c30311a28bc24fe08bd47eafbf3fd930/59cc7fd2927f477bb965c77b3b71060f.html)
 
+
 ---
 
-➡️ [Chapitre suivant — TRANSPORT DEBUG UPGRADE ET BONNES PRATIQUES](<./23 - 🍧 TRANSPORT DEBUG UPGRADE ET BONNES PRATIQUES.md>)
+➡️ [Chapitre suivant — TRANSPORT, DEBUG, UPGRADE ET BONNES PRATIQUES](<./23 - 🍧 TRANSPORT DEBUG UPGRADE ET BONNES PRATIQUES.md>)

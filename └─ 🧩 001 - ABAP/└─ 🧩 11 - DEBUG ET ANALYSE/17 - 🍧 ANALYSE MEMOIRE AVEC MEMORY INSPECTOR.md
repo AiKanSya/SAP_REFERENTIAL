@@ -78,12 +78,62 @@ Après preuve :
 
 Ne pas ajouter `FREE` partout sans mesurer. La gestion mémoire ABAP suit ses propres mécanismes et une libération prématurée peut dégrader la lisibilité sans résoudre la cause.
 
+## 🌺 PROCÉDURE PAS À PAS
+
+1. Lire la définition et identifier les prérequis du chapitre.
+2. Choisir un objet Z ou un scénario de démonstration sans impact métier.
+3. Reproduire l’exemple dans un système de développement et relever les données d’entrée.
+4. Contrôler la syntaxe ou la configuration avant activation/exécution.
+5. Comparer le résultat observé avec la section **Vérification**.
+6. Documenter toute différence liée à la release, aux autorisations ou au paramétrage du système.
+
+## 🌺 VÉRIFICATION
+
+- Le scénario reproduit correspond au même utilisateur, mandant, transaction et jeu de données.
+- L’horodatage et l’identifiant de l’analyse sont conservés.
+- La cause retenue est soutenue par une ligne source, une trace ou une valeur observée.
+- Après correction, le même scénario ne reproduit plus le défaut et le résultat métier reste identique.
+
+## 🌺 ERREURS FRÉQUENTES
+
+- Modifier les données dans le débogueur puis considérer le résultat comme reproductible.
+- Laisser une trace active trop longtemps.
+
+## 🌺 FICHE DE CONTRÔLE À COPIER
+
+```text
+Système / SID       :
+Mandant             :
+Utilisateur         :
+Transaction / outil :
+Objet technique     :
+Jeu de données      :
+Résultat attendu    :
+Résultat observé    :
+Horodatage          :
+Ordre de transport  :
+```
+
+## 🌺 TERMES DU LEXIQUE
+
+- [Breakpoint](<../└─ 🧩 00 - LEXIQUE SAP ET ABAP/08 - 🍧 EXECUTION EXPLOITATION ET ADMINISTRATION.md#breakpoint>)
+- [Watchpoint](<../└─ 🧩 00 - LEXIQUE SAP ET ABAP/08 - 🍧 EXECUTION EXPLOITATION ET ADMINISTRATION.md#watchpoint>)
+- [Dump ABAP](<../└─ 🧩 00 - LEXIQUE SAP ET ABAP/08 - 🍧 EXECUTION EXPLOITATION ET ADMINISTRATION.md#dump-abap>)
+- [Trace](<../└─ 🧩 00 - LEXIQUE SAP ET ABAP/08 - 🍧 EXECUTION EXPLOITATION ET ADMINISTRATION.md#trace>)
+
+## 🌺 À RETENIR
+
+- À l’issue du chapitre, le lecteur sait **utiliser analyse mémoire avec memory inspector pour collecter une preuve technique et localiser la cause d’un incident reproductible**.
+- Toujours tester sur un objet Z ou un jeu de données sans impact avant d’intervenir sur un traitement réel.
+- La documentation `F1` du système reste la référence pour la syntaxe disponible dans sa release.
+
 ## 🌺 RÉFÉRENCES OFFICIELLES SAP
 
 - [Using the Memory Inspector Transaction — SAP Help Portal](https://help.sap.com/docs/ABAP_PLATFORM_NEW/ba879a6e2ea04d9bb94c7ccd7cdac446/49255f4629ac16b7e10000000a42189d.html)
 - [Understanding the Memory Inspector Overview — SAP Help Portal](https://help.sap.com/docs/ABAP_PLATFORM_NEW/ba879a6e2ea04d9bb94c7ccd7cdac446/d538045f647c46adab25a98299a2dd03.html)
 - [ABAP Test and Analysis Tools — SAP Help Portal](https://help.sap.com/docs/ABAP_PLATFORM_NEW/ba879a6e2ea04d9bb94c7ccd7cdac446/491aa66f87041903e10000000a42189c.html)
 
+
 ---
 
-➡️ [Chapitre suivant — METHODE DE DIAGNOSTIC ET CHECKLIST](<./18 - 🍧 METHODE DE DIAGNOSTIC ET CHECKLIST.md>)
+➡️ [Chapitre suivant — DIAGNOSTIC ET BONNES PRATIQUES](<./18 - 🍧 METHODE DE DIAGNOSTIC ET CHECKLIST.md>)

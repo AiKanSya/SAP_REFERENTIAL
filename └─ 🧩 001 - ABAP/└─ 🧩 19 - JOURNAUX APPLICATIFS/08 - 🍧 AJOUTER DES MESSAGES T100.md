@@ -60,12 +60,77 @@ L’instruction `MESSAGE ... INTO` formate le texte sans interrompre le traiteme
 - variables structurées ;
 - recherche plus précise par classe et numéro.
 
+## 🌺 CAS D’USAGE
+
+Dans un contexte où un traitement automatique doit produire un historique exploitable par le support avec contexte, messages et identifiants, le besoin consiste à **effectuer « ajouter des messages t100 » en limitant l’action au périmètre prévu**. Cette notion est pertinente lorsque le lecteur doit pouvoir relier la syntaxe ou l’outil à une situation professionnelle concrète.
+
+## 🌺 PROCÉDURE PAS À PAS
+
+1. Saisir `/nSE91`.
+2. Entrer une classe de messages Z puis choisir **Créer** ou **Modifier**.
+3. Ajouter un numéro libre et un texte court ; utiliser `&1` à `&4` pour les variables.
+4. Enregistrer dans le package et l’ordre appropriés.
+5. Activer si le système le demande.
+6. Appeler le message depuis un report de test et vérifier le texte dans la langue de connexion.
+
+## 🌺 VÉRIFICATION
+
+- Le journal est retrouvable dans `SLG1` avec objet, sous-objet et période.
+- Chaque erreur contient un contexte permettant d’identifier l’enregistrement concerné.
+- Le log est sauvegardé même lorsque le traitement se termine avec des erreurs gérées.
+- Aucune donnée sensible inutile n’est enregistrée.
+
+## 🌺 ERREURS FRÉQUENTES
+
+- Copier un exemple sans adapter les types, noms d’objets et données disponibles dans le système.
+- Tester uniquement le cas nominal et ignorer les valeurs initiales, absentes ou invalides.
+- Enregistrer uniquement un texte générique sans clé métier.
+- Journaliser des mots de passe, tokens ou données personnelles inutiles.
+
+## 🌺 SNIPPET À RÉUTILISER
+
+> [!NOTE]
+> Adapter les noms `Z*`, les types DDIC, les données et les autorisations au système cible. Effectuer un contrôle syntaxique avant activation.
+
+```abap
+MESSAGE e004(zdev_log) WITH lv_document INTO DATA(lv_text).
+
+ls_msg = VALUE #(
+  msgty = sy-msgty
+  msgid = sy-msgid
+  msgno = sy-msgno
+  msgv1 = sy-msgv1
+  msgv2 = sy-msgv2
+  msgv3 = sy-msgv3
+  msgv4 = sy-msgv4 ).
+
+CALL FUNCTION 'BAL_LOG_MSG_ADD'
+  EXPORTING
+    i_log_handle = lv_log_handle
+    i_s_msg      = ls_msg
+  EXCEPTIONS
+    OTHERS       = 1.
+```
+
+## 🌺 TERMES DU LEXIQUE
+
+- [Application Log](<../└─ 🧩 00 - LEXIQUE SAP ET ABAP/08 - 🍧 EXECUTION EXPLOITATION ET ADMINISTRATION.md#application-log>)
+- [BAL](<../└─ 🧩 00 - LEXIQUE SAP ET ABAP/10 - 🍧 ACRONYMES SAP.md#acro-bal>)
+- [Job](<../└─ 🧩 00 - LEXIQUE SAP ET ABAP/06 - 🍧 PROGRAMMES CLASSES ET OBJETS TECHNIQUES.md#job>)
+
+## 🌺 À RETENIR
+
+- À l’issue du chapitre, le lecteur sait **effectuer « ajouter des messages t100 » en limitant l’action au périmètre prévu**.
+- Toujours tester sur un objet Z ou un jeu de données sans impact avant d’intervenir sur un traitement réel.
+- La documentation `F1` du système reste la référence pour la syntaxe disponible dans sa release.
+
 ## 🌺 RÉFÉRENCES OFFICIELLES SAP
 
 - [Basics — SAP Help Portal](https://help.sap.com/docs/ABAP_PLATFORM_NEW/addb96cd90c945dfb3182865363bbc47/4e21029235d44180e10000000a15822b.html)
 - [Which Data Can Be Collected? — SAP Help Portal](https://help.sap.com/docs/SAP_NETWEAVER_AS_ABAP_752/addb96cd90c945dfb3182865363bbc47/4e2106b735d44180e10000000a15822b.html)
 - [Application Log Methodology Part II — SAP Help Portal](https://help.sap.com/docs/SUPPORT_CONTENT/ABAP/3353524102.html)
 
+
 ---
 
-➡️ [Chapitre suivant — AJOUTER DU TEXTE LIBRE ET DES MESSAGES SYSTEME](<./09 - 🍧 AJOUTER DU TEXTE LIBRE ET DES MESSAGES SYSTEME.md>)
+➡️ [Chapitre suivant — AJOUTER DU TEXTE LIBRE ET DES MESSAGES SYSTÈME](<./09 - 🍧 AJOUTER DU TEXTE LIBRE ET DES MESSAGES SYSTEME.md>)

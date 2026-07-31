@@ -78,10 +78,64 @@ Le groupe de fonctions et les modules sont des objets Repository. Vérifier que 
 - les types DDIC requis sont transportés avant ou avec le module ;
 - l’activation est complète dans le système source.
 
+## 🌺 CAS D’USAGE
+
+Dans un contexte où une logique doit être réutilisée localement ou appelée à distance tout en respectant son interface et sa transaction, le besoin consiste à **analyser ou appeler créer un groupe et un module fonction en respectant l’interface, les exceptions, les autorisations et la transaction**. Cette notion est pertinente lorsque le lecteur doit pouvoir relier la syntaxe ou l’outil à une situation professionnelle concrète.
+
+## 🌺 PROCÉDURE PAS À PAS
+
+1. Saisir `/nSE80`.
+2. Sélectionner le type d’objet ou le package dans la liste de gauche.
+3. Entrer le nom technique puis valider.
+4. Commencer en mode **Afficher** pour analyser l’objet et ses sous-objets.
+5. Passer en modification uniquement dans un système et un objet autorisés.
+6. Contrôler la syntaxe, activer les objets modifiés puis vérifier leur statut actif.
+
+## 🌺 VÉRIFICATION
+
+- Le lecteur peut expliquer la différence entre cette notion et les concepts proches.
+- Le choix technique est justifié par un besoin concret, pas uniquement par habitude.
+- Les limites liées à la release, aux autorisations et au contexte d’exécution sont identifiées.
+
+## 🌺 ERREURS FRÉQUENTES
+
+- Appeler un module fonction sans lire sa documentation et ses exceptions.
+- Supposer qu’une BAPI effectue automatiquement le commit.
+
+## 🌺 FICHE DE CONTRÔLE À COPIER
+
+```text
+Système / SID       :
+Mandant             :
+Utilisateur         :
+Transaction / outil :
+Objet technique     :
+Jeu de données      :
+Résultat attendu    :
+Résultat observé    :
+Horodatage          :
+Ordre de transport  :
+```
+
+## 🌺 TERMES DU LEXIQUE
+
+- [Module fonction](<../└─ 🧩 00 - LEXIQUE SAP ET ABAP/06 - 🍧 PROGRAMMES CLASSES ET OBJETS TECHNIQUES.md#module-fonction>)
+- [Function group](<../└─ 🧩 00 - LEXIQUE SAP ET ABAP/06 - 🍧 PROGRAMMES CLASSES ET OBJETS TECHNIQUES.md#function-group>)
+- [RFC](<../└─ 🧩 00 - LEXIQUE SAP ET ABAP/10 - 🍧 ACRONYMES SAP.md#acro-rfc>)
+- [BAPI](<../└─ 🧩 00 - LEXIQUE SAP ET ABAP/10 - 🍧 ACRONYMES SAP.md#acro-bapi>)
+- [Destination RFC](<../└─ 🧩 00 - LEXIQUE SAP ET ABAP/07 - 🍧 INTERFACES ET INTEGRATION.md#destination-rfc>)
+
+## 🌺 À RETENIR
+
+- À l’issue du chapitre, le lecteur sait **analyser ou appeler créer un groupe et un module fonction en respectant l’interface, les exceptions, les autorisations et la transaction**.
+- Toujours tester sur un objet Z ou un jeu de données sans impact avant d’intervenir sur un traitement réel.
+- La documentation `F1` du système reste la référence pour la syntaxe disponible dans sa release.
+
 ## 🌺 RÉFÉRENCES OFFICIELLES SAP
 
 - [Creating New Function Modules — SAP Help Portal](https://help.sap.com/docs/ABAP_PLATFORM_NEW/bd833c8355f34e96a6e83096b38bf192/d1801ee8454211d189710000e8322d00.html)
 - [Working with ABAP Function Groups and Modules — SAP Help Portal](https://help.sap.com/docs/ABAP_PLATFORM_NEW/c238d694b825421f940829321ffa326a/5b3370ee088a4e2b9579da3f6e994456.html)
+
 
 ---
 

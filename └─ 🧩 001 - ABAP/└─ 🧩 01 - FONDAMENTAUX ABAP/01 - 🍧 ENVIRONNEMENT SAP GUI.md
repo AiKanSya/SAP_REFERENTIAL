@@ -12,11 +12,11 @@
 
 ```mermaid
 flowchart LR
-    A[Poste utilisateur] --> B[SAP Logon]
-    B --> C[SAP GUI]
-    C --> D[Système ABAP]
-    D --> E[Mandant]
-    E --> F[Transactions et objets ABAP]
+    A["Poste utilisateur"] --> B["SAP Logon"]
+    B --> C["SAP GUI"]
+    C --> D["Système ABAP"]
+    D --> E["Mandant"]
+    E --> F["Transactions et objets ABAP"]
 ```
 
 ## 🌺 SAP GUI ET SYSTÈME ABAP
@@ -35,6 +35,32 @@ Il faut distinguer :
 
 > [!IMPORTANT]
 > Un même poste peut contenir plusieurs connexions vers des environnements différents : développement, qualité, recette ou production. Le nom visuel de la connexion ne suffit pas toujours pour confirmer l’environnement réellement ouvert.
+
+## 🌺 QU’EST-CE QU’UN MANDANT ?
+
+Un **mandant** est une subdivision logique d’un système SAP. Il est identifié par un numéro à trois chiffres, par exemple `100`, `200` ou `300`.
+
+Un même système peut contenir plusieurs mandants. Ils partagent le même Repository ABAP actif, mais une partie de leurs données, de leur paramétrage et de leurs utilisateurs peut être séparée.
+
+| Élément | Exemple | Portée habituelle |
+| --- | --- | --- |
+| Système | `D01` | Ensemble technique complet |
+| Mandant | `200` | Contexte logique dans le système |
+| Utilisateur | `DEV_USER` | Identité et autorisations dans le mandant |
+| Programme ABAP | `ZDEV_REPORT` | Généralement commun aux mandants du système |
+| Données d’une table avec `MANDT` | Ligne du mandant `200` | Séparées par mandant |
+
+Dans une table dépendante du mandant, le premier champ de clé est généralement `MANDT`. ABAP SQL applique normalement automatiquement le mandant courant. Les accès inter-mandants sont des cas particuliers qui exigent une justification et des autorisations adaptées.
+
+### 🍧 COMMENT IDENTIFIER LE MANDANT COURANT
+
+1. ouvrir le menu **Système** ;
+2. choisir **Statut** ;
+3. relever le **mandant**, le **système** et l’**utilisateur** ;
+4. vérifier ces informations avant toute création, modification ou exécution destructive.
+
+> [!IMPORTANT]
+> Un programme activé dans un système ABAP est généralement visible dans tous les mandants du système. Modifier le code dans le « bon mandant » ne protège donc pas les autres mandants du même système.
 
 ## 🌺 CONNEXION
 
@@ -119,12 +145,12 @@ Ces informations sont essentielles pour analyser un écran standard ou préparer
 
 ```mermaid
 flowchart TD
-    A[Demande d’intervention] --> B{Système et mandant contrôlés ?}
-    B -- Non --> C[Ouvrir Système → Statut]
+    A["Demande d’intervention"] --> B{"Système et mandant contrôlés ?"}
+    B -->|"Non"| C["Ouvrir Système → Statut"]
     C --> B
-    B -- Oui --> D{Droits et périmètre confirmés ?}
-    D -- Non --> E[Ne pas modifier]
-    D -- Oui --> F[Ouvrir la transaction technique]
+    B -->|"Oui"| D{"Droits et périmètre confirmés ?"}
+    D -->|"Non"| E["Ne pas modifier"]
+    D -->|"Oui"| F["Ouvrir la transaction technique"]
 ```
 
 - vérifier l’environnement avant toute création ou modification ;
@@ -133,12 +159,69 @@ flowchart TD
 - fermer les sessions devenues inutiles ;
 - utiliser les transactions techniques uniquement avec les autorisations adaptées.
 
+## 🌺 CAS D’USAGE
+
+Dans un contexte où une intervention de correction doit être réalisée dans le bon système et sur le bon objet sans affecter un environnement non autorisé, le besoin consiste à **identifier le système, le mandant, l’utilisateur et le contexte avant toute action**. Cette notion est pertinente lorsque le lecteur doit pouvoir relier la syntaxe ou l’outil à une situation professionnelle concrète.
+
+## 🌺 PROCÉDURE PAS À PAS
+
+1. Ouvrir la connexion concernée dans SAP Logon.
+2. Dans SAP GUI, ouvrir **Système → Statut**.
+3. Relever le SID, le mandant, l’utilisateur et le serveur d’application.
+4. Comparer ces valeurs avec le ticket, la consigne de l’équipe ou la documentation du paysage.
+5. Vérifier que l’action demandée est autorisée dans cet environnement.
+6. Ouvrir la transaction avec `/n<code>` dans la même session ou `/o<code>` dans une nouvelle session.
+7. Avant une modification ou une exécution destructive, refaire le contrôle du contexte.
+
+## 🌺 VÉRIFICATION
+
+- Le SID, le mandant et l’utilisateur relevés correspondent au contexte demandé.
+- Le lecteur sait expliquer pourquoi deux mandants d’un même système partagent généralement le même programme actif mais pas nécessairement les mêmes données.
+- La transaction ouverte est bien celle attendue et l’action est autorisée dans l’environnement.
+- La fiche de contrôle contient un horodatage et peut être jointe au diagnostic.
+
+## 🌺 ERREURS FRÉQUENTES
+
+- Intervenir dans le mauvais système ou mandant.
+- Confondre sauvegarde et activation.
+
+## 🌺 FICHE DE CONTRÔLE À COPIER
+
+```text
+Système / SID       :
+Mandant             :
+Utilisateur         :
+Transaction / outil :
+Objet technique     :
+Jeu de données      :
+Résultat attendu    :
+Résultat observé    :
+Horodatage          :
+Ordre de transport  :
+```
+
+## 🌺 TERMES DU LEXIQUE
+
+- [Environnement](<../└─ 🧩 00 - LEXIQUE SAP ET ABAP/01 - 🍧 SYSTEMES ENVIRONNEMENTS ET MANDANTS.md#environnement>)
+- [SAP GUI](<../└─ 🧩 00 - LEXIQUE SAP ET ABAP/02 - 🍧 SAP GUI NAVIGATION ET TRANSACTIONS.md#sap-gui>)
+- [Système SAP](<../└─ 🧩 00 - LEXIQUE SAP ET ABAP/01 - 🍧 SYSTEMES ENVIRONNEMENTS ET MANDANTS.md#systeme-sap>)
+- [Mandant](<../└─ 🧩 00 - LEXIQUE SAP ET ABAP/01 - 🍧 SYSTEMES ENVIRONNEMENTS ET MANDANTS.md#mandant>)
+- [Transaction](<../└─ 🧩 00 - LEXIQUE SAP ET ABAP/02 - 🍧 SAP GUI NAVIGATION ET TRANSACTIONS.md#transaction>)
+- [Repository ABAP](<../└─ 🧩 00 - LEXIQUE SAP ET ABAP/03 - 🍧 REPOSITORY PACKAGES ET TRANSPORTS.md#repository-abap>)
+
+## 🌺 À RETENIR
+
+- À l’issue du chapitre, le lecteur sait **identifier le système, le mandant, l’utilisateur et le contexte avant toute action**.
+- Toujours tester sur un objet Z ou un jeu de données sans impact avant d’intervenir sur un traitement réel.
+- La documentation `F1` du système reste la référence pour la syntaxe disponible dans sa release.
+
 ## 🌺 RÉFÉRENCES OFFICIELLES SAP
 
 - [SAP GUI for Windows — Command Field](https://help.sap.com/docs/sap_gui_for_windows/63bd20104af84112973ad59590645513/d1a516153a4d438691ecee7f83a5d77b.html)
 - [SAP GUI — SAP Easy Access](https://help.sap.com/docs/ABAP_PLATFORM_1909/b1c834a22d05483b8a75710743b5ff26/cb11a43814a54af19c4bcf0221c24eb7.html)
 - [SAP GUI — Using Transaction Codes](https://help.sap.com/docs/SAP_NETWEAVER_AS_ABAP_FOR_SOH_740/b1c834a22d05483b8a75710743b5ff26/f735dd776e724195b5562592a5e88b45.html)
 - [SAP GUI for Windows — Fields and Input Help](https://help.sap.com/docs/sap_gui_for_windows/63bd20104af84112973ad59590645513/a7ca442f0a4d43ddb266e5a73dbb989d.html)
+
 
 ---
 

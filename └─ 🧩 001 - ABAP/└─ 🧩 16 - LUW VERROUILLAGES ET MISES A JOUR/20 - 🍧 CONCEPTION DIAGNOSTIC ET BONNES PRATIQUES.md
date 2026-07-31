@@ -47,6 +47,61 @@ flowchart TD
 - [ ] Diagnostic `SM12`, `SM13`, `ST22` et logs testé
 - [ ] Tests de rollback et d’échec partiel exécutés
 
+## 🌺 CAS D’USAGE
+
+Dans un contexte où plusieurs modifications liées doivent être validées ensemble et protégées contre les accès concurrents, le besoin consiste à **analyser méthodiquement « conception, diagnostic et bonnes pratiques » à partir d’un scénario reproductible**. Cette notion est pertinente lorsque plusieurs solutions sont possibles et il faut retenir celle qui limite les risques de maintenance.
+
+## 🌺 PROCÉDURE PAS À PAS
+
+1. Saisir `/nST22`.
+2. Choisir la période correspondant à la reproduction.
+3. Filtrer par utilisateur, transaction ou runtime error lorsque nécessaire.
+4. Ouvrir le dump et relever le nom de l’erreur, l’exception, le programme et la ligne source.
+5. Lire les sections **Error analysis**, **How to correct the error** et **Source Code Extract**.
+6. Corréler le dump avec les données d’entrée et la version active du code.
+
+## 🌺 VÉRIFICATION
+
+- Le scénario reproduit correspond au même utilisateur, mandant, transaction et jeu de données.
+- L’horodatage et l’identifiant de l’analyse sont conservés.
+- La cause retenue est soutenue par une ligne source, une trace ou une valeur observée.
+- Après correction, le même scénario ne reproduit plus le défaut et le résultat métier reste identique.
+
+## 🌺 ERREURS FRÉQUENTES
+
+- Supprimer manuellement un verrou sans comprendre son propriétaire.
+- Relancer une update en erreur sans vérifier l’état métier.
+
+## 🌺 FICHE DE CONTRÔLE À COPIER
+
+```text
+Système / SID       :
+Mandant             :
+Utilisateur         :
+Transaction / outil :
+Objet technique     :
+Jeu de données      :
+Résultat attendu    :
+Résultat observé    :
+Horodatage          :
+Ordre de transport  :
+```
+
+## 🌺 TERMES DU LEXIQUE
+
+- [SAP LUW](<../└─ 🧩 00 - LEXIQUE SAP ET ABAP/08 - 🍧 EXECUTION EXPLOITATION ET ADMINISTRATION.md#sap-luw>)
+- [LUW base de données](<../└─ 🧩 00 - LEXIQUE SAP ET ABAP/08 - 🍧 EXECUTION EXPLOITATION ET ADMINISTRATION.md#luw-base>)
+- [COMMIT WORK](<../└─ 🧩 00 - LEXIQUE SAP ET ABAP/08 - 🍧 EXECUTION EXPLOITATION ET ADMINISTRATION.md#commit-work>)
+- [ROLLBACK WORK](<../└─ 🧩 00 - LEXIQUE SAP ET ABAP/08 - 🍧 EXECUTION EXPLOITATION ET ADMINISTRATION.md#rollback-work>)
+- [Enqueue server](<../└─ 🧩 00 - LEXIQUE SAP ET ABAP/08 - 🍧 EXECUTION EXPLOITATION ET ADMINISTRATION.md#enqueue-server>)
+- [Update task](<../└─ 🧩 00 - LEXIQUE SAP ET ABAP/08 - 🍧 EXECUTION EXPLOITATION ET ADMINISTRATION.md#update-task>)
+
+## 🌺 À RETENIR
+
+- À l’issue du chapitre, le lecteur sait **analyser méthodiquement « conception, diagnostic et bonnes pratiques » à partir d’un scénario reproductible**.
+- Toujours tester sur un objet Z ou un jeu de données sans impact avant d’intervenir sur un traitement réel.
+- La documentation `F1` du système reste la référence pour la syntaxe disponible dans sa release.
+
 ## 🌺 RÉFÉRENCES OFFICIELLES SAP
 
 - [LUWs in ABAP — SAP Help Portal](https://help.sap.com/docs/ABAP_PLATFORM_NEW/8132142fd1a144a59303663a03a7c2d4/54f5462a9604498382319304869a4280.html)

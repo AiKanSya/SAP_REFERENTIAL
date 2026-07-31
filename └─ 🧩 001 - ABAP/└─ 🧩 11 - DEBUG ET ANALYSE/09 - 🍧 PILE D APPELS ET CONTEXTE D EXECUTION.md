@@ -71,11 +71,65 @@ Les programmes système peuvent être masqués ou affichés différemment. Leur 
 
 Activer ce mode uniquement lorsque le problème se situe réellement dans une couche système ou standard.
 
+## 🌺 CAS D’USAGE
+
+Dans un contexte où un incident ne se produit que pour certaines données et doit être reproduit puis localisé sans modifier le comportement métier, le besoin consiste à **utiliser pile d’appels et contexte d’exécution pour collecter une preuve technique et localiser la cause d’un incident reproductible**. Cette notion est pertinente lorsque le lecteur doit pouvoir relier la syntaxe ou l’outil à une situation professionnelle concrète.
+
+## 🌺 PROCÉDURE PAS À PAS
+
+1. Lire la définition et identifier les prérequis du chapitre.
+2. Choisir un objet Z ou un scénario de démonstration sans impact métier.
+3. Reproduire l’exemple dans un système de développement et relever les données d’entrée.
+4. Contrôler la syntaxe ou la configuration avant activation/exécution.
+5. Comparer le résultat observé avec la section **Vérification**.
+6. Documenter toute différence liée à la release, aux autorisations ou au paramétrage du système.
+
+## 🌺 VÉRIFICATION
+
+- Le scénario reproduit correspond au même utilisateur, mandant, transaction et jeu de données.
+- L’horodatage et l’identifiant de l’analyse sont conservés.
+- La cause retenue est soutenue par une ligne source, une trace ou une valeur observée.
+- Après correction, le même scénario ne reproduit plus le défaut et le résultat métier reste identique.
+
+## 🌺 ERREURS FRÉQUENTES
+
+- Modifier les données dans le débogueur puis considérer le résultat comme reproductible.
+- Laisser une trace active trop longtemps.
+
+## 🌺 FICHE DE CONTRÔLE À COPIER
+
+```text
+Système / SID       :
+Mandant             :
+Utilisateur         :
+Transaction / outil :
+Objet technique     :
+Jeu de données      :
+Résultat attendu    :
+Résultat observé    :
+Horodatage          :
+Ordre de transport  :
+```
+
+## 🌺 TERMES DU LEXIQUE
+
+- [Breakpoint](<../└─ 🧩 00 - LEXIQUE SAP ET ABAP/08 - 🍧 EXECUTION EXPLOITATION ET ADMINISTRATION.md#breakpoint>)
+- [Watchpoint](<../└─ 🧩 00 - LEXIQUE SAP ET ABAP/08 - 🍧 EXECUTION EXPLOITATION ET ADMINISTRATION.md#watchpoint>)
+- [Dump ABAP](<../└─ 🧩 00 - LEXIQUE SAP ET ABAP/08 - 🍧 EXECUTION EXPLOITATION ET ADMINISTRATION.md#dump-abap>)
+- [Trace](<../└─ 🧩 00 - LEXIQUE SAP ET ABAP/08 - 🍧 EXECUTION EXPLOITATION ET ADMINISTRATION.md#trace>)
+
+## 🌺 À RETENIR
+
+- À l’issue du chapitre, le lecteur sait **utiliser pile d’appels et contexte d’exécution pour collecter une preuve technique et localiser la cause d’un incident reproductible**.
+- Toujours tester sur un objet Z ou un jeu de données sans impact avant d’intervenir sur un traitement réel.
+- La documentation `F1` du système reste la référence pour la syntaxe disponible dans sa release.
+
 ## 🌺 RÉFÉRENCES OFFICIELLES SAP
 
 - [Call Stack — SAP Help Portal](https://help.sap.com/docs/ABAP_PLATFORM_NEW/ba879a6e2ea04d9bb94c7ccd7cdac446/88feb68f058446539bb51e8d95caac00.html)
 - [System Debugging — SAP Help Portal](https://help.sap.com/docs/ABAP_PLATFORM_NEW/ba879a6e2ea04d9bb94c7ccd7cdac446/4925636629ac16b7e10000000a42189d.html)
 
+
 ---
 
-➡️ [Chapitre suivant — MODIFIER LES DONNEES ET LE FLUX D EXECUTION](<./10 - 🍧 MODIFIER LES DONNEES ET LE FLUX D EXECUTION.md>)
+➡️ [Chapitre suivant — MODIFIER LES DONNÉES ET LE FLUX D’EXÉCUTION](<./10 - 🍧 MODIFIER LES DONNEES ET LE FLUX D EXECUTION.md>)

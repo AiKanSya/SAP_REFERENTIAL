@@ -57,11 +57,50 @@ Pour une nouvelle logique purement interne et orientée objet, préférer géné
 
 Un module fonction constitue une **frontière d’interface**. Le contrat d’entrée, de sortie et d’erreur doit être plus stable que son implémentation.
 
+## 🌺 CAS D’USAGE
+
+Dans un contexte où une logique doit être réutilisée localement ou appelée à distance tout en respectant son interface et sa transaction, le besoin consiste à **analyser ou appeler principes des modules fonction en respectant l’interface, les exceptions, les autorisations et la transaction**. Cette notion est pertinente lorsque le choix technique doit être compris avant d’appliquer une procédure.
+
+## 🌺 PROCÉDURE PAS À PAS
+
+1. Saisir `/nSE37`.
+2. Entrer le nom du module fonction puis choisir **Afficher**, **Modifier** ou **Créer** selon l’autorisation.
+3. Analyser les onglets Import, Export, Changing, Tables et Exceptions.
+4. Lire la documentation et le code source avant tout appel.
+5. Utiliser **Test/Exécuter** avec des données non destructives.
+6. Pour un module Z, contrôler, activer puis tester les cas nominal et d’erreur.
+
+## 🌺 VÉRIFICATION
+
+- Le lecteur peut expliquer la différence entre cette notion et les concepts proches.
+- Le choix technique est justifié par un besoin concret, pas uniquement par habitude.
+- Les limites liées à la release, aux autorisations et au contexte d’exécution sont identifiées.
+
+## 🌺 ERREURS FRÉQUENTES
+
+- Appeler un module fonction sans lire sa documentation et ses exceptions.
+- Supposer qu’une BAPI effectue automatiquement le commit.
+
+## 🌺 TERMES DU LEXIQUE
+
+- [Module fonction](<../└─ 🧩 00 - LEXIQUE SAP ET ABAP/06 - 🍧 PROGRAMMES CLASSES ET OBJETS TECHNIQUES.md#module-fonction>)
+- [Function group](<../└─ 🧩 00 - LEXIQUE SAP ET ABAP/06 - 🍧 PROGRAMMES CLASSES ET OBJETS TECHNIQUES.md#function-group>)
+- [RFC](<../└─ 🧩 00 - LEXIQUE SAP ET ABAP/10 - 🍧 ACRONYMES SAP.md#acro-rfc>)
+- [BAPI](<../└─ 🧩 00 - LEXIQUE SAP ET ABAP/10 - 🍧 ACRONYMES SAP.md#acro-bapi>)
+- [Destination RFC](<../└─ 🧩 00 - LEXIQUE SAP ET ABAP/07 - 🍧 INTERFACES ET INTEGRATION.md#destination-rfc>)
+
+## 🌺 À RETENIR
+
+- À l’issue du chapitre, le lecteur sait **analyser ou appeler principes des modules fonction en respectant l’interface, les exceptions, les autorisations et la transaction**.
+- Toujours tester sur un objet Z ou un jeu de données sans impact avant d’intervenir sur un traitement réel.
+- La documentation `F1` du système reste la référence pour la syntaxe disponible dans sa release.
+
 ## 🌺 RÉFÉRENCES OFFICIELLES SAP
 
 - [Modularization with Function Modules — SAP Help Portal](https://help.sap.com/docs/SAP_NETWEAVER_AS_ABAP_752/c238d694b825421f940829321ffa326a/4ec1cbf46e391014adc9fffe4e204223.html)
 - [Working with ABAP Function Groups and Modules — SAP Help Portal](https://help.sap.com/docs/ABAP_PLATFORM_NEW/c238d694b825421f940829321ffa326a/5b3370ee088a4e2b9579da3f6e994456.html)
 - [Describing Remote Function Calls and BAPIs — SAP Learning](https://learning.sap.com/courses/technical-implementation-and-operation-i-of-sap-s-4hana-and-sap-business-suite/describing-remote-function-calls-and-bapis)
+
 
 ---
 

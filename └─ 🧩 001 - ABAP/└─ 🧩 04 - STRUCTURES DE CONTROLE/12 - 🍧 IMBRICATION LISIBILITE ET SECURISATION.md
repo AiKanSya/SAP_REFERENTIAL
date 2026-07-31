@@ -71,12 +71,12 @@ Pour toute boucle conditionnelle, identifier :
 ```mermaid
 flowchart TD
     A["État initial"] --> B{"Condition de poursuite"}
-    B -- "Vraie" --> C["Traitement"]
+    B -->|""Vraie""| C["Traitement"]
     C --> D["Évolution de l’état"]
     D --> E{"Limite atteinte ?"}
-    E -- "Non" --> B
-    E -- "Oui" --> F["Sortie sécurisée"]
-    B -- "Fausse" --> G["Fin normale"]
+    E -->|""Non""| B
+    E -->|""Oui""| F["Sortie sécurisée"]
+    B -->|""Fausse""| G["Fin normale"]
 ```
 
 ## 🌺 EXEMPLE SÉCURISÉ
@@ -172,6 +172,81 @@ Surveiller notamment :
 - éviter les structures imbriquées lorsque des gardes suffisent ;
 - tester chaque branche et chaque mode de sortie ;
 - ne pas utiliser une construction moderne sans vérifier la version ABAP cible.
+
+## 🌺 CAS D’USAGE
+
+Dans un contexte où un traitement doit appliquer plusieurs règles métier et arrêter ou poursuivre le flux selon les données rencontrées, le besoin consiste à **mesurer le temps d’exécution d’un scénario reproductible**. Cette notion est pertinente lorsque le lecteur doit pouvoir relier la syntaxe ou l’outil à une situation professionnelle concrète.
+
+## 🌺 PROCÉDURE PAS À PAS
+
+1. Saisir `/nSAT`.
+2. Créer ou sélectionner une variante de mesure adaptée.
+3. Définir le programme, la transaction ou l’utilisateur à mesurer.
+4. Démarrer la mesure puis reproduire une seule fois le scénario.
+5. Arrêter et analyser le hit list, la hiérarchie d’appels et les temps nets.
+6. Répéter la mesure après correction avec les mêmes données et le même contexte.
+
+## 🌺 VÉRIFICATION
+
+- Le scénario reproduit correspond au même utilisateur, mandant, transaction et jeu de données.
+- L’horodatage et l’identifiant de l’analyse sont conservés.
+- La cause retenue est soutenue par une ligne source, une trace ou une valeur observée.
+- Après correction, le même scénario ne reproduit plus le défaut et le résultat métier reste identique.
+
+## 🌺 ERREURS FRÉQUENTES
+
+- Copier un exemple sans adapter les types, noms d’objets et données disponibles dans le système.
+- Tester uniquement le cas nominal et ignorer les valeurs initiales, absentes ou invalides.
+- Créer une boucle sans condition de sortie fiable.
+- Utiliser `CHECK`, `CONTINUE`, `EXIT` ou `RETURN` sans rendre le flux lisible.
+
+## 🌺 SNIPPET À RÉUTILISER
+
+> [!NOTE]
+> Adapter les noms `Z*`, les types DDIC, les données et les autorisations au système cible. Effectuer un contrôle syntaxique avant activation.
+
+```abap
+PARAMETERS p_target TYPE i DEFAULT 7.
+
+CONSTANTS lc_max_iterations TYPE i VALUE 100.
+
+DATA lv_found     TYPE abap_bool VALUE abap_false.
+DATA lv_iteration TYPE i.
+
+START-OF-SELECTION.
+
+  IF p_target <= 0.
+    WRITE: / 'La cible doit être positive'.
+    RETURN.
+  ENDIF.
+
+  WHILE lv_found = abap_false
+    AND lv_iteration < lc_max_iterations.
+
+    ADD 1 TO lv_iteration.
+
+    IF lv_iteration = p_target.
+      lv_found = abap_true.
+    ENDIF.
+  ENDWHILE.
+
+  IF lv_found = abap_true.
+    WRITE: / 'Cible atteinte après', lv_iteration, 'itérations'.
+  ELSE.
+    WRITE: / 'Limite technique atteinte'.
+  ENDIF.
+```
+
+## 🌺 TERMES DU LEXIQUE
+
+- [Instruction ABAP](<../└─ 🧩 00 - LEXIQUE SAP ET ABAP/04 - 🍧 LANGAGE ET DEVELOPPEMENT ABAP.md#instruction-abap>)
+- [Expression](<../└─ 🧩 00 - LEXIQUE SAP ET ABAP/04 - 🍧 LANGAGE ET DEVELOPPEMENT ABAP.md#expression>)
+
+## 🌺 À RETENIR
+
+- À l’issue du chapitre, le lecteur sait **mesurer le temps d’exécution d’un scénario reproductible**.
+- Toujours tester sur un objet Z ou un jeu de données sans impact avant d’intervenir sur un traitement réel.
+- La documentation `F1` du système reste la référence pour la syntaxe disponible dans sa release.
 
 ## 🌺 RÉFÉRENCES OFFICIELLES SAP
 

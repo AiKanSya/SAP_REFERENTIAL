@@ -111,12 +111,73 @@ ENDLOOP.
 - Une table interne n’est pas une table de base de données.
 - Le contenu est généralement temporaire et propre à la session ABAP.
 
+## 🌺 CAS D’USAGE
+
+Dans un contexte où un traitement de masse charge des commandes en mémoire, recherche des lignes, élimine des doublons et prépare un résultat, le besoin consiste à **manipuler une table interne avec principes et structure d’une table interne en contrôlant clé, présence des lignes et performance**. Cette notion est pertinente lorsque le choix technique doit être compris avant d’appliquer une procédure.
+
+## 🌺 PROCÉDURE PAS À PAS
+
+1. Saisir `/nSE38` dans le champ de commande.
+2. Entrer le nom d’un programme Z de test, par exemple `ZREF_DEMO`, puis choisir **Créer** ou **Modifier** selon le cas.
+3. Pour un exercice local uniquement, affecter `$TMP` ; pour un développement livrable, utiliser le package et l’ordre fournis par le projet.
+4. Coller ou adapter le snippet du chapitre.
+5. Exécuter le contrôle syntaxique avec `Ctrl+F2`.
+6. Activer avec `Ctrl+F3`.
+7. Exécuter avec `F8` et comparer le résultat avec la section **Vérification**.
+
+## 🌺 VÉRIFICATION
+
+- Le contrôle syntaxique réussit.
+- La version active correspond au code sauvegardé.
+- L’exécution produit le résultat décrit dans le chapitre.
+- Les cas vide, limite et erreur sont testés séparément lorsque la syntaxe le permet.
+
+## 🌺 ERREURS FRÉQUENTES
+
+- Copier un exemple sans adapter les types, noms d’objets et données disponibles dans le système.
+- Tester uniquement le cas nominal et ignorer les valeurs initiales, absentes ou invalides.
+- Utiliser une table standard pour des recherches massives par clé sans mesure.
+- Modifier une copie de ligne alors que la table devait être mise à jour.
+
+## 🌺 SNIPPET À RÉUTILISER
+
+> [!NOTE]
+> Adapter les noms `Z*`, les types DDIC, les données et les autorisations au système cible. Effectuer un contrôle syntaxique avant activation.
+
+```abap
+REPORT z_demo_itab_01.
+
+TYPES: BEGIN OF ty_product,
+         matnr TYPE c LENGTH 18,
+         maktx TYPE c LENGTH 40,
+       END OF ty_product.
+
+DATA lt_products TYPE STANDARD TABLE OF ty_product
+                 WITH EMPTY KEY.
+
+APPEND VALUE #( matnr = 'MAT-001'
+                maktx = 'Produit de démonstration' )
+       TO lt_products.
+
+LOOP AT lt_products INTO DATA(ls_product).
+  WRITE: / ls_product-matnr, ls_product-maktx.
+ENDLOOP.
+```
+
+## 🌺 TERMES DU LEXIQUE
+
+- [Structure](<../└─ 🧩 00 - LEXIQUE SAP ET ABAP/04 - 🍧 LANGAGE ET DEVELOPPEMENT ABAP.md#structure-abap>)
+- [Table interne](<../└─ 🧩 00 - LEXIQUE SAP ET ABAP/04 - 🍧 LANGAGE ET DEVELOPPEMENT ABAP.md#table-interne>)
+- [Field-symbol](<../└─ 🧩 00 - LEXIQUE SAP ET ABAP/04 - 🍧 LANGAGE ET DEVELOPPEMENT ABAP.md#field-symbol>)
+- [Référence](<../└─ 🧩 00 - LEXIQUE SAP ET ABAP/04 - 🍧 LANGAGE ET DEVELOPPEMENT ABAP.md#reference>)
+
 ## 🌺 RÉFÉRENCES OFFICIELLES SAP
 
 - [Working with Simple Internal Tables — SAP Learning](https://learning.sap.com/courses/basic-abap-programming/working-with-simple-internal-tables_a4beb937-0c7b-45b9-92be-ff26a5159fad)
 - [Working with Complex Internal Tables — SAP Learning](https://learning.sap.com/courses/basic-abap-programming/working-with-complex-internal-tables_f8c923f3-6f95-4b47-960f-557001f13977)
 - [Internal Tables — ABAP Keyword Documentation](https://help.sap.com/doc/abapdocu_latest_index_htm/latest/en-US/ABENITAB.html)
 
+
 ---
 
-➡️ [Chapitre suivant — DECLARATION DES TYPES ET TABLES INTERNES](<./02 - 🍧 DECLARATION DES TYPES ET TABLES INTERNES.md>)
+➡️ [Chapitre suivant — DÉCLARATION DES TYPES ET TABLES INTERNES](<./02 - 🍧 DECLARATION DES TYPES ET TABLES INTERNES.md>)

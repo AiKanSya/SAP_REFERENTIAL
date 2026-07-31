@@ -22,27 +22,27 @@ Chaque niveau doit apporter une information distincte : format, sens, compositio
 
 ## 🌺 RÈGLES DE CONCEPTION
 
-### Domaines
+### 🍧 Domaines
 
 - créer un domaine partagé uniquement lorsque les valeurs ont réellement le même format et la même plage ;
 - ne pas utiliser une table de valeurs comme substitut à une clé étrangère ;
 - documenter les routines de conversion particulières ;
 - éviter les domaines génériques sans signification technique stable.
 
-### Éléments de données
+### 🍧 Éléments de données
 
 - créer un élément par concept métier identifiable ;
 - maintenir les quatre libellés ;
 - rédiger une documentation utile pour les champs ambigus ;
 - éviter de réutiliser un élément uniquement parce que sa longueur correspond.
 
-### Structures
+### 🍧 Structures
 
 - créer des structures dédiées aux interfaces plutôt que d’exposer systématiquement une table complète ;
 - utiliser les includes pour les groupes de champs réellement communs ;
 - limiter les structures profondes lorsque les consommateurs exigent des types plats.
 
-### Tables
+### 🍧 Tables
 
 - choisir une clé stable ;
 - décider explicitement de la dépendance au mandant ;
@@ -51,14 +51,14 @@ Chaque niveau doit apporter une information distincte : format, sens, compositio
 - ne pas activer la bufferisation sans analyse ;
 - créer un index seulement après démonstration du besoin.
 
-### Relations et aides
+### 🍧 Relations et aides
 
 - maintenir les clés étrangères et cardinalités correctes ;
 - utiliser des tables de texte pour les libellés traduits ;
 - placer les aides F4 au niveau le plus réutilisable ;
 - réserver les exits aux cas non couverts par la définition standard.
 
-### Extensions
+### 🍧 Extensions
 
 - utiliser append ou customer include lorsque le mécanisme est prévu ;
 - ne pas modifier directement un objet standard ;
@@ -98,6 +98,55 @@ Chaque niveau doit apporter une information distincte : format, sens, compositio
 - Les décisions sur clé, mandant, livraison et buffer doivent être explicites.
 - Les extensions doivent utiliser les mécanismes prévus par SAP.
 - Toute évolution DDIC exige une analyse des dépendances et de la base physique.
+
+## 🌺 CAS D’USAGE
+
+Dans un contexte où une application Z nécessite un modèle de données partagé, cohérent et réutilisable dans plusieurs programmes, le besoin consiste à **mesurer le temps d’exécution d’un scénario reproductible**. Cette notion est pertinente lorsque plusieurs solutions sont possibles et il faut retenir celle qui limite les risques de maintenance.
+
+## 🌺 PROCÉDURE PAS À PAS
+
+1. Saisir `/nSAT`.
+2. Créer ou sélectionner une variante de mesure adaptée.
+3. Définir le programme, la transaction ou l’utilisateur à mesurer.
+4. Démarrer la mesure puis reproduire une seule fois le scénario.
+5. Arrêter et analyser le hit list, la hiérarchie d’appels et les temps nets.
+6. Répéter la mesure après correction avec les mêmes données et le même contexte.
+
+## 🌺 VÉRIFICATION
+
+- Le contrôle de cohérence ne retourne aucune erreur bloquante.
+- L’objet est actif et son entrée de répertoire pointe vers le package attendu.
+- La liste d’utilisation et les dépendances correspondent au périmètre prévu.
+- Pour une table Z, la structure active et la structure de base sont cohérentes.
+
+## 🌺 ERREURS FRÉQUENTES
+
+- Modifier un objet standard au lieu d’utiliser une extension.
+- Activer une table sans vérifier clé, paramètres techniques et impact base.
+
+## 🌺 FICHE DE CONTRÔLE À COPIER
+
+```text
+Système / SID       :
+Mandant             :
+Utilisateur         :
+Transaction / outil :
+Objet technique     :
+Jeu de données      :
+Résultat attendu    :
+Résultat observé    :
+Horodatage          :
+Ordre de transport  :
+```
+
+## 🌺 TERMES DU LEXIQUE
+
+- [DDIC](<../└─ 🧩 00 - LEXIQUE SAP ET ABAP/10 - 🍧 ACRONYMES SAP.md#acro-ddic>)
+- [ABAP Dictionary](<../└─ 🧩 00 - LEXIQUE SAP ET ABAP/05 - 🍧 DONNEES DICTIONNAIRE ET BASE DE DONNEES.md#abap-dictionary>)
+- [Domaine](<../└─ 🧩 00 - LEXIQUE SAP ET ABAP/05 - 🍧 DONNEES DICTIONNAIRE ET BASE DE DONNEES.md#domaine>)
+- [Élément de données](<../└─ 🧩 00 - LEXIQUE SAP ET ABAP/05 - 🍧 DONNEES DICTIONNAIRE ET BASE DE DONNEES.md#element-donnees>)
+- [Table transparente](<../└─ 🧩 00 - LEXIQUE SAP ET ABAP/05 - 🍧 DONNEES DICTIONNAIRE ET BASE DE DONNEES.md#table-transparente>)
+- [MANDT](<../└─ 🧩 00 - LEXIQUE SAP ET ABAP/05 - 🍧 DONNEES DICTIONNAIRE ET BASE DE DONNEES.md#mandt>)
 
 ## 🌺 RÉFÉRENCES OFFICIELLES SAP
 

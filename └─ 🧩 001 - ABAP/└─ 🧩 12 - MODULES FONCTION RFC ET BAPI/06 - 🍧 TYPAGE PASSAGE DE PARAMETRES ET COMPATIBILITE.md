@@ -58,11 +58,50 @@ Une modification de type peut casser les appelants même si le nom du paramètre
 4. préserver les paramètres obligatoires existants ;
 5. versionner l’API lorsque la compatibilité ne peut pas être conservée.
 
+## 🌺 CAS D’USAGE
+
+Dans un contexte où une logique doit être réutilisée localement ou appelée à distance tout en respectant son interface et sa transaction, le besoin consiste à **analyser ou appeler typage, passage de paramètres et compatibilité en respectant l’interface, les exceptions, les autorisations et la transaction**. Cette notion est pertinente lorsque le lecteur doit pouvoir relier la syntaxe ou l’outil à une situation professionnelle concrète.
+
+## 🌺 PROCÉDURE PAS À PAS
+
+1. Saisir `/nSE37`.
+2. Entrer le nom du module fonction puis choisir **Afficher**, **Modifier** ou **Créer** selon l’autorisation.
+3. Analyser les onglets Import, Export, Changing, Tables et Exceptions.
+4. Lire la documentation et le code source avant tout appel.
+5. Utiliser **Test/Exécuter** avec des données non destructives.
+6. Pour un module Z, contrôler, activer puis tester les cas nominal et d’erreur.
+
+## 🌺 VÉRIFICATION
+
+- Le lecteur peut expliquer la différence entre cette notion et les concepts proches.
+- Le choix technique est justifié par un besoin concret, pas uniquement par habitude.
+- Les limites liées à la release, aux autorisations et au contexte d’exécution sont identifiées.
+
+## 🌺 ERREURS FRÉQUENTES
+
+- Appeler un module fonction sans lire sa documentation et ses exceptions.
+- Supposer qu’une BAPI effectue automatiquement le commit.
+
+## 🌺 TERMES DU LEXIQUE
+
+- [Module fonction](<../└─ 🧩 00 - LEXIQUE SAP ET ABAP/06 - 🍧 PROGRAMMES CLASSES ET OBJETS TECHNIQUES.md#module-fonction>)
+- [Function group](<../└─ 🧩 00 - LEXIQUE SAP ET ABAP/06 - 🍧 PROGRAMMES CLASSES ET OBJETS TECHNIQUES.md#function-group>)
+- [RFC](<../└─ 🧩 00 - LEXIQUE SAP ET ABAP/10 - 🍧 ACRONYMES SAP.md#acro-rfc>)
+- [BAPI](<../└─ 🧩 00 - LEXIQUE SAP ET ABAP/10 - 🍧 ACRONYMES SAP.md#acro-bapi>)
+- [Destination RFC](<../└─ 🧩 00 - LEXIQUE SAP ET ABAP/07 - 🍧 INTERFACES ET INTEGRATION.md#destination-rfc>)
+
+## 🌺 À RETENIR
+
+- À l’issue du chapitre, le lecteur sait **analyser ou appeler typage, passage de paramètres et compatibilité en respectant l’interface, les exceptions, les autorisations et la transaction**.
+- Toujours tester sur un objet Z ou un jeu de données sans impact avant d’intervenir sur un traitement réel.
+- La documentation `F1` du système reste la référence pour la syntaxe disponible dans sa release.
+
 ## 🌺 RÉFÉRENCES OFFICIELLES SAP
 
 - [CALL FUNCTION — ABAP Keyword Documentation](https://help.sap.com/doc/abapdocu_latest_index_htm/latest/en-US/abapcall_function.htm)
 - [RFC Restrictions — ABAP Keyword Documentation](https://help.sap.com/doc/abapdocu_816_index_htm/8.16/en-US/ABENRFC_LIMITATIONS.html)
 - [Specifying Parameters and Exceptions — SAP Help Portal](https://help.sap.com/docs/ABAP_PLATFORM_2021/bd833c8355f34e96a6e83096b38bf192/d1801f0f454211d189710000e8322d00.html)
+
 
 ---
 

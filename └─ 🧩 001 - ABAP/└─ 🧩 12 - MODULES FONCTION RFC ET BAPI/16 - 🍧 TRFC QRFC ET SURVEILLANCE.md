@@ -71,11 +71,51 @@ Ne jamais supprimer ou relancer une unité sans comprendre :
 
 Les garanties exactes de livraison et d’ordre dépendent du mécanisme et du scénario. Ne pas résumer tRFC ou qRFC à une promesse générale sans analyser l’implémentation de l’application.
 
+## 🌺 CAS D’USAGE
+
+Dans un contexte où une logique doit être réutilisée localement ou appelée à distance tout en respectant son interface et sa transaction, le besoin consiste à **analyser ou appeler trfc, qrfc et surveillance en respectant l’interface, les exceptions, les autorisations et la transaction**. Cette notion est pertinente lorsque le lecteur doit pouvoir relier la syntaxe ou l’outil à une situation professionnelle concrète.
+
+## 🌺 PROCÉDURE PAS À PAS
+
+1. Saisir `/nSE37`.
+2. Entrer le nom du module fonction puis choisir **Afficher**, **Modifier** ou **Créer** selon l’autorisation.
+3. Analyser les onglets Import, Export, Changing, Tables et Exceptions.
+4. Lire la documentation et le code source avant tout appel.
+5. Utiliser **Test/Exécuter** avec des données non destructives.
+6. Pour un module Z, contrôler, activer puis tester les cas nominal et d’erreur.
+
+## 🌺 VÉRIFICATION
+
+- Le lecteur peut expliquer la différence entre cette notion et les concepts proches.
+- Le choix technique est justifié par un besoin concret, pas uniquement par habitude.
+- Les limites liées à la release, aux autorisations et au contexte d’exécution sont identifiées.
+
+## 🌺 ERREURS FRÉQUENTES
+
+- Appeler un module fonction sans lire sa documentation et ses exceptions.
+- Supposer qu’une BAPI effectue automatiquement le commit.
+
+## 🌺 TERMES DU LEXIQUE
+
+- [tRFC](<../└─ 🧩 00 - LEXIQUE SAP ET ABAP/10 - 🍧 ACRONYMES SAP.md#acro-trfc>)
+- [qRFC](<../└─ 🧩 00 - LEXIQUE SAP ET ABAP/10 - 🍧 ACRONYMES SAP.md#acro-qrfc>)
+- [Module fonction](<../└─ 🧩 00 - LEXIQUE SAP ET ABAP/06 - 🍧 PROGRAMMES CLASSES ET OBJETS TECHNIQUES.md#module-fonction>)
+- [Function group](<../└─ 🧩 00 - LEXIQUE SAP ET ABAP/06 - 🍧 PROGRAMMES CLASSES ET OBJETS TECHNIQUES.md#function-group>)
+- [RFC](<../└─ 🧩 00 - LEXIQUE SAP ET ABAP/10 - 🍧 ACRONYMES SAP.md#acro-rfc>)
+- [BAPI](<../└─ 🧩 00 - LEXIQUE SAP ET ABAP/10 - 🍧 ACRONYMES SAP.md#acro-bapi>)
+
+## 🌺 À RETENIR
+
+- À l’issue du chapitre, le lecteur sait **analyser ou appeler trfc, qrfc et surveillance en respectant l’interface, les exceptions, les autorisations et la transaction**.
+- Toujours tester sur un objet Z ou un jeu de données sans impact avant d’intervenir sur un traitement réel.
+- La documentation `F1` du système reste la référence pour la syntaxe disponible dans sa release.
+
 ## 🌺 RÉFÉRENCES OFFICIELLES SAP
 
 - [RFC in SAP Systems — SAP Help Portal](https://help.sap.com/docs/SAP_NETWEAVER_700/108f625f6c53101491e88dc4cf51a6cc/48920827feb35ed2e10000000a42189d.html)
 - [Transactional RFC and Queued RFC Monitor — SAP Help Portal](https://help.sap.com/docs/SAP_NETWEAVER_700/10905b976c53101487c0c95187a63f9a/8bceea3b31aac554e10000000a114084.html)
 - [SMQ1 and SMQ2 — SAP Help Portal](https://help.sap.com/saphelp_snc70/helpdata/EN/76/e12041c877f623e10000000a155106/content.htm)
+
 
 ---
 

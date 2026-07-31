@@ -88,12 +88,66 @@ Toujours répondre séparément à quatre questions :
 3. **Pourquoi** cette donnée ou ce chemin est-il obtenu ?
 4. **Quelle correction minimale** rétablit la règle attendue ?
 
+## 🌺 CAS D’USAGE
+
+Dans un contexte où un incident ne se produit que pour certaines données et doit être reproduit puis localisé sans modifier le comportement métier, le besoin consiste à **arrêter l’exécution au bon endroit et observer les données utiles**. Cette notion est pertinente lorsque le choix technique doit être compris avant d’appliquer une procédure.
+
+## 🌺 PROCÉDURE PAS À PAS
+
+1. Saisir `/nST22`.
+2. Choisir la période correspondant à la reproduction.
+3. Filtrer par utilisateur, transaction ou runtime error lorsque nécessaire.
+4. Ouvrir le dump et relever le nom de l’erreur, l’exception, le programme et la ligne source.
+5. Lire les sections **Error analysis**, **How to correct the error** et **Source Code Extract**.
+6. Corréler le dump avec les données d’entrée et la version active du code.
+
+## 🌺 VÉRIFICATION
+
+- Le scénario reproduit correspond au même utilisateur, mandant, transaction et jeu de données.
+- L’horodatage et l’identifiant de l’analyse sont conservés.
+- La cause retenue est soutenue par une ligne source, une trace ou une valeur observée.
+- Après correction, le même scénario ne reproduit plus le défaut et le résultat métier reste identique.
+
+## 🌺 ERREURS FRÉQUENTES
+
+- Modifier les données dans le débogueur puis considérer le résultat comme reproductible.
+- Laisser une trace active trop longtemps.
+
+## 🌺 FICHE DE CONTRÔLE À COPIER
+
+```text
+Système / SID       :
+Mandant             :
+Utilisateur         :
+Transaction / outil :
+Objet technique     :
+Jeu de données      :
+Résultat attendu    :
+Résultat observé    :
+Horodatage          :
+Ordre de transport  :
+```
+
+## 🌺 TERMES DU LEXIQUE
+
+- [Breakpoint](<../└─ 🧩 00 - LEXIQUE SAP ET ABAP/08 - 🍧 EXECUTION EXPLOITATION ET ADMINISTRATION.md#breakpoint>)
+- [Watchpoint](<../└─ 🧩 00 - LEXIQUE SAP ET ABAP/08 - 🍧 EXECUTION EXPLOITATION ET ADMINISTRATION.md#watchpoint>)
+- [Dump ABAP](<../└─ 🧩 00 - LEXIQUE SAP ET ABAP/08 - 🍧 EXECUTION EXPLOITATION ET ADMINISTRATION.md#dump-abap>)
+- [Trace](<../└─ 🧩 00 - LEXIQUE SAP ET ABAP/08 - 🍧 EXECUTION EXPLOITATION ET ADMINISTRATION.md#trace>)
+
+## 🌺 À RETENIR
+
+- À l’issue du chapitre, le lecteur sait **arrêter l’exécution au bon endroit et observer les données utiles**.
+- Toujours tester sur un objet Z ou un jeu de données sans impact avant d’intervenir sur un traitement réel.
+- La documentation `F1` du système reste la référence pour la syntaxe disponible dans sa release.
+
 ## 🌺 RÉFÉRENCES OFFICIELLES SAP
 
 - [ABAP Test and Analysis Tools — SAP Help Portal](https://help.sap.com/docs/ABAP_PLATFORM_NEW/ba879a6e2ea04d9bb94c7ccd7cdac446/491aa66f87041903e10000000a42189c.html)
 - [Standard ABAP Debugger — SAP Help Portal](https://help.sap.com/docs/SAP_NETWEAVER_AS_ABAP_751_IP/ba879a6e2ea04d9bb94c7ccd7cdac446/49250c884d7216b5e10000000a42189d.html)
 - [ABAP Dump Analysis — SAP Help Portal](https://help.sap.com/docs/ABAP_PLATFORM_NEW/ba879a6e2ea04d9bb94c7ccd7cdac446/b134ab1cd8e44562b0fee9524c638cca.html)
 
+
 ---
 
-➡️ [Chapitre suivant — DEMARRER LE DEBUGGER DANS SAP GUI](<./02 - 🍧 DEMARRER LE DEBUGGER DANS SAP GUI.md>)
+➡️ [Chapitre suivant — DÉMARRER LE DÉBOGUEUR DANS SAP GUI](<./02 - 🍧 DEMARRER LE DEBUGGER DANS SAP GUI.md>)

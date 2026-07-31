@@ -12,12 +12,12 @@
 
 ```mermaid
 flowchart TD
-    A[Types élémentaires] --> B[Caractère]
-    A --> C[Numérique]
-    A --> D[Octets]
-    B --> E[c string n d t]
-    C --> F[i int8 p f decfloat16 decfloat34]
-    D --> G[x xstring]
+    A["Types élémentaires"] --> B["Caractère"]
+    A --> C["Numérique"]
+    A --> D["Octets"]
+    B --> E["c string n d t"]
+    C --> F["i int8 p f decfloat16 decfloat34"]
+    D --> G["x xstring"]
 ```
 
 Les types disponibles dépendent de la version du serveur ABAP. Les types présentés ci-dessous couvrent les types usuels des systèmes ABAP classiques récents.
@@ -165,12 +165,68 @@ Même si `lv_id_text` et `lv_count` affichent des chiffres, leurs usages sont di
 | Choisir une longueur `p` insuffisante                | Débordement arithmétique                      |
 | Confondre `xstring` et `string`                      | Mauvaise interprétation du contenu            |
 
+## 🌺 CAS D’USAGE
+
+Dans un contexte où un programme de contrôle manipule des identifiants, montants, dates, statuts et structures dont le typage doit rester explicite, le besoin consiste à **déclarer et utiliser types élémentaires intégrés avec un typage explicite dans un programme ABAP**. Cette notion est pertinente lorsque le lecteur doit pouvoir relier la syntaxe ou l’outil à une situation professionnelle concrète.
+
+## 🌺 PROCÉDURE PAS À PAS
+
+1. Saisir `/nSE38` dans le champ de commande.
+2. Entrer le nom d’un programme Z de test, par exemple `ZREF_DEMO`, puis choisir **Créer** ou **Modifier** selon le cas.
+3. Pour un exercice local uniquement, affecter `$TMP` ; pour un développement livrable, utiliser le package et l’ordre fournis par le projet.
+4. Coller ou adapter le snippet du chapitre.
+5. Exécuter le contrôle syntaxique avec `Ctrl+F2`.
+6. Activer avec `Ctrl+F3`.
+7. Exécuter avec `F8` et comparer le résultat avec la section **Vérification**.
+
+## 🌺 VÉRIFICATION
+
+- Le contrôle syntaxique réussit.
+- La version active correspond au code sauvegardé.
+- L’exécution produit le résultat décrit dans le chapitre.
+- Les cas vide, limite et erreur sont testés séparément lorsque la syntaxe le permet.
+
+## 🌺 SNIPPET À RÉUTILISER
+
+> [!NOTE]
+> Adapter les noms `Z*`, les types DDIC, les données et les autorisations au système cible. Effectuer un contrôle syntaxique avant activation.
+
+```abap
+REPORT zdemo_types_elementaires.
+
+DATA lv_id_text TYPE n LENGTH 6 VALUE '42'.
+DATA lv_count   TYPE i          VALUE 42.
+DATA lv_amount  TYPE p LENGTH 6 DECIMALS 2 VALUE '42.50'.
+DATA lv_label   TYPE string     VALUE `Article`.
+
+WRITE: / 'Identifiant :', lv_id_text,
+       / 'Compteur    :', lv_count,
+       / 'Montant     :', lv_amount,
+       / 'Libellé     :', lv_label.
+```
+
+## 🌺 TERMES DU LEXIQUE
+
+- [Type de données](<../└─ 🧩 00 - LEXIQUE SAP ET ABAP/04 - 🍧 LANGAGE ET DEVELOPPEMENT ABAP.md#type-donnees>)
+- [Objet de données](<../└─ 🧩 00 - LEXIQUE SAP ET ABAP/04 - 🍧 LANGAGE ET DEVELOPPEMENT ABAP.md#objet-donnees>)
+- [Structure](<../└─ 🧩 00 - LEXIQUE SAP ET ABAP/04 - 🍧 LANGAGE ET DEVELOPPEMENT ABAP.md#structure-abap>)
+- [Table interne](<../└─ 🧩 00 - LEXIQUE SAP ET ABAP/04 - 🍧 LANGAGE ET DEVELOPPEMENT ABAP.md#table-interne>)
+- [Field-symbol](<../└─ 🧩 00 - LEXIQUE SAP ET ABAP/04 - 🍧 LANGAGE ET DEVELOPPEMENT ABAP.md#field-symbol>)
+- [Référence](<../└─ 🧩 00 - LEXIQUE SAP ET ABAP/04 - 🍧 LANGAGE ET DEVELOPPEMENT ABAP.md#reference>)
+
+## 🌺 À RETENIR
+
+- À l’issue du chapitre, le lecteur sait **déclarer et utiliser types élémentaires intégrés avec un typage explicite dans un programme ABAP**.
+- Toujours tester sur un objet Z ou un jeu de données sans impact avant d’intervenir sur un traitement réel.
+- La documentation `F1` du système reste la référence pour la syntaxe disponible dans sa release.
+
 ## 🌺 RÉFÉRENCES OFFICIELLES SAP
 
 - [Predefined ABAP Types — ABAP Keyword Documentation](https://help.sap.com/doc/abapdocu_latest_index_htm/latest/en-US/ABENBUILT_IN_TYPES_COMPLETE.html)
 - [Predefined Numeric ABAP Types — ABAP Keyword Documentation](https://help.sap.com/doc/abapdocu_latest_index_htm/latest/en-US/ABENBUILT_IN_TYPES_NUMERIC.html)
 - [Predefined Character-Like ABAP Types — ABAP Keyword Documentation](https://help.sap.com/doc/abapdocu_latest_index_htm/latest/en-US/ABENBUILT_IN_TYPES_CHARACTER.html)
 
+
 ---
 
-➡️ [Chapitre suivant — OBJETS DE DONNEES ET VALEURS INITIALES](<./03 - 🍧 OBJETS DE DONNEES ET VALEURS INITIALES.md>)
+➡️ [Chapitre suivant — OBJETS DE DONNÉES ET VALEURS INITIALES](<./03 - 🍧 OBJETS DE DONNEES ET VALEURS INITIALES.md>)

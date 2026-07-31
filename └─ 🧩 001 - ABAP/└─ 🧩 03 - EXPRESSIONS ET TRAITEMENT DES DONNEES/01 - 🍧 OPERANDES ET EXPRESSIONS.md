@@ -18,10 +18,10 @@ Une **expression** combine des opérandes, des opérateurs et éventuellement de
 
 ```mermaid
 flowchart LR
-    A[Opérande 1] --> C[Opérateur ou fonction]
-    B[Opérande 2] --> C
-    C --> D[Valeur résultat]
-    D --> E[Instruction ABAP]
+    A["Opérande 1"] --> C["Opérateur ou fonction"]
+    B["Opérande 2"] --> C
+    C --> D["Valeur résultat"]
+    D --> E["Instruction ABAP"]
 ```
 
 Exemple :
@@ -70,14 +70,14 @@ ADD 1 TO lv_counter.
 
 ```mermaid
 flowchart TD
-    A[Expressions ABAP] --> B[Expressions de calcul]
-    A --> C[Expressions logiques]
-    B --> D[Arithmétiques]
-    B --> E[Chaînes de caractères]
-    B --> F[Chaînes d octets]
-    C --> G[Comparaisons]
-    C --> H[Prédicats]
-    C --> I[Combinaisons AND OR NOT]
+    A["Expressions ABAP"] --> B["Expressions de calcul"]
+    A --> C["Expressions logiques"]
+    B --> D["Arithmétiques"]
+    B --> E["Chaînes de caractères"]
+    B --> F["Chaînes d octets"]
+    C --> G["Comparaisons"]
+    C --> H["Prédicats"]
+    C --> I["Combinaisons AND OR NOT"]
 ```
 
 Ce dossier traite principalement :
@@ -135,12 +135,63 @@ DATA(lv_unit_amount) = lv_base + lv_surcharge.
 lv_result = lv_unit_amount * lv_quantity.
 ```
 
+## 🌺 CAS D’USAGE
+
+Dans un contexte où une interface reçoit des valeurs texte qu’elle doit convertir, comparer, nettoyer et reformater avant traitement, le besoin consiste à **traiter une valeur au moyen de opérandes et expressions sans conversion ou perte de données involontaire**. Cette notion est pertinente lorsque le lecteur doit pouvoir relier la syntaxe ou l’outil à une situation professionnelle concrète.
+
+## 🌺 PROCÉDURE PAS À PAS
+
+1. Saisir `/nSE38` dans le champ de commande.
+2. Entrer le nom d’un programme Z de test, par exemple `ZREF_DEMO`, puis choisir **Créer** ou **Modifier** selon le cas.
+3. Pour un exercice local uniquement, affecter `$TMP` ; pour un développement livrable, utiliser le package et l’ordre fournis par le projet.
+4. Coller ou adapter le snippet du chapitre.
+5. Exécuter le contrôle syntaxique avec `Ctrl+F2`.
+6. Activer avec `Ctrl+F3`.
+7. Exécuter avec `F8` et comparer le résultat avec la section **Vérification**.
+
+## 🌺 VÉRIFICATION
+
+- Le contrôle syntaxique réussit.
+- La version active correspond au code sauvegardé.
+- L’exécution produit le résultat décrit dans le chapitre.
+- Les cas vide, limite et erreur sont testés séparément lorsque la syntaxe le permet.
+
+## 🌺 ERREURS FRÉQUENTES
+
+- Copier un exemple sans adapter les types, noms d’objets et données disponibles dans le système.
+- Tester uniquement le cas nominal et ignorer les valeurs initiales, absentes ou invalides.
+- S’appuyer sur une conversion implicite pouvant tronquer ou arrondir.
+- Ignorer l’encodage et les formats externes.
+
+## 🌺 SNIPPET À RÉUTILISER
+
+> [!NOTE]
+> Adapter les noms `Z*`, les types DDIC, les données et les autorisations au système cible. Effectuer un contrôle syntaxique avant activation.
+
+```abap
+DATA(lv_unit_amount) = lv_base + lv_surcharge.
+lv_result = lv_unit_amount * lv_quantity.
+```
+
+## 🌺 TERMES DU LEXIQUE
+
+- [Expression](<../└─ 🧩 00 - LEXIQUE SAP ET ABAP/04 - 🍧 LANGAGE ET DEVELOPPEMENT ABAP.md#expression>)
+- [Instruction ABAP](<../└─ 🧩 00 - LEXIQUE SAP ET ABAP/04 - 🍧 LANGAGE ET DEVELOPPEMENT ABAP.md#instruction-abap>)
+- [Type de données](<../└─ 🧩 00 - LEXIQUE SAP ET ABAP/04 - 🍧 LANGAGE ET DEVELOPPEMENT ABAP.md#type-donnees>)
+
+## 🌺 À RETENIR
+
+- À l’issue du chapitre, le lecteur sait **traiter une valeur au moyen de opérandes et expressions sans conversion ou perte de données involontaire**.
+- Toujours tester sur un objet Z ou un jeu de données sans impact avant d’intervenir sur un traitement réel.
+- La documentation `F1` du système reste la référence pour la syntaxe disponible dans sa release.
+
 ## 🌺 RÉFÉRENCES OFFICIELLES SAP
 
 - [Expressions and Functions — SAP Help Portal](https://help.sap.com/docs/ABAP_PLATFORM_NEW/7bfe8cdcfbb040dcb6702dada8c3e2f0/3175650fd7a54df89f2018150024db22.html)
 - [Extended Functional Operand Positions — ABAP Keyword Documentation](https://help.sap.com/doc/abapdocu_latest_index_htm/latest/en-US/ABENEXTENDED_FUNCTIONAL_POSITIONS.html)
 - [Processing Data — SAP Learning](https://learning.sap.com/courses/basic-abap-programming/processing-data_b025c9e3-697d-423f-977a-43b9051a7c15)
 
+
 ---
 
-➡️ [Chapitre suivant — AFFECTATIONS ET OPERATEURS D AFFECTATION](<./02 - 🍧 AFFECTATIONS ET OPERATEURS D AFFECTATION.md>)
+➡️ [Chapitre suivant — AFFECTATIONS ET OPÉRATEURS D’AFFECTATION](<./02 - 🍧 AFFECTATIONS ET OPERATEURS D AFFECTATION.md>)

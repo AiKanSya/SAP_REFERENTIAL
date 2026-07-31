@@ -13,12 +13,12 @@
 
 ```mermaid
 flowchart LR
-    A[Programme en exécution] --> B[Point d’arrêt]
-    B --> C[Debugger ABAP]
-    C --> D[Code source]
-    C --> E[Variables]
-    C --> F[Pile d’appels]
-    C --> G[Breakpoints et watchpoints]
+    A["Programme en exécution"] --> B["Point d’arrêt"]
+    B --> C["Debugger ABAP"]
+    C --> D["Code source"]
+    C --> E["Variables"]
+    C --> F["Pile d’appels"]
+    C --> G["Breakpoints et watchpoints"]
 ```
 
 ## 🌺 RÔLE DU DEBUGGER
@@ -103,12 +103,12 @@ Son efficacité dépend de l’utilisateur, de la durée de validité, du serveu
 
 ```mermaid
 flowchart TD
-    A[Instruction courante] --> B{Appel de procédure ?}
-    B -- Non --> C[F5 ou F6 : instruction suivante]
-    B -- Oui --> D[F5 : entrer]
-    B -- Oui --> E[F6 : exécuter sans entrer]
-    D --> F[F7 : revenir à l’appelant]
-    C --> G[F8 : prochain arrêt]
+    A["Instruction courante"] --> B{"Appel de procédure ?"}
+    B -->|"Non"| C["F5 ou F6 : instruction suivante"]
+    B -->|"Oui"| D["F5 : entrer"]
+    B -->|"Oui"| E["F6 : exécuter sans entrer"]
+    D --> F["F7 : revenir à l’appelant"]
+    C --> G["F8 : prochain arrêt"]
     E --> G
     F --> G
 ```
@@ -211,6 +211,61 @@ Cette fonction sert à :
 - certaines zones système peuvent être exclues du pas-à-pas ;
 - ne pas déboguer un traitement productif sensible sans procédure validée ;
 - supprimer les breakpoints devenus inutiles.
+
+## 🌺 CAS D’USAGE
+
+Dans un contexte où une intervention de correction doit être réalisée dans le bon système et sur le bon objet sans affecter un environnement non autorisé, le besoin consiste à **arrêter l’exécution au bon endroit et observer les données utiles**. Cette notion est pertinente lorsque le lecteur doit pouvoir relier la syntaxe ou l’outil à une situation professionnelle concrète.
+
+## 🌺 PROCÉDURE PAS À PAS
+
+1. Ouvrir un report Z de démonstration dans `SE38`.
+2. Placer un breakpoint sur une instruction exécutable.
+3. Activer puis exécuter avec `F8`.
+4. Dans le débogueur, utiliser `F5` pour entrer dans un appel, `F6` pour l’exécuter sans entrer, `F7` pour revenir et `F8` pour continuer.
+5. Observer une variable, une structure et une table interne dans les outils de données.
+6. Créer un watchpoint sur une valeur modifiée par le programme.
+7. Terminer proprement l’exécution et retirer les breakpoints devenus inutiles.
+
+## 🌺 VÉRIFICATION
+
+- Le lecteur peut expliquer la différence entre cette notion et les concepts proches.
+- Le choix technique est justifié par un besoin concret, pas uniquement par habitude.
+- Les limites liées à la release, aux autorisations et au contexte d’exécution sont identifiées.
+
+## 🌺 ERREURS FRÉQUENTES
+
+- Intervenir dans le mauvais système ou mandant.
+- Confondre sauvegarde et activation.
+
+## 🌺 FICHE DE CONTRÔLE À COPIER
+
+```text
+Système / SID       :
+Mandant             :
+Utilisateur         :
+Transaction / outil :
+Objet technique     :
+Jeu de données      :
+Résultat attendu    :
+Résultat observé    :
+Horodatage          :
+Ordre de transport  :
+```
+
+## 🌺 TERMES DU LEXIQUE
+
+- [Système SAP](<../└─ 🧩 00 - LEXIQUE SAP ET ABAP/01 - 🍧 SYSTEMES ENVIRONNEMENTS ET MANDANTS.md#systeme-sap>)
+- [Mandant](<../└─ 🧩 00 - LEXIQUE SAP ET ABAP/01 - 🍧 SYSTEMES ENVIRONNEMENTS ET MANDANTS.md#mandant>)
+- [SAP GUI](<../└─ 🧩 00 - LEXIQUE SAP ET ABAP/02 - 🍧 SAP GUI NAVIGATION ET TRANSACTIONS.md#sap-gui>)
+- [Transaction](<../└─ 🧩 00 - LEXIQUE SAP ET ABAP/02 - 🍧 SAP GUI NAVIGATION ET TRANSACTIONS.md#transaction>)
+- [Repository ABAP](<../└─ 🧩 00 - LEXIQUE SAP ET ABAP/03 - 🍧 REPOSITORY PACKAGES ET TRANSPORTS.md#repository-abap>)
+- [Package](<../└─ 🧩 00 - LEXIQUE SAP ET ABAP/03 - 🍧 REPOSITORY PACKAGES ET TRANSPORTS.md#package>)
+
+## 🌺 À RETENIR
+
+- À l’issue du chapitre, le lecteur sait **arrêter l’exécution au bon endroit et observer les données utiles**.
+- Toujours tester sur un objet Z ou un jeu de données sans impact avant d’intervenir sur un traitement réel.
+- La documentation `F1` du système reste la référence pour la syntaxe disponible dans sa release.
 
 ## 🌺 RÉFÉRENCES OFFICIELLES SAP
 

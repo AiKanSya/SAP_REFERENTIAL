@@ -68,12 +68,69 @@ flowchart TD
 - appeler une fonction frontend dans un traitement destiné au background ;
 - afficher des données sans contrôle d’autorisation.
 
+## 🌺 CAS D’USAGE
+
+Dans un contexte où un utilisateur doit exécuter un report paramétrable, valider ses critères et réutiliser des variantes, le besoin consiste à **configurer aides f1 et f4 dans un programme exécutable et vérifier le comportement de l’écran de sélection**. Cette notion est pertinente lorsque le lecteur doit pouvoir relier la syntaxe ou l’outil à une situation professionnelle concrète.
+
+## 🌺 PROCÉDURE PAS À PAS
+
+1. Saisir `/nSE38` dans le champ de commande.
+2. Entrer le nom d’un programme Z de test, par exemple `ZREF_DEMO`, puis choisir **Créer** ou **Modifier** selon le cas.
+3. Pour un exercice local uniquement, affecter `$TMP` ; pour un développement livrable, utiliser le package et l’ordre fournis par le projet.
+4. Coller ou adapter le snippet du chapitre.
+5. Exécuter le contrôle syntaxique avec `Ctrl+F2`.
+6. Activer avec `Ctrl+F3`.
+7. Exécuter avec `F8` et comparer le résultat avec la section **Vérification**.
+
+## 🌺 VÉRIFICATION
+
+- Le contrôle syntaxique réussit.
+- La version active correspond au code sauvegardé.
+- L’exécution produit le résultat décrit dans le chapitre.
+- Les cas vide, limite et erreur sont testés séparément lorsque la syntaxe le permet.
+
+## 🌺 ERREURS FRÉQUENTES
+
+- Copier un exemple sans adapter les types, noms d’objets et données disponibles dans le système.
+- Tester uniquement le cas nominal et ignorer les valeurs initiales, absentes ou invalides.
+- Mettre une logique lourde dans les événements de validation de l’écran.
+- Créer une variante contenant des valeurs obsolètes ou sensibles.
+
+## 🌺 SNIPPET À RÉUTILISER
+
+> [!NOTE]
+> Adapter les noms `Z*`, les types DDIC, les données et les autorisations au système cible. Effectuer un contrôle syntaxique avant activation.
+
+```abap
+AT SELECTION-SCREEN ON VALUE-REQUEST FOR p_file.
+  PERFORM request_file CHANGING p_file.
+```
+
+## 🌺 TERMES DU LEXIQUE
+
+- [Programme exécutable](<../└─ 🧩 00 - LEXIQUE SAP ET ABAP/06 - 🍧 PROGRAMMES CLASSES ET OBJETS TECHNIQUES.md#programme-executable>)
+- [Variante](<../└─ 🧩 00 - LEXIQUE SAP ET ABAP/06 - 🍧 PROGRAMMES CLASSES ET OBJETS TECHNIQUES.md#variante>)
+- [Transaction](<../└─ 🧩 00 - LEXIQUE SAP ET ABAP/02 - 🍧 SAP GUI NAVIGATION ET TRANSACTIONS.md#transaction>)
+- [Dynpro](<../└─ 🧩 00 - LEXIQUE SAP ET ABAP/02 - 🍧 SAP GUI NAVIGATION ET TRANSACTIONS.md#dynpro>)
+
+## 🌺 À RETENIR
+
+- À l’issue du chapitre, le lecteur sait **configurer aides f1 et f4 dans un programme exécutable et vérifier le comportement de l’écran de sélection**.
+- Toujours tester sur un objet Z ou un jeu de données sans impact avant d’intervenir sur un traitement réel.
+- La documentation `F1` du système reste la référence pour la syntaxe disponible dans sa release.
+
+## 🌺 MODÈLE DE DÉMONSTRATION SFLIGHT
+
+> [!NOTE]
+> Les tables `SCARR`, `SPFLI` et `SFLIGHT` appartiennent au modèle de démonstration SAP et peuvent être absentes ou non alimentées dans certains systèmes. Dans ce cas, remplacer les exemples par une table Z de démonstration ou par une source en lecture seule autorisée, sans modifier une table applicative standard.
+
 ## 🌺 RÉFÉRENCES OFFICIELLES SAP
 
 - [PARAMETERS — ABAP Keyword Documentation](https://help.sap.com/doc/abapdocu_816_index_htm/8.16/en-US/ABAPPARAMETERS.html)
 - [SELECT-OPTIONS, Value Options — ABAP Keyword Documentation](https://help.sap.com/doc/abapdocu_latest_index_htm/latest/en-US/abapselect-options_value.htm)
 - [Selection Screen Processing — SAP Help Portal](https://help.sap.com/docs/SAP_NETWEAVER_700/a85596deeb19418982bee031d1fd1427/4a43c40d5a503f04e10000000a421937.html)
 
+
 ---
 
-➡️ [Chapitre suivant — MODIFICATION DYNAMIQUE DE L ECRAN](<./13 - 🍧 MODIFICATION DYNAMIQUE DE L ECRAN.md>)
+➡️ [Chapitre suivant — MODIFICATION DYNAMIQUE DE L’ÉCRAN](<./13 - 🍧 MODIFICATION DYNAMIQUE DE L ECRAN.md>)

@@ -12,13 +12,13 @@
 
 ```mermaid
 flowchart TD
-    A[Repository ABAP] --> B[Packages]
-    B --> C[Programmes]
-    B --> D[Classes et interfaces]
-    B --> E[Groupes de fonctions]
-    B --> F[Objets du Dictionnaire]
-    B --> G[Transactions]
-    B --> H[Extensions]
+    A["Repository ABAP"] --> B["Packages"]
+    B --> C["Programmes"]
+    B --> D["Classes et interfaces"]
+    B --> E["Groupes de fonctions"]
+    B --> F["Objets du Dictionnaire"]
+    B --> G["Transactions"]
+    B --> H["Extensions"]
 ```
 
 ## 🌺 DÉFINITION
@@ -61,10 +61,10 @@ Exemples :
 
 ```mermaid
 flowchart LR
-    A[Programme global ZREP_EXEMPLE] --> B[Déclarations locales]
-    A --> C[Classes locales]
-    A --> D[Includes associés]
-    A --> E[Textes et variantes]
+    A["Programme global ZREP_EXEMPLE"] --> B["Déclarations locales"]
+    A --> C["Classes locales"]
+    A --> D["Includes associés"]
+    A --> E["Textes et variantes"]
 ```
 
 ## 🌺 ANNUAIRE DES OBJETS
@@ -104,11 +104,11 @@ L’activation vérifie l’objet et publie une nouvelle version active si les c
 
 ```mermaid
 flowchart LR
-    A[Version active] --> B[Modification]
-    B --> C[Version inactive enregistrée]
-    C --> D{Activation réussie ?}
-    D -- Oui --> E[Nouvelle version active]
-    D -- Non --> C
+    A["Version active"] --> B["Modification"]
+    B --> C["Version inactive enregistrée"]
+    C --> D{"Activation réussie ?"}
+    D -->|"Oui"| E["Nouvelle version active"]
+    D -->|"Non"| C
 ```
 
 ## 🌺 VERROUS DE MODIFICATION
@@ -152,12 +152,69 @@ La liste d’utilisations permet d’identifier les consommateurs d’un objet. 
 > [!IMPORTANT]
 > Une liste d’utilisations ne garantit pas toujours l’identification des appels dynamiques construits à l’exécution.
 
+## 🌺 CAS D’USAGE
+
+Dans un contexte où une intervention de correction doit être réalisée dans le bon système et sur le bon objet sans affecter un environnement non autorisé, le besoin consiste à **retrouver l’objet technique responsable et comprendre ses dépendances**. Cette notion est pertinente lorsque le lecteur doit pouvoir relier la syntaxe ou l’outil à une situation professionnelle concrète.
+
+## 🌺 PROCÉDURE PAS À PAS
+
+1. Saisir `/nSE80`.
+2. Choisir le type d’objet connu : programme, classe, groupe de fonctions, package ou autre objet Repository.
+3. Entrer le nom technique puis valider.
+4. Commencer en mode **Afficher**.
+5. Identifier le programme principal, les includes, les sous-objets et le package.
+6. Utiliser la liste d’utilisation pour repérer les appelants ou dépendances.
+7. Ouvrir l’entrée de répertoire pour relever responsable, package et couche de transport.
+8. Ne passer en modification qu’après avoir confirmé l’objet et l’environnement.
+
+## 🌺 VÉRIFICATION
+
+- Le lecteur peut expliquer la différence entre cette notion et les concepts proches.
+- Le choix technique est justifié par un besoin concret, pas uniquement par habitude.
+- Les limites liées à la release, aux autorisations et au contexte d’exécution sont identifiées.
+
+## 🌺 ERREURS FRÉQUENTES
+
+- Intervenir dans le mauvais système ou mandant.
+- Confondre sauvegarde et activation.
+
+## 🌺 FICHE DE CONTRÔLE À COPIER
+
+```text
+Système / SID       :
+Mandant             :
+Utilisateur         :
+Transaction / outil :
+Objet technique     :
+Jeu de données      :
+Résultat attendu    :
+Résultat observé    :
+Horodatage          :
+Ordre de transport  :
+```
+
+## 🌺 TERMES DU LEXIQUE
+
+- [Repository ABAP](<../└─ 🧩 00 - LEXIQUE SAP ET ABAP/03 - 🍧 REPOSITORY PACKAGES ET TRANSPORTS.md#repository-abap>)
+- [ABAP](<../└─ 🧩 00 - LEXIQUE SAP ET ABAP/10 - 🍧 ACRONYMES SAP.md#acro-abap>)
+- [Système SAP](<../└─ 🧩 00 - LEXIQUE SAP ET ABAP/01 - 🍧 SYSTEMES ENVIRONNEMENTS ET MANDANTS.md#systeme-sap>)
+- [Mandant](<../└─ 🧩 00 - LEXIQUE SAP ET ABAP/01 - 🍧 SYSTEMES ENVIRONNEMENTS ET MANDANTS.md#mandant>)
+- [SAP GUI](<../└─ 🧩 00 - LEXIQUE SAP ET ABAP/02 - 🍧 SAP GUI NAVIGATION ET TRANSACTIONS.md#sap-gui>)
+- [Transaction](<../└─ 🧩 00 - LEXIQUE SAP ET ABAP/02 - 🍧 SAP GUI NAVIGATION ET TRANSACTIONS.md#transaction>)
+
+## 🌺 À RETENIR
+
+- À l’issue du chapitre, le lecteur sait **retrouver l’objet technique responsable et comprendre ses dépendances**.
+- Toujours tester sur un objet Z ou un jeu de données sans impact avant d’intervenir sur un traitement réel.
+- La documentation `F1` du système reste la référence pour la syntaxe disponible dans sa release.
+
 ## 🌺 RÉFÉRENCES OFFICIELLES SAP
 
 - [Overview of the ABAP Workbench](https://help.sap.com/docs/ABAP_PLATFORM_BW4HANA/bd833c8355f34e96a6e83096b38bf192/d18018d1454211d189710000e8322d00.html)
 - [Object Directory](https://help.sap.com/docs/ABAP_PLATFORM_NEW/4a368c163b08418890a406d413933ba7/5738e06c4eb711d182bf0000e829fbfe.html)
 - [Object Navigator](https://help.sap.com/docs/ABAP_PLATFORM_NEW/bd833c8355f34e96a6e83096b38bf192/efd94b7bebf811d295b100a0c94260a5.html)
 - [Repository Browser](https://help.sap.com/docs/ABAP_PLATFORM_NEW/bd833c8355f34e96a6e83096b38bf192/d180194b454211d189710000e8322d00.html)
+
 
 ---
 

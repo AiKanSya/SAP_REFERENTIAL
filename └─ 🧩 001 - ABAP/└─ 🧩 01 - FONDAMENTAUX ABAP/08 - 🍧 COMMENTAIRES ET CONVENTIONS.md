@@ -12,10 +12,10 @@
 
 ```mermaid
 flowchart TD
-    A[Documentation dans le code] --> B[Commentaire de ligne]
-    A --> C[Commentaire de fin de ligne]
-    A --> D[ABAP Doc]
-    A --> E[Directive de contrôle]
+    A["Documentation dans le code"] --> B["Commentaire de ligne"]
+    A --> C["Commentaire de fin de ligne"]
+    A --> D["ABAP Doc"]
+    A --> E["Directive de contrôle"]
 ```
 
 ## 🌺 COMMENTAIRE DE LIGNE
@@ -182,12 +182,77 @@ REPORT zdemo_comments.
 - retirer le code commenté ;
 - conserver les messages et textes destinés aux utilisateurs dans les mécanismes adaptés.
 
+## 🌺 CAS D’USAGE
+
+Dans un contexte où une intervention de correction doit être réalisée dans le bon système et sur le bon objet sans affecter un environnement non autorisé, le besoin consiste à **documenter l’intention sans masquer un code difficile à comprendre**. Cette notion est pertinente lorsque le lecteur doit pouvoir relier la syntaxe ou l’outil à une situation professionnelle concrète.
+
+## 🌺 PROCÉDURE PAS À PAS
+
+1. Ouvrir un programme Z existant en mode modification.
+2. Ajouter un commentaire de ligne avec `"` uniquement pour expliquer une intention non évidente.
+3. Éviter les commentaires qui répètent littéralement l’instruction.
+4. Appliquer les conventions de nommage du projet aux variables et constantes.
+5. Utiliser le Pretty Printer configuré par l’équipe.
+6. Contrôler que le code reste compréhensible lorsque les commentaires superflus sont retirés.
+7. Faire relire le changement avant transport lorsque la logique est sensible.
+
+## 🌺 VÉRIFICATION
+
+- Le contrôle syntaxique réussit.
+- La version active correspond au code sauvegardé.
+- L’exécution produit le résultat décrit dans le chapitre.
+- Les cas vide, limite et erreur sont testés séparément lorsque la syntaxe le permet.
+
+## 🌺 ERREURS FRÉQUENTES
+
+- Copier un exemple sans adapter les types, noms d’objets et données disponibles dans le système.
+- Tester uniquement le cas nominal et ignorer les valeurs initiales, absentes ou invalides.
+- Intervenir dans le mauvais système ou mandant.
+- Confondre sauvegarde et activation.
+
+## 🌺 SNIPPET À RÉUTILISER
+
+> [!NOTE]
+> Adapter les noms `Z*`, les types DDIC, les données et les autorisations au système cible. Effectuer un contrôle syntaxique avant activation.
+
+```abap
+CLASS lcl_calculator DEFINITION.
+  PUBLIC SECTION.
+    "! Additionne deux nombres entiers.
+    "! @parameter iv_left  | Première valeur
+    "! @parameter iv_right | Deuxième valeur
+    "! @parameter rv_sum   | Résultat
+    METHODS add
+      IMPORTING
+        iv_left       TYPE i
+        iv_right      TYPE i
+      RETURNING
+        VALUE(rv_sum) TYPE i.
+ENDCLASS.
+```
+
+## 🌺 TERMES DU LEXIQUE
+
+- [Système SAP](<../└─ 🧩 00 - LEXIQUE SAP ET ABAP/01 - 🍧 SYSTEMES ENVIRONNEMENTS ET MANDANTS.md#systeme-sap>)
+- [Mandant](<../└─ 🧩 00 - LEXIQUE SAP ET ABAP/01 - 🍧 SYSTEMES ENVIRONNEMENTS ET MANDANTS.md#mandant>)
+- [SAP GUI](<../└─ 🧩 00 - LEXIQUE SAP ET ABAP/02 - 🍧 SAP GUI NAVIGATION ET TRANSACTIONS.md#sap-gui>)
+- [Transaction](<../└─ 🧩 00 - LEXIQUE SAP ET ABAP/02 - 🍧 SAP GUI NAVIGATION ET TRANSACTIONS.md#transaction>)
+- [Repository ABAP](<../└─ 🧩 00 - LEXIQUE SAP ET ABAP/03 - 🍧 REPOSITORY PACKAGES ET TRANSPORTS.md#repository-abap>)
+- [Package](<../└─ 🧩 00 - LEXIQUE SAP ET ABAP/03 - 🍧 REPOSITORY PACKAGES ET TRANSPORTS.md#package>)
+
+## 🌺 À RETENIR
+
+- À l’issue du chapitre, le lecteur sait **documenter l’intention sans masquer un code difficile à comprendre**.
+- Toujours tester sur un objet Z ou un jeu de données sans impact avant d’intervenir sur un traitement réel.
+- La documentation `F1` du système reste la référence pour la syntaxe disponible dans sa release.
+
 ## 🌺 RÉFÉRENCES OFFICIELLES SAP
 
 - [Comments — SAP Help Portal](https://help.sap.com/docs/abap-cloud/abap-concepts/comments)
 - [Adding ABAP Doc Comments](https://help.sap.com/doc/c238d694b825421f940829321ffa326a/7.40.25/en-US/17e98e1c1ff545cea3f95b85a0539322.html)
 - [Clean ABAP — SAP Style Guides](https://github.com/SAP/styleguides/blob/main/clean-abap/CleanABAP.md)
 
+
 ---
 
-➡️ [Chapitre suivant — ACTIVATION EXECUTION ET VERIFICATION](<./09 - 🍧 ACTIVATION EXECUTION ET VERIFICATION.md>)
+➡️ [Chapitre suivant — ACTIVATION, EXÉCUTION ET VÉRIFICATION](<./09 - 🍧 ACTIVATION EXECUTION ET VERIFICATION.md>)

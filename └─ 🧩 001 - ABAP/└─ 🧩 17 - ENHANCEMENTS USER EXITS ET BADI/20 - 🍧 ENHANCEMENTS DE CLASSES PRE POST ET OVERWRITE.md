@@ -43,12 +43,66 @@ Pour un pre/post method :
 - éviter de modifier un état interne non prévu ;
 - mesurer les effets sur toutes les sous-classes et tous les appelants.
 
+## 🌺 CAS D’USAGE
+
+Dans un contexte où un besoin client doit compléter le comportement standard SAP sans modifier directement le code livré par SAP, le besoin consiste à **utiliser enhancements de classes : pre, post et overwrite pour étendre le standard sans créer de modification directe ni d’effet de bord hors périmètre**. Cette notion est pertinente lorsque le lecteur doit pouvoir relier la syntaxe ou l’outil à une situation professionnelle concrète.
+
+## 🌺 PROCÉDURE PAS À PAS
+
+1. Saisir `/nSE80`.
+2. Sélectionner le type d’objet ou le package dans la liste de gauche.
+3. Entrer le nom technique puis valider.
+4. Commencer en mode **Afficher** pour analyser l’objet et ses sous-objets.
+5. Passer en modification uniquement dans un système et un objet autorisés.
+6. Contrôler la syntaxe, activer les objets modifiés puis vérifier leur statut actif.
+
+## 🌺 VÉRIFICATION
+
+- L’implémentation ou le projet est actif et transporté dans le bon ordre.
+- Un breakpoint confirme que le point d’extension est appelé dans le scénario visé.
+- Le comportement standard reste inchangé hors du périmètre fonctionnel prévu.
+- Aucune modification directe d’un objet SAP standard n’a été créée.
+
+## 🌺 ERREURS FRÉQUENTES
+
+- Choisir le premier exit trouvé sans vérifier le moment exact de l’appel.
+- Créer plusieurs implémentations concurrentes sans règles de filtre.
+
+## 🌺 FICHE DE CONTRÔLE À COPIER
+
+```text
+Système / SID       :
+Mandant             :
+Utilisateur         :
+Transaction / outil :
+Objet technique     :
+Jeu de données      :
+Résultat attendu    :
+Résultat observé    :
+Horodatage          :
+Ordre de transport  :
+```
+
+## 🌺 TERMES DU LEXIQUE
+
+- [Classe](<../└─ 🧩 00 - LEXIQUE SAP ET ABAP/04 - 🍧 LANGAGE ET DEVELOPPEMENT ABAP.md#classe>)
+- [BAdI](<../└─ 🧩 00 - LEXIQUE SAP ET ABAP/10 - 🍧 ACRONYMES SAP.md#acro-badi>)
+- [BTE](<../└─ 🧩 00 - LEXIQUE SAP ET ABAP/10 - 🍧 ACRONYMES SAP.md#acro-bte>)
+- [Objet Repository](<../└─ 🧩 00 - LEXIQUE SAP ET ABAP/03 - 🍧 REPOSITORY PACKAGES ET TRANSPORTS.md#objet-repository>)
+
+## 🌺 À RETENIR
+
+- À l’issue du chapitre, le lecteur sait **utiliser enhancements de classes : pre, post et overwrite pour étendre le standard sans créer de modification directe ni d’effet de bord hors périmètre**.
+- Toujours tester sur un objet Z ou un jeu de données sans impact avant d’intervenir sur un traitement réel.
+- La documentation `F1` du système reste la référence pour la syntaxe disponible dans sa release.
+
 ## 🌺 RÉFÉRENCES OFFICIELLES SAP
 
 - [Enhancements to Classes and Interfaces — SAP Help Portal](https://help.sap.com/docs/ABAP_PLATFORM_NEW/46a2cfc13d25463b8b9a3d2a3c3ba0d9/584fb541d3d52d31e10000000a155106.html)
 - [Enhancing Components of Global Classes — SAP Help Portal](https://help.sap.com/docs/SAP_NETWEAVER_AS_ABAP_FOR_SOH_740/46a2cfc13d25463b8b9a3d2a3c3ba0d9/86b83142680d5c33e10000000a155106.html)
 - [Enhancement Technologies — SAP Help Portal](https://help.sap.com/docs/ABAP_PLATFORM_NEW/46a2cfc13d25463b8b9a3d2a3c3ba0d9/7063da4023a28631e10000000a1550b0.html)
 
+
 ---
 
-➡️ [Chapitre suivant — BADI DU ENHANCEMENT FRAMEWORK ET APPELS ABAP](<./21 - 🍧 BADI DU ENHANCEMENT FRAMEWORK ET APPELS ABAP.md>)
+➡️ [Chapitre suivant — BAdI DU ENHANCEMENT FRAMEWORK ET APPELS ABAP](<./21 - 🍧 BADI DU ENHANCEMENT FRAMEWORK ET APPELS ABAP.md>)

@@ -12,13 +12,13 @@
 
 ```mermaid
 flowchart LR
-    A[Nom du programme] --> B[Attributs]
-    B --> C[Package]
-    C --> D[Ordre de transport]
-    D --> E[Code source]
-    E --> F[Contrôle]
-    F --> G[Activation]
-    G --> H[Exécution]
+    A["Nom du programme"] --> B["Attributs"]
+    B --> C["Package"]
+    C --> D["Ordre de transport"]
+    D --> E["Code source"]
+    E --> F["Contrôle"]
+    F --> G["Activation"]
+    G --> H["Exécution"]
 ```
 
 ## 🌺 PRÉREQUIS
@@ -129,14 +129,14 @@ Ce programme :
 
 ```mermaid
 flowchart TD
-    A[Code saisi] --> B[Enregistrer]
-    B --> C[Contrôle syntaxique]
-    C --> D{Erreur ?}
-    D -- Oui --> E[Corriger]
+    A["Code saisi"] --> B["Enregistrer"]
+    B --> C["Contrôle syntaxique"]
+    C --> D{"Erreur ?"}
+    D -->|"Oui"| E["Corriger"]
     E --> C
-    D -- Non --> F[Activer]
-    F --> G[Exécuter]
-    G --> H[Contrôler le résultat]
+    D -->|"Non"| F["Activer"]
+    F --> G["Exécuter"]
+    G --> H["Contrôler le résultat"]
 ```
 
 L’exécution n’est pas une preuve de conformité fonctionnelle. Elle confirme uniquement que le scénario testé a pu atteindre un résultat sans erreur bloquante visible.
@@ -164,12 +164,65 @@ Après création :
 | Le texte du paramètre est technique | Texte de sélection non maintenu                    |
 | La création est refusée             | Autorisation, verrou ou client non modifiable      |
 
+## 🌺 CAS D’USAGE
+
+Dans un contexte où une intervention de correction doit être réalisée dans le bon système et sur le bon objet sans affecter un environnement non autorisé, le besoin consiste à **appliquer création d’un premier programme dans un scénario SAP contrôlé**. Cette notion est pertinente lorsque le lecteur doit pouvoir relier la syntaxe ou l’outil à une situation professionnelle concrète.
+
+## 🌺 PROCÉDURE PAS À PAS
+
+1. Saisir `/nSE38`.
+2. Entrer `ZREF_HELLO_WORLD` puis choisir **Créer**.
+3. Saisir un titre et sélectionner le type **Programme exécutable**.
+4. Affecter `$TMP` pour un exercice local autorisé, ou le package et l’ordre fournis par le projet.
+5. Saisir le code du snippet du chapitre.
+6. Exécuter le contrôle syntaxique avec `Ctrl+F2` et corriger chaque erreur.
+7. Activer avec `Ctrl+F3`.
+8. Exécuter avec `F8`.
+9. Vérifier la sortie puis modifier une valeur, réactiver et confirmer que la version exécutée change.
+
+## 🌺 VÉRIFICATION
+
+- Le contrôle syntaxique réussit.
+- La version active correspond au code sauvegardé.
+- L’exécution produit le résultat décrit dans le chapitre.
+- Les cas vide, limite et erreur sont testés séparément lorsque la syntaxe le permet.
+
+## 🌺 SNIPPET À RÉUTILISER
+
+> [!NOTE]
+> Adapter les noms `Z*`, les types DDIC, les données et les autorisations au système cible. Effectuer un contrôle syntaxique avant activation.
+
+```abap
+REPORT zdemo_fondamentaux_abap.
+
+PARAMETERS p_name TYPE c LENGTH 30 LOWER CASE.
+
+START-OF-SELECTION.
+  WRITE: / 'Bonjour', p_name.
+```
+
+## 🌺 TERMES DU LEXIQUE
+
+- [Système SAP](<../└─ 🧩 00 - LEXIQUE SAP ET ABAP/01 - 🍧 SYSTEMES ENVIRONNEMENTS ET MANDANTS.md#systeme-sap>)
+- [Mandant](<../└─ 🧩 00 - LEXIQUE SAP ET ABAP/01 - 🍧 SYSTEMES ENVIRONNEMENTS ET MANDANTS.md#mandant>)
+- [SAP GUI](<../└─ 🧩 00 - LEXIQUE SAP ET ABAP/02 - 🍧 SAP GUI NAVIGATION ET TRANSACTIONS.md#sap-gui>)
+- [Transaction](<../└─ 🧩 00 - LEXIQUE SAP ET ABAP/02 - 🍧 SAP GUI NAVIGATION ET TRANSACTIONS.md#transaction>)
+- [Repository ABAP](<../└─ 🧩 00 - LEXIQUE SAP ET ABAP/03 - 🍧 REPOSITORY PACKAGES ET TRANSPORTS.md#repository-abap>)
+- [Package](<../└─ 🧩 00 - LEXIQUE SAP ET ABAP/03 - 🍧 REPOSITORY PACKAGES ET TRANSPORTS.md#package>)
+
+## 🌺 À RETENIR
+
+- À l’issue du chapitre, le lecteur sait **appliquer création d’un premier programme dans un scénario SAP contrôlé**.
+- Toujours tester sur un objet Z ou un jeu de données sans impact avant d’intervenir sur un traitement réel.
+- La documentation `F1` du système reste la référence pour la syntaxe disponible dans sa release.
+
 ## 🌺 RÉFÉRENCES OFFICIELLES SAP
 
 - [Creating a Program](https://help.sap.com/docs/ABAP_PLATFORM_NEW/bd833c8355f34e96a6e83096b38bf192/d1801a47454211d189710000e8322d00-65.html)
 - [REPORT — ABAP Keyword Documentation](https://help.sap.com/doc/abapdocu_latest_index_htm/latest/en-US/ABAPREPORT.html)
 - [ABAP Source Code Editor](https://help.sap.com/docs/ABAP_PLATFORM_NEW/c238d694b825421f940829321ffa326a/9ac600a0fad14967aaf2964be5a21963.html)
 
+
 ---
 
-➡️ [Chapitre suivant — STRUCTURE D UN PROGRAMME ABAP](<./06 - 🍧 STRUCTURE D UN PROGRAMME ABAP.md>)
+➡️ [Chapitre suivant — STRUCTURE D’UN PROGRAMME ABAP](<./06 - 🍧 STRUCTURE D UN PROGRAMME ABAP.md>)

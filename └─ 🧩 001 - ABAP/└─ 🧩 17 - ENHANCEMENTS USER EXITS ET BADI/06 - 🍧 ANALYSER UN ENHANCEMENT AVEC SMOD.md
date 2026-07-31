@@ -42,12 +42,56 @@ Placer un breakpoint dans le module `EXIT_*` ou dans l’include client. Vérifi
 - les validations exécutées après l’exit ;
 - le contexte de mise à jour.
 
+## 🌺 CAS D’USAGE
+
+Dans un contexte où un besoin client doit compléter le comportement standard SAP sans modifier directement le code livré par SAP, le besoin consiste à **analyser un enhancement classique et ses composants**. Cette notion est pertinente lorsque la modification ne doit intervenir qu’après identification du bon objet et de son impact.
+
+## 🌺 VÉRIFICATION
+
+- L’implémentation ou le projet est actif et transporté dans le bon ordre.
+- Un breakpoint confirme que le point d’extension est appelé dans le scénario visé.
+- Le comportement standard reste inchangé hors du périmètre fonctionnel prévu.
+- Aucune modification directe d’un objet SAP standard n’a été créée.
+
+## 🌺 ERREURS FRÉQUENTES
+
+- Choisir le premier exit trouvé sans vérifier le moment exact de l’appel.
+- Créer plusieurs implémentations concurrentes sans règles de filtre.
+
+## 🌺 FICHE DE CONTRÔLE À COPIER
+
+```text
+Système / SID       :
+Mandant             :
+Utilisateur         :
+Transaction / outil :
+Objet technique     :
+Jeu de données      :
+Résultat attendu    :
+Résultat observé    :
+Horodatage          :
+Ordre de transport  :
+```
+
+## 🌺 TERMES DU LEXIQUE
+
+- [BAdI](<../└─ 🧩 00 - LEXIQUE SAP ET ABAP/10 - 🍧 ACRONYMES SAP.md#acro-badi>)
+- [BTE](<../└─ 🧩 00 - LEXIQUE SAP ET ABAP/10 - 🍧 ACRONYMES SAP.md#acro-bte>)
+- [Objet Repository](<../└─ 🧩 00 - LEXIQUE SAP ET ABAP/03 - 🍧 REPOSITORY PACKAGES ET TRANSPORTS.md#objet-repository>)
+
+## 🌺 À RETENIR
+
+- À l’issue du chapitre, le lecteur sait **analyser un enhancement classique et ses composants**.
+- Toujours tester sur un objet Z ou un jeu de données sans impact avant d’intervenir sur un traitement réel.
+- La documentation `F1` du système reste la référence pour la syntaxe disponible dans sa release.
+
 ## 🌺 RÉFÉRENCES OFFICIELLES SAP
 
 - [Customer Exits (CMOD) — SAP Help Portal](https://help.sap.com/docs/SUPPORT_CONTENT/abap/3353525722.html)
 - [Ways to Find a User Exit — SAP Help Portal](https://help.sap.com/docs/SUPPORT_CONTENT/abap/3353525969.html)
 - [Activating User Exits — SAP Help Portal](https://help.sap.com/docs/SAP_S4HANA_ON-PREMISE/83f4631d77654e14800e31b17fe9bd45/4c3a1afc9995677ae10000000a42189b.html)
 
+
 ---
 
-➡️ [Chapitre suivant — CREER ET ACTIVER UN PROJET CMOD](<./07 - 🍧 CREER ET ACTIVER UN PROJET CMOD.md>)
+➡️ [Chapitre suivant — CRÉER ET ACTIVER UN PROJET `CMOD`](<./07 - 🍧 CREER ET ACTIVER UN PROJET CMOD.md>)

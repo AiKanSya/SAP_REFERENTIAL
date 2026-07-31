@@ -12,13 +12,13 @@
 
 ```mermaid
 flowchart TD
-    A[Déclarations globales] --> B[PARAMETERS]
-    A --> C[SELECT-OPTIONS]
-    A --> D[SELECTION-SCREEN]
-    B --> E[Écran standard 1000]
+    A["Déclarations globales"] --> B["PARAMETERS"]
+    A --> C["SELECT-OPTIONS"]
+    A --> D["SELECTION-SCREEN"]
+    B --> E["Écran standard 1000"]
     C --> E
     D --> E
-    E --> F[Événements AT SELECTION-SCREEN]
+    E --> F["Événements AT SELECTION-SCREEN"]
 ```
 
 ## 🌺 ÉCRAN STANDARD
@@ -218,12 +218,86 @@ TEXT-001 = Critères principaux
 - ne pas construire une clause SQL dynamique non maîtrisée à partir des saisies ;
 - tester les inclusions, exclusions et intervalles d’un `SELECT-OPTIONS`.
 
+## 🌺 CAS D’USAGE
+
+Dans un contexte où une intervention de correction doit être réalisée dans le bon système et sur le bon objet sans affecter un environnement non autorisé, le besoin consiste à **appliquer écran de sélection simple dans un scénario SAP contrôlé**. Cette notion est pertinente lorsque le lecteur doit pouvoir relier la syntaxe ou l’outil à une situation professionnelle concrète.
+
+## 🌺 PROCÉDURE PAS À PAS
+
+1. Créer un report Z dans `SE38`.
+2. Déclarer un `PARAMETERS` et un `SELECT-OPTIONS` en utilisant des types DDIC adaptés.
+3. Ajouter des valeurs par défaut uniquement lorsqu’elles sont sûres et explicites.
+4. Activer puis exécuter le report avec `F8`.
+5. Tester une valeur unique, un intervalle, une exclusion et une sélection vide.
+6. Sauvegarder une variante de test puis relancer le report avec cette variante.
+7. Vérifier que les critères reçus correspondent exactement à l’écran.
+
+## 🌺 VÉRIFICATION
+
+- Le contrôle syntaxique réussit.
+- La version active correspond au code sauvegardé.
+- L’exécution produit le résultat décrit dans le chapitre.
+- Les cas vide, limite et erreur sont testés séparément lorsque la syntaxe le permet.
+
+## 🌺 ERREURS FRÉQUENTES
+
+- Copier un exemple sans adapter les types, noms d’objets et données disponibles dans le système.
+- Tester uniquement le cas nominal et ignorer les valeurs initiales, absentes ou invalides.
+- Intervenir dans le mauvais système ou mandant.
+- Confondre sauvegarde et activation.
+
+## 🌺 SNIPPET À RÉUTILISER
+
+> [!NOTE]
+> Adapter les noms `Z*`, les types DDIC, les données et les autorisations au système cible. Effectuer un contrôle syntaxique avant activation.
+
+```abap
+REPORT zdemo_selection_screen.
+
+SELECTION-SCREEN BEGIN OF BLOCK b_main WITH FRAME TITLE text-001.
+  PARAMETERS p_name  TYPE c LENGTH 30 LOWER CASE OBLIGATORY.
+  PARAMETERS p_count TYPE i DEFAULT 10.
+  SELECT-OPTIONS s_date FOR sy-datum.
+SELECTION-SCREEN END OF BLOCK b_main.
+
+INITIALIZATION.
+  APPEND VALUE #(
+    sign   = 'I'
+    option = 'EQ'
+    low    = sy-datum ) TO s_date.
+
+AT SELECTION-SCREEN ON p_count.
+  IF p_count < 1 OR p_count > 1000.
+    MESSAGE 'Saisir un nombre compris entre 1 et 1000' TYPE 'E'.
+  ENDIF.
+
+START-OF-SELECTION.
+  WRITE: / 'Nom :', p_name,
+         / 'Nombre :', p_count.
+```
+
+## 🌺 TERMES DU LEXIQUE
+
+- [Système SAP](<../└─ 🧩 00 - LEXIQUE SAP ET ABAP/01 - 🍧 SYSTEMES ENVIRONNEMENTS ET MANDANTS.md#systeme-sap>)
+- [Mandant](<../└─ 🧩 00 - LEXIQUE SAP ET ABAP/01 - 🍧 SYSTEMES ENVIRONNEMENTS ET MANDANTS.md#mandant>)
+- [SAP GUI](<../└─ 🧩 00 - LEXIQUE SAP ET ABAP/02 - 🍧 SAP GUI NAVIGATION ET TRANSACTIONS.md#sap-gui>)
+- [Transaction](<../└─ 🧩 00 - LEXIQUE SAP ET ABAP/02 - 🍧 SAP GUI NAVIGATION ET TRANSACTIONS.md#transaction>)
+- [Repository ABAP](<../└─ 🧩 00 - LEXIQUE SAP ET ABAP/03 - 🍧 REPOSITORY PACKAGES ET TRANSPORTS.md#repository-abap>)
+- [Package](<../└─ 🧩 00 - LEXIQUE SAP ET ABAP/03 - 🍧 REPOSITORY PACKAGES ET TRANSPORTS.md#package>)
+
+## 🌺 À RETENIR
+
+- À l’issue du chapitre, le lecteur sait **appliquer écran de sélection simple dans un scénario SAP contrôlé**.
+- Toujours tester sur un objet Z ou un jeu de données sans impact avant d’intervenir sur un traitement réel.
+- La documentation `F1` du système reste la référence pour la syntaxe disponible dans sa release.
+
 ## 🌺 RÉFÉRENCES OFFICIELLES SAP
 
 - [Selection Screens — Overview](https://help.sap.com/doc/abapdocu_latest_index_htm/latest/en-US/ABENSELECTION_SCREEN_OVERVIEW.html)
 - [Selection Screens — Create](https://help.sap.com/doc/abapdocu_latest_index_htm/latest/en-US/ABENSELECTION_SCREEN_CREATE.html)
 - [SELECT-OPTIONS — ABAP Keyword Documentation](https://help.sap.com/doc/abapdocu_latest_index_htm/latest/en-US/ABAPSELECT-OPTIONS_SHORTREF.html)
 - [SELECTION-SCREEN, BEGIN OF](https://help.sap.com/doc/abapdocu_latest_index_htm/latest/en-US/ABAPSELECTION-SCREEN_DEFINITION.html)
+
 
 ---
 

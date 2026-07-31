@@ -1,10 +1,10 @@
-# 🍧 STRATEGIE DE TEST ET NON REGRESSION
+# 🌸 STRATEGIE DE TEST ET NON REGRESSION
 
-## 🎯 Objectif
+## 🌺 Objectif
 
 Organiser les tests selon leur portée, leur coût et le risque couvert.
 
-## 🧱 Niveaux de test
+## 🌺 Niveaux de test
 
 | Niveau      | Cible                       | Exemple                             |
 | ----------- | --------------------------- | ----------------------------------- |
@@ -21,7 +21,7 @@ flowchart TD
     C --> D["Recette et performance"]
 ```
 
-## 🔁 Construire la non-régression
+## 🌺 Construire la non-régression
 
 À chaque correction de défaut :
 
@@ -31,20 +31,73 @@ flowchart TD
 4. vérifier que le test réussit ;
 5. conserver le test dans la suite.
 
-## 📦 Données de test
+## 🌺 Données de test
 
 Elles doivent être minimales, compréhensibles et indépendantes du système lorsque le niveau de test le permet. Pour les tests d’intégration, définir clairement le client, les prérequis, le nettoyage et l’idempotence.
 
-## ⚠️ Couverture du risque
+## 🌺 Couverture du risque
 
 Prioriser les règles financières, autorisations, conversions d’unité, dates, arrondis, reprise après erreur, concurrence et volumes importants. Le nombre de tests n’est pas un objectif autonome.
 
-## 🔗 Références SAP officielles
+## 🌺 Références SAP officielles
 
 - [SAP Help Portal — ABAP Unit](https://help.sap.com/docs/ABAP_PLATFORM_NEW/ba879a6e2ea04d9bb94c7ccd7cdac446/491cfd8926bc14cde10000000a42189b.html)
 - [SAP Help Portal — Coverage Analyzer](https://help.sap.com/docs/ABAP_PLATFORM_NEW/ba879a6e2ea04d9bb94c7ccd7cdac446/49216c634ab514cde10000000a42189b.html)
 - [SAP Help Portal — ATC Quality Checking](https://help.sap.com/docs/ABAP_PLATFORM_NEW/c238d694b825421f940829321ffa326a/4ec1a1126e391014adc9fffe4e204223.html)
 
+## 🌺 CAS D’USAGE
+
+Dans un contexte où un programme critique doit conserver ses résultats tout en respectant les exigences de performance, qualité et non-régression, le besoin consiste à **appliquer strategie de test et non regression pour mesurer, contrôler et sécuriser la qualité d’une livraison ABAP**. Cette notion est pertinente lorsque le lecteur doit pouvoir relier la syntaxe ou l’outil à une situation professionnelle concrète.
+
+## 🌺 PROCÉDURE PAS À PAS
+
+1. Lire la définition et identifier les prérequis du chapitre.
+2. Choisir un objet Z ou un scénario de démonstration sans impact métier.
+3. Reproduire l’exemple dans un système de développement et relever les données d’entrée.
+4. Contrôler la syntaxe ou la configuration avant activation/exécution.
+5. Comparer le résultat observé avec la section **Vérification**.
+6. Documenter toute différence liée à la release, aux autorisations ou au paramétrage du système.
+
+## 🌺 VÉRIFICATION
+
+- Le résultat fonctionnel est identique avant et après optimisation.
+- La mesure est répétée avec le même jeu de données et le même contexte.
+- Les contrôles statiques ne retournent plus de finding bloquant.
+- Les tests automatiques couvrent les cas nominal, limites et erreurs attendues.
+
+## 🌺 ERREURS FRÉQUENTES
+
+- Optimiser sans mesure de référence.
+- Accepter un finding critique sans correction ni justification formelle.
+
+## 🌺 FICHE DE CONTRÔLE À COPIER
+
+```text
+Système / SID       :
+Mandant             :
+Utilisateur         :
+Transaction / outil :
+Objet technique     :
+Jeu de données      :
+Résultat attendu    :
+Résultat observé    :
+Horodatage          :
+Ordre de transport  :
+```
+
+## 🌺 TERMES DU LEXIQUE
+
+- [ATC](<../└─ 🧩 00 - LEXIQUE SAP ET ABAP/10 - 🍧 ACRONYMES SAP.md#acro-atc>)
+- [ABAP](<../└─ 🧩 00 - LEXIQUE SAP ET ABAP/10 - 🍧 ACRONYMES SAP.md#acro-abap>)
+- [Trace](<../└─ 🧩 00 - LEXIQUE SAP ET ABAP/08 - 🍧 EXECUTION EXPLOITATION ET ADMINISTRATION.md#trace>)
+
+## 🌺 À RETENIR
+
+- À l’issue du chapitre, le lecteur sait **appliquer strategie de test et non regression pour mesurer, contrôler et sécuriser la qualité d’une livraison ABAP**.
+- Toujours tester sur un objet Z ou un jeu de données sans impact avant d’intervenir sur un traitement réel.
+- La documentation `F1` du système reste la référence pour la syntaxe disponible dans sa release.
+
+
 ---
 
-➡️ [Chapitre suivant : CHECKLIST QUALITE AVANT LIVRAISON](<24 - 🍧 CHECKLIST QUALITE AVANT LIVRAISON.md>)
+➡️ [Chapitre suivant — CHECKLIST QUALITE AVANT LIVRAISON](<./24 - 🍧 CHECKLIST QUALITE AVANT LIVRAISON.md>)

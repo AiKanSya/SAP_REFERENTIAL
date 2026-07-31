@@ -12,12 +12,12 @@
 
 ```mermaid
 flowchart LR
-    A[Objet du Repository] --> B[Package]
-    B --> C[Couche de transport]
-    C --> D[Tâche développeur]
-    D --> E[Requête Workbench]
-    E --> F[Export]
-    F --> G[Import dans le système cible]
+    A["Objet du Repository"] --> B["Package"]
+    B --> C["Couche de transport"]
+    C --> D["Tâche développeur"]
+    D --> E["Requête Workbench"]
+    E --> F["Export"]
+    F --> G["Import dans le système cible"]
 ```
 
 ## 🌺 PACKAGE ABAP
@@ -61,10 +61,10 @@ Le package détermine la couche de transport et donc la route logique utilisée 
 
 ```mermaid
 flowchart TD
-    A[Création ou modification] --> B{Package local ?}
-    B -- Oui --> C[Aucun transport automatique]
-    B -- Non --> D[Sélection d’une tâche]
-    D --> E[Objet enregistré dans la tâche]
+    A["Création ou modification"] --> B{"Package local ?"}
+    B -->|"Oui"| C["Aucun transport automatique"]
+    B -->|"Non"| D["Sélection d’une tâche"]
+    D --> E["Objet enregistré dans la tâche"]
 ```
 
 ## 🌺 STRUCTURE D’UN ORDRE DE TRANSPORT
@@ -134,12 +134,12 @@ Les fonctions exactes accessibles dépendent des autorisations.
 
 ```mermaid
 flowchart LR
-    A[Développer] --> B[Test local]
-    B --> C[Contrôler la liste d’objets]
-    C --> D[Libérer les tâches]
-    D --> E[Libérer la requête]
-    E --> F[Importer]
-    F --> G[Tester dans la cible]
+    A["Développer"] --> B["Test local"]
+    B --> C["Contrôler la liste d’objets"]
+    C --> D["Libérer les tâches"]
+    D --> E["Libérer la requête"]
+    E --> F["Importer"]
+    F --> G["Tester dans la cible"]
 ```
 
 ## 🌺 CONTRÔLES AVANT LIBÉRATION
@@ -165,6 +165,57 @@ flowchart LR
 | Libérer dans le mauvais ordre                       | Dépendance non satisfaite                        |
 | Transporter sans test après import                  | Défaut découvert tardivement                     |
 
+## 🌺 CAS D’USAGE
+
+Dans un contexte où une intervention de correction doit être réalisée dans le bon système et sur le bon objet sans affecter un environnement non autorisé, le besoin consiste à **enregistrer chaque modification dans le package et le transport appropriés**. Cette notion est pertinente lorsque le lecteur doit pouvoir relier la syntaxe ou l’outil à une situation professionnelle concrète.
+
+## 🌺 PROCÉDURE PAS À PAS
+
+1. Lors de la sauvegarde d’un objet, saisir le package fourni par le projet ; utiliser `$TMP` uniquement pour un objet local autorisé.
+2. Sélectionner une tâche existante ou créer l’ordre demandé selon les règles de l’équipe.
+3. Ouvrir `/nSE09` ou `/nSE10`.
+4. Rechercher l’ordre par propriétaire ou numéro.
+5. Développer la tâche et contrôler la liste des objets enregistrés.
+6. Vérifier que les objets dépendants nécessaires sont inclus dans un ordre cohérent.
+7. Avant libération, effectuer contrôle syntaxique, activation et tests.
+8. Libérer d’abord la tâche, puis l’ordre parent uniquement lorsque la livraison est autorisée.
+
+## 🌺 VÉRIFICATION
+
+- Le lecteur peut expliquer la différence entre cette notion et les concepts proches.
+- Le choix technique est justifié par un besoin concret, pas uniquement par habitude.
+- Les limites liées à la release, aux autorisations et au contexte d’exécution sont identifiées.
+
+## 🌺 FICHE DE CONTRÔLE À COPIER
+
+```text
+Système / SID       :
+Mandant             :
+Utilisateur         :
+Transaction / outil :
+Objet technique     :
+Jeu de données      :
+Résultat attendu    :
+Résultat observé    :
+Horodatage          :
+Ordre de transport  :
+```
+
+## 🌺 TERMES DU LEXIQUE
+
+- [Package](<../└─ 🧩 00 - LEXIQUE SAP ET ABAP/03 - 🍧 REPOSITORY PACKAGES ET TRANSPORTS.md#package>)
+- [Système SAP](<../└─ 🧩 00 - LEXIQUE SAP ET ABAP/01 - 🍧 SYSTEMES ENVIRONNEMENTS ET MANDANTS.md#systeme-sap>)
+- [Mandant](<../└─ 🧩 00 - LEXIQUE SAP ET ABAP/01 - 🍧 SYSTEMES ENVIRONNEMENTS ET MANDANTS.md#mandant>)
+- [SAP GUI](<../└─ 🧩 00 - LEXIQUE SAP ET ABAP/02 - 🍧 SAP GUI NAVIGATION ET TRANSACTIONS.md#sap-gui>)
+- [Transaction](<../└─ 🧩 00 - LEXIQUE SAP ET ABAP/02 - 🍧 SAP GUI NAVIGATION ET TRANSACTIONS.md#transaction>)
+- [Repository ABAP](<../└─ 🧩 00 - LEXIQUE SAP ET ABAP/03 - 🍧 REPOSITORY PACKAGES ET TRANSPORTS.md#repository-abap>)
+
+## 🌺 À RETENIR
+
+- À l’issue du chapitre, le lecteur sait **enregistrer chaque modification dans le package et le transport appropriés**.
+- Toujours tester sur un objet Z ou un jeu de données sans impact avant d’intervenir sur un traitement réel.
+- La documentation `F1` du système reste la référence pour la syntaxe disponible dans sa release.
+
 ## 🌺 RÉFÉRENCES OFFICIELLES SAP
 
 - [Transport Organizer — Concept](https://help.sap.com/docs/ABAP_PLATFORM_BW4HANA/4a368c163b08418890a406d413933ba7/5738dd924eb711d182bf0000e829fbfe.html)
@@ -172,6 +223,7 @@ flowchart LR
 - [Creating Main Packages](https://help.sap.com/docs/ABAP_PLATFORM_NEW/bd833c8355f34e96a6e83096b38bf192/eac05d8cf01011d3964000a0c94260a5.html)
 - [Assigning an Object to a Different Package](https://help.sap.com/docs/SAP_NETWEAVER_AS_ABAP_752/bd833c8355f34e96a6e83096b38bf192/d1801972454211d189710000e8322d00.html)
 
+
 ---
 
-➡️ [Chapitre suivant — EDITEURS ABAP SE38 ET SE80](<./04 - 🍧 EDITEURS ABAP SE38 ET SE80.md>)
+➡️ [Chapitre suivant — ÉDITEURS ABAP `SE38` ET `SE80`](<./04 - 🍧 EDITEURS ABAP SE38 ET SE80.md>)

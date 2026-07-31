@@ -40,11 +40,66 @@ Un serveur cible est justifié seulement lorsqu’une dépendance technique l’
 - `RZ04` : modes d’exploitation et répartition des processus ;
 - `SM21` : journal système.
 
+## 🌺 CAS D’USAGE
+
+Dans un contexte où un traitement récurrent et volumineux doit s’exécuter sans session utilisateur, laisser des traces et pouvoir être repris, le besoin consiste à **exécuter les contrôles qualité, analyser les findings et corriger les causes**. Cette notion est pertinente lorsque le comportement dépend du contexte d’exécution et des composants impliqués.
+
+## 🌺 PROCÉDURE PAS À PAS
+
+1. Saisir `/nATC` ou utiliser l’entrée ATC disponible dans le système.
+2. Choisir une variante de contrôle autorisée.
+3. Lancer le contrôle sur l’objet, le package ou l’ordre de transport.
+4. Classer les findings par priorité et corriger d’abord les erreurs bloquantes.
+5. Demander une exemption uniquement avec justification, propriétaire et échéance.
+6. Relancer le contrôle avant libération.
+
+## 🌺 VÉRIFICATION
+
+- Le job apparaît dans `SM37` avec le statut attendu.
+- Le journal ne contient pas de message d’erreur non traité.
+- Le spool, le fichier ou le journal applicatif contient le résultat attendu.
+- Une relance contrôlée ne crée pas de doublon métier.
+
+## 🌺 ERREURS FRÉQUENTES
+
+- Planifier un job avec l’utilisateur personnel d’un développeur.
+- Relancer un job non idempotent après un échec partiel.
+
+## 🌺 FICHE DE CONTRÔLE À COPIER
+
+```text
+Système / SID       :
+Mandant             :
+Utilisateur         :
+Transaction / outil :
+Objet technique     :
+Jeu de données      :
+Résultat attendu    :
+Résultat observé    :
+Horodatage          :
+Ordre de transport  :
+```
+
+## 🌺 TERMES DU LEXIQUE
+
+- [Processus de travail](<../└─ 🧩 00 - LEXIQUE SAP ET ABAP/08 - 🍧 EXECUTION EXPLOITATION ET ADMINISTRATION.md#processus-travail>)
+- [Job](<../└─ 🧩 00 - LEXIQUE SAP ET ABAP/06 - 🍧 PROGRAMMES CLASSES ET OBJETS TECHNIQUES.md#job>)
+- [Spool](<../└─ 🧩 00 - LEXIQUE SAP ET ABAP/06 - 🍧 PROGRAMMES CLASSES ET OBJETS TECHNIQUES.md#spool>)
+- [Processus background](<../└─ 🧩 00 - LEXIQUE SAP ET ABAP/08 - 🍧 EXECUTION EXPLOITATION ET ADMINISTRATION.md#processus-background>)
+- [Variante](<../└─ 🧩 00 - LEXIQUE SAP ET ABAP/06 - 🍧 PROGRAMMES CLASSES ET OBJETS TECHNIQUES.md#variante>)
+
+## 🌺 À RETENIR
+
+- À l’issue du chapitre, le lecteur sait **exécuter les contrôles qualité, analyser les findings et corriger les causes**.
+- Toujours tester sur un objet Z ou un jeu de données sans impact avant d’intervenir sur un traitement réel.
+- La documentation `F1` du système reste la référence pour la syntaxe disponible dans sa release.
+
 ## 🌺 RÉFÉRENCES OFFICIELLES SAP
 
 - [Background Work Processes — SAP Help Portal](https://help.sap.com/docs/ABAP_PLATFORM_NEW/b07e7195f03f438b8e7ed273099d74f3/4b2b3c3e8eb51780e10000000a42189c.html)
 - [Job Start Management — SAP Help Portal](https://help.sap.com/docs/ABAP_PLATFORM_NEW/b07e7195f03f438b8e7ed273099d74f3/4b2bc0094c594ba2e10000000a42189c.html)
 
+
 ---
 
-➡️ [Chapitre suivant — JOBS ET ETAPES DE JOB](<./03 - 🍧 JOBS ET ETAPES DE JOB.md>)
+➡️ [Chapitre suivant — JOBS ET ÉTAPES DE JOB](<./03 - 🍧 JOBS ET ETAPES DE JOB.md>)

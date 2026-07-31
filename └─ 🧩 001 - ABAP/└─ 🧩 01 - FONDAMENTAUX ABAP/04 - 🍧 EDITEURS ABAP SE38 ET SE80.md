@@ -12,10 +12,10 @@
 
 ```mermaid
 flowchart LR
-    A[Programme ABAP] --> B{Besoin}
-    B -->|Accès direct au programme| C[SE38]
-    B -->|Navigation Repository et package| D[SE80]
-    C --> E[Éditeur de code source]
+    A["Programme ABAP"] --> B{"Besoin"}
+    B -->|Accès direct au programme| C["SE38"]
+    B -->|Navigation Repository et package| D["SE80"]
+    C --> E["Éditeur de code source"]
     D --> E
 ```
 
@@ -133,13 +133,13 @@ L’ouverture en modification peut échouer lorsque :
 
 ```mermaid
 flowchart TD
-    A[Ouvrir l’objet] --> B[Comprendre le contexte]
-    B --> C[Contrôler les utilisations]
-    C --> D[Modifier]
-    D --> E[Enregistrer]
-    E --> F[Contrôle syntaxique]
-    F --> G[Activer]
-    G --> H[Tester]
+    A["Ouvrir l’objet"] --> B["Comprendre le contexte"]
+    B --> C["Contrôler les utilisations"]
+    C --> D["Modifier"]
+    D --> E["Enregistrer"]
+    E --> F["Contrôle syntaxique"]
+    F --> G["Activer"]
+    G --> H["Tester"]
 ```
 
 - privilégier `SE80` pour comprendre une application et ses dépendances ;
@@ -149,6 +149,61 @@ flowchart TD
 - comparer la version active et inactive en cas de doute ;
 - ne pas confondre enregistrement et activation.
 
+## 🌺 CAS D’USAGE
+
+Dans un contexte où une intervention de correction doit être réalisée dans le bon système et sur le bon objet sans affecter un environnement non autorisé, le besoin consiste à **appliquer éditeurs abap `se38` et `se80` dans un scénario SAP contrôlé**. Cette notion est pertinente lorsque le lecteur doit pouvoir relier la syntaxe ou l’outil à une situation professionnelle concrète.
+
+## 🌺 PROCÉDURE PAS À PAS
+
+1. Ouvrir `/nSE38` pour travailler directement sur un programme exécutable connu.
+2. Entrer le nom du programme et choisir **Afficher** ou **Modifier**.
+3. Utiliser `/nSE80` lorsqu’il faut naviguer dans un package ou dans plusieurs sous-objets liés.
+4. Dans `SE80`, sélectionner le type d’objet puis ouvrir le même programme.
+5. Comparer les fonctions disponibles : arborescence, includes, écrans, GUI status, liste d’utilisation.
+6. Effectuer le contrôle syntaxique avec `Ctrl+F2` et l’activation avec `Ctrl+F3`.
+7. Utiliser `F1` sur un mot-clé pour consulter la documentation correspondant à la release.
+
+## 🌺 VÉRIFICATION
+
+- Le lecteur peut expliquer la différence entre cette notion et les concepts proches.
+- Le choix technique est justifié par un besoin concret, pas uniquement par habitude.
+- Les limites liées à la release, aux autorisations et au contexte d’exécution sont identifiées.
+
+## 🌺 ERREURS FRÉQUENTES
+
+- Intervenir dans le mauvais système ou mandant.
+- Confondre sauvegarde et activation.
+
+## 🌺 FICHE DE CONTRÔLE À COPIER
+
+```text
+Système / SID       :
+Mandant             :
+Utilisateur         :
+Transaction / outil :
+Objet technique     :
+Jeu de données      :
+Résultat attendu    :
+Résultat observé    :
+Horodatage          :
+Ordre de transport  :
+```
+
+## 🌺 TERMES DU LEXIQUE
+
+- [ABAP](<../└─ 🧩 00 - LEXIQUE SAP ET ABAP/10 - 🍧 ACRONYMES SAP.md#acro-abap>)
+- [Système SAP](<../└─ 🧩 00 - LEXIQUE SAP ET ABAP/01 - 🍧 SYSTEMES ENVIRONNEMENTS ET MANDANTS.md#systeme-sap>)
+- [Mandant](<../└─ 🧩 00 - LEXIQUE SAP ET ABAP/01 - 🍧 SYSTEMES ENVIRONNEMENTS ET MANDANTS.md#mandant>)
+- [SAP GUI](<../└─ 🧩 00 - LEXIQUE SAP ET ABAP/02 - 🍧 SAP GUI NAVIGATION ET TRANSACTIONS.md#sap-gui>)
+- [Transaction](<../└─ 🧩 00 - LEXIQUE SAP ET ABAP/02 - 🍧 SAP GUI NAVIGATION ET TRANSACTIONS.md#transaction>)
+- [Repository ABAP](<../└─ 🧩 00 - LEXIQUE SAP ET ABAP/03 - 🍧 REPOSITORY PACKAGES ET TRANSPORTS.md#repository-abap>)
+
+## 🌺 À RETENIR
+
+- À l’issue du chapitre, le lecteur sait **appliquer éditeurs abap `se38` et `se80` dans un scénario SAP contrôlé**.
+- Toujours tester sur un objet Z ou un jeu de données sans impact avant d’intervenir sur un traitement réel.
+- La documentation `F1` du système reste la référence pour la syntaxe disponible dans sa release.
+
 ## 🌺 RÉFÉRENCES OFFICIELLES SAP
 
 - [Object Navigator](https://help.sap.com/docs/ABAP_PLATFORM_NEW/bd833c8355f34e96a6e83096b38bf192/efd94b7bebf811d295b100a0c94260a5.html)
@@ -156,6 +211,7 @@ flowchart TD
 - [ABAP Source Code Editor](https://help.sap.com/docs/ABAP_PLATFORM_NEW/c238d694b825421f940829321ffa326a/9ac600a0fad14967aaf2964be5a21963.html)
 - [Creating a Program](https://help.sap.com/docs/ABAP_PLATFORM_NEW/bd833c8355f34e96a6e83096b38bf192/d1801a47454211d189710000e8322d00-65.html)
 
+
 ---
 
-➡️ [Chapitre suivant — CREATION D UN PREMIER PROGRAMME](<./05 - 🍧 CREATION D UN PREMIER PROGRAMME.md>)
+➡️ [Chapitre suivant — CRÉATION D’UN PREMIER PROGRAMME](<./05 - 🍧 CREATION D UN PREMIER PROGRAMME.md>)
