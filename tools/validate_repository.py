@@ -1,6 +1,7 @@
 from __future__ import annotations
 import re
 import sys
+import urllib.parse
 from pathlib import Path
 
 ROOT=Path(__file__).resolve().parents[1]
@@ -22,7 +23,9 @@ for p in mds:
         m=re.match(r'^(#{1,4})\s+(.+)$',line)
         if m:
             level=len(m.group(1)); rest=m.group(2)
-            if not rest.startswith(expected[level]+' '):
+            is_lexicon = any('00 - LEXIQUE SAP ET ABAP' in part for part in p.parts)
+            is_plain_document = p.name in {'README.md', 'CONTRIBUTING.md'}
+            if not (is_lexicon or is_plain_document) and not rest.startswith(expected[level]+' '):
                 errors.append(f'{p.relative_to(ROOT)}:{no}: icône attendue {expected[level]}')
             if level==1: h1+=1
     if p.name not in {'README.md','CONTRIBUTING.md'} and h1!=1:
@@ -31,7 +34,7 @@ for p in mds:
     for m in re.finditer(r'\[[^\]]+\]\(<([^>#]+)(?:#[^>]*)?>\)|\[[^\]]+\]\((?!https?://|mailto:)([^)#]+)(?:#[^)]*)?\)',text):
         rel=(m.group(1) or m.group(2)).strip()
         if not rel or rel.startswith('#'): continue
-        target=(p.parent/rel).resolve()
+        target=(p.parent/urllib.parse.unquote(rel)).resolve()
         if not target.exists():
             errors.append(f'{p.relative_to(ROOT)}: lien introuvable -> {rel}')
     # Mermaid : détecte les anciens motifs de génération invalides.

@@ -32,6 +32,48 @@ Chaque entrée présente une définition concise, un exemple, un repère pratiqu
 
 ---
 
+<a id="class-builder-se24"></a>
+## CLASS BUILDER (SE24)
+
+**Définition.** Outil SAP GUI utilisé pour créer, afficher, modifier, tester et documenter les classes et interfaces globales ABAP.
+
+**Exemple.** La transaction `SE24` permet d’ouvrir `ZCL_ORDER_SERVICE`, d’afficher son interface et d’accéder à ses méthodes.
+
+**Repère pratique.** Vérifier le package, le statut d’activation et les composants publics avant d’analyser l’implémentation.
+
+**À distinguer de.** `SE24` gère les classes globales ; une classe locale est définie dans le code source de son programme principal.
+
+
+---
+
+<a id="class-pool"></a>
+## CLASS POOL
+
+**Définition.** Programme technique généré qui contient la définition et l’implémentation d’une classe globale ABAP.
+
+**Exemple.** Une classe globale possède un programme de type Class Pool avec des includes techniques gérés par les outils SAP.
+
+**Repère pratique.** Modifier la classe depuis `SE24` ou `SE80` plutôt que de modifier directement ses includes générés.
+
+**À distinguer de.** Le Class Pool est le conteneur technique ; la classe globale est l’objet Repository manipulé par les consommateurs.
+
+
+---
+
+<a id="classe-test"></a>
+## CLASSE DE TEST
+
+**Définition.** Classe locale déclarée `FOR TESTING` contenant des méthodes exécutées par ABAP Unit.
+
+**Exemple.** `LTC_ORDER_SERVICE` vérifie les résultats publics de `ZCL_ORDER_SERVICE` avec des assertions.
+
+**Repère pratique.** Placer la classe de test dans le Class Pool ou dans l’include de test prévu par l’outil afin qu’elle soit transportée avec la classe.
+
+**À distinguer de.** Une classe de test valide le comportement ; elle ne constitue pas une implémentation productive.
+
+
+---
+
 <a id="classe-globale"></a>
 ## CLASSE GLOBALE
 
@@ -46,6 +88,20 @@ Chaque entrée présente une définition concise, un exemple, un repère pratiqu
 
 ---
 
+<a id="classe-locale"></a>
+## CLASSE LOCALE
+
+**Définition.** Classe définie dans le code source d’un programme, d’un include ou d’un Class Pool et visible uniquement dans ce contexte de compilation.
+
+**Exemple.** Une classe locale privée à un Class Pool peut servir de helper d’implémentation.
+
+**Repère pratique.** Utiliser les classes locales pour des détails internes ou des tests, pas comme API réutilisable entre programmes.
+
+**À distinguer de.** Une classe globale possède son propre objet Repository et peut être référencée depuis d’autres programmes.
+
+
+---
+
 <a id="function-group"></a>
 ## FUNCTION GROUP
 
@@ -56,6 +112,20 @@ Chaque entrée présente une définition concise, un exemple, un repère pratiqu
 **Repère pratique.** Créer ou afficher le groupe depuis `SE37` ou `SE80`.
 
 **À distinguer de.** Les données globales du groupe persistent dans la session interne et peuvent créer des effets de bord.
+
+
+---
+
+<a id="interface-globale"></a>
+## INTERFACE GLOBALE
+
+**Définition.** Interface ABAP Objects enregistrée comme objet Repository et réutilisable par plusieurs classes et programmes.
+
+**Exemple.** `ZIF_ORDER_REPOSITORY` définit les opérations attendues par les services de commande.
+
+**Repère pratique.** Créer l’interface avec `SE24`, la placer dans un package transportable et utiliser un nom décrivant le rôle métier ou technique.
+
+**À distinguer de.** Une interface globale est réutilisable dans le système ; une interface locale reste limitée à son programme principal.
 
 
 ---
@@ -190,6 +260,8 @@ Chaque entrée présente une définition concise, un exemple, un repère pratiqu
 - [ABAP Programming Language — SAP Help Portal](https://help.sap.com/docs/ABAP_PLATFORM/66906ae3920c4fc684cf588290fb9267/d3d5c132973b404db980ba6ae0889be7.html)
 - [SAP GUI for Windows — SAP Help Portal](https://help.sap.com/docs/r/product/sap_gui_for_windows)
 - [ABAP Dictionary — SAP Help Portal](https://help.sap.com/docs/ABAP_PLATFORM_NEW/7bfe8cdcfbb040dcb6702dada8c3e2f0/4f991f82446d11d189700000e8322d00.html)
+- [Class Builder — SAP Help Portal](https://help.sap.com/docs/PRODUCT_ID/10a002cd6c531014b5e1cb16d2455072/c3225b5c54f411d194a60000e8353423.html)
+- [ABAP Objects — SAP Help Portal](https://help.sap.com/doc/abapdocu_latest_index_htm/latest/en-US/ABENABAP_OBJECTS.html)
 
 ---
 

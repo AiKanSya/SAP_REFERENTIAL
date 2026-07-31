@@ -46,6 +46,20 @@ Chaque entrée présente une définition concise, un exemple, un repère pratiqu
 
 ---
 
+<a id="api"></a>
+## API
+
+**Définition.** Application Programming Interface, contrat exposant des opérations ou données utilisables par d’autres composants.
+
+**Exemple.** L’API publique d’une classe globale est constituée de ses composants publics.
+
+**Repère pratique.** Considérer la stabilité, les dépendances et la compatibilité avant de modifier une API déjà consommée.
+
+**À distinguer de.** Une API peut être locale au système, distante ou publiée officiellement ; le terme ne désigne pas uniquement les services HTTP.
+
+
+---
+
 <a id="acro-atc"></a>
 ## ATC
 
@@ -172,6 +186,34 @@ Chaque entrée présente une définition concise, un exemple, un repère pratiqu
 
 ---
 
+<a id="oo"></a>
+## OO
+
+**Définition.** Object-Oriented, abréviation anglaise de la programmation orientée objet.
+
+**Exemple.** ABAP Objects fournit les classes, interfaces, héritage, événements et exceptions orientées objet.
+
+**Repère pratique.** Dans les documents SAP, `OO` ou `Object-Oriented` peut qualifier une API ou une conception basée sur des objets.
+
+**À distinguer de.** OO décrit un paradigme de programmation, pas un outil SAP particulier.
+
+
+---
+
+<a id="poo"></a>
+## POO
+
+**Définition.** Programmation orientée objet, traduction française de Object-Oriented Programming.
+
+**Exemple.** Une conception POO répartit les responsabilités entre des objets collaborant par des interfaces.
+
+**Repère pratique.** Employer ce terme pour le concept général ; utiliser « ABAP Objects » pour les mécanismes orientés objet du langage ABAP.
+
+**À distinguer de.** POO est le paradigme ; ABAP Objects est son implémentation dans ABAP.
+
+
+---
+
 <a id="acro-qrfc"></a>
 ## QRFC
 
@@ -288,3 +330,4 @@ Chaque entrée présente une définition concise, un exemple, un repère pratiqu
 - [ABAP Programming Language — SAP Help Portal](https://help.sap.com/docs/ABAP_PLATFORM/66906ae3920c4fc684cf588290fb9267/d3d5c132973b404db980ba6ae0889be7.html)
 - [SAP GUI for Windows — SAP Help Portal](https://help.sap.com/docs/r/product/sap_gui_for_windows)
 - [ABAP Dictionary — SAP Help Portal](https://help.sap.com/docs/ABAP_PLATFORM_NEW/7bfe8cdcfbb040dcb6702dada8c3e2f0/4f991f82446d11d189700000e8322d00.html)
+- [ABAP Objects — SAP Help Portal](https://help.sap.com/doc/abapdocu_latest_index_htm/latest/en-US/ABENABAP_OBJECTS.html)
