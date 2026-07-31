@@ -87,7 +87,7 @@ Si le constructeur lève une exception, aucune référence valide à la nouvelle
 ```mermaid
 flowchart TD
     A["Demande de création"] --> B["Exécution du constructeur"]
-    B --> CEntrées valides
+    B --> C["Entrées valides ?"]
     C -->|"Oui"| D["Instance utilisable"]
     C -->|"Non"| E["Exception et création interrompue"]
 ```
