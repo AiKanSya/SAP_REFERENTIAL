@@ -1,390 +1,289 @@
-# 🌸 ACRONYMES SAP
+# ACRONYMES SAP
 
-## 🌺 OBJECTIF
+Signification des acronymes SAP et ABAP les plus courants dans ce référentiel.
 
-Fournir des définitions courtes mais opérationnelles. Chaque terme précise son sens, un exemple, une méthode d’identification ou d’utilisation et les confusions fréquentes.
+Chaque entrée présente une définition concise, un exemple, un repère pratique et, lorsque nécessaire, une distinction avec une notion proche.
 
 <a id="acro-abap"></a>
-## 🌺 ABAP
+## ABAP
 
-### 🍧 DÉFINITION
+**Définition.** Advanced Business Application Programming, langage et environnement de développement de la plateforme ABAP.
 
-Advanced Business Application Programming, langage et environnement de développement de la plateforme ABAP.
+**Exemple.** Report, classe, module fonction et table interne sont des notions ABAP.
 
-### 🍧 EXEMPLE
+**Repère pratique.** Consulter la documentation des mots-clés avec `F1` dans l’éditeur.
 
-Report, classe, module fonction et table interne sont des notions ABAP.
+**À distinguer de.** Le développement ABAP classique SAP GUI est distinct des outils ADT traités ultérieurement.
 
-### 🍧 COMMENT L’IDENTIFIER OU L’UTILISER
 
-Consulter la documentation des mots-clés avec `F1` dans l’éditeur.
-
-### 🍧 À NE PAS CONFONDRE
-
-Le développement ABAP classique SAP GUI est distinct des outils ADT traités ultérieurement.
+---
 
 <a id="acro-adt"></a>
-## 🌺 ADT
+## ADT
 
-### 🍧 DÉFINITION
+**Définition.** ABAP Development Tools, environnement de développement ABAP intégré à Eclipse.
 
-ABAP Development Tools, environnement de développement ABAP intégré à Eclipse.
+**Exemple.** ADT est requis pour plusieurs technologies modernes comme CDS et RAP.
 
-### 🍧 EXEMPLE
+**Repère pratique.** Ce référentiel réserve ADT à un futur dossier dédié.
 
-ADT est requis pour plusieurs technologies modernes comme CDS et RAP.
+**À distinguer de.** ADT ne doit pas être mélangé aux procédures SAP GUI décrites ici.
 
-### 🍧 COMMENT L’IDENTIFIER OU L’UTILISER
 
-Ce référentiel réserve ADT à un futur dossier dédié.
-
-### 🍧 À NE PAS CONFONDRE
-
-ADT ne doit pas être mélangé aux procédures SAP GUI décrites ici.
+---
 
 <a id="acro-alv"></a>
-## 🌺 ALV
+## ALV
 
-### 🍧 DÉFINITION
+**Définition.** ABAP List Viewer.
 
-ABAP List Viewer.
+**Exemple.** SALV et ALV Grid sont deux familles d’API ALV.
 
-### 🍧 EXEMPLE
+**Repère pratique.** Choisir la technologie selon lecture seule, édition et événements.
 
-SALV et ALV Grid sont deux familles d’API ALV.
+**À distinguer de.** ALV n’est pas un format de fichier.
 
-### 🍧 COMMENT L’IDENTIFIER OU L’UTILISER
 
-Choisir la technologie selon lecture seule, édition et événements.
-
-### 🍧 À NE PAS CONFONDRE
-
-ALV n’est pas un format de fichier.
+---
 
 <a id="acro-atc"></a>
-## 🌺 ATC
+## ATC
 
-### 🍧 DÉFINITION
+**Définition.** ABAP Test Cockpit, infrastructure de contrôles statiques et de gouvernance qualité.
 
-ABAP Test Cockpit, infrastructure de contrôles statiques et de gouvernance qualité.
+**Exemple.** ATC détecte certaines erreurs, risques et violations de règles.
 
-### 🍧 EXEMPLE
+**Repère pratique.** Exécuter les contrôles avant livraison et traiter ou justifier les findings.
 
-ATC détecte certaines erreurs, risques et violations de règles.
+**À distinguer de.** ATC ne remplace pas les tests fonctionnels.
 
-### 🍧 COMMENT L’IDENTIFIER OU L’UTILISER
 
-Exécuter les contrôles avant livraison et traiter ou justifier les findings.
-
-### 🍧 À NE PAS CONFONDRE
-
-ATC ne remplace pas les tests fonctionnels.
+---
 
 <a id="acro-badi"></a>
-## 🌺 BADI
+## BADI
 
-### 🍧 DÉFINITION
+**Définition.** Business Add-In, mécanisme d’extension orienté objet du standard SAP.
 
-Business Add-In, mécanisme d’extension orienté objet du standard SAP.
+**Exemple.** Une implémentation client ajoute une validation sans modifier le code standard.
 
-### 🍧 EXEMPLE
+**Repère pratique.** Analyser dans `SE18` et implémenter dans `SE19` selon la technologie.
 
-Une implémentation client ajoute une validation sans modifier le code standard.
+**À distinguer de.** Les BAdI classiques et celles du Enhancement Framework ont des modèles différents.
 
-### 🍧 COMMENT L’IDENTIFIER OU L’UTILISER
 
-Analyser dans `SE18` et implémenter dans `SE19` selon la technologie.
-
-### 🍧 À NE PAS CONFONDRE
-
-Les BAdI classiques et celles du Enhancement Framework ont des modèles différents.
-
-<a id="acro-bapi"></a>
-## 🌺 BAPI
-
-### 🍧 DÉFINITION
-
-Business Application Programming Interface.
-
-### 🍧 EXEMPLE
-
-API métier publiée, souvent appelée via un module fonction RFC.
-
-### 🍧 COMMENT L’IDENTIFIER OU L’UTILISER
-
-Respecter la documentation, la structure `RETURN` et la gestion de transaction.
-
-### 🍧 À NE PAS CONFONDRE
-
-Toutes les fonctions RFC ne sont pas des BAPI.
+---
 
 <a id="acro-bal"></a>
-## 🌺 BAL
+## BAL
 
-### 🍧 DÉFINITION
+**Définition.** Business Application Log, API technique du journal applicatif.
 
-Business Application Log, API technique du journal applicatif.
+**Exemple.** Les fonctions `BAL_LOG_CREATE` et `BAL_DB_SAVE` créent et persistent un log.
 
-### 🍧 EXEMPLE
+**Repère pratique.** Consulter les journaux avec `SLG1`.
 
-Les fonctions `BAL_LOG_CREATE` et `BAL_DB_SAVE` créent et persistent un log.
+**À distinguer de.** BAL désigne l’API ; SLG1 est l’outil de consultation.
 
-### 🍧 COMMENT L’IDENTIFIER OU L’UTILISER
 
-Consulter les journaux avec `SLG1`.
+---
 
-### 🍧 À NE PAS CONFONDRE
+<a id="acro-bapi"></a>
+## BAPI
 
-BAL désigne l’API ; SLG1 est l’outil de consultation.
+**Définition.** Business Application Programming Interface.
+
+**Exemple.** API métier publiée, souvent appelée via un module fonction RFC.
+
+**Repère pratique.** Respecter la documentation, la structure `RETURN` et la gestion de transaction.
+
+**À distinguer de.** Toutes les fonctions RFC ne sont pas des BAPI.
+
+
+---
 
 <a id="acro-bte"></a>
-## 🌺 BTE
+## BTE
 
-### 🍧 DÉFINITION
+**Définition.** Business Transaction Event, mécanisme d’extension utilisé notamment dans certains domaines financiers.
 
-Business Transaction Event, mécanisme d’extension utilisé notamment dans certains domaines financiers.
+**Exemple.** Une fonction client est appelée pour un événement métier configuré.
 
-### 🍧 EXEMPLE
+**Repère pratique.** Analyser et configurer via `FIBF` lorsque le composant le prévoit.
 
-Une fonction client est appelée pour un événement métier configuré.
+**À distinguer de.** Un BTE n’est pas une BAdI.
 
-### 🍧 COMMENT L’IDENTIFIER OU L’UTILISER
 
-Analyser et configurer via `FIBF` lorsque le composant le prévoit.
-
-### 🍧 À NE PAS CONFONDRE
-
-Un BTE n’est pas une BAdI.
+---
 
 <a id="acro-cds"></a>
-## 🌺 CDS
+## CDS
 
-### 🍧 DÉFINITION
+**Définition.** Core Data Services, langage de modélisation de vues et entités de données.
 
-Core Data Services, langage de modélisation de vues et entités de données.
+**Exemple.** Les CDS modernes sont généralement développés dans ADT.
 
-### 🍧 EXEMPLE
+**Repère pratique.** Ce sujet sera traité dans un dossier ADT séparé.
 
-Les CDS modernes sont généralement développés dans ADT.
+**À distinguer de.** Les vues CDS ne sont pas les vues classiques créées dans `SE11`.
 
-### 🍧 COMMENT L’IDENTIFIER OU L’UTILISER
 
-Ce sujet sera traité dans un dossier ADT séparé.
-
-### 🍧 À NE PAS CONFONDRE
-
-Les vues CDS ne sont pas les vues classiques créées dans `SE11`.
+---
 
 <a id="acro-ddic"></a>
-## 🌺 DDIC
+## DDIC
 
-### 🍧 DÉFINITION
+**Définition.** Data Dictionary, abréviation courante de l’ABAP Dictionary.
 
-Data Dictionary, abréviation courante de l’ABAP Dictionary.
+**Exemple.** `SE11` permet de maintenir les objets DDIC.
 
-### 🍧 EXEMPLE
+**Repère pratique.** Utiliser les types DDIC pour partager une sémantique stable.
 
-`SE11` permet de maintenir les objets DDIC.
+**À distinguer de.** DDIC peut désigner le composant, les objets ou l’utilisateur technique historique selon le contexte.
 
-### 🍧 COMMENT L’IDENTIFIER OU L’UTILISER
 
-Utiliser les types DDIC pour partager une sémantique stable.
-
-### 🍧 À NE PAS CONFONDRE
-
-DDIC peut désigner le composant, les objets ou l’utilisateur technique historique selon le contexte.
+---
 
 <a id="acro-gui"></a>
-## 🌺 GUI
+## GUI
 
-### 🍧 DÉFINITION
+**Définition.** Graphical User Interface.
 
-Graphical User Interface.
+**Exemple.** SAP GUI for Windows est un client graphique classique.
 
-### 🍧 EXEMPLE
+**Repère pratique.** Vérifier la version et les possibilités du frontend.
 
-SAP GUI for Windows est un client graphique classique.
+**À distinguer de.** Une API GUI ne fonctionne pas nécessairement en background.
 
-### 🍧 COMMENT L’IDENTIFIER OU L’UTILISER
 
-Vérifier la version et les possibilités du frontend.
-
-### 🍧 À NE PAS CONFONDRE
-
-Une API GUI ne fonctionne pas nécessairement en background.
+---
 
 <a id="acro-luw"></a>
-## 🌺 LUW
+## LUW
 
-### 🍧 DÉFINITION
+**Définition.** Logical Unit of Work.
 
-Logical Unit of Work.
+**Exemple.** SAP LUW et database LUW ont des périmètres différents.
 
-### 🍧 EXEMPLE
+**Repère pratique.** Définir précisément les bornes de validation et d’annulation.
 
-SAP LUW et database LUW ont des périmètres différents.
+**À distinguer de.** LUW n’est pas synonyme de transaction SAP GUI.
 
-### 🍧 COMMENT L’IDENTIFIER OU L’UTILISER
 
-Définir précisément les bornes de validation et d’annulation.
-
-### 🍧 À NE PAS CONFONDRE
-
-LUW n’est pas synonyme de transaction SAP GUI.
-
-<a id="acro-rfc"></a>
-## 🌺 RFC
-
-### 🍧 DÉFINITION
-
-Remote Function Call.
-
-### 🍧 EXEMPLE
-
-Appel distant via une destination `SM59`.
-
-### 🍧 COMMENT L’IDENTIFIER OU L’UTILISER
-
-Tester connexion, autorisations et sémantique transactionnelle.
-
-### 🍧 À NE PAS CONFONDRE
-
-Un RFC synchrone et un tRFC n’ont pas le même comportement.
-
-<a id="acro-salv"></a>
-## 🌺 SALV
-
-### 🍧 DÉFINITION
-
-Simple ALV / famille de classes `CL_SALV_*`.
-
-### 🍧 EXEMPLE
-
-`CL_SALV_TABLE` permet un affichage tabulaire rapide.
-
-### 🍧 COMMENT L’IDENTIFIER OU L’UTILISER
-
-Préparer la table, appeler `FACTORY`, configurer puis `DISPLAY`.
-
-### 🍧 À NE PAS CONFONDRE
-
-SALV est principalement orienté affichage et ne remplace pas toujours ALV Grid.
-
-<a id="acro-sap"></a>
-## 🌺 SAP
-
-### 🍧 DÉFINITION
-
-Nom de l’éditeur et de son écosystème logiciel ; l’acronyme historique provient de l’allemand.
-
-### 🍧 EXEMPLE
-
-SAP S/4HANA s’appuie sur la plateforme ABAP pour de nombreux composants.
-
-### 🍧 COMMENT L’IDENTIFIER OU L’UTILISER
-
-Toujours préciser le produit, la release et le composant lorsqu’une procédure peut varier.
-
-### 🍧 À NE PAS CONFONDRE
-
-« SAP » seul ne décrit pas une technologie précise.
-
-<a id="acro-sid"></a>
-## 🌺 SID
-
-### 🍧 DÉFINITION
-
-System Identifier.
-
-### 🍧 EXEMPLE
-
-Identifiant de trois caractères d’un système SAP.
-
-### 🍧 COMMENT L’IDENTIFIER OU L’UTILISER
-
-Le relever dans **Système → Statut**.
-
-### 🍧 À NE PAS CONFONDRE
-
-Le SID n’est pas le mandant.
-
-<a id="acro-sql"></a>
-## 🌺 SQL
-
-### 🍧 DÉFINITION
-
-Structured Query Language.
-
-### 🍧 EXEMPLE
-
-ABAP SQL permet d’accéder aux sources de données depuis ABAP.
-
-### 🍧 COMMENT L’IDENTIFIER OU L’UTILISER
-
-Utiliser les variables hôte et sélectionner uniquement les colonnes nécessaires.
-
-### 🍧 À NE PAS CONFONDRE
-
-ABAP SQL n’est pas identique au SQL natif de chaque base.
-
-<a id="acro-trfc"></a>
-## 🌺 TRFC
-
-### 🍧 DÉFINITION
-
-Transactional RFC.
-
-### 🍧 EXEMPLE
-
-Les unités en erreur sont consultables dans `SM58`.
-
-### 🍧 COMMENT L’IDENTIFIER OU L’UTILISER
-
-Concevoir le traitement pour la reprise.
-
-### 🍧 À NE PAS CONFONDRE
-
-Le préfixe « transactional » ne dispense pas de gérer les transactions métier.
+---
 
 <a id="acro-qrfc"></a>
-## 🌺 QRFC
+## QRFC
 
-### 🍧 DÉFINITION
+**Définition.** Queued RFC.
 
-Queued RFC.
+**Exemple.** Les unités sont ordonnées dans des files surveillées par `SMQ1`/`SMQ2`.
 
-### 🍧 EXEMPLE
+**Repère pratique.** Analyser la première unité en erreur d’une file bloquée.
 
-Les unités sont ordonnées dans des files surveillées par `SMQ1`/`SMQ2`.
+**À distinguer de.** La mise en file peut séquencer mais aussi retarder les traitements suivants.
 
-### 🍧 COMMENT L’IDENTIFIER OU L’UTILISER
 
-Analyser la première unité en erreur d’une file bloquée.
-
-### 🍧 À NE PAS CONFONDRE
-
-La mise en file peut séquencer mais aussi retarder les traitements suivants.
+---
 
 <a id="acro-rap"></a>
-## 🌺 RAP
+## RAP
 
-### 🍧 DÉFINITION
+**Définition.** ABAP RESTful Application Programming Model.
 
-ABAP RESTful Application Programming Model.
+**Exemple.** Framework moderne pour services et applications basés sur des business objects.
 
-### 🍧 EXEMPLE
+**Repère pratique.** RAP est développé principalement avec ADT et sera traité séparément.
 
-Framework moderne pour services et applications basés sur des business objects.
+**À distinguer de.** RAP n’appartient pas au périmètre SAP GUI classique de ces dossiers.
 
-### 🍧 COMMENT L’IDENTIFIER OU L’UTILISER
 
-RAP est développé principalement avec ADT et sera traité séparément.
+---
 
-### 🍧 À NE PAS CONFONDRE
+<a id="acro-rfc"></a>
+## RFC
 
-RAP n’appartient pas au périmètre SAP GUI classique de ces dossiers.
+**Définition.** Remote Function Call.
 
-## 🌺 RÉFÉRENCES OFFICIELLES SAP
+**Exemple.** Appel distant via une destination `SM59`.
+
+**Repère pratique.** Tester connexion, autorisations et sémantique transactionnelle.
+
+**À distinguer de.** Un RFC synchrone et un tRFC n’ont pas le même comportement.
+
+
+---
+
+<a id="acro-salv"></a>
+## SALV
+
+**Définition.** Simple ALV / famille de classes `CL_SALV_*`.
+
+**Exemple.** `CL_SALV_TABLE` permet un affichage tabulaire rapide.
+
+**Repère pratique.** Préparer la table, appeler `FACTORY`, configurer puis `DISPLAY`.
+
+**À distinguer de.** SALV est principalement orienté affichage et ne remplace pas toujours ALV Grid.
+
+
+---
+
+<a id="acro-sap"></a>
+## SAP
+
+**Définition.** Nom de l’éditeur et de son écosystème logiciel ; l’acronyme historique provient de l’allemand.
+
+**Exemple.** SAP S/4HANA s’appuie sur la plateforme ABAP pour de nombreux composants.
+
+**Repère pratique.** Toujours préciser le produit, la release et le composant lorsqu’une procédure peut varier.
+
+**À distinguer de.** « SAP » seul ne décrit pas une technologie précise.
+
+
+---
+
+<a id="acro-sid"></a>
+## SID
+
+**Définition.** System Identifier.
+
+**Exemple.** Identifiant de trois caractères d’un système SAP.
+
+**Repère pratique.** Le relever dans **Système → Statut**.
+
+**À distinguer de.** Le SID n’est pas le mandant.
+
+
+---
+
+<a id="acro-sql"></a>
+## SQL
+
+**Définition.** Structured Query Language.
+
+**Exemple.** ABAP SQL permet d’accéder aux sources de données depuis ABAP.
+
+**Repère pratique.** Utiliser les variables hôte et sélectionner uniquement les colonnes nécessaires.
+
+**À distinguer de.** ABAP SQL n’est pas identique au SQL natif de chaque base.
+
+
+---
+
+<a id="acro-trfc"></a>
+## TRFC
+
+**Définition.** Transactional RFC.
+
+**Exemple.** Les unités en erreur sont consultables dans `SM58`.
+
+**Repère pratique.** Concevoir le traitement pour la reprise.
+
+**À distinguer de.** Le préfixe « transactional » ne dispense pas de gérer les transactions métier.
+
+---
+
+## Références SAP
 
 - [ABAP Programming Language — SAP Help Portal](https://help.sap.com/docs/ABAP_PLATFORM/66906ae3920c4fc684cf588290fb9267/d3d5c132973b404db980ba6ae0889be7.html)
 - [SAP GUI for Windows — SAP Help Portal](https://help.sap.com/docs/r/product/sap_gui_for_windows)
