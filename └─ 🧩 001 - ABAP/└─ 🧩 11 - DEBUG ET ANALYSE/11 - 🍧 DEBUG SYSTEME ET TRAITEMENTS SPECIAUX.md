@@ -1,0 +1,74 @@
+# 🌸 DEBUG SYSTÈME ET TRAITEMENTS SPÉCIAUX
+
+## 🌺 OBJECTIFS
+
+- Comprendre le débogage système
+- Activer le débogage des modules de mise à jour
+- Identifier les changements de session interne
+- Déboguer un appel externe avec le bon utilisateur
+- Connaître les limites des traitements asynchrones
+
+## 🌺 DÉBOGAGE SYSTÈME
+
+Le mode **System Debugging** permet d’entrer dans des programmes marqués comme programmes système, en plus des programmes applicatifs.
+
+L’activer lorsque :
+
+- le traitement pertinent est masqué dans le standard ;
+- la pile indique un programme système ;
+- une fonction technique doit être analysée.
+
+Le désactiver après usage pour éviter de parcourir inutilement l’infrastructure SAP.
+
+## 🌺 DEBUG DE MISE À JOUR
+
+Les modules appelés avec `IN UPDATE TASK` ne sont pas exécutés directement dans le même traitement dialogué. Pour les analyser :
+
+1. entrer dans le débogueur avant le `COMMIT WORK` ;
+2. activer **Update Debugging** dans les paramètres ;
+3. poursuivre l’exécution ;
+4. le débogueur s’arrête dans la tâche de mise à jour lorsque celle-ci démarre.
+
+```mermaid
+flowchart LR
+    A["CALL FUNCTION IN UPDATE TASK"] --> B["Enregistrement de la demande"]
+    B --> C["COMMIT WORK"]
+    C --> D["Session de mise à jour"]
+    D --> E["Arrêt dans le module si Update Debugging actif"]
+```
+
+## 🌺 MISES À JOUR ANNULÉES
+
+Pour une mise à jour déjà en erreur, les outils de suivi des mises à jour permettent d’afficher l’enregistrement et, avec les autorisations nécessaires, de l’analyser dans le débogueur.
+
+Ne pas retraiter ou modifier une mise à jour annulée sans comprendre son impact métier.
+
+## 🌺 APPELS HTTP ET RFC
+
+Pour un appel entrant :
+
+- utiliser un breakpoint externe ;
+- vérifier l’utilisateur technique réel ;
+- reproduire exactement la requête ;
+- contrôler les données transmises ;
+- tenir compte du fait que le traitement ne possède pas nécessairement une interface SAP GUI.
+
+## 🌺 TRAITEMENTS ASYNCHRONES
+
+Certains appels asynchrones ou transactionnels ne restent pas dans la session de débogage courante. Il peut être nécessaire de :
+
+- utiliser un breakpoint externe ;
+- analyser la file ou le journal technique ;
+- reproduire l’unité appelée directement ;
+- activer une option spécifique du débogueur.
+
+## 🌺 RÉFÉRENCES OFFICIELLES SAP
+
+- [System Debugging — SAP Help Portal](https://help.sap.com/docs/ABAP_PLATFORM_NEW/ba879a6e2ea04d9bb94c7ccd7cdac446/4925636629ac16b7e10000000a42189d.html)
+- [Debugger Settings — SAP Help Portal](https://help.sap.com/docs/ABAP_PLATFORM_NEW/ba879a6e2ea04d9bb94c7ccd7cdac446/7b8f8115c62847f493e69bef6e78ba81.html)
+- [Analyzing Canceled Updates — SAP Help Portal](https://help.sap.com/docs/ABAP_PLATFORM_NEW/979cf1522d164bf7a781796efd8850ee/97de29925b894871aba86eb7e2963bcb.html)
+- [Starting and Directly Debugging ABAP Programs — SAP Help Portal](https://help.sap.com/docs/ABAP_PLATFORM_NEW/ba879a6e2ea04d9bb94c7ccd7cdac446/a95208086a6e448aa35f08357d958af5.html)
+
+---
+
+➡️ [Chapitre suivant — DEBUG DES JOBS ET TRAITEMENTS EN ARRIERE PLAN](<./12 - 🍧 DEBUG DES JOBS ET TRAITEMENTS EN ARRIERE PLAN.md>)
