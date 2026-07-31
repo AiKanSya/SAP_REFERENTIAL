@@ -33,7 +33,7 @@ La cible n’est déterminée qu’à l’exécution.
 ```mermaid
 flowchart TD
     A["Nom contenu dans une variable"] --> B["Résolution à l’exécution"]
-    B --> CSous-programme valide ?
+    B --> C["Sous-programme valide ?"]
     C -->|"Oui"| D["Exécution"]
     C -->|"Non"| E["Erreur d’exécution ou traitement IF FOUND"]
 ```
