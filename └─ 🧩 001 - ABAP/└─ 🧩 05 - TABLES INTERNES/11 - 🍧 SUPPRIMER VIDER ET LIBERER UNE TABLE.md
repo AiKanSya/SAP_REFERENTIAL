@@ -1,0 +1,113 @@
+# 🌸 SUPPRIMER, VIDER ET LIBÉRER UNE TABLE
+
+## 🌺 OBJECTIFS
+
+- Supprimer une ou plusieurs lignes
+- Distinguer `DELETE`, `CLEAR`, `REFRESH` et `FREE`
+- Supprimer par index, clé ou condition
+- Comprendre l’impact sur le contenu et la mémoire
+- Éviter les suppressions dépendantes d’un index instable
+
+## 🌺 SUPPRIMER PAR INDEX
+
+```abap
+DELETE lt_products INDEX 1.
+
+IF sy-subrc <> 0.
+  WRITE: / 'Index inexistant'.
+ENDIF.
+```
+
+Cette variante concerne les tables d’index.
+
+## 🌺 SUPPRIMER PAR CLÉ
+
+```abap
+DELETE TABLE lt_products
+  WITH TABLE KEY matnr = 'MAT-001'.
+```
+
+Pour une clé libre :
+
+```abap
+DELETE lt_products WHERE category = 'OBSOLETE'.
+```
+
+## 🌺 SUPPRIMER LA LIGNE COURANTE
+
+Dans une boucle :
+
+```abap
+LOOP AT lt_products INTO DATA(ls_product).
+  IF ls_product-obsolete = abap_true.
+    DELETE lt_products.
+  ENDIF.
+ENDLOOP.
+```
+
+Cette syntaxe agit sur la ligne actuellement traitée. Les règles exactes dépendent de la forme du parcours et de la catégorie de table.
+
+Une variante souvent plus lisible consiste à supprimer directement avec `WHERE` :
+
+```abap
+DELETE lt_products WHERE obsolete = abap_true.
+```
+
+## 🌺 CLEAR
+
+```abap
+CLEAR lt_products.
+```
+
+Pour une table interne, `CLEAR` supprime toutes les lignes et place la table dans son état initial.
+
+## 🌺 REFRESH
+
+```abap
+REFRESH lt_products.
+```
+
+`REFRESH` vide également la table. Pour du nouveau code, `CLEAR` est généralement plus homogène avec les autres objets de données.
+
+## 🌺 FREE
+
+```abap
+FREE lt_products.
+```
+
+`FREE` vide la table et demande la libération de la mémoire qu’elle occupait, au-delà de la simple remise à l’état initial.
+
+## 🌺 COMPARAISON
+
+| Instruction |       Lignes supprimées | Intention principale                                |
+| ----------- | ----------------------: | --------------------------------------------------- |
+| `DELETE`    | Une sélection de lignes | Supprimer des enregistrements ciblés                |
+| `CLEAR`     |                  Toutes | Réinitialiser l’objet de données                    |
+| `REFRESH`   |                  Toutes | Ancienne instruction spécifique aux tables internes |
+| `FREE`      |                  Toutes | Réinitialiser et libérer la mémoire occupée         |
+
+## 🌺 QUAND UTILISER FREE
+
+`FREE` peut être pertinent lorsqu’une table très volumineuse ne sera plus utilisée pendant une longue suite du traitement.
+
+Ne pas appeler systématiquement `FREE` après chaque utilisation. La gestion mémoire doit répondre à un besoin réel et mesuré.
+
+## 🌺 EXEMPLE SÉCURISÉ
+
+```abap
+DELETE lt_products WHERE stock = 0 AND obsolete = abap_true.
+
+IF sy-subrc = 0.
+  WRITE: / 'Au moins une ligne a été supprimée'.
+ENDIF.
+```
+
+## 🌺 RÉFÉRENCES OFFICIELLES SAP
+
+- [DELETE itab — ABAP Keyword Documentation](https://help.sap.com/doc/abapdocu_latest_index_htm/latest/en-US/ABAPDELETE_ITAB.html)
+- [CLEAR — ABAP Keyword Documentation](https://help.sap.com/doc/abapdocu_latest_index_htm/latest/en-US/ABAPCLEAR.html)
+- [FREE — ABAP Keyword Documentation](https://help.sap.com/doc/abapdocu_latest_index_htm/latest/en-US/ABAPFREE.html)
+
+---
+
+➡️ [Chapitre suivant — TRIER ET ELIMINER LES DOUBLONS](<./12 - 🍧 TRIER ET ELIMINER LES DOUBLONS.md>)
