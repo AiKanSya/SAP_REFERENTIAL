@@ -14,7 +14,7 @@ Un field-symbol ne possède pas sa propre zone de données. Il agit comme un ali
 
 ```mermaid
 flowchart LR
-    A[<lv_value>] -->|ASSIGN| B[lv_number]
+    A[< lv_value >] -->|ASSIGN| B[lv_number]
     B --> C[Zone mémoire contenant 10]
 ```
 

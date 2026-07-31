@@ -21,7 +21,7 @@ Cette instruction déclare `lv_total` et lui affecte le résultat de l’express
 ```mermaid
 flowchart LR
     A[Expression ou contexte typé] --> B[Inférence du type]
-    B --> C[Création de DATA(...)]
+    B --> C["Création de DATA(...)"]
     C --> D[Affectation de la valeur]
 ```
 
