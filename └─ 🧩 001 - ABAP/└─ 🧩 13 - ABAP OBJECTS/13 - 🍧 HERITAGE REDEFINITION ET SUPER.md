@@ -1,4 +1,4 @@
-# 🌸 HÉRITAGE, REDÉFINITION ET SUPER
+# 🌸 REDÉFINIR UNE MÉTHODE HÉRITÉE AVEC `SUPER`
 
 ## 🌺 RÉSULTAT ATTENDU
 
@@ -63,8 +63,8 @@ L’héritage est adapté si la sous-classe est réellement substituable à la s
 ## 🌺 COMPATIBILITÉ S/4HANA
 
 - Statut : compatible avec le développement ABAP classique sur SAP S/4HANA.
-- Vérifier la syntaxe exacte avec l’aide `F1` du système cible lorsque plusieurs versions d’ABAP Platform sont prises en charge.
-- Les objets globaux doivent être créés dans le package et l’ordre de transport du projet.
+- Utiliser l’héritage uniquement pour une relation de substitution stable entre la sous-classe et la superclasse.
+- Préférer une interface et la composition lorsque le besoin consiste à remplacer un comportement ou à réutiliser un service.
 
 ## 🌺 RÉFÉRENCES OFFICIELLES SAP
 

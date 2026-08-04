@@ -1,8 +1,8 @@
-# 🌸 SINGLETON
+# 🌸 ENCADRER L’USAGE D’UN SINGLETON
 
 ## 🌺 RÉSULTAT ATTENDU
 
-- Implémenter un Singleton avec une classe globale `SE24`.
+- Implémenter un Singleton uniquement lorsqu’une instance unique par session interne est requise.
 - Garantir une instance unique par session interne.
 - Savoir quand ne pas utiliser ce pattern.
 
@@ -105,9 +105,10 @@ Un Singleton est un état global masqué. Il complique les tests, le parallélis
 
 ## 🌺 COMPATIBILITÉ S/4HANA
 
-- Statut : compatible avec le développement ABAP classique sur SAP S/4HANA.
-- Vérifier la syntaxe exacte avec l’aide `F1` du système cible lorsque plusieurs versions d’ABAP Platform sont prises en charge.
-- Les objets globaux doivent être créés dans le package et l’ordre de transport du projet.
+- Statut : compatible, mais à usage limité.
+- L’instance est unique dans une session interne ABAP, pas dans le système, le mandant, un cluster ou plusieurs processus de travail.
+- Préférer l’injection de dépendances lorsque l’objectif est seulement de partager ou remplacer un service.
+- Ne pas utiliser un Singleton comme cache distribué ni comme stockage persistant.
 
 ## 🌺 RÉFÉRENCES OFFICIELLES SAP
 

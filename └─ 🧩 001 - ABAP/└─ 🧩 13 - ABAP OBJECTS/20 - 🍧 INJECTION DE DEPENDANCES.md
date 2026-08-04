@@ -1,4 +1,4 @@
-# 🌸 INJECTION DE DÉPENDANCES
+# 🌸 INJECTER UNE DÉPENDANCE PAR CONSTRUCTEUR
 
 ## 🌺 RÉSULTAT ATTENDU
 
@@ -15,6 +15,8 @@ Une dépendance est injectée lorsqu’elle est fournie à l’objet au lieu d�
 Une classe doit lire la date courante. Un appel direct à `SY-DATUM` rend le test d’une date limite difficile. Une interface `ZIF_DEV_CLOCK` permet d’injecter une horloge réelle ou une horloge de test.
 
 ## 🌺 INTERFACE ET IMPLÉMENTATION RÉELLE
+
+Les blocs suivants sont des fragments de définition et d’implémentation. Créer les objets globaux `ZIF_DEV_CLOCK`, `ZCL_DEV_SYSTEM_CLOCK` et `ZCL_DEV_VALIDITY_SERVICE` dans `SE24` avant de les utiliser.
 
 ```abap
 INTERFACE zif_dev_clock PUBLIC.
@@ -56,6 +58,28 @@ DATA(lo_service) = NEW zcl_dev_validity_service( lo_clock ).
 4. Tester une date expirée et une date valide.
 5. Vérifier que le test ne dépend pas du jour d’exécution.
 
+Classe locale de remplacement à placer dans le programme de test ou dans la partie locale de la classe testée :
+
+```abap
+CLASS lcl_fixed_clock DEFINITION FINAL.
+  PUBLIC SECTION.
+    INTERFACES zif_dev_clock.
+    METHODS constructor IMPORTING iv_date TYPE d.
+  PRIVATE SECTION.
+    DATA mv_date TYPE d.
+ENDCLASS.
+
+CLASS lcl_fixed_clock IMPLEMENTATION.
+  METHOD constructor.
+    mv_date = iv_date.
+  ENDMETHOD.
+
+  METHOD zif_dev_clock~today.
+    rv_date = mv_date.
+  ENDMETHOD.
+ENDCLASS.
+```
+
 ## 🌺 CONTRÔLE
 
 - Toutes les dépendances obligatoires apparaissent dans le constructeur.
@@ -70,9 +94,9 @@ DATA(lo_service) = NEW zcl_dev_validity_service( lo_clock ).
 
 ## 🌺 COMPATIBILITÉ S/4HANA
 
-- Statut : compatible avec le développement ABAP classique sur SAP S/4HANA.
-- Vérifier la syntaxe exacte avec l’aide `F1` du système cible lorsque plusieurs versions d’ABAP Platform sont prises en charge.
-- Les objets globaux doivent être créés dans le package et l’ordre de transport du projet.
+- Statut : recommandé pour rendre les classes testables et limiter les dépendances cachées.
+- Utiliser l’injection par constructeur pour les dépendances obligatoires.
+- Construire le graphe d’objets dans le programme appelant, une factory ou une couche de composition dédiée.
 
 ## 🌺 RÉFÉRENCES OFFICIELLES SAP
 
