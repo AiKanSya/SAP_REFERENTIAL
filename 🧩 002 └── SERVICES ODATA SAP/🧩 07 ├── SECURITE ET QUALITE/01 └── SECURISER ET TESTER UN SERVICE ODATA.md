@@ -2,7 +2,7 @@
 
 ## 1.A RÉSULTAT ATTENDU
 
-Empêcher qu’un utilisateur authentifié accède à une action ou à une donnée sans autorisation métier.
+Empêcher qu’un utilisateur authentifié accède à une action, une entity set[^terme-entity-set] ou une navigation[^terme-navigation] sans autorisation métier.
 
 ## 1.B PRÉREQUIS
 
@@ -52,7 +52,34 @@ Limiter tailles de page et payload, profondeur d’expansion, nombre d’opérat
 
 Tracer les autorisations réelles, exécuter les cas négatifs, ATC et une revue manuelle des entrées dynamiques et journaux.
 
-## 1.F TESTS NÉGATIFS
+## 1.F CODE PRÊT À ADAPTER
+
+Le contrôle doit précéder la lecture ou la mutation et utiliser les valeurs organisationnelles de la ressource demandée :
+
+```abap
+AUTHORITY-CHECK OBJECT 'Z_SALESORG'
+  ID 'ACTVT' VALUE '03'
+  ID 'VKORG' VALUE lv_sales_organization.
+
+IF sy-subrc <> 0.
+  DATA(lo_message_container) = mo_context->get_message_container( ).
+
+  lo_message_container->add_message(
+    iv_msg_type   = 'E'
+    iv_msg_id     = 'ZODATA'
+    iv_msg_number = '001'
+    iv_msg_v1     = lv_sales_organization ).
+
+  RAISE EXCEPTION TYPE /iwbep/cx_mgw_busi_exception
+    EXPORTING
+      textid            = /iwbep/cx_mgw_busi_exception=>business_error
+      message_container = lo_message_container.
+ENDIF.
+```
+
+Pour une modification, remplacer l’activité `03` par l’activité correspondant au concept d’autorisation validé. `Z_SALESORG`, `VKORG`, la classe de messages et les valeurs sont des exemples.
+
+## 1.G TESTS NÉGATIFS
 
 1. Utilisateur non authentifié.
 2. Utilisateur authentifié sans activité métier.
@@ -62,7 +89,7 @@ Tracer les autorisations réelles, exécuter les cas négatifs, ATC et une revue
 6. Mutation sans jeton CSRF.
 7. Filtre ou expansion visant un volume excessif.
 
-## 1.G CONTRÔLE
+## 1.H CONTRÔLE
 
 - Un utilisateur autorisé ne voit que son périmètre.
 - Le même utilisateur ne peut pas atteindre une autre organisation par clé directe ou navigation.
@@ -70,7 +97,7 @@ Tracer les autorisations réelles, exécuter les cas négatifs, ATC et une revue
 - Le message retourné ne contient ni stack, classe interne, secret ni donnée d’un autre objet.
 - La charge d’une requête complexe reste bornée.
 
-## 1.H ERREURS FRÉQUENTES
+## 1.I ERREURS FRÉQUENTES
 
 - Contrôler uniquement `S_SERVICE` ou l’accès ICF.
 - Appliquer l’autorisation sur la collection mais pas sur la navigation.
@@ -78,15 +105,18 @@ Tracer les autorisations réelles, exécuter les cas négatifs, ATC et une revue
 - Journaliser le payload complet.
 - Valider uniquement avec `SAP_ALL`.
 
-## 1.I CRITÈRE DE SORTIE
+## 1.J CRITÈRE DE SORTIE
 
 Le service refuse chaque cas négatif sans fuite d’information et autorise le cas nominal avec un utilisateur de rôle réaliste. Un test avec `SAP_ALL` ne prouve pas la sécurité.
 
-## 1.J COMPATIBILITÉ S/4HANA
+## 1.K COMPATIBILITÉ S/4HANA
 
 Les objets d’autorisation techniques varient avec le runtime et le mode de publication. Les autorisations métier restent propres au domaine. Pour RAP, intégrer aussi DCL et authorization control du behavior.
 
-## 1.K RÉFÉRENCES OFFICIELLES SAP
+## 1.L RÉFÉRENCES OFFICIELLES SAP
 
 - [Discussing SAP Gateway and OData Services — SAP Learning](https://learning.sap.com/courses/introducing-sap-abap-platform-fundamentals/discussing-the-sap-gateway-and-odata-services)
 - [SAP Gateway and OData — SAP Help Portal, 2025 FPS01](https://help.sap.com/docs/PRODUCT_ID/22bbe89ef68b4d0e98d05f0d56a7f6c8/24d9ac6065954bf7a61f2dc9040f7870.html)
+
+[^terme-entity-set]: **ENTITY SET.** Collection adressable d’entités d’un même type. Voir [le lexique](<../🧩 00 ├── LEXIQUE ODATA ET SAP GATEWAY/02 ├── MODELE DE DONNEES ODATA.md#entity-set>).
+[^terme-navigation]: **NAVIGATION PROPERTY.** Propriété permettant d’accéder à des entités liées. Voir [le lexique](<../🧩 00 ├── LEXIQUE ODATA ET SAP GATEWAY/02 ├── MODELE DE DONNEES ODATA.md#navigation-property>).

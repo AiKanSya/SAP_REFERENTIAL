@@ -2,14 +2,14 @@
 
 ## 2.A RÉSULTAT ATTENDU
 
-Séparer les artefacts de développement, l’enregistrement Gateway et la configuration propre à chaque environnement.
+Séparer les runtime artifacts[^terme-runtime-artifact], l’enregistrement Gateway et la configuration propre à chaque environnement.
 
 ## 2.B PRÉREQUIS
 
 - Liste des objets du projet et de l’activation.
 - Route DEV→QAS→PRD et mandants cibles connus.
 - Responsables backend, Gateway et sécurité identifiés.
-- Metadata de référence et cas de non-régression conservés.
+- Metadata[^terme-metadata] de référence et cas de non-régression conservés.
 
 ## 2.C OBJETS À DISTINGUER
 
@@ -71,3 +71,6 @@ Les objets transportés et les actions post-import dépendent de la version, du 
 
 - [Managing an SAP Gateway Service — SAP Learning](https://learning.sap.com/courses/building-odata-services-with-sap-gateway/managing-an-sap-gateway-service)
 - [SAP Gateway and OData — SAP Help Portal, 2025 FPS01](https://help.sap.com/docs/PRODUCT_ID/22bbe89ef68b4d0e98d05f0d56a7f6c8/24d9ac6065954bf7a61f2dc9040f7870.html)
+
+[^terme-runtime-artifact]: **RUNTIME ARTIFACT.** Objet généré par SEGW pour exécuter ou enregistrer le service. Voir [le lexique](<../🧩 00 ├── LEXIQUE ODATA ET SAP GATEWAY/04 ├── SEGW ET RUNTIME V2.md#runtime-artifact>).
+[^terme-metadata]: **METADATA.** Contrat technique du service accessible par `$metadata`. Voir [le lexique](<../🧩 00 ├── LEXIQUE ODATA ET SAP GATEWAY/02 ├── MODELE DE DONNEES ODATA.md#metadata>).

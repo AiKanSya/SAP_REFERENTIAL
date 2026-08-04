@@ -2,7 +2,7 @@
 
 ## 1.A RÉSULTAT ATTENDU
 
-Rendre un service OData V2 généré accessible dans le système Gateway cible.
+Rendre un service OData V2[^terme-service-odata] généré accessible dans le système SAP Gateway[^terme-sap-gateway] cible.
 
 Le résultat est atteint lorsque le service apparaît dans le Service Catalog du mandant cible, pointe vers le bon alias et retourne son metadata.
 
@@ -97,3 +97,6 @@ Le résultat attendu est `200`. Un `404` oriente vers le chemin, l’activation 
 - [Managing an SAP Gateway Service — SAP Learning](https://learning.sap.com/courses/building-odata-services-with-sap-gateway/managing-an-sap-gateway-service)
 - [Configuring SAP Gateway — SAP Learning](https://learning.sap.com/courses/technical-implementation-and-operation-i-of-sap-s-4hana-and-sap-business-suite/configuring-sap-gateway)
 - [Activate OData Service in the SAP Gateway Hub — SAP Help Portal, 2025 FPS01](https://help.sap.com/docs/PRODUCT_ID/cc0c305d2fab47bd808adcad3ca7ee9d/1b023c1cad774eeb8b85b25c86d94f87.html)
+
+[^terme-service-odata]: **SERVICE ODATA.** Endpoint HTTP publiant un modèle de ressources et des opérations OData. Voir [le lexique](<../🧩 00 ├── LEXIQUE ODATA ET SAP GATEWAY/01 ├── PROTOCOLE HTTP ET ODATA.md#service-odata>).
+[^terme-sap-gateway]: **SAP GATEWAY.** Infrastructure ABAP de publication, exécution et supervision des services OData. Voir [le lexique](<../🧩 00 ├── LEXIQUE ODATA ET SAP GATEWAY/03 ├── SAP GATEWAY ET ADMINISTRATION.md#sap-gateway>).

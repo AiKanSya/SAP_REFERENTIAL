@@ -2,7 +2,7 @@
 
 ## 2.A RÉSULTAT ATTENDU
 
-Déterminer les URI valides, les clés et les propriétés à partir de `$metadata`.
+Déterminer les URI[^terme-uri] valides, les clés et les propriétés à partir de `$metadata`[^terme-metadata].
 
 Le contrôle est réussi lorsque le lecteur peut construire manuellement l’URI d’une collection, d’une entité et d’une navigation sans deviner le nom ni le type d’une clé.
 
@@ -113,3 +113,6 @@ Le principe `$metadata` s’applique aux services V2 et V4. Les constructions CS
 
 - [Explaining Open Data Protocol — SAP Learning](https://learning.sap.com/courses/building-odata-services-with-sap-gateway/explaining-open-data-protocol-odata-)
 - [SAP Gateway Service Builder — SAP Help Portal, 2025 FPS01](https://help.sap.com/docs/ABAP_PLATFORM_NEW/68bf513362174d54b58cddec28794093/cddd22512c312314e10000000a44176d.html)
+
+[^terme-uri]: **URI.** Identifiant textuel d’une ressource ou d’une opération du service. Voir [le lexique](<../🧩 00 ├── LEXIQUE ODATA ET SAP GATEWAY/01 ├── PROTOCOLE HTTP ET ODATA.md#uri>).
+[^terme-metadata]: **METADATA.** Document CSDL décrivant types, collections, relations et opérations. Voir [le lexique](<../🧩 00 ├── LEXIQUE ODATA ET SAP GATEWAY/02 ├── MODELE DE DONNEES ODATA.md#metadata>).

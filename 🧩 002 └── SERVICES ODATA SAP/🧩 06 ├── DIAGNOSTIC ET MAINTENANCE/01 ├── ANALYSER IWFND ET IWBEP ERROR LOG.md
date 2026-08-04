@@ -2,12 +2,12 @@
 
 ## 1.A RÉSULTAT ATTENDU
 
-Localiser une erreur dans la couche Gateway frontend ou dans l’implémentation backend.
+Localiser une erreur dans le journal Gateway[^terme-error-log] frontend ou dans l’implémentation backend.
 
 ## 1.B PRÉREQUIS
 
 - Horodatage, utilisateur, URI, méthode et statut HTTP.
-- Type de déploiement embedded ou hub.
+- Type de déploiement embedded ou hub[^terme-hub].
 - Autorisation de lire les journaux du mandant concerné.
 - Requête de reproduction expurgée de ses secrets.
 
@@ -78,3 +78,6 @@ Le couple frontend/backend reste pertinent en embedded comme en hub. Les détail
 
 - [Managing an SAP Gateway Service — SAP Learning](https://learning.sap.com/courses/building-odata-services-with-sap-gateway/managing-an-sap-gateway-service)
 - [SAP Gateway Error Logs — SAP Help Portal](https://help.sap.com/docs/SUPPORT_CONTENT/abapconn/3354079390.html)
+
+[^terme-error-log]: **JOURNAL D’ERREURS GATEWAY.** Journal donnant le contexte des erreurs produites pendant une requête Gateway. Voir [le lexique](<../🧩 00 ├── LEXIQUE ODATA ET SAP GATEWAY/05 ├── REQUETES QUALITE ET SECURITE.md#gateway-error-log>).
+[^terme-hub]: **DÉPLOIEMENT HUB.** Architecture où le frontend Gateway appelle un backend distant. Voir [le lexique](<../🧩 00 ├── LEXIQUE ODATA ET SAP GATEWAY/03 ├── SAP GATEWAY ET ADMINISTRATION.md#hub-deployment>).

@@ -2,12 +2,12 @@
 
 ## 2.A RÉSULTAT ATTENDU
 
-Atteindre l’implémentation exécutée et ne vider un cache qu’après avoir prouvé un metadata obsolète.
+Atteindre l’implémentation exécutée et ne vider un cache qu’après avoir prouvé un metadata[^terme-metadata] obsolète.
 
 ## 2.B PRÉREQUIS
 
 - Utilisateur technique effectif de l’appel.
-- Système backend et classe DPC_EXT identifiés.
+- Système backend et classe DPC_EXT[^terme-dpc] identifiés.
 - URI reproductible dans Gateway Client.
 - Autorisation de placer un breakpoint externe.
 
@@ -62,3 +62,6 @@ Les transactions et fonctions d’invalidation varient selon `SAP_GWFND`. Utilis
 
 - [Managing an SAP Gateway Service — SAP Learning](https://learning.sap.com/courses/building-odata-services-with-sap-gateway/managing-an-sap-gateway-service)
 - [SAP Gateway Error Logs — SAP Help Portal](https://help.sap.com/docs/SUPPORT_CONTENT/abapconn/3354079390.html)
+
+[^terme-metadata]: **METADATA.** Document décrivant le contrat technique d’un service OData. Voir [le lexique](<../🧩 00 ├── LEXIQUE ODATA ET SAP GATEWAY/02 ├── MODELE DE DONNEES ODATA.md#metadata>).
+[^terme-dpc]: **DPC.** Data Provider Class exécutant les opérations de données d’un service classique. Voir [le lexique](<../🧩 00 ├── LEXIQUE ODATA ET SAP GATEWAY/04 ├── SEGW ET RUNTIME V2.md#dpc>).

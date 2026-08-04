@@ -6,7 +6,7 @@ Identifier le protocole, la version et le type de service avant de modifier son 
 
 ## 1.B MODÈLE
 
-OData expose des ressources HTTP décrites par un modèle de données. Un service fournit des entity types, entity sets, propriétés, clés, relations et opérations. Le document `$metadata` constitue le contrat technique visible par le consommateur.
+OData[^terme-odata] expose des ressources HTTP[^terme-http] décrites par un modèle de données. Un service fournit des entity types[^terme-entity-type], entity sets[^terme-entity-set], propriétés, clés, relations et opérations. Le document `$metadata`[^terme-metadata] constitue le contrat technique visible par le consommateur.
 
 | Besoin | OData V2 Gateway classique | OData V4 avec RAP |
 |---|---|---|
@@ -96,3 +96,9 @@ Choisir une entity set, limiter le résultat et tester une clé existante puis i
 - [Configuring SAP Gateway — SAP Learning](https://learning.sap.com/courses/technical-implementation-and-operation-i-of-sap-s-4hana-and-sap-business-suite/configuring-sap-gateway)
 - [SAP Gateway and OData — SAP Help Portal, 2025 FPS01](https://help.sap.com/docs/PRODUCT_ID/22bbe89ef68b4d0e98d05f0d56a7f6c8/24d9ac6065954bf7a61f2dc9040f7870.html)
 - [Service Binding — SAP Help Portal](https://help.sap.com/docs/abap-cloud/abap-rap/service-binding)
+
+[^terme-odata]: **ODATA.** Protocole standardisé exposant des ressources au moyen de HTTP. Voir [le lexique](<../🧩 00 ├── LEXIQUE ODATA ET SAP GATEWAY/01 ├── PROTOCOLE HTTP ET ODATA.md#odata>).
+[^terme-http]: **HTTP.** Protocole requête-réponse transportant méthodes, URI, en-têtes, statuts et corps. Voir [le lexique](<../🧩 00 ├── LEXIQUE ODATA ET SAP GATEWAY/01 ├── PROTOCOLE HTTP ET ODATA.md#http>).
+[^terme-entity-type]: **ENTITY TYPE.** Type définissant clé, propriétés et navigations d’une entité. Voir [le lexique](<../🧩 00 ├── LEXIQUE ODATA ET SAP GATEWAY/02 ├── MODELE DE DONNEES ODATA.md#entity-type>).
+[^terme-entity-set]: **ENTITY SET.** Collection adressable d’entités d’un même type. Voir [le lexique](<../🧩 00 ├── LEXIQUE ODATA ET SAP GATEWAY/02 ├── MODELE DE DONNEES ODATA.md#entity-set>).
+[^terme-metadata]: **METADATA.** Document CSDL décrivant le contrat technique d’un service OData. Voir [le lexique](<../🧩 00 ├── LEXIQUE ODATA ET SAP GATEWAY/02 ├── MODELE DE DONNEES ODATA.md#metadata>).

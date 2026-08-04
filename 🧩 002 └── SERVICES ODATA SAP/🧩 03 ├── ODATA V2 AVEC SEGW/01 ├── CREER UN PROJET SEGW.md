@@ -2,7 +2,7 @@
 
 ## 1.A RÉSULTAT ATTENDU
 
-Créer un projet Service Builder transportable et obtenir ses artefacts d’exécution.
+Créer un projet Service Builder dans SEGW[^terme-segw] et obtenir ses runtime artifacts[^terme-runtime-artifact].
 
 Le contrôle est réussi lorsque le projet contient les quatre branches `Data Model`, `Service Implementation`, `Runtime Artifacts` et `Service Maintenance`, et que les classes MPC/DPC de base et d’extension sont actives.
 
@@ -113,3 +113,6 @@ Contrôle négatif : créer une propriété de test non clé dans un environneme
 
 - [Managing an SAP Gateway Service — SAP Learning](https://learning.sap.com/courses/building-odata-services-with-sap-gateway/managing-an-sap-gateway-service)
 - [Getting Started with the Service Builder — SAP Help Portal, 2025 FPS01](https://help.sap.com/docs/ABAP_PLATFORM_1909/68bf513362174d54b58cddec28794093/36742c510e87fa50e10000000a441470.html)
+
+[^terme-segw]: **SEGW.** SAP Gateway Service Builder utilisé pour créer et maintenir les projets OData classiques. Voir [le lexique](<../🧩 00 ├── LEXIQUE ODATA ET SAP GATEWAY/04 ├── SEGW ET RUNTIME V2.md#segw>).
+[^terme-runtime-artifact]: **RUNTIME ARTIFACT.** Objet généré par SEGW pour exécuter ou enregistrer le service. Voir [le lexique](<../🧩 00 ├── LEXIQUE ODATA ET SAP GATEWAY/04 ├── SEGW ET RUNTIME V2.md#runtime-artifact>).

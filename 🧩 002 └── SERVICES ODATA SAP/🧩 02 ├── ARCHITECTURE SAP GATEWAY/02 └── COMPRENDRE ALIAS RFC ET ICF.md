@@ -2,7 +2,7 @@
 
 ## 2.A RÉSULTAT ATTENDU
 
-Relier une URL OData au service enregistré et au backend qui exécute la logique.
+Relier une URL OData au service enregistré, à son alias système[^terme-alias] et au backend qui exécute la logique.
 
 ## 2.B PRÉREQUIS
 
@@ -21,7 +21,7 @@ flowchart LR
     E --> F["Implémentation OData"]
 ```
 
-Le nœud ICF rend le chemin HTTP accessible. L’enregistrement Gateway associe le nom technique du service à un alias. Dans un scénario hub, cet alias conduit au backend via RFC.
+Le nœud ICF[^terme-icf] rend le chemin HTTP accessible. L’enregistrement Gateway associe le nom technique du service à un alias. Dans un scénario hub, cet alias conduit au backend via RFC.
 
 ## 2.D RESPONSABILITÉS
 
@@ -83,3 +83,6 @@ La configuration exacte des alias, RFC et modes de traitement dépend du paysage
 
 - [Describing SAP Gateway Deployment Options — SAP Learning](https://learning.sap.com/courses/building-odata-services-with-sap-gateway/describing-sap-gateway-deployment-options)
 - [Activate OData Service in the SAP Gateway Hub — SAP Help Portal, 2025 FPS01](https://help.sap.com/docs/PRODUCT_ID/cc0c305d2fab47bd808adcad3ca7ee9d/1b023c1cad774eeb8b85b25c86d94f87.html)
+
+[^terme-alias]: **ALIAS SYSTÈME.** Nom logique utilisé par Gateway pour choisir le système de traitement. Voir [le lexique](<../🧩 00 ├── LEXIQUE ODATA ET SAP GATEWAY/03 ├── SAP GATEWAY ET ADMINISTRATION.md#system-alias>).
+[^terme-icf]: **ICF.** Infrastructure ABAP fournissant les nœuds et handlers HTTP. Voir [le lexique](<../🧩 00 ├── LEXIQUE ODATA ET SAP GATEWAY/03 ├── SAP GATEWAY ET ADMINISTRATION.md#icf>).

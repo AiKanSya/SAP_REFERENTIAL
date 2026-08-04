@@ -2,7 +2,7 @@
 
 ## 1.A RÉSULTAT ATTENDU
 
-Reproduire une requête OData sans dépendre de l’application consommatrice.
+Reproduire une requête OData avec Gateway Client[^terme-gateway-client] sans dépendre de l’application consommatrice.
 
 ## 1.B PRÉREQUIS
 
@@ -26,7 +26,7 @@ Gateway Client permet de choisir `GET`, `POST`, `PUT`, `PATCH`, `MERGE`, `DELETE
 
 ### 1.D.2 ÉTAPE 2 — OBTENIR LE JETON SI NÉCESSAIRE
 
-5. Pour une mutation, récupérer un jeton CSRF avec `X-CSRF-Token: Fetch`, conserver les cookies puis rejouer la requête avec le jeton.
+5. Pour une mutation, récupérer un jeton CSRF[^terme-csrf] avec `X-CSRF-Token: Fetch`, conserver les cookies puis rejouer la requête avec le jeton.
 
 ### 1.D.3 ÉTAPE 3 — EXÉCUTER ET RELEVER
 
@@ -92,3 +92,6 @@ Gateway Client reste l’outil SAP GUI central pour isoler le service V2. Les fo
 
 - [Managing an SAP Gateway Service — SAP Learning](https://learning.sap.com/courses/building-odata-services-with-sap-gateway/managing-an-sap-gateway-service)
 - [Gateway Client — SAP Help Portal](https://help.sap.com/docs/SUPPORT_CONTENT/abapconn/3354079611.html)
+
+[^terme-gateway-client]: **GATEWAY CLIENT.** Outil SAP permettant de construire, exécuter et analyser des requêtes OData. Voir [le lexique](<../🧩 00 ├── LEXIQUE ODATA ET SAP GATEWAY/05 ├── REQUETES QUALITE ET SECURITE.md#gateway-client>).
+[^terme-csrf]: **JETON CSRF.** Jeton de session protégeant les requêtes de modification contre certaines requêtes forgées. Voir [le lexique](<../🧩 00 ├── LEXIQUE ODATA ET SAP GATEWAY/01 ├── PROTOCOLE HTTP ET ODATA.md#csrf-token>).

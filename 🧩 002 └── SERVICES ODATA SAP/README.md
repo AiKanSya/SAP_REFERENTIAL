@@ -13,6 +13,7 @@ Un projet `SEGW` reste pertinent pour maintenir ou étendre un service du code-b
 
 ## PARCOURS
 
+0. [Lexique OData et SAP Gateway](<🧩 00 ├── LEXIQUE ODATA ET SAP GATEWAY>)
 1. [Fondations OData](<🧩 01 ├── FONDATIONS ODATA>)
 2. [Architecture SAP Gateway](<🧩 02 ├── ARCHITECTURE SAP GATEWAY>)
 3. [Développement OData V2 avec SEGW](<🧩 03 ├── ODATA V2 AVEC SEGW>)
@@ -53,6 +54,14 @@ Chaque page doit permettre d’exécuter ou de diagnostiquer une action précise
 | `###` | `1.A.1` | Étape ou sous-section |
 
 Le numéro du titre reprend le préfixe du fichier. Les sections suivent l’ordre alphabétique sans rupture.
+
+## CONVENTION DES NOTES DE BAS DE PAGE
+
+- Un terme OData ou SAP Gateway reçoit une note à sa première occurrence utile dans chaque chapitre.
+- La note donne une définition courte et pointe vers l’ancre stable du lexique.
+- Les transactions, classes et identifiants propres à un exemple sont expliqués dans le texte ou le code.
+- Les pages du lexique ne reçoivent pas de notes circulaires.
+- Une notion ne reçoit qu’une note par chapitre.
 
 ## RÉFÉRENCES OFFICIELLES SAP
 

@@ -2,7 +2,7 @@
 
 ## 2.A RÉSULTAT ATTENDU
 
-Construire des lectures bornées et prévisibles, puis vérifier leur prise en charge réelle par le backend.
+Construire des lectures bornées avec les options de requête[^terme-query-option], puis vérifier leur prise en charge réelle par le backend.
 
 ## 2.B PRÉREQUIS
 
@@ -24,13 +24,37 @@ Les espaces et caractères réservés doivent être encodés par le client HTTP.
 
 - `$filter` réduit les lignes ; l’implémentation doit le pousser vers la base lorsque possible.
 - `$select` réduit le contrat retourné ; il ne remplace pas une autorisation sur les champs.
-- `$expand` peut multiplier le volume et les lectures ; borner la profondeur et les cardinalités.
+- `$expand` peut multiplier le volume et les lectures de navigation[^terme-navigation] ; borner la profondeur et les cardinalités.
 - `$orderby` doit être déterministe pour paginer sans doublon ni omission.
 - `$top` ne dispense pas d’une condition sélective.
 
 ## 2.E IMPLÉMENTATION BACKEND
 
 Dans `GET_ENTITYSET`, lire les options via le contexte technique généré. Transformer uniquement les filtres pris en charge en prédicats sûrs et typés. Appliquer filtre, tri et limite au niveau SQL ou de l’API lorsque celle-ci les accepte. Ne concaténer aucun nom ni valeur libre dans une requête dynamique.
+
+Fragment de pagination à adapter :
+
+```abap
+DATA(lv_top)  = io_tech_request_context->get_top( ).
+DATA(lv_skip) = io_tech_request_context->get_skip( ).
+
+IF lv_top IS INITIAL OR lv_top > 100.
+  lv_top = 100.
+ENDIF.
+
+SELECT productid,
+       name,
+       category
+  FROM zi_product_api
+  ORDER BY productid
+  INTO TABLE @DATA(lt_products)
+  UP TO @lv_top ROWS
+  OFFSET @lv_skip.
+
+et_entityset = CORRESPONDING #( lt_products ).
+```
+
+`OFFSET` et les expressions utilisables dépendent de la version ABAP SQL. Sur une release ne prenant pas cette syntaxe en charge, appliquer une stratégie de pagination compatible et mesurée. Un ordre unique et stable reste obligatoire.
 
 ## 2.F PROCESS
 
@@ -83,3 +107,6 @@ La syntaxe et les capacités des options doivent être vérifiées pour OData V2
 - [Explaining Open Data Protocol — SAP Learning](https://learning.sap.com/courses/building-odata-services-with-sap-gateway/explaining-open-data-protocol-odata-)
 - [Implementing Navigation — SAP Learning](https://learning.sap.com/courses/building-odata-services-with-sap-gateway/implementing-navigation)
 - [Gateway Client — SAP Help Portal](https://help.sap.com/docs/SUPPORT_CONTENT/abapconn/3354079611.html)
+
+[^terme-query-option]: **OPTION DE REQUÊTE.** Paramètre OData tel que `$filter`, `$select`, `$expand`, `$orderby`, `$top` ou `$skip`. Voir [le lexique](<../🧩 00 ├── LEXIQUE ODATA ET SAP GATEWAY/05 ├── REQUETES QUALITE ET SECURITE.md#query-option>).
+[^terme-navigation]: **NAVIGATION PROPERTY.** Propriété permettant d’accéder aux entités liées. Voir [le lexique](<../🧩 00 ├── LEXIQUE ODATA ET SAP GATEWAY/02 ├── MODELE DE DONNEES ODATA.md#navigation-property>).

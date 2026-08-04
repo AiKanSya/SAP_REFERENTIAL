@@ -2,7 +2,7 @@
 
 ## 1.A RÉSULTAT ATTENDU
 
-Localiser le traitement frontend et backend d’une requête OData avant le diagnostic.
+Localiser le traitement frontend et backend d’une requête OData avant le diagnostic dans SAP Gateway[^terme-sap-gateway].
 
 Le résultat est observable lorsque le système Gateway, le système d’implémentation, l’alias et la destination RFC éventuelle sont identifiés.
 
@@ -16,8 +16,8 @@ Le résultat est observable lorsque le système Gateway, le système d’implém
 
 | Architecture | Service Gateway | Logique métier | Conséquence |
 |---|---|---|---|
-| Embedded | Système backend | Même système | Diagnostic local |
-| Hub | Système Gateway distinct | Backend distant | Alias et RFC à contrôler |
+| Embedded[^terme-embedded] | Système backend | Même système | Diagnostic local |
+| Hub[^terme-hub] | Système Gateway distinct | Backend distant | Alias et RFC à contrôler |
 
 Dans un déploiement hub, `/IWFND/ERROR_LOG` analyse le frontend Gateway et `/IWBEP/ERROR_LOG` le backend. Dans un déploiement embedded, les deux couches restent logiquement distinctes même si elles partagent le système.
 
@@ -69,3 +69,7 @@ Les déploiements embedded et hub existent dans les paysages SAP Gateway. La com
 
 - [Describing SAP Gateway Deployment Options — SAP Learning](https://learning.sap.com/courses/building-odata-services-with-sap-gateway/describing-sap-gateway-deployment-options)
 - [SAP Gateway and OData — SAP Help Portal, 2025 FPS01](https://help.sap.com/docs/PRODUCT_ID/22bbe89ef68b4d0e98d05f0d56a7f6c8/24d9ac6065954bf7a61f2dc9040f7870.html)
+
+[^terme-sap-gateway]: **SAP GATEWAY.** Infrastructure ABAP de publication et d’exécution des services OData SAP. Voir [le lexique](<../🧩 00 ├── LEXIQUE ODATA ET SAP GATEWAY/03 ├── SAP GATEWAY ET ADMINISTRATION.md#sap-gateway>).
+[^terme-embedded]: **DÉPLOIEMENT EMBEDDED.** Architecture où Gateway et implémentation résident dans le même système. Voir [le lexique](<../🧩 00 ├── LEXIQUE ODATA ET SAP GATEWAY/03 ├── SAP GATEWAY ET ADMINISTRATION.md#embedded-deployment>).
+[^terme-hub]: **DÉPLOIEMENT HUB.** Architecture où un Gateway central appelle un backend distant. Voir [le lexique](<../🧩 00 ├── LEXIQUE ODATA ET SAP GATEWAY/03 ├── SAP GATEWAY ET ADMINISTRATION.md#hub-deployment>).
