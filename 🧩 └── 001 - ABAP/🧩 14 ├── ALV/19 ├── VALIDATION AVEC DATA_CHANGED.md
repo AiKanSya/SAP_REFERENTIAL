@@ -63,6 +63,32 @@ flowchart TD
 - Regrouper la sauvegarde derrière une action utilisateur explicite.
 - Produire des messages localisés via une classe de messages.
 
+## PROCESS
+
+### Étape 1 — Déclarer le gestionnaire `DATA_CHANGED`
+
+Créer une méthode `FOR EVENT DATA_CHANGED OF CL_GUI_ALV_GRID` avec la signature exacte de l’événement. Enregistrer cette méthode sur l’instance de grille après avoir activé l’événement d’édition.
+
+### Étape 2 — Parcourir uniquement les cellules modifiées
+
+Lire la collection des modifications fournie par l’objet de protocole. Pour chaque entrée, contrôler l’indice de ligne, le nom du champ et la nouvelle valeur.
+
+### Étape 3 — Valider les règles locales
+
+Vérifier le type, le domaine, les bornes et le caractère obligatoire. Ne pas convertir silencieusement une saisie invalide en valeur initiale.
+
+### Étape 4 — Ajouter les erreurs au protocole
+
+Utiliser l’API du protocole pour rattacher le message à la cellule concernée. Une erreur bloquante doit empêcher la sauvegarde jusqu’à correction.
+
+### Étape 5 — Recalculer les champs dépendants
+
+Après validation, mettre à jour les colonnes calculées par l’API prévue, par exemple `MODIFY_CELL`. Éviter de rappeler un affichage initial complet depuis l’événement.
+
+### Étape 6 — Revalider avant la sauvegarde
+
+Appeler `CHECK_CHANGED_DATA`, puis exécuter les contrôles métier globaux, les autorisations et le verrouillage. Sauvegarder uniquement si le protocole et la validation finale ne contiennent aucune erreur bloquante.
+
 ## VÉRIFICATION
 
 - Le contrôle syntaxique réussit.
@@ -111,7 +137,6 @@ ENDMETHOD.
 
 - [Making ALV React to Changed Data — SAP Help Portal](https://help.sap.com/docs/SUPPORT_CONTENT/abap/3353523611.html)
 - [Events of Class CL_GUI_ALV_GRID — SAP Help Portal](https://help.sap.com/docs/ABAP_PLATFORM_NEW/70396d7dec4c4f19b9ca3b2e47559d12/22a3f5f5d2fe11d2b467006094192fe3.html)
-
 
 ---
 

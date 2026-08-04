@@ -33,22 +33,64 @@ ENDIF.
 
 ## POINTS À REMPLACER
 
-| Élément | Remplacement attendu |
-|---|---|
-| `Z_DEV_OBJ` | Objet d’autorisation réel |
-| `ZBUKRS` | Champ défini dans cet objet |
-| `P_BUKRS` | Valeur fonctionnelle contrôlée |
-| `'03'` | Activité requise |
-| `ZDEV_SECURITY` | Classe de messages du projet |
+| Élément         | Remplacement attendu           |
+| --------------- | ------------------------------ |
+| `Z_DEV_OBJ`     | Objet d’autorisation réel      |
+| `ZBUKRS`        | Champ défini dans cet objet    |
+| `P_BUKRS`       | Valeur fonctionnelle contrôlée |
+| `'03'`          | Activité requise               |
+| `ZDEV_SECURITY` | Classe de messages du projet   |
 
-## PROCÉDURE RAPIDE
+## PROCESS
 
-1. Examiner l’objet dans `SU21`.
-2. Relever tous ses champs et leurs valeurs attendues.
-3. Placer `AUTHORITY-CHECK` avant l’action protégée.
-4. Tester immédiatement `SY-SUBRC`.
-5. Arrêter l’action en cas d’échec.
-6. Tester avec un utilisateur autorisé puis un utilisateur non autorisé.
+### Étape 1 — Définir précisément l’action protégée
+
+Identifier l’opération à autoriser : affichage, modification, suppression, validation ou exécution. Déterminer aussi les dimensions métier qui restreignent cette opération, par exemple la société, l’organisation commerciale ou le type de document.
+
+Le contrôle doit répondre à une décision explicite : « cet utilisateur peut-il exécuter cette activité sur cette valeur métier ? »
+
+### Étape 2 — Examiner l’objet dans `SU21`
+
+Ouvrir l’objet d’autorisation et relever :
+
+- son nom exact ;
+- ses champs ;
+- les activités autorisées ;
+- la signification fonctionnelle de chaque champ.
+
+Ne pas inventer un identifiant de champ ou une valeur d’activité à partir d’un exemple. Le code doit correspondre à la définition réelle de l’objet.
+
+### Étape 3 — Préparer les valeurs contrôlées
+
+Utiliser des variables typées avec les éléments de données fonctionnels appropriés. Convertir les valeurs dans le format attendu avant le contrôle, notamment en majuscules lorsque le domaine l’exige.
+
+Ne pas remplacer une valeur métier connue par `DUMMY` ou `*`. Ces valeurs élargissent ou neutralisent une partie de la décision d’autorisation.
+
+### Étape 4 — Placer le contrôle avant l’opération sensible
+
+Exécuter `AUTHORITY-CHECK` avant la lecture de données sensibles, la modification ou l’appel protégé. Tous les champs nécessaires à la décision doivent apparaître dans le contrôle.
+
+Un contrôle placé après la lecture ou la modification ne protège pas l’opération déjà exécutée.
+
+### Étape 5 — Traiter immédiatement `SY-SUBRC`
+
+Tester `SY-SUBRC` juste après `AUTHORITY-CHECK`, avant toute autre instruction susceptible de le modifier.
+
+- `SY-SUBRC = 0` : poursuivre l’opération protégée.
+- `SY-SUBRC <> 0` : interrompre le traitement et retourner un message adapté.
+
+Le message utilisateur ne doit pas divulguer inutilement le contenu du rôle. Les détails techniques nécessaires au support doivent être conservés dans un journal protégé.
+
+### Étape 6 — Tester les cas positifs et négatifs
+
+Exécuter au minimum les scénarios suivants avec des utilisateurs représentatifs :
+
+1. activité et valeur métier autorisées ;
+2. activité refusée ;
+3. valeur organisationnelle refusée ;
+4. autorisation partielle couvrant une autre valeur.
+
+Après chaque refus, utiliser immédiatement `SU53` ou une trace ciblée `STAUTHTRACE` pour confirmer l’objet, les champs et les valeurs réellement contrôlés.
 
 ## CONTRÔLE
 
@@ -59,13 +101,13 @@ ENDIF.
 
 ## ERREURS FRÉQUENTES
 
-| Symptôme | Cause probable | Correction |
-|---|---|---|
-| Le contrôle ne protège rien | `SY-SUBRC` n’est pas traité | Tester le résultat immédiatement |
-| Un utilisateur trop large passe le test | Valeur `DUMMY` ou `*` utilisée sans justification | Contrôler les champs fonctionnels nécessaires |
-| Refus inattendu | Valeur ou activité incorrecte | Comparer le contrôle avec le rôle et la trace |
-| Autorisation codée en dur dans plusieurs programmes | Contrôles dupliqués | Centraliser la politique dans une API du projet lorsque pertinent |
-| Données sensibles lues avant le contrôle | Contrôle placé trop tard | Contrôler avant la lecture ou l’action protégée |
+| Symptôme                                            | Cause probable                                    | Correction                                                        |
+| --------------------------------------------------- | ------------------------------------------------- | ----------------------------------------------------------------- |
+| Le contrôle ne protège rien                         | `SY-SUBRC` n’est pas traité                       | Tester le résultat immédiatement                                  |
+| Un utilisateur trop large passe le test             | Valeur `DUMMY` ou `*` utilisée sans justification | Contrôler les champs fonctionnels nécessaires                     |
+| Refus inattendu                                     | Valeur ou activité incorrecte                     | Comparer le contrôle avec le rôle et la trace                     |
+| Autorisation codée en dur dans plusieurs programmes | Contrôles dupliqués                               | Centraliser la politique dans une API du projet lorsque pertinent |
+| Données sensibles lues avant le contrôle            | Contrôle placé trop tard                          | Contrôler avant la lecture ou l’action protégée                   |
 
 ## COMPATIBILITÉ S/4HANA
 

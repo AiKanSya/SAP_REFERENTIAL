@@ -46,6 +46,28 @@ Ne pas ajouter un bouton sans définir précisément :
 - les contrôles d’autorisation ;
 - le comportement en cas de sélection vide.
 
+## PROCESS
+
+### Étape 1 — Récupérer l’objet des fonctions
+
+Après `FACTORY`, appeler `GET_FUNCTIONS` sur l’instance SALV. Ne recréer ni la table ni l’instance pour activer les commandes.
+
+### Étape 2 — Activer uniquement les fonctions requises
+
+Utiliser `SET_ALL( ABAP_TRUE )` pour un rapport générique lorsque toutes les commandes standard sont acceptables. Sinon, activer séparément les fonctions nécessaires afin de limiter l’interface au besoin métier.
+
+### Étape 3 — Ajouter une commande personnalisée avec un code unique
+
+Définir un code de fonction non ambigu, un texte et une info-bulle. Vérifier que le mode d’affichage utilisé permet l’ajout de cette commande.
+
+### Étape 4 — Enregistrer le gestionnaire d’événement
+
+Récupérer l’objet d’événements, instancier la classe réceptrice puis exécuter `SET HANDLER`. La référence du gestionnaire doit rester vivante jusqu’à la fermeture de l’ALV.
+
+### Étape 5 — Tester les commandes visibles et refusées
+
+Vérifier chaque fonction standard activée, la commande personnalisée et le comportement lorsqu’aucune ligne n’est sélectionnée. Les actions métier déclenchées doivent exécuter leurs propres contrôles d’autorisation.
+
 ## VÉRIFICATION
 
 - Le contrôle syntaxique réussit.
@@ -82,7 +104,6 @@ lo_functions->set_all( abap_true ).
 
 - [Using Self-Defined, Application-Specific Functions — SAP Help Portal](https://help.sap.com/docs/ABAP_PLATFORM_NEW/b1c834a22d05483b8a75710743b5ff26/4ec39dbb88d22b90e10000000a42189d.html)
 - [Main ALV Classes — SAP Help Portal](https://help.sap.com/docs/ABAP_PLATFORM_NEW/b1c834a22d05483b8a75710743b5ff26/4ec1f117076868b8e10000000a42189e.html)
-
 
 ---
 

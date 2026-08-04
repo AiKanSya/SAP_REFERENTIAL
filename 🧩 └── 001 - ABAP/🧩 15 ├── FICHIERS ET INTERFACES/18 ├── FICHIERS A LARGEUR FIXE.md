@@ -61,6 +61,32 @@ Définir pour chaque champ :
 
 La largeur fonctionnelle est généralement exprimée en caractères, alors que le transport physique est en octets. L’encodage doit être convenu avec le consommateur.
 
+## PROCESS
+
+### Étape 1 — Formaliser les positions
+
+Définir pour chaque champ sa position de départ, sa longueur, son alignement, son caractère de remplissage et son format. La somme des longueurs doit produire une longueur de ligne déterministe.
+
+### Étape 2 — Convertir les valeurs métier
+
+Formater explicitement les dates, quantités, montants et signes selon le contrat d’interface. Ne pas dépendre des paramètres utilisateur pour les séparateurs décimaux ou les dates.
+
+### Étape 3 — Appliquer longueur et alignement
+
+Compléter les valeurs courtes avec le caractère prévu. Rejeter ou traiter explicitement une valeur trop longue ; une troncature silencieuse peut modifier une clé.
+
+### Étape 4 — Assembler et contrôler la ligne
+
+Concaténer les champs formatés dans l’ordre spécifié, puis vérifier la longueur finale avant `TRANSFER`.
+
+### Étape 5 — Lire par positions documentées
+
+En import, vérifier d’abord la longueur minimale, extraire chaque segment par offset et longueur, puis convertir la valeur avec une gestion d’erreur explicite.
+
+### Étape 6 — Tester les bornes
+
+Tester les valeurs initiales, maximales, négatives, trop longues et contenant des caractères multioctets. Vérifier la longueur en octets lorsque le protocole la définit ainsi.
+
 ## VÉRIFICATION
 
 - Le fichier est créé ou lu dans l’emplacement attendu.
@@ -103,7 +129,6 @@ lv_line+31(40) = ls_item-description.
 - [ABAP File Interface — SAP Help Portal](https://help.sap.com/docs/ABAP_PLATFORM_NEW/7bfe8cdcfbb040dcb6702dada8c3e2f0/fa2fd3be291f469f862c4c8215e0549b.html)
 - [Character Set and File Interface Guidelines — ABAP Keyword Documentation](https://help.sap.com/doc/abapdocu_latest_index_htm/latest/en-US/ABENCODEPAGE_FILE_GUIDL.html)
 - [Offset and Length Access — ABAP Keyword Documentation](https://help.sap.com/doc/abapdocu_latest_index_htm/latest/en-US/ABENOFFSET_LENGTH.html)
-
 
 ---
 

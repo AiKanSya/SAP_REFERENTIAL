@@ -58,6 +58,28 @@ go_grid->set_table_for_first_display(
 - Ne pas rendre une colonne technique accessible via une variante.
 - Tester l’impact d’une évolution de structure sur les variantes déjà sauvegardées.
 
+## PROCESS
+
+### Étape 1 — Définir les propriétés du layout
+
+Remplir une structure `LVC_S_LAYO` avec les seules options nécessaires : sélection, lignes alternées, largeur, styles ou couleurs pilotés par la table de sortie.
+
+### Étape 2 — Préparer une identité de variante stable
+
+Remplir `DISVARIANT` avec un identifiant de rapport stable et, si le projet l’exige, un handle distinct pour chaque grille du même programme.
+
+### Étape 3 — Transmettre layout et variante au premier affichage
+
+Fournir `IS_LAYOUT`, `IS_VARIANT` et la valeur de sauvegarde attendue à `SET_TABLE_FOR_FIRST_DISPLAY`. Ces paramètres doivent être fixés avant que l’utilisateur modifie la disposition.
+
+### Étape 4 — Appliquer la politique de sauvegarde
+
+Déterminer si les variantes utilisateur, globales ou aucune sauvegarde sont autorisées. Ne pas donner une capacité de variante globale à un utilisateur qui ne doit gérer que son affichage personnel.
+
+### Étape 5 — Tester la persistance
+
+Enregistrer une variante, quitter le programme puis la recharger. Tester également une variante obsolète après modification du catalogue de champs.
+
 ## VÉRIFICATION
 
 - Le contrôle syntaxique réussit.
@@ -94,7 +116,6 @@ gs_variant-report = sy-repid.
 
 - [Methods of Class CL_GUI_ALV_GRID — SAP Help Portal](https://help.sap.com/docs/ABAP_PLATFORM_NEW/70396d7dec4c4f19b9ca3b2e47559d12/22a3f5ecd2fe11d2b467006094192fe3.html)
 - [Working with the ALV Grid Control — SAP Help Portal](https://help.sap.com/docs/ABAP_PLATFORM_NEW/70396d7dec4c4f19b9ca3b2e47559d12/4ebd16291041389ee10000000a421937.html)
-
 
 ---
 

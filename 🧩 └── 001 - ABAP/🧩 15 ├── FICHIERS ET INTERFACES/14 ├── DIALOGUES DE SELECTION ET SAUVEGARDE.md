@@ -52,6 +52,32 @@ Une annulation est un comportement normal, pas une erreur technique. Le programm
 - Revalider l’extension et le contenu après sélection.
 - Ne pas déduire la nature réelle du fichier à partir de l’extension seule.
 
+## PROCESS
+
+### Étape 1 — Vérifier le contexte SAP GUI
+
+Utiliser un dialogue frontend uniquement dans une session interactive avec SAP GUI. Prévoir une autre entrée pour un job, un RFC ou un traitement sans frontend.
+
+### Étape 2 — Préparer les filtres et la valeur initiale
+
+Définir les extensions attendues, le répertoire initial autorisé et le nom proposé. Ces valeurs facilitent la sélection mais ne remplacent pas la validation du fichier choisi.
+
+### Étape 3 — Appeler le dialogue approprié
+
+Utiliser `FILE_OPEN_DIALOG` pour sélectionner un ou plusieurs fichiers et `FILE_SAVE_DIALOG` pour choisir une cible. Traiter les exceptions techniques de `CL_GUI_FRONTEND_SERVICES`.
+
+### Étape 4 — Traiter explicitement l’annulation
+
+Examiner l’action utilisateur et le nombre de fichiers retournés. Une annulation est un résultat normal ; elle ne doit ni lancer un upload ni produire un message d’erreur technique.
+
+### Étape 5 — Valider la sélection
+
+Contrôler l’extension, le nombre de fichiers, la taille et le contexte fonctionnel avant l’upload ou le download. Ne pas faire confiance au filtre du dialogue comme contrôle de sécurité.
+
+### Étape 6 — Tester les contextes limites
+
+Tester l’annulation, une sélection multiple, un nom long, un fichier inaccessible et l’exécution sans frontend. Vérifier qu’aucun traitement serveur ne dépend d’un chemin local non disponible.
+
 ## VÉRIFICATION
 
 - Le fichier est créé ou lu dans l’emplacement attendu.
@@ -107,7 +133,6 @@ ENDIF.
 - [FILE_OPEN_DIALOG — SAP Help Portal](https://help.sap.com/docs/ABAP_PLATFORM_NEW/5a005e044eef436f8b27bbd3f73a3cfc/dd66b1a76d7044ff8fd46c04fdaec220.html)
 - [FILE_SAVE_DIALOG — SAP Help Portal](https://help.sap.com/docs/ABAP_PLATFORM_NEW/5a005e044eef436f8b27bbd3f73a3cfc/d00754b08a6947c19ce3f43add7696cb.html)
 - [File Upload and Download — SAP Help Portal](https://help.sap.com/docs/ABAP_PLATFORM_NEW/5a005e044eef436f8b27bbd3f73a3cfc/9ff8506b2b8f4812904912c4b207096c.html)
-
 
 ---
 

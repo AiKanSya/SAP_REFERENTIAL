@@ -60,6 +60,32 @@ La liste exacte des exceptions dépend de l’instruction et du mode. Elle doit 
 
 Fermer explicitement chaque fichier dès que son utilisation est terminée. Une structure locale de traitement ou une méthode dédiée limite les chemins de sortie qui oublient `CLOSE DATASET`.
 
+## PROCESS
+
+### Étape 1 — Résoudre et valider le nom de fichier
+
+Obtenir un chemin physique absolu à partir d’un nom logique configuré dans `FILE`. Ne pas construire le chemin par concaténation d’une entrée utilisateur.
+
+### Étape 2 — Choisir un mode d’ouverture explicite
+
+Déterminer si le traitement lit, crée, remplace ou ajoute des données. Préciser le mode texte ou binaire et, en mode texte, l’encodage.
+
+### Étape 3 — Exécuter `OPEN DATASET`
+
+Ouvrir le fichier dans un bloc qui traite les exceptions d’autorisation et vérifier immédiatement `SY-SUBRC` pour les erreurs d’ouverture signalées par le système d’exploitation.
+
+### Étape 4 — Effectuer les lectures ou écritures
+
+Traiter chaque résultat de `READ DATASET` ou `TRANSFER`. Borner le volume et interrompre la boucle sur la condition de fin prévue.
+
+### Étape 5 — Fermer le dataset sur chaque chemin réussi
+
+Appeler `CLOSE DATASET` dès que le traitement est terminé. Structurer les retours et exceptions afin qu’une ouverture réussie ne laisse pas le fichier ouvert.
+
+### Étape 6 — Tester le cycle complet
+
+Tester l’ouverture réussie, le fichier absent, le refus d’autorisation, l’erreur d’écriture et l’arrêt anticipé. Vérifier ensuite que le fichier peut être rouvert normalement.
+
 ## VÉRIFICATION
 
 - Le fichier est créé ou lu dans l’emplacement attendu.
@@ -120,7 +146,6 @@ ENDTRY.
 - [OPEN DATASET — ABAP Keyword Documentation](https://help.sap.com/doc/abapdocu_latest_index_htm/latest/en-US/ABAPOPEN_DATASET.html)
 - [CLOSE DATASET — ABAP Keyword Documentation](https://help.sap.com/doc/abapdocu_latest_index_htm/latest/en-US/ABAPCLOSE_DATASET.html)
 - [Error Handling for OPEN DATASET — ABAP Keyword Documentation](https://help.sap.com/doc/abapdocu_latest_index_htm/latest/en-US/ABAPOPEN_DATASET_ERROR_HANDLING.html)
-
 
 ---
 

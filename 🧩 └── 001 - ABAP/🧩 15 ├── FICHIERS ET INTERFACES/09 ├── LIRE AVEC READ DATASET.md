@@ -58,6 +58,32 @@ La lecture physique et l’interprétation métier doivent être séparées :
 - Ne pas arrêter tout le fichier au premier rejet si le contrat autorise un succès partiel.
 - Limiter les accès base effectués pour chaque ligne.
 
+## PROCESS
+
+### Étape 1 — Ouvrir le fichier dans le mode correspondant au contrat
+
+Résoudre le nom logique, puis utiliser `OPEN DATASET ... FOR INPUT` avec le mode texte ou binaire prévu. Ne pas commencer la boucle si l’ouverture a échoué.
+
+### Étape 2 — Initialiser la zone de lecture
+
+Employer un `STRING` pour une ligne texte ou une zone binaire adaptée pour un bloc. Définir une taille maximale afin d’éviter une allocation non bornée.
+
+### Étape 3 — Lire et tester immédiatement `SY-SUBRC`
+
+Appeler `READ DATASET`, puis distinguer une lecture réussie de la fin de fichier. Ne pas traiter le contenu de la zone lorsque la lecture n’a rien retourné.
+
+### Étape 4 — Valider avant d’accumuler
+
+Contrôler la longueur, le format et le nombre de colonnes ou d’octets. Rejeter ou journaliser la ligne selon la stratégie d’erreur définie, sans recopier des données sensibles inutiles.
+
+### Étape 5 — Borner la boucle
+
+Compter les lignes ou les octets lus et arrêter le traitement lorsque la limite applicative est atteinte. La fin de fichier ne doit pas être la seule protection contre un volume excessif.
+
+### Étape 6 — Fermer et restituer un bilan
+
+Fermer le dataset, puis retourner les nombres de lignes acceptées, rejetées et non traitées. Tester un fichier vide, une dernière ligne sans séparateur et une ligne invalide.
+
 ## VÉRIFICATION
 
 - Le fichier est créé ou lu dans l’emplacement attendu.
@@ -111,7 +137,6 @@ CLOSE DATASET lv_file.
 - [READ DATASET — ABAP Keyword Documentation](https://help.sap.com/doc/abapdocu_latest_index_htm/latest/en-US/ABAPREAD_DATASET.html)
 - [OPEN DATASET — ABAP Keyword Documentation](https://help.sap.com/doc/abapdocu_latest_index_htm/latest/en-US/ABAPOPEN_DATASET.html)
 - [CLOSE DATASET — ABAP Keyword Documentation](https://help.sap.com/doc/abapdocu_latest_index_htm/latest/en-US/ABAPCLOSE_DATASET.html)
-
 
 ---
 

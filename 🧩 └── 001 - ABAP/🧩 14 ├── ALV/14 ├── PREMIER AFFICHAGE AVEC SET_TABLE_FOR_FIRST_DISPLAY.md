@@ -64,6 +64,32 @@ flowchart TD
     D --> E["REFRESH_TABLE_DISPLAY"]
 ```
 
+## PROCESS
+
+### Étape 1 — Créer le conteneur et la grille une seule fois
+
+Dans le PBO, tester si les références sont initiales. Instancier `CL_GUI_CUSTOM_CONTAINER`, puis `CL_GUI_ALV_GRID` uniquement lors du premier passage.
+
+### Étape 2 — Préparer la table de sortie
+
+Charger la table avant l’appel. Sa référence et sa structure doivent rester valides pendant toute la durée de vie de la grille.
+
+### Étape 3 — Préparer les métadonnées
+
+Choisir une structure DDIC ou construire le catalogue de champs. Préparer aussi le layout, la variante et les fonctions à exclure avant le premier affichage.
+
+### Étape 4 — Appeler `SET_TABLE_FOR_FIRST_DISPLAY`
+
+Transmettre la table avec `IT_OUTTAB` et les métadonnées correspondantes. Traiter les exceptions déclarées par la méthode et ne pas poursuivre avec une grille partiellement initialisée.
+
+### Étape 5 — Utiliser le rafraîchissement aux passages suivants
+
+Après modification des données, appeler `REFRESH_TABLE_DISPLAY`. Ne pas rappeler `SET_TABLE_FOR_FIRST_DISPLAY` à chaque PBO, car cela réinitialise inutilement l’état de la grille.
+
+### Étape 6 — Tester le cycle dynpro
+
+Vérifier le premier affichage, un retour PBO, un rafraîchissement, la navigation arrière et la fermeture. Contrôler que la barre d’outils et les événements ne sont pas enregistrés plusieurs fois.
+
 ## VÉRIFICATION
 
 - Le contrôle syntaxique réussit.
@@ -119,7 +145,6 @@ ENDFORM.
 
 - [Methods of Class CL_GUI_ALV_GRID — SAP Help Portal](https://help.sap.com/docs/ABAP_PLATFORM_NEW/70396d7dec4c4f19b9ca3b2e47559d12/22a3f5ecd2fe11d2b467006094192fe3.html)
 - [Getting Started with ALV Grid Control — SAP Help Portal](https://help.sap.com/docs/ABAP_PLATFORM_NEW/70396d7dec4c4f19b9ca3b2e47559d12/4eba23f5250f568be10000000a421937.html)
-
 
 ---
 

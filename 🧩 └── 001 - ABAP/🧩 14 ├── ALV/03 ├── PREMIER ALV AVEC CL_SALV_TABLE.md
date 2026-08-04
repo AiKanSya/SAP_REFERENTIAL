@@ -74,6 +74,28 @@ IF gt_flights IS INITIAL.
 ENDIF.
 ```
 
+## PROCESS
+
+### Étape 1 — Définir une table de sortie stable
+
+Créer un type de ligne contenant uniquement les colonnes à afficher. Charger un volume borné et ordonné ; l’ALV ne doit pas compenser une sélection base de données non maîtrisée.
+
+### Étape 2 — Créer l’instance SALV
+
+Déclarer une référence `CL_SALV_TABLE`, puis appeler `CL_SALV_TABLE=>FACTORY` en transmettant la table de sortie dans `CHANGING T_TABLE`. Conserver cette table disponible pendant tout l’affichage.
+
+### Étape 3 — Configurer l’affichage avant `DISPLAY`
+
+Récupérer les objets de configuration nécessaires : fonctions, colonnes, tris, agrégations, sélection et layout. Appliquer toutes les options avant le premier affichage.
+
+### Étape 4 — Afficher et traiter l’exception SALV
+
+Appeler `DISPLAY` dans le même bloc `TRY`. Intercepter au minimum `CX_SALV_MSG` et retourner un message contrôlé au lieu de masquer l’erreur.
+
+### Étape 5 — Tester les volumes limites
+
+Vérifier une table vide, une ligne, plusieurs lignes et le volume maximal prévu. Contrôler les libellés, les conversions DDIC et le temps de réponse.
+
 ## VÉRIFICATION
 
 - Le contrôle syntaxique réussit.
@@ -144,7 +166,6 @@ START-OF-SELECTION.
 
 - [Main ALV Classes — SAP Help Portal](https://help.sap.com/docs/ABAP_PLATFORM_NEW/b1c834a22d05483b8a75710743b5ff26/4ec1f117076868b8e10000000a42189e.html)
 - [Object-Oriented ALV Guide — SAP Help Portal](https://help.sap.com/docs/SUPPORT_CONTENT/abap/3353523914.html)
-
 
 ---
 

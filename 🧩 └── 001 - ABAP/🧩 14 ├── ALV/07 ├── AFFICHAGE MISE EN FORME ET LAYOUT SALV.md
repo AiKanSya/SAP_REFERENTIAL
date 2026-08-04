@@ -52,6 +52,28 @@ Le programme doit toujours relire la sélection au moment de l’action. Ne pas 
 - Afficher les montants avec devise et les quantités avec unité.
 - Ne pas utiliser une variante pour contourner un défaut de conception du catalogue.
 
+## PROCESS
+
+### Étape 1 — Configurer les paramètres d’affichage
+
+Récupérer `GET_DISPLAY_SETTINGS`. Définir uniquement les options utiles, par exemple les lignes alternées et l’en-tête de liste.
+
+### Étape 2 — Définir une clé de layout stable
+
+Récupérer `GET_LAYOUT`, remplir une clé stable — généralement fondée sur le programme — puis transmettre cette clé avec `SET_KEY`. La même clé doit désigner le même affichage entre deux exécutions.
+
+### Étape 3 — Régler la sauvegarde des variantes
+
+Appliquer la restriction de sauvegarde conforme au projet. Distinguer les variantes utilisateur des variantes globales et vérifier les autorisations associées.
+
+### Étape 4 — Choisir le mode de sélection
+
+Récupérer `GET_SELECTIONS` et définir le mode correspondant aux actions disponibles : aucune sélection, cellule, ligne simple ou lignes multiples.
+
+### Étape 5 — Tester la persistance et l’accessibilité
+
+Créer, recharger et supprimer une variante avec un utilisateur autorisé. Vérifier aussi qu’une information portée par une couleur reste compréhensible par un texte, une icône ou une colonne de statut.
+
 ## VÉRIFICATION
 
 - Le contrôle syntaxique réussit.
@@ -94,7 +116,6 @@ lo_layout->set_default( abap_true ).
 
 - [Main ALV Classes — SAP Help Portal](https://help.sap.com/docs/ABAP_PLATFORM_NEW/b1c834a22d05483b8a75710743b5ff26/4ec1f117076868b8e10000000a42189e.html)
 - [Columns (General) — SAP Help Portal](https://help.sap.com/docs/ABAP_PLATFORM_NEW/b1c834a22d05483b8a75710743b5ff26/4ec1e9df087c2b91e10000000a42189d.html)
-
 
 ---
 

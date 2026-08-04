@@ -46,6 +46,32 @@ Le Control Framework gère normalement les échanges frontend. `CL_GUI_CFW=>FLUS
 - rafraîchir avant `CHECK_CHANGED_DATA` sur une grille éditable ;
 - perdre la sélection utilisateur après reconstruction complète du contrôle.
 
+## PROCESS
+
+### Étape 1 — Mettre à jour la table déjà liée à la grille
+
+Modifier ou recharger la table de sortie transmise lors du premier affichage. Ne pas remplacer sans nécessité son contrat de structure.
+
+### Étape 2 — Finaliser une saisie active
+
+Pour une grille éditable, appeler `CHECK_CHANGED_DATA` avant de relire ou remplacer les données. Arrêter le rafraîchissement si la validation signale une erreur bloquante.
+
+### Étape 3 — Préparer la stabilité de l’affichage
+
+Remplir `LVC_S_STBL` pour conserver la ligne et la colonne visibles lorsque le scénario l’exige. La stabilité visuelle ne garantit pas que la sélection métier reste valide après rechargement.
+
+### Étape 4 — Appeler `REFRESH_TABLE_DISPLAY`
+
+Transmettre la structure de stabilité. Utiliser le rafraîchissement léger uniquement lorsque la structure et le catalogue ne changent pas.
+
+### Étape 5 — Synchroniser le frontend si nécessaire
+
+Appeler `CL_GUI_CFW=>FLUSH` uniquement lorsqu’une synchronisation explicite du Control Framework est requise par le scénario. Traiter les exceptions au lieu de multiplier les appels systématiques.
+
+### Étape 6 — Tester la conservation du contexte
+
+Vérifier le curseur, le défilement, la sélection, les filtres et les tris après ajout, suppression et modification de lignes.
+
 ## VÉRIFICATION
 
 - Le contrôle syntaxique réussit.
@@ -80,7 +106,6 @@ go_grid->refresh_table_display(
 
 - [refresh_table_display — SAP Help Portal](https://help.sap.com/docs/ABAP_PLATFORM_NEW/70396d7dec4c4f19b9ca3b2e47559d12/0ab5531ed30911d2b467006094192fe3.html)
 - [Methods of Class CL_GUI_ALV_GRID — SAP Help Portal](https://help.sap.com/docs/ABAP_PLATFORM_NEW/70396d7dec4c4f19b9ca3b2e47559d12/22a3f5ecd2fe11d2b467006094192fe3.html)
-
 
 ---
 

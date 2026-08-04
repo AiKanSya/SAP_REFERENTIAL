@@ -60,6 +60,32 @@ APPEND gs_fieldcat TO gt_fieldcat.
 
 Lorsque la table de sortie correspond à une structure DDIC, `I_STRUCTURE_NAME` peut éviter un catalogue manuel. Ne fournir un catalogue explicite que lorsque des propriétés doivent être adaptées.
 
+## PROCESS
+
+### Étape 1 — Définir la structure finale de sortie
+
+Créer un type ou une structure DDIC contenant exactement les colonnes affichées. Séparer cette structure des tables de base afin de ne pas exposer des champs inutiles.
+
+### Étape 2 — Alimenter la table avant l’appel ALV
+
+Récupérer et transformer les données dans la table de sortie. Calculer les textes et statuts en dehors des gestionnaires d’événements de la grille.
+
+### Étape 3 — Choisir entre métadonnées DDIC et catalogue manuel
+
+Utiliser `I_STRUCTURE_NAME` lorsque la table suit une structure DDIC adaptée. Construire `LVC_T_FCAT` lorsqu’il faut contrôler explicitement les colonnes ou lorsque la structure est locale.
+
+### Étape 4 — Décrire chaque colonne manuelle
+
+Renseigner au minimum `FIELDNAME` avec le nom exact du composant. Ajouter les références DDIC, textes, longueur, clé, visibilité, unité ou devise selon la sémantique du champ.
+
+### Étape 5 — Valider le catalogue avant l’affichage
+
+Rechercher les noms inconnus, doublons et références d’unité ou devise absentes. Le catalogue doit décrire la table réellement transmise à `SET_TABLE_FOR_FIRST_DISPLAY`.
+
+### Étape 6 — Tester le rendu des conversions
+
+Vérifier les dates, quantités, montants, unités, devises, zéros initiaux et colonnes techniques. Comparer chaque valeur affichée à la structure de sortie.
+
 ## VÉRIFICATION
 
 - Le contrôle syntaxique réussit.
@@ -115,7 +141,6 @@ APPEND gs_fieldcat TO gt_fieldcat.
 
 - [The Field Catalog — SAP Help Portal](https://help.sap.com/docs/ABAP_PLATFORM_NEW/70396d7dec4c4f19b9ca3b2e47559d12/4ebaa38d251e56a4e10000000a421937.html)
 - [Working with the ALV Grid Control — SAP Help Portal](https://help.sap.com/docs/ABAP_PLATFORM_NEW/70396d7dec4c4f19b9ca3b2e47559d12/4ebd16291041389ee10000000a421937.html)
-
 
 ---
 

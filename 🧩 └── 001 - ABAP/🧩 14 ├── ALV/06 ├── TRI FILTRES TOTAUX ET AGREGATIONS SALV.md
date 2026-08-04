@@ -56,6 +56,32 @@ flowchart LR
 
 Les méthodes de tri et d’agrégation peuvent lever des exceptions SALV en cas de colonne inconnue ou de combinaison non autorisée. Les traiter localement ou les propager selon l’architecture du programme.
 
+## PROCESS
+
+### Étape 1 — Créer le SALV sur une table cohérente
+
+Charger les lignes et remplir les colonnes numériques, unités et devises avant toute configuration. Une agrégation sur une colonne mal typée ne peut pas produire un résultat fiable.
+
+### Étape 2 — Définir les tris dans l’ordre attendu
+
+Récupérer `GET_SORTS`, puis ajouter les colonnes de tri dans leur ordre de priorité. Définir explicitement le sens croissant ou décroissant et les sous-totaux requis.
+
+### Étape 3 — Ajouter les agrégations compatibles
+
+Récupérer `GET_AGGREGATIONS` et ajouter uniquement des colonnes dont le type et la sémantique permettent le calcul demandé. Conserver les références d’unité ou de devise nécessaires.
+
+### Étape 4 — Appliquer les filtres initiaux
+
+Récupérer `GET_FILTERS`, puis définir les plages de valeurs prévues. Un filtre d’affichage ne remplace pas un filtre SQL ni un contrôle d’autorisation.
+
+### Étape 5 — Traiter les exceptions de configuration
+
+Intercepter les exceptions SALV correspondant aux colonnes inconnues, aux tris, aux filtres et aux agrégations non valides. Corriger la configuration avant `DISPLAY`.
+
+### Étape 6 — Contrôler les résultats calculés
+
+Tester une table vide, un seul groupe, plusieurs groupes et des valeurs initiales. Comparer les totaux et sous-totaux à un calcul de référence.
+
 ## VÉRIFICATION
 
 - Le contrôle syntaxique réussit.
@@ -96,7 +122,6 @@ lo_sorts->add_sort(
 
 - [Sorting by Columns — SAP Help Portal](https://help.sap.com/docs/SAP_NETWEAVER_700/a85596deeb19418982bee031d1fd1427/4ec1b299087c2b91e10000000a42189d.html)
 - [Making Aggregation Settings — SAP Help Portal](https://help.sap.com/docs/ABAP_PLATFORM_NEW/b1c834a22d05483b8a75710743b5ff26/4ec2686758e968b9e10000000a42189e.html)
-
 
 ---
 

@@ -54,6 +54,36 @@ Les erreurs de syntaxe XML, de transformation ou de mapping doivent être captur
 - Refuser les éléments inattendus selon le niveau de contrôle attendu.
 - Tester les valeurs vides, caractères spéciaux et listes répétées.
 
+## PROCESS
+
+### Étape 1 — Définir le contrat XML
+
+Fixer l’élément racine, les espaces de noms, les éléments obligatoires, les cardinalités, les types et l’encodage. Conserver un exemple valide et des exemples invalides représentatifs.
+
+### Étape 2 — Créer une transformation simple dans `STRANS`
+
+Nommer la transformation dans l’espace client, définir les nœuds racine et mapper les champs vers des types DDIC ou ABAP stables.
+
+### Étape 3 — Sérialiser une structure typée
+
+Préparer les données dans une structure dédiée, puis appeler `CALL TRANSFORMATION` avec `SOURCE` et `RESULT XML`. Éviter de construire le document par concaténation de chaînes.
+
+### Étape 4 — Désérialiser vers une cible typée
+
+Fournir le contenu XML et une structure cible initialisée. Après transformation, valider les règles métier qui ne sont pas exprimées par la structure XML.
+
+### Étape 5 — Traiter les erreurs de transformation
+
+Intercepter `CX_TRANSFORMATION_ERROR` et retourner un message contrôlé. Journaliser le contexte technique utile sans recopier le document complet s’il contient des données sensibles.
+
+### Étape 6 — Borner et sécuriser l’entrée
+
+Limiter la taille du document avant transformation. N’accepter que les transformations prévues par le programme ; leur nom ne doit pas provenir librement d’une entrée externe.
+
+### Étape 7 — Tester les variantes du contrat
+
+Tester un document valide, un élément obligatoire absent, un type invalide, un espace de noms incorrect, un document trop volumineux et des caractères non ASCII.
+
 ## VÉRIFICATION
 
 - Le fichier est créé ou lu dans l’emplacement attendu.
@@ -96,7 +126,6 @@ CALL TRANSFORMATION id
 - [CALL TRANSFORMATION — ABAP Keyword Documentation](https://help.sap.com/doc/abapdocu_latest_index_htm/latest/en-US/ABAPCALL_TRANSFORMATION_SHORTREF.html)
 - [Simple Transformations — ABAP Keyword Documentation](https://help.sap.com/doc/abapdocu_latest_index_htm/latest/en-US/ABENST.html)
 - [Canonical XML Representation — ABAP Keyword Documentation](https://help.sap.com/doc/abapdocu_latest_index_htm/latest/en-US/ABENABAP_XMLS.html)
-
 
 ---
 

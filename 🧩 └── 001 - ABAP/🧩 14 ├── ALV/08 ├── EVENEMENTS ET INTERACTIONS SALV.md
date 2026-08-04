@@ -56,6 +56,32 @@ flowchart LR
     D --> E["Action applicative"]
 ```
 
+## PROCESS
+
+### Étape 1 — Choisir l’événement adapté
+
+Associer l’interaction au besoin réel : lien ou hotspot, double-clic, commande ajoutée ou sélection. Ne pas déclencher plusieurs actions différentes depuis le même geste sans règle explicite.
+
+### Étape 2 — Déclarer une méthode avec la signature exacte
+
+Dans la classe gestionnaire, déclarer la méthode `FOR EVENT ... OF ...` avec les paramètres fournis par l’événement SALV. Ne pas ajouter de paramètre applicatif à la signature de l’événement.
+
+### Étape 3 — Instancier et enregistrer le gestionnaire
+
+Créer une référence dont la durée de vie couvre l’affichage, récupérer `GET_EVENT`, puis exécuter `SET HANDLER ... FOR ...` avant `DISPLAY`.
+
+### Étape 4 — Rendre la cellule interactive
+
+Configurer la colonne comme lien ou hotspot lorsque l’événement l’exige. Une méthode enregistrée sans colonne interactive ne sera pas appelée par un simple clic.
+
+### Étape 5 — Résoudre la ligne et valider l’action
+
+Vérifier l’indice et le nom de colonne reçus, lire la ligne correspondante sans supposer qu’elle existe, puis exécuter les contrôles d’autorisation avant l’action métier.
+
+### Étape 6 — Tester après tri et filtrage
+
+Tester l’événement sur plusieurs lignes, après un tri, après un filtre et sans sélection. Vérifier que la bonne clé métier est transmise au traitement.
+
 ## VÉRIFICATION
 
 - Le contrôle syntaxique réussit.
@@ -103,7 +129,6 @@ ENDCLASS.
 
 - [Handling Single and Double Clicks — SAP Help Portal](https://help.sap.com/docs/ABAP_PLATFORM_NEW/b1c834a22d05483b8a75710743b5ff26/4ebc7038f39c68bbe10000000a42189e.html)
 - [Displaying Interactive Elements — SAP Help Portal](https://help.sap.com/docs/ABAP_PLATFORM_NEW/b1c834a22d05483b8a75710743b5ff26/4ec1afd0087c2b91e10000000a42189d.html)
-
 
 ---
 

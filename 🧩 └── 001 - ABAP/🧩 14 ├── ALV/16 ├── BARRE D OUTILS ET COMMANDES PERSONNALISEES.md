@@ -47,6 +47,32 @@ La table `IT_TOOLBAR_EXCLUDING` de `SET_TABLE_FOR_FIRST_DISPLAY` permet de masqu
 - Afficher une confirmation avant une action destructive.
 - Vérifier les autorisations dans le backend, pas uniquement dans la toolbar.
 
+## PROCESS
+
+### Étape 1 — Déclarer les deux gestionnaires nécessaires
+
+Déclarer une méthode pour l’événement `TOOLBAR` et une méthode pour `USER_COMMAND`, avec les signatures exactes de `CL_GUI_ALV_GRID`.
+
+### Étape 2 — Ajouter le bouton dans `TOOLBAR`
+
+Créer une entrée de bouton avec un code fonction unique, un texte, une info-bulle et une icône standard si elle apporte une information utile. Ajouter un séparateur uniquement lorsqu’il clarifie le groupe de commandes.
+
+### Étape 3 — Enregistrer les gestionnaires une seule fois
+
+Instancier la classe réceptrice, exécuter `SET HANDLER` pour les deux événements puis déclencher l’affichage initial. Conserver la référence du gestionnaire.
+
+### Étape 4 — Traiter une liste fermée de commandes
+
+Dans `USER_COMMAND`, utiliser `CASE E_UCOMM`. Ignorer ou journaliser les codes inconnus ; ne jamais transformer directement un code reçu en nom de programme ou de fonction dynamique.
+
+### Étape 5 — Protéger l’action métier
+
+Vérifier la sélection, relire la clé métier, exécuter les contrôles d’autorisation et demander une confirmation pour une action destructive.
+
+### Étape 6 — Tester la barre d’outils
+
+Contrôler le bouton actif, inactif, sans sélection et avec plusieurs sélections. Vérifier que les fonctions standard exclues ne restent pas accessibles par un autre chemin non prévu.
+
 ## VÉRIFICATION
 
 - Le contrôle syntaxique réussit.
@@ -89,7 +115,6 @@ ENDMETHOD.
 
 - [Events of Class CL_GUI_ALV_GRID — SAP Help Portal](https://help.sap.com/docs/ABAP_PLATFORM_NEW/70396d7dec4c4f19b9ca3b2e47559d12/22a3f5f5d2fe11d2b467006094192fe3.html)
 - [Methods of Class CL_GUI_ALV_GRID — SAP Help Portal](https://help.sap.com/docs/ABAP_PLATFORM_NEW/70396d7dec4c4f19b9ca3b2e47559d12/22a3f5ecd2fe11d2b467006094192fe3.html)
-
 
 ---
 

@@ -1,4 +1,5 @@
 # ENCODA" Ouvrir le fichier avec le mode et l’encodage attendus.
+
 GE, CODE PAGES, BOM ET FINS DE LIGNE
 
 ## RÉSULTAT ATTENDU
@@ -61,6 +62,32 @@ Puis vérifier :
 - utiliser Excel comme seul outil de validation ;
 - ignorer les caractères de contrôle invisibles.
 
+## PROCESS
+
+### Étape 1 — Identifier l’encodage contractuel
+
+Obtenir du producteur ou du consommateur le nom exact de l’encodage, la présence attendue d’un BOM et la convention de fin de ligne. Ne pas déduire ces paramètres d’un seul fichier d’exemple.
+
+### Étape 2 — Ouvrir avec une conversion explicite
+
+En mode texte, préciser l’encodage dans `OPEN DATASET`. Utiliser les additions de gestion du BOM uniquement si elles existent sur la version cible et correspondent au contrat.
+
+### Étape 3 — Normaliser les fins de ligne au bon niveau
+
+Laisser le mode texte gérer les lignes lorsque le format le permet. Pour un protocole imposant des octets exacts, produire le contenu en mode binaire selon sa spécification.
+
+### Étape 4 — Traiter les caractères non représentables
+
+Définir si le traitement rejette le fichier, remplace le caractère ou journalise l’anomalie. Une substitution silencieuse peut corrompre une clé ou un texte métier.
+
+### Étape 5 — Tester avec un jeu discriminant
+
+Inclure des caractères accentués, des caractères hors alphabet latin, une ligne vide, une dernière ligne sans terminateur et le marqueur BOM attendu ou absent.
+
+### Étape 6 — Vérifier avec le consommateur réel
+
+Contrôler le fichier dans l’application cible et, si nécessaire, examiner ses octets avec un outil adapté. L’affichage correct dans l’éditeur local du développeur ne suffit pas.
+
 ## VÉRIFICATION
 
 - Le fichier est créé ou lu dans l’emplacement attendu.
@@ -103,7 +130,6 @@ OPEN DATASET lv_file
 - [Character Set and File Interface Guidelines — ABAP Keyword Documentation](https://help.sap.com/doc/abapdocu_latest_index_htm/latest/en-US/ABENCODEPAGE_FILE_GUIDL.html)
 - [OPEN DATASET Modes — ABAP Keyword Documentation](https://help.sap.com/doc/abapdocu_latest_index_htm/latest/en-US/ABAPOPEN_DATASET_MODE.html)
 - [GET DATASET — ABAP Keyword Documentation](https://help.sap.com/doc/abapdocu_latest_index_htm/latest/en-US/ABAPGET_DATASET.html)
-
 
 ---
 

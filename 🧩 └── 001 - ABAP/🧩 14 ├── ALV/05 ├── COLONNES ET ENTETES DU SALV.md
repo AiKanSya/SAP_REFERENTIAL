@@ -45,6 +45,28 @@ Une colonne technique est exclue de l’ensemble de colonnes manipulables par l�
 
 Utiliser une colonne technique pour une donnée exclusivement interne, jamais pour masquer une information sensible sans contrôle d’autorisation.
 
+## PROCESS
+
+### Étape 1 — Stabiliser la structure de sortie
+
+Nommer et typer les composants avant de configurer les colonnes. Réutiliser des éléments de données DDIC lorsque leurs libellés, unités et conversions correspondent au besoin.
+
+### Étape 2 — Récupérer la collection des colonnes
+
+Appeler `GET_COLUMNS` après `FACTORY`. Activer l’optimisation globale uniquement si elle convient à la mise en page attendue.
+
+### Étape 3 — Récupérer chaque colonne par son nom technique
+
+Appeler `GET_COLUMN` avec le nom exact du composant de la table de sortie. Intercepter `CX_SALV_NOT_FOUND` lorsqu’une colonne peut être absente selon la variante de structure.
+
+### Étape 4 — Appliquer les propriétés nécessaires
+
+Définir les textes court, moyen et long, la visibilité, la longueur de sortie, l’alignement et le comportement interactif. Masquer les clés purement techniques qui ne servent pas au lecteur.
+
+### Étape 5 — Vérifier le rendu avec les données réelles
+
+Tester les valeurs courtes, longues, initiales et négatives. Contrôler les unités, devises, zéros initiaux et textes traduits avant de valider le chapitre.
+
 ## VÉRIFICATION
 
 - Le contrôle syntaxique réussit.
@@ -91,7 +113,6 @@ ENDTRY.
 
 - [Columns (General) — SAP Help Portal](https://help.sap.com/docs/ABAP_PLATFORM_NEW/b1c834a22d05483b8a75710743b5ff26/4ec1e9df087c2b91e10000000a42189d.html)
 - [Displaying Interactive Elements — SAP Help Portal](https://help.sap.com/docs/ABAP_PLATFORM_NEW/b1c834a22d05483b8a75710743b5ff26/4ec1afd0087c2b91e10000000a42189d.html)
-
 
 ---
 

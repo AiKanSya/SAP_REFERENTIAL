@@ -55,6 +55,32 @@ Associer un texte explicatif ou une info-bulle lorsque l’icône seule n’est 
 
 Ne jamais transmettre une information uniquement par la couleur. Combiner couleur, texte, icône ou statut afin que le résultat reste compréhensible dans différents contextes d’affichage.
 
+## PROCESS
+
+### Étape 1 — Ajouter les composants techniques à la sortie
+
+Prévoir dans la structure de ligne les tables ou champs nécessaires aux styles, couleurs et icônes. Ces composants doivent rester distincts des données métier affichées.
+
+### Étape 2 — Remplir les propriétés par ligne ou cellule
+
+Construire les entrées de style et de couleur à partir d’un état métier déjà calculé. Ne pas effectuer d’accès base de données dans la boucle de présentation.
+
+### Étape 3 — Relier les composants au layout
+
+Renseigner dans `LVC_S_LAYO` les noms des composants techniques concernés. Les noms doivent correspondre exactement aux composants de la table de sortie.
+
+### Étape 4 — Configurer les colonnes d’icônes et d’interaction
+
+Déclarer la propriété d’icône, de hotspot ou de bouton dans le catalogue de champs selon le besoin. Ajouter un texte ou une info-bulle compréhensible.
+
+### Étape 5 — Conserver une information accessible sans couleur
+
+Accompagner toute couleur d’un statut textuel, d’une icône expliquée ou d’une autre information indépendante de la perception des couleurs.
+
+### Étape 6 — Tester tous les états
+
+Vérifier les lignes normales, bloquées, en erreur et sélectionnées. Tester aussi l’impression, l’export et une variante qui masque certaines colonnes.
+
 ## VÉRIFICATION
 
 - Le contrôle syntaxique réussit.
@@ -99,7 +125,6 @@ TYPES:
 - [The Field Catalog — SAP Help Portal](https://help.sap.com/docs/ABAP_PLATFORM_NEW/70396d7dec4c4f19b9ca3b2e47559d12/4ebaa38d251e56a4e10000000a421937.html)
 - [Working with the ALV Grid Control — SAP Help Portal](https://help.sap.com/docs/ABAP_PLATFORM_NEW/70396d7dec4c4f19b9ca3b2e47559d12/4ebd16291041389ee10000000a421937.html)
 - [Demo Program Information in NetWeaver — SAP Help Portal](https://help.sap.com/docs/SUPPORT_CONTENT/nwtech/3362694205.html)
-
 
 ---
 

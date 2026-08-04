@@ -60,6 +60,32 @@ Le handler doit :
 3. déléguer la règle métier à une procédure ou une classe dédiée ;
 4. actualiser l’affichage si nécessaire.
 
+## PROCESS
+
+### Étape 1 — Sélectionner les événements nécessaires
+
+Lister les interactions réellement gérées : double-clic, hotspot, commande, modification de données ou menu contextuel. Ne pas enregistrer un événement sans traitement fonctionnel défini.
+
+### Étape 2 — Déclarer la classe réceptrice
+
+Pour chaque événement, déclarer une méthode `FOR EVENT ... OF CL_GUI_ALV_GRID` avec sa signature exacte. Conserver les règles métier hors de cette méthode lorsque le traitement devient complexe.
+
+### Étape 3 — Implémenter les validations d’entrée
+
+Contrôler les indices de ligne et de colonne reçus avant de lire la table. Résoudre ensuite la clé métier et vérifier les autorisations avant l’action.
+
+### Étape 4 — Instancier la classe avec une durée de vie suffisante
+
+Stocker la référence du gestionnaire avec les références du conteneur et de la grille. Une instance locale détruite à la fin du PBO ne doit pas porter les événements de l’écran.
+
+### Étape 5 — Enregistrer les méthodes avant l’affichage
+
+Exécuter `SET HANDLER ... FOR go_grid` après la création de la grille et avant l’interaction utilisateur. Ne pas répéter cet enregistrement à chaque PBO.
+
+### Étape 6 — Tester chaque événement isolément
+
+Tester les lignes valides, une table vide, les commandes inconnues et les interactions après tri ou filtre. Vérifier qu’une action n’est déclenchée qu’une seule fois.
+
 ## VÉRIFICATION
 
 - Le contrôle syntaxique réussit.
@@ -108,7 +134,6 @@ ENDCLASS.
 
 - [Events of Class CL_GUI_ALV_GRID — SAP Help Portal](https://help.sap.com/docs/ABAP_PLATFORM_NEW/70396d7dec4c4f19b9ca3b2e47559d12/22a3f5f5d2fe11d2b467006094192fe3.html)
 - [Working with the ALV Grid Control — SAP Help Portal](https://help.sap.com/docs/ABAP_PLATFORM_NEW/70396d7dec4c4f19b9ca3b2e47559d12/4ebd16291041389ee10000000a421937.html)
-
 
 ---
 

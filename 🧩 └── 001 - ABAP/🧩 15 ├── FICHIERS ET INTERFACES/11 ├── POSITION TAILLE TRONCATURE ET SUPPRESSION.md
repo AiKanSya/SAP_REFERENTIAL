@@ -1,4 +1,5 @@
 # POSITI" Modifier uniquement les données de la table cible maîtrisée.
+
 " Modifier uniquement les données de la table cible maîtrisée.
 ON, TAILLE, TRONCATURE ET SUPPRESSION
 
@@ -48,6 +49,32 @@ La suppression exige des autorisations et ne doit intervenir qu’après validat
 - Journaliser le nom logique, le nom physique résolu et l’issue de l’opération.
 - Réserver la troncature aux formats qui l’exigent réellement.
 
+## PROCESS
+
+### Étape 1 — Définir l’opération exacte
+
+Distinguer le repositionnement, la lecture de position, la troncature et la suppression. Chaque opération modifie différemment le fichier et exige un scénario de récupération adapté.
+
+### Étape 2 — Vérifier le mode et le format compatibles
+
+Ouvrir le dataset dans le mode nécessaire à l’instruction utilisée. Confirmer la compatibilité dans la documentation ABAP de la version du système avant d’appliquer une position calculée.
+
+### Étape 3 — Calculer une position bornée
+
+Obtenir la taille ou la position avec les instructions prévues, puis refuser toute valeur négative ou supérieure à la limite autorisée. En mode texte, ne pas supposer qu’un nombre de caractères correspond toujours au même nombre d’octets.
+
+### Étape 4 — Exécuter l’opération et traiter son résultat
+
+Appeler `SET DATASET`, `TRUNCATE DATASET` ou `DELETE DATASET` selon le besoin. Tester immédiatement les codes retour et exceptions documentés.
+
+### Étape 5 — Fermer avant une suppression ou un retour
+
+Ne pas laisser le dataset ouvert lors d’un changement d’opération. Organiser les sorties afin que la fermeture soit exécutée après toute ouverture réussie.
+
+### Étape 6 — Tester sur une copie contrôlée
+
+Vérifier le début, le milieu et la fin du fichier, une position invalide, un fichier vide et un refus d’autorisation. Comparer la taille et le contenu avant et après l’opération destructive.
+
 ## VÉRIFICATION
 
 - Le fichier est créé ou lu dans l’emplacement attendu.
@@ -90,7 +117,6 @@ ENDIF.
 - [SET DATASET — ABAP Keyword Documentation](https://help.sap.com/doc/abapdocu_latest_index_htm/latest/en-US/ABAPSET_DATASET.html)
 - [TRUNCATE DATASET — ABAP Keyword Documentation](https://help.sap.com/doc/abapdocu_latest_index_htm/latest/en-US/ABAPTRUNCATE_DATASET.html)
 - [DELETE DATASET — ABAP Keyword Documentation](https://help.sap.com/doc/abapdocu_latest_index_htm/latest/en-US/ABAPDELETE_DATASET.html)
-
 
 ---
 

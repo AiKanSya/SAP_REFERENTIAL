@@ -1,5 +1,6 @@
 # ÉCRIRE" Ouvrir le fichier avec le mode et l’encodage attendus.
- AVEC `TRANSFER`
+
+AVEC `TRANSFER`
 
 ## RÉSULTAT ATTENDU
 
@@ -49,6 +50,32 @@ Lorsque l’architecture le permet :
 4. publier ou déplacer le fichier terminé.
 
 ABAP ne fournit pas une opération de renommage portable équivalente pour tous les contextes. La publication doit être conçue avec l’équipe Basis ou le middleware.
+
+## PROCESS
+
+### Étape 1 — Choisir la politique de création
+
+Décider si le programme remplace le fichier, ajoute des lignes ou refuse un fichier existant. Documenter ce comportement avant d’utiliser `OUTPUT` ou `APPENDING`.
+
+### Étape 2 — Ouvrir le fichier avec un contrat explicite
+
+Résoudre le nom logique et appeler `OPEN DATASET` dans le mode texte ou binaire prévu. Traiter l’autorisation et l’échec d’ouverture.
+
+### Étape 3 — Sérialiser la ligne ou le bloc
+
+Construire le contenu complet dans une variable typée. Valider longueur, séparateurs, échappement et encodage avant l’écriture.
+
+### Étape 4 — Exécuter `TRANSFER`
+
+Écrire une unité logique à la fois. Traiter les erreurs d’écriture et arrêter le traitement lorsque le fichier n’est plus dans un état fiable.
+
+### Étape 5 — Fermer et publier le résultat
+
+Fermer le dataset avant de signaler le succès. Retourner le nombre de lignes ou d’octets écrits et ne jamais considérer une ouverture réussie comme la preuve d’une écriture complète.
+
+### Étape 6 — Tester les échecs partiels
+
+Tester un répertoire indisponible, un espace insuffisant selon les possibilités de l’environnement, une donnée invalide et une interruption au milieu du flux. Vérifier la règle de reprise ou de remplacement du fichier partiel.
 
 ## VÉRIFICATION
 
@@ -102,7 +129,6 @@ CLOSE DATASET lv_file.
 - [TRANSFER — ABAP Keyword Documentation](https://help.sap.com/doc/abapdocu_latest_index_htm/latest/en-US/ABAPTRANSFER.html)
 - [OPEN DATASET Modes — ABAP Keyword Documentation](https://help.sap.com/doc/abapdocu_latest_index_htm/latest/en-US/ABAPOPEN_DATASET_MODE.html)
 - [CLOSE DATASET — ABAP Keyword Documentation](https://help.sap.com/doc/abapdocu_latest_index_htm/latest/en-US/ABAPCLOSE_DATASET.html)
-
 
 ---
 

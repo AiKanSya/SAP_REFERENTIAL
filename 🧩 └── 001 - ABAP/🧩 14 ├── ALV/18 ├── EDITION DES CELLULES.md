@@ -57,6 +57,36 @@ Rendre une cellule éditable ne met pas à jour la base. Le programme doit :
 5. exécuter ou déléguer la gestion transactionnelle ;
 6. informer l’utilisateur.
 
+## PROCESS
+
+### Étape 1 — Limiter les colonnes modifiables
+
+Activer `EDIT` uniquement pour les champs réellement saisissables. Conserver les clés, statuts calculés et données de référence en lecture seule.
+
+### Étape 2 — Enregistrer les événements d’édition
+
+Après création de la grille, appeler `REGISTER_EDIT_EVENT` pour l’événement correspondant au comportement souhaité, puis enregistrer le gestionnaire `DATA_CHANGED`.
+
+### Étape 3 — Afficher les valeurs initiales cohérentes
+
+Remplir la table de sortie et le catalogue avant `SET_TABLE_FOR_FIRST_DISPLAY`. Les conversions, listes de valeurs et styles doivent refléter les règles de saisie.
+
+### Étape 4 — Transférer les modifications vers le backend
+
+Avant une sauvegarde, appeler `CHECK_CHANGED_DATA` pour terminer l’édition de la cellule active et déclencher la validation.
+
+### Étape 5 — Valider avant toute écriture
+
+Contrôler le type, le domaine, les règles croisées et les autorisations. Signaler les erreurs dans le protocole de la grille et ne pas sauvegarder une ligne invalide.
+
+### Étape 6 — Sauvegarder transactionnellement
+
+Verrouiller l’objet métier, relire son état si nécessaire, effectuer l’écriture via l’API prévue puis décider explicitement du commit ou du rollback.
+
+### Étape 7 — Rafraîchir sans perdre le contexte
+
+Mettre à jour la table de sortie puis appeler `REFRESH_TABLE_DISPLAY` avec les options de stabilité nécessaires. Tester la position du curseur et les sélections après sauvegarde.
+
 ## VÉRIFICATION
 
 - Le contrôle syntaxique réussit.
@@ -97,7 +127,6 @@ go_grid->register_edit_event(
 - [Making ALV React to Changed Data — SAP Help Portal](https://help.sap.com/docs/SUPPORT_CONTENT/abap/3353523611.html)
 - [Events of Class CL_GUI_ALV_GRID — SAP Help Portal](https://help.sap.com/docs/ABAP_PLATFORM_NEW/70396d7dec4c4f19b9ca3b2e47559d12/22a3f5f5d2fe11d2b467006094192fe3.html)
 - [Demo Program Information in NetWeaver — SAP Help Portal](https://help.sap.com/docs/SUPPORT_CONTENT/nwtech/3362694205.html)
-
 
 ---
 

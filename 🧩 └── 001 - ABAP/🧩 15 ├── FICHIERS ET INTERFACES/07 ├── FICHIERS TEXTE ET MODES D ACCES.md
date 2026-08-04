@@ -1,4 +1,5 @@
 # FICHIE" Ouvrir le fichier avec le mode et l’encodage attendus.
+
 RS TEXTE ET MODES D’ACCÈS
 
 ## RÉSULTAT ATTENDU
@@ -49,6 +50,28 @@ Les modes `LEGACY TEXT MODE` et `LEGACY BINARY MODE` existent pour la compatibil
 - Tester le fichier produit sur le système consommateur.
 - Éviter `DEFAULT` lorsque plusieurs plateformes participent à l’échange.
 
+## PROCESS
+
+### Étape 1 — Définir le contrat texte
+
+Fixer l’encodage, le séparateur de lignes, le mode de création et le comportement attendu lorsqu’un fichier existe déjà. Le producteur et le consommateur doivent partager ce contrat.
+
+### Étape 2 — Choisir `INPUT`, `OUTPUT` ou `APPENDING`
+
+Utiliser `INPUT` pour lire, `OUTPUT` pour créer ou remplacer et `APPENDING` pour ajouter. Ne pas sélectionner le mode à partir d’une valeur externe non validée.
+
+### Étape 3 — Ouvrir en mode texte avec encodage explicite
+
+Employer `IN TEXT MODE ENCODING UTF-8` lorsque le contrat est UTF-8. Traiter l’exception d’autorisation et `SY-SUBRC` avant de poursuivre.
+
+### Étape 4 — Lire ou écrire une unité logique à la fois
+
+En lecture, traiter chaque ligne jusqu’à la fin du fichier. En écriture, sérialiser la ligne complète avant `TRANSFER` afin d’éviter un fichier partiellement formaté.
+
+### Étape 5 — Fermer et vérifier le résultat
+
+Appeler `CLOSE DATASET`, puis contrôler le fichier avec le consommateur réel. Tester les caractères accentués, les lignes vides et la fin de fichier.
+
 ## VÉRIFICATION
 
 - Le fichier est créé ou lu dans l’emplacement attendu.
@@ -90,7 +113,6 @@ OPEN DATASET lv_file
 - [OPEN DATASET Modes — ABAP Keyword Documentation](https://help.sap.com/doc/abapdocu_latest_index_htm/latest/en-US/ABAPOPEN_DATASET_MODE.html)
 - [Character Set and File Interface Guidelines — ABAP Keyword Documentation](https://help.sap.com/doc/abapdocu_latest_index_htm/latest/en-US/ABENCODEPAGE_FILE_GUIDL.html)
 - [OPEN DATASET — ABAP Keyword Documentation](https://help.sap.com/doc/abapdocu_latest_index_htm/latest/en-US/ABAPOPEN_DATASET.html)
-
 
 ---
 

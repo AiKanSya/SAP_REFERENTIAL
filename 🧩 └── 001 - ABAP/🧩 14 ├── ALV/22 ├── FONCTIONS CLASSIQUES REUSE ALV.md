@@ -57,6 +57,32 @@ ENDIF.
 
 Les fonctions `REUSE_ALV_*` restent très présentes dans le patrimoine ABAP, mais elles reposent sur un modèle procédural et des callbacks. Pour un nouveau développement, privilégier une API orientée objet.
 
+## PROCESS
+
+### Étape 1 — Confirmer le maintien de l’API historique
+
+Utiliser `REUSE_ALV_*` pour maintenir un programme existant ou respecter une contrainte documentée. Pour un nouveau développement, comparer d’abord SALV et `CL_GUI_ALV_GRID`.
+
+### Étape 2 — Stabiliser la table et le catalogue SLIS
+
+Définir une table de sortie typée et construire le catalogue `SLIS_T_FIELDCAT_ALV` avec des noms de champs correspondant exactement à cette table.
+
+### Étape 3 — Déclarer les callbacks attendus
+
+Créer les routines appelées par le module fonction avec les noms et signatures documentés. Éviter les dépendances implicites à des données globales non nécessaires.
+
+### Étape 4 — Appeler le module fonction
+
+Transmettre la table, le catalogue, le layout, les variantes et les callbacks requis. Traiter `SY-SUBRC` et les exceptions immédiatement après l’appel.
+
+### Étape 5 — Encapsuler les adaptations
+
+Limiter les nouvelles règles métier ajoutées dans les callbacks. Déléguer les lectures, validations et sauvegardes à des unités testables lorsqu’une correction élargit le programme historique.
+
+### Étape 6 — Exécuter les tests de non-régression
+
+Vérifier l’affichage, les variantes existantes, les tris, les totaux, les exports et chaque callback. Comparer le comportement avant et après modification sur un jeu de données identique.
+
 ## VÉRIFICATION
 
 - Le contrôle syntaxique réussit.
@@ -114,7 +140,6 @@ ENDIF.
 
 - [Function Modules Related to ALV Grid — SAP Help Portal](https://help.sap.com/docs/SUPPORT_CONTENT/abap/3353524193.html)
 - [ABAP List Viewer (ALV) — SAP Help Portal](https://help.sap.com/docs/SUPPORT_CONTENT/nwtech/3362694342.html)
-
 
 ---
 

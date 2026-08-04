@@ -57,6 +57,32 @@ Pour les gros fichiers, éviter de charger tout le contenu dans un seul `xstring
 - Ne pas convertir arbitrairement un PDF en `string`.
 - Ne pas supposer que la taille en caractères égale la taille en octets.
 
+## PROCESS
+
+### Étape 1 — Confirmer que le contenu est binaire
+
+Utiliser le mode binaire pour des données dont les octets doivent rester inchangés : archive, image, PDF ou format propriétaire. Ne pas appliquer de conversion de code page.
+
+### Étape 2 — Fixer une taille maximale
+
+Déterminer la taille maximale acceptée avant de charger le fichier en mémoire. Pour un contenu volumineux, privilégier un traitement par blocs plutôt qu’un `XSTRING` unique.
+
+### Étape 3 — Ouvrir le dataset en mode binaire
+
+Utiliser `OPEN DATASET ... IN BINARY MODE`, puis traiter l’autorisation et le code retour d’ouverture avant toute lecture ou écriture.
+
+### Étape 4 — Lire avec la longueur réellement reçue
+
+Appeler `READ DATASET` avec une zone binaire et exploiter `ACTUAL LENGTH` pour distinguer les octets valides du dernier bloc. Arrêter la boucle uniquement sur le code retour de fin.
+
+### Étape 5 — Écrire les octets sans conversion
+
+Transmettre les blocs dans leur ordre exact. Ne pas convertir le contenu en `STRING` pour le transporter ou le journaliser.
+
+### Étape 6 — Fermer et contrôler l’intégrité
+
+Fermer le dataset, comparer la taille et, si le contrat le prévoit, une empreinte calculée par le producteur et le consommateur. Tester un fichier vide, un dernier bloc partiel et la taille maximale.
+
 ## VÉRIFICATION
 
 - Le fichier est créé ou lu dans l’emplacement attendu.

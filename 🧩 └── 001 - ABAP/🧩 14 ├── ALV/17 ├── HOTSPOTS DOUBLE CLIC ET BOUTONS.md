@@ -47,6 +47,32 @@ Une cellule peut être configurée avec un style bouton. Le traitement repose en
 | Double-clic | Action principale sur une ligne            |
 | Bouton      | Action explicite visible dans chaque ligne |
 
+## PROCESS
+
+### Étape 1 — Choisir l’interaction la moins ambiguë
+
+Utiliser un hotspot pour une navigation liée à une colonne, le double-clic pour une action sur la ligne et un bouton de cellule pour une commande explicitement visible.
+
+### Étape 2 — Configurer la colonne
+
+Activer `HOTSPOT` dans le catalogue pour un lien. Pour un bouton, fournir le style de cellule attendu dans la table de sortie et relier le champ de styles au layout.
+
+### Étape 3 — Déclarer les gestionnaires exacts
+
+Déclarer les méthodes d’événement avec les paramètres de ligne et de colonne fournis par la grille, puis les enregistrer sur l’instance `CL_GUI_ALV_GRID`.
+
+### Étape 4 — Valider la position reçue
+
+Refuser un indice initial ou hors limites. Lire la ligne correspondante dans la table affichée, puis utiliser sa clé métier plutôt que la valeur formatée de la cellule.
+
+### Étape 5 — Exécuter l’action protégée
+
+Contrôler les autorisations et l’état courant de l’objet avant de naviguer ou de modifier. Une cellule interactive ne constitue pas un contrôle d’accès.
+
+### Étape 6 — Tester chaque mode d’interaction
+
+Tester une ligne valide, une table vide, un clic sur une autre colonne et l’affichage après tri ou filtre. Vérifier l’absence de double déclenchement entre hotspot et double-clic.
+
 ## VÉRIFICATION
 
 - Le contrôle syntaxique réussit.
@@ -87,7 +113,6 @@ ENDMETHOD.
 - [Events of Class CL_GUI_ALV_GRID — SAP Help Portal](https://help.sap.com/docs/ABAP_PLATFORM_NEW/70396d7dec4c4f19b9ca3b2e47559d12/22a3f5f5d2fe11d2b467006094192fe3.html)
 - [Displaying Interactive Elements — SAP Help Portal](https://help.sap.com/docs/ABAP_PLATFORM_NEW/b1c834a22d05483b8a75710743b5ff26/4ec1afd0087c2b91e10000000a42189d.html)
 - [Handling Single and Double Clicks — SAP Help Portal](https://help.sap.com/docs/ABAP_PLATFORM_NEW/b1c834a22d05483b8a75710743b5ff26/4ebc7038f39c68bbe10000000a42189e.html)
-
 
 ---
 

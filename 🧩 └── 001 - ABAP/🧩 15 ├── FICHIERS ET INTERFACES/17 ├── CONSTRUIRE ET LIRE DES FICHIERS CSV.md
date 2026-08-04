@@ -1,4 +1,5 @@
 # CONSTR" Définir le contrat et limiter l’API publique au besoin réel.
+
 UIRE ET LIRE DES FICHIERS CSV
 
 ## RÉSULTAT ATTENDU
@@ -58,6 +59,36 @@ Une valeur `Produit; spécial` devient `"Produit; spécial"`. Une citation inter
 
 Écrire les nombres avec un séparateur décimal invariant et les dates dans un format non ambigu, par exemple `YYYY-MM-DD`. Ne pas utiliser directement la présentation locale de l’utilisateur.
 
+## PROCESS
+
+### Étape 1 — Fixer le dialecte CSV
+
+Documenter le séparateur, le caractère d’encadrement, la règle d’échappement, l’encodage, la présence d’un en-tête et la convention de fin de ligne.
+
+### Étape 2 — Sérialiser chaque champ
+
+Convertir la valeur métier dans son format d’échange. Encadrer un champ lorsque son contenu contient le séparateur, un guillemet ou une fin de ligne, puis doubler les guillemets selon le dialecte retenu.
+
+### Étape 3 — Construire la ligne complète
+
+Assembler les champs déjà échappés avec le séparateur. Ne pas concaténer des valeurs brutes directement dans la ligne finale.
+
+### Étape 4 — Écrire avec l’encodage convenu
+
+Ouvrir le dataset en mode texte avec l’encodage contractuel, transférer l’en-tête puis les lignes, traiter les erreurs et fermer le fichier.
+
+### Étape 5 — Analyser avec un parseur adapté
+
+En lecture, ne pas utiliser un simple `SPLIT` si les champs peuvent contenir le séparateur ou des retours à la ligne. Utiliser une API disponible sur le système ou implémenter un analyseur à états conforme au dialecte.
+
+### Étape 6 — Valider la structure importée
+
+Contrôler le nombre de colonnes, les noms d’en-tête, les conversions de types et le volume avant d’appeler la logique métier.
+
+### Étape 7 — Exécuter les cas de test discriminants
+
+Tester un champ vide, un séparateur dans une valeur, un guillemet, une fin de ligne intégrée, des caractères non ASCII et une ligne mal formée.
+
 ## VÉRIFICATION
 
 - Le fichier est créé ou lu dans l’emplacement attendu.
@@ -114,7 +145,6 @@ ENDCLASS.
 - [ABAP File Interface — SAP Help Portal](https://help.sap.com/docs/ABAP_PLATFORM_NEW/7bfe8cdcfbb040dcb6702dada8c3e2f0/fa2fd3be291f469f862c4c8215e0549b.html)
 - [Character Set and File Interface Guidelines — ABAP Keyword Documentation](https://help.sap.com/doc/abapdocu_latest_index_htm/latest/en-US/ABENCODEPAGE_FILE_GUIDL.html)
 - [TRANSFER — ABAP Keyword Documentation](https://help.sap.com/doc/abapdocu_latest_index_htm/latest/en-US/ABAPTRANSFER.html)
-
 
 ---
 
