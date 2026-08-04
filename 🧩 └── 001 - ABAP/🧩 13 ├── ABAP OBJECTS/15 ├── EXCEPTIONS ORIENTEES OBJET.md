@@ -2,8 +2,8 @@
 
 ## 15.A RÉSULTAT ATTENDU
 
-- Déclarer et lever une exception depuis une méthode.
-- Créer une classe d’exception globale.
+- Déclarer et lever une exception[^terme-exception] depuis une méthode[^terme-methode].
+- Créer une classe[^terme-classe] d’exception globale.
 - Propager une cause précédente.
 - Fournir un contrat d’erreur exploitable.
 
@@ -19,7 +19,7 @@ Utiliser `CX_STATIC_CHECK` si l’appelant doit traiter l’erreur, `CX_DYNAMIC_
 
 ### 15.C.2 Étape 2 — Créer la classe ZCX
 
-Dans `SE24`, créer la classe avec la superclasse choisie. Ajouter les attributs nécessaires au contexte sans stocker de donnée sensible inutile.
+Dans `SE24`[^terme-class-builder-se24], créer la classe avec la superclasse choisie. Ajouter les attributs nécessaires au contexte sans stocker de donnée sensible inutile.
 
 ### 15.C.3 Étape 3 — Définir les textes
 
@@ -31,7 +31,7 @@ Ajouter la classe dans `RAISING` lorsque requis. Lever au point où la cause est
 
 ### 15.C.5 Étape 5 — Intercepter à la frontière
 
-Capturer dans le report, job, service ou contrôleur capable de décider message, journal ou reprise. Tester texte, attributs et cause précédente pour chaque branche.
+Capturer dans le report, job[^terme-job], service ou contrôleur capable de décider message, journal ou reprise. Tester texte, attributs et cause précédente pour chaque branche.
 
 ## 15.D CODE À ADAPTER
 
@@ -91,9 +91,9 @@ Lorsqu’une exception technique est convertie en exception métier, conserver l
 
 ## 15.H COMPATIBILITÉ S/4HANA
 
-- Statut : compatible avec le développement ABAP classique sur SAP S/4HANA.
-- Vérifier la syntaxe exacte avec l’aide `F1` du système cible lorsque plusieurs versions d’ABAP Platform sont prises en charge.
-- Les objets globaux doivent être créés dans le package et l’ordre de transport du projet.
+- Statut : compatible avec le développement ABAP[^terme-abap] classique sur SAP[^terme-acro-sap] S/4HANA.
+- Vérifier la syntaxe exacte avec l’aide `F1`[^terme-aide-f1] du système cible lorsque plusieurs versions d’ABAP Platform sont prises en charge.
+- Les objets globaux doivent être créés dans le package[^terme-package] et l’ordre de transport[^terme-ordre-transport] du projet.
 
 ## 15.I RÉFÉRENCES OFFICIELLES SAP
 
@@ -103,3 +103,14 @@ Lorsqu’une exception technique est convertie en exception métier, conserver l
 ---
 
 [Chapitre suivant — ÉVÉNEMENTS ET GESTIONNAIRES](<./16 ├── EVENEMENTS ET GESTIONNAIRES.md>)
+
+[^terme-exception]: **EXCEPTION.** Objet ou signal représentant une situation anormale qu’un appelant peut traiter. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#exception>).
+[^terme-methode]: **MÉTHODE.** Comportement déclaré dans une classe ou une interface et appelé avec une liste de paramètres définie. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#methode>).
+[^terme-classe]: **CLASSE.** Modèle orienté objet définissant état et comportements. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#classe>).
+[^terme-class-builder-se24]: **CLASS BUILDER (SE24).** Outil SAP GUI utilisé pour créer, afficher, modifier, tester et documenter les classes et interfaces globales ABAP. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/06 ├── PROGRAMMES CLASSES ET OBJETS TECHNIQUES.md#class-builder-se24>).
+[^terme-job]: **JOB.** Traitement planifié en arrière-plan composé d’une ou plusieurs étapes. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/06 ├── PROGRAMMES CLASSES ET OBJETS TECHNIQUES.md#job>).
+[^terme-abap]: **ABAP.** Langage de programmation de la plateforme ABAP, conçu pour développer des applications métier et techniques SAP. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#abap>).
+[^terme-acro-sap]: **SAP.** Nom de l’éditeur et de son écosystème logiciel ; l’acronyme historique provient de l’allemand. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/10 └── ACRONYMES SAP.md#acro-sap>).
+[^terme-aide-f1]: **AIDE F1.** Aide contextuelle expliquant un champ, une fonction ou un mot-clé. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/02 ├── SAP GUI NAVIGATION ET TRANSACTIONS.md#aide-f1>).
+[^terme-package]: **PACKAGE.** Conteneur logique qui regroupe les objets de développement et détermine notamment leur transportabilité. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/03 ├── REPOSITORY PACKAGES ET TRANSPORTS.md#package>).
+[^terme-ordre-transport]: **ORDRE DE TRANSPORT.** Conteneur qui regroupe des modifications à exporter puis importer dans d’autres systèmes. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/03 ├── REPOSITORY PACKAGES ET TRANSPORTS.md#ordre-transport>).

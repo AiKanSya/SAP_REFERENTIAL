@@ -2,7 +2,7 @@
 
 ## 8.A RÉSULTAT ATTENDU
 
-- Déclarer une classe gestionnaire
+- Déclarer une classe[^terme-classe] gestionnaire
 - Réagir au double-clic et aux liens
 - Retrouver la ligne sélectionnée de manière sûre
 
@@ -44,7 +44,7 @@ Une colonne configurée comme hotspot ou lien déclenche l’événement `LINK_C
 - Vérifier que l’index reçu existe encore dans la table affichée.
 - Ne pas exécuter une mise à jour métier sur un simple double-clic sans confirmation.
 - Contrôler les autorisations avant d’ouvrir une transaction ou un objet.
-- Éviter les sélections SQL répétées pour chaque clic lorsque les données peuvent être préparées en amont.
+- Éviter les sélections SQL[^terme-acro-sql] répétées pour chaque clic lorsque les données peuvent être préparées en amont.
 
 ## 8.F FLUX
 
@@ -64,7 +64,7 @@ Associer l’interaction au besoin réel : lien ou hotspot, double-clic, command
 
 ### 8.G.2 Étape 2 — Déclarer une méthode avec la signature exacte
 
-Dans la classe gestionnaire, déclarer la méthode `FOR EVENT ... OF ...` avec les paramètres fournis par l’événement SALV. Ne pas ajouter de paramètre applicatif à la signature de l’événement.
+Dans la classe gestionnaire, déclarer la méthode[^terme-methode] `FOR EVENT ... OF ...` avec les paramètres fournis par l’événement SALV[^terme-acro-salv]. Ne pas ajouter de paramètre applicatif à la signature de l’événement.
 
 ### 8.G.3 Étape 3 — Instancier et enregistrer le gestionnaire
 
@@ -93,13 +93,13 @@ Tester l’événement sur plusieurs lignes, après un tri, après un filtre et 
 
 - Copier un exemple sans adapter les types, noms d’objets et données disponibles dans le système.
 - Tester uniquement le cas nominal et ignorer les valeurs initiales, absentes ou invalides.
-- Afficher un volume non borné dans l’ALV.
+- Afficher un volume non borné dans l’ALV[^terme-alv].
 - Rendre une cellule éditable sans validation ni sauvegarde transactionnelle.
 
 ## 8.J SNIPPET À RÉUTILISER
 
 > [!NOTE]
-> Adapter les noms `Z*`, les types DDIC, les données et les autorisations au système cible. Effectuer un contrôle syntaxique avant activation.
+> Adapter les noms `Z*`, les types DDIC[^terme-acro-ddic], les données et les autorisations au système cible. Effectuer un contrôle syntaxique avant activation.
 
 ```abap
 CLASS lcl_events DEFINITION FINAL.
@@ -133,3 +133,10 @@ ENDCLASS.
 ---
 
 [Chapitre suivant — SALV EN PLEIN ÉCRAN, CONTENEUR ET FENÊTRE](<./09 ├── SALV EN PLEIN ECRAN CONTENEUR ET FENETRE.md>)
+
+[^terme-classe]: **CLASSE.** Modèle orienté objet définissant état et comportements. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#classe>).
+[^terme-acro-sql]: **SQL.** Structured Query Language. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/10 └── ACRONYMES SAP.md#acro-sql>).
+[^terme-methode]: **MÉTHODE.** Comportement déclaré dans une classe ou une interface et appelé avec une liste de paramètres définie. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#methode>).
+[^terme-acro-salv]: **SALV.** Simple ALV / famille de classes `CL_SALV_*`. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/10 └── ACRONYMES SAP.md#acro-salv>).
+[^terme-alv]: **ALV.** ABAP List Viewer, ensemble de technologies d’affichage tabulaire avec tri, filtre, total et variantes. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/06 ├── PROGRAMMES CLASSES ET OBJETS TECHNIQUES.md#alv>).
+[^terme-acro-ddic]: **DDIC.** Data Dictionary, abréviation courante de l’ABAP Dictionary. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/10 └── ACRONYMES SAP.md#acro-ddic>).

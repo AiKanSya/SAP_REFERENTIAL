@@ -2,11 +2,11 @@
 
 ## 8.A RÉSULTAT ATTENDU
 
-- Concevoir une clé primaire cohérente
-- Distinguer clé primaire et index secondaire
-- Comprendre la dépendance au mandant
+- Concevoir une clé primaire[^terme-cle-primaire] cohérente
+- Distinguer clé primaire et index secondaire[^terme-index-secondaire]
+- Comprendre la dépendance au mandant[^terme-mandant]
 - Identifier le coût des index
-- Préparer les futurs accès Open SQL
+- Préparer les futurs accès Open SQL[^terme-acro-sql]
 
 ## 8.B CLÉ PRIMAIRE
 
@@ -23,7 +23,7 @@ Une bonne clé est :
 
 ## 8.C DÉPENDANCE AU MANDANT
 
-Une table classique est dépendante du mandant lorsque son premier champ de clé est de type client, généralement `MANDT`.
+Une table classique est dépendante du mandant lorsque son premier champ de clé est de type client, généralement `MANDT`[^terme-mandt].
 
 ```mermaid
 flowchart TD
@@ -73,11 +73,11 @@ Depuis la table :
 
 ### 8.G.1 Étape 1 — Prouver le besoin d’un index
 
-Relever la requête lente avec `ST05` ou un outil SQL adapté. Identifier les colonnes réellement utilisées dans les prédicats et l’ordre de sélectivité. Ne créer aucun index uniquement parce qu’un champ apparaît souvent dans le code.
+Relever la requête lente avec `ST05`[^outil-st05] ou un outil SQL adapté. Identifier les colonnes réellement utilisées dans les prédicats et l’ordre de sélectivité. Ne créer aucun index uniquement parce qu’un champ apparaît souvent dans le code.
 
 ### 8.G.2 Étape 2 — Vérifier les index existants
 
-Ouvrir la table dans `SE11`, afficher ses index secondaires et comparer leurs champs avec le prédicat mesuré. Contrôler aussi la clé primaire ; un nouvel index redondant augmente le coût des écritures sans améliorer la lecture.
+Ouvrir la table dans `SE11`[^outil-se11], afficher ses index secondaires et comparer leurs champs avec le prédicat mesuré. Contrôler aussi la clé primaire ; un nouvel index redondant augmente le coût des écritures sans améliorer la lecture.
 
 ### 8.G.3 Étape 3 — Créer l’index client
 
@@ -88,7 +88,7 @@ Ouvrir la table dans `SE11`, afficher ses index secondaires et comparer leurs ch
 
 ### 8.G.4 Étape 4 — Activer et contrôler la création
 
-Activer l’index et lire le journal. Vérifier avec les outils de base de données qu’il existe physiquement. En cas de doublons sur un index unique, corriger les données et la règle métier avant une nouvelle activation.
+Activer l’index et lire le journal. Vérifier avec les outils de base de données qu’il existe physiquement. En cas de doublons sur un index unique, corriger les données et la règle métier[^terme-regle-metier] avant une nouvelle activation.
 
 ### 8.G.5 Étape 5 — Mesurer après création
 
@@ -106,7 +106,7 @@ Rejouer exactement la même requête et le même jeu de données dans `ST05`. V�
 
 ### 8.I.1 Étape 1 — Contrôler la clé primaire
 
-Vérifier l’ordre des champs clés, leur stabilité et leur capacité à identifier une ligne. Pour une table dépendante du mandant, confirmer que `MANDT` participe à la clé et que les accès ABAP SQL suivent les règles de gestion du client.
+Vérifier l’ordre des champs clés, leur stabilité et leur capacité à identifier une ligne. Pour une table dépendante du mandant, confirmer que `MANDT` participe à la clé et que les accès ABAP[^terme-abap] SQL suivent les règles de gestion du client.
 
 ### 8.I.2 Étape 2 — Contrôler l’utilisation réelle de l’index
 
@@ -119,7 +119,7 @@ Mesurer aussi une insertion ou mise à jour représentative. Le chapitre est val
 ## 8.J VÉRIFICATION
 
 - Le contrôle de cohérence ne retourne aucune erreur bloquante.
-- L’objet est actif et son entrée de répertoire pointe vers le package attendu.
+- L’objet est actif et son entrée de répertoire pointe vers le package[^terme-package] attendu.
 - La liste d’utilisation et les dépendances correspondent au périmètre prévu.
 - Pour une table Z, la structure active et la structure de base sont cohérentes.
 
@@ -160,3 +160,15 @@ Ordre de transport  :
 ---
 
 [Chapitre suivant — PARAMÈTRES TECHNIQUES ET BUFFERISATION](<./09 ├── PARAMETRES TECHNIQUES ET BUFFERISATION.md>)
+
+[^terme-cle-primaire]: **CLÉ PRIMAIRE.** Ensemble minimal de champs identifiant de manière unique une ligne de table. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/05 ├── DONNEES DICTIONNAIRE ET BASE DE DONNEES.md#cle-primaire>).
+[^terme-index-secondaire]: **INDEX SECONDAIRE.** Structure de base de données supplémentaire accélérant certains accès au prix d’un coût de stockage et de maintenance. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/05 ├── DONNEES DICTIONNAIRE ET BASE DE DONNEES.md#index-secondaire>).
+[^terme-mandant]: **MANDANT.** Subdivision logique d’un système SAP. Il est identifié par un numéro à trois chiffres et isole une partie des données, du paramétrage et des utilisateurs. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/01 ├── SYSTEMES ENVIRONNEMENTS ET MANDANTS.md#mandant>).
+[^terme-acro-sql]: **SQL.** Structured Query Language. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/10 └── ACRONYMES SAP.md#acro-sql>).
+[^terme-mandt]: **MANDT.** Champ technique de type mandant, généralement placé en première position de clé dans les tables dépendantes du mandant. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/05 ├── DONNEES DICTIONNAIRE ET BASE DE DONNEES.md#mandt>).
+[^terme-regle-metier]: **RÈGLE MÉTIER.** Condition ou calcul imposé par le processus fonctionnel. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/09 ├── NOTIONS FONCTIONNELLES ET ORGANISATIONNELLES.md#regle-metier>).
+[^terme-abap]: **ABAP.** Langage de programmation de la plateforme ABAP, conçu pour développer des applications métier et techniques SAP. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#abap>).
+[^terme-package]: **PACKAGE.** Conteneur logique qui regroupe les objets de développement et détermine notamment leur transportabilité. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/03 ├── REPOSITORY PACKAGES ET TRANSPORTS.md#package>).
+
+[^outil-st05]: **ST05.** Performance Trace utilisée notamment pour enregistrer et analyser les accès SQL. Voir [le chapitre associé](<../🧩 20 ├── PERFORMANCE QUALITE ET TESTS/08 ├── ANALYSER LES ACCES SQL AVEC ST05.md>).
+[^outil-se11]: **SE11.** Transaction de l’ABAP Dictionary utilisée pour analyser et maintenir les objets DDIC. Voir [le chapitre associé](<02 ├── NAVIGATION ET ANALYSE AVEC SE11.md>).

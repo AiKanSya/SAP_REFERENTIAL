@@ -159,7 +159,7 @@ ENDIF.
 ## 6.M SNIPPET À RÉUTILISER
 
 > [!NOTE]
-> Adapter les noms `Z*`, les types DDIC, les données et les autorisations au système cible. Effectuer un contrôle syntaxique avant activation.
+> Adapter les noms `Z*`, les types DDIC[^terme-acro-ddic], les données et les autorisations au système cible. Effectuer un contrôle syntaxique avant activation.
 
 ```abap
 " Accéder à la ligne par une clé adaptée au besoin.
@@ -190,3 +190,5 @@ ENDIF.
 ---
 
 [Chapitre suivant — EXPRESSIONS DE TABLE ET TEST D’EXISTENCE](<./07 ├── EXPRESSIONS DE TABLE ET TEST D EXISTENCE.md>)
+
+[^terme-acro-ddic]: **DDIC.** Data Dictionary, abréviation courante de l’ABAP Dictionary. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/10 └── ACRONYMES SAP.md#acro-ddic>).

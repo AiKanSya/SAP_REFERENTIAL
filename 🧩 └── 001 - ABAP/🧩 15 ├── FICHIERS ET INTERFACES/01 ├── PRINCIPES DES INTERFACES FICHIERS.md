@@ -5,7 +5,7 @@
 - Identifier le rôle d’une interface fichier
 - Distinguer transport, format et traitement métier
 - Structurer un échange robuste et exploitable
-- Délimiter le périmètre par rapport aux RFC et BAPI
+- Délimiter le périmètre par rapport aux RFC[^terme-rfc] et BAPI[^terme-bapi]
 
 ## 1.B DÉFINITION
 
@@ -25,7 +25,7 @@ Une interface ne se limite pas à lire ou écrire des octets. Elle doit définir
 - le propriétaire du fichier ;
 - l’emplacement de dépôt ;
 - le nommage ;
-- le format et l’encodage ;
+- le format et l’encodage[^terme-encodage] ;
 - la fréquence ;
 - les contrôles ;
 - la gestion des doublons ;
@@ -37,15 +37,15 @@ Une interface ne se limite pas à lire ou écrire des octets. Elle doit définir
 | Couche               | Responsabilité                                 |
 | -------------------- | ---------------------------------------------- |
 | Transport            | Dépôt, accès, déplacement ou téléchargement    |
-| Sérialisation        | CSV, largeur fixe, XML, JSON ou binaire        |
+| Sérialisation        | CSV[^terme-csv], largeur fixe, XML[^terme-xml], JSON[^terme-json] ou binaire        |
 | Validation technique | Structure, types, nombre de colonnes, encodage |
-| Validation métier    | Existence et cohérence des données SAP         |
-| Traitement           | Création ou modification via API métier        |
+| Validation métier    | Existence et cohérence des données SAP[^terme-acro-sap]         |
+| Traitement           | Création ou modification via API[^terme-api] métier        |
 | Traçabilité          | Logs, statuts, compteurs et erreurs            |
 
 ## 1.D PÉRIMÈTRE
 
-Ce dossier traite les fichiers du serveur d’application et du poste utilisateur dans SAP GUI. Les RFC, BAPI et appels distants sont traités dans le dossier précédent. Les IDoc, services web et technologies d’intégration pourront faire l’objet de dossiers dédiés.
+Ce dossier traite les fichiers du serveur d’application[^terme-fichier-serveur-application] et du poste utilisateur dans SAP GUI[^terme-sap-gui]. Les RFC, BAPI et appels distants sont traités dans le dossier précédent. Les IDoc[^terme-idoc], services web et technologies d’intégration pourront faire l’objet de dossiers dédiés.
 
 ## 1.E RÈGLE DIRECTRICE
 
@@ -88,7 +88,7 @@ Tester fichier valide, vide, tronqué, encodage invalide, doublon et reprise. L�
 
 ## 1.H ERREURS FRÉQUENTES
 
-- Mélanger fichiers frontend et serveur dans un même scénario.
+- Mélanger fichiers frontend[^terme-frontend] et serveur dans un même scénario.
 - Parser un CSV par simple séparation alors que les champs peuvent être échappés.
 
 ## 1.I TERMES DU LEXIQUE
@@ -108,3 +108,16 @@ Tester fichier valide, vide, tronqué, encodage invalide, doublon et reprise. L�
 ---
 
 [Chapitre suivant — SERVEUR D’APPLICATION OU POSTE UTILISATEUR](<./02 ├── SERVEUR D APPLICATION OU POSTE UTILISATEUR.md>)
+
+[^terme-rfc]: **RFC.** Remote Function Call, mécanisme permettant d’appeler un module fonction compatible dans un autre contexte ou système. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/06 ├── PROGRAMMES CLASSES ET OBJETS TECHNIQUES.md#rfc>).
+[^terme-bapi]: **BAPI.** Interface métier publiée autour d’un Business Object SAP, généralement implémentée par un module fonction RFC. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/06 ├── PROGRAMMES CLASSES ET OBJETS TECHNIQUES.md#bapi>).
+[^terme-encodage]: **ENCODAGE.** Règle transformant les caractères en octets et inversement. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/07 ├── INTERFACES ET INTEGRATION.md#encodage>).
+[^terme-csv]: **CSV.** Format texte tabulaire utilisant un séparateur de champs et des règles d’échappement. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/07 ├── INTERFACES ET INTEGRATION.md#csv>).
+[^terme-xml]: **XML.** Format texte hiérarchique basé sur des balises. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/07 ├── INTERFACES ET INTEGRATION.md#xml>).
+[^terme-json]: **JSON.** Format texte structuré utilisant objets, tableaux, chaînes, nombres, booléens et valeur null. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/07 ├── INTERFACES ET INTEGRATION.md#json>).
+[^terme-acro-sap]: **SAP.** Nom de l’éditeur et de son écosystème logiciel ; l’acronyme historique provient de l’allemand. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/10 └── ACRONYMES SAP.md#acro-sap>).
+[^terme-api]: **API.** Application Programming Interface, contrat exposant des opérations ou données utilisables par d’autres composants. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/10 └── ACRONYMES SAP.md#api>).
+[^terme-fichier-serveur-application]: **SERVEUR D’APPLICATION.** Emplacement du backend où un programme ABAP peut lire ou écrire avec `OPEN DATASET`. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/07 ├── INTERFACES ET INTEGRATION.md#fichier-serveur-application>).
+[^terme-sap-gui]: **SAP GUI.** Client graphique permettant d’utiliser les transactions et écrans d’un système SAP. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/02 ├── SAP GUI NAVIGATION ET TRANSACTIONS.md#sap-gui>).
+[^terme-idoc]: **IDOC.** Document intermédiaire SAP structuré en segments pour l’échange de messages métier. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/07 ├── INTERFACES ET INTEGRATION.md#idoc>).
+[^terme-frontend]: **FRONTEND.** Poste ou couche cliente utilisée par l’utilisateur, par exemple SAP GUI for Windows. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/01 ├── SYSTEMES ENVIRONNEMENTS ET MANDANTS.md#frontend>).

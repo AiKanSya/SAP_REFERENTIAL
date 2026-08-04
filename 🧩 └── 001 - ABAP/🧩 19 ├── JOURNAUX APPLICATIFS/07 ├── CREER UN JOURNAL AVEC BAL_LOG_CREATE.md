@@ -59,7 +59,7 @@ Ne pas ignorer `sy-subrc`. Sans handle valide, les appels suivants ne produisent
 
 ### 7.E.1 ÉTAPE 1 — PRÉPARER LA CONFIGURATION
 
-Vérifier l’objet et le sous-objet dans `SLG0`. Définir l’identifiant externe et la politique de rétention. Exécuter le test avec un objet Z transporté dans le système courant.
+Vérifier l’objet et le sous-objet dans `SLG0`[^outil-slg0]. Définir l’identifiant externe et la politique de rétention. Exécuter le test avec un objet Z transporté dans le système courant.
 
 ### 7.E.2 ÉTAPE 2 — INITIALISER `BAL_S_LOG`
 
@@ -71,7 +71,7 @@ Passer l’en-tête dans `I_S_LOG` et récupérer `E_LOG_HANDLE`. Traiter `LOG_H
 
 ### 7.E.4 ÉTAPE 4 — CONSERVER LE HANDLE DANS LE BON COMPOSANT
 
-Stocker le handle dans l’objet responsable de l’exécution et le transmettre explicitement à chaque ajout, affichage et sauvegarde. Ne pas dépendre du journal par défaut de la mémoire globale BAL.
+Stocker le handle dans l’objet responsable de l’exécution et le transmettre explicitement à chaque ajout, affichage et sauvegarde. Ne pas dépendre du journal par défaut de la mémoire globale BAL[^terme-acro-bal].
 
 ### 7.E.5 ÉTAPE 5 — TESTER LE PREMIER MESSAGE
 
@@ -79,7 +79,7 @@ Ajouter un message d’information au handle et contrôler le retour. En cas de 
 
 ### 7.E.6 ÉTAPE 6 — SAUVEGARDER ET RECHERCHER
 
-Sauvegarder uniquement ce handle, puis rechercher dans `SLG1` par objet et identifiant externe. Tester aussi un objet inexistant, un sous-objet invalide et un handle initial pour confirmer la gestion des erreurs.
+Sauvegarder uniquement ce handle, puis rechercher dans `SLG1`[^outil-slg1] par objet et identifiant externe. Tester aussi un objet inexistant, un sous-objet invalide et un handle initial pour confirmer la gestion des erreurs.
 
 ## 7.F VÉRIFICATION
 
@@ -98,7 +98,7 @@ Sauvegarder uniquement ce handle, puis rechercher dans `SLG1` par objet et ident
 ## 7.H SNIPPET À RÉUTILISER
 
 > [!NOTE]
-> Adapter les noms `Z*`, les types DDIC, les données et les autorisations au système cible. Effectuer un contrôle syntaxique avant activation.
+> Adapter les noms `Z*`, les types DDIC[^terme-acro-ddic], les données et les autorisations au système cible. Effectuer un contrôle syntaxique avant activation.
 
 ```abap
 DATA:
@@ -139,3 +139,9 @@ ENDIF.
 ---
 
 [Chapitre suivant — AJOUTER DES MESSAGES T100](<./08 ├── AJOUTER DES MESSAGES T100.md>)
+
+[^terme-acro-bal]: **BAL.** Business Application Log, API technique du journal applicatif. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/10 └── ACRONYMES SAP.md#acro-bal>).
+[^terme-acro-ddic]: **DDIC.** Data Dictionary, abréviation courante de l’ABAP Dictionary. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/10 └── ACRONYMES SAP.md#acro-ddic>).
+
+[^outil-slg0]: **SLG0.** Transaction de définition des objets et sous-objets de journal applicatif. Voir [le chapitre associé](<04 ├── CREER UN OBJET AVEC SLG0.md>).
+[^outil-slg1]: **SLG1.** Transaction de recherche et d’affichage des journaux applicatifs persistés. Voir [le chapitre associé](<05 ├── ANALYSER LES JOURNAUX AVEC SLG1.md>).

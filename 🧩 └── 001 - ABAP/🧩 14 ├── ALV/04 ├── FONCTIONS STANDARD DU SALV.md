@@ -26,7 +26,7 @@ Lorsqu’un besoin impose une interface réduite, activer seulement les fonction
 Le mécanisme diffère selon le contexte :
 
 - en conteneur, une fonction peut être ajoutée à l’objet de fonctions ;
-- en plein écran, les fonctions personnalisées reposent généralement sur un statut GUI et `SET_SCREEN_STATUS`.
+- en plein écran, les fonctions personnalisées reposent généralement sur un statut GUI[^terme-acro-gui] et `SET_SCREEN_STATUS`.
 
 Une fonction personnalisée doit être associée à un gestionnaire de l’événement `ADDED_FUNCTION`.
 
@@ -50,7 +50,7 @@ Ne pas ajouter un bouton sans définir précisément :
 
 ### 4.F.1 Étape 1 — Récupérer l’objet des fonctions
 
-Après `FACTORY`, appeler `GET_FUNCTIONS` sur l’instance SALV. Ne recréer ni la table ni l’instance pour activer les commandes.
+Après `FACTORY`, appeler `GET_FUNCTIONS` sur l’instance SALV[^terme-acro-salv]. Ne recréer ni la table ni l’instance pour activer les commandes.
 
 ### 4.F.2 Étape 2 — Activer uniquement les fonctions requises
 
@@ -62,7 +62,7 @@ Définir un code de fonction non ambigu, un texte et une info-bulle. Vérifier q
 
 ### 4.F.4 Étape 4 — Enregistrer le gestionnaire d’événement
 
-Récupérer l’objet d’événements, instancier la classe réceptrice puis exécuter `SET HANDLER`. La référence du gestionnaire doit rester vivante jusqu’à la fermeture de l’ALV.
+Récupérer l’objet d’événements, instancier la classe[^terme-classe] réceptrice puis exécuter `SET HANDLER`. La référence du gestionnaire doit rester vivante jusqu’à la fermeture de l’ALV[^terme-alv].
 
 ### 4.F.5 Étape 5 — Tester les commandes visibles et refusées
 
@@ -85,7 +85,7 @@ Vérifier chaque fonction standard activée, la commande personnalisée et le co
 ## 4.I SNIPPET À RÉUTILISER
 
 > [!NOTE]
-> Adapter les noms `Z*`, les types DDIC, les données et les autorisations au système cible. Effectuer un contrôle syntaxique avant activation.
+> Adapter les noms `Z*`, les types DDIC[^terme-acro-ddic], les données et les autorisations au système cible. Effectuer un contrôle syntaxique avant activation.
 
 ```abap
 DATA lo_functions TYPE REF TO cl_salv_functions_list.
@@ -108,3 +108,9 @@ lo_functions->set_all( abap_true ).
 ---
 
 [Chapitre suivant — COLONNES ET ENTÊTES DU SALV](<./05 ├── COLONNES ET ENTETES DU SALV.md>)
+
+[^terme-acro-gui]: **GUI.** Graphical User Interface. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/10 └── ACRONYMES SAP.md#acro-gui>).
+[^terme-acro-salv]: **SALV.** Simple ALV / famille de classes `CL_SALV_*`. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/10 └── ACRONYMES SAP.md#acro-salv>).
+[^terme-classe]: **CLASSE.** Modèle orienté objet définissant état et comportements. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#classe>).
+[^terme-alv]: **ALV.** ABAP List Viewer, ensemble de technologies d’affichage tabulaire avec tri, filtre, total et variantes. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/06 ├── PROGRAMMES CLASSES ET OBJETS TECHNIQUES.md#alv>).
+[^terme-acro-ddic]: **DDIC.** Data Dictionary, abréviation courante de l’ABAP Dictionary. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/10 └── ACRONYMES SAP.md#acro-ddic>).

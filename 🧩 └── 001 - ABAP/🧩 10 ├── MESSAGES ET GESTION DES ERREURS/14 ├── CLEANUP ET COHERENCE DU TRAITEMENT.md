@@ -10,7 +10,7 @@
 
 ## 14.B PRINCIPE
 
-Un bloc `CLEANUP` appartient à une structure `TRY`. Il est utilisé lorsqu’une exception quitte la structure sans être gérée par un `CATCH` de cette structure et qu’un nettoyage doit être effectué avant la propagation.
+Un bloc `CLEANUP` appartient à une structure `TRY`. Il est utilisé lorsqu’une exception[^terme-exception] quitte la structure sans être gérée par un `CATCH` de cette structure et qu’un nettoyage doit être effectué avant la propagation.
 
 ```abap
 " Propager ou traiter l’erreur au niveau qui sait prendre une décision.
@@ -22,7 +22,7 @@ TRY.
 ENDTRY.
 ```
 
-Le comportement exact doit être vérifié selon la forme utilisée et la version ABAP. `CLEANUP` n’est pas l’équivalent général d’un bloc `FINALLY` exécuté dans tous les cas.
+Le comportement exact doit être vérifié selon la forme utilisée et la version ABAP[^terme-abap]. `CLEANUP` n’est pas l’équivalent général d’un bloc `FINALLY` exécuté dans tous les cas.
 
 ## 14.C RÉSULTAT ATTENDU DU NETTOYAGE
 
@@ -49,18 +49,18 @@ Si l’opération de nettoyage peut elle-même échouer, définir une stratégie
 
 - conserver l’exception initiale ;
 - chaîner la nouvelle erreur ;
-- produire une trace technique ;
+- produire une trace[^terme-trace] technique ;
 - éviter une seconde erreur qui masque la première.
 
 ## 14.E CLEANUP ET TRANSACTION
 
-`CLEANUP` ne constitue pas automatiquement une annulation de SAP LUW. Il ne remplace pas une conception transactionnelle correcte.
+`CLEANUP` ne constitue pas automatiquement une annulation de SAP LUW[^terme-sap-luw]. Il ne remplace pas une conception transactionnelle correcte.
 
-Ne pas placer mécaniquement `ROLLBACK WORK` dans chaque nettoyage. La décision de valider ou annuler une transaction appartient à une frontière métier clairement définie.
+Ne pas placer mécaniquement `ROLLBACK WORK`[^terme-rollback-work] dans chaque nettoyage. La décision de valider ou annuler une transaction appartient à une frontière métier clairement définie.
 
 ## 14.F ALTERNATIVE PAR CONCEPTION
 
-Une ressource peut parfois être gérée par une classe encapsulant son cycle de vie, ce qui réduit le besoin de nettoyage dispersé.
+Une ressource peut parfois être gérée par une classe[^terme-classe] encapsulant son cycle de vie, ce qui réduit le besoin de nettoyage dispersé.
 
 ```abap
 " Propager ou traiter l’erreur au niveau qui sait prendre une décision.
@@ -99,7 +99,7 @@ Cette forme explicite peut être plus lisible lorsqu’une exception est traité
 ## 14.J SNIPPET À RÉUTILISER
 
 > [!NOTE]
-> Adapter les noms `Z*`, les types DDIC, les données et les autorisations au système cible. Effectuer un contrôle syntaxique avant activation.
+> Adapter les noms `Z*`, les types DDIC[^terme-acro-ddic], les données et les autorisations au système cible. Effectuer un contrôle syntaxique avant activation.
 
 ```abap
 " Propager ou traiter l’erreur au niveau qui sait prendre une décision.
@@ -126,3 +126,11 @@ ENDTRY.
 ---
 
 [Chapitre suivant — ASSERTIONS ET POINTS DE CONTRÔLE](<./15 ├── ASSERTIONS ET POINTS DE CONTROLE.md>)
+
+[^terme-exception]: **EXCEPTION.** Objet ou signal représentant une situation anormale qu’un appelant peut traiter. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#exception>).
+[^terme-abap]: **ABAP.** Langage de programmation de la plateforme ABAP, conçu pour développer des applications métier et techniques SAP. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#abap>).
+[^terme-trace]: **TRACE.** Enregistrement détaillé d’événements techniques pour analyser exécution, SQL ou appels. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/08 ├── EXECUTION EXPLOITATION ET ADMINISTRATION.md#trace>).
+[^terme-sap-luw]: **SAP LUW.** Unité logique métier SAP pouvant regrouper plusieurs étapes de dialogue et différer les mises à jour jusqu’au commit. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/08 ├── EXECUTION EXPLOITATION ET ADMINISTRATION.md#sap-luw>).
+[^terme-rollback-work]: **ROLLBACK WORK.** Instruction annulant les modifications non validées de la LUW courante et les tâches de mise à jour enregistrées. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/08 ├── EXECUTION EXPLOITATION ET ADMINISTRATION.md#rollback-work>).
+[^terme-classe]: **CLASSE.** Modèle orienté objet définissant état et comportements. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#classe>).
+[^terme-acro-ddic]: **DDIC.** Data Dictionary, abréviation courante de l’ABAP Dictionary. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/10 └── ACRONYMES SAP.md#acro-ddic>).

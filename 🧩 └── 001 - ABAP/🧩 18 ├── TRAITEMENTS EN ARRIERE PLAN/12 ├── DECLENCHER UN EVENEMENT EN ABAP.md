@@ -8,12 +8,12 @@
 
 ## 12.B API DISPONIBLES
 
-SAP documente deux mécanismes principaux selon la version du système :
+SAP[^terme-acro-sap] documente deux mécanismes principaux selon la version du système :
 
-- la méthode `RAISE` de la classe `CL_BATCH_EVENT` ;
-- le module fonction classique `BP_EVENT_RAISE`.
+- la méthode[^terme-methode] `RAISE` de la classe[^terme-classe] `CL_BATCH_EVENT` ;
+- le module fonction[^terme-module-fonction] classique `BP_EVENT_RAISE`.
 
-Consulter la signature active dans `SE24` ou `SE37` avant l’implémentation. Le module fonction classique permet l’exemple suivant.
+Consulter la signature active dans `SE24`[^terme-class-builder-se24] ou `SE37`[^outil-se37] avant l’implémentation. Le module fonction classique permet l’exemple suivant.
 
 ```abap
 CALL FUNCTION 'BP_EVENT_RAISE'
@@ -34,7 +34,7 @@ ENDIF.
 
 ## 12.C ORDRE TRANSACTIONNEL
 
-Ne pas émettre l’événement avant la validation des données que le job consommateur devra lire.
+Ne pas émettre l’événement avant la validation des données que le job[^terme-job] consommateur devra lire.
 
 ```mermaid
 flowchart LR
@@ -47,11 +47,11 @@ flowchart LR
 
 ### 12.D.1 ÉTAPE 1 — VÉRIFIER L’ÉVÉNEMENT ET LES JOBS EN ATTENTE
 
-Dans `SM62`, confirmer l’identifiant et le contrat de l’argument. Dans `SM37`, vérifier qu’un job de test libéré attend cette combinaison. Ne développer l’émetteur qu’après avoir prouvé la configuration du consommateur.
+Dans `SM62`[^outil-sm62], confirmer l’identifiant et le contrat de l’argument. Dans `SM37`[^outil-sm37], vérifier qu’un job de test libéré attend cette combinaison. Ne développer l’émetteur qu’après avoir prouvé la configuration du consommateur.
 
 ### 12.D.2 ÉTAPE 2 — CHOISIR L’API DISPONIBLE
 
-Afficher `CL_BATCH_EVENT` dans `SE24` ou `BP_EVENT_RAISE` dans `SE37` et relever la signature active. Utiliser l’API retenue derrière une méthode Z afin d’isoler les différences de release et de faciliter les tests.
+Afficher `CL_BATCH_EVENT` dans `SE24` ou `BP_EVENT_RAISE` dans `SE37` et relever la signature active. Utiliser l’API[^terme-api] retenue derrière une méthode Z afin d’isoler les différences de release et de faciliter les tests.
 
 ### 12.D.3 ÉTAPE 3 — CONSTRUIRE IDENTIFIANT ET ARGUMENT
 
@@ -73,7 +73,7 @@ Contrôler dans `SM37` le démarrage du job attendu et son résultat métier. Te
 
 - Le job apparaît dans `SM37` avec le statut attendu.
 - Le journal ne contient pas de message d’erreur non traité.
-- Le spool, le fichier ou le journal applicatif contient le résultat attendu.
+- Le spool[^terme-spool], le fichier ou le journal applicatif contient le résultat attendu.
 - Une relance contrôlée ne crée pas de doublon métier.
 
 ## 12.F ERREURS FRÉQUENTES
@@ -86,7 +86,7 @@ Contrôler dans `SM37` le démarrage du job attendu et son résultat métier. Te
 ## 12.G SNIPPET À RÉUTILISER
 
 > [!NOTE]
-> Adapter les noms `Z*`, les types DDIC, les données et les autorisations au système cible. Effectuer un contrôle syntaxique avant activation.
+> Adapter les noms `Z*`, les types DDIC[^terme-acro-ddic], les données et les autorisations au système cible. Effectuer un contrôle syntaxique avant activation.
 
 ```abap
 CALL FUNCTION 'BP_EVENT_RAISE'
@@ -121,3 +121,17 @@ ENDIF.
 ---
 
 [Chapitre suivant — PLANIFIER UN JOB EN ABAP](<./13 ├── PLANIFIER UN JOB EN ABAP.md>)
+
+[^terme-acro-sap]: **SAP.** Nom de l’éditeur et de son écosystème logiciel ; l’acronyme historique provient de l’allemand. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/10 └── ACRONYMES SAP.md#acro-sap>).
+[^terme-methode]: **MÉTHODE.** Comportement déclaré dans une classe ou une interface et appelé avec une liste de paramètres définie. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#methode>).
+[^terme-classe]: **CLASSE.** Modèle orienté objet définissant état et comportements. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#classe>).
+[^terme-module-fonction]: **MODULE FONCTION.** Procédure globale appelée avec `CALL FUNCTION` et définie dans un groupe de fonctions. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/06 ├── PROGRAMMES CLASSES ET OBJETS TECHNIQUES.md#module-fonction>).
+[^terme-class-builder-se24]: **CLASS BUILDER (SE24).** Outil SAP GUI utilisé pour créer, afficher, modifier, tester et documenter les classes et interfaces globales ABAP. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/06 ├── PROGRAMMES CLASSES ET OBJETS TECHNIQUES.md#class-builder-se24>).
+[^terme-job]: **JOB.** Traitement planifié en arrière-plan composé d’une ou plusieurs étapes. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/06 ├── PROGRAMMES CLASSES ET OBJETS TECHNIQUES.md#job>).
+[^terme-api]: **API.** Application Programming Interface, contrat exposant des opérations ou données utilisables par d’autres composants. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/10 └── ACRONYMES SAP.md#api>).
+[^terme-spool]: **SPOOL.** Infrastructure stockant et acheminant les sorties imprimables produites par les traitements SAP. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/06 ├── PROGRAMMES CLASSES ET OBJETS TECHNIQUES.md#spool>).
+[^terme-acro-ddic]: **DDIC.** Data Dictionary, abréviation courante de l’ABAP Dictionary. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/10 └── ACRONYMES SAP.md#acro-ddic>).
+
+[^outil-se37]: **SE37.** Function Builder utilisé pour rechercher, afficher, tester et maintenir les modules fonction. Voir [le chapitre associé](<../🧩 12 ├── MODULES FONCTION RFC ET BAPI/03 ├── RECHERCHER ET ANALYSER AVEC SE37.md>).
+[^outil-sm62]: **SM62.** Transaction de définition des événements utilisables par les traitements d’arrière-plan. Voir [le chapitre associé](<11 ├── EVENEMENTS DE FOND SM62 ET SM64.md>).
+[^outil-sm37]: **SM37.** Transaction de recherche, surveillance et administration des jobs d’arrière-plan. Voir [le chapitre associé](<15 ├── SURVEILLER LES JOBS AVEC SM37.md>).

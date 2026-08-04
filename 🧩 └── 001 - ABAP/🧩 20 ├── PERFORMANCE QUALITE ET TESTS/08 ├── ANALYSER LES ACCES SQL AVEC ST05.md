@@ -2,17 +2,17 @@
 
 ## 8.A RÉSULTAT ATTENDU
 
-Tracer précisément les accès SQL exécutés pendant un scénario court et reproductible.
+Tracer précisément les accès SQL[^terme-acro-sql] exécutés pendant un scénario court et reproductible.
 
 ## 8.B PROCESS
 
 ### 8.B.1 ÉTAPE 1 — PRÉPARER DEUX SESSIONS
 
-Dans la première, ouvrir `ST05`; dans la seconde, préparer l’application juste avant l’action lente. Relever utilisateur, mandant, données et heure. Utiliser un utilisateur dédié lorsque possible pour réduire le bruit.
+Dans la première, ouvrir `ST05`[^outil-st05]; dans la seconde, préparer l’application juste avant l’action lente. Relever utilisateur, mandant[^terme-mandant], données et heure. Utiliser un utilisateur dédié lorsque possible pour réduire le bruit.
 
 ### 8.B.2 ÉTAPE 2 — CONFIGURER LA TRACE SQL
 
-Sélectionner la trace SQL et limiter le périmètre à l’utilisateur ou au contexte autorisé. Vérifier qu’aucune trace concurrente incompatible n’est active. Ne pas lancer une trace globale prolongée sans coordination Basis.
+Sélectionner la trace[^terme-trace] SQL et limiter le périmètre à l’utilisateur ou au contexte autorisé. Vérifier qu’aucune trace concurrente incompatible n’est active. Ne pas lancer une trace globale prolongée sans coordination Basis.
 
 ### 8.B.3 ÉTAPE 3 — ACTIVER, EXÉCUTER, DÉSACTIVER
 
@@ -20,7 +20,7 @@ Activer immédiatement avant l’action, reproduire une seule fois puis désacti
 
 ### 8.B.4 ÉTAPE 4 — FILTRER ET REGROUPER
 
-Afficher la trace, limiter à l’intervalle et regrouper les instructions identiques. Trier par temps cumulé, temps moyen, exécutions et lignes. Identifier la source ABAP des entrées dominantes.
+Afficher la trace, limiter à l’intervalle et regrouper les instructions identiques. Trier par temps cumulé, temps moyen, exécutions et lignes. Identifier la source ABAP[^terme-abap] des entrées dominantes.
 
 ### 8.B.5 ÉTAPE 5 — ANALYSER L’ACCÈS
 
@@ -100,3 +100,10 @@ Ordre de transport  :
 - [ATC](<../🧩 00 ├── LEXIQUE SAP ET ABAP/10 └── ACRONYMES SAP.md#acro-atc>)
 - [ABAP](<../🧩 00 ├── LEXIQUE SAP ET ABAP/10 └── ACRONYMES SAP.md#acro-abap>)
 - [Trace](<../🧩 00 ├── LEXIQUE SAP ET ABAP/08 ├── EXECUTION EXPLOITATION ET ADMINISTRATION.md#trace>)
+
+[^terme-acro-sql]: **SQL.** Structured Query Language. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/10 └── ACRONYMES SAP.md#acro-sql>).
+[^terme-mandant]: **MANDANT.** Subdivision logique d’un système SAP. Il est identifié par un numéro à trois chiffres et isole une partie des données, du paramétrage et des utilisateurs. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/01 ├── SYSTEMES ENVIRONNEMENTS ET MANDANTS.md#mandant>).
+[^terme-trace]: **TRACE.** Enregistrement détaillé d’événements techniques pour analyser exécution, SQL ou appels. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/08 ├── EXECUTION EXPLOITATION ET ADMINISTRATION.md#trace>).
+[^terme-abap]: **ABAP.** Langage de programmation de la plateforme ABAP, conçu pour développer des applications métier et techniques SAP. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#abap>).
+
+[^outil-st05]: **ST05.** Performance Trace utilisée notamment pour enregistrer et analyser les accès SQL. Voir [le chapitre associé](<08 ├── ANALYSER LES ACCES SQL AVEC ST05.md>).

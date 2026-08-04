@@ -35,7 +35,7 @@ START-OF-SELECTION.
   gv_counter = gv_counter + 1.
 ```
 
-`gv_counter` appartient aux données globales du programme. Elle est accessible depuis les blocs de traitement et les procédures du programme, sous réserve des règles de visibilité applicables.
+`gv_counter` appartient aux données globales du programme. Elle est accessible depuis les blocs de traitement et les procédures du programme, sous réserve des règles de visibilité[^terme-visibilite] applicables.
 
 Les données globales existent pendant l’instance d’exécution du programme dans la session interne concernée.
 
@@ -68,9 +68,9 @@ START-OF-SELECTION.
   DATA lv_value TYPE i.
 ```
 
-Dans un programme exécutable classique, il est préférable de placer clairement les déclarations globales dans la partie déclarative et d’encapsuler les traitements dans des procédures lorsque des données locales sont nécessaires.
+Dans un programme exécutable[^terme-programme-executable] classique, il est préférable de placer clairement les déclarations globales dans la partie déclarative et d’encapsuler les traitements dans des procédures lorsque des données locales sont nécessaires.
 
-Cette organisation évite de donner l’impression qu’une déclaration située visuellement dans un bloc d’événement possède une portée locale comparable à celle d’une méthode.
+Cette organisation évite de donner l’impression qu’une déclaration située visuellement dans un bloc d’événement possède une portée locale comparable à celle d’une méthode[^terme-methode].
 
 ## 12.F MASQUAGE DE NOMS
 
@@ -218,12 +218,12 @@ ENDFORM.
 - Copier un exemple sans adapter les types, noms d’objets et données disponibles dans le système.
 - Tester uniquement le cas nominal et ignorer les valeurs initiales, absentes ou invalides.
 - Choisir un type trop générique ou dépendant d’une variable existante sans justification.
-- Utiliser une référence ou un field-symbol non lié.
+- Utiliser une référence ou un field-symbol[^terme-field-symbol] non lié.
 
 ## 12.O SNIPPET À RÉUTILISER
 
 > [!NOTE]
-> Adapter les noms `Z*`, les types DDIC, les données et les autorisations au système cible. Effectuer un contrôle syntaxique avant activation.
+> Adapter les noms `Z*`, les types DDIC[^terme-acro-ddic], les données et les autorisations au système cible. Effectuer un contrôle syntaxique avant activation.
 
 ```abap
 REPORT zdemo_lifetime.
@@ -260,3 +260,9 @@ ENDFORM.
 - [Visibility of Data Objects — ABAP Keyword Documentation](https://help.sap.com/doc/abapdocu_latest_index_htm/latest/en-US/ABENVISIBILITY_DATA_OBJECTS.html)
 - [STATICS — ABAP Keyword Documentation](https://help.sap.com/doc/abapdocu_latest_index_htm/latest/en-US/ABAPSTATICS.html)
 - [Local and Global Data — ABAP Keyword Documentation](https://help.sap.com/doc/abapdocu_latest_index_htm/latest/en-US/ABENLOCAL_GLOBAL_DATA.html)
+
+[^terme-visibilite]: **VISIBILITÉ.** Règle déterminant où un composant de classe peut être utilisé : `PUBLIC`, `PROTECTED` ou `PRIVATE`. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#visibilite>).
+[^terme-programme-executable]: **PROGRAMME EXÉCUTABLE.** Programme ABAP de type report pouvant être lancé directement, généralement avec `F8` ou par une transaction. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/06 ├── PROGRAMMES CLASSES ET OBJETS TECHNIQUES.md#programme-executable>).
+[^terme-methode]: **MÉTHODE.** Comportement déclaré dans une classe ou une interface et appelé avec une liste de paramètres définie. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#methode>).
+[^terme-field-symbol]: **FIELD-SYMBOL.** Alias dynamique vers une zone de mémoire existante. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#field-symbol>).
+[^terme-acro-ddic]: **DDIC.** Data Dictionary, abréviation courante de l’ABAP Dictionary. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/10 └── ACRONYMES SAP.md#acro-ddic>).

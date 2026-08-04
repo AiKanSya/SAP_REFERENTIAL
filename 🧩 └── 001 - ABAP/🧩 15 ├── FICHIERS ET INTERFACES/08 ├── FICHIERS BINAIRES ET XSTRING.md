@@ -15,7 +15,7 @@ OPEN DATASET lv_file
   IN BINARY MODE.
 ```
 
-En mode binaire, les octets sont transférés sans conversion de code page. Ce mode convient notamment aux fichiers ZIP, PDF, images ou formats propriétaires.
+En mode binaire, les octets sont transférés sans conversion de code page[^terme-code-page]. Ce mode convient notamment aux fichiers ZIP, PDF, images ou formats propriétaires.
 
 ## 8.C LECTURE PAR BLOCS
 
@@ -53,7 +53,7 @@ Pour les gros fichiers, éviter de charger tout le contenu dans un seul `xstring
 
 ## 8.E INTERDICTIONS
 
-- Ne pas ouvrir un CSV en mode binaire pour contourner un problème d’encodage.
+- Ne pas ouvrir un CSV[^terme-csv] en mode binaire pour contourner un problème d’encodage[^terme-encodage].
 - Ne pas convertir arbitrairement un PDF en `string`.
 - Ne pas supposer que la taille en caractères égale la taille en octets.
 
@@ -94,13 +94,13 @@ Fermer le dataset, comparer la taille et, si le contrat le prévoit, une emprein
 
 - Copier un exemple sans adapter les types, noms d’objets et données disponibles dans le système.
 - Tester uniquement le cas nominal et ignorer les valeurs initiales, absentes ou invalides.
-- Mélanger fichiers frontend et serveur dans un même scénario.
+- Mélanger fichiers frontend[^terme-frontend] et serveur dans un même scénario.
 - Parser un CSV par simple séparation alors que les champs peuvent être échappés.
 
 ## 8.I SNIPPET À RÉUTILISER
 
 > [!NOTE]
-> Adapter les noms `Z*`, les types DDIC, les données et les autorisations au système cible. Effectuer un contrôle syntaxique avant activation.
+> Adapter les noms `Z*`, les types DDIC[^terme-acro-ddic], les données et les autorisations au système cible. Effectuer un contrôle syntaxique avant activation.
 
 ```abap
 DATA lv_buffer TYPE x LENGTH 4096.
@@ -142,3 +142,9 @@ CLOSE DATASET lv_file.
 ---
 
 [Chapitre suivant — LIRE AVEC `READ DATASET`](<./09 ├── LIRE AVEC READ DATASET.md>)
+
+[^terme-code-page]: **CODE PAGE.** Table de correspondance entre caractères et valeurs binaires utilisée pour un encodage. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/07 ├── INTERFACES ET INTEGRATION.md#code-page>).
+[^terme-csv]: **CSV.** Format texte tabulaire utilisant un séparateur de champs et des règles d’échappement. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/07 ├── INTERFACES ET INTEGRATION.md#csv>).
+[^terme-encodage]: **ENCODAGE.** Règle transformant les caractères en octets et inversement. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/07 ├── INTERFACES ET INTEGRATION.md#encodage>).
+[^terme-frontend]: **FRONTEND.** Poste ou couche cliente utilisée par l’utilisateur, par exemple SAP GUI for Windows. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/01 ├── SYSTEMES ENVIRONNEMENTS ET MANDANTS.md#frontend>).
+[^terme-acro-ddic]: **DDIC.** Data Dictionary, abréviation courante de l’ABAP Dictionary. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/10 └── ACRONYMES SAP.md#acro-ddic>).

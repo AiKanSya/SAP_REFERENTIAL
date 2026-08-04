@@ -10,7 +10,7 @@
 
 ## 5.B VARIABLES T100
 
-Un texte de classe de messages peut contenir jusqu’à quatre marqueurs `&`.
+Un texte de classe[^terme-classe] de messages peut contenir jusqu’à quatre marqueurs `&`.
 
 ```text
 Quantité & invalide pour l’article & dans la division &
@@ -54,7 +54,7 @@ Les valeurs doivent être copiées immédiatement. Une instruction ultérieure p
 
 ## 5.E STRUCTURE BAPIRET2
 
-De nombreuses API SAP utilisent une structure comme `BAPIRET2`, qui peut contenir :
+De nombreuses API[^terme-api] SAP[^terme-acro-sap] utilisent une structure comme `BAPIRET2`, qui peut contenir :
 
 - le type ;
 - la classe ;
@@ -75,7 +75,7 @@ MESSAGE ID ls_return-id
         INTO DATA(lv_message_text).
 ```
 
-La gestion détaillée des BAPI sera traitée dans le dossier dédié.
+La gestion détaillée des BAPI[^terme-bapi] sera traitée dans le dossier dédié.
 
 ## 5.F CONSERVER LE CONTEXTE
 
@@ -86,7 +86,7 @@ Un texte seul est insuffisant pour certains traitements techniques. Conserver au
 - les variables ;
 - le type original ;
 - l’objet métier concerné ;
-- la cause précédente lorsqu’une exception est utilisée.
+- la cause précédente lorsqu’une exception[^terme-exception] est utilisée.
 
 Cela facilite la traduction, le diagnostic et la restitution dans différents canaux.
 
@@ -117,7 +117,7 @@ Le sous-programme peut avoir modifié `sy-msgid`. La copie est trop tardive.
 ## 5.J SNIPPET À RÉUTILISER
 
 > [!NOTE]
-> Adapter les noms `Z*`, les types DDIC, les données et les autorisations au système cible. Effectuer un contrôle syntaxique avant activation.
+> Adapter les noms `Z*`, les types DDIC[^terme-acro-ddic], les données et les autorisations au système cible. Effectuer un contrôle syntaxique avant activation.
 
 ```abap
 MESSAGE ID ls_return-id
@@ -144,3 +144,10 @@ MESSAGE ID ls_return-id
 ---
 
 [Chapitre suivant — MESSAGE INTO ET DISPLAY LIKE](<./06 ├── MESSAGE INTO ET DISPLAY LIKE.md>)
+
+[^terme-classe]: **CLASSE.** Modèle orienté objet définissant état et comportements. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#classe>).
+[^terme-api]: **API.** Application Programming Interface, contrat exposant des opérations ou données utilisables par d’autres composants. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/10 └── ACRONYMES SAP.md#api>).
+[^terme-acro-sap]: **SAP.** Nom de l’éditeur et de son écosystème logiciel ; l’acronyme historique provient de l’allemand. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/10 └── ACRONYMES SAP.md#acro-sap>).
+[^terme-bapi]: **BAPI.** Interface métier publiée autour d’un Business Object SAP, généralement implémentée par un module fonction RFC. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/06 ├── PROGRAMMES CLASSES ET OBJETS TECHNIQUES.md#bapi>).
+[^terme-exception]: **EXCEPTION.** Objet ou signal représentant une situation anormale qu’un appelant peut traiter. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#exception>).
+[^terme-acro-ddic]: **DDIC.** Data Dictionary, abréviation courante de l’ABAP Dictionary. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/10 └── ACRONYMES SAP.md#acro-ddic>).

@@ -171,13 +171,13 @@ Surveiller notamment :
 - réserver `EXIT` aux boucles et `RETURN` aux blocs ;
 - éviter les structures imbriquées lorsque des gardes suffisent ;
 - tester chaque branche et chaque mode de sortie ;
-- ne pas utiliser une construction moderne sans vérifier la version ABAP cible.
+- ne pas utiliser une construction moderne sans vérifier la version ABAP[^terme-abap] cible.
 
 ## 12.J PROCESS
 
 ### 12.J.1 Étape 1 — Cartographier les chemins imbriqués
 
-1. Ouvrir la méthode ou le programme en mode affichage.
+1. Ouvrir la méthode[^terme-methode] ou le programme en mode affichage.
 2. Repérer les blocs `IF`, `CASE`, `LOOP`, `DO` et `WHILE` imbriqués.
 3. Pour chaque niveau, noter la condition d’entrée et la sortie attendue.
 4. Identifier le chemin principal que le lecteur devrait suivre de haut en bas.
@@ -193,7 +193,7 @@ Sans résultat de référence, une réduction visuelle de l’imbrication peut m
 ### 12.J.3 Étape 3 — Extraire les sorties anticipées
 
 1. Traiter en premier les entrées invalides ou les conditions bloquantes.
-2. Utiliser `RETURN`, `CONTINUE`, `CHECK` ou une exception uniquement selon la portée voulue.
+2. Utiliser `RETURN`, `CONTINUE`, `CHECK` ou une exception[^terme-exception] uniquement selon la portée voulue.
 3. Replacer le traitement nominal au niveau d’indentation principal.
 
 Après chaque déplacement, relancer le cas correspondant. Si une sortie quitte une méthode entière au lieu d’une boucle, annuler et choisir l’instruction adaptée à la portée.
@@ -210,9 +210,9 @@ Relancer exactement les cas conservés à l’étape 2. Comparer résultats, mes
 
 ## 12.K VÉRIFICATION
 
-- Le scénario reproduit correspond au même utilisateur, mandant, transaction et jeu de données.
+- Le scénario reproduit correspond au même utilisateur, mandant[^terme-mandant], transaction et jeu de données.
 - L’horodatage et l’identifiant de l’analyse sont conservés.
-- La cause retenue est soutenue par une ligne source, une trace ou une valeur observée.
+- La cause retenue est soutenue par une ligne source, une trace[^terme-trace] ou une valeur observée.
 - Après correction, le même scénario ne reproduit plus le défaut et le résultat métier reste identique.
 
 ## 12.L ERREURS FRÉQUENTES
@@ -225,7 +225,7 @@ Relancer exactement les cas conservés à l’étape 2. Comparer résultats, mes
 ## 12.M SNIPPET À RÉUTILISER
 
 > [!NOTE]
-> Adapter les noms `Z*`, les types DDIC, les données et les autorisations au système cible. Effectuer un contrôle syntaxique avant activation.
+> Adapter les noms `Z*`, les types DDIC[^terme-acro-ddic], les données et les autorisations au système cible. Effectuer un contrôle syntaxique avant activation.
 
 ```abap
 PARAMETERS p_target TYPE i DEFAULT 7.
@@ -269,3 +269,10 @@ START-OF-SELECTION.
 - [Using Control Structures in ABAP — SAP Learning](https://learning.sap.com/courses/basic-abap-programming/using-control-structures-in-abap_a4d7803e-eac2-458e-acf9-8628289f3701)
 - [Branch Code Coverage — SAP Help Portal](https://help.sap.com/docs/ABAP_PLATFORM_NEW/ba879a6e2ea04d9bb94c7ccd7cdac446/7f27a2638ee64d1d97dd53c69c562e7b.html)
 - [Modern ABAP — ABAP Keyword Documentation](https://help.sap.com/doc/abapdocu_latest_index_htm/latest/en-US/ABENMODERN_ABAP_GUIDL.html)
+
+[^terme-abap]: **ABAP.** Langage de programmation de la plateforme ABAP, conçu pour développer des applications métier et techniques SAP. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#abap>).
+[^terme-methode]: **MÉTHODE.** Comportement déclaré dans une classe ou une interface et appelé avec une liste de paramètres définie. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#methode>).
+[^terme-exception]: **EXCEPTION.** Objet ou signal représentant une situation anormale qu’un appelant peut traiter. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#exception>).
+[^terme-mandant]: **MANDANT.** Subdivision logique d’un système SAP. Il est identifié par un numéro à trois chiffres et isole une partie des données, du paramétrage et des utilisateurs. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/01 ├── SYSTEMES ENVIRONNEMENTS ET MANDANTS.md#mandant>).
+[^terme-trace]: **TRACE.** Enregistrement détaillé d’événements techniques pour analyser exécution, SQL ou appels. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/08 ├── EXECUTION EXPLOITATION ET ADMINISTRATION.md#trace>).
+[^terme-acro-ddic]: **DDIC.** Data Dictionary, abréviation courante de l’ABAP Dictionary. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/10 └── ACRONYMES SAP.md#acro-ddic>).

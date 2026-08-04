@@ -2,7 +2,7 @@
 
 ## 1.A RÉSULTAT ATTENDU
 
-- Distinguer message, code retour, exception et erreur d’exécution
+- Distinguer message, code retour, exception[^terme-exception] et erreur d’exécution
 - Choisir un mécanisme adapté au contexte
 - Séparer détection, propagation et présentation
 - Éviter les erreurs silencieuses
@@ -12,12 +12,12 @@
 
 | Mécanisme              | Usage principal                                       |
 | ---------------------- | ----------------------------------------------------- |
-| Message `MESSAGE`      | Informer l’utilisateur ou piloter un écran SAP GUI    |
+| Message `MESSAGE`      | Informer l’utilisateur ou piloter un écran SAP GUI[^terme-sap-gui]    |
 | Code retour `sy-subrc` | Contrôler immédiatement le résultat d’une instruction |
-| Exception de classe    | Signaler et propager une erreur entre procédures      |
-| Erreur d’exécution     | Arrêt non géré analysable notamment dans `ST22`       |
+| Exception de classe[^terme-classe]    | Signaler et propager une erreur entre procédures      |
+| Erreur d’exécution     | Arrêt non géré analysable notamment dans `ST22`[^outil-st22]       |
 
-Un même incident peut traverser plusieurs couches. Une méthode peut lever une exception, le programme appelant peut l’intercepter, puis convertir son texte en message utilisateur.
+Un même incident peut traverser plusieurs couches. Une méthode[^terme-methode] peut lever une exception, le programme appelant peut l’intercepter, puis convertir son texte en message utilisateur.
 
 ```mermaid
 flowchart LR
@@ -68,7 +68,7 @@ TRY.
 ENDTRY.
 ```
 
-La classe métier fournit l’erreur. Le programme exécutable choisit le type de message adapté à son contexte.
+La classe métier fournit l’erreur. Le programme exécutable[^terme-programme-executable] choisit le type de message adapté à son contexte.
 
 ## 1.F ERREUR ATTENDUE ET DÉFAUT DE PROGRAMMATION
 
@@ -89,7 +89,7 @@ Une erreur doit toujours produire au moins un résultat exploitable :
 - réaction immédiate ;
 - exception propagée ;
 - message utilisateur ;
-- trace technique ;
+- trace[^terme-trace] technique ;
 - arrêt explicite.
 
 Une instruction échouée suivie d’une poursuite silencieuse est généralement plus dangereuse qu’un arrêt clair.
@@ -98,11 +98,11 @@ Une instruction échouée suivie d’une poursuite silencieuse est généralemen
 
 ### 1.H.1 Étape 1 — Reproduire et horodater l’erreur
 
-Noter système, mandant, utilisateur, transaction, date, heure, saisie et dernière action effectuée. Si l’erreur est reproductible sans effet métier supplémentaire, la reproduire une seule fois pour obtenir un horodatage précis.
+Noter système, mandant[^terme-mandant], utilisateur, transaction, date, heure, saisie et dernière action effectuée. Si l’erreur est reproductible sans effet métier supplémentaire, la reproduire une seule fois pour obtenir un horodatage précis.
 
 ### 1.H.2 Étape 2 — Déterminer le canal d’erreur
 
-Rechercher d’abord le résultat observable : message applicatif, exception interceptée, journal `SLG1`, échec de job, erreur RFC ou dump. Ouvrir `ST22` uniquement lorsqu’un arrêt d’exécution non intercepté est plausible.
+Rechercher d’abord le résultat observable : message applicatif, exception interceptée, journal `SLG1`[^outil-slg1], échec de job[^terme-job], erreur RFC[^terme-rfc] ou dump. Ouvrir `ST22` uniquement lorsqu’un arrêt d’exécution non intercepté est plausible.
 
 ### 1.H.3 Étape 3 — Rechercher le dump dans ST22
 
@@ -142,7 +142,7 @@ Corriger la cause dans l’objet responsable, puis exécuter le cas ayant échou
 ## 1.K SNIPPET À RÉUTILISER
 
 > [!NOTE]
-> Adapter les noms `Z*`, les types DDIC, les données et les autorisations au système cible. Effectuer un contrôle syntaxique avant activation.
+> Adapter les noms `Z*`, les types DDIC[^terme-acro-ddic], les données et les autorisations au système cible. Effectuer un contrôle syntaxique avant activation.
 
 ```abap
 " Propager ou traiter l’erreur au niveau qui sait prendre une décision.
@@ -167,3 +167,17 @@ ENDMETHOD.
 ---
 
 [Chapitre suivant — CLASSES DE MESSAGES ET TRANSACTION SE91](<./02 ├── CLASSES DE MESSAGES ET TRANSACTION SE91.md>)
+
+[^terme-exception]: **EXCEPTION.** Objet ou signal représentant une situation anormale qu’un appelant peut traiter. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#exception>).
+[^terme-sap-gui]: **SAP GUI.** Client graphique permettant d’utiliser les transactions et écrans d’un système SAP. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/02 ├── SAP GUI NAVIGATION ET TRANSACTIONS.md#sap-gui>).
+[^terme-classe]: **CLASSE.** Modèle orienté objet définissant état et comportements. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#classe>).
+[^terme-methode]: **MÉTHODE.** Comportement déclaré dans une classe ou une interface et appelé avec une liste de paramètres définie. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#methode>).
+[^terme-programme-executable]: **PROGRAMME EXÉCUTABLE.** Programme ABAP de type report pouvant être lancé directement, généralement avec `F8` ou par une transaction. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/06 ├── PROGRAMMES CLASSES ET OBJETS TECHNIQUES.md#programme-executable>).
+[^terme-trace]: **TRACE.** Enregistrement détaillé d’événements techniques pour analyser exécution, SQL ou appels. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/08 ├── EXECUTION EXPLOITATION ET ADMINISTRATION.md#trace>).
+[^terme-mandant]: **MANDANT.** Subdivision logique d’un système SAP. Il est identifié par un numéro à trois chiffres et isole une partie des données, du paramétrage et des utilisateurs. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/01 ├── SYSTEMES ENVIRONNEMENTS ET MANDANTS.md#mandant>).
+[^terme-job]: **JOB.** Traitement planifié en arrière-plan composé d’une ou plusieurs étapes. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/06 ├── PROGRAMMES CLASSES ET OBJETS TECHNIQUES.md#job>).
+[^terme-rfc]: **RFC.** Remote Function Call, mécanisme permettant d’appeler un module fonction compatible dans un autre contexte ou système. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/06 ├── PROGRAMMES CLASSES ET OBJETS TECHNIQUES.md#rfc>).
+[^terme-acro-ddic]: **DDIC.** Data Dictionary, abréviation courante de l’ABAP Dictionary. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/10 └── ACRONYMES SAP.md#acro-ddic>).
+
+[^outil-st22]: **ST22.** Transaction d’analyse des terminaisons anormales et dumps ABAP. Voir [le chapitre associé](<../🧩 11 ├── DEBUG ET ANALYSE/13 ├── ANALYSER LES DUMPS AVEC ST22.md>).
+[^outil-slg1]: **SLG1.** Transaction de recherche et d’affichage des journaux applicatifs persistés. Voir [le chapitre associé](<../🧩 19 ├── JOURNAUX APPLICATIFS/05 ├── ANALYSER LES JOURNAUX AVEC SLG1.md>).

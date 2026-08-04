@@ -53,7 +53,7 @@ ls_log-extnumber = |IMPORT_PRODUCTS_{ sy-datum }_{ sy-uzeit }|.
 
 ### 3.F.1 ÉTAPE 1 — CARTOGRAPHIER LE DOMAINE FONCTIONNEL
 
-Regrouper les traitements ayant le même propriétaire, les mêmes autorisations et la même politique de rétention. Définir un objet par domaine durable, pas par report, ticket ou version. Vérifier les objets existants dans `SLG0` avant d’en créer un nouveau.
+Regrouper les traitements ayant le même propriétaire, les mêmes autorisations et la même politique de rétention. Définir un objet par domaine durable, pas par report, ticket ou version. Vérifier les objets existants dans `SLG0`[^outil-slg0] avant d’en créer un nouveau.
 
 ### 3.F.2 ÉTAPE 2 — DÉFINIR LES SOUS-OBJETS
 
@@ -65,15 +65,15 @@ Choisir une clé disponible dès le début du traitement : identifiant de lot, f
 
 ### 3.F.4 ÉTAPE 4 — CRÉER ET TRANSPORTER LA CONFIGURATION
 
-Maintenir l’objet et les sous-objets dans `SLG0`, avec descriptions explicites. Affecter le package et la demande de transport. Vérifier la présence de la configuration dans le système cible avant d’exécuter le programme.
+Maintenir l’objet et les sous-objets dans `SLG0`, avec descriptions explicites. Affecter le package[^terme-package] et la demande de transport. Vérifier la présence de la configuration dans le système cible avant d’exécuter le programme.
 
 ### 3.F.5 ÉTAPE 5 — UTILISER DES CONSTANTES DANS LE CODE
 
-Centraliser objet et sous-objet dans une classe ou interface Z. Construire l’identifiant externe dans une méthode dédiée et contrôlée. Éviter les littéraux divergents répétés dans plusieurs programmes.
+Centraliser objet et sous-objet dans une classe[^terme-classe] ou interface Z. Construire l’identifiant externe dans une méthode[^terme-methode] dédiée et contrôlée. Éviter les littéraux divergents répétés dans plusieurs programmes.
 
 ### 3.F.6 ÉTAPE 6 — TESTER LA RECHERCHE OPÉRATIONNELLE
 
-Créer plusieurs journaux avec des lots différents, puis les retrouver dans `SLG1` par objet, sous-objet, identifiant et période. Vérifier qu’un exploitant peut isoler une exécution sans connaître le numéro interne BAL.
+Créer plusieurs journaux avec des lots différents, puis les retrouver dans `SLG1`[^outil-slg1] par objet, sous-objet, identifiant et période. Vérifier qu’un exploitant peut isoler une exécution sans connaître le numéro interne BAL[^terme-acro-bal].
 
 ## 3.G VÉRIFICATION
 
@@ -92,7 +92,7 @@ Créer plusieurs journaux avec des lots différents, puis les retrouver dans `SL
 ## 3.I SNIPPET À RÉUTILISER
 
 > [!NOTE]
-> Adapter les noms `Z*`, les types DDIC, les données et les autorisations au système cible. Effectuer un contrôle syntaxique avant activation.
+> Adapter les noms `Z*`, les types DDIC[^terme-acro-ddic], les données et les autorisations au système cible. Effectuer un contrôle syntaxique avant activation.
 
 ```abap
 ls_log-extnumber = |IMPORT_PRODUCTS_{ sy-datum }_{ sy-uzeit }|.
@@ -112,3 +112,12 @@ ls_log-extnumber = |IMPORT_PRODUCTS_{ sy-datum }_{ sy-uzeit }|.
 ---
 
 [Chapitre suivant — CRÉER UN OBJET AVEC SLG0](<./04 ├── CREER UN OBJET AVEC SLG0.md>)
+
+[^terme-package]: **PACKAGE.** Conteneur logique qui regroupe les objets de développement et détermine notamment leur transportabilité. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/03 ├── REPOSITORY PACKAGES ET TRANSPORTS.md#package>).
+[^terme-classe]: **CLASSE.** Modèle orienté objet définissant état et comportements. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#classe>).
+[^terme-methode]: **MÉTHODE.** Comportement déclaré dans une classe ou une interface et appelé avec une liste de paramètres définie. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#methode>).
+[^terme-acro-bal]: **BAL.** Business Application Log, API technique du journal applicatif. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/10 └── ACRONYMES SAP.md#acro-bal>).
+[^terme-acro-ddic]: **DDIC.** Data Dictionary, abréviation courante de l’ABAP Dictionary. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/10 └── ACRONYMES SAP.md#acro-ddic>).
+
+[^outil-slg0]: **SLG0.** Transaction de définition des objets et sous-objets de journal applicatif. Voir [le chapitre associé](<04 ├── CREER UN OBJET AVEC SLG0.md>).
+[^outil-slg1]: **SLG1.** Transaction de recherche et d’affichage des journaux applicatifs persistés. Voir [le chapitre associé](<05 ├── ANALYSER LES JOURNAUX AVEC SLG1.md>).

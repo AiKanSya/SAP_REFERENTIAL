@@ -2,9 +2,9 @@
 
 ## 15.A RÉSULTAT ATTENDU
 
-- Charger un fichier local dans une table interne
+- Charger un fichier local dans une table interne[^terme-table-interne]
 - Choisir le type de fichier adapté
-- Contrôler les erreurs de frontend
+- Contrôler les erreurs de frontend[^terme-frontend]
 
 ## 15.B IMPORT TEXTE
 
@@ -30,7 +30,7 @@ IF sy-subrc <> 0.
 ENDIF.
 ```
 
-Les exceptions exactes et les paramètres doivent être contrôlés dans `SE24`, car ils peuvent différer selon le niveau de composant.
+Les exceptions exactes et les paramètres doivent être contrôlés dans `SE24`[^terme-class-builder-se24], car ils peuvent différer selon le niveau de composant.
 
 ## 15.C TYPES DE FICHIER
 
@@ -45,19 +45,19 @@ Pour un contrat d’interface strict, importer des lignes texte puis effectuer s
 ## 15.D LIMITES
 
 - Impossible en arrière-plan.
-- Le fichier traverse la connexion frontend vers le serveur ABAP.
+- Le fichier traverse la connexion frontend vers le serveur ABAP[^terme-abap].
 - Le volume doit rester compatible avec une interaction utilisateur.
 - La sélection locale ne dispense pas des contrôles métier.
 
 ## 15.E ARCHITECTURE
 
-La méthode d’import doit retourner un contenu brut ou une table de lignes. Une méthode distincte transforme ce contenu en données métier. Le test du parsing devient alors indépendant de SAP GUI.
+La méthode[^terme-methode] d’import doit retourner un contenu brut ou une table de lignes. Une méthode distincte transforme ce contenu en données métier. Le test du parsing devient alors indépendant de SAP GUI[^terme-sap-gui].
 
 ## 15.F PROCESS
 
 ### 15.F.1 ÉTAPE 1 — CONTRÔLER LE CONTEXTE D’EXÉCUTION
 
-Réserver l’import local à une exécution en mode dialogue avec SAP GUI. Tester la disponibilité des services frontend avant d’afficher une boîte de dialogue. Si le même traitement doit fonctionner en job, prévoir une entrée serveur distincte et réutiliser uniquement le parseur et le traitement métier.
+Réserver l’import local à une exécution en mode dialogue avec SAP GUI. Tester la disponibilité des services frontend avant d’afficher une boîte de dialogue. Si le même traitement doit fonctionner en job[^terme-job], prévoir une entrée serveur distincte et réutiliser uniquement le parseur et le traitement métier.
 
 ### 15.F.2 ÉTAPE 2 — FAIRE SÉLECTIONNER LE FICHIER
 
@@ -65,15 +65,15 @@ Appeler `CL_GUI_FRONTEND_SERVICES=>FILE_OPEN_DIALOG` avec un filtre correspondan
 
 ### 15.F.3 ÉTAPE 3 — CHARGER LE CONTENU BRUT
 
-Appeler `CL_GUI_FRONTEND_SERVICES=>GUI_UPLOAD` avec le chemin validé et un type de fichier adapté. Charger un fichier texte dans une table de lignes et un fichier binaire dans une table de type compatible avec l’API. Conserver le contenu brut séparément des données métier afin de pouvoir diagnostiquer le parsing.
+Appeler `CL_GUI_FRONTEND_SERVICES=>GUI_UPLOAD` avec le chemin validé et un type de fichier adapté. Charger un fichier texte dans une table de lignes et un fichier binaire dans une table de type compatible avec l’API[^terme-api]. Conserver le contenu brut séparément des données métier afin de pouvoir diagnostiquer le parsing.
 
 ### 15.F.4 ÉTAPE 4 — VALIDER LE CONTRAT DE FICHIER
 
-Contrôler l’extension autorisée, la taille, l’encodage, l’en-tête, le nombre de colonnes et les séparateurs avant toute mise à jour métier. Affecter un numéro à chaque ligne source. Une ligne invalide doit produire un rejet localisable indiquant la ligne, le champ, la valeur et la règle violée.
+Contrôler l’extension autorisée, la taille, l’encodage[^terme-encodage], l’en-tête, le nombre de colonnes et les séparateurs avant toute mise à jour métier. Affecter un numéro à chaque ligne source. Une ligne invalide doit produire un rejet localisable indiquant la ligne, le champ, la valeur et la règle violée.
 
 ### 15.F.5 ÉTAPE 5 — TRANSFORMER ET TRAITER LES DONNÉES
 
-Convertir les lignes validées vers une structure typée. Exécuter ensuite les contrôles métier dans une méthode indépendante du frontend. Définir explicitement si une erreur annule tout le fichier ou seulement l’unité concernée ; aligner les `COMMIT WORK` et les reprises sur cette unité transactionnelle.
+Convertir les lignes validées vers une structure typée. Exécuter ensuite les contrôles métier dans une méthode indépendante du frontend. Définir explicitement si une erreur annule tout le fichier ou seulement l’unité concernée ; aligner les `COMMIT WORK`[^terme-commit-work] et les reprises sur cette unité transactionnelle.
 
 ### 15.F.6 ÉTAPE 6 — VÉRIFIER LES RÉSULTATS ET LA REPRISE
 
@@ -81,9 +81,9 @@ Comparer le nombre de lignes lues, acceptées, rejetées et enregistrées. Teste
 
 ## 15.G VÉRIFICATION
 
-- Le scénario reproduit correspond au même utilisateur, mandant, transaction et jeu de données.
+- Le scénario reproduit correspond au même utilisateur, mandant[^terme-mandant], transaction et jeu de données.
 - L’horodatage et l’identifiant de l’analyse sont conservés.
-- La cause retenue est soutenue par une ligne source, une trace ou une valeur observée.
+- La cause retenue est soutenue par une ligne source, une trace[^terme-trace] ou une valeur observée.
 - Après correction, le même scénario ne reproduit plus le défaut et le résultat métier reste identique.
 
 ## 15.H ERREURS FRÉQUENTES
@@ -91,12 +91,12 @@ Comparer le nombre de lignes lues, acceptées, rejetées et enregistrées. Teste
 - Copier un exemple sans adapter les types, noms d’objets et données disponibles dans le système.
 - Tester uniquement le cas nominal et ignorer les valeurs initiales, absentes ou invalides.
 - Mélanger fichiers frontend et serveur dans un même scénario.
-- Parser un CSV par simple séparation alors que les champs peuvent être échappés.
+- Parser un CSV[^terme-csv] par simple séparation alors que les champs peuvent être échappés.
 
 ## 15.I SNIPPET À RÉUTILISER
 
 > [!NOTE]
-> Adapter les noms `Z*`, les types DDIC, les données et les autorisations au système cible. Effectuer un contrôle syntaxique avant activation.
+> Adapter les noms `Z*`, les types DDIC[^terme-acro-ddic], les données et les autorisations au système cible. Effectuer un contrôle syntaxique avant activation.
 
 ```abap
 DATA lt_lines    TYPE STANDARD TABLE OF string WITH EMPTY KEY.
@@ -138,3 +138,18 @@ ENDIF.
 ---
 
 [Chapitre suivant — EXPORTER UN FICHIER VERS LE POSTE UTILISATEUR](<./16 ├── EXPORTER UN FICHIER VERS LE POSTE UTILISATEUR.md>)
+
+[^terme-table-interne]: **TABLE INTERNE.** Collection dynamique de lignes stockée en mémoire dans le programme ABAP. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#table-interne>).
+[^terme-frontend]: **FRONTEND.** Poste ou couche cliente utilisée par l’utilisateur, par exemple SAP GUI for Windows. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/01 ├── SYSTEMES ENVIRONNEMENTS ET MANDANTS.md#frontend>).
+[^terme-class-builder-se24]: **CLASS BUILDER (SE24).** Outil SAP GUI utilisé pour créer, afficher, modifier, tester et documenter les classes et interfaces globales ABAP. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/06 ├── PROGRAMMES CLASSES ET OBJETS TECHNIQUES.md#class-builder-se24>).
+[^terme-abap]: **ABAP.** Langage de programmation de la plateforme ABAP, conçu pour développer des applications métier et techniques SAP. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#abap>).
+[^terme-methode]: **MÉTHODE.** Comportement déclaré dans une classe ou une interface et appelé avec une liste de paramètres définie. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#methode>).
+[^terme-sap-gui]: **SAP GUI.** Client graphique permettant d’utiliser les transactions et écrans d’un système SAP. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/02 ├── SAP GUI NAVIGATION ET TRANSACTIONS.md#sap-gui>).
+[^terme-job]: **JOB.** Traitement planifié en arrière-plan composé d’une ou plusieurs étapes. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/06 ├── PROGRAMMES CLASSES ET OBJETS TECHNIQUES.md#job>).
+[^terme-api]: **API.** Application Programming Interface, contrat exposant des opérations ou données utilisables par d’autres composants. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/10 └── ACRONYMES SAP.md#api>).
+[^terme-encodage]: **ENCODAGE.** Règle transformant les caractères en octets et inversement. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/07 ├── INTERFACES ET INTEGRATION.md#encodage>).
+[^terme-commit-work]: **COMMIT WORK.** Instruction clôturant la SAP LUW courante, déclenchant notamment les mises à jour enregistrées et validant la base. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/08 ├── EXECUTION EXPLOITATION ET ADMINISTRATION.md#commit-work>).
+[^terme-mandant]: **MANDANT.** Subdivision logique d’un système SAP. Il est identifié par un numéro à trois chiffres et isole une partie des données, du paramétrage et des utilisateurs. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/01 ├── SYSTEMES ENVIRONNEMENTS ET MANDANTS.md#mandant>).
+[^terme-trace]: **TRACE.** Enregistrement détaillé d’événements techniques pour analyser exécution, SQL ou appels. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/08 ├── EXECUTION EXPLOITATION ET ADMINISTRATION.md#trace>).
+[^terme-csv]: **CSV.** Format texte tabulaire utilisant un séparateur de champs et des règles d’échappement. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/07 ├── INTERFACES ET INTEGRATION.md#csv>).
+[^terme-acro-ddic]: **DDIC.** Data Dictionary, abréviation courante de l’ABAP Dictionary. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/10 └── ACRONYMES SAP.md#acro-ddic>).

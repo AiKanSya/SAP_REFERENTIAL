@@ -2,11 +2,11 @@
 
 ## 9.A RÉSULTAT ATTENDU
 
-Collecter des statistiques SQL agrégées sur une période plus longue que la trace ponctuelle `ST05`.
+Collecter des statistiques SQL[^terme-acro-sql] agrégées sur une période plus longue que la trace[^terme-trace] ponctuelle `ST05`[^outil-st05].
 
 ## 9.B Positionnement
 
-`SQLM` enregistre les exécutions SQL avec un faible surcoût conçu pour l’analyse de charge. Il permet d’identifier les instructions réellement utilisées et leur coût cumulé sur des scénarios représentatifs.
+`SQLM`[^outil-sqlm] enregistre les exécutions SQL avec un faible surcoût conçu pour l’analyse de charge. Il permet d’identifier les instructions réellement utilisées et leur coût cumulé sur des scénarios représentatifs.
 
 ## 9.C Démarche
 
@@ -14,7 +14,7 @@ Collecter des statistiques SQL agrégées sur une période plus longue que la tr
 2. Activer le moniteur pour une durée limitée.
 3. Laisser s’exécuter les traitements représentatifs.
 4. Arrêter la collecte.
-5. Analyser avec `SQLMD` ou l’affichage proposé par la release.
+5. Analyser avec `SQLMD`[^outil-sqlmd] ou l’affichage proposé par la release.
 6. Filtrer les packages clients `Z*`, `Y*` ou le namespace concerné.
 
 ## 9.D Indicateurs utiles
@@ -32,7 +32,7 @@ Collecter des statistiques SQL agrégées sur une période plus longue que la tr
 | --------------------------------------- | ------ |
 | scénario unique et détail exact         | `ST05` |
 | comportement cumulé sur une période     | `SQLM` |
-| priorisation croisée statique/dynamique | `SWLT` |
+| priorisation croisée statique/dynamique | `SWLT`[^outil-swlt] |
 
 ## 9.F Gouvernance
 
@@ -63,7 +63,7 @@ Désactiver la collecte à la fin prévue. Ouvrir les résultats et filtrer par 
 
 ### 9.H.5 ÉTAPE 5 — NAVIGUER VERS LE CODE SOURCE
 
-Pour les accès prioritaires, relever programme, include et position. Vérifier la logique et reproduire si nécessaire avec `ST05` ou `SAT` pour obtenir le détail absent de l’agrégat. Ne corriger que les instructions dont le contexte d’exécution est compris.
+Pour les accès prioritaires, relever programme, include et position. Vérifier la logique et reproduire si nécessaire avec `ST05` ou `SAT`[^outil-sat] pour obtenir le détail absent de l’agrégat. Ne corriger que les instructions dont le contexte d’exécution est compris.
 
 ### 9.H.6 ÉTAPE 6 — COMPARER DEUX FENÊTRES
 
@@ -71,7 +71,7 @@ Après correction, collecter une période comparable en durée et en charge. Com
 
 ## 9.I VÉRIFICATION
 
-- Le scénario reproduit correspond au même utilisateur, mandant, transaction et jeu de données.
+- Le scénario reproduit correspond au même utilisateur, mandant[^terme-mandant], transaction et jeu de données.
 - L’horodatage et l’identifiant de l’analyse sont conservés.
 - La cause retenue est soutenue par une ligne source, une trace ou une valeur observée.
 - Après correction, le même scénario ne reproduit plus le défaut et le résultat métier reste identique.
@@ -101,3 +101,13 @@ Ordre de transport  :
 - [ATC](<../🧩 00 ├── LEXIQUE SAP ET ABAP/10 └── ACRONYMES SAP.md#acro-atc>)
 - [ABAP](<../🧩 00 ├── LEXIQUE SAP ET ABAP/10 └── ACRONYMES SAP.md#acro-abap>)
 - [Trace](<../🧩 00 ├── LEXIQUE SAP ET ABAP/08 ├── EXECUTION EXPLOITATION ET ADMINISTRATION.md#trace>)
+
+[^terme-acro-sql]: **SQL.** Structured Query Language. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/10 └── ACRONYMES SAP.md#acro-sql>).
+[^terme-trace]: **TRACE.** Enregistrement détaillé d’événements techniques pour analyser exécution, SQL ou appels. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/08 ├── EXECUTION EXPLOITATION ET ADMINISTRATION.md#trace>).
+[^terme-mandant]: **MANDANT.** Subdivision logique d’un système SAP. Il est identifié par un numéro à trois chiffres et isole une partie des données, du paramétrage et des utilisateurs. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/01 ├── SYSTEMES ENVIRONNEMENTS ET MANDANTS.md#mandant>).
+
+[^outil-st05]: **ST05.** Performance Trace utilisée notamment pour enregistrer et analyser les accès SQL. Voir [le chapitre associé](<08 ├── ANALYSER LES ACCES SQL AVEC ST05.md>).
+[^outil-sqlm]: **SQLM.** SQL Monitor utilisé pour agréger l’usage des instructions SQL pendant une période d’enregistrement. Voir [le chapitre associé](<09 ├── SURVEILLER LES ACCES SQL AVEC SQLM.md>).
+[^outil-sqlmd]: **SQLMD.** Vue détaillée du SQL Monitor utilisée pour examiner les données collectées par SQLM. Voir [le chapitre associé](<09 ├── SURVEILLER LES ACCES SQL AVEC SQLM.md>).
+[^outil-swlt]: **SWLT.** SQL Performance Tuning Worklist utilisée pour rapprocher usage productif et résultats de contrôles statiques. Voir [le chapitre associé](<10 ├── PRIORISER AVEC SWLT.md>).
+[^outil-sat]: **SAT.** Runtime Analysis utilisée pour mesurer et analyser le temps d’exécution ABAP. Voir [le chapitre associé](<07 ├── MESURER LE TEMPS D EXECUTION AVEC SAT.md>).

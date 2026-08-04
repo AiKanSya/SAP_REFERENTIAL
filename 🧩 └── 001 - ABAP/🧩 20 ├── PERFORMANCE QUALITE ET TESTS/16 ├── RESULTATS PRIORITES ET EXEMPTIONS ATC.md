@@ -2,7 +2,7 @@
 
 ## 16.A RÉSULTAT ATTENDU
 
-Traiter les findings ATC selon leur priorité et encadrer strictement les exemptions.
+Traiter les findings ATC[^terme-acro-atc] selon leur priorité et encadrer strictement les exemptions.
 
 ## 16.B Priorités
 
@@ -11,7 +11,7 @@ Les findings ATC utilisent des niveaux de priorité. Dans une configuration cour
 ## 16.C Ordre de traitement
 
 1. Findings de sécurité et erreurs potentielles.
-2. Incompatibilités de release ou d’API.
+2. Incompatibilités de release ou d’API[^terme-api].
 3. Défauts de performance avérés.
 4. Maintenabilité et conventions.
 5. Findings faibles ou contextuels.
@@ -37,7 +37,7 @@ flowchart TD
 ## 16.E Mauvaises pratiques
 
 - pseudo-commentaire sans analyse ;
-- exemption sur tout un package alors qu’un sous-objet suffit ;
+- exemption sur tout un package[^terme-package] alors qu’un sous-objet suffit ;
 - validité illimitée par défaut ;
 - justification « faux positif » sans démonstration ;
 - demandeur et approbateur confondus lorsque la gouvernance l’interdit.
@@ -105,3 +105,7 @@ Ordre de transport  :
 - [ATC](<../🧩 00 ├── LEXIQUE SAP ET ABAP/10 └── ACRONYMES SAP.md#acro-atc>)
 - [ABAP](<../🧩 00 ├── LEXIQUE SAP ET ABAP/10 └── ACRONYMES SAP.md#acro-abap>)
 - [Trace](<../🧩 00 ├── LEXIQUE SAP ET ABAP/08 ├── EXECUTION EXPLOITATION ET ADMINISTRATION.md#trace>)
+
+[^terme-acro-atc]: **ATC.** ABAP Test Cockpit, infrastructure de contrôles statiques et de gouvernance qualité. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/10 └── ACRONYMES SAP.md#acro-atc>).
+[^terme-api]: **API.** Application Programming Interface, contrat exposant des opérations ou données utilisables par d’autres composants. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/10 └── ACRONYMES SAP.md#api>).
+[^terme-package]: **PACKAGE.** Conteneur logique qui regroupe les objets de développement et détermine notamment leur transportabilité. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/03 ├── REPOSITORY PACKAGES ET TRANSPORTS.md#package>).

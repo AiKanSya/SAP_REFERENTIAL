@@ -8,13 +8,13 @@
 
 ## 5.B RÔLE
 
-Une variante mémorise les valeurs d’un écran de sélection. Pour un rapport doté d’un écran de sélection, elle constitue le mécanisme standard permettant de transmettre les paramètres à une étape ABAP planifiée depuis les transactions de jobs.
+Une variante mémorise les valeurs d’un écran de sélection. Pour un rapport doté d’un écran de sélection, elle constitue le mécanisme standard permettant de transmettre les paramètres à une étape ABAP[^terme-abap] planifiée depuis les transactions de jobs.
 
 ## 5.C PROCESS
 
 ### 5.C.1 ÉTAPE 1 — OUVRIR LA MAINTENANCE DES VARIANTES
 
-Dans `SE38` ou `SA38`, saisir le programme actif puis ouvrir la maintenance des variantes. Vérifier que l’écran de sélection correspond à la version du report planifiée. Ne pas copier une variante d’un autre programme ou environnement sans contrôler chaque champ.
+Dans `SE38`[^outil-se38] ou `SA38`[^outil-sa38], saisir le programme actif puis ouvrir la maintenance des variantes. Vérifier que l’écran de sélection correspond à la version du report planifiée. Ne pas copier une variante d’un autre programme ou environnement[^terme-environnement] sans contrôler chaque champ.
 
 ### 5.C.2 ÉTAPE 2 — RENSEIGNER LE PÉRIMÈTRE
 
@@ -34,7 +34,7 @@ Exécuter le report avec un mode test ou un faible périmètre. Vérifier les pa
 
 ### 5.C.6 ÉTAPE 6 — AFFECTER ET CONTRÔLER DANS LE JOB
 
-Dans `SM36`, affecter la variante à l’étape ABAP. Enregistrer puis ouvrir le job dans `SM37` pour confirmer le nom du programme et de la variante. Avant production, comparer la variante du système cible, car son contenu peut différer entre environnements.
+Dans `SM36`[^outil-sm36], affecter la variante à l’étape ABAP. Enregistrer puis ouvrir le job[^terme-job] dans `SM37`[^outil-sm37] pour confirmer le nom du programme et de la variante. Avant production, comparer la variante du système cible, car son contenu peut différer entre environnements.
 
 ## 5.D BON NOMMAGE
 
@@ -71,7 +71,7 @@ La variante ne remplace pas les validations métier du rapport.
 
 - Le job apparaît dans `SM37` avec le statut attendu.
 - Le journal ne contient pas de message d’erreur non traité.
-- Le spool, le fichier ou le journal applicatif contient le résultat attendu.
+- Le spool[^terme-spool], le fichier ou le journal applicatif contient le résultat attendu.
 - Une relance contrôlée ne crée pas de doublon métier.
 
 ## 5.H ERREURS FRÉQUENTES
@@ -109,3 +109,13 @@ Ordre de transport  :
 ---
 
 [Chapitre suivant — PLANIFIER UN JOB AVEC `SM36`](<./06 ├── PLANIFIER UN JOB AVEC SM36.md>)
+
+[^terme-abap]: **ABAP.** Langage de programmation de la plateforme ABAP, conçu pour développer des applications métier et techniques SAP. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#abap>).
+[^terme-environnement]: **ENVIRONNEMENT.** Rôle fonctionnel attribué à un système dans le cycle de vie : développement, test, recette, préproduction ou production. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/01 ├── SYSTEMES ENVIRONNEMENTS ET MANDANTS.md#environnement>).
+[^terme-job]: **JOB.** Traitement planifié en arrière-plan composé d’une ou plusieurs étapes. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/06 ├── PROGRAMMES CLASSES ET OBJETS TECHNIQUES.md#job>).
+[^terme-spool]: **SPOOL.** Infrastructure stockant et acheminant les sorties imprimables produites par les traitements SAP. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/06 ├── PROGRAMMES CLASSES ET OBJETS TECHNIQUES.md#spool>).
+
+[^outil-se38]: **SE38.** Éditeur ABAP classique utilisé pour créer, modifier, vérifier et exécuter des programmes. Voir [le chapitre associé](<../🧩 01 ├── FONDAMENTAUX ABAP/04 ├── EDITEURS ABAP SE38 ET SE80.md>).
+[^outil-sa38]: **SA38.** Transaction d’exécution d’un programme ABAP sans accès direct à son édition. Voir [le chapitre associé](<../🧩 01 ├── FONDAMENTAUX ABAP/04 ├── EDITEURS ABAP SE38 ET SE80.md>).
+[^outil-sm36]: **SM36.** Transaction de définition et de planification des jobs d’arrière-plan. Voir [le chapitre associé](<06 ├── PLANIFIER UN JOB AVEC SM36.md>).
+[^outil-sm37]: **SM37.** Transaction de recherche, surveillance et administration des jobs d’arrière-plan. Voir [le chapitre associé](<15 ├── SURVEILLER LES JOBS AVEC SM37.md>).

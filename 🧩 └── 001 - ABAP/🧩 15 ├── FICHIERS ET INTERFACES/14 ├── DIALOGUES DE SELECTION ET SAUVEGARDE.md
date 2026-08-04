@@ -38,7 +38,7 @@ La boîte de dialogue sélectionne uniquement un chemin. Elle ne lit pas le fich
 
 ## 14.D SCRIPTABILITÉ
 
-La documentation SAP indique que les dialogues natifs du système d’exploitation ne sont pas toujours scriptables. Pour certains scénarios d’automatisation SAP GUI, SAP recommande les modules fonction de dialogue dédiés lorsque leurs contraintes conviennent.
+La documentation SAP[^terme-acro-sap] indique que les dialogues natifs du système d’exploitation ne sont pas toujours scriptables. Pour certains scénarios d’automatisation SAP GUI[^terme-sap-gui], SAP recommande les modules fonction de dialogue dédiés lorsque leurs contraintes conviennent.
 
 ## 14.E ANNULATION
 
@@ -56,7 +56,7 @@ Une annulation est un comportement normal, pas une erreur technique. Le programm
 
 ### 14.G.1 Étape 1 — Vérifier le contexte SAP GUI
 
-Utiliser un dialogue frontend uniquement dans une session interactive avec SAP GUI. Prévoir une autre entrée pour un job, un RFC ou un traitement sans frontend.
+Utiliser un dialogue frontend[^terme-frontend] uniquement dans une session interactive avec SAP GUI. Prévoir une autre entrée pour un job[^terme-job], un RFC[^terme-rfc] ou un traitement sans frontend.
 
 ### 14.G.2 Étape 2 — Préparer les filtres et la valeur initiale
 
@@ -81,7 +81,7 @@ Tester l’annulation, une sélection multiple, un nom long, un fichier inaccess
 ## 14.H VÉRIFICATION
 
 - Le fichier est créé ou lu dans l’emplacement attendu.
-- Le nombre de lignes, la taille et l’encodage correspondent au contrat.
+- Le nombre de lignes, la taille et l’encodage[^terme-encodage] correspondent au contrat.
 - Les caractères accentués, séparateurs, guillemets et fins de ligne sont testés.
 - Le traitement journalise les rejets et permet une reprise sans doublon.
 
@@ -90,12 +90,12 @@ Tester l’annulation, une sélection multiple, un nom long, un fichier inaccess
 - Copier un exemple sans adapter les types, noms d’objets et données disponibles dans le système.
 - Tester uniquement le cas nominal et ignorer les valeurs initiales, absentes ou invalides.
 - Mélanger fichiers frontend et serveur dans un même scénario.
-- Parser un CSV par simple séparation alors que les champs peuvent être échappés.
+- Parser un CSV[^terme-csv] par simple séparation alors que les champs peuvent être échappés.
 
 ## 14.J SNIPPET À RÉUTILISER
 
 > [!NOTE]
-> Adapter les noms `Z*`, les types DDIC, les données et les autorisations au système cible. Effectuer un contrôle syntaxique avant activation.
+> Adapter les noms `Z*`, les types DDIC[^terme-acro-ddic], les données et les autorisations au système cible. Effectuer un contrôle syntaxique avant activation.
 
 ```abap
 DATA lt_files       TYPE filetable.
@@ -137,3 +137,12 @@ ENDIF.
 ---
 
 [Chapitre suivant — IMPORTER UN FICHIER DU POSTE UTILISATEUR](<./15 ├── IMPORTER UN FICHIER DU POSTE UTILISATEUR.md>)
+
+[^terme-acro-sap]: **SAP.** Nom de l’éditeur et de son écosystème logiciel ; l’acronyme historique provient de l’allemand. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/10 └── ACRONYMES SAP.md#acro-sap>).
+[^terme-sap-gui]: **SAP GUI.** Client graphique permettant d’utiliser les transactions et écrans d’un système SAP. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/02 ├── SAP GUI NAVIGATION ET TRANSACTIONS.md#sap-gui>).
+[^terme-frontend]: **FRONTEND.** Poste ou couche cliente utilisée par l’utilisateur, par exemple SAP GUI for Windows. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/01 ├── SYSTEMES ENVIRONNEMENTS ET MANDANTS.md#frontend>).
+[^terme-job]: **JOB.** Traitement planifié en arrière-plan composé d’une ou plusieurs étapes. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/06 ├── PROGRAMMES CLASSES ET OBJETS TECHNIQUES.md#job>).
+[^terme-rfc]: **RFC.** Remote Function Call, mécanisme permettant d’appeler un module fonction compatible dans un autre contexte ou système. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/06 ├── PROGRAMMES CLASSES ET OBJETS TECHNIQUES.md#rfc>).
+[^terme-encodage]: **ENCODAGE.** Règle transformant les caractères en octets et inversement. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/07 ├── INTERFACES ET INTEGRATION.md#encodage>).
+[^terme-csv]: **CSV.** Format texte tabulaire utilisant un séparateur de champs et des règles d’échappement. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/07 ├── INTERFACES ET INTEGRATION.md#csv>).
+[^terme-acro-ddic]: **DDIC.** Data Dictionary, abréviation courante de l’ABAP Dictionary. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/10 └── ACRONYMES SAP.md#acro-ddic>).

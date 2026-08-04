@@ -2,19 +2,19 @@
 
 ## 15.A RÉSULTAT ATTENDU
 
-- Créer une implémentation BAdI client
-- Générer ou affecter la classe d’implémentation
+- Créer une implémentation BAdI[^terme-acro-badi] client
+- Générer ou affecter la classe[^terme-classe] d’implémentation
 - Activer et tester l’ensemble des objets
 
 ## 15.B PROCESS
 
 ### 15.B.1 ÉTAPE 1 — PARTIR D’UNE DÉFINITION VALIDÉE
 
-Conserver le nom, la méthode, le point d’appel, les filtres et les implémentations existantes analysés dans `SE18`. Définir le cas métier sélectionné et les cas qui doivent rester sans effet.
+Conserver le nom, la méthode[^terme-methode], le point d’appel, les filtres et les implémentations existantes analysés dans `SE18`[^outil-se18]. Définir le cas métier sélectionné et les cas qui doivent rester sans effet.
 
 ### 15.B.2 ÉTAPE 2 — CRÉER L’IMPLÉMENTATION DANS `SE19`
 
-Saisir `/nSE19`, choisir le mode de BAdI approprié puis créer une implémentation Z pour la définition ou l’enhancement spot. Renseigner une description explicite, le package et la demande de transport.
+Saisir `/nSE19`, choisir le mode de BAdI approprié puis créer une implémentation Z pour la définition ou l’enhancement spot. Renseigner une description explicite, le package[^terme-package] et la demande de transport.
 
 ### 15.B.3 ÉTAPE 3 — MAINTENIR LES FILTRES
 
@@ -22,15 +22,15 @@ Saisir uniquement les valeurs nécessaires au périmètre convenu et contrôler 
 
 ### 15.B.4 ÉTAPE 4 — IMPLÉMENTER LES MÉTHODES
 
-Ouvrir la classe générée ou affectée. Dans chaque méthode nécessaire, valider le contexte puis déléguer à une classe de service Z. Respecter la direction des paramètres, les exceptions et la LUW du standard. Laisser les méthodes non utilisées sans effet explicite.
+Ouvrir la classe générée ou affectée. Dans chaque méthode nécessaire, valider le contexte puis déléguer à une classe de service Z. Respecter la direction des paramètres, les exceptions et la LUW[^terme-acro-luw] du standard. Laisser les méthodes non utilisées sans effet explicite.
 
 ### 15.B.5 ÉTAPE 5 — ACTIVER TOUS LES NIVEAUX
 
-Contrôler et activer la classe de service, la classe d’implémentation et l’implémentation BAdI. Vérifier le statut actif dans `SE19` et l’apparition de l’implémentation dans `SE18`. Contrôler les dépendances de transport.
+Contrôler et activer la classe de service, la classe d’implémentation et l’implémentation BAdI. Vérifier le statut actif dans `SE19`[^outil-se19] et l’apparition de l’implémentation dans `SE18`. Contrôler les dépendances de transport.
 
 ### 15.B.6 ÉTAPE 6 — TESTER LA SÉLECTION RUNTIME
 
-Placer un breakpoint dans la méthode BAdI. Tester une valeur de filtre incluse, une valeur exclue, un cas d’erreur et les scénarios couverts par d’autres implémentations. Vérifier le résultat après le retour au standard et l’absence d’effet hors périmètre.
+Placer un breakpoint[^terme-breakpoint] dans la méthode BAdI. Tester une valeur de filtre incluse, une valeur exclue, un cas d’erreur et les scénarios couverts par d’autres implémentations. Vérifier le résultat après le retour au standard et l’absence d’effet hors périmètre.
 
 ## 15.C DÉLÉGATION
 
@@ -46,7 +46,7 @@ METHOD if_ex_zbadi_demo~change_data.
 ENDMETHOD.
 ```
 
-Cette délégation facilite les tests, la réutilisation et la séparation entre contrat SAP et logique client.
+Cette délégation[^terme-delegation] facilite les tests, la réutilisation et la séparation entre contrat SAP[^terme-acro-sap] et logique client.
 
 ## 15.D ACTIVATION
 
@@ -75,7 +75,7 @@ flowchart TD
 ## 15.G SNIPPET À RÉUTILISER
 
 > [!NOTE]
-> Adapter les noms `Z*`, les types DDIC, les données et les autorisations au système cible. Effectuer un contrôle syntaxique avant activation.
+> Adapter les noms `Z*`, les types DDIC[^terme-acro-ddic], les données et les autorisations au système cible. Effectuer un contrôle syntaxique avant activation.
 
 ```abap
 METHOD if_ex_zbadi_demo~change_data.
@@ -102,3 +102,16 @@ ENDMETHOD.
 ---
 
 [Chapitre suivant — BAdI CLASSIQUES, FILTRES ET USAGE MULTIPLE](<./16 ├── BADI CLASSIQUES FILTRES ET USAGE MULTIPLE.md>)
+
+[^terme-acro-badi]: **BADI.** Business Add-In, mécanisme d’extension orienté objet du standard SAP. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/10 └── ACRONYMES SAP.md#acro-badi>).
+[^terme-classe]: **CLASSE.** Modèle orienté objet définissant état et comportements. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#classe>).
+[^terme-methode]: **MÉTHODE.** Comportement déclaré dans une classe ou une interface et appelé avec une liste de paramètres définie. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#methode>).
+[^terme-package]: **PACKAGE.** Conteneur logique qui regroupe les objets de développement et détermine notamment leur transportabilité. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/03 ├── REPOSITORY PACKAGES ET TRANSPORTS.md#package>).
+[^terme-acro-luw]: **LUW.** Logical Unit of Work. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/10 └── ACRONYMES SAP.md#acro-luw>).
+[^terme-breakpoint]: **BREAKPOINT.** Point d’arrêt suspendant l’exécution dans le débogueur. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/08 ├── EXECUTION EXPLOITATION ET ADMINISTRATION.md#breakpoint>).
+[^terme-delegation]: **DÉLÉGATION.** Technique par laquelle une méthode transmet tout ou partie d’un traitement à un objet collaborateur. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#delegation>).
+[^terme-acro-sap]: **SAP.** Nom de l’éditeur et de son écosystème logiciel ; l’acronyme historique provient de l’allemand. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/10 └── ACRONYMES SAP.md#acro-sap>).
+[^terme-acro-ddic]: **DDIC.** Data Dictionary, abréviation courante de l’ABAP Dictionary. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/10 └── ACRONYMES SAP.md#acro-ddic>).
+
+[^outil-se18]: **SE18.** BAdI Builder utilisé pour rechercher et analyser les définitions de BAdI. Voir [le chapitre associé](<14 ├── ANALYSER UNE DEFINITION BADI AVEC SE18.md>).
+[^outil-se19]: **SE19.** BAdI Builder utilisé pour créer et maintenir les implémentations de BAdI. Voir [le chapitre associé](<15 ├── IMPLEMENTER UNE BADI AVEC SE19.md>).

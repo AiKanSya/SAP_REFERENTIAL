@@ -2,15 +2,15 @@
 
 ## 10.A RÉSULTAT ATTENDU
 
-- Définir une relation entre deux tables DDIC
-- Distinguer table de valeurs et table de contrôle
+- Définir une relation entre deux tables DDIC[^terme-acro-ddic]
+- Distinguer table de valeurs et table de contrôle[^terme-table-controle]
 - Comprendre les cardinalités
-- Identifier une table de texte
+- Identifier une table de texte[^terme-table-texte]
 - Connaître les limites des contrôles DDIC
 
 ## 10.B CLÉ ÉTRANGÈRE
 
-Une clé étrangère DDIC relie les champs d’une table à la clé primaire d’une table de contrôle.
+Une clé étrangère[^terme-cle-etrangere] DDIC relie les champs d’une table à la clé primaire[^terme-cle-primaire] d’une table de contrôle.
 
 ```mermaid
 flowchart LR
@@ -51,13 +51,13 @@ Elle précise notamment :
 - si une ligne de la table étrangère doit obligatoirement trouver une ligne de contrôle ;
 - combien de lignes étrangères peuvent référencer une ligne de contrôle.
 
-La cardinalité doit refléter la règle métier réelle, pas seulement les données présentes au moment de la création.
+La cardinalité doit refléter la règle métier[^terme-regle-metier] réelle, pas seulement les données présentes au moment de la création.
 
 ## 10.F CONTRÔLE EFFECTIF
 
-Une clé étrangère DDIC fournit des métadonnées utilisées par les écrans classiques, les aides F4, les vues de maintenance et divers générateurs.
+Une clé étrangère DDIC fournit des métadonnées utilisées par les écrans classiques, les aides F4[^terme-aide-f4], les vues de maintenance et divers générateurs.
 
-Elle ne garantit pas à elle seule que toute écriture effectuée par n’importe quel programme ABAP sera contrôlée. Le code applicatif et les interfaces d’écriture doivent respecter l’intégrité attendue.
+Elle ne garantit pas à elle seule que toute écriture effectuée par n’importe quel programme ABAP[^terme-abap] sera contrôlée. Le code applicatif et les interfaces d’écriture doivent respecter l’intégrité attendue.
 
 ## 10.G TABLE DE TEXTE
 
@@ -95,7 +95,7 @@ Déterminer la table contenant la valeur saisie et la table de contrôle qui por
 
 ### 10.I.2 Étape 2 — Créer la clé étrangère
 
-1. Ouvrir la table dépendante dans `SE11` et sélectionner le champ concerné.
+1. Ouvrir la table dépendante dans `SE11`[^outil-se11] et sélectionner le champ concerné.
 2. Ouvrir la définition de clé étrangère.
 3. Saisir la table de contrôle.
 4. Affecter chaque champ de la clé de la table de contrôle au champ correspondant de la table dépendante ou à une constante autorisée.
@@ -120,7 +120,7 @@ Créer deux textes pour une même clé dans deux langues, puis vérifier leur re
 ## 10.J VÉRIFICATION
 
 - Le contrôle de cohérence ne retourne aucune erreur bloquante.
-- L’objet est actif et son entrée de répertoire pointe vers le package attendu.
+- L’objet est actif et son entrée de répertoire pointe vers le package[^terme-package] attendu.
 - La liste d’utilisation et les dépendances correspondent au périmètre prévu.
 - Pour une table Z, la structure active et la structure de base sont cohérentes.
 
@@ -160,3 +160,15 @@ Ordre de transport  :
 ---
 
 [Chapitre suivant — AIDES À LA RECHERCHE ÉLÉMENTAIRES ET COLLECTIVES](<./11 ├── AIDES A LA RECHERCHE ELEMENTAIRES ET COLLECTIVES.md>)
+
+[^terme-acro-ddic]: **DDIC.** Data Dictionary, abréviation courante de l’ABAP Dictionary. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/10 └── ACRONYMES SAP.md#acro-ddic>).
+[^terme-table-controle]: **TABLE DE CONTRÔLE.** Table contenant les valeurs de référence autorisées pour une relation de clé étrangère. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/05 ├── DONNEES DICTIONNAIRE ET BASE DE DONNEES.md#table-controle>).
+[^terme-table-texte]: **TABLE DE TEXTE.** Table dépendante de la langue contenant les descriptions associées à une table principale. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/05 ├── DONNEES DICTIONNAIRE ET BASE DE DONNEES.md#table-texte>).
+[^terme-cle-etrangere]: **CLÉ ÉTRANGÈRE.** Relation DDIC entre des champs d’une table et une table de contrôle. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/05 ├── DONNEES DICTIONNAIRE ET BASE DE DONNEES.md#cle-etrangere>).
+[^terme-cle-primaire]: **CLÉ PRIMAIRE.** Ensemble minimal de champs identifiant de manière unique une ligne de table. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/05 ├── DONNEES DICTIONNAIRE ET BASE DE DONNEES.md#cle-primaire>).
+[^terme-regle-metier]: **RÈGLE MÉTIER.** Condition ou calcul imposé par le processus fonctionnel. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/09 ├── NOTIONS FONCTIONNELLES ET ORGANISATIONNELLES.md#regle-metier>).
+[^terme-aide-f4]: **AIDE F4.** Aide à la saisie proposant des valeurs autorisées ou recherchables. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/02 ├── SAP GUI NAVIGATION ET TRANSACTIONS.md#aide-f4>).
+[^terme-abap]: **ABAP.** Langage de programmation de la plateforme ABAP, conçu pour développer des applications métier et techniques SAP. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#abap>).
+[^terme-package]: **PACKAGE.** Conteneur logique qui regroupe les objets de développement et détermine notamment leur transportabilité. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/03 ├── REPOSITORY PACKAGES ET TRANSPORTS.md#package>).
+
+[^outil-se11]: **SE11.** Transaction de l’ABAP Dictionary utilisée pour analyser et maintenir les objets DDIC. Voir [le chapitre associé](<02 ├── NAVIGATION ET ANALYSE AVEC SE11.md>).

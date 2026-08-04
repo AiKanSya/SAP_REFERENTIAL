@@ -2,7 +2,7 @@
 
 ## 17.A RÉSULTAT ATTENDU
 
-Tester automatiquement une unité de logique ABAP de manière rapide, déterministe et indépendante.
+Tester automatiquement une unité de logique ABAP[^terme-abap] de manière rapide, déterministe et indépendante.
 
 ## 17.B Structure minimale
 
@@ -31,7 +31,7 @@ ENDCLASS.
 
 ## 17.C Attributs
 
-- `FOR TESTING` identifie une classe ou méthode de test.
+- `FOR TESTING` identifie une classe[^terme-classe] ou méthode[^terme-methode] de test.
 - `DURATION SHORT|MEDIUM|LONG` classe la durée attendue.
 - `RISK LEVEL HARMLESS|DANGEROUS|CRITICAL` qualifie les effets possibles.
 
@@ -58,7 +58,7 @@ Sélectionner une méthode dont l’entrée et le résultat sont déterministes.
 
 ### 17.F.2 ÉTAPE 2 — CRÉER LA CLASSE DE TEST LOCALE
 
-Dans l’objet productif, ajouter une classe locale `FOR TESTING`, `FINAL`, avec `DURATION` et `RISK LEVEL` conformes au test. Garder ses données dans la section privée et utiliser un nom décrivant le composant testé.
+Dans l’objet productif, ajouter une classe locale[^terme-classe-locale] `FOR TESTING`, `FINAL`, avec `DURATION` et `RISK LEVEL` conformes au test. Garder ses données dans la section privée et utiliser un nom décrivant le composant testé.
 
 ### 17.F.3 ÉTAPE 3 — DÉCLARER UNE MÉTHODE `FOR TESTING`
 
@@ -74,7 +74,7 @@ Exécuter les tests depuis l’éditeur ou l’outil disponible sur l’objet. O
 
 ### 17.F.6 ÉTAPE 6 — INTÉGRER AU CONTRÔLE DE LIVRAISON
 
-Exécuter la classe, le package ou la demande complète selon la procédure. Conserver des tests courts, sans commit ni donnée persistante. Ajouter des tests d’intégration séparés pour les contrats que l’unité ne couvre pas.
+Exécuter la classe, le package[^terme-package] ou la demande complète selon la procédure. Conserver des tests courts, sans commit ni donnée persistante. Ajouter des tests d’intégration séparés pour les contrats que l’unité ne couvre pas.
 
 ## 17.G Références SAP officielles
 
@@ -99,7 +99,7 @@ Exécuter la classe, le package ou la demande complète selon la procédure. Con
 ## 17.J SNIPPET À RÉUTILISER
 
 > [!NOTE]
-> Adapter les noms `Z*`, les types DDIC, les données et les autorisations au système cible. Effectuer un contrôle syntaxique avant activation.
+> Adapter les noms `Z*`, les types DDIC[^terme-acro-ddic], les données et les autorisations au système cible. Effectuer un contrôle syntaxique avant activation.
 
 ```abap
 " Vérifier un seul comportement observable avec une attente explicite.
@@ -129,3 +129,10 @@ ENDCLASS.
 - [ABAP](<../🧩 00 ├── LEXIQUE SAP ET ABAP/10 └── ACRONYMES SAP.md#acro-abap>)
 - [ATC](<../🧩 00 ├── LEXIQUE SAP ET ABAP/10 └── ACRONYMES SAP.md#acro-atc>)
 - [Trace](<../🧩 00 ├── LEXIQUE SAP ET ABAP/08 ├── EXECUTION EXPLOITATION ET ADMINISTRATION.md#trace>)
+
+[^terme-abap]: **ABAP.** Langage de programmation de la plateforme ABAP, conçu pour développer des applications métier et techniques SAP. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#abap>).
+[^terme-classe]: **CLASSE.** Modèle orienté objet définissant état et comportements. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#classe>).
+[^terme-methode]: **MÉTHODE.** Comportement déclaré dans une classe ou une interface et appelé avec une liste de paramètres définie. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#methode>).
+[^terme-classe-locale]: **CLASSE LOCALE.** Classe définie dans le code source d’un programme, d’un include ou d’un Class Pool et visible uniquement dans ce contexte de compilation. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/06 ├── PROGRAMMES CLASSES ET OBJETS TECHNIQUES.md#classe-locale>).
+[^terme-package]: **PACKAGE.** Conteneur logique qui regroupe les objets de développement et détermine notamment leur transportabilité. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/03 ├── REPOSITORY PACKAGES ET TRANSPORTS.md#package>).
+[^terme-acro-ddic]: **DDIC.** Data Dictionary, abréviation courante de l’ABAP Dictionary. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/10 └── ACRONYMES SAP.md#acro-ddic>).

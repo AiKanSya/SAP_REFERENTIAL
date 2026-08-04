@@ -2,10 +2,10 @@
 
 ## 3.A RÉSULTAT ATTENDU
 
-- Comprendre le rôle d’un package ABAP
+- Comprendre le rôle d’un package[^terme-package] ABAP[^terme-abap]
 - Distinguer objet local et objet transportable
-- Comprendre la structure requête/tâche d’un ordre de transport
-- Différencier requête Workbench et requête de Customizing
+- Comprendre la structure requête/tâche d’un ordre de transport[^terme-ordre-transport]
+- Différencier requête Workbench et requête de Customizing[^terme-customizing]
 - Appliquer une séquence de transport sûre
 
 ## 3.B VUE D’ENSEMBLE
@@ -36,7 +36,7 @@ Il porte notamment des informations utiles pour :
 
 ## 3.D PACKAGE LOCAL `$TMP`
 
-Le package `$TMP` est destiné aux objets locaux non transportés.
+Le package `$TMP`[^terme-objet-local-tmp] est destiné aux objets locaux non transportés.
 
 Utilisations adaptées :
 
@@ -55,7 +55,7 @@ Un objet local peut être réaffecté ultérieurement à un package transportabl
 
 ## 3.E PACKAGE TRANSPORTABLE
 
-Lors de la création d’un objet dans un package transportable, SAP demande généralement un ordre de transport.
+Lors de la création d’un objet dans un package transportable, SAP[^terme-acro-sap] demande généralement un ordre de transport.
 
 Le package détermine la couche de transport et donc la route logique utilisée dans le paysage SAP.
 
@@ -104,7 +104,7 @@ Exemples :
 
 ### 3.G.2 REQUÊTE DE CUSTOMIZING
 
-Elle transporte principalement du paramétrage dépendant du mandant lorsque ce paramétrage est enregistré dans le système de transport.
+Elle transporte principalement du paramétrage dépendant du mandant[^terme-dependant-mandant] lorsque ce paramétrage est enregistré dans le système de transport.
 
 > [!NOTE]
 > Un développeur ABAP travaille surtout avec des requêtes Workbench, mais doit reconnaître les deux catégories pour éviter de mélanger code et paramétrage sans justification.
@@ -113,10 +113,10 @@ Elle transporte principalement du paramétrage dépendant du mandant lorsque ce 
 
 | Transaction | Usage principal                                                             |
 | ----------- | --------------------------------------------------------------------------- |
-| `SE09`      | Transport Organizer orienté Workbench                                       |
-| `SE10`      | Vue étendue du Transport Organizer                                          |
+| `SE09`[^outil-se09]      | Transport Organizer orienté Workbench                                       |
+| `SE10`[^outil-se10]      | Vue étendue du Transport Organizer                                          |
 | `SE03`      | Outils d’administration et d’analyse du système de transport                |
-| `STMS`      | Administration des routes et imports, généralement gérée par l’équipe Basis |
+| `STMS`[^outil-stms]      | Administration des routes et imports, généralement gérée par l’équipe Basis |
 
 Les fonctions exactes accessibles dépendent des autorisations.
 
@@ -177,7 +177,7 @@ Si le package attendu est inconnu, annuler l’affectation. Choisir un package a
 
 ### 3.L.2 Étape 2 — Affecter une tâche de transport
 
-1. Dans la demande de transport, rechercher l’ordre Workbench prévu pour la livraison.
+1. Dans la demande de transport, rechercher l’ordre Workbench[^terme-ordre-workbench] prévu pour la livraison.
 2. Sélectionner la tâche appartenant à votre utilisateur.
 3. Vérifier la description, le propriétaire et la cible de l’ordre parent.
 4. Créer un nouvel ordre uniquement selon la convention de nommage et de découpage de l’équipe.
@@ -196,7 +196,7 @@ Un objet absent peut ne pas avoir été sauvegardé, être enregistré dans une 
 
 ### 3.L.4 Étape 4 — Vérifier les dépendances de livraison
 
-1. Identifier les dépendances nécessaires : élément de données, structure, table, classe, message, enhancement ou Customizing.
+1. Identifier les dépendances nécessaires : élément de données[^terme-element-donnees], structure, table, classe[^terme-classe], message, enhancement ou Customizing.
 2. Rechercher leur ordre respectif.
 3. Vérifier que leur séquence d’import est compatible avec celle de l’objet appelant.
 
@@ -252,4 +252,21 @@ Ordre de transport  :
 
 ---
 
-[Chapitre suivant — ÉDITEURS ABAP `SE38` ET `SE80`](<./04 ├── EDITEURS ABAP SE38 ET SE80.md>)
+[Chapitre suivant — ÉDITEURS ABAP `SE38`[^outil-se38] ET `SE80`[^outil-se80]](<./04 ├── EDITEURS ABAP SE38 ET SE80.md>)
+
+[^terme-package]: **PACKAGE.** Conteneur logique qui regroupe les objets de développement et détermine notamment leur transportabilité. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/03 ├── REPOSITORY PACKAGES ET TRANSPORTS.md#package>).
+[^terme-abap]: **ABAP.** Langage de programmation de la plateforme ABAP, conçu pour développer des applications métier et techniques SAP. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#abap>).
+[^terme-ordre-transport]: **ORDRE DE TRANSPORT.** Conteneur qui regroupe des modifications à exporter puis importer dans d’autres systèmes. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/03 ├── REPOSITORY PACKAGES ET TRANSPORTS.md#ordre-transport>).
+[^terme-customizing]: **CUSTOMIZING.** Paramétrage permettant d’adapter le comportement standard SAP à l’organisation. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/09 ├── NOTIONS FONCTIONNELLES ET ORGANISATIONNELLES.md#customizing>).
+[^terme-objet-local-tmp]: **OBJET LOCAL $TMP.** Objet affecté au package local `$TMP`, non destiné au transport vers un autre système. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/03 ├── REPOSITORY PACKAGES ET TRANSPORTS.md#objet-local-tmp>).
+[^terme-acro-sap]: **SAP.** Nom de l’éditeur et de son écosystème logiciel ; l’acronyme historique provient de l’allemand. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/10 └── ACRONYMES SAP.md#acro-sap>).
+[^terme-dependant-mandant]: **DÉPENDANT DU MANDANT.** Qualifie une donnée ou un objet dont le contenu est séparé par mandant. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/01 ├── SYSTEMES ENVIRONNEMENTS ET MANDANTS.md#dependant-mandant>).
+[^terme-ordre-workbench]: **ORDRE WORKBENCH.** Type d’ordre utilisé principalement pour les objets Repository et les modifications inter-mandants. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/03 ├── REPOSITORY PACKAGES ET TRANSPORTS.md#ordre-workbench>).
+[^terme-element-donnees]: **ÉLÉMENT DE DONNÉES.** Objet DDIC qui attribue une signification métier, des libellés et une documentation à un type élémentaire ou à un domaine. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/05 ├── DONNEES DICTIONNAIRE ET BASE DE DONNEES.md#element-donnees>).
+[^terme-classe]: **CLASSE.** Modèle orienté objet définissant état et comportements. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#classe>).
+
+[^outil-se09]: **SE09.** Transaction de l’Organisateur de transports utilisée pour consulter et gérer les ordres et tâches de transport. Voir [le chapitre associé](<03 ├── PACKAGES ET ORDRES DE TRANSPORT.md>).
+[^outil-se10]: **SE10.** Transaction de l’Organisateur de transports utilisée pour consulter et gérer les ordres et tâches de transport. Voir [le chapitre associé](<03 ├── PACKAGES ET ORDRES DE TRANSPORT.md>).
+[^outil-stms]: **STMS.** Transport Management System utilisé pour administrer les routes, files et imports de transports. Voir [le chapitre associé](<03 ├── PACKAGES ET ORDRES DE TRANSPORT.md>).
+[^outil-se38]: **SE38.** Éditeur ABAP classique utilisé pour créer, modifier, vérifier et exécuter des programmes. Voir [le chapitre associé](<04 ├── EDITEURS ABAP SE38 ET SE80.md>).
+[^outil-se80]: **SE80.** Object Navigator utilisé pour parcourir et maintenir les objets du Repository ABAP. Voir [le chapitre associé](<04 ├── EDITEURS ABAP SE38 ET SE80.md>).

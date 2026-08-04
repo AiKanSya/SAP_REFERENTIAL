@@ -2,11 +2,11 @@
 
 ## 1.A RÉSULTAT ATTENDU
 
-- Comprendre le rôle du Dictionary ABAP
-- Identifier les principales catégories d’objets DDIC
+- Comprendre le rôle du Dictionary ABAP[^terme-abap]
+- Identifier les principales catégories d’objets DDIC[^terme-acro-ddic]
 - Distinguer définition technique, type global et information sémantique
 - Comprendre les dépendances entre les objets
-- Délimiter le périmètre du Dictionary classique dans SAP GUI
+- Délimiter le périmètre du Dictionary classique dans SAP GUI[^terme-sap-gui]
 
 ## 1.B RÔLE DU DICTIONNAIRE ABAP
 
@@ -33,12 +33,12 @@ flowchart LR
 | Objet                 | Fonction principale                                            | Objet physique en base |
 | --------------------- | -------------------------------------------------------------- | ---------------------: |
 | Domaine               | Définir les caractéristiques techniques et la plage de valeurs |                    Non |
-| Élément de données    | Donner un type global et une signification métier              |                    Non |
+| Élément de données[^terme-element-donnees]    | Donner un type global et une signification métier              |                    Non |
 | Structure             | Regrouper plusieurs composants                                 |                    Non |
-| Type de table         | Définir un type global de table interne                        |                    Non |
-| Table transparente    | Définir une table persistante                                  |                    Oui |
+| Type de table         | Définir un type global de table interne[^terme-table-interne]                        |                    Non |
+| Table transparente[^terme-table-transparente]    | Définir une table persistante                                  |                    Oui |
 | Vue classique         | Présenter une projection ou une combinaison de données         |          Selon le type |
-| Aide à la recherche   | Définir une aide à la saisie F4                                |                    Non |
+| Aide à la recherche   | Définir une aide à la saisie F4[^terme-aide-f4]                                |                    Non |
 | Objet de verrouillage | Définir un verrou logique SAP                                  |                    Non |
 
 ## 1.D DÉPENDANCES ENTRE OBJETS
@@ -59,7 +59,7 @@ Une modification d’un domaine peut donc rendre inactifs plusieurs éléments d
 
 Un type déclaré avec `TYPES` dans un programme est local à ce programme ou à son contexte de déclaration.
 
-Un élément de données, une structure ou un type de table créé dans SE11 est global au système ABAP et réutilisable par plusieurs objets de développement.
+Un élément de données, une structure ou un type de table créé dans SE11[^outil-se11] est global au système ABAP et réutilisable par plusieurs objets de développement.
 
 ```abap
 DATA lv_vbeln TYPE vbeln_va.
@@ -70,9 +70,9 @@ Dans cet exemple, `VBELN_VA` est un élément de données et `BAPIRET2` une stru
 
 ## 1.F PÉRIMÈTRE DU DOSSIER
 
-Ce dossier traite des objets classiques accessibles depuis SAP GUI, principalement avec les transactions `SE11`, `SE14`, `SE54` et `SM30`.
+Ce dossier traite des objets classiques accessibles depuis SAP GUI, principalement avec les transactions `SE11`, `SE14`[^outil-se14], `SE54`[^outil-se54] et `SM30`[^outil-sm30].
 
-Les définitions CDS et leur édition dans ADT ne sont pas détaillées ici. Elles feront partie d’un dossier distinct consacré aux développements sous Eclipse.
+Les définitions CDS[^terme-acro-cds] et leur édition dans ADT[^terme-acro-adt] ne sont pas détaillées ici. Elles feront partie d’un dossier distinct consacré aux développements sous Eclipse.
 
 ## 1.G POINTS À RETENIR
 
@@ -111,12 +111,12 @@ Créer et activer d’abord les dépendances : domaine, élément de données, s
 
 ### 1.H.5 Étape 5 — Vérifier l’utilisation réelle
 
-Déclarer un petit objet ABAP consommateur ou examiner l’objet applicatif cible. Contrôler type, aide F1/F4, libellés et valeurs autorisées. La modélisation est validée lorsque l’objet DDIC apporte la même sémantique partout où il est réutilisé.
+Déclarer un petit objet ABAP consommateur ou examiner l’objet applicatif cible. Contrôler type, aide F1[^terme-aide-f1]/F4, libellés et valeurs autorisées. La modélisation est validée lorsque l’objet DDIC apporte la même sémantique partout où il est réutilisé.
 
 ## 1.I VÉRIFICATION
 
 - Le contrôle de cohérence ne retourne aucune erreur bloquante.
-- L’objet est actif et son entrée de répertoire pointe vers le package attendu.
+- L’objet est actif et son entrée de répertoire pointe vers le package[^terme-package] attendu.
 - La liste d’utilisation et les dépendances correspondent au périmètre prévu.
 - Pour une table Z, la structure active et la structure de base sont cohérentes.
 
@@ -155,3 +155,20 @@ DATA ls_bapiret TYPE bapiret2.
 ---
 
 [Chapitre suivant — NAVIGATION ET ANALYSE AVEC SE11](<./02 ├── NAVIGATION ET ANALYSE AVEC SE11.md>)
+
+[^terme-abap]: **ABAP.** Langage de programmation de la plateforme ABAP, conçu pour développer des applications métier et techniques SAP. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#abap>).
+[^terme-acro-ddic]: **DDIC.** Data Dictionary, abréviation courante de l’ABAP Dictionary. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/10 └── ACRONYMES SAP.md#acro-ddic>).
+[^terme-sap-gui]: **SAP GUI.** Client graphique permettant d’utiliser les transactions et écrans d’un système SAP. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/02 ├── SAP GUI NAVIGATION ET TRANSACTIONS.md#sap-gui>).
+[^terme-element-donnees]: **ÉLÉMENT DE DONNÉES.** Objet DDIC qui attribue une signification métier, des libellés et une documentation à un type élémentaire ou à un domaine. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/05 ├── DONNEES DICTIONNAIRE ET BASE DE DONNEES.md#element-donnees>).
+[^terme-table-interne]: **TABLE INTERNE.** Collection dynamique de lignes stockée en mémoire dans le programme ABAP. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#table-interne>).
+[^terme-table-transparente]: **TABLE TRANSPARENTE.** Table DDIC correspondant directement à une table physique de la base de données. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/05 ├── DONNEES DICTIONNAIRE ET BASE DE DONNEES.md#table-transparente>).
+[^terme-aide-f4]: **AIDE F4.** Aide à la saisie proposant des valeurs autorisées ou recherchables. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/02 ├── SAP GUI NAVIGATION ET TRANSACTIONS.md#aide-f4>).
+[^terme-acro-cds]: **CDS.** Core Data Services, langage de modélisation de vues et entités de données. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/10 └── ACRONYMES SAP.md#acro-cds>).
+[^terme-acro-adt]: **ADT.** ABAP Development Tools, environnement de développement ABAP intégré à Eclipse. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/10 └── ACRONYMES SAP.md#acro-adt>).
+[^terme-aide-f1]: **AIDE F1.** Aide contextuelle expliquant un champ, une fonction ou un mot-clé. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/02 ├── SAP GUI NAVIGATION ET TRANSACTIONS.md#aide-f1>).
+[^terme-package]: **PACKAGE.** Conteneur logique qui regroupe les objets de développement et détermine notamment leur transportabilité. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/03 ├── REPOSITORY PACKAGES ET TRANSPORTS.md#package>).
+
+[^outil-se11]: **SE11.** Transaction de l’ABAP Dictionary utilisée pour analyser et maintenir les objets DDIC. Voir [le chapitre associé](<02 ├── NAVIGATION ET ANALYSE AVEC SE11.md>).
+[^outil-se14]: **SE14.** Utilitaire de base de données du Dictionary utilisé pour comparer ou ajuster la définition DDIC et l’objet physique. Voir [le chapitre associé](<16 ├── ACTIVATION AJUSTEMENT BASE ET ANALYSE DES DEPENDANCES.md>).
+[^outil-se54]: **SE54.** Outil de génération et de maintenance des dialogues de mise à jour de tables et vues. Voir [le chapitre associé](<14 ├── GENERATEUR DE MAINTENANCE ET SM30.md>).
+[^outil-sm30]: **SM30.** Transaction d’exécution d’un dialogue de maintenance généré pour une table ou une vue. Voir [le chapitre associé](<14 ├── GENERATEUR DE MAINTENANCE ET SM30.md>).

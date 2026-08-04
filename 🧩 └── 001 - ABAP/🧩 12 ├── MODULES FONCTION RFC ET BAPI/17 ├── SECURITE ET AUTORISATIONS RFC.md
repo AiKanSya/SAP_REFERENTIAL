@@ -2,7 +2,7 @@
 
 ## 17.A RÉSULTAT ATTENDU
 
-- Comprendre les contrôles d’autorisation RFC
+- Comprendre les contrôles d’autorisation RFC[^terme-rfc]
 - Distinguer administration de destination et exécution distante
 - Réduire les privilèges du compte technique
 - Éviter l’exposition excessive de fonctions
@@ -26,7 +26,7 @@ Parmi les objets classiques :
 | Objet       | Rôle général                                                 |
 | ----------- | ------------------------------------------------------------ |
 | `S_RFC`     | Autoriser l’exécution de groupes ou modules RFC              |
-| `S_RFC_ADM` | Contrôler certaines fonctions d’administration RFC et `SM59` |
+| `S_RFC_ADM` | Contrôler certaines fonctions d’administration RFC et `SM59`[^outil-sm59] |
 
 Les champs et valeurs exacts doivent être définis par l’équipe sécurité selon le scénario.
 
@@ -95,7 +95,7 @@ Valider toutes les entrées et exécuter les `AUTHORITY-CHECK` métier dans le s
 
 ### 17.H.4 Étape 4 — Tracer un refus
 
-Reproduire avec l’utilisateur de destination, puis analyser `SU53` immédiatement ou `STAUTHTRACE` sur le bon utilisateur et le bon système. Relever objet, champs et valeurs contrôlés.
+Reproduire avec l’utilisateur de destination, puis analyser `SU53`[^outil-su53] immédiatement ou `STAUTHTRACE`[^outil-stauthtrace] sur le bon utilisateur et le bon système. Relever objet, champs et valeurs contrôlés.
 
 ### 17.H.5 Étape 5 — Tester le moindre privilège
 
@@ -103,22 +103,22 @@ Exécuter un cas autorisé et un cas explicitement refusé. La sécurité est va
 
 ## 17.I VÉRIFICATION
 
-- Le scénario reproduit correspond au même utilisateur, mandant, transaction et jeu de données.
+- Le scénario reproduit correspond au même utilisateur, mandant[^terme-mandant], transaction et jeu de données.
 - L’horodatage et l’identifiant de l’analyse sont conservés.
-- La cause retenue est soutenue par une ligne source, une trace ou une valeur observée.
+- La cause retenue est soutenue par une ligne source, une trace[^terme-trace] ou une valeur observée.
 - Après correction, le même scénario ne reproduit plus le défaut et le résultat métier reste identique.
 
 ## 17.J ERREURS FRÉQUENTES
 
 - Copier un exemple sans adapter les types, noms d’objets et données disponibles dans le système.
 - Tester uniquement le cas nominal et ignorer les valeurs initiales, absentes ou invalides.
-- Appeler un module fonction sans lire sa documentation et ses exceptions.
-- Supposer qu’une BAPI effectue automatiquement le commit.
+- Appeler un module fonction[^terme-module-fonction] sans lire sa documentation et ses exceptions.
+- Supposer qu’une BAPI[^terme-bapi] effectue automatiquement le commit.
 
 ## 17.K SNIPPET À RÉUTILISER
 
 > [!NOTE]
-> Adapter les noms `Z*`, les types DDIC, les données et les autorisations au système cible. Effectuer un contrôle syntaxique avant activation.
+> Adapter les noms `Z*`, les types DDIC[^terme-acro-ddic], les données et les autorisations au système cible. Effectuer un contrôle syntaxique avant activation.
 
 ```abap
 AUTHORITY-CHECK OBJECT 'Z_PRODUCT'
@@ -146,3 +146,14 @@ ENDIF.
 ---
 
 [Chapitre suivant — PRINCIPES DES BAPI ET RECHERCHE](<./18 ├── PRINCIPES DES BAPI ET RECHERCHE.md>)
+
+[^terme-rfc]: **RFC.** Remote Function Call, mécanisme permettant d’appeler un module fonction compatible dans un autre contexte ou système. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/06 ├── PROGRAMMES CLASSES ET OBJETS TECHNIQUES.md#rfc>).
+[^terme-mandant]: **MANDANT.** Subdivision logique d’un système SAP. Il est identifié par un numéro à trois chiffres et isole une partie des données, du paramétrage et des utilisateurs. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/01 ├── SYSTEMES ENVIRONNEMENTS ET MANDANTS.md#mandant>).
+[^terme-trace]: **TRACE.** Enregistrement détaillé d’événements techniques pour analyser exécution, SQL ou appels. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/08 ├── EXECUTION EXPLOITATION ET ADMINISTRATION.md#trace>).
+[^terme-module-fonction]: **MODULE FONCTION.** Procédure globale appelée avec `CALL FUNCTION` et définie dans un groupe de fonctions. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/06 ├── PROGRAMMES CLASSES ET OBJETS TECHNIQUES.md#module-fonction>).
+[^terme-bapi]: **BAPI.** Interface métier publiée autour d’un Business Object SAP, généralement implémentée par un module fonction RFC. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/06 ├── PROGRAMMES CLASSES ET OBJETS TECHNIQUES.md#bapi>).
+[^terme-acro-ddic]: **DDIC.** Data Dictionary, abréviation courante de l’ABAP Dictionary. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/10 └── ACRONYMES SAP.md#acro-ddic>).
+
+[^outil-sm59]: **SM59.** Transaction de création, test et maintenance des destinations RFC. Voir [le chapitre associé](<14 ├── DESTINATIONS RFC AVEC SM59.md>).
+[^outil-su53]: **SU53.** Transaction affichant les derniers contrôles d’autorisation en échec pour l’utilisateur courant. Voir [le chapitre associé](<../🧩 21 ├── AUTORISATIONS ET SECURITE ABAP/02 ├── DIAGNOSTIQUER UN REFUS AVEC SU53 ET STAUTHTRACE.md>).
+[^outil-stauthtrace]: **STAUTHTRACE.** Trace d’autorisations utilisée pour enregistrer et analyser les contrôles exécutés pendant un scénario. Voir [le chapitre associé](<../🧩 21 ├── AUTORISATIONS ET SECURITE ABAP/02 ├── DIAGNOSTIQUER UN REFUS AVEC SU53 ET STAUTHTRACE.md>).

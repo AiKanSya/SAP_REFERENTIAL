@@ -6,16 +6,16 @@ Créer un document de modification contenant l’auteur, l’horodatage, la tran
 
 ## 2.B PRÉREQUIS
 
-- Tables et clés de l’objet métier stabilisées dans le Dictionnaire ABAP.
+- Tables et clés de l’objet métier stabilisées dans le Dictionnaire ABAP[^terme-abap].
 - Champs à tracer identifiés avec le responsable fonctionnel.
 - Indicateur de document de modification activé sur les éléments de données concernés.
-- Objet de modification client créé dans `SCDO`.
+- Objet de modification client créé dans `SCDO`[^outil-scdo].
 
 ## 2.C PROCESS
 
 ### 2.C.1 ÉTAPE 1 — IDENTIFIER LES CHAMPS À TRACER
 
-Avec le responsable fonctionnel, lister les créations, modifications et suppressions devant produire une trace. Dans `SE11`, vérifier l’indicateur de document de modification sur l’élément de données de chaque champ retenu.
+Avec le responsable fonctionnel, lister les créations, modifications et suppressions devant produire une trace[^terme-trace]. Dans `SE11`[^outil-se11], vérifier l’indicateur de document de modification sur l’élément de données[^terme-element-donnees] de chaque champ retenu.
 
 ### 2.C.2 ÉTAPE 2 — CRÉER L’OBJET DANS SCDO
 
@@ -23,11 +23,11 @@ Créer l’objet client dans `SCDO`. Déclarer la table racine, les tables dépe
 
 ### 2.C.3 ÉTAPE 3 — GÉNÉRER LES OBJETS TECHNIQUES
 
-Lancer la génération depuis `SCDO`, activer les objets produits et examiner le journal. Régénérer après toute évolution DDIC qui modifie les tables ou champs suivis.
+Lancer la génération depuis `SCDO`, activer les objets produits et examiner le journal. Régénérer après toute évolution DDIC[^terme-acro-ddic] qui modifie les tables ou champs suivis.
 
 ### 2.C.4 ÉTAPE 4 — RELEVER LA SIGNATURE RÉELLE
 
-Ouvrir dans `SE37` le module généré dont le nom se termine par `_WRITE_DOCUMENT`. Insérer son modèle d’appel dans le service de sauvegarde ; les paramètres varient selon les tables déclarées et ne doivent pas être inventés.
+Ouvrir dans `SE37`[^outil-se37] le module généré dont le nom se termine par `_WRITE_DOCUMENT`. Insérer son modèle d’appel dans le service de sauvegarde ; les paramètres varient selon les tables déclarées et ne doivent pas être inventés.
 
 ### 2.C.5 ÉTAPE 5 — CONSERVER LES IMAGES AVANT ET APRÈS
 
@@ -69,7 +69,7 @@ ENDIF.
 - clé stable de l’objet ;
 - indicateur d’insertion, modification ou suppression ;
 - transaction ou contexte applicatif ;
-- utilisateur et date/heure, sauf lorsqu’ils sont déterminés par l’API générée.
+- utilisateur et date/heure, sauf lorsqu’ils sont déterminés par l’API[^terme-api] générée.
 
 ## 2.F CONTRÔLE POSITIF
 
@@ -91,9 +91,20 @@ ENDIF.
 | Aucun détail de champ | Indicateur absent sur l’élément de données | Activer puis régénérer selon la procédure projet |
 | Ancienne valeur identique à la nouvelle | Image ancienne écrasée avant l’appel | Lire et conserver l’état initial avant modification |
 | Document sans positions | Indicateurs de modification mal alimentés | Utiliser la signature et les structures générées |
-| Trace créée après rollback | LUW séparée ou commit incorrect | Garder écriture métier et trace dans la même LUW |
+| Trace créée après rollback | LUW[^terme-acro-luw] séparée ou commit incorrect | Garder écriture métier et trace dans la même LUW |
 | Erreur après évolution DDIC | Génération SCDO obsolète | Régénérer et adapter tous les appelants |
 
 ## 2.I COMPATIBILITÉ S/4HANA
 
 Statut : compatible pour les objets classiques. Vérifier d’abord si l’objet standard possède déjà son propre mécanisme de journalisation.
+
+[^terme-abap]: **ABAP.** Langage de programmation de la plateforme ABAP, conçu pour développer des applications métier et techniques SAP. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#abap>).
+[^terme-trace]: **TRACE.** Enregistrement détaillé d’événements techniques pour analyser exécution, SQL ou appels. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/08 ├── EXECUTION EXPLOITATION ET ADMINISTRATION.md#trace>).
+[^terme-element-donnees]: **ÉLÉMENT DE DONNÉES.** Objet DDIC qui attribue une signification métier, des libellés et une documentation à un type élémentaire ou à un domaine. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/05 ├── DONNEES DICTIONNAIRE ET BASE DE DONNEES.md#element-donnees>).
+[^terme-acro-ddic]: **DDIC.** Data Dictionary, abréviation courante de l’ABAP Dictionary. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/10 └── ACRONYMES SAP.md#acro-ddic>).
+[^terme-api]: **API.** Application Programming Interface, contrat exposant des opérations ou données utilisables par d’autres composants. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/10 └── ACRONYMES SAP.md#api>).
+[^terme-acro-luw]: **LUW.** Logical Unit of Work. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/10 └── ACRONYMES SAP.md#acro-luw>).
+
+[^outil-scdo]: **SCDO.** Transaction de création et de génération des objets de documents de modification. Voir [le chapitre associé](<02 └── TRACER UNE MODIFICATION AVEC SCDO.md>).
+[^outil-se11]: **SE11.** Transaction de l’ABAP Dictionary utilisée pour analyser et maintenir les objets DDIC. Voir [le chapitre associé](<../🧩 07 ├── DICTIONNAIRE ABAP/02 ├── NAVIGATION ET ANALYSE AVEC SE11.md>).
+[^outil-se37]: **SE37.** Function Builder utilisé pour rechercher, afficher, tester et maintenir les modules fonction. Voir [le chapitre associé](<../🧩 12 ├── MODULES FONCTION RFC ET BAPI/03 ├── RECHERCHER ET ANALYSER AVEC SE37.md>).

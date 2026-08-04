@@ -67,10 +67,10 @@ Conditions principales :
 
 ## 10.F COMPATIBILITÉ DE VERSION
 
-Les opérations `INTERSECT`, `EXCEPT`, les expressions de table communes et certaines formes avancées dépendent de la version ABAP.
+Les opérations `INTERSECT`, `EXCEPT`, les expressions de table communes et certaines formes avancées dépendent de la version ABAP[^terme-abap].
 
 > [!IMPORTANT]
-> Vérifier la documentation de la release et le contrôle de syntaxe SAP GUI avant intégration.
+> Vérifier la documentation de la release et le contrôle de syntaxe SAP GUI[^terme-sap-gui] avant intégration.
 
 ## 10.G VÉRIFICATION
 
@@ -84,12 +84,12 @@ Les opérations `INTERSECT`, `EXCEPT`, les expressions de table communes et cert
 - Copier un exemple sans adapter les types, noms d’objets et données disponibles dans le système.
 - Tester uniquement le cas nominal et ignorer les valeurs initiales, absentes ou invalides.
 - Lire toutes les colonnes ou toutes les lignes par défaut.
-- Effectuer des commits dans une méthode réutilisable sans contrat explicite.
+- Effectuer des commits dans une méthode[^terme-methode] réutilisable sans contrat explicite.
 
 ## 10.I SNIPPET À RÉUTILISER
 
 > [!NOTE]
-> Adapter les noms `Z*`, les types DDIC, les données et les autorisations au système cible. Effectuer un contrôle syntaxique avant activation.
+> Adapter les noms `Z*`, les types DDIC[^terme-acro-ddic], les données et les autorisations au système cible. Effectuer un contrôle syntaxique avant activation.
 
 ```abap
 " Lire uniquement les colonnes et les lignes nécessaires.
@@ -124,3 +124,8 @@ SELECT carrid, carrname
 ---
 
 [Chapitre suivant — SELECT FOR ALL ENTRIES](<./11 ├── SELECT FOR ALL ENTRIES.md>)
+
+[^terme-abap]: **ABAP.** Langage de programmation de la plateforme ABAP, conçu pour développer des applications métier et techniques SAP. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#abap>).
+[^terme-sap-gui]: **SAP GUI.** Client graphique permettant d’utiliser les transactions et écrans d’un système SAP. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/02 ├── SAP GUI NAVIGATION ET TRANSACTIONS.md#sap-gui>).
+[^terme-methode]: **MÉTHODE.** Comportement déclaré dans une classe ou une interface et appelé avec une liste de paramètres définie. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#methode>).
+[^terme-acro-ddic]: **DDIC.** Data Dictionary, abréviation courante de l’ABAP Dictionary. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/10 └── ACRONYMES SAP.md#acro-ddic>).

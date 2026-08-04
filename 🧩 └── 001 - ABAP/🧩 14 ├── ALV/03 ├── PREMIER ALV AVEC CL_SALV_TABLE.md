@@ -2,9 +2,9 @@
 
 ## 3.A RÉSULTAT ATTENDU
 
-- Afficher une table interne avec SALV
+- Afficher une table interne[^terme-table-interne] avec SALV[^terme-acro-salv]
 - Comprendre le rôle de `FACTORY` et `DISPLAY`
-- Gérer l’exception de création
+- Gérer l’exception[^terme-exception] de création
 
 ## 3.B EXEMPLE COMPLET
 
@@ -57,7 +57,7 @@ flowchart LR
 
 ## 3.D POINTS DE CONTRÔLE
 
-- La table de sortie doit avoir une structure exploitable par l’ALV.
+- La table de sortie doit avoir une structure exploitable par l’ALV[^terme-alv].
 - Utiliser une structure plate pour les affichages standards.
 - Sélectionner uniquement les colonnes nécessaires.
 - Traiter `CX_SALV_MSG`.
@@ -94,7 +94,7 @@ Appeler `DISPLAY` dans le même bloc `TRY`. Intercepter au minimum `CX_SALV_MSG`
 
 ### 3.F.5 Étape 5 — Tester les volumes limites
 
-Vérifier une table vide, une ligne, plusieurs lignes et le volume maximal prévu. Contrôler les libellés, les conversions DDIC et le temps de réponse.
+Vérifier une table vide, une ligne, plusieurs lignes et le volume maximal prévu. Contrôler les libellés, les conversions DDIC[^terme-acro-ddic] et le temps de réponse.
 
 ## 3.G VÉRIFICATION
 
@@ -160,7 +160,7 @@ START-OF-SELECTION.
 ## 3.K MODÈLE DE DÉMONSTRATION SFLIGHT
 
 > [!NOTE]
-> Les tables `SCARR`, `SPFLI` et `SFLIGHT` appartiennent au modèle de démonstration SAP et peuvent être absentes ou non alimentées dans certains systèmes. Dans ce cas, remplacer les exemples par une table Z de démonstration ou par une source en lecture seule autorisée, sans modifier une table applicative standard.
+> Les tables `SCARR`, `SPFLI` et `SFLIGHT` appartiennent au modèle de démonstration SAP[^terme-acro-sap] et peuvent être absentes ou non alimentées dans certains systèmes. Dans ce cas, remplacer les exemples par une table Z de démonstration ou par une source en lecture seule autorisée, sans modifier une table applicative standard.
 
 ## 3.L RÉFÉRENCES OFFICIELLES SAP
 
@@ -170,3 +170,10 @@ START-OF-SELECTION.
 ---
 
 [Chapitre suivant — FONCTIONS STANDARD DU SALV](<./04 ├── FONCTIONS STANDARD DU SALV.md>)
+
+[^terme-table-interne]: **TABLE INTERNE.** Collection dynamique de lignes stockée en mémoire dans le programme ABAP. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#table-interne>).
+[^terme-acro-salv]: **SALV.** Simple ALV / famille de classes `CL_SALV_*`. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/10 └── ACRONYMES SAP.md#acro-salv>).
+[^terme-exception]: **EXCEPTION.** Objet ou signal représentant une situation anormale qu’un appelant peut traiter. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#exception>).
+[^terme-alv]: **ALV.** ABAP List Viewer, ensemble de technologies d’affichage tabulaire avec tri, filtre, total et variantes. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/06 ├── PROGRAMMES CLASSES ET OBJETS TECHNIQUES.md#alv>).
+[^terme-acro-ddic]: **DDIC.** Data Dictionary, abréviation courante de l’ABAP Dictionary. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/10 └── ACRONYMES SAP.md#acro-ddic>).
+[^terme-acro-sap]: **SAP.** Nom de l’éditeur et de son écosystème logiciel ; l’acronyme historique provient de l’allemand. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/10 └── ACRONYMES SAP.md#acro-sap>).

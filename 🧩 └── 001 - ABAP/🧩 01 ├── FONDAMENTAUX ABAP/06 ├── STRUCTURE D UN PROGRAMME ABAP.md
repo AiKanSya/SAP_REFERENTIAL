@@ -2,7 +2,7 @@
 
 ## 6.A RÉSULTAT ATTENDU
 
-- Identifier les grandes parties d’un programme exécutable
+- Identifier les grandes parties d’un programme exécutable[^terme-programme-executable]
 - Distinguer partie déclarative et blocs de traitement
 - Comprendre le rôle de l’instruction d’introduction
 - Organiser le code dans un ordre lisible
@@ -65,7 +65,7 @@ Ces instructions appartiennent à la partie déclarative globale du programme.
 
 ## 6.F BLOCS DE TRAITEMENT
 
-Le comportement d’un programme ABAP est organisé en blocs de traitement.
+Le comportement d’un programme ABAP[^terme-abap] est organisé en blocs de traitement.
 
 Principales catégories :
 
@@ -205,13 +205,13 @@ flowchart LR
 
 - Copier un exemple sans adapter les types, noms d’objets et données disponibles dans le système.
 - Tester uniquement le cas nominal et ignorer les valeurs initiales, absentes ou invalides.
-- Intervenir dans le mauvais système ou mandant.
+- Intervenir dans le mauvais système ou mandant[^terme-mandant].
 - Confondre sauvegarde et activation.
 
 ## 6.N SNIPPET À RÉUTILISER
 
 > [!NOTE]
-> Adapter les noms `Z*`, les types DDIC, les données et les autorisations au système cible. Effectuer un contrôle syntaxique avant activation.
+> Adapter les noms `Z*`, les types DDIC[^terme-acro-ddic], les données et les autorisations au système cible. Effectuer un contrôle syntaxique avant activation.
 
 ```abap
 REPORT zdemo_structure.
@@ -264,3 +264,8 @@ START-OF-SELECTION.
 ---
 
 [Chapitre suivant — SYNTAXE DES INSTRUCTIONS](<./07 ├── SYNTAXE DES INSTRUCTIONS.md>)
+
+[^terme-programme-executable]: **PROGRAMME EXÉCUTABLE.** Programme ABAP de type report pouvant être lancé directement, généralement avec `F8` ou par une transaction. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/06 ├── PROGRAMMES CLASSES ET OBJETS TECHNIQUES.md#programme-executable>).
+[^terme-abap]: **ABAP.** Langage de programmation de la plateforme ABAP, conçu pour développer des applications métier et techniques SAP. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#abap>).
+[^terme-mandant]: **MANDANT.** Subdivision logique d’un système SAP. Il est identifié par un numéro à trois chiffres et isole une partie des données, du paramétrage et des utilisateurs. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/01 ├── SYSTEMES ENVIRONNEMENTS ET MANDANTS.md#mandant>).
+[^terme-acro-ddic]: **DDIC.** Data Dictionary, abréviation courante de l’ABAP Dictionary. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/10 └── ACRONYMES SAP.md#acro-ddic>).

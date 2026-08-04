@@ -2,7 +2,7 @@
 
 ## 2.A RÉSULTAT ATTENDU
 
-Établir une méthode de mesure reproductible avant toute modification de performance.
+Établir une méthode[^terme-methode] de mesure reproductible avant toute modification de performance.
 
 ## 2.B Définir un scénario de référence
 
@@ -13,7 +13,7 @@ Une mesure n’est comparable que si le contexte reste stable :
 - mêmes paramètres de sélection ;
 - volume de données comparable ;
 - état du buffer identifié ;
-- même mode d’exécution : dialogue, RFC ou batch.
+- même mode d’exécution : dialogue, RFC[^terme-rfc] ou batch.
 
 ```mermaid
 flowchart TD
@@ -29,10 +29,10 @@ flowchart TD
 
 | Question                                         | Outil            |
 | ------------------------------------------------ | ---------------- |
-| Quelle procédure ABAP consomme le plus ?         | `SAT`            |
-| Quelles requêtes SQL sont exécutées ?            | `ST05`           |
-| Quels accès SQL sont coûteux sur une période ?   | `SQLM`           |
-| Quel code cumule finding statique et coût réel ? | `SWLT`           |
+| Quelle procédure ABAP[^terme-abap] consomme le plus ?         | `SAT`[^outil-sat]            |
+| Quelles requêtes SQL[^terme-acro-sql] sont exécutées ?            | `ST05`[^outil-st05]           |
+| Quels accès SQL sont coûteux sur une période ?   | `SQLM`[^outil-sqlm]           |
+| Quel code cumule finding statique et coût réel ? | `SWLT`[^outil-swlt]           |
 | La mémoire augmente-t-elle entre deux étapes ?   | Memory Inspector |
 
 ## 2.D Mesures minimales à conserver
@@ -69,11 +69,11 @@ Définir l’action lente, l’utilisateur, le volume, l’heure et la limite at
 
 ### 2.H.2 ÉTAPE 2 — CONSTRUIRE UN SCÉNARIO REPRODUCTIBLE
 
-Fixer variante, clés métier, état des données, mandant et type d’exécution. Réduire le scénario à une action. Noter les effets de cache ou d’échauffement et décider si la première exécution doit être exclue ou mesurée séparément.
+Fixer variante, clés métier, état des données, mandant[^terme-mandant] et type d’exécution. Réduire le scénario à une action. Noter les effets de cache ou d’échauffement et décider si la première exécution doit être exclue ou mesurée séparément.
 
 ### 2.H.3 ÉTAPE 3 — CHOISIR L’OUTIL SELON L’HYPOTHÈSE
 
-Utiliser `SAT` pour la répartition du temps ABAP, `ST05` pour une trace SQL courte, `SQLM` pour une observation agrégée, `SWLT` pour prioriser et Memory Inspector pour la mémoire. Définir le périmètre et la durée avant activation.
+Utiliser `SAT` pour la répartition du temps ABAP, `ST05` pour une trace[^terme-trace] SQL courte, `SQLM` pour une observation agrégée, `SWLT` pour prioriser et Memory Inspector pour la mémoire. Définir le périmètre et la durée avant activation.
 
 ### 2.H.4 ÉTAPE 4 — CAPTURER LA RÉFÉRENCE
 
@@ -119,3 +119,15 @@ Ordre de transport  :
 - [ATC](<../🧩 00 ├── LEXIQUE SAP ET ABAP/10 └── ACRONYMES SAP.md#acro-atc>)
 - [ABAP](<../🧩 00 ├── LEXIQUE SAP ET ABAP/10 └── ACRONYMES SAP.md#acro-abap>)
 - [Trace](<../🧩 00 ├── LEXIQUE SAP ET ABAP/08 ├── EXECUTION EXPLOITATION ET ADMINISTRATION.md#trace>)
+
+[^terme-methode]: **MÉTHODE.** Comportement déclaré dans une classe ou une interface et appelé avec une liste de paramètres définie. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#methode>).
+[^terme-rfc]: **RFC.** Remote Function Call, mécanisme permettant d’appeler un module fonction compatible dans un autre contexte ou système. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/06 ├── PROGRAMMES CLASSES ET OBJETS TECHNIQUES.md#rfc>).
+[^terme-abap]: **ABAP.** Langage de programmation de la plateforme ABAP, conçu pour développer des applications métier et techniques SAP. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#abap>).
+[^terme-acro-sql]: **SQL.** Structured Query Language. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/10 └── ACRONYMES SAP.md#acro-sql>).
+[^terme-mandant]: **MANDANT.** Subdivision logique d’un système SAP. Il est identifié par un numéro à trois chiffres et isole une partie des données, du paramétrage et des utilisateurs. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/01 ├── SYSTEMES ENVIRONNEMENTS ET MANDANTS.md#mandant>).
+[^terme-trace]: **TRACE.** Enregistrement détaillé d’événements techniques pour analyser exécution, SQL ou appels. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/08 ├── EXECUTION EXPLOITATION ET ADMINISTRATION.md#trace>).
+
+[^outil-sat]: **SAT.** Runtime Analysis utilisée pour mesurer et analyser le temps d’exécution ABAP. Voir [le chapitre associé](<07 ├── MESURER LE TEMPS D EXECUTION AVEC SAT.md>).
+[^outil-st05]: **ST05.** Performance Trace utilisée notamment pour enregistrer et analyser les accès SQL. Voir [le chapitre associé](<08 ├── ANALYSER LES ACCES SQL AVEC ST05.md>).
+[^outil-sqlm]: **SQLM.** SQL Monitor utilisé pour agréger l’usage des instructions SQL pendant une période d’enregistrement. Voir [le chapitre associé](<09 ├── SURVEILLER LES ACCES SQL AVEC SQLM.md>).
+[^outil-swlt]: **SWLT.** SQL Performance Tuning Worklist utilisée pour rapprocher usage productif et résultats de contrôles statiques. Voir [le chapitre associé](<10 ├── PRIORISER AVEC SWLT.md>).

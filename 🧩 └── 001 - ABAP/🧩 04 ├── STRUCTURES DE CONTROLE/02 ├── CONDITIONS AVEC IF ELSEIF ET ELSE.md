@@ -175,7 +175,7 @@ L’imbrication reste pertinente lorsque les traitements intermédiaires ou les 
 ## 2.K SNIPPET À RÉUTILISER
 
 > [!NOTE]
-> Adapter les noms `Z*`, les types DDIC, les données et les autorisations au système cible. Effectuer un contrôle syntaxique avant activation.
+> Adapter les noms `Z*`, les types DDIC[^terme-acro-ddic], les données et les autorisations au système cible. Effectuer un contrôle syntaxique avant activation.
 
 ```abap
 DATA lv_stock TYPE i VALUE 8.
@@ -204,3 +204,5 @@ ENDIF.
 ---
 
 [Chapitre suivant — BRANCHEMENTS AVEC CASE](<./03 ├── BRANCHEMENTS AVEC CASE.md>)
+
+[^terme-acro-ddic]: **DDIC.** Data Dictionary, abréviation courante de l’ABAP Dictionary. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/10 └── ACRONYMES SAP.md#acro-ddic>).

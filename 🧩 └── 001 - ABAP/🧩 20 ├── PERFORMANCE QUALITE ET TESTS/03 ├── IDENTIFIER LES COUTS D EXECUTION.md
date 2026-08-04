@@ -2,7 +2,7 @@
 
 ## 3.A RÉSULTAT ATTENDU
 
-Distinguer les principales familles de coûts d’un traitement ABAP afin de sélectionner l’outil et la correction appropriés.
+Distinguer les principales familles de coûts d’un traitement ABAP[^terme-abap] afin de sélectionner l’outil et la correction appropriés.
 
 ## 3.B Composants du temps de réponse
 
@@ -10,15 +10,15 @@ Distinguer les principales familles de coûts d’un traitement ABAP afin de sé
 | --------------- | ----------------------------------------------------------- |
 | ABAP            | boucles imbriquées, conversions répétées, appels dynamiques |
 | Base de données | requêtes répétées, filtres insuffisants, gros transferts    |
-| Réseau/RFC      | nombreux petits appels, données surdimensionnées            |
+| Réseau/RFC[^terme-rfc]      | nombreux petits appels, données surdimensionnées            |
 | Verrous         | attente sur objets de verrouillage                          |
 | Mise à jour     | traitements V1/V2 longs ou en erreur                        |
-| Présentation    | ALV volumineux, contrôles frontend                          |
+| Présentation    | ALV[^terme-alv] volumineux, contrôles frontend[^terme-frontend]                          |
 
 ## 3.C Symptômes fréquents
 
-- **Temps base dominant** : analyser `ST05`, `SQLM` et le volume transféré.
-- **Temps ABAP dominant** : analyser `SAT`, les appels et les boucles.
+- **Temps base dominant** : analyser `ST05`[^outil-st05], `SQLM`[^outil-sqlm] et le volume transféré.
+- **Temps ABAP dominant** : analyser `SAT`[^outil-sat], les appels et les boucles.
 - **Mémoire croissante** : comparer des snapshots et vérifier les références conservées.
 - **Durée irrégulière** : examiner les verrous, la concurrence, les buffers et les données.
 - **Rapide en DEV, lent en production** : comparer les volumes et le plan d’accès, pas seulement le code.
@@ -36,7 +36,7 @@ LOOP AT lt_header INTO DATA(ls_header).
 ENDLOOP.
 ```
 
-Cette forme doit déclencher une analyse : table triée avec clé adaptée, table hachée, regroupement préalable ou traitement SQL unique.
+Cette forme doit déclencher une analyse : table triée avec clé adaptée, table hachée, regroupement préalable ou traitement SQL[^terme-acro-sql] unique.
 
 ## 3.E Ne pas confondre cause et symptôme
 
@@ -61,7 +61,7 @@ Tracer un scénario court et ouvrir la hit list et la hiérarchie d’appels. Tr
 
 ### 3.G.3 ÉTAPE 3 — MESURER LE SQL AVEC `ST05`
 
-Si la base domine, activer une trace limitée à l’utilisateur, exécuter une fois puis désactiver immédiatement. Regrouper les instructions et relever exécutions, durée, lignes et source ABAP. Identifier SQL en boucle, filtre insuffisant ou accès coûteux.
+Si la base domine, activer une trace[^terme-trace] limitée à l’utilisateur, exécuter une fois puis désactiver immédiatement. Regrouper les instructions et relever exécutions, durée, lignes et source ABAP. Identifier SQL en boucle, filtre insuffisant ou accès coûteux.
 
 ### 3.G.4 ÉTAPE 4 — MESURER VOLUME ET MÉMOIRE
 
@@ -69,7 +69,7 @@ Relever tailles de tables internes, copies complètes, résultats SQL et snapsho
 
 ### 3.G.5 ÉTAPE 5 — CLASSER PAR IMPACT ET FRÉQUENCE
 
-Combiner coût unitaire, nombre d’exécutions et fréquence en production. Prioriser un coût cumulé élevé et un code réellement utilisé. Ne pas optimiser une méthode rarement appelée pendant qu’un SQL répétitif domine le scénario.
+Combiner coût unitaire, nombre d’exécutions et fréquence en production. Prioriser un coût cumulé élevé et un code réellement utilisé. Ne pas optimiser une méthode[^terme-methode] rarement appelée pendant qu’un SQL répétitif domine le scénario.
 
 ### 3.G.6 ÉTAPE 6 — PROUVER LA CAUSE PAR UNE MODIFICATION CIBLÉE
 
@@ -77,7 +77,7 @@ Modifier une seule source de coût, exécuter les tests puis remesurer. La cause
 
 ## 3.H VÉRIFICATION
 
-- Le scénario reproduit correspond au même utilisateur, mandant, transaction et jeu de données.
+- Le scénario reproduit correspond au même utilisateur, mandant[^terme-mandant], transaction et jeu de données.
 - L’horodatage et l’identifiant de l’analyse sont conservés.
 - La cause retenue est soutenue par une ligne source, une trace ou une valeur observée.
 - Après correction, le même scénario ne reproduit plus le défaut et le résultat métier reste identique.
@@ -92,7 +92,7 @@ Modifier une seule source de coût, exécuter les tests puis remesurer. La cause
 ## 3.J SNIPPET À RÉUTILISER
 
 > [!NOTE]
-> Adapter les noms `Z*`, les types DDIC, les données et les autorisations au système cible. Effectuer un contrôle syntaxique avant activation.
+> Adapter les noms `Z*`, les types DDIC[^terme-acro-ddic], les données et les autorisations au système cible. Effectuer un contrôle syntaxique avant activation.
 
 ```abap
 LOOP AT lt_header INTO DATA(ls_header).
@@ -108,3 +108,17 @@ ENDLOOP.
 - [ATC](<../🧩 00 ├── LEXIQUE SAP ET ABAP/10 └── ACRONYMES SAP.md#acro-atc>)
 - [ABAP](<../🧩 00 ├── LEXIQUE SAP ET ABAP/10 └── ACRONYMES SAP.md#acro-abap>)
 - [Trace](<../🧩 00 ├── LEXIQUE SAP ET ABAP/08 ├── EXECUTION EXPLOITATION ET ADMINISTRATION.md#trace>)
+
+[^terme-abap]: **ABAP.** Langage de programmation de la plateforme ABAP, conçu pour développer des applications métier et techniques SAP. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#abap>).
+[^terme-rfc]: **RFC.** Remote Function Call, mécanisme permettant d’appeler un module fonction compatible dans un autre contexte ou système. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/06 ├── PROGRAMMES CLASSES ET OBJETS TECHNIQUES.md#rfc>).
+[^terme-alv]: **ALV.** ABAP List Viewer, ensemble de technologies d’affichage tabulaire avec tri, filtre, total et variantes. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/06 ├── PROGRAMMES CLASSES ET OBJETS TECHNIQUES.md#alv>).
+[^terme-frontend]: **FRONTEND.** Poste ou couche cliente utilisée par l’utilisateur, par exemple SAP GUI for Windows. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/01 ├── SYSTEMES ENVIRONNEMENTS ET MANDANTS.md#frontend>).
+[^terme-acro-sql]: **SQL.** Structured Query Language. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/10 └── ACRONYMES SAP.md#acro-sql>).
+[^terme-trace]: **TRACE.** Enregistrement détaillé d’événements techniques pour analyser exécution, SQL ou appels. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/08 ├── EXECUTION EXPLOITATION ET ADMINISTRATION.md#trace>).
+[^terme-methode]: **MÉTHODE.** Comportement déclaré dans une classe ou une interface et appelé avec une liste de paramètres définie. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#methode>).
+[^terme-mandant]: **MANDANT.** Subdivision logique d’un système SAP. Il est identifié par un numéro à trois chiffres et isole une partie des données, du paramétrage et des utilisateurs. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/01 ├── SYSTEMES ENVIRONNEMENTS ET MANDANTS.md#mandant>).
+[^terme-acro-ddic]: **DDIC.** Data Dictionary, abréviation courante de l’ABAP Dictionary. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/10 └── ACRONYMES SAP.md#acro-ddic>).
+
+[^outil-st05]: **ST05.** Performance Trace utilisée notamment pour enregistrer et analyser les accès SQL. Voir [le chapitre associé](<08 ├── ANALYSER LES ACCES SQL AVEC ST05.md>).
+[^outil-sqlm]: **SQLM.** SQL Monitor utilisé pour agréger l’usage des instructions SQL pendant une période d’enregistrement. Voir [le chapitre associé](<09 ├── SURVEILLER LES ACCES SQL AVEC SQLM.md>).
+[^outil-sat]: **SAT.** Runtime Analysis utilisée pour mesurer et analyser le temps d’exécution ABAP. Voir [le chapitre associé](<07 ├── MESURER LE TEMPS D EXECUTION AVEC SAT.md>).

@@ -4,11 +4,11 @@
 
 - Éviter les chemins physiques codés en dur
 - Configurer des noms indépendants de la plateforme
-- Résoudre un nom logique dans un programme ABAP
+- Résoudre un nom logique dans un programme ABAP[^terme-abap]
 
 ## 4.B PRINCIPE
 
-La transaction `FILE` permet de définir des chemins et noms de fichiers logiques indépendants du système d’exploitation. Chaque environnement résout ensuite le même nom logique vers un chemin physique adapté.
+La transaction `FILE`[^outil-file] permet de définir des chemins et noms de fichiers logiques indépendants du système d’exploitation. Chaque environnement[^terme-environnement] résout ensuite le même nom logique vers un chemin physique adapté.
 
 ```mermaid
 flowchart LR
@@ -49,7 +49,7 @@ IF sy-subrc <> 0.
 ENDIF.
 ```
 
-L’interface exacte du module fonction doit être vérifiée dans `SE37` sur la version du système.
+L’interface exacte du module fonction[^terme-module-fonction] doit être vérifiée dans `SE37`[^outil-se37] sur la version du système.
 
 ## 4.E RÈGLES
 
@@ -71,7 +71,7 @@ Identifier les variables utilisées par la définition. Fournir uniquement des v
 
 ### 4.F.3 Étape 3 — Résoudre avec l’API standard
 
-Dans `SE37`, ouvrir `FILE_GET_NAME` ou l’API prévue sur la release, reprendre sa signature exacte et renseigner nom logique et paramètres obligatoires.
+Dans `SE37`, ouvrir `FILE_GET_NAME` ou l’API[^terme-api] prévue sur la release, reprendre sa signature exacte et renseigner nom logique et paramètres obligatoires.
 
 ### 4.F.4 Étape 4 — Valider le résultat
 
@@ -84,7 +84,7 @@ Utiliser le chemin dans `OPEN DATASET`, traiter `SY-SUBRC` puis fermer. La confi
 ## 4.G VÉRIFICATION
 
 - Le fichier est créé ou lu dans l’emplacement attendu.
-- Le nombre de lignes, la taille et l’encodage correspondent au contrat.
+- Le nombre de lignes, la taille et l’encodage[^terme-encodage] correspondent au contrat.
 - Les caractères accentués, séparateurs, guillemets et fins de ligne sont testés.
 - Le traitement journalise les rejets et permet une reprise sans doublon.
 
@@ -92,13 +92,13 @@ Utiliser le chemin dans `OPEN DATASET`, traiter `SY-SUBRC` puis fermer. La confi
 
 - Copier un exemple sans adapter les types, noms d’objets et données disponibles dans le système.
 - Tester uniquement le cas nominal et ignorer les valeurs initiales, absentes ou invalides.
-- Mélanger fichiers frontend et serveur dans un même scénario.
-- Parser un CSV par simple séparation alors que les champs peuvent être échappés.
+- Mélanger fichiers frontend[^terme-frontend] et serveur dans un même scénario.
+- Parser un CSV[^terme-csv] par simple séparation alors que les champs peuvent être échappés.
 
 ## 4.I SNIPPET À RÉUTILISER
 
 > [!NOTE]
-> Adapter les noms `Z*`, les types DDIC, les données et les autorisations au système cible. Effectuer un contrôle syntaxique avant activation.
+> Adapter les noms `Z*`, les types DDIC[^terme-acro-ddic], les données et les autorisations au système cible. Effectuer un contrôle syntaxique avant activation.
 
 ```abap
 " Appeler l’API classique et traiter explicitement son résultat.
@@ -136,3 +136,15 @@ ENDIF.
 ---
 
 [Chapitre suivant — AUTORISATIONS ET SÉCURITÉ DES FICHIERS](<./05 ├── AUTORISATIONS ET SECURITE DES FICHIERS.md>)
+
+[^terme-abap]: **ABAP.** Langage de programmation de la plateforme ABAP, conçu pour développer des applications métier et techniques SAP. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#abap>).
+[^terme-environnement]: **ENVIRONNEMENT.** Rôle fonctionnel attribué à un système dans le cycle de vie : développement, test, recette, préproduction ou production. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/01 ├── SYSTEMES ENVIRONNEMENTS ET MANDANTS.md#environnement>).
+[^terme-module-fonction]: **MODULE FONCTION.** Procédure globale appelée avec `CALL FUNCTION` et définie dans un groupe de fonctions. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/06 ├── PROGRAMMES CLASSES ET OBJETS TECHNIQUES.md#module-fonction>).
+[^terme-api]: **API.** Application Programming Interface, contrat exposant des opérations ou données utilisables par d’autres composants. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/10 └── ACRONYMES SAP.md#api>).
+[^terme-encodage]: **ENCODAGE.** Règle transformant les caractères en octets et inversement. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/07 ├── INTERFACES ET INTEGRATION.md#encodage>).
+[^terme-frontend]: **FRONTEND.** Poste ou couche cliente utilisée par l’utilisateur, par exemple SAP GUI for Windows. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/01 ├── SYSTEMES ENVIRONNEMENTS ET MANDANTS.md#frontend>).
+[^terme-csv]: **CSV.** Format texte tabulaire utilisant un séparateur de champs et des règles d’échappement. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/07 ├── INTERFACES ET INTEGRATION.md#csv>).
+[^terme-acro-ddic]: **DDIC.** Data Dictionary, abréviation courante de l’ABAP Dictionary. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/10 └── ACRONYMES SAP.md#acro-ddic>).
+
+[^outil-file]: **FILE.** Transaction de maintenance des noms et chemins de fichiers logiques. Voir [le chapitre associé](<04 ├── NOMS ET CHEMINS LOGIQUES AVEC FILE.md>).
+[^outil-se37]: **SE37.** Function Builder utilisé pour rechercher, afficher, tester et maintenir les modules fonction. Voir [le chapitre associé](<../🧩 12 ├── MODULES FONCTION RFC ET BAPI/03 ├── RECHERCHER ET ANALYSER AVEC SE37.md>).

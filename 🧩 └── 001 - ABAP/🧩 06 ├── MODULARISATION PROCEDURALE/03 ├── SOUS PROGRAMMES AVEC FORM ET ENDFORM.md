@@ -57,7 +57,7 @@ Un sous-programme réalise un traitement. Son nom doit donc exprimer une action.
 | `output`    | `display_application_log` |
 | `check`     | `validate_selection`      |
 
-La longueur maximale et les conventions exactes dépendent de la version ABAP et des règles du projet. La priorité reste un nom non ambigu.
+La longueur maximale et les conventions exactes dépendent de la version ABAP[^terme-abap] et des règles du projet. La priorité reste un nom non ambigu.
 
 ## 3.F PAS D’IMBRICATION
 
@@ -85,7 +85,7 @@ ENDFORM.
 
 ## 3.G POSITION DANS LE PROGRAMME
 
-Dans un petit programme exécutable, les blocs d’événements apparaissent généralement avant les sous-programmes afin que le flux principal soit visible rapidement.
+Dans un petit programme exécutable[^terme-programme-executable], les blocs d’événements apparaissent généralement avant les sous-programmes afin que le flux principal soit visible rapidement.
 
 ```abap
 REPORT z_demo_form_02.
@@ -111,7 +111,7 @@ Les sous-programmes :
 
 - appartiennent au programme principal ;
 - peuvent accéder aux données globales de ce programme ;
-- ne proposent pas les mécanismes d’encapsulation des classes ;
+- ne proposent pas les mécanismes d’encapsulation[^terme-encapsulation] des classes ;
 - sont moins adaptés à la réutilisation transversale que les méthodes ou modules fonction ;
 - restent fréquents dans les applications classiques existantes.
 
@@ -140,7 +140,7 @@ Les sous-programmes :
 ## 3.L SNIPPET À RÉUTILISER
 
 > [!NOTE]
-> Adapter les noms `Z*`, les types DDIC, les données et les autorisations au système cible. Effectuer un contrôle syntaxique avant activation.
+> Adapter les noms `Z*`, les types DDIC[^terme-acro-ddic], les données et les autorisations au système cible. Effectuer un contrôle syntaxique avant activation.
 
 ```abap
 REPORT z_demo_form_02.
@@ -174,3 +174,8 @@ ENDFORM.
 ---
 
 [Chapitre suivant — APPELS AVEC PERFORM](<./04 ├── APPELS AVEC PERFORM.md>)
+
+[^terme-abap]: **ABAP.** Langage de programmation de la plateforme ABAP, conçu pour développer des applications métier et techniques SAP. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#abap>).
+[^terme-programme-executable]: **PROGRAMME EXÉCUTABLE.** Programme ABAP de type report pouvant être lancé directement, généralement avec `F8` ou par une transaction. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/06 ├── PROGRAMMES CLASSES ET OBJETS TECHNIQUES.md#programme-executable>).
+[^terme-encapsulation]: **ENCAPSULATION.** Principe consistant à protéger l’état interne d’un objet et à imposer son utilisation par une API contrôlée. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#encapsulation>).
+[^terme-acro-ddic]: **DDIC.** Data Dictionary, abréviation courante de l’ABAP Dictionary. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/10 └── ACRONYMES SAP.md#acro-ddic>).

@@ -6,7 +6,7 @@
 - Comparer deux états d’un traitement
 - Identifier les tables, objets ou chaînes dominants
 - Distinguer volume nécessaire et rétention anormale
-- Relier l’analyse mémoire au code ABAP
+- Relier l’analyse mémoire au code ABAP[^terme-abap]
 
 ## 17.B PRINCIPE
 
@@ -25,7 +25,7 @@ flowchart LR
 
 - dump de manque de mémoire ;
 - croissance progressive d’un traitement par lots ;
-- table interne beaucoup plus volumineuse que prévu ;
+- table interne[^terme-table-interne] beaucoup plus volumineuse que prévu ;
 - accumulation d’objets référencés ;
 - chaînes ou buffers conservés ;
 - différence importante entre deux étapes.
@@ -62,7 +62,7 @@ Une consommation élevée n’est pas automatiquement une fuite. Vérifier :
 - référence globale conservant un objet ;
 - copie inutile d’une table ;
 - accumulation dans une boucle ;
-- résultat SQL trop volumineux.
+- résultat SQL[^terme-acro-sql] trop volumineux.
 
 ## 17.G ACTIONS DE CODE POSSIBLES
 
@@ -86,7 +86,7 @@ Choisir un point avant allocation et un point après le traitement suspect. Util
 
 ### 17.H.2 Étape 2 — Créer le premier snapshot
 
-Arrêter au premier breakpoint et créer un snapshot mémoire depuis le débogueur ou l’outil disponible. Nommer la mesure avec scénario et étape.
+Arrêter au premier breakpoint[^terme-breakpoint] et créer un snapshot mémoire depuis le débogueur ou l’outil disponible. Nommer la mesure avec scénario et étape.
 
 ### 17.H.3 Étape 3 — Créer le second snapshot
 
@@ -102,9 +102,9 @@ Relier le type dominant à sa création dans le code, corriger puis refaire les 
 
 ## 17.I VÉRIFICATION
 
-- Le scénario reproduit correspond au même utilisateur, mandant, transaction et jeu de données.
+- Le scénario reproduit correspond au même utilisateur, mandant[^terme-mandant], transaction et jeu de données.
 - L’horodatage et l’identifiant de l’analyse sont conservés.
-- La cause retenue est soutenue par une ligne source, une trace ou une valeur observée.
+- La cause retenue est soutenue par une ligne source, une trace[^terme-trace] ou une valeur observée.
 - Après correction, le même scénario ne reproduit plus le défaut et le résultat métier reste identique.
 
 ## 17.J ERREURS FRÉQUENTES
@@ -143,3 +143,10 @@ Ordre de transport  :
 ---
 
 [Chapitre suivant — DIAGNOSTIC ET BONNES PRATIQUES](<./18 └── METHODE DE DIAGNOSTIC ET CHECKLIST.md>)
+
+[^terme-abap]: **ABAP.** Langage de programmation de la plateforme ABAP, conçu pour développer des applications métier et techniques SAP. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#abap>).
+[^terme-table-interne]: **TABLE INTERNE.** Collection dynamique de lignes stockée en mémoire dans le programme ABAP. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#table-interne>).
+[^terme-acro-sql]: **SQL.** Structured Query Language. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/10 └── ACRONYMES SAP.md#acro-sql>).
+[^terme-breakpoint]: **BREAKPOINT.** Point d’arrêt suspendant l’exécution dans le débogueur. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/08 ├── EXECUTION EXPLOITATION ET ADMINISTRATION.md#breakpoint>).
+[^terme-mandant]: **MANDANT.** Subdivision logique d’un système SAP. Il est identifié par un numéro à trois chiffres et isole une partie des données, du paramétrage et des utilisateurs. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/01 ├── SYSTEMES ENVIRONNEMENTS ET MANDANTS.md#mandant>).
+[^terme-trace]: **TRACE.** Enregistrement détaillé d’événements techniques pour analyser exécution, SQL ou appels. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/08 ├── EXECUTION EXPLOITATION ET ADMINISTRATION.md#trace>).

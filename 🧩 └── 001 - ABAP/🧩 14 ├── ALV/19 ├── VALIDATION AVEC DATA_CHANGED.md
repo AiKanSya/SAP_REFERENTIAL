@@ -59,15 +59,15 @@ flowchart TD
 ## 19.F RÈGLES
 
 - La validation de cellule ne remplace pas la validation métier finale.
-- Ne pas effectuer un `COMMIT WORK` pour chaque cellule modifiée.
+- Ne pas effectuer un `COMMIT WORK`[^terme-commit-work] pour chaque cellule modifiée.
 - Regrouper la sauvegarde derrière une action utilisateur explicite.
-- Produire des messages localisés via une classe de messages.
+- Produire des messages localisés via une classe[^terme-classe] de messages.
 
 ## 19.G PROCESS
 
 ### 19.G.1 Étape 1 — Déclarer le gestionnaire `DATA_CHANGED`
 
-Créer une méthode `FOR EVENT DATA_CHANGED OF CL_GUI_ALV_GRID` avec la signature exacte de l’événement. Enregistrer cette méthode sur l’instance de grille après avoir activé l’événement d’édition.
+Créer une méthode[^terme-methode] `FOR EVENT DATA_CHANGED OF CL_GUI_ALV_GRID` avec la signature exacte de l’événement. Enregistrer cette méthode sur l’instance de grille après avoir activé l’événement d’édition.
 
 ### 19.G.2 Étape 2 — Parcourir uniquement les cellules modifiées
 
@@ -79,7 +79,7 @@ Vérifier le type, le domaine, les bornes et le caractère obligatoire. Ne pas c
 
 ### 19.G.4 Étape 4 — Ajouter les erreurs au protocole
 
-Utiliser l’API du protocole pour rattacher le message à la cellule concernée. Une erreur bloquante doit empêcher la sauvegarde jusqu’à correction.
+Utiliser l’API[^terme-api] du protocole pour rattacher le message à la cellule concernée. Une erreur bloquante doit empêcher la sauvegarde jusqu’à correction.
 
 ### 19.G.5 Étape 5 — Recalculer les champs dépendants
 
@@ -100,13 +100,13 @@ Appeler `CHECK_CHANGED_DATA`, puis exécuter les contrôles métier globaux, les
 
 - Copier un exemple sans adapter les types, noms d’objets et données disponibles dans le système.
 - Tester uniquement le cas nominal et ignorer les valeurs initiales, absentes ou invalides.
-- Afficher un volume non borné dans l’ALV.
+- Afficher un volume non borné dans l’ALV[^terme-alv].
 - Rendre une cellule éditable sans validation ni sauvegarde transactionnelle.
 
 ## 19.J SNIPPET À RÉUTILISER
 
 > [!NOTE]
-> Adapter les noms `Z*`, les types DDIC, les données et les autorisations au système cible. Effectuer un contrôle syntaxique avant activation.
+> Adapter les noms `Z*`, les types DDIC[^terme-acro-ddic], les données et les autorisations au système cible. Effectuer un contrôle syntaxique avant activation.
 
 ```abap
 METHOD handle_data_changed.
@@ -141,3 +141,10 @@ ENDMETHOD.
 ---
 
 [Chapitre suivant — STYLES, COULEURS, ICÔNES ET CELLULES](<./20 ├── STYLES COULEURS ICONES ET CELLULES.md>)
+
+[^terme-commit-work]: **COMMIT WORK.** Instruction clôturant la SAP LUW courante, déclenchant notamment les mises à jour enregistrées et validant la base. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/08 ├── EXECUTION EXPLOITATION ET ADMINISTRATION.md#commit-work>).
+[^terme-classe]: **CLASSE.** Modèle orienté objet définissant état et comportements. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#classe>).
+[^terme-methode]: **MÉTHODE.** Comportement déclaré dans une classe ou une interface et appelé avec une liste de paramètres définie. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#methode>).
+[^terme-api]: **API.** Application Programming Interface, contrat exposant des opérations ou données utilisables par d’autres composants. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/10 └── ACRONYMES SAP.md#api>).
+[^terme-alv]: **ALV.** ABAP List Viewer, ensemble de technologies d’affichage tabulaire avec tri, filtre, total et variantes. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/06 ├── PROGRAMMES CLASSES ET OBJETS TECHNIQUES.md#alv>).
+[^terme-acro-ddic]: **DDIC.** Data Dictionary, abréviation courante de l’ABAP Dictionary. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/10 └── ACRONYMES SAP.md#acro-ddic>).

@@ -3,7 +3,7 @@
 ## 11.A RÉSULTAT ATTENDU
 
 - Comprendre le rôle de `FOR ALL ENTRIES`
-- Lire des données à partir d’une table interne pilote
+- Lire des données à partir d’une table interne[^terme-table-interne] pilote
 - Éviter le cas critique de la table pilote vide
 - Supprimer les doublons inutiles
 - Choisir entre jointure, `IN` et `FOR ALL ENTRIES`
@@ -63,7 +63,7 @@ Une jointure est souvent préférable lorsque :
 
 `FOR ALL ENTRIES` reste utile lorsque :
 
-- les clés proviennent déjà d’un traitement ABAP ;
+- les clés proviennent déjà d’un traitement ABAP[^terme-abap] ;
 - la table pilote ne peut pas être intégrée simplement dans une jointure compatible ;
 - le volume et le plan d’exécution ont été contrôlés.
 
@@ -79,12 +79,12 @@ Une jointure est souvent préférable lorsque :
 - Copier un exemple sans adapter les types, noms d’objets et données disponibles dans le système.
 - Tester uniquement le cas nominal et ignorer les valeurs initiales, absentes ou invalides.
 - Lire toutes les colonnes ou toutes les lignes par défaut.
-- Effectuer des commits dans une méthode réutilisable sans contrat explicite.
+- Effectuer des commits dans une méthode[^terme-methode] réutilisable sans contrat explicite.
 
 ## 11.I SNIPPET À RÉUTILISER
 
 > [!NOTE]
-> Adapter les noms `Z*`, les types DDIC, les données et les autorisations au système cible. Effectuer un contrôle syntaxique avant activation.
+> Adapter les noms `Z*`, les types DDIC[^terme-acro-ddic], les données et les autorisations au système cible. Effectuer un contrôle syntaxique avant activation.
 
 ```abap
 " Lire uniquement les colonnes et les lignes nécessaires.
@@ -107,7 +107,7 @@ ENDIF.
 ## 11.K MODÈLE DE DÉMONSTRATION SFLIGHT
 
 > [!NOTE]
-> Les tables `SCARR`, `SPFLI` et `SFLIGHT` appartiennent au modèle de démonstration SAP et peuvent être absentes ou non alimentées dans certains systèmes. Dans ce cas, remplacer les exemples par une table Z de démonstration ou par une source en lecture seule autorisée, sans modifier une table applicative standard.
+> Les tables `SCARR`, `SPFLI` et `SFLIGHT` appartiennent au modèle de démonstration SAP[^terme-acro-sap] et peuvent être absentes ou non alimentées dans certains systèmes. Dans ce cas, remplacer les exemples par une table Z de démonstration ou par une source en lecture seule autorisée, sans modifier une table applicative standard.
 
 ## 11.L RÉFÉRENCES OFFICIELLES SAP
 
@@ -119,3 +119,9 @@ ENDIF.
 ---
 
 [Chapitre suivant — VALEURS NULL ET CONVERSIONS SQL](<./12 ├── VALEURS NULL ET CONVERSIONS SQL.md>)
+
+[^terme-table-interne]: **TABLE INTERNE.** Collection dynamique de lignes stockée en mémoire dans le programme ABAP. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#table-interne>).
+[^terme-abap]: **ABAP.** Langage de programmation de la plateforme ABAP, conçu pour développer des applications métier et techniques SAP. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#abap>).
+[^terme-methode]: **MÉTHODE.** Comportement déclaré dans une classe ou une interface et appelé avec une liste de paramètres définie. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#methode>).
+[^terme-acro-ddic]: **DDIC.** Data Dictionary, abréviation courante de l’ABAP Dictionary. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/10 └── ACRONYMES SAP.md#acro-ddic>).
+[^terme-acro-sap]: **SAP.** Nom de l’éditeur et de son écosystème logiciel ; l’acronyme historique provient de l’allemand. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/10 └── ACRONYMES SAP.md#acro-sap>).

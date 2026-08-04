@@ -5,7 +5,7 @@
 - Déclarer un critère multivaleur
 - Comprendre les bornes basse et haute
 - Utiliser les inclusions et exclusions
-- Passer directement le critère à ABAP SQL
+- Passer directement le critère à ABAP[^terme-abap] SQL[^terme-acro-sql]
 - Choisir entre `PARAMETERS` et `SELECT-OPTIONS`
 
 ## 6.B DÉCLARATION
@@ -100,7 +100,7 @@ Ne pas utiliser `SELECT-OPTIONS` par habitude lorsque le traitement exige réell
 ## 6.J SNIPPET À RÉUTILISER
 
 > [!NOTE]
-> Adapter les noms `Z*`, les types DDIC, les données et les autorisations au système cible. Effectuer un contrôle syntaxique avant activation.
+> Adapter les noms `Z*`, les types DDIC[^terme-acro-ddic], les données et les autorisations au système cible. Effectuer un contrôle syntaxique avant activation.
 
 ```abap
 SELECT carrid, carrname
@@ -119,7 +119,7 @@ SELECT carrid, carrname
 ## 6.L MODÈLE DE DÉMONSTRATION SFLIGHT
 
 > [!NOTE]
-> Les tables `SCARR`, `SPFLI` et `SFLIGHT` appartiennent au modèle de démonstration SAP et peuvent être absentes ou non alimentées dans certains systèmes. Dans ce cas, remplacer les exemples par une table Z de démonstration ou par une source en lecture seule autorisée, sans modifier une table applicative standard.
+> Les tables `SCARR`, `SPFLI` et `SFLIGHT` appartiennent au modèle de démonstration SAP[^terme-acro-sap] et peuvent être absentes ou non alimentées dans certains systèmes. Dans ce cas, remplacer les exemples par une table Z de démonstration ou par une source en lecture seule autorisée, sans modifier une table applicative standard.
 
 ## 6.M RÉFÉRENCES OFFICIELLES SAP
 
@@ -131,3 +131,8 @@ SELECT carrid, carrname
 ---
 
 [Chapitre suivant — STRUCTURE ET SÉMANTIQUE DES TABLES DE SÉLECTION](<./07 ├── STRUCTURE ET SEMANTIQUE DES TABLES DE SELECTION.md>)
+
+[^terme-abap]: **ABAP.** Langage de programmation de la plateforme ABAP, conçu pour développer des applications métier et techniques SAP. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#abap>).
+[^terme-acro-sql]: **SQL.** Structured Query Language. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/10 └── ACRONYMES SAP.md#acro-sql>).
+[^terme-acro-ddic]: **DDIC.** Data Dictionary, abréviation courante de l’ABAP Dictionary. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/10 └── ACRONYMES SAP.md#acro-ddic>).
+[^terme-acro-sap]: **SAP.** Nom de l’éditeur et de son écosystème logiciel ; l’acronyme historique provient de l’allemand. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/10 └── ACRONYMES SAP.md#acro-sap>).

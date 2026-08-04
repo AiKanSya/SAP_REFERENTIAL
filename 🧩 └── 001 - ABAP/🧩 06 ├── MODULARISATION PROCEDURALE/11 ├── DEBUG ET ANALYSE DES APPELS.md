@@ -45,7 +45,7 @@ Utiliser **Entrer dans** pour exécuter la première instruction du sous-program
 
 ### 11.C.5 ÉTAPE 5 — LOCALISER LES EFFETS DE BORD
 
-Si une globale change sans apparaître dans l’interface, poser un watchpoint sur cette donnée puis relancer. À l’arrêt, lire la pile d’appels et identifier l’instruction exacte qui effectue la modification.
+Si une globale change sans apparaître dans l’interface, poser un watchpoint[^terme-watchpoint] sur cette donnée puis relancer. À l’arrêt, lire la pile d’appels et identifier l’instruction exacte qui effectue la modification.
 
 ### 11.C.6 ÉTAPE 6 — CONTRÔLER LES APPELS DYNAMIQUES
 
@@ -87,7 +87,7 @@ Pour `VALUE(...)`, une copie locale est visible dans la procédure.
 
 Scénario : une globale change alors qu’elle ne figure pas dans l’appel.
 
-Méthode :
+Méthode[^terme-methode] :
 
 1. poser un watchpoint sur la variable globale ;
 2. relancer le scénario ;
@@ -107,13 +107,13 @@ Pour un `PERFORM (lv_form_name)`, contrôler avant l’appel :
 
 ## 11.H ANALYSE STATIQUE
 
-Selon les outils installés sur le système SAP GUI :
+Selon les outils installés sur le système SAP[^terme-systeme-sap] GUI[^terme-acro-gui] :
 
-- recherche d’utilisations dans `SE80` ;
+- recherche d’utilisations dans `SE80`[^outil-se80] ;
 - liste des sous-programmes du programme ;
-- Code Inspector `SCI` ;
-- ABAP Test Cockpit lorsqu’il est disponible ;
-- analyse de temps `SAT` si le problème concerne les performances.
+- Code Inspector `SCI`[^outil-sci] ;
+- ABAP[^terme-abap] Test Cockpit lorsqu’il est disponible ;
+- analyse de temps `SAT`[^outil-sat] si le problème concerne les performances.
 
 Ces outils seront approfondis dans le dossier consacré au débogage et à l’analyse.
 
@@ -152,7 +152,7 @@ Ces outils seront approfondis dans le dossier consacré au débogage et à l’a
 ## 11.M SNIPPET À RÉUTILISER
 
 > [!NOTE]
-> Adapter les noms `Z*`, les types DDIC, les données et les autorisations au système cible. Effectuer un contrôle syntaxique avant activation.
+> Adapter les noms `Z*`, les types DDIC[^terme-acro-ddic], les données et les autorisations au système cible. Effectuer un contrôle syntaxique avant activation.
 
 ```abap
 FORM calculate_total
@@ -181,3 +181,14 @@ ENDFORM.
 ---
 
 [Chapitre suivant — BONNES PRATIQUES ET REFACTORISATION](<./12 └── BONNES PRATIQUES ET REFACTORISATION.md>)
+
+[^terme-watchpoint]: **WATCHPOINT.** Arrêt conditionné par la modification ou la valeur d’une donnée observée. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/08 ├── EXECUTION EXPLOITATION ET ADMINISTRATION.md#watchpoint>).
+[^terme-methode]: **MÉTHODE.** Comportement déclaré dans une classe ou une interface et appelé avec une liste de paramètres définie. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#methode>).
+[^terme-systeme-sap]: **SYSTÈME SAP.** Ensemble technique cohérent comprenant au minimum une base de données et un ou plusieurs serveurs d’applications. Il est généralement identifié par un SID de trois caractères. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/01 ├── SYSTEMES ENVIRONNEMENTS ET MANDANTS.md#systeme-sap>).
+[^terme-acro-gui]: **GUI.** Graphical User Interface. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/10 └── ACRONYMES SAP.md#acro-gui>).
+[^terme-abap]: **ABAP.** Langage de programmation de la plateforme ABAP, conçu pour développer des applications métier et techniques SAP. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#abap>).
+[^terme-acro-ddic]: **DDIC.** Data Dictionary, abréviation courante de l’ABAP Dictionary. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/10 └── ACRONYMES SAP.md#acro-ddic>).
+
+[^outil-se80]: **SE80.** Object Navigator utilisé pour parcourir et maintenir les objets du Repository ABAP. Voir [le chapitre associé](<../🧩 01 ├── FONDAMENTAUX ABAP/04 ├── EDITEURS ABAP SE38 ET SE80.md>).
+[^outil-sci]: **SCI.** Code Inspector utilisé pour exécuter des contrôles statiques sur un ensemble d’objets ABAP. Voir [le chapitre associé](<../🧩 20 ├── PERFORMANCE QUALITE ET TESTS/13 ├── CODE INSPECTOR AVEC SCI.md>).
+[^outil-sat]: **SAT.** Runtime Analysis utilisée pour mesurer et analyser le temps d’exécution ABAP. Voir [le chapitre associé](<../🧩 20 ├── PERFORMANCE QUALITE ET TESTS/07 ├── MESURER LE TEMPS D EXECUTION AVEC SAT.md>).

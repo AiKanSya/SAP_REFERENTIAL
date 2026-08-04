@@ -2,14 +2,14 @@
 
 ## 13.A RÉSULTAT ATTENDU
 
-- Marquer un module comme RFC
+- Marquer un module comme RFC[^terme-rfc]
 - Concevoir une interface transportable
 - Comprendre les restrictions d’exécution
 - Séparer erreurs métier et erreurs techniques
 
 ## 13.B ACTIVATION RFC
 
-Dans les attributs du module fonction, sélectionner le type de traitement **Module distant** ou **Remote-Enabled Module** selon la langue du système.
+Dans les attributs du module fonction[^terme-module-fonction], sélectionner le type de traitement **Module distant** ou **Remote-Enabled Module** selon la langue du système.
 
 Cette option génère les éléments nécessaires à l’appel via l’interface RFC.
 
@@ -36,7 +36,7 @@ flowchart TD
 Le module s’exécute dans le système cible avec :
 
 - l’utilisateur de la connexion ;
-- son mandant ;
+- son mandant[^terme-mandant] ;
 - ses autorisations ;
 - les paramètres régionaux applicables ;
 - une unité de travail propre au scénario RFC.
@@ -64,7 +64,7 @@ Séparer :
 
 ## 13.G STABILITÉ
 
-Une interface RFC peut avoir des consommateurs invisibles depuis le système fournisseur. Toute modification doit être gouvernée comme une modification d’API distribuée.
+Une interface RFC peut avoir des consommateurs invisibles depuis le système fournisseur. Toute modification doit être gouvernée comme une modification d’API[^terme-api] distribuée.
 
 ## 13.H PROCESS
 
@@ -74,11 +74,11 @@ Ouvrir les attributs du module et cocher l’accès distant seulement si un cons
 
 ### 13.H.2 Étape 2 — Vérifier les types
 
-Contrôler chaque paramètre avec les restrictions RFC de la release. Utiliser des types DDIC stables et éviter références d’objet ou types locaux impossibles à sérialiser.
+Contrôler chaque paramètre avec les restrictions RFC de la release. Utiliser des types DDIC[^terme-acro-ddic] stables et éviter références d’objet ou types locaux impossibles à sérialiser.
 
 ### 13.H.3 Étape 3 — Éliminer les dépendances de session
 
-Ne dépendre ni de mémoire ABAP, ni d’état global laissé par un appel précédent, ni de paramètres utilisateur non documentés. Fournir toutes les données nécessaires dans l’interface.
+Ne dépendre ni de mémoire ABAP[^terme-abap], ni d’état global laissé par un appel précédent, ni de paramètres utilisateur non documentés. Fournir toutes les données nécessaires dans l’interface.
 
 ### 13.H.4 Étape 4 — Appliquer les contrôles dans la cible
 
@@ -86,7 +86,7 @@ Valider les entrées et exécuter les `AUTHORITY-CHECK` métier dans le système
 
 ### 13.H.5 Étape 5 — Tester local et distant
 
-Comparer le test `SE37` local et l’appel via destination, puis provoquer une coupure ou un refus. Le module est validé lorsque les erreurs de communication, système et métier sont distinctes.
+Comparer le test `SE37`[^outil-se37] local et l’appel via destination, puis provoquer une coupure ou un refus. Le module est validé lorsque les erreurs de communication, système et métier sont distinctes.
 
 ## 13.I VÉRIFICATION
 
@@ -97,7 +97,7 @@ Comparer le test `SE37` local et l’appel via destination, puis provoquer une c
 ## 13.J ERREURS FRÉQUENTES
 
 - Appeler un module fonction sans lire sa documentation et ses exceptions.
-- Supposer qu’une BAPI effectue automatiquement le commit.
+- Supposer qu’une BAPI[^terme-bapi] effectue automatiquement le commit.
 
 ## 13.K TERMES DU LEXIQUE
 
@@ -116,3 +116,13 @@ Comparer le test `SE37` local et l’appel via destination, puis provoquer une c
 ---
 
 [Chapitre suivant — DESTINATIONS RFC AVEC SM59](<./14 ├── DESTINATIONS RFC AVEC SM59.md>)
+
+[^terme-rfc]: **RFC.** Remote Function Call, mécanisme permettant d’appeler un module fonction compatible dans un autre contexte ou système. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/06 ├── PROGRAMMES CLASSES ET OBJETS TECHNIQUES.md#rfc>).
+[^terme-module-fonction]: **MODULE FONCTION.** Procédure globale appelée avec `CALL FUNCTION` et définie dans un groupe de fonctions. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/06 ├── PROGRAMMES CLASSES ET OBJETS TECHNIQUES.md#module-fonction>).
+[^terme-mandant]: **MANDANT.** Subdivision logique d’un système SAP. Il est identifié par un numéro à trois chiffres et isole une partie des données, du paramétrage et des utilisateurs. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/01 ├── SYSTEMES ENVIRONNEMENTS ET MANDANTS.md#mandant>).
+[^terme-api]: **API.** Application Programming Interface, contrat exposant des opérations ou données utilisables par d’autres composants. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/10 └── ACRONYMES SAP.md#api>).
+[^terme-acro-ddic]: **DDIC.** Data Dictionary, abréviation courante de l’ABAP Dictionary. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/10 └── ACRONYMES SAP.md#acro-ddic>).
+[^terme-abap]: **ABAP.** Langage de programmation de la plateforme ABAP, conçu pour développer des applications métier et techniques SAP. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#abap>).
+[^terme-bapi]: **BAPI.** Interface métier publiée autour d’un Business Object SAP, généralement implémentée par un module fonction RFC. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/06 ├── PROGRAMMES CLASSES ET OBJETS TECHNIQUES.md#bapi>).
+
+[^outil-se37]: **SE37.** Function Builder utilisé pour rechercher, afficher, tester et maintenir les modules fonction. Voir [le chapitre associé](<03 ├── RECHERCHER ET ANALYSER AVEC SE37.md>).

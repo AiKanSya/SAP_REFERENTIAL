@@ -2,13 +2,13 @@
 
 ## 16.A RÉSULTAT ATTENDU
 
-- Maintenir une implémentation de BAdI classique
+- Maintenir une implémentation de BAdI[^terme-acro-badi] classique
 - Comprendre la sélection par filtre
 - Anticiper l’ordre et la multiplicité des appels
 
 ## 16.B BAdI CLASSIQUE
 
-Les BAdI classiques utilisent le modèle historique du BAdI Builder. Ils restent fréquents dans les applications ECC et certains composants S/4HANA. Depuis AS ABAP 7.0, SAP distingue les BAdI classiques des BAdI intégrés au Enhancement Framework.
+Les BAdI classiques utilisent le modèle historique du BAdI Builder. Ils restent fréquents dans les applications ECC et certains composants S/4HANA. Depuis AS ABAP[^terme-abap] 7.0, SAP[^terme-acro-sap] distingue les BAdI classiques des BAdI intégrés au Enhancement Framework.
 
 ## 16.C FILTRES
 
@@ -20,7 +20,7 @@ flowchart LR
     B --> C["Exécution des implémentations compatibles"]
 ```
 
-Ne pas coder dans la méthode une seconde logique de sélection qui duplique inutilement le filtre configuré.
+Ne pas coder dans la méthode[^terme-methode] une seconde logique de sélection qui duplique inutilement le filtre configuré.
 
 ## 16.D USAGE MULTIPLE
 
@@ -35,9 +35,9 @@ Avec multiple-use, plusieurs implémentations peuvent être exécutées. Le code
 
 ## 16.E DIAGNOSTIC
 
-- afficher les implémentations actives dans `SE18` ou `SE19` ;
+- afficher les implémentations actives dans `SE18`[^outil-se18] ou `SE19`[^outil-se19] ;
 - vérifier les valeurs de filtre ;
-- placer un breakpoint dans chaque classe candidate ;
+- placer un breakpoint[^terme-breakpoint] dans chaque classe[^terme-classe] candidate ;
 - contrôler la multiplicité et l’ordre observé ;
 - mesurer le temps si le BAdI est appelé dans une boucle.
 
@@ -109,3 +109,13 @@ Ordre de transport  :
 ---
 
 [Chapitre suivant — ENHANCEMENT SPOTS ET IMPLÉMENTATIONS](<./17 ├── ENHANCEMENT SPOTS ET IMPLEMENTATIONS.md>)
+
+[^terme-acro-badi]: **BADI.** Business Add-In, mécanisme d’extension orienté objet du standard SAP. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/10 └── ACRONYMES SAP.md#acro-badi>).
+[^terme-abap]: **ABAP.** Langage de programmation de la plateforme ABAP, conçu pour développer des applications métier et techniques SAP. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#abap>).
+[^terme-acro-sap]: **SAP.** Nom de l’éditeur et de son écosystème logiciel ; l’acronyme historique provient de l’allemand. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/10 └── ACRONYMES SAP.md#acro-sap>).
+[^terme-methode]: **MÉTHODE.** Comportement déclaré dans une classe ou une interface et appelé avec une liste de paramètres définie. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#methode>).
+[^terme-breakpoint]: **BREAKPOINT.** Point d’arrêt suspendant l’exécution dans le débogueur. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/08 ├── EXECUTION EXPLOITATION ET ADMINISTRATION.md#breakpoint>).
+[^terme-classe]: **CLASSE.** Modèle orienté objet définissant état et comportements. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#classe>).
+
+[^outil-se18]: **SE18.** BAdI Builder utilisé pour rechercher et analyser les définitions de BAdI. Voir [le chapitre associé](<14 ├── ANALYSER UNE DEFINITION BADI AVEC SE18.md>).
+[^outil-se19]: **SE19.** BAdI Builder utilisé pour créer et maintenir les implémentations de BAdI. Voir [le chapitre associé](<15 ├── IMPLEMENTER UNE BADI AVEC SE19.md>).

@@ -80,7 +80,7 @@ INITIALIZATION.
 
 ### 10.G.1 Étape 1 — Identifier la source de chaque valeur initiale
 
-Pour chaque champ de sélection, décider si la valeur vient d’un défaut statique, de `INITIALIZATION`, de la mémoire SAP, d’une variante ou d’une saisie utilisateur. Ne pas alimenter le même champ depuis plusieurs sources sans définir leur priorité.
+Pour chaque champ de sélection, décider si la valeur vient d’un défaut statique, de `INITIALIZATION`, de la mémoire SAP[^terme-acro-sap], d’une variante ou d’une saisie utilisateur. Ne pas alimenter le même champ depuis plusieurs sources sans définir leur priorité.
 
 ### 10.G.2 Étape 2 — Implémenter les défauts statiques
 
@@ -102,9 +102,9 @@ La mise en place est validée lorsque la première valeur est prévisible, que l
 
 ## 10.H VÉRIFICATION
 
-- Le scénario reproduit correspond au même utilisateur, mandant, transaction et jeu de données.
+- Le scénario reproduit correspond au même utilisateur, mandant[^terme-mandant], transaction et jeu de données.
 - L’horodatage et l’identifiant de l’analyse sont conservés.
-- La cause retenue est soutenue par une ligne source, une trace ou une valeur observée.
+- La cause retenue est soutenue par une ligne source, une trace[^terme-trace] ou une valeur observée.
 - Après correction, le même scénario ne reproduit plus le défaut et le résultat métier reste identique.
 
 ## 10.I ERREURS FRÉQUENTES
@@ -117,7 +117,7 @@ La mise en place est validée lorsque la première valeur est prévisible, que l
 ## 10.J SNIPPET À RÉUTILISER
 
 > [!NOTE]
-> Adapter les noms `Z*`, les types DDIC, les données et les autorisations au système cible. Effectuer un contrôle syntaxique avant activation.
+> Adapter les noms `Z*`, les types DDIC[^terme-acro-ddic], les données et les autorisations au système cible. Effectuer un contrôle syntaxique avant activation.
 
 ```abap
 SELECT-OPTIONS s_date FOR sy-datum.
@@ -147,3 +147,8 @@ INITIALIZATION.
 ---
 
 [Chapitre suivant — VALIDATION AVEC AT SELECTION-SCREEN](<./11 ├── VALIDATION AVEC AT SELECTION SCREEN.md>)
+
+[^terme-acro-sap]: **SAP.** Nom de l’éditeur et de son écosystème logiciel ; l’acronyme historique provient de l’allemand. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/10 └── ACRONYMES SAP.md#acro-sap>).
+[^terme-mandant]: **MANDANT.** Subdivision logique d’un système SAP. Il est identifié par un numéro à trois chiffres et isole une partie des données, du paramétrage et des utilisateurs. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/01 ├── SYSTEMES ENVIRONNEMENTS ET MANDANTS.md#mandant>).
+[^terme-trace]: **TRACE.** Enregistrement détaillé d’événements techniques pour analyser exécution, SQL ou appels. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/08 ├── EXECUTION EXPLOITATION ET ADMINISTRATION.md#trace>).
+[^terme-acro-ddic]: **DDIC.** Data Dictionary, abréviation courante de l’ABAP Dictionary. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/10 └── ACRONYMES SAP.md#acro-ddic>).

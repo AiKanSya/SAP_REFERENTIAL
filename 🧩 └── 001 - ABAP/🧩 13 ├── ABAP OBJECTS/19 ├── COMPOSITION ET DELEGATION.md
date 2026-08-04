@@ -2,9 +2,9 @@
 
 ## 19.A RÉSULTAT ATTENDU
 
-- Construire une classe à partir de collaborateurs.
+- Construire une classe[^terme-classe] à partir de collaborateurs.
 - Déléguer une responsabilité au bon objet.
-- Préférer la composition à l’héritage lorsque la relation est « utilise » plutôt que « est un ».
+- Préférer la composition[^terme-composition] à l’héritage[^terme-heritage] lorsque la relation est « utilise » plutôt que « est un ».
 
 ## 19.B CAS D’USAGE
 
@@ -33,7 +33,7 @@ Ajouter des références d’interface privées et les recevoir dans le construc
 
 ### 19.C.4 Étape 4 — Déléguer
 
-Dans la méthode métier, appeler chaque collaborateur et conserver uniquement séquence, décisions globales et gestion cohérente des erreurs.
+Dans la méthode[^terme-methode] métier, appeler chaque collaborateur et conserver uniquement séquence, décisions globales et gestion cohérente des erreurs.
 
 ### 19.C.5 Étape 5 — Tester indépendamment
 
@@ -102,9 +102,9 @@ ENDMETHOD.
 
 ## 19.H COMPATIBILITÉ S/4HANA
 
-- Statut : compatible avec le développement ABAP classique sur SAP S/4HANA.
-- Vérifier la syntaxe exacte avec l’aide `F1` du système cible lorsque plusieurs versions d’ABAP Platform sont prises en charge.
-- Les objets globaux doivent être créés dans le package et l’ordre de transport du projet.
+- Statut : compatible avec le développement ABAP[^terme-abap] classique sur SAP[^terme-acro-sap] S/4HANA.
+- Vérifier la syntaxe exacte avec l’aide `F1`[^terme-aide-f1] du système cible lorsque plusieurs versions d’ABAP Platform sont prises en charge.
+- Les objets globaux doivent être créés dans le package[^terme-package] et l’ordre de transport[^terme-ordre-transport] du projet.
 
 ## 19.I RÉFÉRENCES OFFICIELLES SAP
 
@@ -114,3 +114,13 @@ ENDMETHOD.
 ---
 
 [Chapitre suivant — INJECTION DE DÉPENDANCES](<./20 ├── INJECTION DE DEPENDANCES.md>)
+
+[^terme-classe]: **CLASSE.** Modèle orienté objet définissant état et comportements. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#classe>).
+[^terme-composition]: **COMPOSITION.** Relation dans laquelle une classe réalise son comportement en contenant ou en utilisant d’autres objets spécialisés. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#composition>).
+[^terme-heritage]: **HÉRITAGE.** Relation permettant à une sous-classe de reprendre les composants accessibles d’une super-classe et de spécialiser son comportement. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#heritage>).
+[^terme-methode]: **MÉTHODE.** Comportement déclaré dans une classe ou une interface et appelé avec une liste de paramètres définie. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#methode>).
+[^terme-abap]: **ABAP.** Langage de programmation de la plateforme ABAP, conçu pour développer des applications métier et techniques SAP. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#abap>).
+[^terme-acro-sap]: **SAP.** Nom de l’éditeur et de son écosystème logiciel ; l’acronyme historique provient de l’allemand. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/10 └── ACRONYMES SAP.md#acro-sap>).
+[^terme-aide-f1]: **AIDE F1.** Aide contextuelle expliquant un champ, une fonction ou un mot-clé. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/02 ├── SAP GUI NAVIGATION ET TRANSACTIONS.md#aide-f1>).
+[^terme-package]: **PACKAGE.** Conteneur logique qui regroupe les objets de développement et détermine notamment leur transportabilité. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/03 ├── REPOSITORY PACKAGES ET TRANSPORTS.md#package>).
+[^terme-ordre-transport]: **ORDRE DE TRANSPORT.** Conteneur qui regroupe des modifications à exporter puis importer dans d’autres systèmes. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/03 ├── REPOSITORY PACKAGES ET TRANSPORTS.md#ordre-transport>).

@@ -3,7 +3,7 @@
 ## 16.A RÉSULTAT ATTENDU
 
 - Produire une sortie simple avec `WRITE`
-- Comprendre la liste ABAP classique
+- Comprendre la liste ABAP[^terme-abap] classique
 - Distinguer sortie de démonstration et restitution professionnelle
 - Anticiper le comportement en arrière-plan
 - Choisir le bon mécanisme de sortie
@@ -38,9 +38,9 @@ Des événements comme `AT LINE-SELECTION` permettent de créer des listes de d�
 
 Préférer :
 
-- ALV pour une liste structurée dans SAP GUI ;
+- ALV[^terme-alv] pour une liste structurée dans SAP GUI[^terme-sap-gui] ;
 - journal applicatif pour un traitement technique ;
-- spool pour un traitement de fond ;
+- spool[^terme-spool] pour un traitement de fond ;
 - fichier ou interface lorsque le contrat l’exige.
 
 ## 16.E EXÉCUTION EN ARRIÈRE-PLAN
@@ -99,7 +99,7 @@ Il est insuffisant pour les besoins avancés de tri, filtre, export, variantes d
 ## 16.J SNIPPET À RÉUTILISER
 
 > [!NOTE]
-> Adapter les noms `Z*`, les types DDIC, les données et les autorisations au système cible. Effectuer un contrôle syntaxique avant activation.
+> Adapter les noms `Z*`, les types DDIC[^terme-acro-ddic], les données et les autorisations au système cible. Effectuer un contrôle syntaxique avant activation.
 
 ```abap
 START-OF-SELECTION.
@@ -124,3 +124,9 @@ START-OF-SELECTION.
 ---
 
 [Chapitre suivant — BONNES PRATIQUES ET CHECKLIST](<./17 └── BONNES PRATIQUES ET CHECKLIST.md>)
+
+[^terme-abap]: **ABAP.** Langage de programmation de la plateforme ABAP, conçu pour développer des applications métier et techniques SAP. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#abap>).
+[^terme-alv]: **ALV.** ABAP List Viewer, ensemble de technologies d’affichage tabulaire avec tri, filtre, total et variantes. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/06 ├── PROGRAMMES CLASSES ET OBJETS TECHNIQUES.md#alv>).
+[^terme-sap-gui]: **SAP GUI.** Client graphique permettant d’utiliser les transactions et écrans d’un système SAP. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/02 ├── SAP GUI NAVIGATION ET TRANSACTIONS.md#sap-gui>).
+[^terme-spool]: **SPOOL.** Infrastructure stockant et acheminant les sorties imprimables produites par les traitements SAP. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/06 ├── PROGRAMMES CLASSES ET OBJETS TECHNIQUES.md#spool>).
+[^terme-acro-ddic]: **DDIC.** Data Dictionary, abréviation courante de l’ABAP Dictionary. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/10 └── ACRONYMES SAP.md#acro-ddic>).

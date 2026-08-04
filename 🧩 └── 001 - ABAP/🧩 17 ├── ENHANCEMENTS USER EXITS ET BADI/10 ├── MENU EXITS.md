@@ -8,7 +8,7 @@
 
 ## 10.B PRINCIPE
 
-Un menu exit permet d’ajouter une fonction à un GUI status prévu par SAP. Les codes fonction des menu exits sont généralement définis par SAP et commencent par `+`.
+Un menu exit permet d’ajouter une fonction à un GUI[^terme-acro-gui] status prévu par SAP[^terme-acro-sap]. Les codes fonction des menu exits sont généralement définis par SAP et commencent par `+`.
 
 ```mermaid
 flowchart LR
@@ -19,8 +19,8 @@ flowchart LR
 
 ## 10.C IMPLÉMENTATION
 
-- identifier le menu exit dans `SMOD` ;
-- affecter l’enhancement au projet `CMOD` ;
+- identifier le menu exit dans `SMOD`[^outil-smod] ;
+- affecter l’enhancement au projet `CMOD`[^outil-cmod] ;
 - maintenir le texte de l’entrée ;
 - implémenter le traitement dans le composant prévu ;
 - vérifier les autorisations avant l’action ;
@@ -31,7 +31,7 @@ flowchart LR
 - masquer ou désactiver l’action lorsqu’elle n’est pas pertinente ;
 - ne pas détourner un code fonction standard ;
 - afficher un texte court et non ambigu ;
-- réutiliser une transaction ou une classe de service existante ;
+- réutiliser une transaction ou une classe[^terme-classe] de service existante ;
 - tester les langues de connexion utilisées ;
 - contrôler le retour vers l’écran standard.
 
@@ -43,7 +43,7 @@ Dans `SMOD`, afficher l’enhancement puis le composant menu. Relever le code fo
 
 ### 10.E.2 ÉTAPE 2 — VÉRIFIER LE PROJET `CMOD`
 
-Ouvrir le projet contenant l’enhancement et contrôler son statut. Accéder au composant menu depuis le projet. Ne pas modifier directement le GUI status standard dans `SE41`.
+Ouvrir le projet contenant l’enhancement et contrôler son statut. Accéder au composant menu depuis le projet. Ne pas modifier directement le GUI status standard dans `SE41`[^outil-se41].
 
 ### 10.E.3 ÉTAPE 3 — MAINTENIR LE TEXTE DE FONCTION
 
@@ -64,7 +64,7 @@ Activer les includes et le projet. Tester l’affichage du menu dans chaque GUI 
 ## 10.F VÉRIFICATION
 
 - L’implémentation ou le projet est actif et transporté dans le bon ordre.
-- Un breakpoint confirme que le point d’extension est appelé dans le scénario visé.
+- Un breakpoint[^terme-breakpoint] confirme que le point d’extension est appelé dans le scénario visé.
 - Le comportement standard reste inchangé hors du périmètre fonctionnel prévu.
 - Aucune modification directe d’un objet SAP standard n’a été créée.
 
@@ -102,3 +102,12 @@ Ordre de transport  :
 ---
 
 [Chapitre suivant — EXTENSIONS DDIC ASSOCIÉES AUX EXITS](<./11 ├── EXTENSIONS DDIC ASSOCIEES AUX EXITS.md>)
+
+[^terme-acro-gui]: **GUI.** Graphical User Interface. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/10 └── ACRONYMES SAP.md#acro-gui>).
+[^terme-acro-sap]: **SAP.** Nom de l’éditeur et de son écosystème logiciel ; l’acronyme historique provient de l’allemand. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/10 └── ACRONYMES SAP.md#acro-sap>).
+[^terme-classe]: **CLASSE.** Modèle orienté objet définissant état et comportements. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#classe>).
+[^terme-breakpoint]: **BREAKPOINT.** Point d’arrêt suspendant l’exécution dans le débogueur. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/08 ├── EXECUTION EXPLOITATION ET ADMINISTRATION.md#breakpoint>).
+
+[^outil-smod]: **SMOD.** Transaction de recherche et d’analyse des enhancements SAP classiques. Voir [le chapitre associé](<06 ├── ANALYSER UN ENHANCEMENT AVEC SMOD.md>).
+[^outil-cmod]: **CMOD.** Transaction de gestion des projets d’extensions client classiques. Voir [le chapitre associé](<07 ├── CREER ET ACTIVER UN PROJET CMOD.md>).
+[^outil-se41]: **SE41.** Menu Painter utilisé pour maintenir les statuts GUI, menus et codes fonction des écrans classiques. Voir [le chapitre associé](<../🧩 22 ├── PROGRAMMATION DIALOGUE ET DYNPRO/01 ├── CREER UN MODULE POOL ET UN PREMIER ECRAN.md>).

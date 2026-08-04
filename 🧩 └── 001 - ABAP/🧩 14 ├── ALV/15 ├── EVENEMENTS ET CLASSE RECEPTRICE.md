@@ -2,7 +2,7 @@
 
 ## 15.A RÉSULTAT ATTENDU
 
-- Créer une classe de gestion des événements
+- Créer une classe[^terme-classe] de gestion des événements
 - Enregistrer les handlers avant l’affichage
 - Organiser le traitement des interactions
 
@@ -57,7 +57,7 @@ Le handler doit :
 
 1. interpréter l’événement ;
 2. valider la sélection ;
-3. déléguer la règle métier à une procédure ou une classe dédiée ;
+3. déléguer la règle métier[^terme-regle-metier] à une procédure ou une classe dédiée ;
 4. actualiser l’affichage si nécessaire.
 
 ## 15.F PROCESS
@@ -68,7 +68,7 @@ Lister les interactions réellement gérées : double-clic, hotspot, commande, m
 
 ### 15.F.2 Étape 2 — Déclarer la classe réceptrice
 
-Pour chaque événement, déclarer une méthode `FOR EVENT ... OF CL_GUI_ALV_GRID` avec sa signature exacte. Conserver les règles métier hors de cette méthode lorsque le traitement devient complexe.
+Pour chaque événement, déclarer une méthode[^terme-methode] `FOR EVENT ... OF CL_GUI_ALV_GRID` avec sa signature exacte. Conserver les règles métier hors de cette méthode lorsque le traitement devient complexe.
 
 ### 15.F.3 Étape 3 — Implémenter les validations d’entrée
 
@@ -97,13 +97,13 @@ Tester les lignes valides, une table vide, les commandes inconnues et les intera
 
 - Copier un exemple sans adapter les types, noms d’objets et données disponibles dans le système.
 - Tester uniquement le cas nominal et ignorer les valeurs initiales, absentes ou invalides.
-- Afficher un volume non borné dans l’ALV.
+- Afficher un volume non borné dans l’ALV[^terme-alv].
 - Rendre une cellule éditable sans validation ni sauvegarde transactionnelle.
 
 ## 15.I SNIPPET À RÉUTILISER
 
 > [!NOTE]
-> Adapter les noms `Z*`, les types DDIC, les données et les autorisations au système cible. Effectuer un contrôle syntaxique avant activation.
+> Adapter les noms `Z*`, les types DDIC[^terme-acro-ddic], les données et les autorisations au système cible. Effectuer un contrôle syntaxique avant activation.
 
 ```abap
 CLASS lcl_event_receiver IMPLEMENTATION.
@@ -138,3 +138,9 @@ ENDCLASS.
 ---
 
 [Chapitre suivant — BARRE D’OUTILS ET COMMANDES PERSONNALISÉES](<./16 ├── BARRE D OUTILS ET COMMANDES PERSONNALISEES.md>)
+
+[^terme-classe]: **CLASSE.** Modèle orienté objet définissant état et comportements. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#classe>).
+[^terme-regle-metier]: **RÈGLE MÉTIER.** Condition ou calcul imposé par le processus fonctionnel. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/09 ├── NOTIONS FONCTIONNELLES ET ORGANISATIONNELLES.md#regle-metier>).
+[^terme-methode]: **MÉTHODE.** Comportement déclaré dans une classe ou une interface et appelé avec une liste de paramètres définie. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#methode>).
+[^terme-alv]: **ALV.** ABAP List Viewer, ensemble de technologies d’affichage tabulaire avec tri, filtre, total et variantes. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/06 ├── PROGRAMMES CLASSES ET OBJETS TECHNIQUES.md#alv>).
+[^terme-acro-ddic]: **DDIC.** Data Dictionary, abréviation courante de l’ABAP Dictionary. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/10 └── ACRONYMES SAP.md#acro-ddic>).

@@ -8,7 +8,7 @@ Transmettre une valeur entre programmes d’une même session utilisateur avec u
 
 ### 1.B.1 ÉTAPE 1 — CONFIRMER LE PÉRIMÈTRE DE SESSION
 
-Utiliser la mémoire ABAP uniquement lorsque le producteur et le consommateur s’exécutent dans la même session interne ou dans un enchaînement compatible. Ne pas l’utiliser pour un échange interutilisateur, intersystème ou durable.
+Utiliser la mémoire ABAP[^terme-abap] uniquement lorsque le producteur et le consommateur s’exécutent dans la même session interne ou dans un enchaînement compatible. Ne pas l’utiliser pour un échange interutilisateur, intersystème ou durable.
 
 ### 1.B.2 ÉTAPE 2 — DÉFINIR LE CONTRAT MÉMOIRE
 
@@ -54,3 +54,5 @@ ENDIF.
 
 - Ce mécanisme n’est ni une base de données ni un échange interutilisateur.
 - Documenter le producteur, le consommateur, le nom des composants et le nettoyage.
+
+[^terme-abap]: **ABAP.** Langage de programmation de la plateforme ABAP, conçu pour développer des applications métier et techniques SAP. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#abap>).

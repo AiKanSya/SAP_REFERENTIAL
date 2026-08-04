@@ -10,7 +10,7 @@
 
 ## 7.B DÉFINITION
 
-Une structure regroupe plusieurs composants sous un même objet de données. Chaque composant possède son propre type.
+Une structure regroupe plusieurs composants sous un même objet de données[^terme-objet-donnees]. Chaque composant possède son propre type.
 
 ```mermaid
 flowchart TD
@@ -161,12 +161,12 @@ L’instruction historique `MOVE-CORRESPONDING` reste disponible, mais `CORRESPO
 
 Une structure locale convient à un besoin interne au programme.
 
-Une structure du Dictionnaire ABAP est adaptée lorsqu’elle doit notamment :
+Une structure du Dictionnaire ABAP[^terme-abap] est adaptée lorsqu’elle doit notamment :
 
 - être partagée par plusieurs objets ;
 - servir de type d’interface ;
 - porter des composants métier globaux ;
-- être utilisée par certains outils déclaratifs SAP.
+- être utilisée par certains outils déclaratifs SAP[^terme-acro-sap].
 
 Une structure locale ne doit pas reproduire arbitrairement un objet standard existant sans justification.
 
@@ -220,12 +220,12 @@ Les constantes `abap_true` et `abap_false` sont couramment utilisées avec le ty
 - Copier un exemple sans adapter les types, noms d’objets et données disponibles dans le système.
 - Tester uniquement le cas nominal et ignorer les valeurs initiales, absentes ou invalides.
 - Choisir un type trop générique ou dépendant d’une variable existante sans justification.
-- Utiliser une référence ou un field-symbol non lié.
+- Utiliser une référence ou un field-symbol[^terme-field-symbol] non lié.
 
 ## 7.N SNIPPET À RÉUTILISER
 
 > [!NOTE]
-> Adapter les noms `Z*`, les types DDIC, les données et les autorisations au système cible. Effectuer un contrôle syntaxique avant activation.
+> Adapter les noms `Z*`, les types DDIC[^terme-acro-ddic], les données et les autorisations au système cible. Effectuer un contrôle syntaxique avant activation.
 
 ```abap
 REPORT zdemo_structures.
@@ -267,3 +267,9 @@ ENDIF.
 ---
 
 [Chapitre suivant — TYPAGE AVEC `TYPE` ET `LIKE`](<./08 ├── TYPAGE AVEC TYPE ET LIKE.md>)
+
+[^terme-objet-donnees]: **OBJET DE DONNÉES.** Zone de mémoire typée contenant une valeur pendant l’exécution. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#objet-donnees>).
+[^terme-abap]: **ABAP.** Langage de programmation de la plateforme ABAP, conçu pour développer des applications métier et techniques SAP. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#abap>).
+[^terme-acro-sap]: **SAP.** Nom de l’éditeur et de son écosystème logiciel ; l’acronyme historique provient de l’allemand. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/10 └── ACRONYMES SAP.md#acro-sap>).
+[^terme-field-symbol]: **FIELD-SYMBOL.** Alias dynamique vers une zone de mémoire existante. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#field-symbol>).
+[^terme-acro-ddic]: **DDIC.** Data Dictionary, abréviation courante de l’ABAP Dictionary. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/10 └── ACRONYMES SAP.md#acro-ddic>).

@@ -2,7 +2,7 @@
 
 ## 1.A RÉSULTAT ATTENDU
 
-- Comprendre pourquoi découper un programme ABAP
+- Comprendre pourquoi découper un programme ABAP[^terme-abap]
 - Distinguer organisation du code et modularisation fonctionnelle
 - Identifier les principales unités de modularisation ABAP
 - Réduire la duplication et les dépendances implicites
@@ -40,7 +40,7 @@ ABAP propose plusieurs mécanismes :
 - modules fonction ;
 - méthodes de classes ;
 - modules de dialogue ;
-- blocs d’événements exécutés par l’environnement d’exécution.
+- blocs d’événements exécutés par l’environnement[^terme-environnement] d’exécution.
 
 Ce dossier traite uniquement la modularisation procédurale locale avec les sous-programmes, les includes et les macros. Les modules fonction et les méthodes seront abordés dans des dossiers dédiés.
 
@@ -101,7 +101,7 @@ Préférer :
 - Un include organise le code sans créer de véritable abstraction.
 - Un sous-programme est une unité de traitement locale appelée avec `PERFORM`.
 - Les dépendances globales réduisent l’intérêt de la modularisation.
-- Pour du nouveau développement, les méthodes offrent généralement une interface plus robuste ; elles seront étudiées dans le dossier ABAP Objects.
+- Pour du nouveau développement, les méthodes offrent généralement une interface plus robuste ; elles seront étudiées dans le dossier ABAP Objects[^terme-abap-objects].
 
 ## 1.I PROCESS
 
@@ -119,7 +119,7 @@ Une unité dont les entrées ou sorties ne peuvent pas être listées reste trop
 
 ### 1.I.3 Étape 3 — Choisir l’unité adaptée
 
-Dans du code procédural existant, utiliser un `FORM` local uniquement pour maintenir ce modèle. Pour un nouveau service réutilisable et testable, préférer une méthode. Un `INCLUDE` organise le source mais ne définit pas d’interface.
+Dans du code procédural existant, utiliser un `FORM` local uniquement pour maintenir ce modèle. Pour un nouveau service réutilisable et testable, préférer une méthode[^terme-methode]. Un `INCLUDE` organise le source mais ne définit pas d’interface.
 
 ### 1.I.4 Étape 4 — Extraire une responsabilité à la fois
 
@@ -131,9 +131,9 @@ Comparer le résultat avant/après, rechercher la duplication supprimée et exam
 
 ## 1.J VÉRIFICATION
 
-- Le scénario reproduit correspond au même utilisateur, mandant, transaction et jeu de données.
+- Le scénario reproduit correspond au même utilisateur, mandant[^terme-mandant], transaction et jeu de données.
 - L’horodatage et l’identifiant de l’analyse sont conservés.
-- La cause retenue est soutenue par une ligne source, une trace ou une valeur observée.
+- La cause retenue est soutenue par une ligne source, une trace[^terme-trace] ou une valeur observée.
 - Après correction, le même scénario ne reproduit plus le défaut et le résultat métier reste identique.
 
 ## 1.K ERREURS FRÉQUENTES
@@ -146,7 +146,7 @@ Comparer le résultat avant/après, rechercher la duplication supprimée et exam
 ## 1.L SNIPPET À RÉUTILISER
 
 > [!NOTE]
-> Adapter les noms `Z*`, les types DDIC, les données et les autorisations au système cible. Effectuer un contrôle syntaxique avant activation.
+> Adapter les noms `Z*`, les types DDIC[^terme-acro-ddic], les données et les autorisations au système cible. Effectuer un contrôle syntaxique avant activation.
 
 ```abap
 REPORT z_demo_modular_01.
@@ -180,3 +180,11 @@ START-OF-SELECTION.
 ---
 
 [Chapitre suivant — BLOCS DE TRAITEMENT ET PROCÉDURES](<./02 ├── BLOCS DE TRAITEMENT ET PROCEDURES.md>)
+
+[^terme-abap]: **ABAP.** Langage de programmation de la plateforme ABAP, conçu pour développer des applications métier et techniques SAP. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#abap>).
+[^terme-environnement]: **ENVIRONNEMENT.** Rôle fonctionnel attribué à un système dans le cycle de vie : développement, test, recette, préproduction ou production. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/01 ├── SYSTEMES ENVIRONNEMENTS ET MANDANTS.md#environnement>).
+[^terme-abap-objects]: **ABAP OBJECTS.** Extension orientée objet du langage ABAP fournissant classes, interfaces, héritage, événements et exceptions de classe. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#abap-objects>).
+[^terme-methode]: **MÉTHODE.** Comportement déclaré dans une classe ou une interface et appelé avec une liste de paramètres définie. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#methode>).
+[^terme-mandant]: **MANDANT.** Subdivision logique d’un système SAP. Il est identifié par un numéro à trois chiffres et isole une partie des données, du paramétrage et des utilisateurs. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/01 ├── SYSTEMES ENVIRONNEMENTS ET MANDANTS.md#mandant>).
+[^terme-trace]: **TRACE.** Enregistrement détaillé d’événements techniques pour analyser exécution, SQL ou appels. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/08 ├── EXECUTION EXPLOITATION ET ADMINISTRATION.md#trace>).
+[^terme-acro-ddic]: **DDIC.** Data Dictionary, abréviation courante de l’ABAP Dictionary. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/10 └── ACRONYMES SAP.md#acro-ddic>).

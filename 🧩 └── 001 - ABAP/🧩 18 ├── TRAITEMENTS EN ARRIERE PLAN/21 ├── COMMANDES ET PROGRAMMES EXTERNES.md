@@ -3,12 +3,12 @@
 ## 21.A RÉSULTAT ATTENDU
 
 - Distinguer commande externe et programme externe
-- Utiliser `SM69` et `SM49` de manière sécurisée
+- Utiliser `SM69`[^outil-sm69] et `SM49`[^outil-sm49] de manière sécurisée
 - Diagnostiquer les erreurs SAPXPG
 
 ## 21.B DISTINCTION
 
-Une **commande externe** est prédéfinie et administrée dans SAP, généralement avec `SM69`. Un **programme externe** peut être spécifié plus directement et nécessite des autorisations d’administration plus fortes.
+Une **commande externe** est prédéfinie et administrée dans SAP[^terme-acro-sap], généralement avec `SM69`. Un **programme externe** peut être spécifié plus directement et nécessite des autorisations d’administration plus fortes.
 
 ```mermaid
 flowchart TD
@@ -23,7 +23,7 @@ flowchart TD
 
 Une commande externe peut donner accès au système d’exploitation. Elle doit imposer :
 
-- chemin absolu ou environnement maîtrisé ;
+- chemin absolu ou environnement[^terme-environnement] maîtrisé ;
 - paramètres autorisés limités ;
 - utilisateur OS adapté ;
 - interdiction d’injection de commandes ;
@@ -35,8 +35,8 @@ Une commande externe peut donner accès au système d’exploitation. Elle doit 
 
 - `SM69` : définition des commandes externes ;
 - `SM49` : test d’une commande définie ;
-- `SM37` : journal de l’étape ;
-- trace SAPXPG : diagnostic des exécutions externes selon la configuration.
+- `SM37`[^outil-sm37] : journal de l’étape ;
+- trace[^terme-trace] SAPXPG : diagnostic des exécutions externes selon la configuration.
 
 ## 21.E ERREURS COURANTES
 
@@ -64,7 +64,7 @@ Exécuter la commande avec l’outil d’administration autorisé, notamment `SM
 
 ### 21.F.4 ÉTAPE 4 — AJOUTER L’ÉTAPE AU JOB
 
-Dans `SM36`, créer une étape de commande ou programme externe en sélectionnant uniquement l’objet défini. Renseigner les paramètres validés, l’utilisateur SAP et la condition de démarrage. Enregistrer puis contrôler le détail de l’étape dans `SM37`.
+Dans `SM36`[^outil-sm36], créer une étape de commande ou programme externe en sélectionnant uniquement l’objet défini. Renseigner les paramètres validés, l’utilisateur SAP et la condition de démarrage. Enregistrer puis contrôler le détail de l’étape dans `SM37`.
 
 ### 21.F.5 ÉTAPE 5 — TRAITER LE CODE RETOUR ET LES SORTIES
 
@@ -76,9 +76,9 @@ Simuler un exécutable absent, un droit insuffisant, un paramètre invalide et u
 
 ## 21.G VÉRIFICATION
 
-- Le job apparaît dans `SM37` avec le statut attendu.
+- Le job[^terme-job] apparaît dans `SM37` avec le statut attendu.
 - Le journal ne contient pas de message d’erreur non traité.
-- Le spool, le fichier ou le journal applicatif contient le résultat attendu.
+- Le spool[^terme-spool], le fichier ou le journal applicatif contient le résultat attendu.
 - Une relance contrôlée ne crée pas de doublon métier.
 
 ## 21.H ERREURS FRÉQUENTES
@@ -117,3 +117,14 @@ Ordre de transport  :
 ---
 
 [Chapitre suivant — ANALYSER LES ÉCHECS ET LES RETARDS](<./22 ├── ANALYSER LES ECHECS ET LES RETARDS.md>)
+
+[^terme-acro-sap]: **SAP.** Nom de l’éditeur et de son écosystème logiciel ; l’acronyme historique provient de l’allemand. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/10 └── ACRONYMES SAP.md#acro-sap>).
+[^terme-environnement]: **ENVIRONNEMENT.** Rôle fonctionnel attribué à un système dans le cycle de vie : développement, test, recette, préproduction ou production. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/01 ├── SYSTEMES ENVIRONNEMENTS ET MANDANTS.md#environnement>).
+[^terme-trace]: **TRACE.** Enregistrement détaillé d’événements techniques pour analyser exécution, SQL ou appels. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/08 ├── EXECUTION EXPLOITATION ET ADMINISTRATION.md#trace>).
+[^terme-job]: **JOB.** Traitement planifié en arrière-plan composé d’une ou plusieurs étapes. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/06 ├── PROGRAMMES CLASSES ET OBJETS TECHNIQUES.md#job>).
+[^terme-spool]: **SPOOL.** Infrastructure stockant et acheminant les sorties imprimables produites par les traitements SAP. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/06 ├── PROGRAMMES CLASSES ET OBJETS TECHNIQUES.md#spool>).
+
+[^outil-sm69]: **SM69.** Transaction de création et de maintenance des commandes externes autorisées dans SAP. Voir [le chapitre associé](<21 ├── COMMANDES ET PROGRAMMES EXTERNES.md>).
+[^outil-sm49]: **SM49.** Transaction de test et d’exécution contrôlée des commandes externes définies dans SAP. Voir [le chapitre associé](<21 ├── COMMANDES ET PROGRAMMES EXTERNES.md>).
+[^outil-sm37]: **SM37.** Transaction de recherche, surveillance et administration des jobs d’arrière-plan. Voir [le chapitre associé](<15 ├── SURVEILLER LES JOBS AVEC SM37.md>).
+[^outil-sm36]: **SM36.** Transaction de définition et de planification des jobs d’arrière-plan. Voir [le chapitre associé](<06 ├── PLANIFIER UN JOB AVEC SM36.md>).

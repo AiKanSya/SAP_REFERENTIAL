@@ -2,7 +2,7 @@
 
 ## 21.A RÉSULTAT ATTENDU
 
-- Reconnaître trois patterns courants en ABAP Objects.
+- Reconnaître trois patterns courants en ABAP Objects[^terme-abap-objects].
 - Choisir un pattern en fonction du problème, pas par effet de mode.
 - Distinguer variation d’algorithme, incompatibilité d’interface et simplification d’un sous-système.
 
@@ -19,7 +19,7 @@ DATA(lv_discount) = lo_strategy->calculate( is_context ).
 
 ## 21.C ADAPTER
 
-**Problème :** une classe existante fournit le bon service avec une interface incompatible.
+**Problème :** une classe[^terme-classe] existante fournit le bon service avec une interface incompatible.
 
 L’adapter implémente l’interface attendue et traduit l’appel vers l’objet existant.
 
@@ -43,7 +43,7 @@ ENDMETHOD.
 
 ## 21.D FACADE
 
-**Problème :** un sous-système exige plusieurs appels complexes. La façade fournit un point d’entrée simple.
+**Problème :** un sous-système exige plusieurs appels complexes. La façade[^terme-facade] fournit un point d’entrée simple.
 
 ```abap
 DATA(lv_document_id) = lo_billing_facade->create_and_post(
@@ -60,29 +60,29 @@ La façade orchestre les validateurs, repositories et appels techniques, mais ne
 
 ### 21.E.2 Étape 2 — Choisir la relation adaptée
 
-Utiliser Strategy pour plusieurs algorithmes substituables, Adapter pour convertir une interface existante et Facade pour offrir un point d’entrée simplifié sur plusieurs services.
+Utiliser Strategy[^terme-strategy] pour plusieurs algorithmes substituables, Adapter pour convertir une interface existante et Facade pour offrir un point d’entrée simplifié sur plusieurs services.
 
 ### 21.E.3 Étape 3 — Définir le contrat minimal
 
-Créer l’interface ou la méthode de façade à partir des besoins de l’appelant. Ne recopier pas toutes les méthodes du composant interne.
+Créer l’interface ou la méthode[^terme-methode] de façade à partir des besoins de l’appelant. Ne recopier pas toutes les méthodes du composant interne.
 
 ### 21.E.4 Étape 4 — Implémenter sans logique dupliquée
 
-La Strategy porte l’algorithme, l’Adapter traduit les paramètres/résultats et la Facade orchestre. Ne déplacer pas la même règle métier dans plusieurs couches.
+La Strategy porte l’algorithme, l’Adapter traduit les paramètres/résultats et la Facade orchestre. Ne déplacer pas la même règle métier[^terme-regle-metier] dans plusieurs couches.
 
 ### 21.E.5 Étape 5 — Prouver l’intérêt
 
-Tester substitution, traduction ou simplification. Documenter pourquoi une fonction ou composition directe ne suffisait pas. Le pattern est validé uniquement si cette preuve reste observable.
+Tester substitution, traduction ou simplification. Documenter pourquoi une fonction ou composition[^terme-composition] directe ne suffisait pas. Le pattern est validé uniquement si cette preuve reste observable.
 
 ## 21.F TABLEAU DE DÉCISION
 
 | Situation                                 | Pattern probable         |
 | ----------------------------------------- | ------------------------ |
 | Changer un calcul à l’exécution           | Strategy                 |
-| Réutiliser une API existante incompatible | Adapter                  |
+| Réutiliser une API[^terme-api] existante incompatible | Adapter                  |
 | Masquer une séquence d’appels complexes   | Façade                   |
 | Centraliser la création                   | Factory                  |
-| Une seule instance par session            | Singleton, avec prudence |
+| Une seule instance par session            | Singleton[^terme-singleton], avec prudence |
 
 ## 21.G CONTRÔLE
 
@@ -96,9 +96,9 @@ Le pattern doit réduire le couplage observable. Si le nombre de classes augment
 
 ## 21.I COMPATIBILITÉ S/4HANA
 
-- Statut : compatible avec le développement ABAP classique sur SAP S/4HANA.
-- Vérifier la syntaxe exacte avec l’aide `F1` du système cible lorsque plusieurs versions d’ABAP Platform sont prises en charge.
-- Les objets globaux doivent être créés dans le package et l’ordre de transport du projet.
+- Statut : compatible avec le développement ABAP classique sur SAP[^terme-acro-sap] S/4HANA.
+- Vérifier la syntaxe exacte avec l’aide `F1`[^terme-aide-f1] du système cible lorsque plusieurs versions d’ABAP Platform sont prises en charge.
+- Les objets globaux doivent être créés dans le package[^terme-package] et l’ordre de transport[^terme-ordre-transport] du projet.
 
 ## 21.J RÉFÉRENCES OFFICIELLES SAP
 
@@ -109,3 +109,17 @@ Le pattern doit réduire le couplage observable. Si le nombre de classes augment
 ---
 
 [Chapitre suivant — CLASSES LOCALES DANS UN CLASS POOL](<./22 ├── CLASSES LOCALES DANS UN CLASS POOL.md>)
+
+[^terme-abap-objects]: **ABAP OBJECTS.** Extension orientée objet du langage ABAP fournissant classes, interfaces, héritage, événements et exceptions de classe. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#abap-objects>).
+[^terme-classe]: **CLASSE.** Modèle orienté objet définissant état et comportements. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#classe>).
+[^terme-facade]: **FAÇADE.** Pattern fournissant une interface simplifiée devant plusieurs composants ou sous-systèmes. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#facade>).
+[^terme-strategy]: **STRATEGY.** Pattern qui encapsule plusieurs algorithmes interchangeables derrière une même interface. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#strategy>).
+[^terme-methode]: **MÉTHODE.** Comportement déclaré dans une classe ou une interface et appelé avec une liste de paramètres définie. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#methode>).
+[^terme-regle-metier]: **RÈGLE MÉTIER.** Condition ou calcul imposé par le processus fonctionnel. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/09 ├── NOTIONS FONCTIONNELLES ET ORGANISATIONNELLES.md#regle-metier>).
+[^terme-composition]: **COMPOSITION.** Relation dans laquelle une classe réalise son comportement en contenant ou en utilisant d’autres objets spécialisés. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#composition>).
+[^terme-api]: **API.** Application Programming Interface, contrat exposant des opérations ou données utilisables par d’autres composants. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/10 └── ACRONYMES SAP.md#api>).
+[^terme-singleton]: **SINGLETON.** Pattern limitant la création à une seule instance accessible dans une session interne ABAP. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#singleton>).
+[^terme-acro-sap]: **SAP.** Nom de l’éditeur et de son écosystème logiciel ; l’acronyme historique provient de l’allemand. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/10 └── ACRONYMES SAP.md#acro-sap>).
+[^terme-aide-f1]: **AIDE F1.** Aide contextuelle expliquant un champ, une fonction ou un mot-clé. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/02 ├── SAP GUI NAVIGATION ET TRANSACTIONS.md#aide-f1>).
+[^terme-package]: **PACKAGE.** Conteneur logique qui regroupe les objets de développement et détermine notamment leur transportabilité. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/03 ├── REPOSITORY PACKAGES ET TRANSPORTS.md#package>).
+[^terme-ordre-transport]: **ORDRE DE TRANSPORT.** Conteneur qui regroupe des modifications à exporter puis importer dans d’autres systèmes. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/03 ├── REPOSITORY PACKAGES ET TRANSPORTS.md#ordre-transport>).

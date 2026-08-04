@@ -44,7 +44,7 @@ Certaines options sont statiques et interviennent dans les parties déclaratives
 
 ### 18.E.1 ÉTAPE 1 — RETROUVER LE POINT EXPLICITE
 
-Ouvrir le programme ou l’include standard en affichage et rechercher `ENHANCEMENT-POINT` ou `ENHANCEMENT-SECTION`. Relever le nom du point, le spot associé et le code environnant. Confirmer que le point est exécuté dans le scénario par un breakpoint proche.
+Ouvrir le programme ou l’include standard en affichage et rechercher `ENHANCEMENT-POINT` ou `ENHANCEMENT-SECTION`. Relever le nom du point, le spot associé et le code environnant. Confirmer que le point est exécuté dans le scénario par un breakpoint[^terme-breakpoint] proche.
 
 ### 18.E.2 ÉTAPE 2 — ANALYSER LA POSITION ET LE CONTRAT
 
@@ -56,22 +56,22 @@ Depuis les opérations d’enhancement de l’éditeur, lister les implémentati
 
 ### 18.E.4 ÉTAPE 4 — CRÉER L’ENHANCEMENT IMPLEMENTATION
 
-Passer en mode enhancement, sélectionner le point et créer une implémentation Z dans le package et la demande prévus. Donner une description liée au besoin métier. Ne modifier aucune ligne standard autour du bloc généré.
+Passer en mode enhancement, sélectionner le point et créer une implémentation Z dans le package[^terme-package] et la demande prévus. Donner une description liée au besoin métier. Ne modifier aucune ligne standard autour du bloc généré.
 
 ### 18.E.5 ÉTAPE 5 — AJOUTER UN CODE MINIMAL
 
-Appeler une classe Z avec les données disponibles et traiter explicitement les valeurs initiales ou erreurs. Pour une enhancement section, reproduire ou remplacer uniquement le comportement décidé et tester toutes les branches standard supprimées par le remplacement.
+Appeler une classe[^terme-classe] Z avec les données disponibles et traiter explicitement les valeurs initiales ou erreurs. Pour une enhancement section, reproduire ou remplacer uniquement le comportement décidé et tester toutes les branches standard supprimées par le remplacement.
 
 ### 18.E.6 ÉTAPE 6 — ACTIVER ET TESTER
 
-Activer la classe, le bloc et l’enhancement implementation. Exécuter le scénario avec breakpoint puis les cas hors périmètre. Contrôler les messages, la LUW, les performances et la liste des objets transportés.
+Activer la classe, le bloc et l’enhancement implementation. Exécuter le scénario avec breakpoint puis les cas hors périmètre. Contrôler les messages, la LUW[^terme-acro-luw], les performances et la liste des objets transportés.
 
 ## 18.F VÉRIFICATION
 
 - L’implémentation ou le projet est actif et transporté dans le bon ordre.
 - Un breakpoint confirme que le point d’extension est appelé dans le scénario visé.
 - Le comportement standard reste inchangé hors du périmètre fonctionnel prévu.
-- Aucune modification directe d’un objet SAP standard n’a été créée.
+- Aucune modification directe d’un objet SAP[^terme-acro-sap] standard n’a été créée.
 
 ## 18.G ERREURS FRÉQUENTES
 
@@ -83,7 +83,7 @@ Activer la classe, le bloc et l’enhancement implementation. Exécuter le scén
 ## 18.H SNIPPET À RÉUTILISER
 
 > [!NOTE]
-> Adapter les noms `Z*`, les types DDIC, les données et les autorisations au système cible. Effectuer un contrôle syntaxique avant activation.
+> Adapter les noms `Z*`, les types DDIC[^terme-acro-ddic], les données et les autorisations au système cible. Effectuer un contrôle syntaxique avant activation.
 
 ```abap
 ENHANCEMENT 1 zdev_validate.
@@ -106,3 +106,10 @@ ENDENHANCEMENT.
 ---
 
 [Chapitre suivant — OPTIONS D’ENHANCEMENT IMPLICITES](<./19 ├── OPTIONS D ENHANCEMENT IMPLICITES.md>)
+
+[^terme-breakpoint]: **BREAKPOINT.** Point d’arrêt suspendant l’exécution dans le débogueur. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/08 ├── EXECUTION EXPLOITATION ET ADMINISTRATION.md#breakpoint>).
+[^terme-package]: **PACKAGE.** Conteneur logique qui regroupe les objets de développement et détermine notamment leur transportabilité. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/03 ├── REPOSITORY PACKAGES ET TRANSPORTS.md#package>).
+[^terme-classe]: **CLASSE.** Modèle orienté objet définissant état et comportements. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#classe>).
+[^terme-acro-luw]: **LUW.** Logical Unit of Work. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/10 └── ACRONYMES SAP.md#acro-luw>).
+[^terme-acro-sap]: **SAP.** Nom de l’éditeur et de son écosystème logiciel ; l’acronyme historique provient de l’allemand. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/10 └── ACRONYMES SAP.md#acro-sap>).
+[^terme-acro-ddic]: **DDIC.** Data Dictionary, abréviation courante de l’ABAP Dictionary. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/10 └── ACRONYMES SAP.md#acro-ddic>).

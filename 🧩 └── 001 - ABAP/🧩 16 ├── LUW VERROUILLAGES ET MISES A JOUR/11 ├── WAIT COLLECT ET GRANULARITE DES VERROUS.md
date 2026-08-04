@@ -37,11 +37,11 @@ La bonne clé correspond à l’unité métier qui doit rester cohérente. Mesur
 
 ### 11.E.1 ÉTAPE 1 — MESURER LA CLÉ DE VERROUILLAGE RÉELLE
 
-Afficher l’objet dans `SE11` et relever les champs formant l’argument de verrou. Tester une clé complète puis une clé partielle dans un environnement contrôlé. Dans `SM12`, vérifier quelles entrées sont réellement créées et quelles données concurrentes elles bloquent.
+Afficher l’objet dans `SE11`[^outil-se11] et relever les champs formant l’argument de verrou. Tester une clé complète puis une clé partielle dans un environnement[^terme-environnement] contrôlé. Dans `SM12`[^outil-sm12], vérifier quelles entrées sont réellement créées et quelles données concurrentes elles bloquent.
 
 ### 11.E.2 ÉTAPE 2 — RÉDUIRE LA GRANULARITÉ AU JUSTE NÉCESSAIRE
 
-Verrouiller l’unité métier minimale qui protège l’invariant. Éviter une clé initiale ou trop courte qui transforme un verrou d’enregistrement en verrou de plage excessif. Ne pas réduire la clé si deux enregistrements distincts participent à la même règle métier.
+Verrouiller l’unité métier minimale qui protège l’invariant[^terme-invariant]. Éviter une clé initiale ou trop courte qui transforme un verrou d’enregistrement en verrou de plage excessif. Ne pas réduire la clé si deux enregistrements distincts participent à la même règle métier[^terme-regle-metier].
 
 ### 11.E.3 ÉTAPE 3 — CHOISIR LE COMPORTEMENT DE COLLISION
 
@@ -63,7 +63,7 @@ Réduire la durée sous verrou, déplacer les opérations lentes hors de la sect
 
 - Les données sont toutes validées ou toutes annulées selon le cas testé.
 - Les verrous sont libérés à la fin du traitement normal et après erreur.
-- Aucune update en erreur inattendue ne reste dans `SM13`.
+- Aucune update en erreur inattendue ne reste dans `SM13`[^outil-sm13].
 - Les collisions concurrentes produisent un message contrôlé, pas une incohérence.
 
 ## 11.G ERREURS FRÉQUENTES
@@ -88,3 +88,11 @@ Réduire la durée sous verrou, déplacer les opérations lentes hors de la sect
 ---
 
 [Chapitre suivant — ANALYSER LES VERROUS AVEC `SM12`](<./12 ├── ANALYSER LES VERROUS AVEC SM12.md>)
+
+[^terme-environnement]: **ENVIRONNEMENT.** Rôle fonctionnel attribué à un système dans le cycle de vie : développement, test, recette, préproduction ou production. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/01 ├── SYSTEMES ENVIRONNEMENTS ET MANDANTS.md#environnement>).
+[^terme-invariant]: **INVARIANT.** Condition qui doit rester vraie pendant toute la durée de vie valide d’un objet. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#invariant>).
+[^terme-regle-metier]: **RÈGLE MÉTIER.** Condition ou calcul imposé par le processus fonctionnel. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/09 ├── NOTIONS FONCTIONNELLES ET ORGANISATIONNELLES.md#regle-metier>).
+
+[^outil-se11]: **SE11.** Transaction de l’ABAP Dictionary utilisée pour analyser et maintenir les objets DDIC. Voir [le chapitre associé](<../🧩 07 ├── DICTIONNAIRE ABAP/02 ├── NAVIGATION ET ANALYSE AVEC SE11.md>).
+[^outil-sm12]: **SM12.** Transaction de surveillance et d’administration des entrées de verrouillage SAP. Voir [le chapitre associé](<12 ├── ANALYSER LES VERROUS AVEC SM12.md>).
+[^outil-sm13]: **SM13.** Transaction de surveillance et de reprise des enregistrements de mise à jour SAP. Voir [le chapitre associé](<19 ├── ANALYSER ET REPRENDRE LES UPDATES AVEC SM13.md>).

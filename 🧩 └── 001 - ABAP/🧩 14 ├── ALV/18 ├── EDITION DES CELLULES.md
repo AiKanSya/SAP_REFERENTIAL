@@ -4,7 +4,7 @@
 
 - Rendre une colonne modifiable
 - Activer le mode de saisie
-- Synchroniser les données saisies avec la table ABAP
+- Synchroniser les données saisies avec la table ABAP[^terme-abap]
 
 ## 18.B CATALOGUE ÉDITABLE
 
@@ -44,7 +44,7 @@ Avant une sauvegarde ou un traitement dépendant des saisies :
 go_grid->check_changed_data( ).
 ```
 
-Cette méthode demande au contrôle de transférer les valeurs en cours d’édition et de déclencher les validations associées.
+Cette méthode[^terme-methode] demande au contrôle de transférer les valeurs en cours d’édition et de déclencher les validations associées.
 
 ## 18.E RESPONSABILITÉ DE SAUVEGARDE
 
@@ -53,7 +53,7 @@ Rendre une cellule éditable ne met pas à jour la base. Le programme doit :
 1. valider la valeur ;
 2. contrôler les autorisations ;
 3. détecter les conflits éventuels ;
-4. appeler l’API métier appropriée ;
+4. appeler l’API[^terme-api] métier appropriée ;
 5. exécuter ou déléguer la gestion transactionnelle ;
 6. informer l’utilisateur.
 
@@ -98,13 +98,13 @@ Mettre à jour la table de sortie puis appeler `REFRESH_TABLE_DISPLAY` avec les 
 
 - Copier un exemple sans adapter les types, noms d’objets et données disponibles dans le système.
 - Tester uniquement le cas nominal et ignorer les valeurs initiales, absentes ou invalides.
-- Afficher un volume non borné dans l’ALV.
+- Afficher un volume non borné dans l’ALV[^terme-alv].
 - Rendre une cellule éditable sans validation ni sauvegarde transactionnelle.
 
 ## 18.I SNIPPET À RÉUTILISER
 
 > [!NOTE]
-> Adapter les noms `Z*`, les types DDIC, les données et les autorisations au système cible. Effectuer un contrôle syntaxique avant activation.
+> Adapter les noms `Z*`, les types DDIC[^terme-acro-ddic], les données et les autorisations au système cible. Effectuer un contrôle syntaxique avant activation.
 
 ```abap
 go_grid->register_edit_event(
@@ -131,3 +131,9 @@ go_grid->register_edit_event(
 ---
 
 [Chapitre suivant — VALIDATION AVEC DATA_CHANGED](<./19 ├── VALIDATION AVEC DATA_CHANGED.md>)
+
+[^terme-abap]: **ABAP.** Langage de programmation de la plateforme ABAP, conçu pour développer des applications métier et techniques SAP. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#abap>).
+[^terme-methode]: **MÉTHODE.** Comportement déclaré dans une classe ou une interface et appelé avec une liste de paramètres définie. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#methode>).
+[^terme-api]: **API.** Application Programming Interface, contrat exposant des opérations ou données utilisables par d’autres composants. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/10 └── ACRONYMES SAP.md#api>).
+[^terme-alv]: **ALV.** ABAP List Viewer, ensemble de technologies d’affichage tabulaire avec tri, filtre, total et variantes. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/06 ├── PROGRAMMES CLASSES ET OBJETS TECHNIQUES.md#alv>).
+[^terme-acro-ddic]: **DDIC.** Data Dictionary, abréviation courante de l’ABAP Dictionary. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/10 └── ACRONYMES SAP.md#acro-ddic>).

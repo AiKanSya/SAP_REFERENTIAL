@@ -10,7 +10,7 @@
 
 ## 13.B PRINCIPE
 
-De nombreuses erreurs du runtime ABAP sont représentées par des classes standard commençant par `CX_SY_`.
+De nombreuses erreurs du runtime ABAP[^terme-abap] sont représentées par des classes standard commençant par `CX_SY_`.
 
 Exemples courants :
 
@@ -43,7 +43,7 @@ TRY.
 ENDTRY.
 ```
 
-La couche métier transforme l’exception technique en une erreur adaptée à son contrat.
+La couche métier transforme l’exception[^terme-exception] technique en une erreur adaptée à son contrat.
 
 ## 13.E DIVISION PAR ZÉRO
 
@@ -91,7 +91,7 @@ Il est préférable de conserver un dump exploitable plutôt que de poursuivre a
 
 ## 13.H CATCH SYSTEM-EXCEPTIONS
 
-Le mécanisme historique `CATCH SYSTEM-EXCEPTIONS` est obsolète pour les nouveaux développements. Utiliser les exceptions basées sur des classes lorsque l’instruction fournit une classe interceptable.
+Le mécanisme historique `CATCH SYSTEM-EXCEPTIONS` est obsolète pour les nouveaux développements. Utiliser les exceptions basées sur des classes lorsque l’instruction fournit une classe[^terme-classe] interceptable.
 
 ## 13.I VÉRIFICATION
 
@@ -110,7 +110,7 @@ Le mécanisme historique `CATCH SYSTEM-EXCEPTIONS` est obsolète pour les nouvea
 ## 13.K SNIPPET À RÉUTILISER
 
 > [!NOTE]
-> Adapter les noms `Z*`, les types DDIC, les données et les autorisations au système cible. Effectuer un contrôle syntaxique avant activation.
+> Adapter les noms `Z*`, les types DDIC[^terme-acro-ddic], les données et les autorisations au système cible. Effectuer un contrôle syntaxique avant activation.
 
 ```abap
 " Propager ou traiter l’erreur au niveau qui sait prendre une décision.
@@ -138,3 +138,8 @@ ENDTRY.
 ---
 
 [Chapitre suivant — CLEANUP ET COHÉRENCE DU TRAITEMENT](<./14 ├── CLEANUP ET COHERENCE DU TRAITEMENT.md>)
+
+[^terme-abap]: **ABAP.** Langage de programmation de la plateforme ABAP, conçu pour développer des applications métier et techniques SAP. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#abap>).
+[^terme-exception]: **EXCEPTION.** Objet ou signal représentant une situation anormale qu’un appelant peut traiter. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#exception>).
+[^terme-classe]: **CLASSE.** Modèle orienté objet définissant état et comportements. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#classe>).
+[^terme-acro-ddic]: **DDIC.** Data Dictionary, abréviation courante de l’ABAP Dictionary. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/10 └── ACRONYMES SAP.md#acro-ddic>).

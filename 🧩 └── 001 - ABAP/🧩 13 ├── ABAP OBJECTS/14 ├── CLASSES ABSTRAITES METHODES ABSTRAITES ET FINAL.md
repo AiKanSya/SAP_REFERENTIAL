@@ -2,13 +2,13 @@
 
 ## 14.A RÉSULTAT ATTENDU
 
-- Empêcher l’instanciation d’une classe incomplète.
+- Empêcher l’instanciation d’une classe[^terme-classe] incomplète.
 - Imposer une implémentation aux sous-classes.
-- Bloquer une extension ou une redéfinition non prévue.
+- Bloquer une extension ou une redéfinition[^terme-redefinition] non prévue.
 
 ## 14.B CLASSE ABSTRAITE
 
-Une classe abstraite définit un socle commun mais ne peut pas être instanciée directement. Une méthode abstraite déclare un contrat sans implémentation dans cette classe.
+Une classe abstraite[^terme-classe-abstraite] définit un socle commun mais ne peut pas être instanciée directement. Une méthode abstraite[^terme-methode-abstraite] déclare un contrat sans implémentation dans cette classe.
 
 ## 14.C CAS D’USAGE
 
@@ -48,7 +48,7 @@ Identifier le comportement implémentable dans la base et les opérations que ch
 
 ### 14.E.2 Étape 2 — Déclarer la base abstraite
 
-Marquer la classe abstraite. Créer la méthode d’extension avec sa signature, la visibilité appropriée puis l’indicateur abstrait.
+Marquer la classe abstraite. Créer la méthode d’extension avec sa signature, la visibilité[^terme-visibilite] appropriée puis l’indicateur abstrait.
 
 ### 14.E.3 Étape 3 — Créer une sous-classe concrète
 
@@ -56,7 +56,7 @@ Renseigner la superclasse et implémenter toutes les méthodes abstraites. L’a
 
 ### 14.E.4 Étape 4 — Utiliser FINAL avec justification
 
-Marquer classe ou méthode finale uniquement lorsque toute extension violerait un invariant ou un contrat stable.
+Marquer classe ou méthode finale uniquement lorsque toute extension violerait un invariant[^terme-invariant] ou un contrat stable.
 
 ### 14.E.5 Étape 5 — Tester
 
@@ -64,7 +64,7 @@ Vérifier que la base ne peut pas être instanciée, que la fille le peut et que
 
 ## 14.F FINAL
 
-- Une classe finale ne peut pas être sous-classée.
+- Une classe finale[^terme-classe-finale] ne peut pas être sous-classée.
 - Une méthode finale ne peut pas être redéfinie.
 - Une méthode publique stable peut être finale pour protéger un algorithme commun.
 
@@ -82,9 +82,9 @@ Vérifier que la base ne peut pas être instanciée, que la fille le peut et que
 
 ## 14.I COMPATIBILITÉ S/4HANA
 
-- Statut : compatible avec le développement ABAP classique sur SAP S/4HANA.
-- Vérifier la syntaxe exacte avec l’aide `F1` du système cible lorsque plusieurs versions d’ABAP Platform sont prises en charge.
-- Les objets globaux doivent être créés dans le package et l’ordre de transport du projet.
+- Statut : compatible avec le développement ABAP[^terme-abap] classique sur SAP[^terme-acro-sap] S/4HANA.
+- Vérifier la syntaxe exacte avec l’aide `F1`[^terme-aide-f1] du système cible lorsque plusieurs versions d’ABAP Platform sont prises en charge.
+- Les objets globaux doivent être créés dans le package[^terme-package] et l’ordre de transport[^terme-ordre-transport] du projet.
 
 ## 14.J RÉFÉRENCES OFFICIELLES SAP
 
@@ -94,3 +94,16 @@ Vérifier que la base ne peut pas être instanciée, que la fille le peut et que
 ---
 
 [Chapitre suivant — EXCEPTIONS ORIENTÉES OBJET](<./15 ├── EXCEPTIONS ORIENTEES OBJET.md>)
+
+[^terme-classe]: **CLASSE.** Modèle orienté objet définissant état et comportements. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#classe>).
+[^terme-redefinition]: **REDÉFINITION.** Nouvelle implémentation, dans une sous-classe, d’une méthode héritée déclarée redéfinissable. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#redefinition>).
+[^terme-classe-abstraite]: **CLASSE ABSTRAITE.** Classe déclarée `ABSTRACT` qui ne peut pas être instanciée directement et qui sert de base à des sous-classes. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#classe-abstraite>).
+[^terme-methode-abstraite]: **MÉTHODE ABSTRAITE.** Méthode déclarée `ABSTRACT` sans implémentation dans la classe qui la déclare. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#methode-abstraite>).
+[^terme-visibilite]: **VISIBILITÉ.** Règle déterminant où un composant de classe peut être utilisé : `PUBLIC`, `PROTECTED` ou `PRIVATE`. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#visibilite>).
+[^terme-invariant]: **INVARIANT.** Condition qui doit rester vraie pendant toute la durée de vie valide d’un objet. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#invariant>).
+[^terme-classe-finale]: **CLASSE FINALE.** Classe déclarée `FINAL` qui ne peut pas être utilisée comme super-classe. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#classe-finale>).
+[^terme-abap]: **ABAP.** Langage de programmation de la plateforme ABAP, conçu pour développer des applications métier et techniques SAP. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#abap>).
+[^terme-acro-sap]: **SAP.** Nom de l’éditeur et de son écosystème logiciel ; l’acronyme historique provient de l’allemand. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/10 └── ACRONYMES SAP.md#acro-sap>).
+[^terme-aide-f1]: **AIDE F1.** Aide contextuelle expliquant un champ, une fonction ou un mot-clé. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/02 ├── SAP GUI NAVIGATION ET TRANSACTIONS.md#aide-f1>).
+[^terme-package]: **PACKAGE.** Conteneur logique qui regroupe les objets de développement et détermine notamment leur transportabilité. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/03 ├── REPOSITORY PACKAGES ET TRANSPORTS.md#package>).
+[^terme-ordre-transport]: **ORDRE DE TRANSPORT.** Conteneur qui regroupe des modifications à exporter puis importer dans d’autres systèmes. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/03 ├── REPOSITORY PACKAGES ET TRANSPORTS.md#ordre-transport>).

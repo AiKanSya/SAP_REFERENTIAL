@@ -8,11 +8,11 @@
 
 ## 12.B DONNÉES À EXAMINER
 
-Dans `SM12`, filtrer par :
+Dans `SM12`[^outil-sm12], filtrer par :
 
 - utilisateur ;
 - table ou argument de verrou ;
-- mandant ;
+- mandant[^terme-mandant] ;
 - heure de création ;
 - objet de verrouillage ;
 - mode.
@@ -25,7 +25,7 @@ Une entrée permet généralement d’identifier le propriétaire, la clé verro
 2. rechercher l’entrée dans `SM12` ;
 3. identifier la session ou le traitement propriétaire ;
 4. vérifier si la transaction est toujours active ;
-5. examiner les erreurs associées dans `ST22`, `SM13`, jobs ou logs ;
+5. examiner les erreurs associées dans `ST22`[^outil-st22], `SM13`[^outil-sm13], jobs ou logs ;
 6. supprimer uniquement si l’entrée est réellement orpheline et si l’impact métier est compris.
 
 ## 12.D RISQUE DE SUPPRESSION MANUELLE
@@ -44,11 +44,11 @@ Saisir `/nSM12`, puis filtrer avec l’utilisateur, l’objet de verrouillage ou
 
 ### 12.E.3 ÉTAPE 3 — IDENTIFIER LE TRAITEMENT PROPRIÉTAIRE
 
-Corréler l’entrée avec les sessions de l’utilisateur, les jobs dans `SM37` et les mises à jour dans `SM13`. Vérifier si la transaction, le job ou l’update task est encore actif. Un verrou ancien n’est pas nécessairement orphelin tant que son propriétaire poursuit une opération valide.
+Corréler l’entrée avec les sessions de l’utilisateur, les jobs dans `SM37`[^outil-sm37] et les mises à jour dans `SM13`. Vérifier si la transaction, le job[^terme-job] ou l’update task[^terme-update-task] est encore actif. Un verrou ancien n’est pas nécessairement orphelin tant que son propriétaire poursuit une opération valide.
 
 ### 12.E.4 ÉTAPE 4 — VÉRIFIER LA CAUSE APPLICATIVE
 
-Examiner la clé passée au module `ENQUEUE_*`, la valeur de `_SCOPE` et tous les chemins de sortie. Rechercher un retour anticipé, une exception gérée sans dequeue, une attente utilisateur trop longue ou une update bloquée. Corriger la durée ou la granularité plutôt que de traiter uniquement le symptôme dans `SM12`.
+Examiner la clé passée au module `ENQUEUE_*`, la valeur de `_SCOPE` et tous les chemins de sortie. Rechercher un retour anticipé, une exception[^terme-exception] gérée sans dequeue, une attente utilisateur trop longue ou une update bloquée. Corriger la durée ou la granularité plutôt que de traiter uniquement le symptôme dans `SM12`.
 
 ### 12.E.5 ÉTAPE 5 — DÉCIDER D’UNE SUPPRESSION MANUELLE
 
@@ -103,3 +103,13 @@ Ordre de transport  :
 ---
 
 [Chapitre suivant — ARCHITECTURE DE LA MISE À JOUR SAP](<./13 ├── ARCHITECTURE DE LA MISE A JOUR SAP.md>)
+
+[^terme-mandant]: **MANDANT.** Subdivision logique d’un système SAP. Il est identifié par un numéro à trois chiffres et isole une partie des données, du paramétrage et des utilisateurs. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/01 ├── SYSTEMES ENVIRONNEMENTS ET MANDANTS.md#mandant>).
+[^terme-job]: **JOB.** Traitement planifié en arrière-plan composé d’une ou plusieurs étapes. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/06 ├── PROGRAMMES CLASSES ET OBJETS TECHNIQUES.md#job>).
+[^terme-update-task]: **UPDATE TASK.** Mécanisme différant des mises à jour pour les exécuter lors du `COMMIT WORK` dans des processus de mise à jour. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/08 ├── EXECUTION EXPLOITATION ET ADMINISTRATION.md#update-task>).
+[^terme-exception]: **EXCEPTION.** Objet ou signal représentant une situation anormale qu’un appelant peut traiter. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#exception>).
+
+[^outil-sm12]: **SM12.** Transaction de surveillance et d’administration des entrées de verrouillage SAP. Voir [le chapitre associé](<12 ├── ANALYSER LES VERROUS AVEC SM12.md>).
+[^outil-st22]: **ST22.** Transaction d’analyse des terminaisons anormales et dumps ABAP. Voir [le chapitre associé](<../🧩 11 ├── DEBUG ET ANALYSE/13 ├── ANALYSER LES DUMPS AVEC ST22.md>).
+[^outil-sm13]: **SM13.** Transaction de surveillance et de reprise des enregistrements de mise à jour SAP. Voir [le chapitre associé](<19 ├── ANALYSER ET REPRENDRE LES UPDATES AVEC SM13.md>).
+[^outil-sm37]: **SM37.** Transaction de recherche, surveillance et administration des jobs d’arrière-plan. Voir [le chapitre associé](<../🧩 18 ├── TRAITEMENTS EN ARRIERE PLAN/15 ├── SURVEILLER LES JOBS AVEC SM37.md>).

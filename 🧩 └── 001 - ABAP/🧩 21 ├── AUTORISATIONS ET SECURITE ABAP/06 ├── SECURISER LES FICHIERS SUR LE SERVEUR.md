@@ -8,7 +8,7 @@ Limiter une lecture ou écriture applicative aux chemins logiques autorisés et 
 
 ### 6.B.1 Étape 1 — Définir le périmètre du fichier
 
-Déterminer si le programme lit, crée, remplace ou ajoute un fichier. Fixer le répertoire, le format, l’encodage, la taille maximale et la règle de nommage attendus.
+Déterminer si le programme lit, crée, remplace ou ajoute un fichier. Fixer le répertoire, le format, l’encodage[^terme-encodage], la taille maximale et la règle de nommage attendus.
 
 Ne pas accepter un chemin physique complet provenant d’un écran, d’un fichier ou d’un appel distant.
 
@@ -102,3 +102,5 @@ Tester les scénarios suivants sur le système cible :
 - [Logical File Names — SAP SE, SAP S/4HANA 2025 FPS01](https://help.sap.com/docs/ABAP_PLATFORM_NEW/7120868b257c4f96b79a2512474ec895/48d59192982b424be10000000a421937.html)
 - [File Authorization — SAP SE, SAP S/4HANA 2025 FPS01](https://help.sap.com/docs/ABAP_PLATFORM_NEW/7bfe8cdcfbb040dcb6702dada8c3e2f0/dc545b5a743047b6b468bbadd0085ce2.html)
 - [File Name Validation — SAP SE, SAP S/4HANA 2025 FPS01](https://help.sap.com/docs/ABAP_PLATFORM_NEW/7bfe8cdcfbb040dcb6702dada8c3e2f0/922b318d87f047deb635d505df93f024.html)
+
+[^terme-encodage]: **ENCODAGE.** Règle transformant les caractères en octets et inversement. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/07 ├── INTERFACES ET INTEGRATION.md#encodage>).

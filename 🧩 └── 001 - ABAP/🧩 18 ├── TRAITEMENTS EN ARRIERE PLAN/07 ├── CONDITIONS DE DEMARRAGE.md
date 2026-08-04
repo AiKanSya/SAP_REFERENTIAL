@@ -12,7 +12,7 @@
 | ------------------- | ---------------------------------------------- |
 | Immédiat            | Exécution dès que possible après libération    |
 | Date et heure       | Traitement planifié à un instant donné         |
-| Après job           | Dépendance avec un job prédécesseur            |
+| Après job[^terme-job]           | Dépendance avec un job prédécesseur            |
 | Après événement     | Démarrage lié à un signal technique ou métier  |
 | Mode d’exploitation | Démarrage lors de l’activation d’un mode donné |
 
@@ -45,7 +45,7 @@ Déterminer si le job doit partir dès sa libération, à une date, après un au
 
 ### 7.E.2 ÉTAPE 2 — VÉRIFIER LES PRÉREQUIS
 
-Pour une date, confirmer le fuseau et le calendrier. Pour une dépendance, relever le nom exact et la condition de fin du job précédent. Pour un événement, vérifier sa définition dans `SM62` et le paramètre attendu.
+Pour une date, confirmer le fuseau et le calendrier. Pour une dépendance, relever le nom exact et la condition de fin du job précédent. Pour un événement, vérifier sa définition dans `SM62`[^outil-sm62] et le paramètre attendu.
 
 ### 7.E.3 ÉTAPE 3 — MAINTENIR LA CONDITION DANS `SM36`
 
@@ -53,11 +53,11 @@ Ouvrir les conditions de démarrage du job et sélectionner le type convenu. Ren
 
 ### 7.E.4 ÉTAPE 4 — ENREGISTRER ET CONTRÔLER LE STATUT
 
-Enregistrer le job puis le rechercher dans `SM37`. Vérifier qu’il est libéré et que l’heure ou le déclencheur affiché correspond au contrat. Un statut planifié sans condition complète nécessite une correction avant exploitation.
+Enregistrer le job puis le rechercher dans `SM37`[^outil-sm37]. Vérifier qu’il est libéré et que l’heure ou le déclencheur affiché correspond au contrat. Un statut planifié sans condition complète nécessite une correction avant exploitation.
 
 ### 7.E.5 ÉTAPE 5 — TESTER LE DÉCLENCHEMENT
 
-Dans un environnement de test, produire la date, la fin de job ou l’événement attendu. Relever l’heure de réception et l’heure réelle de début. Vérifier qu’un paramètre d’événement incorrect ou un prédécesseur en erreur ne déclenche pas silencieusement le traitement.
+Dans un environnement[^terme-environnement] de test, produire la date, la fin de job ou l’événement attendu. Relever l’heure de réception et l’heure réelle de début. Vérifier qu’un paramètre d’événement incorrect ou un prédécesseur en erreur ne déclenche pas silencieusement le traitement.
 
 ### 7.E.6 ÉTAPE 6 — TESTER LES CAS DE RETARD ET DE DOUBLON
 
@@ -67,7 +67,7 @@ Simuler une indisponibilité de processus batch, un déclencheur répété et un
 
 - Le job apparaît dans `SM37` avec le statut attendu.
 - Le journal ne contient pas de message d’erreur non traité.
-- Le spool, le fichier ou le journal applicatif contient le résultat attendu.
+- Le spool[^terme-spool], le fichier ou le journal applicatif contient le résultat attendu.
 - Une relance contrôlée ne crée pas de doublon métier.
 
 ## 7.G ERREURS FRÉQUENTES
@@ -105,3 +105,10 @@ Ordre de transport  :
 ---
 
 [Chapitre suivant — CLASSES DE JOB, PRIORITÉS ET SERVEUR CIBLE](<./08 ├── CLASSES DE JOB PRIORITES ET SERVEUR CIBLE.md>)
+
+[^terme-job]: **JOB.** Traitement planifié en arrière-plan composé d’une ou plusieurs étapes. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/06 ├── PROGRAMMES CLASSES ET OBJETS TECHNIQUES.md#job>).
+[^terme-environnement]: **ENVIRONNEMENT.** Rôle fonctionnel attribué à un système dans le cycle de vie : développement, test, recette, préproduction ou production. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/01 ├── SYSTEMES ENVIRONNEMENTS ET MANDANTS.md#environnement>).
+[^terme-spool]: **SPOOL.** Infrastructure stockant et acheminant les sorties imprimables produites par les traitements SAP. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/06 ├── PROGRAMMES CLASSES ET OBJETS TECHNIQUES.md#spool>).
+
+[^outil-sm62]: **SM62.** Transaction de définition des événements utilisables par les traitements d’arrière-plan. Voir [le chapitre associé](<11 ├── EVENEMENTS DE FOND SM62 ET SM64.md>).
+[^outil-sm37]: **SM37.** Transaction de recherche, surveillance et administration des jobs d’arrière-plan. Voir [le chapitre associé](<15 ├── SURVEILLER LES JOBS AVEC SM37.md>).

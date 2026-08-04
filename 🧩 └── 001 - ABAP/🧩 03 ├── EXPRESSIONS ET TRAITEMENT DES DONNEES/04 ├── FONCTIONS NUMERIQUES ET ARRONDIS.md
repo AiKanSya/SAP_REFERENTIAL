@@ -62,7 +62,7 @@ DATA lv_target TYPE p LENGTH 5 DECIMALS 2.
 lv_target = lv_source.
 ```
 
-Cette affectation masque la décision d’arrondi dans la conversion. Pour une règle métier, rendre le traitement explicite :
+Cette affectation masque la décision d’arrondi dans la conversion. Pour une règle métier[^terme-regle-metier], rendre le traitement explicite :
 
 ```abap
 lv_target = round( val = lv_source dec = 2 ).
@@ -130,12 +130,12 @@ Le résultat permet de commander un nombre entier de conditionnements :
 - Copier un exemple sans adapter les types, noms d’objets et données disponibles dans le système.
 - Tester uniquement le cas nominal et ignorer les valeurs initiales, absentes ou invalides.
 - S’appuyer sur une conversion implicite pouvant tronquer ou arrondir.
-- Ignorer l’encodage et les formats externes.
+- Ignorer l’encodage[^terme-encodage] et les formats externes.
 
 ## 4.K SNIPPET À RÉUTILISER
 
 > [!NOTE]
-> Adapter les noms `Z*`, les types DDIC, les données et les autorisations au système cible. Effectuer un contrôle syntaxique avant activation.
+> Adapter les noms `Z*`, les types DDIC[^terme-acro-ddic], les données et les autorisations au système cible. Effectuer un contrôle syntaxique avant activation.
 
 ```abap
 DATA lv_value TYPE decfloat34 VALUE '-12.75'.
@@ -163,3 +163,7 @@ DATA(lv_fraction) = frac( lv_value ).
 ---
 
 [Chapitre suivant — EXPRESSIONS LOGIQUES ET COMPARAISONS](<./05 ├── EXPRESSIONS LOGIQUES ET COMPARAISONS.md>)
+
+[^terme-regle-metier]: **RÈGLE MÉTIER.** Condition ou calcul imposé par le processus fonctionnel. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/09 ├── NOTIONS FONCTIONNELLES ET ORGANISATIONNELLES.md#regle-metier>).
+[^terme-encodage]: **ENCODAGE.** Règle transformant les caractères en octets et inversement. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/07 ├── INTERFACES ET INTEGRATION.md#encodage>).
+[^terme-acro-ddic]: **DDIC.** Data Dictionary, abréviation courante de l’ABAP Dictionary. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/10 └── ACRONYMES SAP.md#acro-ddic>).

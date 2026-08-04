@@ -2,11 +2,11 @@
 
 ## 10.A RÉSULTAT ATTENDU
 
-- Comprendre le rôle d’un field-symbol
+- Comprendre le rôle d’un field-symbol[^terme-field-symbol]
 - Déclarer et affecter un field-symbol
 - Modifier une donnée par alias
 - Contrôler l’état avec `IS ASSIGNED`
-- Distinguer field-symbol, variable et référence de données
+- Distinguer field-symbol, variable et référence de données[^terme-reference]
 
 ## 10.B PRINCIPE
 
@@ -182,7 +182,7 @@ La sortie vaut `15` car le field-symbol modifie directement `lv_quantity`.
 ## 10.O SNIPPET À RÉUTILISER
 
 > [!NOTE]
-> Adapter les noms `Z*`, les types DDIC, les données et les autorisations au système cible. Effectuer un contrôle syntaxique avant activation.
+> Adapter les noms `Z*`, les types DDIC[^terme-acro-ddic], les données et les autorisations au système cible. Effectuer un contrôle syntaxique avant activation.
 
 ```abap
 REPORT zdemo_field_symbols.
@@ -220,3 +220,7 @@ UNASSIGN <lv_quantity>.
 ---
 
 [Chapitre suivant — RÉFÉRENCES DE DONNÉES](<./11 ├── REFERENCES DE DONNEES.md>)
+
+[^terme-field-symbol]: **FIELD-SYMBOL.** Alias dynamique vers une zone de mémoire existante. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#field-symbol>).
+[^terme-reference]: **RÉFÉRENCE.** Valeur qui pointe vers un objet de données ou une instance de classe. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#reference>).
+[^terme-acro-ddic]: **DDIC.** Data Dictionary, abréviation courante de l’ABAP Dictionary. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/10 └── ACRONYMES SAP.md#acro-ddic>).

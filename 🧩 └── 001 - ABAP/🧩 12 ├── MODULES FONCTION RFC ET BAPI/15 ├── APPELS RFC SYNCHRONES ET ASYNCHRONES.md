@@ -2,7 +2,7 @@
 
 ## 15.A RÉSULTAT ATTENDU
 
-- Implémenter un appel RFC synchrone
+- Implémenter un appel RFC[^terme-rfc] synchrone
 - Comprendre `STARTING NEW TASK`
 - Recevoir un résultat asynchrone
 - Choisir le mode adapté au besoin
@@ -39,7 +39,7 @@ CALL FUNCTION 'Z_DEV_READ_REMOTE'
     iv_key = lv_key.
 ```
 
-La forme exacte de callback dépend du style procédural ou objet et de la version ABAP.
+La forme exacte de callback dépend du style procédural ou objet et de la version ABAP[^terme-abap].
 
 ## 15.D RÉCEPTION
 
@@ -88,7 +88,7 @@ Ne pas paralléliser un traitement sans mesurer la charge globale du système.
 | ----------------------------- | ------------- |
 | Résultat immédiat obligatoire | sRFC          |
 | Travail parallèle avec retour | aRFC          |
-| Livraison fiable différée     | tRFC ou qRFC  |
+| Livraison fiable différée     | tRFC[^terme-trfc] ou qRFC[^terme-qrfc]  |
 | Ordre strict entre unités     | qRFC          |
 
 ## 15.H PROCESS
@@ -99,7 +99,7 @@ Utiliser un appel synchrone lorsque le résultat est requis immédiatement. Choi
 
 ### 15.H.2 Étape 2 — Vérifier destination et contrat
 
-Tester la destination dans `SM59`, puis contrôler dans le système cible la signature RFC, les autorisations et les effets métier du module.
+Tester la destination dans `SM59`[^outil-sm59], puis contrôler dans le système cible la signature RFC, les autorisations et les effets métier du module.
 
 ### 15.H.3 Étape 3 — Implémenter l’appel synchrone
 
@@ -107,7 +107,7 @@ Utiliser `DESTINATION`, mapper les paramètres et traiter séparément `COMMUNIC
 
 ### 15.H.4 Étape 4 — Implémenter l’asynchrone
 
-Définir un nom de tâche unique, utiliser `STARTING NEW TASK` et fournir une routine ou méthode de callback si un résultat est attendu. Dans le callback, appeler `RECEIVE RESULTS FROM FUNCTION` et traiter ses erreurs.
+Définir un nom de tâche unique, utiliser `STARTING NEW TASK` et fournir une routine ou méthode[^terme-methode] de callback si un résultat est attendu. Dans le callback, appeler `RECEIVE RESULTS FROM FUNCTION` et traiter ses erreurs.
 
 ### 15.H.5 Étape 5 — Tester les deux fins
 
@@ -124,13 +124,13 @@ Tester succès, cible indisponible et erreur métier. Pour l’asynchrone, prouv
 
 - Copier un exemple sans adapter les types, noms d’objets et données disponibles dans le système.
 - Tester uniquement le cas nominal et ignorer les valeurs initiales, absentes ou invalides.
-- Appeler un module fonction sans lire sa documentation et ses exceptions.
-- Supposer qu’une BAPI effectue automatiquement le commit.
+- Appeler un module fonction[^terme-module-fonction] sans lire sa documentation et ses exceptions.
+- Supposer qu’une BAPI[^terme-bapi] effectue automatiquement le commit.
 
 ## 15.K SNIPPET À RÉUTILISER
 
 > [!NOTE]
-> Adapter les noms `Z*`, les types DDIC, les données et les autorisations au système cible. Effectuer un contrôle syntaxique avant activation.
+> Adapter les noms `Z*`, les types DDIC[^terme-acro-ddic], les données et les autorisations au système cible. Effectuer un contrôle syntaxique avant activation.
 
 ```abap
 CALL FUNCTION 'Z_DEV_READ_REMOTE'
@@ -162,3 +162,14 @@ CALL FUNCTION 'Z_DEV_READ_REMOTE'
 ---
 
 [Chapitre suivant — TRFC, QRFC ET SURVEILLANCE](<./16 ├── TRFC QRFC ET SURVEILLANCE.md>)
+
+[^terme-rfc]: **RFC.** Remote Function Call, mécanisme permettant d’appeler un module fonction compatible dans un autre contexte ou système. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/06 ├── PROGRAMMES CLASSES ET OBJETS TECHNIQUES.md#rfc>).
+[^terme-abap]: **ABAP.** Langage de programmation de la plateforme ABAP, conçu pour développer des applications métier et techniques SAP. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#abap>).
+[^terme-trfc]: **TRFC.** RFC transactionnel garantissant la répétition d’un appel jusqu’à son traitement unique côté protocole. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/07 ├── INTERFACES ET INTEGRATION.md#trfc>).
+[^terme-qrfc]: **QRFC.** RFC transactionnel avec gestion de files afin de respecter un ordre de traitement. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/07 ├── INTERFACES ET INTEGRATION.md#qrfc>).
+[^terme-methode]: **MÉTHODE.** Comportement déclaré dans une classe ou une interface et appelé avec une liste de paramètres définie. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#methode>).
+[^terme-module-fonction]: **MODULE FONCTION.** Procédure globale appelée avec `CALL FUNCTION` et définie dans un groupe de fonctions. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/06 ├── PROGRAMMES CLASSES ET OBJETS TECHNIQUES.md#module-fonction>).
+[^terme-bapi]: **BAPI.** Interface métier publiée autour d’un Business Object SAP, généralement implémentée par un module fonction RFC. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/06 ├── PROGRAMMES CLASSES ET OBJETS TECHNIQUES.md#bapi>).
+[^terme-acro-ddic]: **DDIC.** Data Dictionary, abréviation courante de l’ABAP Dictionary. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/10 └── ACRONYMES SAP.md#acro-ddic>).
+
+[^outil-sm59]: **SM59.** Transaction de création, test et maintenance des destinations RFC. Voir [le chapitre associé](<14 ├── DESTINATIONS RFC AVEC SM59.md>).

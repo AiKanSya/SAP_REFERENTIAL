@@ -40,13 +40,13 @@ Il n’est pas nécessaire de tester toutes les valeurs. Regrouper les entrées 
 
 ## 20.E Test d’un message
 
-Lorsque le comportement utilise des messages classiques, préférer isoler la logique métier dans une méthode qui retourne un résultat ou lève une exception. Les tests deviennent plus simples et moins dépendants du contexte Dynpro.
+Lorsque le comportement utilise des messages classiques, préférer isoler la logique métier dans une méthode[^terme-methode] qui retourne un résultat ou lève une exception[^terme-exception]. Les tests deviennent plus simples et moins dépendants du contexte Dynpro[^terme-dynpro].
 
 ## 20.F PROCESS
 
 ### 20.F.1 ÉTAPE 1 — PARTITIONNER LES ENTRÉES
 
-Lister classes d’équivalence, minimum, maximum, juste avant/après chaque borne, initial, vide, doublon et valeur invalide. Sélectionner une valeur représentative par classe plus les limites où le comportement change.
+Lister classes d’équivalence, minimum, maximum, juste avant/après chaque borne, initial, vide, doublon et valeur invalide. Sélectionner une valeur représentative par classe[^terme-classe] plus les limites où le comportement change.
 
 ### 20.F.2 ÉTAPE 2 — DÉCLARER UN TEST PAR COMPORTEMENT
 
@@ -58,7 +58,7 @@ Appeler la méthode dans `TRY`. Immédiatement après, utiliser `CL_ABAP_UNIT_AS
 
 ### 20.F.4 ÉTAPE 4 — VÉRIFIER LE CONTENU DE L’EXCEPTION
 
-Comparer attribut, texte T100, previous ou raison selon le contrat public de la classe. Ne pas dépendre d’un texte traduit si un identifiant stable existe. Vérifier aussi qu’une exception différente n’est pas acceptée silencieusement.
+Comparer attribut[^terme-attribut], texte T100, previous ou raison selon le contrat public de la classe. Ne pas dépendre d’un texte traduit si un identifiant stable existe. Vérifier aussi qu’une exception différente n’est pas acceptée silencieusement.
 
 ### 20.F.5 ÉTAPE 5 — TESTER LES BORNES POSITIVES
 
@@ -90,7 +90,7 @@ Lancer chaque cas seul puis le groupe complet. Vérifier absence d’état persi
 ## 20.J SNIPPET À RÉUTILISER
 
 > [!NOTE]
-> Adapter les noms `Z*`, les types DDIC, les données et les autorisations au système cible. Effectuer un contrôle syntaxique avant activation.
+> Adapter les noms `Z*`, les types DDIC[^terme-acro-ddic], les données et les autorisations au système cible. Effectuer un contrôle syntaxique avant activation.
 
 ```abap
 " Vérifier un seul comportement observable avec une attente explicite.
@@ -113,3 +113,10 @@ ENDMETHOD.
 - [ATC](<../🧩 00 ├── LEXIQUE SAP ET ABAP/10 └── ACRONYMES SAP.md#acro-atc>)
 - [ABAP](<../🧩 00 ├── LEXIQUE SAP ET ABAP/10 └── ACRONYMES SAP.md#acro-abap>)
 - [Trace](<../🧩 00 ├── LEXIQUE SAP ET ABAP/08 ├── EXECUTION EXPLOITATION ET ADMINISTRATION.md#trace>)
+
+[^terme-methode]: **MÉTHODE.** Comportement déclaré dans une classe ou une interface et appelé avec une liste de paramètres définie. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#methode>).
+[^terme-exception]: **EXCEPTION.** Objet ou signal représentant une situation anormale qu’un appelant peut traiter. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#exception>).
+[^terme-dynpro]: **DYNPRO.** Écran classique SAP composé d’une définition d’écran et d’une logique PBO/PAI. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/02 ├── SAP GUI NAVIGATION ET TRANSACTIONS.md#dynpro>).
+[^terme-classe]: **CLASSE.** Modèle orienté objet définissant état et comportements. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#classe>).
+[^terme-attribut]: **ATTRIBUT.** Composant de données déclaré dans une classe et appartenant soit à chaque instance, soit à la classe elle-même. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#attribut>).
+[^terme-acro-ddic]: **DDIC.** Data Dictionary, abréviation courante de l’ABAP Dictionary. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/10 └── ACRONYMES SAP.md#acro-ddic>).

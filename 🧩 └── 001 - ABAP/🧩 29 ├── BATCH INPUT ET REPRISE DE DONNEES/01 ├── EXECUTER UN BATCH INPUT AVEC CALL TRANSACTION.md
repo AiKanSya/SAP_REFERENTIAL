@@ -8,7 +8,7 @@ Rejouer une séquence d’écran contrôlée et récupérer tous les messages pr
 
 ### 1.B.1 ÉTAPE 1 — VÉRIFIER L’ABSENCE D’API ADAPTÉE
 
-Utiliser le batch input pour maintenir un flux existant ou lorsqu’aucune API stable ne couvre le besoin. Pour une nouvelle reprise S/4HANA, vérifier d’abord les outils de migration et API officiellement prévus par l’objet métier.
+Utiliser le batch input pour maintenir un flux existant ou lorsqu’aucune API[^terme-api] stable ne couvre le besoin. Pour une nouvelle reprise S/4HANA, vérifier d’abord les outils de migration et API officiellement prévus par l’objet métier.
 
 ### 1.B.2 ÉTAPE 2 — ENREGISTRER LE SCÉNARIO DANS SHDB
 
@@ -36,7 +36,7 @@ Provoquer une erreur avant et après la sauvegarde, corriger la donnée puis rej
 
 ## 1.C CODE PRÊT À ADAPTER
 
-Fragment : la table `LT_BDCDATA` doit être construite depuis un enregistrement `SHDB` validé sur le système cible.
+Fragment : la table `LT_BDCDATA` doit être construite depuis un enregistrement `SHDB`[^outil-shdb] validé sur le système cible.
 
 ```abap
 DATA lt_bdcdata  TYPE STANDARD TABLE OF bdcdata WITH EMPTY KEY.
@@ -63,3 +63,7 @@ ENDIF.
 - Tester d’abord en mode `A`, puis `E`, avant le mode invisible `N`.
 - La transaction, les écrans et les OK_CODE existent dans la version S/4HANA cible.
 - Le document métier est recherché après l’appel afin de détecter un succès partiel.
+
+[^terme-api]: **API.** Application Programming Interface, contrat exposant des opérations ou données utilisables par d’autres composants. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/10 └── ACRONYMES SAP.md#api>).
+
+[^outil-shdb]: **SHDB.** Transaction d’enregistrement d’un scénario de dialogue pour préparer un traitement batch input. Voir [le chapitre associé](<01 ├── EXECUTER UN BATCH INPUT AVEC CALL TRANSACTION.md>).

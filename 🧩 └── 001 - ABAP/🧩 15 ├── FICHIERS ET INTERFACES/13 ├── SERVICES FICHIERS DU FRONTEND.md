@@ -2,7 +2,7 @@
 
 ## 13.A RÉSULTAT ATTENDU
 
-- Utiliser les services du poste SAP GUI
+- Utiliser les services du poste SAP GUI[^terme-sap-gui]
 - Comprendre leurs dépendances techniques
 - Éviter les anciens modules fonction obsolètes
 
@@ -14,7 +14,7 @@
 - import et export ;
 - interrogation de répertoires ;
 - opérations de copie ou suppression locales ;
-- accès à certaines fonctions du frontend.
+- accès à certaines fonctions du frontend[^terme-frontend].
 
 Les anciennes fonctions comme `WS_UPLOAD`, `WS_DOWNLOAD` ou `WS_FILENAME_GET` ne doivent pas être utilisées dans un nouveau développement.
 
@@ -27,14 +27,14 @@ flowchart TD
     C --> D["Autorisation locale et interaction utilisateur"]
 ```
 
-- Aucun fonctionnement fiable en job de fond.
+- Aucun fonctionnement fiable en job[^terme-job] de fond.
 - Le comportement peut varier entre SAP GUI for Windows, Java et WebGUI.
 - Certaines opérations déclenchent des contrôles de sécurité frontend.
 - Le chemin appartient au poste, pas au serveur SAP.
 
 ## 13.D TEST DE DISPONIBILITÉ
 
-Avant une opération locale, contrôler le contexte d’exécution. Les méthodes et constantes disponibles doivent être inspectées dans `SE24` sur la version cible.
+Avant une opération locale, contrôler le contexte d’exécution. Les méthodes et constantes disponibles doivent être inspectées dans `SE24`[^terme-class-builder-se24] sur la version cible.
 
 ## 13.E RÈGLE D’ARCHITECTURE
 
@@ -51,11 +51,11 @@ Cette séparation permet de réutiliser le même cœur de traitement avec un fic
 
 ### 13.F.1 ÉTAPE 1 — CONFIRMER QUE LE FRONTEND EST DISPONIBLE
 
-Exécuter le traitement en mode dialogue depuis SAP GUI. Avant toute boîte de dialogue ou tout transfert, vérifier la disponibilité des services frontend avec la méthode prévue par `CL_GUI_FRONTEND_SERVICES` sur la release cible. Interrompre proprement le scénario si aucun frontend n’est disponible ; un job ou un appel sans session SAP GUI ne doit pas poursuivre vers une méthode locale.
+Exécuter le traitement en mode dialogue depuis SAP GUI. Avant toute boîte de dialogue ou tout transfert, vérifier la disponibilité des services frontend avec la méthode[^terme-methode] prévue par `CL_GUI_FRONTEND_SERVICES` sur la release cible. Interrompre proprement le scénario si aucun frontend n’est disponible ; un job ou un appel sans session SAP GUI[^terme-session-sap-gui] ne doit pas poursuivre vers une méthode locale.
 
 ### 13.F.2 ÉTAPE 2 — SÉPARER LE CHOIX DU FICHIER DU TRAITEMENT
 
-Créer une méthode dédiée à la sélection du chemin et une autre au chargement ou au téléchargement. Le parseur et le traitement métier reçoivent des données ABAP, jamais une dépendance directe à une boîte de dialogue. Cette séparation permet de tester le traitement sans intervention utilisateur et de remplacer ultérieurement la source locale par un fichier serveur.
+Créer une méthode dédiée à la sélection du chemin et une autre au chargement ou au téléchargement. Le parseur et le traitement métier reçoivent des données ABAP[^terme-abap], jamais une dépendance directe à une boîte de dialogue. Cette séparation permet de tester le traitement sans intervention utilisateur et de remplacer ultérieurement la source locale par un fichier serveur.
 
 ### 13.F.3 ÉTAPE 3 — OUVRIR LA BOÎTE DE DIALOGUE ADAPTÉE
 
@@ -63,7 +63,7 @@ Utiliser `FILE_OPEN_DIALOG` pour sélectionner un fichier existant et `FILE_SAVE
 
 ### 13.F.4 ÉTAPE 4 — TRANSFÉRER SELON LA NATURE DU CONTENU
 
-Utiliser `GUI_UPLOAD` ou `GUI_DOWNLOAD` avec un type de fichier cohérent : texte pour des lignes textuelles, binaire pour un contenu `XSTRING` converti en table binaire. Définir l’encodage lorsque le contrat l’impose. Ne pas supposer qu’une extension de fichier transforme le contenu.
+Utiliser `GUI_UPLOAD` ou `GUI_DOWNLOAD` avec un type de fichier cohérent : texte pour des lignes textuelles, binaire pour un contenu `XSTRING` converti en table binaire. Définir l’encodage[^terme-encodage] lorsque le contrat l’impose. Ne pas supposer qu’une extension de fichier transforme le contenu.
 
 ### 13.F.5 ÉTAPE 5 — TRAITER LES EXCEPTIONS AU NIVEAU FRONTEND
 
@@ -83,7 +83,7 @@ Tester un fichier valide, une annulation, un fichier absent, un fichier verrouil
 ## 13.H ERREURS FRÉQUENTES
 
 - Mélanger fichiers frontend et serveur dans un même scénario.
-- Parser un CSV par simple séparation alors que les champs peuvent être échappés.
+- Parser un CSV[^terme-csv] par simple séparation alors que les champs peuvent être échappés.
 
 ## 13.I FICHE DE CONTRÔLE À COPIER
 
@@ -117,3 +117,13 @@ Ordre de transport  :
 ---
 
 [Chapitre suivant — DIALOGUES DE SÉLECTION ET SAUVEGARDE](<./14 ├── DIALOGUES DE SELECTION ET SAUVEGARDE.md>)
+
+[^terme-sap-gui]: **SAP GUI.** Client graphique permettant d’utiliser les transactions et écrans d’un système SAP. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/02 ├── SAP GUI NAVIGATION ET TRANSACTIONS.md#sap-gui>).
+[^terme-frontend]: **FRONTEND.** Poste ou couche cliente utilisée par l’utilisateur, par exemple SAP GUI for Windows. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/01 ├── SYSTEMES ENVIRONNEMENTS ET MANDANTS.md#frontend>).
+[^terme-job]: **JOB.** Traitement planifié en arrière-plan composé d’une ou plusieurs étapes. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/06 ├── PROGRAMMES CLASSES ET OBJETS TECHNIQUES.md#job>).
+[^terme-class-builder-se24]: **CLASS BUILDER (SE24).** Outil SAP GUI utilisé pour créer, afficher, modifier, tester et documenter les classes et interfaces globales ABAP. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/06 ├── PROGRAMMES CLASSES ET OBJETS TECHNIQUES.md#class-builder-se24>).
+[^terme-methode]: **MÉTHODE.** Comportement déclaré dans une classe ou une interface et appelé avec une liste de paramètres définie. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#methode>).
+[^terme-session-sap-gui]: **SESSION SAP GUI.** Fenêtre de travail indépendante ouverte pour un même utilisateur et un même système. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/02 ├── SAP GUI NAVIGATION ET TRANSACTIONS.md#session-sap-gui>).
+[^terme-abap]: **ABAP.** Langage de programmation de la plateforme ABAP, conçu pour développer des applications métier et techniques SAP. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#abap>).
+[^terme-encodage]: **ENCODAGE.** Règle transformant les caractères en octets et inversement. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/07 ├── INTERFACES ET INTEGRATION.md#encodage>).
+[^terme-csv]: **CSV.** Format texte tabulaire utilisant un séparateur de champs et des règles d’échappement. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/07 ├── INTERFACES ET INTEGRATION.md#csv>).

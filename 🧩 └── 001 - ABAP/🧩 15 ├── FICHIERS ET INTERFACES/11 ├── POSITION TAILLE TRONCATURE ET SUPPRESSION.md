@@ -54,7 +54,7 @@ Distinguer le repositionnement, la lecture de position, la troncature et la supp
 
 ### 11.F.2 Étape 2 — Vérifier le mode et le format compatibles
 
-Ouvrir le dataset dans le mode nécessaire à l’instruction utilisée. Confirmer la compatibilité dans la documentation ABAP de la version du système avant d’appliquer une position calculée.
+Ouvrir le dataset dans le mode nécessaire à l’instruction utilisée. Confirmer la compatibilité dans la documentation ABAP[^terme-abap] de la version du système avant d’appliquer une position calculée.
 
 ### 11.F.3 Étape 3 — Calculer une position bornée
 
@@ -75,7 +75,7 @@ Vérifier le début, le milieu et la fin du fichier, une position invalide, un f
 ## 11.G VÉRIFICATION
 
 - Le fichier est créé ou lu dans l’emplacement attendu.
-- Le nombre de lignes, la taille et l’encodage correspondent au contrat.
+- Le nombre de lignes, la taille et l’encodage[^terme-encodage] correspondent au contrat.
 - Les caractères accentués, séparateurs, guillemets et fins de ligne sont testés.
 - Le traitement journalise les rejets et permet une reprise sans doublon.
 
@@ -83,13 +83,13 @@ Vérifier le début, le milieu et la fin du fichier, une position invalide, un f
 
 - Copier un exemple sans adapter les types, noms d’objets et données disponibles dans le système.
 - Tester uniquement le cas nominal et ignorer les valeurs initiales, absentes ou invalides.
-- Mélanger fichiers frontend et serveur dans un même scénario.
-- Parser un CSV par simple séparation alors que les champs peuvent être échappés.
+- Mélanger fichiers frontend[^terme-frontend] et serveur dans un même scénario.
+- Parser un CSV[^terme-csv] par simple séparation alors que les champs peuvent être échappés.
 
 ## 11.I SNIPPET À RÉUTILISER
 
 > [!NOTE]
-> Adapter les noms `Z*`, les types DDIC, les données et les autorisations au système cible. Effectuer un contrôle syntaxique avant activation.
+> Adapter les noms `Z*`, les types DDIC[^terme-acro-ddic], les données et les autorisations au système cible. Effectuer un contrôle syntaxique avant activation.
 
 ```abap
 " Modifier uniquement les données de la table cible maîtrisée.
@@ -118,3 +118,9 @@ ENDIF.
 ---
 
 [Chapitre suivant — ENCODAGE, CODE PAGES, BOM ET FINS DE LIGNE](<./12 ├── ENCODAGE CODE PAGES BOM ET FINS DE LIGNE.md>)
+
+[^terme-abap]: **ABAP.** Langage de programmation de la plateforme ABAP, conçu pour développer des applications métier et techniques SAP. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#abap>).
+[^terme-encodage]: **ENCODAGE.** Règle transformant les caractères en octets et inversement. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/07 ├── INTERFACES ET INTEGRATION.md#encodage>).
+[^terme-frontend]: **FRONTEND.** Poste ou couche cliente utilisée par l’utilisateur, par exemple SAP GUI for Windows. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/01 ├── SYSTEMES ENVIRONNEMENTS ET MANDANTS.md#frontend>).
+[^terme-csv]: **CSV.** Format texte tabulaire utilisant un séparateur de champs et des règles d’échappement. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/07 ├── INTERFACES ET INTEGRATION.md#csv>).
+[^terme-acro-ddic]: **DDIC.** Data Dictionary, abréviation courante de l’ABAP Dictionary. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/10 └── ACRONYMES SAP.md#acro-ddic>).

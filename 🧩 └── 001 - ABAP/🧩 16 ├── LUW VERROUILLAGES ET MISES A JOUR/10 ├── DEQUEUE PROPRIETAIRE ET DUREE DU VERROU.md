@@ -20,19 +20,19 @@ La libération doit utiliser une clé compatible avec celle de l’enqueue. Une 
 
 ## 10.C PROPRIÉTAIRE ET `_SCOPE`
 
-Le paramètre `_SCOPE` contrôle le transfert de propriété entre le programme de dialogue et l’update task. Son effet dépend de la valeur générée et du moment du commit.
+Le paramètre `_SCOPE` contrôle le transfert de propriété entre le programme de dialogue et l’update task[^terme-update-task]. Son effet dépend de la valeur générée et du moment du commit.
 
 | Intention                              | Conception                                                        |
 | -------------------------------------- | ----------------------------------------------------------------- |
 | Protéger uniquement une section courte | Libération explicite après le traitement                          |
-| Protéger jusqu’à la fin de la SAP LUW  | Laisser le commit ou le rollback traiter le verrou selon `_SCOPE` |
+| Protéger jusqu’à la fin de la SAP LUW[^terme-sap-luw]  | Laisser le commit ou le rollback traiter le verrou selon `_SCOPE` |
 | Transférer le verrou à la mise à jour  | Paramétrage `_SCOPE` conforme au contrat de l’objet               |
 
 Ne pas modifier `_SCOPE` par habitude. Vérifier le comportement exact dans la documentation de l’objet et tester avec l’update task réelle.
 
 ## 10.D BLOC DE NETTOYAGE
 
-Une procédure robuste libère les verrous dans tous les chemins qui n’aboutissent pas à un commit prévu : erreur de validation, exception gérée, abandon utilisateur ou retour anticipé.
+Une procédure robuste libère les verrous dans tous les chemins qui n’aboutissent pas à un commit prévu : erreur de validation, exception[^terme-exception] gérée, abandon utilisateur ou retour anticipé.
 
 ## 10.E PROCESS
 
@@ -42,11 +42,11 @@ Conserver l’objet, le mode, la clé et la valeur de `_SCOPE` utilisés lors de
 
 ### 10.E.2 ÉTAPE 2 — CHOISIR LE MOMENT DE LIBÉRATION
 
-Pour une section critique courte, prévoir un dequeue explicite dès que l’invariant n’a plus besoin de protection. Pour une protection jusqu’à la fin de la SAP LUW, laisser commit ou rollback agir conformément à `_SCOPE`. Ne pas libérer avant la persistance que le verrou doit protéger.
+Pour une section critique courte, prévoir un dequeue explicite dès que l’invariant[^terme-invariant] n’a plus besoin de protection. Pour une protection jusqu’à la fin de la SAP LUW, laisser commit ou rollback agir conformément à `_SCOPE`. Ne pas libérer avant la persistance que le verrou doit protéger.
 
 ### 10.E.3 ÉTAPE 3 — APPELER LE MODULE GÉNÉRÉ
 
-Afficher `DEQUEUE_<objet>` dans `SE37` et reprendre les paramètres exacts. Passer une clé et un mode compatibles avec l’enqueue initial. Une valeur différente peut ne pas cibler l’entrée détenue.
+Afficher `DEQUEUE_<objet>` dans `SE37`[^outil-se37] et reprendre les paramètres exacts. Passer une clé et un mode compatibles avec l’enqueue initial. Une valeur différente peut ne pas cibler l’entrée détenue.
 
 ### 10.E.4 ÉTAPE 4 — COUVRIR LES CHEMINS D’ERREUR
 
@@ -58,7 +58,7 @@ Pendant le scénario, rechercher l’objet et l’argument. Vérifier quand le p
 
 ### 10.E.6 ÉTAPE 6 — TESTER TOUTES LES FINS DE TRAITEMENT
 
-Exécuter un succès, une erreur de validation, une exception gérée, un rollback et une update task en erreur. Après chaque scénario, contrôler `SM12`, `SM13` et les données. Aucun verrou ne doit disparaître trop tôt ni persister sans propriétaire actif.
+Exécuter un succès, une erreur de validation, une exception gérée, un rollback et une update task en erreur. Après chaque scénario, contrôler `SM12`[^outil-sm12], `SM13`[^outil-sm13] et les données. Aucun verrou ne doit disparaître trop tôt ni persister sans propriétaire actif.
 
 ## 10.F VÉRIFICATION
 
@@ -77,7 +77,7 @@ Exécuter un succès, une erreur de validation, une exception gérée, un rollba
 ## 10.H SNIPPET À RÉUTILISER
 
 > [!NOTE]
-> Adapter les noms `Z*`, les types DDIC, les données et les autorisations au système cible. Effectuer un contrôle syntaxique avant activation.
+> Adapter les noms `Z*`, les types DDIC[^terme-acro-ddic], les données et les autorisations au système cible. Effectuer un contrôle syntaxique avant activation.
 
 ```abap
 CALL FUNCTION 'DEQUEUE_EZDEV_ORDER'
@@ -105,3 +105,13 @@ CALL FUNCTION 'DEQUEUE_EZDEV_ORDER'
 ---
 
 [Chapitre suivant — `_WAIT`, `_COLLECT` ET GRANULARITÉ DES VERROUS](<./11 ├── WAIT COLLECT ET GRANULARITE DES VERROUS.md>)
+
+[^terme-update-task]: **UPDATE TASK.** Mécanisme différant des mises à jour pour les exécuter lors du `COMMIT WORK` dans des processus de mise à jour. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/08 ├── EXECUTION EXPLOITATION ET ADMINISTRATION.md#update-task>).
+[^terme-sap-luw]: **SAP LUW.** Unité logique métier SAP pouvant regrouper plusieurs étapes de dialogue et différer les mises à jour jusqu’au commit. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/08 ├── EXECUTION EXPLOITATION ET ADMINISTRATION.md#sap-luw>).
+[^terme-exception]: **EXCEPTION.** Objet ou signal représentant une situation anormale qu’un appelant peut traiter. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#exception>).
+[^terme-invariant]: **INVARIANT.** Condition qui doit rester vraie pendant toute la durée de vie valide d’un objet. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#invariant>).
+[^terme-acro-ddic]: **DDIC.** Data Dictionary, abréviation courante de l’ABAP Dictionary. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/10 └── ACRONYMES SAP.md#acro-ddic>).
+
+[^outil-se37]: **SE37.** Function Builder utilisé pour rechercher, afficher, tester et maintenir les modules fonction. Voir [le chapitre associé](<../🧩 12 ├── MODULES FONCTION RFC ET BAPI/03 ├── RECHERCHER ET ANALYSER AVEC SE37.md>).
+[^outil-sm12]: **SM12.** Transaction de surveillance et d’administration des entrées de verrouillage SAP. Voir [le chapitre associé](<12 ├── ANALYSER LES VERROUS AVEC SM12.md>).
+[^outil-sm13]: **SM13.** Transaction de surveillance et de reprise des enregistrements de mise à jour SAP. Voir [le chapitre associé](<19 ├── ANALYSER ET REPRENDRE LES UPDATES AVEC SM13.md>).

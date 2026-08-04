@@ -124,7 +124,7 @@ IF lv_code CS `ABAP`.
 ENDIF.
 ```
 
-`CP` utilise les caractères génériques du langage ABAP, notamment `*` et `+`. Il ne s’agit pas d’une expression régulière.
+`CP` utilise les caractères génériques du langage ABAP[^terme-abap], notamment `*` et `+`. Il ne s’agit pas d’une expression régulière.
 
 ```abap
 IF lv_code CP `ABAP-*`.
@@ -175,12 +175,12 @@ lv_is_valid = xsdbool( lv_quantity > 0 ).
 - Copier un exemple sans adapter les types, noms d’objets et données disponibles dans le système.
 - Tester uniquement le cas nominal et ignorer les valeurs initiales, absentes ou invalides.
 - S’appuyer sur une conversion implicite pouvant tronquer ou arrondir.
-- Ignorer l’encodage et les formats externes.
+- Ignorer l’encodage[^terme-encodage] et les formats externes.
 
 ## 5.K SNIPPET À RÉUTILISER
 
 > [!NOTE]
-> Adapter les noms `Z*`, les types DDIC, les données et les autorisations au système cible. Effectuer un contrôle syntaxique avant activation.
+> Adapter les noms `Z*`, les types DDIC[^terme-acro-ddic], les données et les autorisations au système cible. Effectuer un contrôle syntaxique avant activation.
 
 ```abap
 DATA lv_number TYPE i VALUE 10.
@@ -206,3 +206,7 @@ ENDIF.
 ---
 
 [Chapitre suivant — CONVERSIONS IMPLICITES](<./06 ├── CONVERSIONS IMPLICITES.md>)
+
+[^terme-abap]: **ABAP.** Langage de programmation de la plateforme ABAP, conçu pour développer des applications métier et techniques SAP. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#abap>).
+[^terme-encodage]: **ENCODAGE.** Règle transformant les caractères en octets et inversement. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/07 ├── INTERFACES ET INTEGRATION.md#encodage>).
+[^terme-acro-ddic]: **DDIC.** Data Dictionary, abréviation courante de l’ABAP Dictionary. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/10 └── ACRONYMES SAP.md#acro-ddic>).

@@ -2,14 +2,14 @@
 
 ## 16.A RÉSULTAT ATTENDU
 
-- Distinguer tRFC et qRFC
+- Distinguer tRFC[^terme-trfc] et qRFC[^terme-qrfc]
 - Comprendre l’enregistrement transactionnel
-- Identifier les moniteurs `SM58`, `SMQ1` et `SMQ2`
+- Identifier les moniteurs `SM58`[^outil-sm58], `SMQ1`[^outil-smq1] et `SMQ2`[^outil-smq2]
 - Éviter les retraitements destructifs
 
 ## 16.B TRFC
 
-Le transactional RFC enregistre l’unité d’appel afin qu’elle puisse être exécutée de manière fiable lorsque la cible est disponible.
+Le transactional RFC[^terme-rfc] enregistre l’unité d’appel afin qu’elle puisse être exécutée de manière fiable lorsque la cible est disponible.
 
 ```mermaid
 flowchart LR
@@ -79,11 +79,11 @@ Choisir tRFC pour une exécution transactionnelle différée sans ordre entre un
 
 ### 16.H.2 Étape 2 — Préparer un module compatible
 
-Vérifier l’attribut RFC et les types d’interface. Le module distant doit être idempotent ou protéger les doublons selon le contrat, car une reprise technique peut répéter la tentative.
+Vérifier l’attribut[^terme-attribut] RFC et les types d’interface. Le module distant doit être idempotent ou protéger les doublons selon le contrat, car une reprise technique peut répéter la tentative.
 
 ### 16.H.3 Étape 3 — Enregistrer l’unité
 
-Pour tRFC, appeler `IN BACKGROUND TASK DESTINATION ...`. Pour qRFC, définir d’abord le nom de file selon l’API prévue, puis enregistrer l’appel. La LUW appelante déclenche l’envoi au commit.
+Pour tRFC, appeler `IN BACKGROUND TASK DESTINATION ...`. Pour qRFC, définir d’abord le nom de file selon l’API[^terme-api] prévue, puis enregistrer l’appel. La LUW[^terme-acro-luw] appelante déclenche l’envoi au commit.
 
 ### 16.H.4 Étape 4 — Surveiller
 
@@ -101,8 +101,8 @@ Corriger réseau, destination, autorisation ou donnée métier avant de relancer
 
 ## 16.J ERREURS FRÉQUENTES
 
-- Appeler un module fonction sans lire sa documentation et ses exceptions.
-- Supposer qu’une BAPI effectue automatiquement le commit.
+- Appeler un module fonction[^terme-module-fonction] sans lire sa documentation et ses exceptions.
+- Supposer qu’une BAPI[^terme-bapi] effectue automatiquement le commit.
 
 ## 16.K TERMES DU LEXIQUE
 
@@ -122,3 +122,16 @@ Corriger réseau, destination, autorisation ou donnée métier avant de relancer
 ---
 
 [Chapitre suivant — SÉCURITÉ ET AUTORISATIONS RFC](<./17 ├── SECURITE ET AUTORISATIONS RFC.md>)
+
+[^terme-trfc]: **TRFC.** RFC transactionnel garantissant la répétition d’un appel jusqu’à son traitement unique côté protocole. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/07 ├── INTERFACES ET INTEGRATION.md#trfc>).
+[^terme-qrfc]: **QRFC.** RFC transactionnel avec gestion de files afin de respecter un ordre de traitement. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/07 ├── INTERFACES ET INTEGRATION.md#qrfc>).
+[^terme-rfc]: **RFC.** Remote Function Call, mécanisme permettant d’appeler un module fonction compatible dans un autre contexte ou système. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/06 ├── PROGRAMMES CLASSES ET OBJETS TECHNIQUES.md#rfc>).
+[^terme-attribut]: **ATTRIBUT.** Composant de données déclaré dans une classe et appartenant soit à chaque instance, soit à la classe elle-même. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#attribut>).
+[^terme-api]: **API.** Application Programming Interface, contrat exposant des opérations ou données utilisables par d’autres composants. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/10 └── ACRONYMES SAP.md#api>).
+[^terme-acro-luw]: **LUW.** Logical Unit of Work. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/10 └── ACRONYMES SAP.md#acro-luw>).
+[^terme-module-fonction]: **MODULE FONCTION.** Procédure globale appelée avec `CALL FUNCTION` et définie dans un groupe de fonctions. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/06 ├── PROGRAMMES CLASSES ET OBJETS TECHNIQUES.md#module-fonction>).
+[^terme-bapi]: **BAPI.** Interface métier publiée autour d’un Business Object SAP, généralement implémentée par un module fonction RFC. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/06 ├── PROGRAMMES CLASSES ET OBJETS TECHNIQUES.md#bapi>).
+
+[^outil-sm58]: **SM58.** Moniteur des appels tRFC en attente ou en erreur. Voir [le chapitre associé](<16 ├── TRFC QRFC ET SURVEILLANCE.md>).
+[^outil-smq1]: **SMQ1.** Moniteur des files qRFC sortantes. Voir [le chapitre associé](<16 ├── TRFC QRFC ET SURVEILLANCE.md>).
+[^outil-smq2]: **SMQ2.** Moniteur des files qRFC entrantes. Voir [le chapitre associé](<16 ├── TRFC QRFC ET SURVEILLANCE.md>).

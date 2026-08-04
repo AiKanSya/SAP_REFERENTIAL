@@ -32,11 +32,11 @@ Le mode `E` est courant pour une modification métier classique. Le mode `X` doi
 
 ### 8.D.1 ÉTAPE 1 — QUALIFIER L’ACCÈS À PROTÉGER
 
-Déterminer si le scénario lit seulement une ressource partagée, la modifie, exige une exclusivité absolue ou repose sur un verrou optimiste. Partir de l’invariant métier et non du mode utilisé dans un exemple voisin.
+Déterminer si le scénario lit seulement une ressource partagée, la modifie, exige une exclusivité absolue ou repose sur un verrou optimiste. Partir de l’invariant[^terme-invariant] métier et non du mode utilisé dans un exemple voisin.
 
 ### 8.D.2 ÉTAPE 2 — VÉRIFIER LE MODE DÉFINI DANS `SE11`
 
-Afficher l’objet de verrouillage et contrôler le mode associé à chaque table. Ouvrir ensuite le module `ENQUEUE_*` généré dans `SE37` pour identifier le paramètre de mode et sa valeur par défaut. Ne pas coder une valeur différente sans test de compatibilité.
+Afficher l’objet de verrouillage et contrôler le mode associé à chaque table. Ouvrir ensuite le module `ENQUEUE_*` généré dans `SE37`[^outil-se37] pour identifier le paramètre de mode et sa valeur par défaut. Ne pas coder une valeur différente sans test de compatibilité.
 
 ### 8.D.3 ÉTAPE 3 — CONSERVER UN MODE COHÉRENT SUR TOUT LE CYCLE
 
@@ -58,7 +58,7 @@ Pendant chaque test, filtrer sur l’objet ou l’argument et contrôler le prop
 
 - Les données sont toutes validées ou toutes annulées selon le cas testé.
 - Les verrous sont libérés à la fin du traitement normal et après erreur.
-- Aucune update en erreur inattendue ne reste dans `SM13`.
+- Aucune update en erreur inattendue ne reste dans `SM13`[^outil-sm13].
 - Les collisions concurrentes produisent un message contrôlé, pas une incohérence.
 
 ## 8.F ERREURS FRÉQUENTES
@@ -84,3 +84,8 @@ Pendant chaque test, filtrer sur l’objet ou l’argument et contrôler le prop
 ---
 
 [Chapitre suivant — APPELER `ENQUEUE` ET TRAITER LES COLLISIONS](<./09 ├── APPELER ENQUEUE ET TRAITER LES COLLISIONS.md>)
+
+[^terme-invariant]: **INVARIANT.** Condition qui doit rester vraie pendant toute la durée de vie valide d’un objet. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#invariant>).
+
+[^outil-se37]: **SE37.** Function Builder utilisé pour rechercher, afficher, tester et maintenir les modules fonction. Voir [le chapitre associé](<../🧩 12 ├── MODULES FONCTION RFC ET BAPI/03 ├── RECHERCHER ET ANALYSER AVEC SE37.md>).
+[^outil-sm13]: **SM13.** Transaction de surveillance et de reprise des enregistrements de mise à jour SAP. Voir [le chapitre associé](<19 ├── ANALYSER ET REPRENDRE LES UPDATES AVEC SM13.md>).

@@ -2,22 +2,22 @@
 
 ## 14.A RÉSULTAT ATTENDU
 
-- Mesurer l’exécution d’un programme ABAP
+- Mesurer l’exécution d’un programme ABAP[^terme-abap]
 - Distinguer temps ABAP, base de données et système
 - Identifier les appels dominants
-- Limiter la trace au scénario utile
+- Limiter la trace[^terme-trace] au scénario utile
 - Utiliser le résultat pour formuler une hypothèse
 
 ## 14.B RÔLE DE SAT
 
-La transaction `SAT` réalise une analyse d’exécution ABAP. Elle mesure les appels et temps consommés pendant un scénario enregistré.
+La transaction `SAT`[^outil-sat] réalise une analyse d’exécution ABAP. Elle mesure les appels et temps consommés pendant un scénario enregistré.
 
 Elle convient pour analyser :
 
 - rapport ;
 - transaction ;
-- module fonction ;
-- méthode ;
+- module fonction[^terme-module-fonction] ;
+- méthode[^terme-methode] ;
 - unité de traitement reproductible.
 
 ## 14.C PRÉPARATION
@@ -42,7 +42,7 @@ Analyser notamment :
 - temps cumulé ;
 - nombre d’appels ;
 - hiérarchie des appels ;
-- appels SQL ;
+- appels SQL[^terme-acro-sql] ;
 - instructions ou procédures dominantes.
 
 ```mermaid
@@ -109,7 +109,7 @@ Modifier une cause, réexécuter avec la même variante et les mêmes données, 
 
 ## 14.I VÉRIFICATION
 
-- Le scénario reproduit correspond au même utilisateur, mandant, transaction et jeu de données.
+- Le scénario reproduit correspond au même utilisateur, mandant[^terme-mandant], transaction et jeu de données.
 - L’horodatage et l’identifiant de l’analyse sont conservés.
 - La cause retenue est soutenue par une ligne source, une trace ou une valeur observée.
 - Après correction, le même scénario ne reproduit plus le défaut et le résultat métier reste identique.
@@ -149,3 +149,12 @@ Ordre de transport  :
 ---
 
 [Chapitre suivant — ANALYSER LES ACCÈS AVEC ST05](<./15 ├── ANALYSER LES ACCES AVEC ST05.md>)
+
+[^terme-abap]: **ABAP.** Langage de programmation de la plateforme ABAP, conçu pour développer des applications métier et techniques SAP. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#abap>).
+[^terme-trace]: **TRACE.** Enregistrement détaillé d’événements techniques pour analyser exécution, SQL ou appels. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/08 ├── EXECUTION EXPLOITATION ET ADMINISTRATION.md#trace>).
+[^terme-module-fonction]: **MODULE FONCTION.** Procédure globale appelée avec `CALL FUNCTION` et définie dans un groupe de fonctions. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/06 ├── PROGRAMMES CLASSES ET OBJETS TECHNIQUES.md#module-fonction>).
+[^terme-methode]: **MÉTHODE.** Comportement déclaré dans une classe ou une interface et appelé avec une liste de paramètres définie. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#methode>).
+[^terme-acro-sql]: **SQL.** Structured Query Language. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/10 └── ACRONYMES SAP.md#acro-sql>).
+[^terme-mandant]: **MANDANT.** Subdivision logique d’un système SAP. Il est identifié par un numéro à trois chiffres et isole une partie des données, du paramétrage et des utilisateurs. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/01 ├── SYSTEMES ENVIRONNEMENTS ET MANDANTS.md#mandant>).
+
+[^outil-sat]: **SAT.** Runtime Analysis utilisée pour mesurer et analyser le temps d’exécution ABAP. Voir [le chapitre associé](<../🧩 20 ├── PERFORMANCE QUALITE ET TESTS/07 ├── MESURER LE TEMPS D EXECUTION AVEC SAT.md>).

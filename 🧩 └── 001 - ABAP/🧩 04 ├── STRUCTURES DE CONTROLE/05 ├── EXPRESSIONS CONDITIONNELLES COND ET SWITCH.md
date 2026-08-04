@@ -2,11 +2,11 @@
 
 ## 5.A RÉSULTAT ATTENDU
 
-- Distinguer une expression conditionnelle d’une structure de contrôle
+- Distinguer une expression conditionnelle[^terme-expression] d’une structure de contrôle
 - Produire directement une valeur avec `COND`
 - Sélectionner une valeur avec `SWITCH`
 - Connaître les limites de lisibilité de ces expressions
-- Vérifier leur compatibilité avec la version ABAP du système
+- Vérifier leur compatibilité avec la version ABAP[^terme-abap] du système
 
 ## 5.B STRUCTURE DE CONTRÔLE OU EXPRESSION
 
@@ -165,7 +165,7 @@ ENDIF.
 ## 5.J SNIPPET À RÉUTILISER
 
 > [!NOTE]
-> Adapter les noms `Z*`, les types DDIC, les données et les autorisations au système cible. Effectuer un contrôle syntaxique avant activation.
+> Adapter les noms `Z*`, les types DDIC[^terme-acro-ddic], les données et les autorisations au système cible. Effectuer un contrôle syntaxique avant activation.
 
 ```abap
 DATA lv_amount TYPE p LENGTH 8 DECIMALS 2 VALUE '125.00'.
@@ -194,3 +194,7 @@ WRITE: / lv_category.
 ---
 
 [Chapitre suivant — BOUCLES COMPTÉES AVEC DO](<./06 ├── BOUCLES COMPTEES AVEC DO.md>)
+
+[^terme-expression]: **EXPRESSION.** Construction qui produit une valeur à partir d’opérandes et d’opérateurs. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#expression>).
+[^terme-abap]: **ABAP.** Langage de programmation de la plateforme ABAP, conçu pour développer des applications métier et techniques SAP. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#abap>).
+[^terme-acro-ddic]: **DDIC.** Data Dictionary, abréviation courante de l’ABAP Dictionary. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/10 └── ACRONYMES SAP.md#acro-ddic>).

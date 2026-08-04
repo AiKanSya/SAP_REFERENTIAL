@@ -2,14 +2,14 @@
 
 ## 19.A RÉSULTAT ATTENDU
 
-- Lire une interface BAPI complexe
+- Lire une interface BAPI[^terme-bapi] complexe
 - Comprendre les structures de données et structures `X`
 - Interpréter `BAPIRET2`
 - Déterminer le succès métier avant le commit
 
 ## 19.B STRUCTURES MÉTIER
 
-Les BAPI utilisent souvent des structures DDIC dédiées. Leur nom reflète généralement l’objet et l’opération, mais seule la documentation fait foi.
+Les BAPI utilisent souvent des structures DDIC[^terme-acro-ddic] dédiées. Leur nom reflète généralement l’objet et l’opération, mais seule la documentation fait foi.
 
 Exemples de catégories :
 
@@ -40,7 +40,7 @@ Une structure `BAPIRET2` contient notamment :
 | Champ                       | Rôle                                |
 | --------------------------- | ----------------------------------- |
 | `TYPE`                      | Gravité du message                  |
-| `ID`                        | Classe de messages                  |
+| `ID`                        | Classe[^terme-classe] de messages                  |
 | `NUMBER`                    | Numéro du message                   |
 | `MESSAGE`                   | Texte formaté                       |
 | `MESSAGE_V1` à `V4`         | Variables du message                |
@@ -101,7 +101,7 @@ Parcourir toutes les lignes, pas seulement la première. Classer `A`, `E`, `X` c
 
 ### 19.H.5 Étape 5 — Vérifier l’effet
 
-Sans erreur bloquante, exécuter le commit prévu puis relire l’objet avec une API officielle. Le test est validé lorsque seuls les champs marqués changent et qu’une erreur provoque un rollback.
+Sans erreur bloquante, exécuter le commit prévu puis relire l’objet avec une API[^terme-api] officielle. Le test est validé lorsque seuls les champs marqués changent et qu’une erreur provoque un rollback.
 
 ## 19.I VÉRIFICATION
 
@@ -114,7 +114,7 @@ Sans erreur bloquante, exécuter le commit prévu puis relire l’objet avec une
 
 - Copier un exemple sans adapter les types, noms d’objets et données disponibles dans le système.
 - Tester uniquement le cas nominal et ignorer les valeurs initiales, absentes ou invalides.
-- Appeler un module fonction sans lire sa documentation et ses exceptions.
+- Appeler un module fonction[^terme-module-fonction] sans lire sa documentation et ses exceptions.
 - Supposer qu’une BAPI effectue automatiquement le commit.
 
 ## 19.K SNIPPET À RÉUTILISER
@@ -146,3 +146,9 @@ DATA(lv_has_error) = xsdbool(
 ---
 
 [Chapitre suivant — APPELER UNE BAPI ET GÉRER LA TRANSACTION](<./20 ├── APPELER UNE BAPI ET GERER LA TRANSACTION.md>)
+
+[^terme-bapi]: **BAPI.** Interface métier publiée autour d’un Business Object SAP, généralement implémentée par un module fonction RFC. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/06 ├── PROGRAMMES CLASSES ET OBJETS TECHNIQUES.md#bapi>).
+[^terme-acro-ddic]: **DDIC.** Data Dictionary, abréviation courante de l’ABAP Dictionary. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/10 └── ACRONYMES SAP.md#acro-ddic>).
+[^terme-classe]: **CLASSE.** Modèle orienté objet définissant état et comportements. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#classe>).
+[^terme-api]: **API.** Application Programming Interface, contrat exposant des opérations ou données utilisables par d’autres composants. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/10 └── ACRONYMES SAP.md#api>).
+[^terme-module-fonction]: **MODULE FONCTION.** Procédure globale appelée avec `CALL FUNCTION` et définie dans un groupe de fonctions. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/06 ├── PROGRAMMES CLASSES ET OBJETS TECHNIQUES.md#module-fonction>).

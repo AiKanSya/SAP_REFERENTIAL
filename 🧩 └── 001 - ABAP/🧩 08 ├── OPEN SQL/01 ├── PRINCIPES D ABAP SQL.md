@@ -2,7 +2,7 @@
 
 ## 1.A RÉSULTAT ATTENDU
 
-- Comprendre le rôle d’ABAP SQL
+- Comprendre le rôle d’ABAP[^terme-abap] SQL[^terme-acro-sql]
 - Distinguer ABAP SQL, SQL natif et traitements ABAP
 - Comprendre le passage par l’interface de base de données
 - Identifier les opérations de lecture et de modification
@@ -26,7 +26,7 @@ L’interface de base de données assure notamment :
 
 - l’adaptation au système de base de données utilisé ;
 - la conversion entre types ABAP et types de base de données ;
-- la gestion implicite du mandant pour les sources concernées ;
+- la gestion implicite du mandant[^terme-mandant] pour les sources concernées ;
 - l’utilisation éventuelle du buffer de tables ABAP.
 
 ## 1.C PRINCIPALES INSTRUCTIONS
@@ -46,9 +46,9 @@ L’interface de base de données assure notamment :
 | Syntaxe intégrée au langage ABAP             | Syntaxe propre au système de base de données  |
 | Indépendance plus forte vis-à-vis de la base | Dépendance au moteur de base de données       |
 | Gestion ABAP du mandant et du buffer         | Accès direct sans ces mécanismes ABAP         |
-| Contrôle de syntaxe avec les objets DDIC     | Contrôle dépendant de la technologie utilisée |
+| Contrôle de syntaxe avec les objets DDIC[^terme-acro-ddic]     | Contrôle dépendant de la technologie utilisée |
 
-Utiliser ABAP SQL par défaut pour les accès classiques depuis un programme ABAP. Le SQL natif, ADBC, AMDP et les CDS seront traités dans des dossiers spécialisés.
+Utiliser ABAP SQL par défaut pour les accès classiques depuis un programme ABAP. Le SQL natif, ADBC, AMDP et les CDS[^terme-acro-cds] seront traités dans des dossiers spécialisés.
 
 ## 1.E CODE PUSH-DOWN
 
@@ -64,10 +64,10 @@ Cela ne signifie pas qu’il faut placer toute la logique métier dans SQL. La r
 
 ## 1.F TABLES DE DÉMONSTRATION
 
-Les exemples de lecture utilisent principalement `SCARR`, `SPFLI` et `SFLIGHT`, tables de démonstration historiques du modèle de vols SAP.
+Les exemples de lecture utilisent principalement `SCARR`, `SPFLI` et `SFLIGHT`, tables de démonstration historiques du modèle de vols SAP[^terme-acro-sap].
 
 > [!NOTE]
-> Leur disponibilité dépend du système. Adapter les exemples à une table de démonstration ou à un objet client présent dans l’environnement.
+> Leur disponibilité dépend du système. Adapter les exemples à une table de démonstration ou à un objet client présent dans l’environnement[^terme-environnement].
 
 Les exemples d’écriture utilisent une table fictive `ZDEV_PRODUCT`. Ils ne doivent pas être exécutés sur une table applicative SAP standard.
 
@@ -75,11 +75,11 @@ Les exemples d’écriture utilisent une table fictive `ZDEV_PRODUCT`. Ils ne do
 
 ### 1.G.1 Étape 1 — Définir le résultat de la requête
 
-Lister les colonnes attendues, les filtres obligatoires, l’unicité éventuelle et l’ordre réellement nécessaire. Déterminer si l’opération est une lecture ou une modification et identifier l’API métier qui pourrait devoir être utilisée à la place d’un accès direct.
+Lister les colonnes attendues, les filtres obligatoires, l’unicité éventuelle et l’ordre réellement nécessaire. Déterminer si l’opération est une lecture ou une modification et identifier l’API[^terme-api] métier qui pourrait devoir être utilisée à la place d’un accès direct.
 
 ### 1.G.2 Étape 2 — Examiner la source
 
-Afficher la table ou vue dans `SE11`. Relever clé, dépendance au mandant, types, références devise/unité, bufferisation et volume estimé. Pour un objet SAP, vérifier que la lecture directe est autorisée par le modèle applicatif.
+Afficher la table ou vue dans `SE11`[^outil-se11]. Relever clé, dépendance au mandant, types, références devise/unité, bufferisation et volume estimé. Pour un objet SAP, vérifier que la lecture directe est autorisée par le modèle applicatif.
 
 ### 1.G.3 Étape 3 — Écrire la requête minimale
 
@@ -102,7 +102,7 @@ Exécuter un cas trouvé, un cas absent et une limite de volume. Comparer le ré
 ## 1.I ERREURS FRÉQUENTES
 
 - Lire toutes les colonnes ou toutes les lignes par défaut.
-- Effectuer des commits dans une méthode réutilisable sans contrat explicite.
+- Effectuer des commits dans une méthode[^terme-methode] réutilisable sans contrat explicite.
 
 ## 1.J TERMES DU LEXIQUE
 
@@ -126,3 +126,15 @@ Exécuter un cas trouvé, un cas absent et une limite de volume. Comparer le ré
 ---
 
 [Chapitre suivant — SOURCES DE DONNÉES, MANDANT ET BUFFER](<./02 ├── SOURCES DE DONNEES MANDANT ET BUFFER.md>)
+
+[^terme-abap]: **ABAP.** Langage de programmation de la plateforme ABAP, conçu pour développer des applications métier et techniques SAP. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#abap>).
+[^terme-acro-sql]: **SQL.** Structured Query Language. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/10 └── ACRONYMES SAP.md#acro-sql>).
+[^terme-mandant]: **MANDANT.** Subdivision logique d’un système SAP. Il est identifié par un numéro à trois chiffres et isole une partie des données, du paramétrage et des utilisateurs. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/01 ├── SYSTEMES ENVIRONNEMENTS ET MANDANTS.md#mandant>).
+[^terme-acro-ddic]: **DDIC.** Data Dictionary, abréviation courante de l’ABAP Dictionary. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/10 └── ACRONYMES SAP.md#acro-ddic>).
+[^terme-acro-cds]: **CDS.** Core Data Services, langage de modélisation de vues et entités de données. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/10 └── ACRONYMES SAP.md#acro-cds>).
+[^terme-acro-sap]: **SAP.** Nom de l’éditeur et de son écosystème logiciel ; l’acronyme historique provient de l’allemand. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/10 └── ACRONYMES SAP.md#acro-sap>).
+[^terme-environnement]: **ENVIRONNEMENT.** Rôle fonctionnel attribué à un système dans le cycle de vie : développement, test, recette, préproduction ou production. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/01 ├── SYSTEMES ENVIRONNEMENTS ET MANDANTS.md#environnement>).
+[^terme-api]: **API.** Application Programming Interface, contrat exposant des opérations ou données utilisables par d’autres composants. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/10 └── ACRONYMES SAP.md#api>).
+[^terme-methode]: **MÉTHODE.** Comportement déclaré dans une classe ou une interface et appelé avec une liste de paramètres définie. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#methode>).
+
+[^outil-se11]: **SE11.** Transaction de l’ABAP Dictionary utilisée pour analyser et maintenir les objets DDIC. Voir [le chapitre associé](<../🧩 07 ├── DICTIONNAIRE ABAP/02 ├── NAVIGATION ET ANALYSE AVEC SE11.md>).

@@ -2,7 +2,7 @@
 
 ## 20.A RÉSULTAT ATTENDU
 
-- Reproduire une étape ABAP dans le Debugger
+- Reproduire une étape ABAP[^terme-abap] dans le Debugger
 - Comprendre la différence avec l’exécution batch réelle
 - Éviter toute modification de données involontaire
 
@@ -10,11 +10,11 @@
 
 ### 20.B.1 ÉTAPE 1 — FIGER LE CONTEXTE DU JOB
 
-Dans `SM37`, relever le nom, le numéro, l’étape, le programme, la variante et l’utilisateur. Lire d’abord le journal, le spool et les dumps éventuels. Utiliser JDBG seulement si ces preuves ne suffisent pas à localiser la cause.
+Dans `SM37`[^outil-sm37], relever le nom, le numéro, l’étape, le programme, la variante et l’utilisateur. Lire d’abord le journal, le spool[^terme-spool] et les dumps éventuels. Utiliser JDBG[^outil-jdbg] seulement si ces preuves ne suffisent pas à localiser la cause.
 
 ### 20.B.2 ÉTAPE 2 — CHOISIR UN ENVIRONNEMENT SÛR
 
-Copier ou reproduire le job en développement ou en qualité avec des données contrôlées. Vérifier si l’étape réalise des écritures, des commits, des appels externes ou des envois. Préparer des breakpoints avant le premier effet irréversible.
+Copier ou reproduire le job[^terme-job] en développement ou en qualité avec des données contrôlées. Vérifier si l’étape réalise des écritures, des commits, des appels externes ou des envois. Préparer des breakpoints avant le premier effet irréversible.
 
 ### 20.B.3 ÉTAPE 3 — SÉLECTIONNER L’OCCURRENCE ET L’ÉTAPE
 
@@ -22,17 +22,17 @@ Dans `SM37`, sélectionner exactement le job à reproduire. Utiliser la fonction
 
 ### 20.B.4 ÉTAPE 4 — VÉRIFIER LE CONTEXTE DÈS L’ENTRÉE
 
-Contrôler les valeurs de l’écran de sélection, `sy-batch`, l’utilisateur, le mandant et les chemins résolus. Comparer ces éléments au job initial. Le debug utilise un contexte de dialogue et ne reproduit pas nécessairement chaque caractéristique du processus batch d’origine.
+Contrôler les valeurs de l’écran de sélection, `sy-batch`, l’utilisateur, le mandant[^terme-mandant] et les chemins résolus. Comparer ces éléments au job initial. Le debug utilise un contexte de dialogue et ne reproduit pas nécessairement chaque caractéristique du processus batch d’origine.
 
 ### 20.B.5 ÉTAPE 5 — SUIVRE JUSQU’À LA PREMIÈRE DIVERGENCE
 
-Inspecter la pile, les conditions, la sélection de données et les retours d’API. Arrêter avant les écritures non autorisées. Ne modifier aucune variable afin de « réparer » une donnée productive ; toute correction doit passer par le code ou la procédure métier contrôlée.
+Inspecter la pile, les conditions, la sélection de données et les retours d’API[^terme-api]. Arrêter avant les écritures non autorisées. Ne modifier aucune variable afin de « réparer » une donnée productive ; toute correction doit passer par le code ou la procédure métier contrôlée.
 
 ### 20.B.6 ÉTAPE 6 — CONFIRMER HORS DEBUG
 
 Après correction, exécuter un nouveau job avec la même variante et un identifiant distinct. Vérifier journal, spool, données et durée. Le comportement hors debugger constitue la validation finale.
 
-La commande `JDBG` exécute l’étape dans un processus de dialogue sous contrôle du Debugger. Le contexte est simulé pour reproduire certains aspects du batch, mais l’environnement ne doit pas être considéré comme strictement identique.
+La commande `JDBG` exécute l’étape dans un processus de dialogue[^terme-processus-dialogue] sous contrôle du Debugger. Le contexte est simulé pour reproduire certains aspects du batch, mais l’environnement[^terme-environnement] ne doit pas être considéré comme strictement identique.
 
 ## 20.C PRÉCAUTIONS
 
@@ -47,9 +47,9 @@ La commande `JDBG` exécute l’étape dans un processus de dialogue sous contr�
 
 - exécuter le programme en dialogue avec la même variante ;
 - ajouter une journalisation temporaire contrôlée ;
-- utiliser `ST12` ou `SAT` pour une trace ;
-- analyser `ST22`, le journal de job et `SLG1` ;
-- utiliser un breakpoint externe pour un processus précis lorsque la procédure le permet.
+- utiliser `ST12`[^outil-st12] ou `SAT`[^outil-sat] pour une trace[^terme-trace] ;
+- analyser `ST22`[^outil-st22], le journal de job et `SLG1`[^outil-slg1] ;
+- utiliser un breakpoint[^terme-breakpoint] externe pour un processus précis lorsque la procédure le permet.
 
 ## 20.E VÉRIFICATION
 
@@ -93,3 +93,20 @@ Ordre de transport  :
 ---
 
 [Chapitre suivant — COMMANDES ET PROGRAMMES EXTERNES](<./21 ├── COMMANDES ET PROGRAMMES EXTERNES.md>)
+
+[^terme-abap]: **ABAP.** Langage de programmation de la plateforme ABAP, conçu pour développer des applications métier et techniques SAP. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#abap>).
+[^terme-spool]: **SPOOL.** Infrastructure stockant et acheminant les sorties imprimables produites par les traitements SAP. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/06 ├── PROGRAMMES CLASSES ET OBJETS TECHNIQUES.md#spool>).
+[^terme-job]: **JOB.** Traitement planifié en arrière-plan composé d’une ou plusieurs étapes. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/06 ├── PROGRAMMES CLASSES ET OBJETS TECHNIQUES.md#job>).
+[^terme-mandant]: **MANDANT.** Subdivision logique d’un système SAP. Il est identifié par un numéro à trois chiffres et isole une partie des données, du paramétrage et des utilisateurs. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/01 ├── SYSTEMES ENVIRONNEMENTS ET MANDANTS.md#mandant>).
+[^terme-api]: **API.** Application Programming Interface, contrat exposant des opérations ou données utilisables par d’autres composants. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/10 └── ACRONYMES SAP.md#api>).
+[^terme-processus-dialogue]: **PROCESSUS DE DIALOGUE.** Processus de travail traitant les requêtes interactives SAP GUI. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/08 ├── EXECUTION EXPLOITATION ET ADMINISTRATION.md#processus-dialogue>).
+[^terme-environnement]: **ENVIRONNEMENT.** Rôle fonctionnel attribué à un système dans le cycle de vie : développement, test, recette, préproduction ou production. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/01 ├── SYSTEMES ENVIRONNEMENTS ET MANDANTS.md#environnement>).
+[^terme-trace]: **TRACE.** Enregistrement détaillé d’événements techniques pour analyser exécution, SQL ou appels. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/08 ├── EXECUTION EXPLOITATION ET ADMINISTRATION.md#trace>).
+[^terme-breakpoint]: **BREAKPOINT.** Point d’arrêt suspendant l’exécution dans le débogueur. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/08 ├── EXECUTION EXPLOITATION ET ADMINISTRATION.md#breakpoint>).
+
+[^outil-sm37]: **SM37.** Transaction de recherche, surveillance et administration des jobs d’arrière-plan. Voir [le chapitre associé](<15 ├── SURVEILLER LES JOBS AVEC SM37.md>).
+[^outil-jdbg]: **JDBG.** Commande utilisée depuis SM37 pour démarrer le débogage contrôlé d’un job sélectionné. Voir [le chapitre associé](<20 ├── DEBUGGER UN JOB AVEC JDBG.md>).
+[^outil-st12]: **ST12.** Outil d’analyse ciblée combinant des traces ABAP et SQL pour un scénario reproduit. Voir [le chapitre associé](<../🧩 11 ├── DEBUG ET ANALYSE/16 ├── ANALYSE CIBLEE AVEC ST12.md>).
+[^outil-sat]: **SAT.** Runtime Analysis utilisée pour mesurer et analyser le temps d’exécution ABAP. Voir [le chapitre associé](<../🧩 20 ├── PERFORMANCE QUALITE ET TESTS/07 ├── MESURER LE TEMPS D EXECUTION AVEC SAT.md>).
+[^outil-st22]: **ST22.** Transaction d’analyse des terminaisons anormales et dumps ABAP. Voir [le chapitre associé](<../🧩 11 ├── DEBUG ET ANALYSE/13 ├── ANALYSER LES DUMPS AVEC ST22.md>).
+[^outil-slg1]: **SLG1.** Transaction de recherche et d’affichage des journaux applicatifs persistés. Voir [le chapitre associé](<../🧩 19 ├── JOURNAUX APPLICATIFS/05 ├── ANALYSER LES JOURNAUX AVEC SLG1.md>).

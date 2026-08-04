@@ -87,7 +87,7 @@ La valeur devient `20260831`.
 
 ## 10.F RISQUES D’ACCÈS HORS LIMITES
 
-Un offset négatif ou une sous-zone dépassant la longueur disponible peut produire une exception d’exécution.
+Un offset négatif ou une sous-zone dépassant la longueur disponible peut produire une exception[^terme-exception] d’exécution.
 
 Validation préalable :
 
@@ -148,12 +148,12 @@ Cette technique suppose que le format a été validé avant l’extraction.
 - Copier un exemple sans adapter les types, noms d’objets et données disponibles dans le système.
 - Tester uniquement le cas nominal et ignorer les valeurs initiales, absentes ou invalides.
 - S’appuyer sur une conversion implicite pouvant tronquer ou arrondir.
-- Ignorer l’encodage et les formats externes.
+- Ignorer l’encodage[^terme-encodage] et les formats externes.
 
 ## 10.K SNIPPET À RÉUTILISER
 
 > [!NOTE]
-> Adapter les noms `Z*`, les types DDIC, les données et les autorisations au système cible. Effectuer un contrôle syntaxique avant activation.
+> Adapter les noms `Z*`, les types DDIC[^terme-acro-ddic], les données et les autorisations au système cible. Effectuer un contrôle syntaxique avant activation.
 
 ```abap
 DATA(lv_text_length) = strlen( lv_text ).
@@ -181,3 +181,7 @@ ENDIF.
 ---
 
 [Chapitre suivant — RECHERCHE ET REMPLACEMENT](<./11 ├── RECHERCHE ET REMPLACEMENT.md>)
+
+[^terme-exception]: **EXCEPTION.** Objet ou signal représentant une situation anormale qu’un appelant peut traiter. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#exception>).
+[^terme-encodage]: **ENCODAGE.** Règle transformant les caractères en octets et inversement. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/07 ├── INTERFACES ET INTEGRATION.md#encodage>).
+[^terme-acro-ddic]: **DDIC.** Data Dictionary, abréviation courante de l’ABAP Dictionary. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/10 └── ACRONYMES SAP.md#acro-ddic>).

@@ -4,7 +4,7 @@
 
 - Éviter les milliers de messages identiques
 - Manipuler un message à partir de son handle
-- Connaître les fonctions avancées du BAL
+- Connaître les fonctions avancées du BAL[^terme-acro-bal]
 
 ## 12.B CUMULER
 
@@ -59,11 +59,11 @@ Utiliser `BAL_LOG_MSG_READ` pour récupérer l’état courant. Comparer le cont
 
 ### 12.E.5 ÉTAPE 5 — SUPPRIMER UNIQUEMENT UN MESSAGE PROVISOIRE
 
-Utiliser `BAL_LOG_MSG_DELETE` seulement si le message a été ajouté comme état temporaire et si sa suppression ne falsifie pas l’historique. Préférer un nouveau message corrigeant ou clôturant l’état lorsqu’une trace chronologique est utile.
+Utiliser `BAL_LOG_MSG_DELETE` seulement si le message a été ajouté comme état temporaire et si sa suppression ne falsifie pas l’historique. Préférer un nouveau message corrigeant ou clôturant l’état lorsqu’une trace[^terme-trace] chronologique est utile.
 
 ### 12.E.6 ÉTAPE 6 — VÉRIFIER LE JOURNAL FINAL
 
-Afficher en mémoire puis sauvegarder. Dans `SLG1`, contrôler compteur, messages modifiés, ordre et contexte de rejets. Comparer le volume du journal avant/après cumulation et confirmer que les enregistrements défaillants restent identifiables.
+Afficher en mémoire puis sauvegarder. Dans `SLG1`[^outil-slg1], contrôler compteur, messages modifiés, ordre et contexte de rejets. Comparer le volume du journal avant/après cumulation et confirmer que les enregistrements défaillants restent identifiables.
 
 ## 12.F VÉRIFICATION
 
@@ -106,3 +106,8 @@ Ordre de transport  :
 ---
 
 [Chapitre suivant — AFFICHER UN JOURNAL EN MÉMOIRE](<./13 ├── AFFICHER UN JOURNAL EN MEMOIRE.md>)
+
+[^terme-acro-bal]: **BAL.** Business Application Log, API technique du journal applicatif. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/10 └── ACRONYMES SAP.md#acro-bal>).
+[^terme-trace]: **TRACE.** Enregistrement détaillé d’événements techniques pour analyser exécution, SQL ou appels. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/08 ├── EXECUTION EXPLOITATION ET ADMINISTRATION.md#trace>).
+
+[^outil-slg1]: **SLG1.** Transaction de recherche et d’affichage des journaux applicatifs persistés. Voir [le chapitre associé](<05 ├── ANALYSER LES JOURNAUX AVEC SLG1.md>).

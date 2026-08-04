@@ -2,7 +2,7 @@
 
 ## 15.A RÉSULTAT ATTENDU
 
-Utiliser l’ATC comme point de contrôle principal de la qualité du code ABAP.
+Utiliser l’ATC[^terme-acro-atc] comme point de contrôle principal de la qualité du code ABAP[^terme-abap].
 
 ## 15.B Scénarios
 
@@ -55,7 +55,7 @@ Vérifier si les contrôles sont locaux, centraux ou intégrés aux transports. 
 
 ### 15.H.2 ÉTAPE 2 — DÉFINIR LE PÉRIMÈTRE
 
-Sélectionner objet, package ou demande contenant tous les développements livrés. Inclure dépendances et objets générés pertinents. Éviter un contrôle limité au seul fichier récemment ouvert.
+Sélectionner objet, package[^terme-package] ou demande contenant tous les développements livrés. Inclure dépendances et objets générés pertinents. Éviter un contrôle limité au seul fichier récemment ouvert.
 
 ### 15.H.3 ÉTAPE 3 — LANCER LE RUN
 
@@ -105,3 +105,7 @@ Ordre de transport  :
 - [ABAP](<../🧩 00 ├── LEXIQUE SAP ET ABAP/10 └── ACRONYMES SAP.md#acro-abap>)
 - [ATC](<../🧩 00 ├── LEXIQUE SAP ET ABAP/10 └── ACRONYMES SAP.md#acro-atc>)
 - [Trace](<../🧩 00 ├── LEXIQUE SAP ET ABAP/08 ├── EXECUTION EXPLOITATION ET ADMINISTRATION.md#trace>)
+
+[^terme-acro-atc]: **ATC.** ABAP Test Cockpit, infrastructure de contrôles statiques et de gouvernance qualité. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/10 └── ACRONYMES SAP.md#acro-atc>).
+[^terme-abap]: **ABAP.** Langage de programmation de la plateforme ABAP, conçu pour développer des applications métier et techniques SAP. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#abap>).
+[^terme-package]: **PACKAGE.** Conteneur logique qui regroupe les objets de développement et détermine notamment leur transportabilité. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/03 ├── REPOSITORY PACKAGES ET TRANSPORTS.md#package>).

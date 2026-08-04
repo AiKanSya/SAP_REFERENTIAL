@@ -10,7 +10,7 @@ Limiter la consommation mémoire sans introduire de libérations prématurées o
 - copies de structures ou de tables ;
 - références maintenant des objets accessibles ;
 - caches globaux non bornés ;
-- résultats SQL surdimensionnés ;
+- résultats SQL[^terme-acro-sql] surdimensionnés ;
 - transformations créant plusieurs versions complètes des mêmes données.
 
 ## 6.C Copier ou référencer
@@ -99,7 +99,7 @@ Répéter le même volume et comparer pic, mémoire retenue et durée. Vérifier
 ## 6.K SNIPPET À RÉUTILISER
 
 > [!NOTE]
-> Adapter les noms `Z*`, les types DDIC, les données et les autorisations au système cible. Effectuer un contrôle syntaxique avant activation.
+> Adapter les noms `Z*`, les types DDIC[^terme-acro-ddic], les données et les autorisations au système cible. Effectuer un contrôle syntaxique avant activation.
 
 ```abap
 LOOP AT lt_data ASSIGNING FIELD-SYMBOL(<ls_data>).
@@ -112,3 +112,6 @@ ENDLOOP.
 - [ATC](<../🧩 00 ├── LEXIQUE SAP ET ABAP/10 └── ACRONYMES SAP.md#acro-atc>)
 - [ABAP](<../🧩 00 ├── LEXIQUE SAP ET ABAP/10 └── ACRONYMES SAP.md#acro-abap>)
 - [Trace](<../🧩 00 ├── LEXIQUE SAP ET ABAP/08 ├── EXECUTION EXPLOITATION ET ADMINISTRATION.md#trace>)
+
+[^terme-acro-sql]: **SQL.** Structured Query Language. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/10 └── ACRONYMES SAP.md#acro-sql>).
+[^terme-acro-ddic]: **DDIC.** Data Dictionary, abréviation courante de l’ABAP Dictionary. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/10 └── ACRONYMES SAP.md#acro-ddic>).

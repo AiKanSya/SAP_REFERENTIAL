@@ -2,9 +2,9 @@
 
 ## 20.A RÉSULTAT ATTENDU
 
-- Étendre une classe globale sans la modifier directement
+- Étendre une classe globale[^terme-classe-globale] sans la modifier directement
 - Comprendre pre-method, post-method et overwrite-method
-- Évaluer les risques de remplacement d’une méthode
+- Évaluer les risques de remplacement d’une méthode[^terme-methode]
 
 ## 20.B MODES
 
@@ -34,7 +34,7 @@ Selon l’objet et la version, le framework permet notamment :
 
 ## 20.D RISQUES
 
-L’overwrite-method copie implicitement la responsabilité du code standard. Les corrections futures de SAP dans la méthode d’origine ne sont plus exécutées. Ce mécanisme doit rester exceptionnel.
+L’overwrite-method copie implicitement la responsabilité du code standard. Les corrections futures de SAP[^terme-acro-sap] dans la méthode d’origine ne sont plus exécutées. Ce mécanisme doit rester exceptionnel.
 
 Pour un pre/post method :
 
@@ -47,11 +47,11 @@ Pour un pre/post method :
 
 ### 20.E.1 ÉTAPE 1 — ANALYSER LA MÉTHODE STANDARD
 
-Ouvrir la classe et la méthode en affichage dans `SE24` ou `SE80`. Relever la signature, les préconditions, les effets, les exceptions et les appelants. Reproduire le scénario avec un breakpoint afin de confirmer les valeurs d’entrée et de sortie.
+Ouvrir la classe et la méthode en affichage dans `SE24`[^terme-class-builder-se24] ou `SE80`[^outil-se80]. Relever la signature, les préconditions, les effets, les exceptions et les appelants. Reproduire le scénario avec un breakpoint[^terme-breakpoint] afin de confirmer les valeurs d’entrée et de sortie.
 
 ### 20.E.2 ÉTAPE 2 — CHOISIR LE TYPE D’ENHANCEMENT
 
-Utiliser un pré-exit pour préparer ou valider avant le code standard, un post-exit pour compléter le résultat après le standard, et un overwrite uniquement lorsque le remplacement complet est indispensable. Documenter pourquoi une BAdI, un point explicite ou une composition ne couvre pas le besoin.
+Utiliser un pré-exit pour préparer ou valider avant le code standard, un post-exit pour compléter le résultat après le standard, et un overwrite uniquement lorsque le remplacement complet est indispensable. Documenter pourquoi une BAdI[^terme-acro-badi], un point explicite ou une composition[^terme-composition] ne couvre pas le besoin.
 
 ### 20.E.3 ÉTAPE 3 — MESURER LES DONNÉES DISPONIBLES
 
@@ -59,11 +59,11 @@ Vérifier les paramètres et attributs accessibles à l’option retenue. Déter
 
 ### 20.E.4 ÉTAPE 4 — CRÉER L’IMPLÉMENTATION
 
-Depuis les opérations d’enhancement de la classe, créer une enhancement implementation Z et le bloc pré, post ou overwrite. Affecter le package et le transport. Conserver le code du bloc minimal et déléguer le métier à une classe Z.
+Depuis les opérations d’enhancement de la classe, créer une enhancement implementation Z et le bloc pré, post ou overwrite. Affecter le package[^terme-package] et le transport. Conserver le code du bloc minimal et déléguer le métier à une classe Z.
 
 ### 20.E.5 ÉTAPE 5 — TESTER L’ORDRE ET LES EXCEPTIONS
 
-Poser des breakpoints dans le pré-exit, la méthode standard et le post-exit afin de confirmer la séquence. Tester un retour normal et chaque exception pertinente. Pour un overwrite, comparer les résultats à un référentiel standard sur toutes les variantes métier.
+Poser des breakpoints dans le pré-exit, la méthode standard et le post-exit afin de confirmer la séquence. Tester un retour normal et chaque exception[^terme-exception] pertinente. Pour un overwrite, comparer les résultats à un référentiel standard sur toutes les variantes métier.
 
 ### 20.E.6 ÉTAPE 6 — ENCADRER LE RISQUE D’UPGRADE
 
@@ -112,3 +112,15 @@ Ordre de transport  :
 ---
 
 [Chapitre suivant — BAdI DU ENHANCEMENT FRAMEWORK ET APPELS ABAP](<./21 ├── BADI DU ENHANCEMENT FRAMEWORK ET APPELS ABAP.md>)
+
+[^terme-classe-globale]: **CLASSE GLOBALE.** Classe Repository réutilisable dans le système ABAP. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/06 ├── PROGRAMMES CLASSES ET OBJETS TECHNIQUES.md#classe-globale>).
+[^terme-methode]: **MÉTHODE.** Comportement déclaré dans une classe ou une interface et appelé avec une liste de paramètres définie. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#methode>).
+[^terme-acro-sap]: **SAP.** Nom de l’éditeur et de son écosystème logiciel ; l’acronyme historique provient de l’allemand. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/10 └── ACRONYMES SAP.md#acro-sap>).
+[^terme-class-builder-se24]: **CLASS BUILDER (SE24).** Outil SAP GUI utilisé pour créer, afficher, modifier, tester et documenter les classes et interfaces globales ABAP. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/06 ├── PROGRAMMES CLASSES ET OBJETS TECHNIQUES.md#class-builder-se24>).
+[^terme-breakpoint]: **BREAKPOINT.** Point d’arrêt suspendant l’exécution dans le débogueur. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/08 ├── EXECUTION EXPLOITATION ET ADMINISTRATION.md#breakpoint>).
+[^terme-acro-badi]: **BADI.** Business Add-In, mécanisme d’extension orienté objet du standard SAP. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/10 └── ACRONYMES SAP.md#acro-badi>).
+[^terme-composition]: **COMPOSITION.** Relation dans laquelle une classe réalise son comportement en contenant ou en utilisant d’autres objets spécialisés. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#composition>).
+[^terme-package]: **PACKAGE.** Conteneur logique qui regroupe les objets de développement et détermine notamment leur transportabilité. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/03 ├── REPOSITORY PACKAGES ET TRANSPORTS.md#package>).
+[^terme-exception]: **EXCEPTION.** Objet ou signal représentant une situation anormale qu’un appelant peut traiter. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#exception>).
+
+[^outil-se80]: **SE80.** Object Navigator utilisé pour parcourir et maintenir les objets du Repository ABAP. Voir [le chapitre associé](<../🧩 01 ├── FONDAMENTAUX ABAP/04 ├── EDITEURS ABAP SE38 ET SE80.md>).

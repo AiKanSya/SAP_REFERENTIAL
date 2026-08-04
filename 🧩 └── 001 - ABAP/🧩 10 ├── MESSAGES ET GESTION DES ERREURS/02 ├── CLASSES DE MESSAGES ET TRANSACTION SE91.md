@@ -2,15 +2,15 @@
 
 ## 2.A RÉSULTAT ATTENDU
 
-- Comprendre le rôle d’une classe de messages
-- Créer et maintenir des messages avec `SE91`
+- Comprendre le rôle d’une classe[^terme-classe] de messages
+- Créer et maintenir des messages avec `SE91`[^outil-se91]
 - Utiliser les numéros et variables de message
 - Préparer les traductions
 - Éviter les textes codés en dur
 
 ## 2.B PRINCIPE
 
-Les messages classiques ABAP sont stockés dans des **classes de messages**. Chaque entrée est identifiée par :
+Les messages classiques ABAP[^terme-abap] sont stockés dans des **classes de messages**. Chaque entrée est identifiée par :
 
 - une classe ;
 - un numéro sur trois chiffres ;
@@ -29,11 +29,11 @@ flowchart LR
 
 ### 2.C.1 Étape 1 — Définir le périmètre de la classe
 
-Regrouper des messages appartenant au même composant ou service. Rechercher une classe client existante avant d’en créer une nouvelle et vérifier son package et ses responsables.
+Regrouper des messages appartenant au même composant ou service. Rechercher une classe client existante avant d’en créer une nouvelle et vérifier son package[^terme-package] et ses responsables.
 
 ### 2.C.2 Étape 2 — Créer la classe
 
-Ouvrir `SE91`, saisir un nom client comme `ZDEV_MSG` et choisir **Créer**. Renseigner une description précise, puis affecter le package et la tâche de transport du composant.
+Ouvrir `SE91`, saisir un nom client comme `ZDEV_MSG` et choisir **Créer**. Renseigner une description précise, puis affecter le package et la tâche de transport[^terme-tache-transport] du composant.
 
 ### 2.C.3 Étape 3 — Ajouter un message
 
@@ -41,7 +41,7 @@ Choisir un numéro libre, saisir un texte court et utiliser au maximum `&1` à `
 
 ### 2.C.4 Étape 4 — Enregistrer et contrôler le transport
 
-Enregistrer puis vérifier dans `SE10` que la classe et ses textes sont rattachés à l’ordre attendu. Contrôler que le numéro ajouté n’a pas été simultanément utilisé par un autre changement.
+Enregistrer puis vérifier dans `SE10`[^outil-se10] que la classe et ses textes sont rattachés à l’ordre attendu. Contrôler que le numéro ajouté n’a pas été simultanément utilisé par un autre changement.
 
 ### 2.C.5 Étape 5 — Préparer les traductions
 
@@ -105,7 +105,7 @@ La traduction ne doit pas être remplacée par des textes assemblés manuellemen
 ## 2.H CONVENTIONS CONSEILLÉES
 
 - regrouper les messages par composant fonctionnel cohérent ;
-- éviter une classe globale contenant des messages sans relation ;
+- éviter une classe globale[^terme-classe-globale] contenant des messages sans relation ;
 - réserver des plages de numéros si l’équipe en a besoin ;
 - ne pas réutiliser un numéro avec une nouvelle signification ;
 - conserver les messages stables lorsqu’ils constituent un contrat d’interface.
@@ -118,7 +118,7 @@ Créer un report de test et utiliser `MESSAGE` avec la classe, le numéro et le 
 
 ### 2.I.2 Étape 2 — Tester le type de message dans son contexte
 
-Tester le message dans le contexte réel : écran de sélection, traitement de fond, méthode ou dynpro. Les types `E`, `W`, `S`, `I`, `A` et `X` n’ont pas le même effet selon le contexte ; ne déduire pas leur comportement depuis un seul report.
+Tester le message dans le contexte réel : écran de sélection, traitement de fond, méthode[^terme-methode] ou dynpro[^terme-dynpro]. Les types `E`, `W`, `S`, `I`, `A` et `X` n’ont pas le même effet selon le contexte ; ne déduire pas leur comportement depuis un seul report.
 
 ### 2.I.3 Étape 3 — Vérifier le texte résolu
 
@@ -135,7 +135,7 @@ La classe est validée lorsque le bon texte et le bon comportement apparaissent 
 ## 2.K ERREURS FRÉQUENTES
 
 - Afficher un message technique incompréhensible à l’utilisateur.
-- Attraper une exception sans action ni propagation.
+- Attraper une exception[^terme-exception] sans action ni propagation.
 
 ## 2.L FICHE DE CONTRÔLE À COPIER
 
@@ -168,3 +168,15 @@ Ordre de transport  :
 ---
 
 [Chapitre suivant — INSTRUCTION MESSAGE](<./03 ├── INSTRUCTION MESSAGE.md>)
+
+[^terme-classe]: **CLASSE.** Modèle orienté objet définissant état et comportements. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#classe>).
+[^terme-abap]: **ABAP.** Langage de programmation de la plateforme ABAP, conçu pour développer des applications métier et techniques SAP. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#abap>).
+[^terme-package]: **PACKAGE.** Conteneur logique qui regroupe les objets de développement et détermine notamment leur transportabilité. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/03 ├── REPOSITORY PACKAGES ET TRANSPORTS.md#package>).
+[^terme-tache-transport]: **TÂCHE DE TRANSPORT.** Sous-conteneur affecté à un utilisateur dans un ordre de transport. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/03 ├── REPOSITORY PACKAGES ET TRANSPORTS.md#tache-transport>).
+[^terme-classe-globale]: **CLASSE GLOBALE.** Classe Repository réutilisable dans le système ABAP. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/06 ├── PROGRAMMES CLASSES ET OBJETS TECHNIQUES.md#classe-globale>).
+[^terme-methode]: **MÉTHODE.** Comportement déclaré dans une classe ou une interface et appelé avec une liste de paramètres définie. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#methode>).
+[^terme-dynpro]: **DYNPRO.** Écran classique SAP composé d’une définition d’écran et d’une logique PBO/PAI. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/02 ├── SAP GUI NAVIGATION ET TRANSACTIONS.md#dynpro>).
+[^terme-exception]: **EXCEPTION.** Objet ou signal représentant une situation anormale qu’un appelant peut traiter. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#exception>).
+
+[^outil-se91]: **SE91.** Transaction de création et de maintenance des classes de messages SAP. Voir [le chapitre associé](<02 ├── CLASSES DE MESSAGES ET TRANSACTION SE91.md>).
+[^outil-se10]: **SE10.** Transaction de l’Organisateur de transports utilisée pour consulter et gérer les ordres et tâches de transport. Voir [le chapitre associé](<../🧩 01 ├── FONDAMENTAUX ABAP/03 ├── PACKAGES ET ORDRES DE TRANSPORT.md>).

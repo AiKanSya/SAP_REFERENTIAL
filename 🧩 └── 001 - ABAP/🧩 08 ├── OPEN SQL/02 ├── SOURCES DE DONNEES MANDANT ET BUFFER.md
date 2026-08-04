@@ -2,26 +2,26 @@
 
 ## 2.A RÉSULTAT ATTENDU
 
-- Identifier les sources utilisables dans ABAP SQL
-- Comprendre la gestion implicite du mandant
+- Identifier les sources utilisables dans ABAP[^terme-abap] SQL[^terme-acro-sql]
+- Comprendre la gestion implicite du mandant[^terme-mandant]
 - Comprendre l’influence du buffer de tables
-- Éviter les accès inter-mandants non maîtrisés
+- Éviter les accès inter-mandants[^terme-inter-mandants] non maîtrisés
 - Distinguer données persistantes et résultats calculés
 
 ## 2.B SOURCES DE DONNÉES
 
 Une instruction `SELECT` peut lire notamment :
 
-- une table transparente du Dictionary ABAP ;
+- une table transparente[^terme-table-transparente] du Dictionary ABAP ;
 - une vue classique du Dictionary ;
-- une entité CDS exploitable par ABAP SQL ;
+- une entité CDS[^terme-acro-cds] exploitable par ABAP SQL ;
 - certaines sources supplémentaires selon la version ABAP.
 
-Dans ce dossier SAP GUI, les exemples restent centrés sur les tables et vues classiques. La création de CDS relève du futur dossier ADT.
+Dans ce dossier SAP GUI[^terme-sap-gui], les exemples restent centrés sur les tables et vues classiques. La création de CDS relève du futur dossier ADT[^terme-acro-adt].
 
 ## 2.C GESTION IMPLICITE DU MANDANT
 
-Une table dépendante du mandant possède normalement le champ `MANDT` comme premier champ de clé, avec le type `CLNT`.
+Une table dépendante du mandant possède normalement le champ `MANDT`[^terme-mandt] comme premier champ de clé, avec le type `CLNT`.
 
 Pour les accès standards, ABAP SQL limite automatiquement la lecture au mandant courant.
 
@@ -48,14 +48,14 @@ Une table sans champ client est lue de la même manière dans tous les mandants 
 Exemples possibles :
 
 - données techniques globales ;
-- données de customizing explicitement indépendantes du mandant ;
+- données de customizing[^terme-customizing] explicitement indépendantes du mandant ;
 - référentiels communs à l’ensemble du système.
 
 La dépendance au mandant est définie dans le Dictionary et doit être comprise avant toute lecture ou écriture.
 
 ## 2.E BUFFER DE TABLES
 
-Certaines tables DDIC peuvent être bufferisées sur les serveurs d’application ABAP.
+Certaines tables DDIC[^terme-acro-ddic] peuvent être bufferisées sur les serveurs d’application ABAP.
 
 ```mermaid
 flowchart LR
@@ -76,7 +76,7 @@ Avant d’écrire une requête, vérifier :
 2. sa dépendance au mandant ;
 3. son volume ;
 4. sa stratégie de bufferisation ;
-5. son API métier éventuelle.
+5. son API[^terme-api] métier éventuelle.
 
 ## 2.G VÉRIFICATION
 
@@ -90,7 +90,7 @@ Avant d’écrire une requête, vérifier :
 - Copier un exemple sans adapter les types, noms d’objets et données disponibles dans le système.
 - Tester uniquement le cas nominal et ignorer les valeurs initiales, absentes ou invalides.
 - Lire toutes les colonnes ou toutes les lignes par défaut.
-- Effectuer des commits dans une méthode réutilisable sans contrat explicite.
+- Effectuer des commits dans une méthode[^terme-methode] réutilisable sans contrat explicite.
 
 ## 2.I SNIPPET À RÉUTILISER
 
@@ -127,3 +127,17 @@ SELECT carrid, carrname
 ---
 
 [Chapitre suivant — LECTURE SIMPLE AVEC SELECT](<./03 ├── LECTURE SIMPLE AVEC SELECT.md>)
+
+[^terme-abap]: **ABAP.** Langage de programmation de la plateforme ABAP, conçu pour développer des applications métier et techniques SAP. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#abap>).
+[^terme-acro-sql]: **SQL.** Structured Query Language. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/10 └── ACRONYMES SAP.md#acro-sql>).
+[^terme-mandant]: **MANDANT.** Subdivision logique d’un système SAP. Il est identifié par un numéro à trois chiffres et isole une partie des données, du paramétrage et des utilisateurs. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/01 ├── SYSTEMES ENVIRONNEMENTS ET MANDANTS.md#mandant>).
+[^terme-inter-mandants]: **INTER-MANDANTS.** Qualifie une donnée ou une action commune à tous les mandants d’un même système. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/01 ├── SYSTEMES ENVIRONNEMENTS ET MANDANTS.md#inter-mandants>).
+[^terme-table-transparente]: **TABLE TRANSPARENTE.** Table DDIC correspondant directement à une table physique de la base de données. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/05 ├── DONNEES DICTIONNAIRE ET BASE DE DONNEES.md#table-transparente>).
+[^terme-acro-cds]: **CDS.** Core Data Services, langage de modélisation de vues et entités de données. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/10 └── ACRONYMES SAP.md#acro-cds>).
+[^terme-sap-gui]: **SAP GUI.** Client graphique permettant d’utiliser les transactions et écrans d’un système SAP. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/02 ├── SAP GUI NAVIGATION ET TRANSACTIONS.md#sap-gui>).
+[^terme-acro-adt]: **ADT.** ABAP Development Tools, environnement de développement ABAP intégré à Eclipse. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/10 └── ACRONYMES SAP.md#acro-adt>).
+[^terme-mandt]: **MANDT.** Champ technique de type mandant, généralement placé en première position de clé dans les tables dépendantes du mandant. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/05 ├── DONNEES DICTIONNAIRE ET BASE DE DONNEES.md#mandt>).
+[^terme-customizing]: **CUSTOMIZING.** Paramétrage permettant d’adapter le comportement standard SAP à l’organisation. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/09 ├── NOTIONS FONCTIONNELLES ET ORGANISATIONNELLES.md#customizing>).
+[^terme-acro-ddic]: **DDIC.** Data Dictionary, abréviation courante de l’ABAP Dictionary. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/10 └── ACRONYMES SAP.md#acro-ddic>).
+[^terme-api]: **API.** Application Programming Interface, contrat exposant des opérations ou données utilisables par d’autres composants. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/10 └── ACRONYMES SAP.md#api>).
+[^terme-methode]: **MÉTHODE.** Comportement déclaré dans une classe ou une interface et appelé avec une liste de paramètres définie. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#methode>).

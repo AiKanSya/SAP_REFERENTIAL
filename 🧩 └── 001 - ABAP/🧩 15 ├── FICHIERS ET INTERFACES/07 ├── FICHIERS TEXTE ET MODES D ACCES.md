@@ -3,7 +3,7 @@
 ## 7.A RÉSULTAT ATTENDU
 
 - Ouvrir correctement un fichier texte
-- Comprendre l’effet de l’encodage et des fins de ligne
+- Comprendre l’effet de l’encodage[^terme-encodage] et des fins de ligne
 - Éviter les modes historiques non nécessaires
 
 ## 7.B MODE TEXTE
@@ -27,7 +27,7 @@ En mode texte :
 | Option                 | Utilisation                                                                      |
 | ---------------------- | -------------------------------------------------------------------------------- |
 | `ENCODING UTF-8`       | Contrat moderne et explicite                                                     |
-| `ENCODING DEFAULT`     | Code page par défaut du système ; dépendance à éviter dans une interface externe |
+| `ENCODING DEFAULT`     | Code page[^terme-code-page] par défaut du système ; dépendance à éviter dans une interface externe |
 | `WITH BYTE-ORDER MARK` | Ajout ou prise en compte d’un BOM lorsque requis                                 |
 
 ## 7.D ACCÈS
@@ -60,7 +60,7 @@ Utiliser `INPUT` pour lire, `OUTPUT` pour créer ou remplacer et `APPENDING` pou
 
 ### 7.G.3 Étape 3 — Ouvrir en mode texte avec encodage explicite
 
-Employer `IN TEXT MODE ENCODING UTF-8` lorsque le contrat est UTF-8. Traiter l’exception d’autorisation et `SY-SUBRC` avant de poursuivre.
+Employer `IN TEXT MODE ENCODING UTF-8` lorsque le contrat est UTF-8. Traiter l’exception[^terme-exception] d’autorisation et `SY-SUBRC` avant de poursuivre.
 
 ### 7.G.4 Étape 4 — Lire ou écrire une unité logique à la fois
 
@@ -81,13 +81,13 @@ Appeler `CLOSE DATASET`, puis contrôler le fichier avec le consommateur réel. 
 
 - Copier un exemple sans adapter les types, noms d’objets et données disponibles dans le système.
 - Tester uniquement le cas nominal et ignorer les valeurs initiales, absentes ou invalides.
-- Mélanger fichiers frontend et serveur dans un même scénario.
-- Parser un CSV par simple séparation alors que les champs peuvent être échappés.
+- Mélanger fichiers frontend[^terme-frontend] et serveur dans un même scénario.
+- Parser un CSV[^terme-csv] par simple séparation alors que les champs peuvent être échappés.
 
 ## 7.J SNIPPET À RÉUTILISER
 
 > [!NOTE]
-> Adapter les noms `Z*`, les types DDIC, les données et les autorisations au système cible. Effectuer un contrôle syntaxique avant activation.
+> Adapter les noms `Z*`, les types DDIC[^terme-acro-ddic], les données et les autorisations au système cible. Effectuer un contrôle syntaxique avant activation.
 
 ```abap
 " Ouvrir le fichier avec le mode et l’encodage attendus.
@@ -115,3 +115,10 @@ OPEN DATASET lv_file
 ---
 
 [Chapitre suivant — FICHIERS BINAIRES ET `XSTRING`](<./08 ├── FICHIERS BINAIRES ET XSTRING.md>)
+
+[^terme-encodage]: **ENCODAGE.** Règle transformant les caractères en octets et inversement. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/07 ├── INTERFACES ET INTEGRATION.md#encodage>).
+[^terme-code-page]: **CODE PAGE.** Table de correspondance entre caractères et valeurs binaires utilisée pour un encodage. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/07 ├── INTERFACES ET INTEGRATION.md#code-page>).
+[^terme-exception]: **EXCEPTION.** Objet ou signal représentant une situation anormale qu’un appelant peut traiter. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#exception>).
+[^terme-frontend]: **FRONTEND.** Poste ou couche cliente utilisée par l’utilisateur, par exemple SAP GUI for Windows. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/01 ├── SYSTEMES ENVIRONNEMENTS ET MANDANTS.md#frontend>).
+[^terme-csv]: **CSV.** Format texte tabulaire utilisant un séparateur de champs et des règles d’échappement. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/07 ├── INTERFACES ET INTEGRATION.md#csv>).
+[^terme-acro-ddic]: **DDIC.** Data Dictionary, abréviation courante de l’ABAP Dictionary. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/10 └── ACRONYMES SAP.md#acro-ddic>).

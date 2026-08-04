@@ -2,12 +2,12 @@
 
 ## 11.A RÉSULTAT ATTENDU
 
-- Déclarer une référence de données typée
+- Déclarer une référence de données[^terme-reference] typée
 - Référencer un objet existant
-- Créer un objet de données anonyme
+- Créer un objet de données[^terme-objet-donnees] anonyme
 - Déréférencer avec `->*`
 - Contrôler une référence avec `IS BOUND`
-- Distinguer référence et field-symbol
+- Distinguer référence et field-symbol[^terme-field-symbol]
 
 ## 11.B PRINCIPE
 
@@ -76,7 +76,7 @@ Déréférencer une référence initiale ou non valide peut provoquer une erreur
 
 ## 11.G OPÉRATEUR `REF`
 
-Sur les versions ABAP compatibles :
+Sur les versions ABAP[^terme-abap] compatibles :
 
 ```abap
 DATA(lr_number) = REF #( lv_number ).
@@ -130,7 +130,7 @@ Le typage générique doit être limité aux mécanismes qui en ont réellement 
 
 ## 11.J DURÉE DE VIE D’UN OBJET ANONYME
 
-Un objet anonyme reste accessible tant qu’une référence valide permet de l’atteindre. Lorsqu’il n’est plus référencé, l’environnement d’exécution peut récupérer sa mémoire.
+Un objet anonyme reste accessible tant qu’une référence valide permet de l’atteindre. Lorsqu’il n’est plus référencé, l’environnement[^terme-environnement] d’exécution peut récupérer sa mémoire.
 
 Il ne faut pas baser la logique fonctionnelle sur le moment exact de cette récupération mémoire.
 
@@ -180,7 +180,7 @@ La syntaxe `lr_result->*-code` déréférence l’objet puis accède au composan
 ## 11.N SNIPPET À RÉUTILISER
 
 > [!NOTE]
-> Adapter les noms `Z*`, les types DDIC, les données et les autorisations au système cible. Effectuer un contrôle syntaxique avant activation.
+> Adapter les noms `Z*`, les types DDIC[^terme-acro-ddic], les données et les autorisations au système cible. Effectuer un contrôle syntaxique avant activation.
 
 ```abap
 REPORT zdemo_data_references.
@@ -224,3 +224,10 @@ ENDIF.
 ---
 
 [Chapitre suivant — PORTÉE, DURÉE DE VIE ET `STATICS`](<./12 └── PORTEE DUREE DE VIE ET STATICS.md>)
+
+[^terme-reference]: **RÉFÉRENCE.** Valeur qui pointe vers un objet de données ou une instance de classe. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#reference>).
+[^terme-objet-donnees]: **OBJET DE DONNÉES.** Zone de mémoire typée contenant une valeur pendant l’exécution. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#objet-donnees>).
+[^terme-field-symbol]: **FIELD-SYMBOL.** Alias dynamique vers une zone de mémoire existante. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#field-symbol>).
+[^terme-abap]: **ABAP.** Langage de programmation de la plateforme ABAP, conçu pour développer des applications métier et techniques SAP. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#abap>).
+[^terme-environnement]: **ENVIRONNEMENT.** Rôle fonctionnel attribué à un système dans le cycle de vie : développement, test, recette, préproduction ou production. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/01 ├── SYSTEMES ENVIRONNEMENTS ET MANDANTS.md#environnement>).
+[^terme-acro-ddic]: **DDIC.** Data Dictionary, abréviation courante de l’ABAP Dictionary. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/10 └── ACRONYMES SAP.md#acro-ddic>).

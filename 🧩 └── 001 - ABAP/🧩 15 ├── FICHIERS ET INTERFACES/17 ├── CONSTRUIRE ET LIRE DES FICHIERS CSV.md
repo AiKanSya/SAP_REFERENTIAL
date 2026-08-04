@@ -8,12 +8,12 @@
 
 ## 17.B CONTRAT CSV
 
-CSV n’impose pas un séparateur unique dans tous les usages. Le contrat doit préciser :
+CSV[^terme-csv] n’impose pas un séparateur unique dans tous les usages. Le contrat doit préciser :
 
 - séparateur `,`, `;` ou tabulation ;
 - caractère de citation, généralement `"` ;
 - échappement des citations par doublement ;
-- encodage ;
+- encodage[^terme-encodage] ;
 - présence d’un en-tête ;
 - format des dates et nombres ;
 - représentation des valeurs vides.
@@ -55,7 +55,7 @@ Une valeur `Produit; spécial` devient `"Produit; spécial"`. Une citation inter
 
 ## 17.E DONNÉES MÉTIER
 
-Écrire les nombres avec un séparateur décimal invariant et les dates dans un format non ambigu, par exemple `YYYY-MM-DD`. Ne pas utiliser directement la présentation locale de l’utilisateur.
+Écrire les nombres avec un séparateur décimal invariant[^terme-invariant] et les dates dans un format non ambigu, par exemple `YYYY-MM-DD`. Ne pas utiliser directement la présentation locale de l’utilisateur.
 
 ## 17.F PROCESS
 
@@ -77,7 +77,7 @@ Ouvrir le dataset en mode texte avec l’encodage contractuel, transférer l’e
 
 ### 17.F.5 Étape 5 — Analyser avec un parseur adapté
 
-En lecture, ne pas utiliser un simple `SPLIT` si les champs peuvent contenir le séparateur ou des retours à la ligne. Utiliser une API disponible sur le système ou implémenter un analyseur à états conforme au dialecte.
+En lecture, ne pas utiliser un simple `SPLIT` si les champs peuvent contenir le séparateur ou des retours à la ligne. Utiliser une API[^terme-api] disponible sur le système ou implémenter un analyseur à états conforme au dialecte.
 
 ### 17.F.6 Étape 6 — Valider la structure importée
 
@@ -98,13 +98,13 @@ Tester un champ vide, un séparateur dans une valeur, un guillemet, une fin de l
 
 - Copier un exemple sans adapter les types, noms d’objets et données disponibles dans le système.
 - Tester uniquement le cas nominal et ignorer les valeurs initiales, absentes ou invalides.
-- Mélanger fichiers frontend et serveur dans un même scénario.
+- Mélanger fichiers frontend[^terme-frontend] et serveur dans un même scénario.
 - Parser un CSV par simple séparation alors que les champs peuvent être échappés.
 
 ## 17.I SNIPPET À RÉUTILISER
 
 > [!NOTE]
-> Adapter les noms `Z*`, les types DDIC, les données et les autorisations au système cible. Effectuer un contrôle syntaxique avant activation.
+> Adapter les noms `Z*`, les types DDIC[^terme-acro-ddic], les données et les autorisations au système cible. Effectuer un contrôle syntaxique avant activation.
 
 ```abap
 " Définir le contrat et limiter l’API publique au besoin réel.
@@ -147,3 +147,10 @@ ENDCLASS.
 ---
 
 [Chapitre suivant — FICHIERS À LARGEUR FIXE](<./18 ├── FICHIERS A LARGEUR FIXE.md>)
+
+[^terme-csv]: **CSV.** Format texte tabulaire utilisant un séparateur de champs et des règles d’échappement. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/07 ├── INTERFACES ET INTEGRATION.md#csv>).
+[^terme-encodage]: **ENCODAGE.** Règle transformant les caractères en octets et inversement. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/07 ├── INTERFACES ET INTEGRATION.md#encodage>).
+[^terme-invariant]: **INVARIANT.** Condition qui doit rester vraie pendant toute la durée de vie valide d’un objet. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#invariant>).
+[^terme-api]: **API.** Application Programming Interface, contrat exposant des opérations ou données utilisables par d’autres composants. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/10 └── ACRONYMES SAP.md#api>).
+[^terme-frontend]: **FRONTEND.** Poste ou couche cliente utilisée par l’utilisateur, par exemple SAP GUI for Windows. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/01 ├── SYSTEMES ENVIRONNEMENTS ET MANDANTS.md#frontend>).
+[^terme-acro-ddic]: **DDIC.** Data Dictionary, abréviation courante de l’ABAP Dictionary. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/10 └── ACRONYMES SAP.md#acro-ddic>).

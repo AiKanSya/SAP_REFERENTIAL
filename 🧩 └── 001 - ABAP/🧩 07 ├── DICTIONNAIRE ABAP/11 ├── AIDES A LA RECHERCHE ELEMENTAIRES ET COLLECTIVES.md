@@ -2,7 +2,7 @@
 
 ## 11.A RÉSULTAT ATTENDU
 
-- Comprendre le fonctionnement d’une aide F4 DDIC
+- Comprendre le fonctionnement d’une aide F4[^terme-aide-f4] DDIC[^terme-acro-ddic]
 - Créer une aide élémentaire
 - Regrouper plusieurs chemins dans une aide collective
 - Configurer les paramètres d’import et d’export
@@ -35,7 +35,7 @@ Une aide élémentaire décrit un seul chemin de recherche.
 
 Elle contient notamment :
 
-- une méthode de sélection : table, vue ou autre source compatible ;
+- une méthode[^terme-methode] de sélection : table, vue ou autre source compatible ;
 - une interface de paramètres ;
 - les positions dans la boîte de dialogue de sélection ;
 - les positions dans la liste de résultats ;
@@ -76,9 +76,9 @@ Les paramètres de l’aide collective doivent être affectés aux paramètres c
 
 Une aide peut être affectée :
 
-- à un élément de données ;
+- à un élément de données[^terme-element-donnees] ;
 - à un champ de table ou de structure ;
-- à une table de contrôle ;
+- à une table de contrôle[^terme-table-controle] ;
 - directement à un champ d’écran selon la technologie.
 
 L’affectation la plus générale est généralement placée sur l’élément de données. Une affectation locale peut la remplacer pour un contexte spécifique.
@@ -110,7 +110,7 @@ Identifier le champ retourné à l’écran, les critères que l’utilisateur p
 
 ### 11.I.2 Étape 2 — Créer l’aide élémentaire
 
-1. Ouvrir `SE11`, choisir **Aide à la recherche** et saisir un nom client.
+1. Ouvrir `SE11`[^outil-se11], choisir **Aide à la recherche** et saisir un nom client.
 2. Créer une aide élémentaire.
 3. Saisir la méthode de sélection : table ou vue adaptée.
 4. Ajouter les paramètres et marquer leur sens import/export.
@@ -133,7 +133,7 @@ Associer l’aide au champ ou à l’élément de données selon la portée voul
 ## 11.J VÉRIFICATION
 
 - Le contrôle de cohérence ne retourne aucune erreur bloquante.
-- L’objet est actif et son entrée de répertoire pointe vers le package attendu.
+- L’objet est actif et son entrée de répertoire pointe vers le package[^terme-package] attendu.
 - La liste d’utilisation et les dépendances correspondent au périmètre prévu.
 - Pour une table Z, la structure active et la structure de base sont cohérentes.
 
@@ -173,3 +173,12 @@ Ordre de transport  :
 ---
 
 [Chapitre suivant — VUES CLASSIQUES DU DICTIONNAIRE](<./12 ├── VUES CLASSIQUES DU DICTIONNAIRE.md>)
+
+[^terme-aide-f4]: **AIDE F4.** Aide à la saisie proposant des valeurs autorisées ou recherchables. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/02 ├── SAP GUI NAVIGATION ET TRANSACTIONS.md#aide-f4>).
+[^terme-acro-ddic]: **DDIC.** Data Dictionary, abréviation courante de l’ABAP Dictionary. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/10 └── ACRONYMES SAP.md#acro-ddic>).
+[^terme-methode]: **MÉTHODE.** Comportement déclaré dans une classe ou une interface et appelé avec une liste de paramètres définie. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#methode>).
+[^terme-element-donnees]: **ÉLÉMENT DE DONNÉES.** Objet DDIC qui attribue une signification métier, des libellés et une documentation à un type élémentaire ou à un domaine. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/05 ├── DONNEES DICTIONNAIRE ET BASE DE DONNEES.md#element-donnees>).
+[^terme-table-controle]: **TABLE DE CONTRÔLE.** Table contenant les valeurs de référence autorisées pour une relation de clé étrangère. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/05 ├── DONNEES DICTIONNAIRE ET BASE DE DONNEES.md#table-controle>).
+[^terme-package]: **PACKAGE.** Conteneur logique qui regroupe les objets de développement et détermine notamment leur transportabilité. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/03 ├── REPOSITORY PACKAGES ET TRANSPORTS.md#package>).
+
+[^outil-se11]: **SE11.** Transaction de l’ABAP Dictionary utilisée pour analyser et maintenir les objets DDIC. Voir [le chapitre associé](<02 ├── NAVIGATION ET ANALYSE AVEC SE11.md>).

@@ -2,9 +2,9 @@
 
 ## 2.A RÉSULTAT ATTENDU
 
-- Naviguer dans la transaction SE11
+- Naviguer dans la transaction SE11[^outil-se11]
 - Afficher un objet sans le modifier
-- Suivre les dépendances entre objets DDIC
+- Suivre les dépendances entre objets DDIC[^terme-acro-ddic]
 - Identifier les transactions complémentaires
 - Analyser un objet standard avant une intervention
 
@@ -16,12 +16,12 @@ Selon la version du système, l’écran propose notamment :
 
 - table de base de données ;
 - vue ;
-- type de données ;
+- type de données[^terme-type-donnees] ;
 - domaine ;
 - aide à la recherche ;
 - objet de verrouillage.
 
-Pour un type de données, le système demande ensuite s’il s’agit d’un élément de données, d’une structure ou d’un type de table.
+Pour un type de données, le système demande ensuite s’il s’agit d’un élément de données[^terme-element-donnees], d’une structure ou d’un type de table.
 
 ## 2.C MODE AFFICHAGE AVANT MODE MODIFICATION
 
@@ -34,9 +34,9 @@ Le mode affichage permet de consulter :
 - la documentation ;
 - les objets dépendants ;
 - les versions disponibles ;
-- l’entrée de répertoire et le package.
+- l’entrée de répertoire et le package[^terme-package].
 
-Ne jamais modifier directement un objet standard SAP pour corriger rapidement un besoin client. Vérifier d’abord les mécanismes d’extension disponibles.
+Ne jamais modifier directement un objet standard SAP[^terme-acro-sap] pour corriger rapidement un besoin client. Vérifier d’abord les mécanismes d’extension disponibles.
 
 ## 2.D NAVIGATION PAR DOUBLE-CLIC
 
@@ -46,7 +46,7 @@ Exemples :
 
 - double-clic sur un élément de données depuis un champ de table ;
 - double-clic sur le domaine depuis un élément de données ;
-- double-clic sur une table de contrôle depuis une clé étrangère ;
+- double-clic sur une table de contrôle[^terme-table-controle] depuis une clé étrangère[^terme-cle-etrangere] ;
 - double-clic sur une aide à la recherche affectée.
 
 ```mermaid
@@ -77,11 +77,11 @@ La liste d’utilisation doit être consultée avant de modifier un objet fortem
 | ---------------- | --------------------------------------------------------- |
 | `SE11`           | Définition des objets du Dictionary                       |
 | `SE12`           | Affichage du Dictionary                                   |
-| `SE14`           | Utilitaire de base de données et ajustements              |
-| `SE16` / `SE16N` | Consultation des données selon les autorisations          |
-| `SE54`           | Génération et administration des dialogues de maintenance |
-| `SM30`           | Maintenance des données de tables ou vues générées        |
-| `SE84`           | Recherche dans le Repository Information System           |
+| `SE14`[^outil-se14]           | Utilitaire de base de données et ajustements              |
+| `SE16`[^outil-se16] / `SE16N`[^outil-se16n] | Consultation des données selon les autorisations          |
+| `SE54`[^outil-se54]           | Génération et administration des dialogues de maintenance |
+| `SM30`[^outil-sm30]           | Maintenance des données de tables ou vues générées        |
+| `SE84`[^outil-se84]           | Recherche dans le Repository Information System           |
 
 ## 2.G MÉTHODE D’ANALYSE D’UN CHAMP
 
@@ -91,13 +91,13 @@ Pour comprendre un champ standard :
 2. ouvrir l’élément de données ;
 3. lire ses libellés et sa documentation ;
 4. ouvrir le domaine ;
-5. vérifier les valeurs fixes, la table de valeurs et la routine de conversion ;
+5. vérifier les valeurs fixes, la table de valeurs et la routine de conversion[^terme-routine-conversion] ;
 6. revenir au champ et analyser sa clé étrangère ou son aide à la recherche ;
 7. consulter la liste d’utilisation si une modification est envisagée.
 
 ## 2.H POINTS À RETENIR
 
-- SE11 est l’outil central d’analyse des objets DDIC dans SAP GUI.
+- SE11 est l’outil central d’analyse des objets DDIC dans SAP GUI[^terme-sap-gui].
 - Le mode affichage doit être privilégié pendant le diagnostic.
 - La navigation suit les références entre table, élément de données et domaine.
 - La liste d’utilisation permet d’évaluer l’impact d’une modification.
@@ -174,3 +174,21 @@ Ordre de transport  :
 ---
 
 [Chapitre suivant — DOMAINES ET PLAGES DE VALEURS](<./03 ├── DOMAINES ET PLAGES DE VALEURS.md>)
+
+[^terme-acro-ddic]: **DDIC.** Data Dictionary, abréviation courante de l’ABAP Dictionary. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/10 └── ACRONYMES SAP.md#acro-ddic>).
+[^terme-type-donnees]: **TYPE DE DONNÉES.** Définition des propriétés d’une valeur : nature, longueur, précision et opérations autorisées. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#type-donnees>).
+[^terme-element-donnees]: **ÉLÉMENT DE DONNÉES.** Objet DDIC qui attribue une signification métier, des libellés et une documentation à un type élémentaire ou à un domaine. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/05 ├── DONNEES DICTIONNAIRE ET BASE DE DONNEES.md#element-donnees>).
+[^terme-package]: **PACKAGE.** Conteneur logique qui regroupe les objets de développement et détermine notamment leur transportabilité. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/03 ├── REPOSITORY PACKAGES ET TRANSPORTS.md#package>).
+[^terme-acro-sap]: **SAP.** Nom de l’éditeur et de son écosystème logiciel ; l’acronyme historique provient de l’allemand. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/10 └── ACRONYMES SAP.md#acro-sap>).
+[^terme-table-controle]: **TABLE DE CONTRÔLE.** Table contenant les valeurs de référence autorisées pour une relation de clé étrangère. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/05 ├── DONNEES DICTIONNAIRE ET BASE DE DONNEES.md#table-controle>).
+[^terme-cle-etrangere]: **CLÉ ÉTRANGÈRE.** Relation DDIC entre des champs d’une table et une table de contrôle. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/05 ├── DONNEES DICTIONNAIRE ET BASE DE DONNEES.md#cle-etrangere>).
+[^terme-routine-conversion]: **ROUTINE DE CONVERSION.** Mécanisme DDIC convertissant une valeur entre représentation interne et affichage externe. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/05 ├── DONNEES DICTIONNAIRE ET BASE DE DONNEES.md#routine-conversion>).
+[^terme-sap-gui]: **SAP GUI.** Client graphique permettant d’utiliser les transactions et écrans d’un système SAP. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/02 ├── SAP GUI NAVIGATION ET TRANSACTIONS.md#sap-gui>).
+
+[^outil-se11]: **SE11.** Transaction de l’ABAP Dictionary utilisée pour analyser et maintenir les objets DDIC. Voir [le chapitre associé](<02 ├── NAVIGATION ET ANALYSE AVEC SE11.md>).
+[^outil-se14]: **SE14.** Utilitaire de base de données du Dictionary utilisé pour comparer ou ajuster la définition DDIC et l’objet physique. Voir [le chapitre associé](<16 ├── ACTIVATION AJUSTEMENT BASE ET ANALYSE DES DEPENDANCES.md>).
+[^outil-se16]: **SE16.** Navigateur de données standard utilisé pour afficher le contenu d’une table selon les autorisations disponibles. Voir [le chapitre associé](<02 ├── NAVIGATION ET ANALYSE AVEC SE11.md>).
+[^outil-se16n]: **SE16N.** Navigateur général de tables utilisé pour consulter des données selon les autorisations disponibles. Voir [le chapitre associé](<02 ├── NAVIGATION ET ANALYSE AVEC SE11.md>).
+[^outil-se54]: **SE54.** Outil de génération et de maintenance des dialogues de mise à jour de tables et vues. Voir [le chapitre associé](<14 ├── GENERATEUR DE MAINTENANCE ET SM30.md>).
+[^outil-sm30]: **SM30.** Transaction d’exécution d’un dialogue de maintenance généré pour une table ou une vue. Voir [le chapitre associé](<14 ├── GENERATEUR DE MAINTENANCE ET SM30.md>).
+[^outil-se84]: **SE84.** Repository Information System utilisé pour rechercher des objets et analyser leurs utilisations. Voir [le chapitre associé](<../🧩 01 ├── FONDAMENTAUX ABAP/02 ├── OBJETS DU REPOSITORY ABAP.md>).

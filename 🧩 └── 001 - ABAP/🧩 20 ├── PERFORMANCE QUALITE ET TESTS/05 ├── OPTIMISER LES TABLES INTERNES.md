@@ -48,7 +48,7 @@ ENDLOOP.
 - `BINARY SEARCH` exige un tri compatible et reste fragile si la clé change.
 - Une table hachée consomme davantage de mémoire qu’une table standard.
 - Trier à chaque lecture peut coûter plus cher que le gain attendu.
-- Les expressions de table peuvent lever une exception si la ligne est absente.
+- Les expressions de table peuvent lever une exception[^terme-exception] si la ligne est absente.
 
 ## 5.F Démarche
 
@@ -102,7 +102,7 @@ Exécuter les tests sur doublons, ordre, clé initiale, modification de clé et 
 ## 5.K SNIPPET À RÉUTILISER
 
 > [!NOTE]
-> Adapter les noms `Z*`, les types DDIC, les données et les autorisations au système cible. Effectuer un contrôle syntaxique avant activation.
+> Adapter les noms `Z*`, les types DDIC[^terme-acro-ddic], les données et les autorisations au système cible. Effectuer un contrôle syntaxique avant activation.
 
 ```abap
 " Traiter la collection sans lecture SQL dans la boucle.
@@ -120,4 +120,8 @@ ENDLOOP.
 ## 5.M MODÈLE DE DÉMONSTRATION SFLIGHT
 
 > [!NOTE]
-> Les tables `SCARR`, `SPFLI` et `SFLIGHT` appartiennent au modèle de démonstration SAP et peuvent être absentes ou non alimentées dans certains systèmes. Dans ce cas, remplacer les exemples par une table Z de démonstration ou par une source en lecture seule autorisée, sans modifier une table applicative standard.
+> Les tables `SCARR`, `SPFLI` et `SFLIGHT` appartiennent au modèle de démonstration SAP[^terme-acro-sap] et peuvent être absentes ou non alimentées dans certains systèmes. Dans ce cas, remplacer les exemples par une table Z de démonstration ou par une source en lecture seule autorisée, sans modifier une table applicative standard.
+
+[^terme-exception]: **EXCEPTION.** Objet ou signal représentant une situation anormale qu’un appelant peut traiter. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#exception>).
+[^terme-acro-ddic]: **DDIC.** Data Dictionary, abréviation courante de l’ABAP Dictionary. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/10 └── ACRONYMES SAP.md#acro-ddic>).
+[^terme-acro-sap]: **SAP.** Nom de l’éditeur et de son écosystème logiciel ; l’acronyme historique provient de l’allemand. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/10 └── ACRONYMES SAP.md#acro-sap>).

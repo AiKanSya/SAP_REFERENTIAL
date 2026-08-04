@@ -2,11 +2,11 @@
 
 ## 12.A RÉSULTAT ATTENDU
 
-- Démarrer le Debugger ABAP depuis SAP GUI
+- Démarrer le Debugger ABAP[^terme-abap] depuis SAP GUI[^terme-sap-gui]
 - Distinguer point d’arrêt de session et point d’arrêt externe
 - Avancer avec `F5`, `F6`, `F7` et `F8`
 - Inspecter les variables et la pile d’appels
-- Utiliser un watchpoint pour arrêter le programme sur une condition
+- Utiliser un watchpoint[^terme-watchpoint] pour arrêter le programme sur une condition
 - Déboguer sans modifier involontairement les données
 
 ## 12.B VUE D’ENSEMBLE
@@ -39,7 +39,7 @@ Le débogage nécessite des autorisations spécifiques.
 
 ### 12.D.1 DEPUIS `SE38` OU `SE80`
 
-Pour un programme exécutable :
+Pour un programme exécutable[^terme-programme-executable] :
 
 - ouvrir le programme ;
 - sélectionner l’exécution en mode Debugging dans le menu de test ;
@@ -50,22 +50,22 @@ Pour un programme exécutable :
 Dans l’éditeur :
 
 1. placer le curseur sur une instruction exécutable ;
-2. poser un breakpoint ;
+2. poser un breakpoint[^terme-breakpoint] ;
 3. lancer le scénario ;
 4. le Debugger s’ouvre lorsque l’instruction est atteinte.
 
 ### 12.D.3 AVEC `/h`
 
-Dans le champ de commande SAP GUI :
+Dans le champ de commande[^terme-champ-commande] SAP GUI :
 
 ```text
 /h
 ```
 
-Après validation, exécuter l’action à analyser. Le programme s’arrête à la première instruction pertinente du traitement de dynpro suivant.
+Après validation, exécuter l’action à analyser. Le programme s’arrête à la première instruction pertinente du traitement de dynpro[^terme-dynpro] suivant.
 
 > [!NOTE]
-> `/h` est adapté à un flux déclenché dans la session SAP GUI courante. Il ne remplace pas les points d’arrêt externes pour les appels HTTP ou RFC.
+> `/h` est adapté à un flux déclenché dans la session SAP GUI[^terme-session-sap-gui] courante. Il ne remplace pas les points d’arrêt externes pour les appels HTTP ou RFC[^terme-rfc].
 
 ## 12.E TYPES DE POINTS D’ARRÊT
 
@@ -75,7 +75,7 @@ Il concerne les traitements exécutés dans la session utilisateur SAP GUI corre
 
 Usage :
 
-- programme lancé depuis `SE38` ;
+- programme lancé depuis `SE38`[^outil-se38] ;
 - transaction exécutée dans la même session utilisateur ;
 - analyse locale classique.
 
@@ -161,7 +161,7 @@ Elle permet de déterminer :
 
 ## 12.I WATCHPOINT
 
-Un watchpoint arrête le programme lorsque la valeur d’un objet de données change ou lorsqu’une condition devient vraie.
+Un watchpoint arrête le programme lorsque la valeur d’un objet de données[^terme-objet-donnees] change ou lorsqu’une condition devient vraie.
 
 Exemples d’usage :
 
@@ -224,7 +224,7 @@ Sur un appel connu, utiliser `F5` pour entrer puis recommencer avec `F6` pour ex
 
 ### 12.M.3 Étape 3 — Examiner les données
 
-Ajouter une variable, une structure et une table interne dans les outils de données. Vérifier type, contenu courant et modifications après l’instruction suivante ; ne pas confondre une valeur initiale avec une donnée absente en base.
+Ajouter une variable, une structure et une table interne[^terme-table-interne] dans les outils de données. Vérifier type, contenu courant et modifications après l’instruction suivante ; ne pas confondre une valeur initiale avec une donnée absente en base.
 
 ### 12.M.4 Étape 4 — Arrêter sur une modification
 
@@ -242,7 +242,7 @@ Quitter ou poursuivre proprement l’exécution puis supprimer les breakpoints d
 
 ## 12.O ERREURS FRÉQUENTES
 
-- Intervenir dans le mauvais système ou mandant.
+- Intervenir dans le mauvais système ou mandant[^terme-mandant].
 - Confondre sauvegarde et activation.
 
 ## 12.P FICHE DE CONTRÔLE À COPIER
@@ -276,3 +276,18 @@ Ordre de transport  :
 - [Starting and Directly Debugging ABAP Programs](https://help.sap.com/docs/ABAP_PLATFORM_NEW/ba879a6e2ea04d9bb94c7ccd7cdac446/a95208086a6e448aa35f08357d958af5.html)
 - [Going Through the Source Code](https://help.sap.com/docs/ABAP_PLATFORM_NEW/ba879a6e2ea04d9bb94c7ccd7cdac446/491eb0c6f3ee6492e10000000a42189b.html)
 - [Switching Directly to the ABAP Debugger While Executing a Program](https://help.sap.com/docs/ABAP_PLATFORM_NEW/ba879a6e2ea04d9bb94c7ccd7cdac446/e4fc840c8c09403c87501c68f80fa716.html)
+
+[^terme-abap]: **ABAP.** Langage de programmation de la plateforme ABAP, conçu pour développer des applications métier et techniques SAP. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#abap>).
+[^terme-sap-gui]: **SAP GUI.** Client graphique permettant d’utiliser les transactions et écrans d’un système SAP. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/02 ├── SAP GUI NAVIGATION ET TRANSACTIONS.md#sap-gui>).
+[^terme-watchpoint]: **WATCHPOINT.** Arrêt conditionné par la modification ou la valeur d’une donnée observée. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/08 ├── EXECUTION EXPLOITATION ET ADMINISTRATION.md#watchpoint>).
+[^terme-programme-executable]: **PROGRAMME EXÉCUTABLE.** Programme ABAP de type report pouvant être lancé directement, généralement avec `F8` ou par une transaction. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/06 ├── PROGRAMMES CLASSES ET OBJETS TECHNIQUES.md#programme-executable>).
+[^terme-breakpoint]: **BREAKPOINT.** Point d’arrêt suspendant l’exécution dans le débogueur. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/08 ├── EXECUTION EXPLOITATION ET ADMINISTRATION.md#breakpoint>).
+[^terme-champ-commande]: **CHAMP DE COMMANDE.** Zone de SAP GUI utilisée pour saisir des codes de transaction et des commandes système. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/02 ├── SAP GUI NAVIGATION ET TRANSACTIONS.md#champ-commande>).
+[^terme-dynpro]: **DYNPRO.** Écran classique SAP composé d’une définition d’écran et d’une logique PBO/PAI. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/02 ├── SAP GUI NAVIGATION ET TRANSACTIONS.md#dynpro>).
+[^terme-session-sap-gui]: **SESSION SAP GUI.** Fenêtre de travail indépendante ouverte pour un même utilisateur et un même système. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/02 ├── SAP GUI NAVIGATION ET TRANSACTIONS.md#session-sap-gui>).
+[^terme-rfc]: **RFC.** Remote Function Call, mécanisme permettant d’appeler un module fonction compatible dans un autre contexte ou système. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/06 ├── PROGRAMMES CLASSES ET OBJETS TECHNIQUES.md#rfc>).
+[^terme-objet-donnees]: **OBJET DE DONNÉES.** Zone de mémoire typée contenant une valeur pendant l’exécution. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#objet-donnees>).
+[^terme-table-interne]: **TABLE INTERNE.** Collection dynamique de lignes stockée en mémoire dans le programme ABAP. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#table-interne>).
+[^terme-mandant]: **MANDANT.** Subdivision logique d’un système SAP. Il est identifié par un numéro à trois chiffres et isole une partie des données, du paramétrage et des utilisateurs. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/01 ├── SYSTEMES ENVIRONNEMENTS ET MANDANTS.md#mandant>).
+
+[^outil-se38]: **SE38.** Éditeur ABAP classique utilisé pour créer, modifier, vérifier et exécuter des programmes. Voir [le chapitre associé](<04 ├── EDITEURS ABAP SE38 ET SE80.md>).

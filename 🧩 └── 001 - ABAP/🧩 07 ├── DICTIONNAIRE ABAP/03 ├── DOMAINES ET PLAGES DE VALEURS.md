@@ -5,23 +5,23 @@
 - Comprendre le rôle d’un domaine
 - Définir les caractéristiques techniques d’une valeur
 - Configurer une plage de valeurs
-- Distinguer valeurs fixes, table de valeurs et table de contrôle
+- Distinguer valeurs fixes, table de valeurs et table de contrôle[^terme-table-controle]
 - Identifier le rôle des routines de conversion
 
 ## 3.B DÉFINITION
 
 Un domaine définit les caractéristiques techniques communes d’une valeur :
 
-- type de données ;
+- type de données[^terme-type-donnees] ;
 - longueur ;
 - nombre de décimales ;
 - signe éventuel ;
 - gestion des minuscules ;
 - longueur de sortie ;
 - plage de valeurs ;
-- routine de conversion éventuelle.
+- routine de conversion[^terme-routine-conversion] éventuelle.
 
-Un domaine n’est pas un type ABAP directement utilisable. Il est affecté à un ou plusieurs éléments de données.
+Un domaine n’est pas un type ABAP[^terme-abap] directement utilisable. Il est affecté à un ou plusieurs éléments de données.
 
 ```mermaid
 flowchart LR
@@ -33,7 +33,7 @@ flowchart LR
 
 ## 3.C ATTRIBUTS TECHNIQUES
 
-| Attribut           | Exemple | Effet                                                             |
+| Attribut[^terme-attribut]           | Exemple | Effet                                                             |
 | ------------------ | ------- | ----------------------------------------------------------------- |
 | Type               | `CHAR`  | Représentation technique                                          |
 | Longueur           | `1`     | Nombre de positions                                               |
@@ -61,7 +61,7 @@ Les textes peuvent être traduits. Dans les technologies classiques, ils peuvent
 
 La table de valeurs indique la table généralement associée au domaine.
 
-Elle sert notamment de proposition lorsque le développeur définit une clé étrangère pour un champ utilisant ce domaine.
+Elle sert notamment de proposition lorsque le développeur définit une clé étrangère[^terme-cle-etrangere] pour un champ utilisant ce domaine.
 
 > Une table de valeurs ne crée pas à elle seule un contrôle d’intégrité. Le contrôle est défini par une clé étrangère sur le champ concerné.
 
@@ -103,11 +103,11 @@ Pour un statut de commande :
 
 ### 3.I.1 Étape 1 — Définir le format commun
 
-Établir le type ABAP/DDIC, la longueur, les décimales, le signe et les éventuelles règles de casse. Vérifier qu’un domaine standard de même sémantique n’existe pas.
+Établir le type ABAP/DDIC[^terme-acro-ddic], la longueur, les décimales, le signe et les éventuelles règles de casse. Vérifier qu’un domaine standard de même sémantique n’existe pas.
 
 ### 3.I.2 Étape 2 — Créer le domaine
 
-1. Ouvrir `SE11`, sélectionner **Domaine** et saisir un nom `Z...`.
+1. Ouvrir `SE11`[^outil-se11], sélectionner **Domaine** et saisir un nom `Z...`.
 2. Choisir **Créer**, renseigner le texte court et l’onglet de définition.
 3. Saisir le type de données, la longueur et les décimales décidés.
 4. Maintenir les propriétés de sortie uniquement selon la donnée réelle.
@@ -122,7 +122,7 @@ Pour chaque valeur fixe, renseigner le libellé utilisateur. Une valeur techniqu
 
 ### 3.I.4 Étape 4 — Activer et tester
 
-Contrôler puis activer le domaine. Créer ou ouvrir un élément de données de test utilisant ce domaine et vérifier la saisie ainsi que l’aide disponible dans un champ consommateur.
+Contrôler puis activer le domaine. Créer ou ouvrir un élément de données[^terme-element-donnees] de test utilisant ce domaine et vérifier la saisie ainsi que l’aide disponible dans un champ consommateur.
 
 ### 3.I.5 Étape 5 — Gérer une modification
 
@@ -131,7 +131,7 @@ Avant de changer longueur ou valeurs d’un domaine existant, utiliser la liste 
 ## 3.J VÉRIFICATION
 
 - Le contrôle de cohérence ne retourne aucune erreur bloquante.
-- L’objet est actif et son entrée de répertoire pointe vers le package attendu.
+- L’objet est actif et son entrée de répertoire pointe vers le package[^terme-package] attendu.
 - La liste d’utilisation et les dépendances correspondent au périmètre prévu.
 - Pour une table Z, la structure active et la structure de base sont cohérentes.
 
@@ -171,3 +171,15 @@ Ordre de transport  :
 ---
 
 [Chapitre suivant — ÉLÉMENTS DE DONNÉES ET SÉMANTIQUE](<./04 ├── ELEMENTS DE DONNEES ET SEMANTIQUE.md>)
+
+[^terme-table-controle]: **TABLE DE CONTRÔLE.** Table contenant les valeurs de référence autorisées pour une relation de clé étrangère. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/05 ├── DONNEES DICTIONNAIRE ET BASE DE DONNEES.md#table-controle>).
+[^terme-type-donnees]: **TYPE DE DONNÉES.** Définition des propriétés d’une valeur : nature, longueur, précision et opérations autorisées. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#type-donnees>).
+[^terme-routine-conversion]: **ROUTINE DE CONVERSION.** Mécanisme DDIC convertissant une valeur entre représentation interne et affichage externe. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/05 ├── DONNEES DICTIONNAIRE ET BASE DE DONNEES.md#routine-conversion>).
+[^terme-abap]: **ABAP.** Langage de programmation de la plateforme ABAP, conçu pour développer des applications métier et techniques SAP. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#abap>).
+[^terme-attribut]: **ATTRIBUT.** Composant de données déclaré dans une classe et appartenant soit à chaque instance, soit à la classe elle-même. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#attribut>).
+[^terme-cle-etrangere]: **CLÉ ÉTRANGÈRE.** Relation DDIC entre des champs d’une table et une table de contrôle. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/05 ├── DONNEES DICTIONNAIRE ET BASE DE DONNEES.md#cle-etrangere>).
+[^terme-acro-ddic]: **DDIC.** Data Dictionary, abréviation courante de l’ABAP Dictionary. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/10 └── ACRONYMES SAP.md#acro-ddic>).
+[^terme-element-donnees]: **ÉLÉMENT DE DONNÉES.** Objet DDIC qui attribue une signification métier, des libellés et une documentation à un type élémentaire ou à un domaine. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/05 ├── DONNEES DICTIONNAIRE ET BASE DE DONNEES.md#element-donnees>).
+[^terme-package]: **PACKAGE.** Conteneur logique qui regroupe les objets de développement et détermine notamment leur transportabilité. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/03 ├── REPOSITORY PACKAGES ET TRANSPORTS.md#package>).
+
+[^outil-se11]: **SE11.** Transaction de l’ABAP Dictionary utilisée pour analyser et maintenir les objets DDIC. Voir [le chapitre associé](<02 ├── NAVIGATION ET ANALYSE AVEC SE11.md>).

@@ -2,8 +2,8 @@
 
 ## 3.A RÉSULTAT ATTENDU
 
-- Créer une classe globale transportable.
-- Définir une méthode publique simple.
+- Créer une classe globale[^terme-classe-globale] transportable.
+- Définir une méthode[^terme-methode] publique simple.
 - Implémenter, activer et tester la classe.
 - Comprendre la différence entre la définition et l’implémentation.
 
@@ -14,18 +14,18 @@ Créer une classe `ZCL_DEV_TEXT_FORMATTER` réutilisable qui normalise un texte 
 ## 3.C PRÉREQUIS
 
 - Autorisation de développement.
-- Package client existant, ou `$TMP` uniquement pour un essai local non transportable.
+- Package[^terme-package] client existant, ou `$TMP`[^terme-objet-local-tmp] uniquement pour un essai local non transportable.
 - Convention de nommage du projet.
 
 ## 3.D PROCESS
 
 ### 3.D.1 Étape 1 — Créer l’objet global
 
-Ouvrir `SE24`, saisir `ZCL_DEV_TEXT_FORMATTER` et choisir **Créer**. Si le nom existe, l’afficher et ne pas l’écraser. Renseigner description et instanciation publique, puis affecter package et tâche de transport.
+Ouvrir `SE24`[^terme-class-builder-se24], saisir `ZCL_DEV_TEXT_FORMATTER` et choisir **Créer**. Si le nom existe, l’afficher et ne pas l’écraser. Renseigner description et instanciation publique, puis affecter package et tâche de transport[^terme-tache-transport].
 
 ### 3.D.2 Étape 2 — Définir la méthode publique
 
-Dans **Méthodes**, créer `NORMALIZE`, conserver le niveau instance et choisir la visibilité publique. Ouvrir la signature avant d’écrire l’implémentation.
+Dans **Méthodes**, créer `NORMALIZE`, conserver le niveau instance et choisir la visibilité[^terme-visibilite] publique. Ouvrir la signature avant d’écrire l’implémentation.
 
 ### 3.D.3 Étape 3 — Définir la signature exacte
 
@@ -86,7 +86,7 @@ Pour l’entrée `  exemple   sap  `, le programme doit afficher un texte conden
 - La classe est active dans `SE24`.
 - La méthode apparaît en visibilité publique.
 - Le report se compile.
-- Un breakpoint placé dans `NORMALIZE` est atteint.
+- Un breakpoint[^terme-breakpoint] placé dans `NORMALIZE` est atteint.
 - La liste des utilisations de la méthode contient le report de test.
 
 ## 3.I ERREURS FRÉQUENTES
@@ -98,9 +98,9 @@ Pour l’entrée `  exemple   sap  `, le programme doit afficher un texte conden
 
 ## 3.J COMPATIBILITÉ S/4HANA
 
-- Statut : compatible avec le développement ABAP classique sur SAP S/4HANA.
-- Vérifier la syntaxe exacte avec l’aide `F1` du système cible lorsque plusieurs versions d’ABAP Platform sont prises en charge.
-- Les objets globaux doivent être créés dans le package et l’ordre de transport du projet.
+- Statut : compatible avec le développement ABAP[^terme-abap] classique sur SAP[^terme-acro-sap] S/4HANA.
+- Vérifier la syntaxe exacte avec l’aide `F1`[^terme-aide-f1] du système cible lorsque plusieurs versions d’ABAP Platform sont prises en charge.
+- Les objets globaux doivent être créés dans le package et l’ordre de transport[^terme-ordre-transport] du projet.
 
 ## 3.K RÉFÉRENCES OFFICIELLES SAP
 
@@ -110,3 +110,16 @@ Pour l’entrée `  exemple   sap  `, le programme doit afficher un texte conden
 ---
 
 [Chapitre suivant — CLASS POOL ET ORGANISATION TECHNIQUE](<./04 ├── CLASS POOL ET ORGANISATION TECHNIQUE.md>)
+
+[^terme-classe-globale]: **CLASSE GLOBALE.** Classe Repository réutilisable dans le système ABAP. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/06 ├── PROGRAMMES CLASSES ET OBJETS TECHNIQUES.md#classe-globale>).
+[^terme-methode]: **MÉTHODE.** Comportement déclaré dans une classe ou une interface et appelé avec une liste de paramètres définie. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#methode>).
+[^terme-package]: **PACKAGE.** Conteneur logique qui regroupe les objets de développement et détermine notamment leur transportabilité. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/03 ├── REPOSITORY PACKAGES ET TRANSPORTS.md#package>).
+[^terme-objet-local-tmp]: **OBJET LOCAL $TMP.** Objet affecté au package local `$TMP`, non destiné au transport vers un autre système. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/03 ├── REPOSITORY PACKAGES ET TRANSPORTS.md#objet-local-tmp>).
+[^terme-class-builder-se24]: **CLASS BUILDER (SE24).** Outil SAP GUI utilisé pour créer, afficher, modifier, tester et documenter les classes et interfaces globales ABAP. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/06 ├── PROGRAMMES CLASSES ET OBJETS TECHNIQUES.md#class-builder-se24>).
+[^terme-tache-transport]: **TÂCHE DE TRANSPORT.** Sous-conteneur affecté à un utilisateur dans un ordre de transport. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/03 ├── REPOSITORY PACKAGES ET TRANSPORTS.md#tache-transport>).
+[^terme-visibilite]: **VISIBILITÉ.** Règle déterminant où un composant de classe peut être utilisé : `PUBLIC`, `PROTECTED` ou `PRIVATE`. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#visibilite>).
+[^terme-breakpoint]: **BREAKPOINT.** Point d’arrêt suspendant l’exécution dans le débogueur. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/08 ├── EXECUTION EXPLOITATION ET ADMINISTRATION.md#breakpoint>).
+[^terme-abap]: **ABAP.** Langage de programmation de la plateforme ABAP, conçu pour développer des applications métier et techniques SAP. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#abap>).
+[^terme-acro-sap]: **SAP.** Nom de l’éditeur et de son écosystème logiciel ; l’acronyme historique provient de l’allemand. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/10 └── ACRONYMES SAP.md#acro-sap>).
+[^terme-aide-f1]: **AIDE F1.** Aide contextuelle expliquant un champ, une fonction ou un mot-clé. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/02 ├── SAP GUI NAVIGATION ET TRANSACTIONS.md#aide-f1>).
+[^terme-ordre-transport]: **ORDRE DE TRANSPORT.** Conteneur qui regroupe des modifications à exporter puis importer dans d’autres systèmes. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/03 ├── REPOSITORY PACKAGES ET TRANSPORTS.md#ordre-transport>).

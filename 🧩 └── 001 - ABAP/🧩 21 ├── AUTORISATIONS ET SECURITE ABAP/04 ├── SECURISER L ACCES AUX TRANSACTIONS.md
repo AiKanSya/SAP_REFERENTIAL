@@ -59,7 +59,7 @@ Le précontrôle par fonction ne justifie pas l’utilisation de `WITHOUT AUTHOR
 
 ### 4.C.5 Étape 5 — Contrôler les autorisations métier dans la cible
 
-`S_TCODE` protège le démarrage de la transaction. La transaction appelée doit encore contrôler les activités, objets et valeurs organisationnelles nécessaires avant chaque opération sensible.
+`S_TCODE`[^terme-s-tcode] protège le démarrage de la transaction. La transaction appelée doit encore contrôler les activités, objets et valeurs organisationnelles nécessaires avant chaque opération sensible.
 
 ### 4.C.6 Étape 6 — Tester les refus distinctement
 
@@ -70,7 +70,7 @@ Tester au minimum :
 3. démarrage autorisé mais autorisation métier refusée dans la cible ;
 4. scénario entièrement autorisé.
 
-Utiliser `SU53` ou `STAUTHTRACE` pour distinguer le refus de démarrage du refus métier.
+Utiliser `SU53`[^outil-su53] ou `STAUTHTRACE`[^outil-stauthtrace] pour distinguer le refus de démarrage du refus métier.
 
 ## 4.D CONTRÔLE
 
@@ -79,3 +79,8 @@ La vérification de `S_TCODE` autorise le démarrage. Le programme appelé doit 
 ## 4.E RÉFÉRENCE OFFICIELLE SAP
 
 - [Authorization Checks in Your Own Developments — SAP SE, SAP S/4HANA](https://help.sap.com/docs/ABAP_PLATFORM_NEW/88c6b8647c8d40b39eb554e2d7b6bda1/5267167f439b11d1896f0000e8322d00.html)
+
+[^terme-s-tcode]: **S_TCODE.** Objet d’autorisation contrôlé au démarrage d’une transaction pour le code de transaction demandé. Source : [SAP Help Portal](https://help.sap.com/docs/ABAP_PLATFORM_NEW/88c6b8647c8d40b39eb554e2d7b6bda1/5267167f439b11d1896f0000e8322d00.html).
+
+[^outil-su53]: **SU53.** Transaction affichant les derniers contrôles d’autorisation en échec pour l’utilisateur courant. Voir [le chapitre associé](<02 ├── DIAGNOSTIQUER UN REFUS AVEC SU53 ET STAUTHTRACE.md>).
+[^outil-stauthtrace]: **STAUTHTRACE.** Trace d’autorisations utilisée pour enregistrer et analyser les contrôles exécutés pendant un scénario. Voir [le chapitre associé](<02 ├── DIAGNOSTIQUER UN REFUS AVEC SU53 ET STAUTHTRACE.md>).

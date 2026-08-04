@@ -2,13 +2,13 @@
 
 ## 14.A RÉSULTAT ATTENDU
 
-- Déclarer un module de mise à jour dans `SE37`
+- Déclarer un module de mise à jour dans `SE37`[^outil-se37]
 - Respecter les contraintes d’interface
 - Séparer validation et persistance
 
 ## 14.B CRÉATION DANS `SE37`
 
-1. créer ou ouvrir un module fonction client ;
+1. créer ou ouvrir un module fonction[^terme-module-fonction] client ;
 2. définir son groupe de fonctions ;
 3. activer le type de traitement **Module de mise à jour** ;
 4. choisir la priorité appropriée ;
@@ -18,12 +18,12 @@
 
 ## 14.C CONTRAINTES
 
-Un module appelé en update task :
+Un module appelé en update task[^terme-update-task] :
 
 - reçoit des valeurs sérialisées lors de l’enregistrement de l’appel ;
 - ne doit pas dépendre de l’état global du programme de dialogue ;
 - ne doit pas afficher d’écran ;
-- ne doit pas exécuter `COMMIT WORK` ou `ROLLBACK WORK` ;
+- ne doit pas exécuter `COMMIT WORK`[^terme-commit-work] ou `ROLLBACK WORK`[^terme-rollback-work] ;
 - doit traiter ses erreurs selon le mécanisme de mise à jour.
 
 ## 14.D EXEMPLE DE RESPONSABILITÉ
@@ -53,19 +53,19 @@ Saisir `/nSE37`, entrer un nom Z et choisir **Créer**. Affecter le module à un
 
 ### 14.E.3 ÉTAPE 3 — CONSTRUIRE UNE INTERFACE COMPATIBLE
 
-Déclarer des paramètres d’import fondés sur des types DDIC sérialisables et suffisants pour la persistance. Respecter les restrictions affichées par `SE37` pour un module de mise à jour. Éviter toute référence d’objet ou dépendance au contexte frontend.
+Déclarer des paramètres d’import fondés sur des types DDIC[^terme-acro-ddic] sérialisables et suffisants pour la persistance. Respecter les restrictions affichées par `SE37` pour un module de mise à jour. Éviter toute référence d’objet[^terme-reference] ou dépendance au contexte frontend[^terme-frontend].
 
 ### 14.E.4 ÉTAPE 4 — IMPLÉMENTER LA PERSISTANCE
 
-Écrire les instructions Open SQL nécessaires et contrôler leurs résultats. Ne pas exécuter `COMMIT WORK`, `ROLLBACK WORK`, dialogue utilisateur ou appel impropre à l’update task dans le module. Produire un message ou une exception exploitable par le mécanisme de mise à jour en cas d’incohérence technique.
+Écrire les instructions Open SQL[^terme-acro-sql] nécessaires et contrôler leurs résultats. Ne pas exécuter `COMMIT WORK`, `ROLLBACK WORK`, dialogue utilisateur ou appel impropre à l’update task dans le module. Produire un message ou une exception[^terme-exception] exploitable par le mécanisme de mise à jour en cas d’incohérence technique.
 
 ### 14.E.5 ÉTAPE 5 — ACTIVER LE GROUPE DE FONCTIONS
 
-Contrôler la syntaxe du module, puis activer le module et les objets inactifs du groupe. Vérifier la signature active dans `SE37`. Le test direct de `SE37` ne reproduit pas à lui seul l’enregistrement et le déclenchement par une SAP LUW.
+Contrôler la syntaxe du module, puis activer le module et les objets inactifs du groupe. Vérifier la signature active dans `SE37`. Le test direct de `SE37` ne reproduit pas à lui seul l’enregistrement et le déclenchement par une SAP LUW[^terme-sap-luw].
 
 ### 14.E.6 ÉTAPE 6 — TESTER DEPUIS UN PROGRAMME APPELANT
 
-Créer un report Z qui prépare les paramètres, appelle le module `IN UPDATE TASK`, puis exécute `COMMIT WORK AND WAIT`. Vérifier les données et `sy-subrc`. Tester ensuite un `ROLLBACK WORK` avant le commit et un échec contrôlé du module ; analyser ce dernier dans `SM13`.
+Créer un report Z qui prépare les paramètres, appelle le module `IN UPDATE TASK`, puis exécute `COMMIT WORK AND WAIT`. Vérifier les données et `sy-subrc`. Tester ensuite un `ROLLBACK WORK` avant le commit et un échec contrôlé du module ; analyser ce dernier dans `SM13`[^outil-sm13].
 
 ## 14.F VÉRIFICATION
 
@@ -114,3 +114,17 @@ ENDFUNCTION.
 ---
 
 [Chapitre suivant — `CALL FUNCTION ... IN UPDATE TASK`](<./15 ├── CALL FUNCTION IN UPDATE TASK.md>)
+
+[^terme-module-fonction]: **MODULE FONCTION.** Procédure globale appelée avec `CALL FUNCTION` et définie dans un groupe de fonctions. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/06 ├── PROGRAMMES CLASSES ET OBJETS TECHNIQUES.md#module-fonction>).
+[^terme-update-task]: **UPDATE TASK.** Mécanisme différant des mises à jour pour les exécuter lors du `COMMIT WORK` dans des processus de mise à jour. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/08 ├── EXECUTION EXPLOITATION ET ADMINISTRATION.md#update-task>).
+[^terme-commit-work]: **COMMIT WORK.** Instruction clôturant la SAP LUW courante, déclenchant notamment les mises à jour enregistrées et validant la base. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/08 ├── EXECUTION EXPLOITATION ET ADMINISTRATION.md#commit-work>).
+[^terme-rollback-work]: **ROLLBACK WORK.** Instruction annulant les modifications non validées de la LUW courante et les tâches de mise à jour enregistrées. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/08 ├── EXECUTION EXPLOITATION ET ADMINISTRATION.md#rollback-work>).
+[^terme-acro-ddic]: **DDIC.** Data Dictionary, abréviation courante de l’ABAP Dictionary. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/10 └── ACRONYMES SAP.md#acro-ddic>).
+[^terme-reference]: **RÉFÉRENCE.** Valeur qui pointe vers un objet de données ou une instance de classe. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#reference>).
+[^terme-frontend]: **FRONTEND.** Poste ou couche cliente utilisée par l’utilisateur, par exemple SAP GUI for Windows. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/01 ├── SYSTEMES ENVIRONNEMENTS ET MANDANTS.md#frontend>).
+[^terme-acro-sql]: **SQL.** Structured Query Language. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/10 └── ACRONYMES SAP.md#acro-sql>).
+[^terme-exception]: **EXCEPTION.** Objet ou signal représentant une situation anormale qu’un appelant peut traiter. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#exception>).
+[^terme-sap-luw]: **SAP LUW.** Unité logique métier SAP pouvant regrouper plusieurs étapes de dialogue et différer les mises à jour jusqu’au commit. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/08 ├── EXECUTION EXPLOITATION ET ADMINISTRATION.md#sap-luw>).
+
+[^outil-se37]: **SE37.** Function Builder utilisé pour rechercher, afficher, tester et maintenir les modules fonction. Voir [le chapitre associé](<../🧩 12 ├── MODULES FONCTION RFC ET BAPI/03 ├── RECHERCHER ET ANALYSER AVEC SE37.md>).
+[^outil-sm13]: **SM13.** Transaction de surveillance et de reprise des enregistrements de mise à jour SAP. Voir [le chapitre associé](<19 ├── ANALYSER ET REPRENDRE LES UPDATES AVEC SM13.md>).

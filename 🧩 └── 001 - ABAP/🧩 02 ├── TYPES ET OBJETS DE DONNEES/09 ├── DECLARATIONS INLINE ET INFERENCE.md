@@ -26,7 +26,7 @@ flowchart LR
 ```
 
 > [!IMPORTANT]
-> La syntaxe disponible dépend de la version du serveur ABAP et du niveau de syntaxe configuré. SAP GUI n’impose pas la version du langage : il ne fait qu’éditer du code exécuté par le système ABAP.
+> La syntaxe disponible dépend de la version du serveur ABAP[^terme-abap] et du niveau de syntaxe configuré. SAP GUI[^terme-sap-gui] n’impose pas la version du langage : il ne fait qu’éditer du code exécuté par le système ABAP.
 
 ## 9.C DÉCLARATION EXPLICITE
 
@@ -90,7 +90,7 @@ FIND FIRST OCCURRENCE OF 'SAP'
 ASSIGN lv_value TO FIELD-SYMBOL(<lv_alias>).
 ```
 
-Les déclarations inline dans les instructions SQL, les boucles et les appels de méthodes seront présentées dans les dossiers correspondants.
+Les déclarations inline dans les instructions SQL[^terme-acro-sql], les boucles et les appels de méthodes seront présentées dans les dossiers correspondants.
 
 ## 9.H PORTÉE
 
@@ -162,7 +162,7 @@ Le type de `lv_total_amount` est déterminé à partir de l’expression arithm�
 ## 9.M SNIPPET À RÉUTILISER
 
 > [!NOTE]
-> Adapter les noms `Z*`, les types DDIC, les données et les autorisations au système cible. Effectuer un contrôle syntaxique avant activation.
+> Adapter les noms `Z*`, les types DDIC[^terme-acro-ddic], les données et les autorisations au système cible. Effectuer un contrôle syntaxique avant activation.
 
 ```abap
 REPORT zdemo_inline_data.
@@ -194,3 +194,8 @@ WRITE / lv_total_amount.
 ---
 
 [Chapitre suivant — SYMBOLES DE CHAMP](<./10 ├── SYMBOLES DE CHAMP.md>)
+
+[^terme-abap]: **ABAP.** Langage de programmation de la plateforme ABAP, conçu pour développer des applications métier et techniques SAP. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#abap>).
+[^terme-sap-gui]: **SAP GUI.** Client graphique permettant d’utiliser les transactions et écrans d’un système SAP. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/02 ├── SAP GUI NAVIGATION ET TRANSACTIONS.md#sap-gui>).
+[^terme-acro-sql]: **SQL.** Structured Query Language. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/10 └── ACRONYMES SAP.md#acro-sql>).
+[^terme-acro-ddic]: **DDIC.** Data Dictionary, abréviation courante de l’ABAP Dictionary. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/10 └── ACRONYMES SAP.md#acro-ddic>).

@@ -5,7 +5,7 @@
 - Modifier une ligne par index ou par clé
 - Utiliser `MODIFY ... TRANSPORTING`
 - Modifier plusieurs lignes avec `WHERE`
-- Modifier directement avec une expression de table
+- Modifier directement avec une expression de table[^terme-expression]
 - Comprendre les restrictions portant sur les clés
 
 ## 10.B MODIFIER PAR INDEX
@@ -76,7 +76,7 @@ Cette forme est plus directe lorsqu’aucune copie n’est nécessaire.
 lt_products[ matnr = 'MAT-001' ]-stock = 100.
 ```
 
-La ligne doit exister. Sinon, l’exception `CX_SY_ITAB_LINE_NOT_FOUND` est levée.
+La ligne doit exister. Sinon, l’exception[^terme-exception] `CX_SY_ITAB_LINE_NOT_FOUND` est levée.
 
 Approche contrôlée :
 
@@ -89,7 +89,7 @@ ENDIF.
 
 ## 10.H MODIFIER UNE CLÉ
 
-Pour une table triée ou hachée, ne pas modifier directement les composants de la clé primaire de manière à contredire l’organisation de la table.
+Pour une table triée ou hachée, ne pas modifier directement les composants de la clé primaire[^terme-cle-primaire] de manière à contredire l’organisation de la table.
 
 ```mermaid
 flowchart TD
@@ -139,7 +139,7 @@ ENDIF.
 ## 10.M SNIPPET À RÉUTILISER
 
 > [!NOTE]
-> Adapter les noms `Z*`, les types DDIC, les données et les autorisations au système cible. Effectuer un contrôle syntaxique avant activation.
+> Adapter les noms `Z*`, les types DDIC[^terme-acro-ddic], les données et les autorisations au système cible. Effectuer un contrôle syntaxique avant activation.
 
 ```abap
 " Accéder à la ligne par une clé adaptée au besoin.
@@ -168,3 +168,8 @@ ENDIF.
 ---
 
 [Chapitre suivant — SUPPRIMER, VIDER ET LIBÉRER UNE TABLE](<./11 ├── SUPPRIMER VIDER ET LIBERER UNE TABLE.md>)
+
+[^terme-expression]: **EXPRESSION.** Construction qui produit une valeur à partir d’opérandes et d’opérateurs. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#expression>).
+[^terme-exception]: **EXCEPTION.** Objet ou signal représentant une situation anormale qu’un appelant peut traiter. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#exception>).
+[^terme-cle-primaire]: **CLÉ PRIMAIRE.** Ensemble minimal de champs identifiant de manière unique une ligne de table. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/05 ├── DONNEES DICTIONNAIRE ET BASE DE DONNEES.md#cle-primaire>).
+[^terme-acro-ddic]: **DDIC.** Data Dictionary, abréviation courante de l’ABAP Dictionary. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/10 └── ACRONYMES SAP.md#acro-ddic>).

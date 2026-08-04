@@ -2,10 +2,10 @@
 
 ## 2.A RÉSULTAT ATTENDU
 
-- Affecter une valeur à un objet de données
+- Affecter une valeur à un objet de données[^terme-objet-donnees]
 - Distinguer affectation compatible et affectation avec conversion
 - Comprendre le rôle du type cible
-- Utiliser les formes d’affectation adaptées à la version ABAP
+- Utiliser les formes d’affectation adaptées à la version ABAP[^terme-abap]
 - Éviter les troncatures et pertes de précision silencieuses
 
 ## 2.B AFFECTATION SIMPLE
@@ -70,7 +70,7 @@ lv_text = lv_number.
 La valeur est convertie vers le format de la cible.
 
 > [!WARNING]
-> Une affectation syntaxiquement valide peut modifier la représentation, supprimer des caractères, arrondir une valeur ou provoquer une exception d’exécution. Les conversions importantes doivent être explicites.
+> Une affectation syntaxiquement valide peut modifier la représentation, supprimer des caractères, arrondir une valeur ou provoquer une exception[^terme-exception] d’exécution. Les conversions importantes doivent être explicites.
 
 ## 2.E AFFECTER UNE MÊME VALEUR À PLUSIEURS OBJETS
 
@@ -162,12 +162,12 @@ Pour une valeur métier, utiliser une constante ou une affectation explicite.
 - Copier un exemple sans adapter les types, noms d’objets et données disponibles dans le système.
 - Tester uniquement le cas nominal et ignorer les valeurs initiales, absentes ou invalides.
 - S’appuyer sur une conversion implicite pouvant tronquer ou arrondir.
-- Ignorer l’encodage et les formats externes.
+- Ignorer l’encodage[^terme-encodage] et les formats externes.
 
 ## 2.L SNIPPET À RÉUTILISER
 
 > [!NOTE]
-> Adapter les noms `Z*`, les types DDIC, les données et les autorisations au système cible. Effectuer un contrôle syntaxique avant activation.
+> Adapter les noms `Z*`, les types DDIC[^terme-acro-ddic], les données et les autorisations au système cible. Effectuer un contrôle syntaxique avant activation.
 
 ```abap
 TYPES: BEGIN OF ty_address,
@@ -200,3 +200,9 @@ ls_target = ls_source.
 ---
 
 [Chapitre suivant — CALCULS ARITHMÉTIQUES](<./03 ├── CALCULS ARITHMETIQUES.md>)
+
+[^terme-objet-donnees]: **OBJET DE DONNÉES.** Zone de mémoire typée contenant une valeur pendant l’exécution. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#objet-donnees>).
+[^terme-abap]: **ABAP.** Langage de programmation de la plateforme ABAP, conçu pour développer des applications métier et techniques SAP. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#abap>).
+[^terme-exception]: **EXCEPTION.** Objet ou signal représentant une situation anormale qu’un appelant peut traiter. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#exception>).
+[^terme-encodage]: **ENCODAGE.** Règle transformant les caractères en octets et inversement. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/07 ├── INTERFACES ET INTEGRATION.md#encodage>).
+[^terme-acro-ddic]: **DDIC.** Data Dictionary, abréviation courante de l’ABAP Dictionary. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/10 └── ACRONYMES SAP.md#acro-ddic>).

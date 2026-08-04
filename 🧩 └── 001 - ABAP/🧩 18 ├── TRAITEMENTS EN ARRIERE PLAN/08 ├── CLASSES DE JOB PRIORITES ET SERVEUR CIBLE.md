@@ -8,7 +8,7 @@
 
 ## 8.B CLASSES
 
-| Classe | Positionnement                                                |
+| Classe[^terme-classe] | Positionnement                                                |
 | ------ | ------------------------------------------------------------- |
 | `A`    | Priorité élevée, réservée aux traitements critiques autorisés |
 | `B`    | Priorité intermédiaire                                        |
@@ -33,7 +33,7 @@ flowchart TD
 
 ## 8.E DIAGNOSTIC
 
-Si un job reste prêt :
+Si un job[^terme-job] reste prêt :
 
 - contrôler la classe ;
 - vérifier les processus batch disponibles ;
@@ -53,11 +53,11 @@ Identifier les serveurs ou groupes disposant de processus batch pendant la fenê
 
 ### 8.F.3 ÉTAPE 3 — CONFIGURER CLASSE ET CIBLAGE
 
-Dans `SM36`, affecter la classe autorisée. Laisser le système choisir la ressource lorsque aucune contrainte n’existe. Si un serveur ou groupe est requis, renseigner le ciblage validé et documenter la raison technique.
+Dans `SM36`[^outil-sm36], affecter la classe autorisée. Laisser le système choisir la ressource lorsque aucune contrainte n’existe. Si un serveur ou groupe est requis, renseigner le ciblage validé et documenter la raison technique.
 
 ### 8.F.4 ÉTAPE 4 — CONTRÔLER LE JOB LIBÉRÉ
 
-Dans `SM37`, ouvrir les détails et vérifier classe, serveur cible, condition de démarrage et étapes. Comparer au contrat d’exploitation. Corriger avant la fenêtre si le job dépend d’un serveur indisponible.
+Dans `SM37`[^outil-sm37], ouvrir les détails et vérifier classe, serveur cible, condition de démarrage et étapes. Comparer au contrat d’exploitation. Corriger avant la fenêtre si le job dépend d’un serveur indisponible.
 
 ### 8.F.5 ÉTAPE 5 — MESURER LE DÉMARRAGE RÉEL
 
@@ -71,7 +71,7 @@ Si l’objectif n’est pas tenu, ajuster avec Basis la fenêtre, la classe, le 
 
 - Le job apparaît dans `SM37` avec le statut attendu.
 - Le journal ne contient pas de message d’erreur non traité.
-- Le spool, le fichier ou le journal applicatif contient le résultat attendu.
+- Le spool[^terme-spool], le fichier ou le journal applicatif contient le résultat attendu.
 - Une relance contrôlée ne crée pas de doublon métier.
 
 ## 8.H ERREURS FRÉQUENTES
@@ -110,3 +110,10 @@ Ordre de transport  :
 ---
 
 [Chapitre suivant — JOBS PÉRIODIQUES ET FENÊTRES D’EXÉCUTION](<./09 ├── JOBS PERIODIQUES ET FENETRES D EXECUTION.md>)
+
+[^terme-classe]: **CLASSE.** Modèle orienté objet définissant état et comportements. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#classe>).
+[^terme-job]: **JOB.** Traitement planifié en arrière-plan composé d’une ou plusieurs étapes. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/06 ├── PROGRAMMES CLASSES ET OBJETS TECHNIQUES.md#job>).
+[^terme-spool]: **SPOOL.** Infrastructure stockant et acheminant les sorties imprimables produites par les traitements SAP. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/06 ├── PROGRAMMES CLASSES ET OBJETS TECHNIQUES.md#spool>).
+
+[^outil-sm36]: **SM36.** Transaction de définition et de planification des jobs d’arrière-plan. Voir [le chapitre associé](<06 ├── PLANIFIER UN JOB AVEC SM36.md>).
+[^outil-sm37]: **SM37.** Transaction de recherche, surveillance et administration des jobs d’arrière-plan. Voir [le chapitre associé](<15 ├── SURVEILLER LES JOBS AVEC SM37.md>).

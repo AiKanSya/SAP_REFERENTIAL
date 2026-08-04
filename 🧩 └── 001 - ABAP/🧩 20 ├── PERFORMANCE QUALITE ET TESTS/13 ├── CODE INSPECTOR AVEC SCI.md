@@ -2,7 +2,7 @@
 
 ## 13.A RÉSULTAT ATTENDU
 
-Utiliser `SCI` pour exécuter un ensemble cohérent de contrôles sur un objet ou un groupe d’objets Repository.
+Utiliser `SCI`[^outil-sci] pour exécuter un ensemble cohérent de contrôles sur un objet ou un groupe d’objets Repository.
 
 ## 13.B Objets principaux
 
@@ -16,7 +16,7 @@ Utiliser `SCI` pour exécuter un ensemble cohérent de contrôles sur un objet o
 
 1. Ouvrir `SCI`.
 2. Lancer une inspection ad hoc.
-3. Définir les objets ou le package.
+3. Définir les objets ou le package[^terme-package].
 4. Choisir une variante globale autorisée.
 5. Exécuter et analyser les résultats.
 
@@ -29,11 +29,11 @@ flowchart LR
 
 ## 13.D Domaines de contrôle
 
-Selon la variante : performance, sécurité, robustesse, conventions, syntaxe, recherche de code, objets DDIC, traductions ou dépendances.
+Selon la variante : performance, sécurité, robustesse, conventions, syntaxe, recherche de code, objets DDIC[^terme-acro-ddic], traductions ou dépendances.
 
 ## 13.E Gouvernance
 
-Une variante locale personnelle n’est pas une référence projet. Pour une validation de livraison, utiliser la variante globale définie par l’équipe qualité ou l’ATC central.
+Une variante locale personnelle n’est pas une référence projet. Pour une validation de livraison, utiliser la variante globale définie par l’équipe qualité ou l’ATC[^terme-acro-atc] central.
 
 ## 13.F Relation avec ATC
 
@@ -65,7 +65,7 @@ Trier par priorité et catégorie. Ouvrir la documentation et naviguer vers la s
 
 ### 13.H.5 ÉTAPE 5 — CORRIGER ET EXÉCUTER LES TESTS
 
-Corriger d’abord les findings bloquants, puis relancer les tests ABAP Unit et fonctionnels. Utiliser une exemption ou pseudo-commentaire uniquement selon la gouvernance, avec motif spécifique.
+Corriger d’abord les findings bloquants, puis relancer les tests ABAP[^terme-abap] Unit et fonctionnels. Utiliser une exemption ou pseudo-commentaire uniquement selon la gouvernance, avec motif spécifique.
 
 ### 13.H.6 ÉTAPE 6 — RELANCER L’INSPECTION
 
@@ -103,3 +103,10 @@ Ordre de transport  :
 - [ATC](<../🧩 00 ├── LEXIQUE SAP ET ABAP/10 └── ACRONYMES SAP.md#acro-atc>)
 - [ABAP](<../🧩 00 ├── LEXIQUE SAP ET ABAP/10 └── ACRONYMES SAP.md#acro-abap>)
 - [Trace](<../🧩 00 ├── LEXIQUE SAP ET ABAP/08 ├── EXECUTION EXPLOITATION ET ADMINISTRATION.md#trace>)
+
+[^terme-package]: **PACKAGE.** Conteneur logique qui regroupe les objets de développement et détermine notamment leur transportabilité. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/03 ├── REPOSITORY PACKAGES ET TRANSPORTS.md#package>).
+[^terme-acro-ddic]: **DDIC.** Data Dictionary, abréviation courante de l’ABAP Dictionary. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/10 └── ACRONYMES SAP.md#acro-ddic>).
+[^terme-acro-atc]: **ATC.** ABAP Test Cockpit, infrastructure de contrôles statiques et de gouvernance qualité. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/10 └── ACRONYMES SAP.md#acro-atc>).
+[^terme-abap]: **ABAP.** Langage de programmation de la plateforme ABAP, conçu pour développer des applications métier et techniques SAP. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#abap>).
+
+[^outil-sci]: **SCI.** Code Inspector utilisé pour exécuter des contrôles statiques sur un ensemble d’objets ABAP. Voir [le chapitre associé](<13 ├── CODE INSPECTOR AVEC SCI.md>).

@@ -3,10 +3,10 @@
 ## 6.A RÉSULTAT ATTENDU
 
 - Définir un type local réutilisable avec `TYPES`
-- Distinguer définition de type et création d’un objet de données
+- Distinguer définition de type et création d’un objet de données[^terme-objet-donnees]
 - Construire des types élémentaires et structurés
 - Comprendre la portée d’un type local
-- Choisir entre type local et type global du Dictionnaire ABAP
+- Choisir entre type local et type global du Dictionnaire ABAP[^terme-abap]
 
 ## 6.B `TYPES` NE CRÉE PAS DE VARIABLE
 
@@ -38,7 +38,7 @@ DATA lv_discount_rate TYPE ty_percentage.
 DATA lv_tax_rate      TYPE ty_percentage.
 ```
 
-L’intérêt est de centraliser une définition technique utilisée plusieurs fois dans la même zone de visibilité.
+L’intérêt est de centraliser une définition technique utilisée plusieurs fois dans la même zone de visibilité[^terme-visibilite].
 
 ## 6.D TYPE BASÉ SUR UN TYPE GLOBAL
 
@@ -114,7 +114,7 @@ FORM display_value.
 ENDFORM.
 ```
 
-Pour une classe locale ou globale, la visibilité dépend de la section et de l’emplacement de la déclaration.
+Pour une classe locale[^terme-classe-locale] ou globale, la visibilité dépend de la section et de l’emplacement de la déclaration.
 
 ## 6.H TYPE LOCAL OU DICTIONNAIRE ABAP
 
@@ -123,8 +123,8 @@ Pour une classe locale ou globale, la visibilité dépend de la section et de l�
 | Type utilisé uniquement dans une procédure   | Type local                                              |
 | Structure technique interne à un programme   | Type local                                              |
 | Type partagé par plusieurs objets Repository | Dictionnaire ABAP ou type public d’une classe/interface |
-| Donnée métier SAP existante                  | Réutilisation du type global approprié                  |
-| Champ d’interface RFC, table ou écran        | Type global selon les contraintes de l’interface        |
+| Donnée métier SAP[^terme-acro-sap] existante                  | Réutilisation du type global approprié                  |
+| Champ d’interface RFC[^terme-rfc], table ou écran        | Type global selon les contraintes de l’interface        |
 
 > [!IMPORTANT]
 > Ne créer un type global que lorsqu’un partage réel ou une sémantique globale le justifie. Un type global devient un contrat utilisé par d’autres objets.
@@ -189,12 +189,12 @@ WRITE: / ls_order-order_id,
 - Copier un exemple sans adapter les types, noms d’objets et données disponibles dans le système.
 - Tester uniquement le cas nominal et ignorer les valeurs initiales, absentes ou invalides.
 - Choisir un type trop générique ou dépendant d’une variable existante sans justification.
-- Utiliser une référence ou un field-symbol non lié.
+- Utiliser une référence ou un field-symbol[^terme-field-symbol] non lié.
 
 ## 6.N SNIPPET À RÉUTILISER
 
 > [!NOTE]
-> Adapter les noms `Z*`, les types DDIC, les données et les autorisations au système cible. Effectuer un contrôle syntaxique avant activation.
+> Adapter les noms `Z*`, les types DDIC[^terme-acro-ddic], les données et les autorisations au système cible. Effectuer un contrôle syntaxique avant activation.
 
 ```abap
 REPORT zdemo_local_types.
@@ -238,3 +238,12 @@ WRITE: / ls_order-order_id,
 ---
 
 [Chapitre suivant — STRUCTURES](<./07 ├── STRUCTURES.md>)
+
+[^terme-objet-donnees]: **OBJET DE DONNÉES.** Zone de mémoire typée contenant une valeur pendant l’exécution. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#objet-donnees>).
+[^terme-abap]: **ABAP.** Langage de programmation de la plateforme ABAP, conçu pour développer des applications métier et techniques SAP. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#abap>).
+[^terme-visibilite]: **VISIBILITÉ.** Règle déterminant où un composant de classe peut être utilisé : `PUBLIC`, `PROTECTED` ou `PRIVATE`. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#visibilite>).
+[^terme-classe-locale]: **CLASSE LOCALE.** Classe définie dans le code source d’un programme, d’un include ou d’un Class Pool et visible uniquement dans ce contexte de compilation. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/06 ├── PROGRAMMES CLASSES ET OBJETS TECHNIQUES.md#classe-locale>).
+[^terme-acro-sap]: **SAP.** Nom de l’éditeur et de son écosystème logiciel ; l’acronyme historique provient de l’allemand. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/10 └── ACRONYMES SAP.md#acro-sap>).
+[^terme-rfc]: **RFC.** Remote Function Call, mécanisme permettant d’appeler un module fonction compatible dans un autre contexte ou système. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/06 ├── PROGRAMMES CLASSES ET OBJETS TECHNIQUES.md#rfc>).
+[^terme-field-symbol]: **FIELD-SYMBOL.** Alias dynamique vers une zone de mémoire existante. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#field-symbol>).
+[^terme-acro-ddic]: **DDIC.** Data Dictionary, abréviation courante de l’ABAP Dictionary. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/10 └── ACRONYMES SAP.md#acro-ddic>).

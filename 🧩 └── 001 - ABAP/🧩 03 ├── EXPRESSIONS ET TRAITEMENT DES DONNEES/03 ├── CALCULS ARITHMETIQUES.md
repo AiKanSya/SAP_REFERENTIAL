@@ -2,7 +2,7 @@
 
 ## 3.A RÉSULTAT ATTENDU
 
-- Utiliser les opérateurs arithmétiques ABAP
+- Utiliser les opérateurs arithmétiques ABAP[^terme-abap]
 - Comprendre la priorité des opérations
 - Choisir des types numériques adaptés
 - Gérer division entière, reste et puissance
@@ -86,7 +86,7 @@ lv_reverse = - lv_amount.
 
 ## 3.F DÉPASSEMENT ET DIVISION PAR ZÉRO
 
-Une opération peut produire une exception d’exécution :
+Une opération peut produire une exception[^terme-exception] d’exécution :
 
 - division par zéro ;
 - valeur hors de la plage du type cible ;
@@ -108,12 +108,12 @@ Le traitement des exceptions sera détaillé dans un dossier dédié.
 | Besoin                                | Type habituel                | Point d’attention                    |
 | ------------------------------------- | ---------------------------- | ------------------------------------ |
 | Compteur                              | `i` ou `int8`                | Plage de valeurs                     |
-| Montant ou quantité à décimales fixes | `p` ou type DDIC métier      | Longueur et décimales                |
+| Montant ou quantité à décimales fixes | `p` ou type DDIC[^terme-acro-ddic] métier      | Longueur et décimales                |
 | Calcul décimal avec grande plage      | `decfloat16` ou `decfloat34` | Règles d’arrondi                     |
 | Calcul scientifique approximatif      | `f`                          | Représentation binaire approximative |
 
 > [!IMPORTANT]
-> Pour les montants et quantités SAP, utiliser de préférence les types métier du Dictionnaire ABAP, avec leurs champs de référence pour devise ou unité.
+> Pour les montants et quantités SAP[^terme-acro-sap], utiliser de préférence les types métier du Dictionnaire ABAP, avec leurs champs de référence pour devise ou unité.
 
 ## 3.H EXEMPLE MÉTIER
 
@@ -142,7 +142,7 @@ Chaque étape métier est conservée dans une variable distincte afin de facilit
 - Copier un exemple sans adapter les types, noms d’objets et données disponibles dans le système.
 - Tester uniquement le cas nominal et ignorer les valeurs initiales, absentes ou invalides.
 - S’appuyer sur une conversion implicite pouvant tronquer ou arrondir.
-- Ignorer l’encodage et les formats externes.
+- Ignorer l’encodage[^terme-encodage] et les formats externes.
 
 ## 3.K SNIPPET À RÉUTILISER
 
@@ -173,3 +173,9 @@ ENDTRY.
 ---
 
 [Chapitre suivant — FONCTIONS NUMÉRIQUES ET ARRONDIS](<./04 ├── FONCTIONS NUMERIQUES ET ARRONDIS.md>)
+
+[^terme-abap]: **ABAP.** Langage de programmation de la plateforme ABAP, conçu pour développer des applications métier et techniques SAP. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#abap>).
+[^terme-exception]: **EXCEPTION.** Objet ou signal représentant une situation anormale qu’un appelant peut traiter. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#exception>).
+[^terme-acro-ddic]: **DDIC.** Data Dictionary, abréviation courante de l’ABAP Dictionary. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/10 └── ACRONYMES SAP.md#acro-ddic>).
+[^terme-acro-sap]: **SAP.** Nom de l’éditeur et de son écosystème logiciel ; l’acronyme historique provient de l’allemand. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/10 └── ACRONYMES SAP.md#acro-sap>).
+[^terme-encodage]: **ENCODAGE.** Règle transformant les caractères en octets et inversement. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/07 ├── INTERFACES ET INTEGRATION.md#encodage>).

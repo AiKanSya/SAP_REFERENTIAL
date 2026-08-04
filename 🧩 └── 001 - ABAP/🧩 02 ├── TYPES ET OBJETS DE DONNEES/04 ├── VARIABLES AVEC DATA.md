@@ -6,7 +6,7 @@
 - Choisir entre un type intégré, local ou global
 - Initialiser explicitement une variable
 - Comprendre la différence entre déclaration et affectation
-- Appliquer des conventions de nommage utiles sans les confondre avec la syntaxe ABAP
+- Appliquer des conventions de nommage utiles sans les confondre avec la syntaxe ABAP[^terme-abap]
 
 ## 4.B DÉCLARATION DE BASE
 
@@ -73,7 +73,7 @@ DATA lv_company_code TYPE bukrs.
 DATA ls_result TYPE zcl_demo_service=>ty_result.
 ```
 
-Ce type n’est accessible que si la classe existe et si le type est déclaré dans une section visible.
+Ce type n’est accessible que si la classe[^terme-classe] existe et si le type est déclaré dans une section visible.
 
 ## 4.E PLUSIEURS VARIABLES
 
@@ -110,7 +110,7 @@ Une conversion peut être effectuée implicitement lorsque les types sont compat
 - troncature ;
 - arrondi ;
 - perte de zéros initiaux ;
-- exception de conversion ;
+- exception[^terme-exception] de conversion ;
 - résultat dépendant des règles de conversion ABAP.
 
 Les conversions explicites seront détaillées dans le dossier consacré aux expressions et traitements de données.
@@ -187,7 +187,7 @@ Dans une application réelle, les montants et devises doivent être typés avec 
 ## 4.L SNIPPET À RÉUTILISER
 
 > [!NOTE]
-> Adapter les noms `Z*`, les types DDIC, les données et les autorisations au système cible. Effectuer un contrôle syntaxique avant activation.
+> Adapter les noms `Z*`, les types DDIC[^terme-acro-ddic], les données et les autorisations au système cible. Effectuer un contrôle syntaxique avant activation.
 
 ```abap
 REPORT zdemo_data_statement.
@@ -226,3 +226,8 @@ WRITE: / 'Montant net :', lv_net_amount,
 ---
 
 [Chapitre suivant — CONSTANTES ET LITTÉRAUX](<./05 ├── CONSTANTES ET LITTERAUX.md>)
+
+[^terme-abap]: **ABAP.** Langage de programmation de la plateforme ABAP, conçu pour développer des applications métier et techniques SAP. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#abap>).
+[^terme-classe]: **CLASSE.** Modèle orienté objet définissant état et comportements. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#classe>).
+[^terme-exception]: **EXCEPTION.** Objet ou signal représentant une situation anormale qu’un appelant peut traiter. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#exception>).
+[^terme-acro-ddic]: **DDIC.** Data Dictionary, abréviation courante de l’ABAP Dictionary. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/10 └── ACRONYMES SAP.md#acro-ddic>).

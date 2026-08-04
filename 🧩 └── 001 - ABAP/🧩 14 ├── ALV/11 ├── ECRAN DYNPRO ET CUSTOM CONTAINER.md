@@ -2,7 +2,7 @@
 
 ## 11.A RÉSULTAT ATTENDU
 
-- Préparer un Dynpro pour l’ALV Grid
+- Préparer un Dynpro[^terme-dynpro] pour l’ALV[^terme-alv] Grid
 - Créer le conteneur et la grille
 - Gérer le cycle PBO et PAI
 
@@ -10,7 +10,7 @@
 
 ### 11.B.1 Étape 1 — Créer le dynpro 0100
 
-Ouvrir le programme ou module pool dans `SE80`, développer **Écrans**, créer `0100` et conserver le type d’écran normal. Renseigner une description et vérifier qu’aucun écran du programme n’utilise déjà ce numéro.
+Ouvrir le programme ou module pool[^terme-module-pool] dans `SE80`[^outil-se80], développer **Écrans**, créer `0100` et conserver le type d’écran normal. Renseigner une description et vérifier qu’aucun écran du programme n’utilise déjà ce numéro.
 
 ### 11.B.2 Étape 2 — Ajouter le Custom Control
 
@@ -77,7 +77,7 @@ Lorsque l’application utilise les événements du Control Framework, intégrer
 - références déclarées localement puis détruites ;
 - création de la grille à chaque PBO ;
 - appel d’affichage avant l’instanciation du conteneur ;
-- statut GUI absent ou code fonction non traité.
+- statut GUI[^terme-acro-gui] absent ou code fonction non traité.
 
 ## 11.G PROCESS
 
@@ -115,7 +115,7 @@ Ouvrir `0100`, vérifier l’affichage, provoquer un second PBO et confirmer que
 ## 11.I SNIPPET À RÉUTILISER
 
 > [!NOTE]
-> Adapter les noms `Z*`, les types DDIC, les données et les autorisations au système cible. Effectuer un contrôle syntaxique avant activation.
+> Adapter les noms `Z*`, les types DDIC[^terme-acro-ddic], les données et les autorisations au système cible. Effectuer un contrôle syntaxique avant activation.
 
 ```abap
 MODULE status_0100 OUTPUT.
@@ -148,3 +148,11 @@ ENDMODULE.
 ---
 
 [Chapitre suivant — TABLE DE SORTIE ET CATALOGUE DE CHAMPS](<./12 ├── TABLE DE SORTIE ET CATALOGUE DE CHAMPS.md>)
+
+[^terme-dynpro]: **DYNPRO.** Écran classique SAP composé d’une définition d’écran et d’une logique PBO/PAI. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/02 ├── SAP GUI NAVIGATION ET TRANSACTIONS.md#dynpro>).
+[^terme-alv]: **ALV.** ABAP List Viewer, ensemble de technologies d’affichage tabulaire avec tri, filtre, total et variantes. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/06 ├── PROGRAMMES CLASSES ET OBJETS TECHNIQUES.md#alv>).
+[^terme-module-pool]: **MODULE POOL.** Programme ABAP classique pilotant des dynpros au moyen de modules PBO et PAI. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/06 ├── PROGRAMMES CLASSES ET OBJETS TECHNIQUES.md#module-pool>).
+[^terme-acro-gui]: **GUI.** Graphical User Interface. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/10 └── ACRONYMES SAP.md#acro-gui>).
+[^terme-acro-ddic]: **DDIC.** Data Dictionary, abréviation courante de l’ABAP Dictionary. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/10 └── ACRONYMES SAP.md#acro-ddic>).
+
+[^outil-se80]: **SE80.** Object Navigator utilisé pour parcourir et maintenir les objets du Repository ABAP. Voir [le chapitre associé](<../🧩 01 ├── FONDAMENTAUX ABAP/04 ├── EDITEURS ABAP SE38 ET SE80.md>).

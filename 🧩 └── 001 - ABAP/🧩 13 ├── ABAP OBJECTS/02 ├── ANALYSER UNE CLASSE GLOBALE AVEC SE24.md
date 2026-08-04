@@ -2,9 +2,9 @@
 
 ## 2.A RÉSULTAT ATTENDU
 
-- Ouvrir une classe globale existante.
-- Identifier son API publique, ses dépendances et ses implémentations.
-- Retrouver les appels d’une méthode avant une modification.
+- Ouvrir une classe globale[^terme-classe-globale] existante.
+- Identifier son API publique[^terme-api-publique], ses dépendances et ses implémentations.
+- Retrouver les appels d’une méthode[^terme-methode] avant une modification.
 - Vérifier les propriétés techniques d’une classe.
 
 ## 2.B CAS D’USAGE
@@ -15,7 +15,7 @@ Un incident est signalé dans une méthode `ZCL_MM_STOCK_SERVICE=>GET_STOCK`. Av
 
 ### 2.C.1 Étape 1 — Confirmer l’identité de la classe
 
-Ouvrir `SE24`, saisir le nom exact et choisir **Afficher**. Relever description, package, responsable, statut actif, mode d’instanciation et indicateurs abstrait/final. Si l’outil propose de créer, annuler et vérifier le nom.
+Ouvrir `SE24`[^terme-class-builder-se24], saisir le nom exact et choisir **Afficher**. Relever description, package[^terme-package], responsable, statut actif, mode d’instanciation et indicateurs abstrait/final. Si l’outil propose de créer, annuler et vérifier le nom.
 
 ### 2.C.2 Étape 2 — Cartographier l’API publique
 
@@ -38,7 +38,7 @@ Ouvrir uniquement la méthode liée au scénario. Relever appels externes, accè
 Construire un appel minimal dans un report ou test. L’analyse est terminée lorsque instanciation, signature, erreurs, dépendances et effet de la méthode peuvent être décrits sans supposition.
 
 > [!NOTE]
-> Les libellés exacts des boutons peuvent varier selon la release et le mode du Class Builder. Les mêmes objets sont également accessibles dans `SE80`.
+> Les libellés exacts des boutons peuvent varier selon la release et le mode du Class Builder. Les mêmes objets sont également accessibles dans `SE80`[^outil-se80].
 
 ## 2.D LECTURE DE L’API PUBLIQUE
 
@@ -96,9 +96,9 @@ L’analyse est complète lorsque vous pouvez répondre sans lire tout le code :
 
 ## 2.I COMPATIBILITÉ S/4HANA
 
-- Statut : compatible avec le développement ABAP classique sur SAP S/4HANA.
-- Vérifier la syntaxe exacte avec l’aide `F1` du système cible lorsque plusieurs versions d’ABAP Platform sont prises en charge.
-- Les objets globaux doivent être créés dans le package et l’ordre de transport du projet.
+- Statut : compatible avec le développement ABAP[^terme-abap] classique sur SAP[^terme-acro-sap] S/4HANA.
+- Vérifier la syntaxe exacte avec l’aide `F1`[^terme-aide-f1] du système cible lorsque plusieurs versions d’ABAP Platform sont prises en charge.
+- Les objets globaux doivent être créés dans le package et l’ordre de transport[^terme-ordre-transport] du projet.
 
 ## 2.J RÉFÉRENCES OFFICIELLES SAP
 
@@ -108,3 +108,15 @@ L’analyse est complète lorsque vous pouvez répondre sans lire tout le code :
 ---
 
 [Chapitre suivant — CRÉER UNE PREMIÈRE CLASSE GLOBALE AVEC SE24](<./03 ├── CREER UNE PREMIERE CLASSE GLOBALE AVEC SE24.md>)
+
+[^terme-classe-globale]: **CLASSE GLOBALE.** Classe Repository réutilisable dans le système ABAP. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/06 ├── PROGRAMMES CLASSES ET OBJETS TECHNIQUES.md#classe-globale>).
+[^terme-api-publique]: **API PUBLIQUE.** Ensemble des composants publics qu’une classe expose à ses consommateurs : méthodes, événements, types, constantes et attributs publics. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#api-publique>).
+[^terme-methode]: **MÉTHODE.** Comportement déclaré dans une classe ou une interface et appelé avec une liste de paramètres définie. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#methode>).
+[^terme-class-builder-se24]: **CLASS BUILDER (SE24).** Outil SAP GUI utilisé pour créer, afficher, modifier, tester et documenter les classes et interfaces globales ABAP. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/06 ├── PROGRAMMES CLASSES ET OBJETS TECHNIQUES.md#class-builder-se24>).
+[^terme-package]: **PACKAGE.** Conteneur logique qui regroupe les objets de développement et détermine notamment leur transportabilité. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/03 ├── REPOSITORY PACKAGES ET TRANSPORTS.md#package>).
+[^terme-abap]: **ABAP.** Langage de programmation de la plateforme ABAP, conçu pour développer des applications métier et techniques SAP. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#abap>).
+[^terme-acro-sap]: **SAP.** Nom de l’éditeur et de son écosystème logiciel ; l’acronyme historique provient de l’allemand. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/10 └── ACRONYMES SAP.md#acro-sap>).
+[^terme-aide-f1]: **AIDE F1.** Aide contextuelle expliquant un champ, une fonction ou un mot-clé. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/02 ├── SAP GUI NAVIGATION ET TRANSACTIONS.md#aide-f1>).
+[^terme-ordre-transport]: **ORDRE DE TRANSPORT.** Conteneur qui regroupe des modifications à exporter puis importer dans d’autres systèmes. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/03 ├── REPOSITORY PACKAGES ET TRANSPORTS.md#ordre-transport>).
+
+[^outil-se80]: **SE80.** Object Navigator utilisé pour parcourir et maintenir les objets du Repository ABAP. Voir [le chapitre associé](<../🧩 01 ├── FONDAMENTAUX ABAP/04 ├── EDITEURS ABAP SE38 ET SE80.md>).

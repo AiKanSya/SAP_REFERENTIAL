@@ -2,13 +2,13 @@
 
 ## 13.A RÉSULTAT ATTENDU
 
-- Comprendre la séparation entre dialogue et update task
-- Identifier le rôle des processus de travail de mise à jour
+- Comprendre la séparation entre dialogue et update task[^terme-update-task]
+- Identifier le rôle des processus de travail[^terme-processus-travail] de mise à jour
 - Visualiser le cycle d’une demande
 
 ## 13.B PRINCIPE
 
-Le programme de dialogue enregistre des appels de modules fonction de mise à jour. Lors du `COMMIT WORK`, le système transmet la demande à un processus de travail d’update, qui exécute les écritures dans une database LUW dédiée.
+Le programme de dialogue enregistre des appels de modules fonction de mise à jour. Lors du `COMMIT WORK`[^terme-commit-work], le système transmet la demande à un processus de travail d’update, qui exécute les écritures dans une database LUW[^terme-acro-luw] dédiée.
 
 ```mermaid
 sequenceDiagram
@@ -26,14 +26,14 @@ sequenceDiagram
 
 ## 13.C INTÉRÊTS
 
-- raccourcir le temps occupé par le processus de dialogue ;
+- raccourcir le temps occupé par le processus de dialogue[^terme-processus-dialogue] ;
 - regrouper les écritures liées ;
 - centraliser le statut de l’update ;
 - permettre le diagnostic et, selon le type de demande, une reprise administrative.
 
 ## 13.D LIMITES
 
-L’update task n’est pas une file d’intégration générique. Elle fait partie de la SAP LUW et doit exécuter des changements persistants déterministes, sans interaction utilisateur ni commit interne.
+L’update task n’est pas une file d’intégration générique. Elle fait partie de la SAP LUW[^terme-sap-luw] et doit exécuter des changements persistants déterministes, sans interaction utilisateur ni commit interne.
 
 ## 13.E PROCESS
 
@@ -47,7 +47,7 @@ Placer en V1 les écritures indispensables à la cohérence du résultat métier
 
 ### 13.E.3 ÉTAPE 3 — CRÉER DES INTERFACES SÉRIALISABLES
 
-Définir les paramètres du module fonction avec des types DDIC compatibles avec l’update task. Transmettre les valeurs nécessaires au moment de l’enregistrement. Éviter les références d’objet, dépendances frontend et lectures ambiguës qui pourraient changer avant l’exécution.
+Définir les paramètres du module fonction[^terme-module-fonction] avec des types DDIC[^terme-acro-ddic] compatibles avec l’update task. Transmettre les valeurs nécessaires au moment de l’enregistrement. Éviter les références d’objet, dépendances frontend[^terme-frontend] et lectures ambiguës qui pourraient changer avant l’exécution.
 
 ### 13.E.4 ÉTAPE 4 — ENREGISTRER LES APPELS DANS LA SAP LUW
 
@@ -55,7 +55,7 @@ Appeler les modules avec `CALL FUNCTION ... IN UPDATE TASK` après validation. R
 
 ### 13.E.5 ÉTAPE 5 — DÉCLENCHER ET OBSERVER LA MISE À JOUR
 
-Exécuter le commit dans l’orchestrateur. Utiliser `COMMIT WORK AND WAIT` uniquement lorsque l’appelant doit connaître immédiatement le résultat V1. Contrôler `sy-subrc`, les données persistées et `SM13` au lieu de déduire le succès du seul retour de l’enregistrement.
+Exécuter le commit dans l’orchestrateur. Utiliser `COMMIT WORK AND WAIT` uniquement lorsque l’appelant doit connaître immédiatement le résultat V1. Contrôler `sy-subrc`, les données persistées et `SM13`[^outil-sm13] au lieu de déduire le succès du seul retour de l’enregistrement.
 
 ### 13.E.6 ÉTAPE 6 — TESTER UNE PANNE DE MODULE
 
@@ -91,3 +91,15 @@ Provoquer une erreur contrôlée dans un module Z en développement. Vérifier l
 ---
 
 [Chapitre suivant — CRÉER UN MODULE FONCTION DE MISE À JOUR](<./14 ├── CREER UN MODULE FONCTION DE MISE A JOUR.md>)
+
+[^terme-update-task]: **UPDATE TASK.** Mécanisme différant des mises à jour pour les exécuter lors du `COMMIT WORK` dans des processus de mise à jour. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/08 ├── EXECUTION EXPLOITATION ET ADMINISTRATION.md#update-task>).
+[^terme-processus-travail]: **PROCESSUS DE TRAVAIL.** Processus serveur exécutant une catégorie de traitement ABAP. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/08 ├── EXECUTION EXPLOITATION ET ADMINISTRATION.md#processus-travail>).
+[^terme-commit-work]: **COMMIT WORK.** Instruction clôturant la SAP LUW courante, déclenchant notamment les mises à jour enregistrées et validant la base. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/08 ├── EXECUTION EXPLOITATION ET ADMINISTRATION.md#commit-work>).
+[^terme-acro-luw]: **LUW.** Logical Unit of Work. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/10 └── ACRONYMES SAP.md#acro-luw>).
+[^terme-processus-dialogue]: **PROCESSUS DE DIALOGUE.** Processus de travail traitant les requêtes interactives SAP GUI. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/08 ├── EXECUTION EXPLOITATION ET ADMINISTRATION.md#processus-dialogue>).
+[^terme-sap-luw]: **SAP LUW.** Unité logique métier SAP pouvant regrouper plusieurs étapes de dialogue et différer les mises à jour jusqu’au commit. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/08 ├── EXECUTION EXPLOITATION ET ADMINISTRATION.md#sap-luw>).
+[^terme-module-fonction]: **MODULE FONCTION.** Procédure globale appelée avec `CALL FUNCTION` et définie dans un groupe de fonctions. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/06 ├── PROGRAMMES CLASSES ET OBJETS TECHNIQUES.md#module-fonction>).
+[^terme-acro-ddic]: **DDIC.** Data Dictionary, abréviation courante de l’ABAP Dictionary. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/10 └── ACRONYMES SAP.md#acro-ddic>).
+[^terme-frontend]: **FRONTEND.** Poste ou couche cliente utilisée par l’utilisateur, par exemple SAP GUI for Windows. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/01 ├── SYSTEMES ENVIRONNEMENTS ET MANDANTS.md#frontend>).
+
+[^outil-sm13]: **SM13.** Transaction de surveillance et de reprise des enregistrements de mise à jour SAP. Voir [le chapitre associé](<19 ├── ANALYSER ET REPRENDRE LES UPDATES AVEC SM13.md>).

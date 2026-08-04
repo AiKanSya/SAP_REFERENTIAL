@@ -8,7 +8,7 @@
 
 ## 9.B PÉRIODICITÉ
 
-Dans `SM36`, un job peut être répété selon un intervalle : horaire, quotidien, hebdomadaire, mensuel ou autre période proposée par le système.
+Dans `SM36`[^outil-sm36], un job[^terme-job] peut être répété selon un intervalle : horaire, quotidien, hebdomadaire, mensuel ou autre période proposée par le système.
 
 ```mermaid
 flowchart LR
@@ -44,7 +44,7 @@ Fixer l’heure de début autorisée, l’heure limite, la fréquence et le cale
 
 ### 9.E.2 ÉTAPE 2 — MESURER UNE DURÉE DE RÉFÉRENCE
 
-Dans `SM37`, relever plusieurs exécutions comparables avec leur volume, début et fin. Utiliser la durée haute représentative pour dimensionner la fenêtre. Ne pas planifier sur la seule durée d’un test à faible volume.
+Dans `SM37`[^outil-sm37], relever plusieurs exécutions comparables avec leur volume, début et fin. Utiliser la durée haute représentative pour dimensionner la fenêtre. Ne pas planifier sur la seule durée d’un test à faible volume.
 
 ### 9.E.3 ÉTAPE 3 — CONFIGURER LA PÉRIODICITÉ
 
@@ -66,7 +66,7 @@ Comparer chaque fin à l’heure limite et journaliser le volume. Si la fenêtre
 
 - Le job apparaît dans `SM37` avec le statut attendu.
 - Le journal ne contient pas de message d’erreur non traité.
-- Le spool, le fichier ou le journal applicatif contient le résultat attendu.
+- Le spool[^terme-spool], le fichier ou le journal applicatif contient le résultat attendu.
 - Une relance contrôlée ne crée pas de doublon métier.
 
 ## 9.G ERREURS FRÉQUENTES
@@ -104,3 +104,9 @@ Ordre de transport  :
 ---
 
 [Chapitre suivant — DÉPENDANCES ENTRE JOBS](<./10 ├── DEPENDANCES ENTRE JOBS.md>)
+
+[^terme-job]: **JOB.** Traitement planifié en arrière-plan composé d’une ou plusieurs étapes. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/06 ├── PROGRAMMES CLASSES ET OBJETS TECHNIQUES.md#job>).
+[^terme-spool]: **SPOOL.** Infrastructure stockant et acheminant les sorties imprimables produites par les traitements SAP. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/06 ├── PROGRAMMES CLASSES ET OBJETS TECHNIQUES.md#spool>).
+
+[^outil-sm36]: **SM36.** Transaction de définition et de planification des jobs d’arrière-plan. Voir [le chapitre associé](<06 ├── PLANIFIER UN JOB AVEC SM36.md>).
+[^outil-sm37]: **SM37.** Transaction de recherche, surveillance et administration des jobs d’arrière-plan. Voir [le chapitre associé](<15 ├── SURVEILLER LES JOBS AVEC SM37.md>).

@@ -2,8 +2,8 @@
 
 ## 13.A RÉSULTAT ATTENDU
 
-- Comprendre le verrouillage logique SAP
-- Créer un objet de verrouillage dans SE11
+- Comprendre le verrouillage logique SAP[^terme-acro-sap]
+- Créer un objet de verrouillage dans SE11[^outil-se11]
 - Identifier les modules fonction générés
 - Choisir les champs de l’argument de verrouillage
 - Diagnostiquer les verrous avec prudence
@@ -70,13 +70,13 @@ IF sy-subrc <> 0.
 ENDIF.
 ```
 
-La signature réelle dépend des champs de l’objet généré. Elle doit être vérifiée dans `SE37`.
+La signature réelle dépend des champs de l’objet généré. Elle doit être vérifiée dans `SE37`[^outil-se37].
 
 Le verrou doit ensuite être libéré au moment cohérent du traitement, explicitement ou selon la portée configurée.
 
 ## 13.F ANALYSE AVEC SM12
 
-La transaction `SM12` permet d’analyser les entrées de verrouillage.
+La transaction `SM12`[^outil-sm12] permet d’analyser les entrées de verrouillage.
 
 Supprimer manuellement un verrou peut permettre à deux traitements incompatibles de s’exécuter simultanément. Cette action exige de vérifier :
 
@@ -113,7 +113,7 @@ Sélectionner le mode adapté au scénario de lecture/modification. Documenter l
 
 ### 13.H.4 Étape 4 — Activer et contrôler les modules générés
 
-Activer l’objet puis ouvrir dans `SE37` les modules `ENQUEUE_...` et `DEQUEUE_...`. Relever leur signature exacte, notamment les champs clés, le mandant, le mode et les paramètres de portée.
+Activer l’objet puis ouvrir dans `SE37` les modules `ENQUEUE_...` et `DEQUEUE_...`. Relever leur signature exacte, notamment les champs clés, le mandant[^terme-mandant], le mode et les paramètres de portée.
 
 ### 13.H.5 Étape 5 — Tester la concurrence
 
@@ -124,7 +124,7 @@ La mise en place est validée lorsque deux clés différentes peuvent travailler
 ## 13.I VÉRIFICATION
 
 - Le contrôle de cohérence ne retourne aucune erreur bloquante.
-- L’objet est actif et son entrée de répertoire pointe vers le package attendu.
+- L’objet est actif et son entrée de répertoire pointe vers le package[^terme-package] attendu.
 - La liste d’utilisation et les dépendances correspondent au périmètre prévu.
 - Pour une table Z, la structure active et la structure de base sont cohérentes.
 
@@ -138,7 +138,7 @@ La mise en place est validée lorsque deux clés différentes peuvent travailler
 ## 13.K SNIPPET À RÉUTILISER
 
 > [!NOTE]
-> Adapter les noms `Z*`, les types DDIC, les données et les autorisations au système cible. Effectuer un contrôle syntaxique avant activation.
+> Adapter les noms `Z*`, les types DDIC[^terme-acro-ddic], les données et les autorisations au système cible. Effectuer un contrôle syntaxique avant activation.
 
 ```abap
 CALL FUNCTION 'ENQUEUE_EZ_ORDER'
@@ -171,3 +171,12 @@ ENDIF.
 ---
 
 [Chapitre suivant — GÉNÉRATEUR DE MAINTENANCE ET SM30](<./14 ├── GENERATEUR DE MAINTENANCE ET SM30.md>)
+
+[^terme-acro-sap]: **SAP.** Nom de l’éditeur et de son écosystème logiciel ; l’acronyme historique provient de l’allemand. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/10 └── ACRONYMES SAP.md#acro-sap>).
+[^terme-mandant]: **MANDANT.** Subdivision logique d’un système SAP. Il est identifié par un numéro à trois chiffres et isole une partie des données, du paramétrage et des utilisateurs. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/01 ├── SYSTEMES ENVIRONNEMENTS ET MANDANTS.md#mandant>).
+[^terme-package]: **PACKAGE.** Conteneur logique qui regroupe les objets de développement et détermine notamment leur transportabilité. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/03 ├── REPOSITORY PACKAGES ET TRANSPORTS.md#package>).
+[^terme-acro-ddic]: **DDIC.** Data Dictionary, abréviation courante de l’ABAP Dictionary. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/10 └── ACRONYMES SAP.md#acro-ddic>).
+
+[^outil-se11]: **SE11.** Transaction de l’ABAP Dictionary utilisée pour analyser et maintenir les objets DDIC. Voir [le chapitre associé](<02 ├── NAVIGATION ET ANALYSE AVEC SE11.md>).
+[^outil-se37]: **SE37.** Function Builder utilisé pour rechercher, afficher, tester et maintenir les modules fonction. Voir [le chapitre associé](<../🧩 12 ├── MODULES FONCTION RFC ET BAPI/03 ├── RECHERCHER ET ANALYSER AVEC SE37.md>).
+[^outil-sm12]: **SM12.** Transaction de surveillance et d’administration des entrées de verrouillage SAP. Voir [le chapitre associé](<../🧩 16 ├── LUW VERROUILLAGES ET MISES A JOUR/12 ├── ANALYSER LES VERROUS AVEC SM12.md>).

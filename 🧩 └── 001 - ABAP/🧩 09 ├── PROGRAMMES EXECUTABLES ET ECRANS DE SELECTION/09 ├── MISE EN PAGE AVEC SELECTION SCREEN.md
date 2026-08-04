@@ -6,7 +6,7 @@
 - Ajouter titres, commentaires et séparateurs
 - Aligner plusieurs éléments sur une ligne
 - Créer un bouton de commande simple
-- Maintenir une mise en page compatible SAP GUI
+- Maintenir une mise en page compatible SAP GUI[^terme-sap-gui]
 
 ## 9.B BLOC AVEC CADRE
 
@@ -93,7 +93,7 @@ utiliser une technologie d’interface adaptée plutôt que de détourner `SELEC
 ## 9.J SNIPPET À RÉUTILISER
 
 > [!NOTE]
-> Adapter les noms `Z*`, les types DDIC, les données et les autorisations au système cible. Effectuer un contrôle syntaxique avant activation.
+> Adapter les noms `Z*`, les types DDIC[^terme-acro-ddic], les données et les autorisations au système cible. Effectuer un contrôle syntaxique avant activation.
 
 ```abap
 SELECTION-SCREEN BEGIN OF BLOCK b_sel WITH FRAME TITLE text-t01.
@@ -124,3 +124,6 @@ SELECTION-SCREEN END OF BLOCK b_sel.
 ---
 
 [Chapitre suivant — INITIALISATION DES VALEURS](<./10 ├── INITIALISATION DES VALEURS.md>)
+
+[^terme-sap-gui]: **SAP GUI.** Client graphique permettant d’utiliser les transactions et écrans d’un système SAP. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/02 ├── SAP GUI NAVIGATION ET TRANSACTIONS.md#sap-gui>).
+[^terme-acro-ddic]: **DDIC.** Data Dictionary, abréviation courante de l’ABAP Dictionary. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/10 └── ACRONYMES SAP.md#acro-ddic>).

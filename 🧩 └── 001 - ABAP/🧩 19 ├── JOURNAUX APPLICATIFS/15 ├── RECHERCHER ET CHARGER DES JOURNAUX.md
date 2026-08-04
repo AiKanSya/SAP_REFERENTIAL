@@ -4,7 +4,7 @@
 
 - Rechercher des journaux persistés par critères
 - Charger leur contenu en mémoire
-- Réutiliser l’affichage BAL dans un programme
+- Réutiliser l’affichage BAL[^terme-acro-bal] dans un programme
 
 ## 15.B RECHERCHE
 
@@ -80,7 +80,7 @@ Comparer numéro, identifiant, objet, date, utilisateur et programme. Ne charger
 
 ### 15.E.5 ÉTAPE 5 — CHARGER AVEC `BAL_DB_LOAD`
 
-Passer les en-têtes sélectionnés et contrôler le retour. Après chargement, rechercher les handles en mémoire ou utiliser les API de lecture adaptées. Ne pas supposer qu’un en-tête trouvé signifie que tous ses messages sont déjà chargés.
+Passer les en-têtes sélectionnés et contrôler le retour. Après chargement, rechercher les handles en mémoire ou utiliser les API[^terme-api] de lecture adaptées. Ne pas supposer qu’un en-tête trouvé signifie que tous ses messages sont déjà chargés.
 
 ### 15.E.6 ÉTAPE 6 — AFFICHER ET NETTOYER LA MÉMOIRE
 
@@ -88,7 +88,7 @@ Afficher les handles chargés avec un profil BAL ou lire leurs messages. Vérifi
 
 ## 15.F VÉRIFICATION
 
-- Le journal est retrouvable dans `SLG1` avec objet, sous-objet et période.
+- Le journal est retrouvable dans `SLG1`[^outil-slg1] avec objet, sous-objet et période.
 - Chaque erreur contient un contexte permettant d’identifier l’enregistrement concerné.
 - Le log est sauvegardé même lorsque le traitement se termine avec des erreurs gérées.
 - Aucune donnée sensible inutile n’est enregistrée.
@@ -103,7 +103,7 @@ Afficher les handles chargés avec un profil BAL ou lire leurs messages. Vérifi
 ## 15.H SNIPPET À RÉUTILISER
 
 > [!NOTE]
-> Adapter les noms `Z*`, les types DDIC, les données et les autorisations au système cible. Effectuer un contrôle syntaxique avant activation.
+> Adapter les noms `Z*`, les types DDIC[^terme-acro-ddic], les données et les autorisations au système cible. Effectuer un contrôle syntaxique avant activation.
 
 ```abap
 DATA:
@@ -145,3 +145,9 @@ CALL FUNCTION 'BAL_DB_SEARCH'
 ---
 
 [Chapitre suivant — MODIFIER UN JOURNAL PERSISTÉ ET GÉRER LES VERROUS](<./16 ├── MODIFIER UN JOURNAL PERSISTE ET GERER LES VERROUS.md>)
+
+[^terme-acro-bal]: **BAL.** Business Application Log, API technique du journal applicatif. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/10 └── ACRONYMES SAP.md#acro-bal>).
+[^terme-api]: **API.** Application Programming Interface, contrat exposant des opérations ou données utilisables par d’autres composants. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/10 └── ACRONYMES SAP.md#api>).
+[^terme-acro-ddic]: **DDIC.** Data Dictionary, abréviation courante de l’ABAP Dictionary. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/10 └── ACRONYMES SAP.md#acro-ddic>).
+
+[^outil-slg1]: **SLG1.** Transaction de recherche et d’affichage des journaux applicatifs persistés. Voir [le chapitre associé](<05 ├── ANALYSER LES JOURNAUX AVEC SLG1.md>).

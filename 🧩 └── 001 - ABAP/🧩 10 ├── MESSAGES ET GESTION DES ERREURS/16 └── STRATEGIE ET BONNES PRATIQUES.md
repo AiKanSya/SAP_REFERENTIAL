@@ -12,11 +12,11 @@
 
 | Couche                     | Mécanisme principal                           |
 | -------------------------- | --------------------------------------------- |
-| Écran ou report SAP GUI    | `MESSAGE`, conversion finale d’exceptions     |
+| Écran ou report SAP GUI[^terme-sap-gui]    | `MESSAGE`, conversion finale d’exceptions     |
 | Logique métier             | Exceptions de classes applicatives            |
 | Accès technique            | Exceptions techniques converties ou propagées |
 | Instruction classique      | Contrôle immédiat de `sy-subrc`               |
-| Invariant de programmation | `ASSERT` ou exception technique               |
+| Invariant[^terme-invariant] de programmation | `ASSERT` ou exception[^terme-exception] technique               |
 | Traitement de masse        | Collecte structurée et journalisation         |
 
 ```mermaid
@@ -73,9 +73,9 @@ La journalisation applicative détaillée sera traitée dans son dossier dédié
 
 ## 16.F FRONTIÈRE TRANSACTIONNELLE
 
-Une exception n’effectue pas automatiquement un `ROLLBACK WORK`. Un message n’effectue pas automatiquement un `COMMIT WORK`.
+Une exception n’effectue pas automatiquement un `ROLLBACK WORK`[^terme-rollback-work]. Un message n’effectue pas automatiquement un `COMMIT WORK`[^terme-commit-work].
 
-La stratégie d’erreur doit être cohérente avec la SAP LUW :
+La stratégie d’erreur doit être cohérente avec la SAP LUW[^terme-sap-luw] :
 
 - qui valide ;
 - qui annule ;
@@ -86,7 +86,7 @@ La stratégie d’erreur doit être cohérente avec la SAP LUW :
 
 - [ ] Chaque code retour est-il contrôlé immédiatement ?
 - [ ] Les valeurs de `sy-subrc` sont-elles interprétées selon la documentation de l’instruction ?
-- [ ] Les messages utilisateur proviennent-ils d’une classe traduisible ?
+- [ ] Les messages utilisateur proviennent-ils d’une classe[^terme-classe] traduisible ?
 - [ ] Le type de message correspond-il au comportement souhaité ?
 - [ ] Les méthodes métier évitent-elles une dépendance directe à SAP GUI ?
 - [ ] Les exceptions importantes possèdent-elles une classe précise ?
@@ -109,7 +109,7 @@ Exécuter au minimum :
 - tests sans autorisation ou donnée attendue ;
 - tests de volume ;
 - tests en arrière-plan si le programme est concerné ;
-- analyse d’un éventuel dump dans `ST22`.
+- analyse d’un éventuel dump dans `ST22`[^outil-st22].
 
 ## 16.I PROCESS
 
@@ -155,3 +155,13 @@ Pour chaque erreur recensée, exécuter un test et vérifier mécanisme, texte u
 - [Return Code — ABAP Programming Guideline](https://help.sap.com/doc/abapdocu_latest_index_htm/latest/en-US/ABENRETURN_CODE_GUIDL.html)
 - [Extended Program Check — ABAP Programming Guideline](https://help.sap.com/doc/abapdocu_latest_index_htm/latest/en-US/ABENEXTENDED_PROGRAM_CHECK_GUIDL.html)
 - [MESSAGE — ABAP Keyword Documentation](https://help.sap.com/doc/abapdocu_latest_index_htm/latest/en-US/ABAPMESSAGE_SHORTREF.html)
+
+[^terme-sap-gui]: **SAP GUI.** Client graphique permettant d’utiliser les transactions et écrans d’un système SAP. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/02 ├── SAP GUI NAVIGATION ET TRANSACTIONS.md#sap-gui>).
+[^terme-invariant]: **INVARIANT.** Condition qui doit rester vraie pendant toute la durée de vie valide d’un objet. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#invariant>).
+[^terme-exception]: **EXCEPTION.** Objet ou signal représentant une situation anormale qu’un appelant peut traiter. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#exception>).
+[^terme-rollback-work]: **ROLLBACK WORK.** Instruction annulant les modifications non validées de la LUW courante et les tâches de mise à jour enregistrées. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/08 ├── EXECUTION EXPLOITATION ET ADMINISTRATION.md#rollback-work>).
+[^terme-commit-work]: **COMMIT WORK.** Instruction clôturant la SAP LUW courante, déclenchant notamment les mises à jour enregistrées et validant la base. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/08 ├── EXECUTION EXPLOITATION ET ADMINISTRATION.md#commit-work>).
+[^terme-sap-luw]: **SAP LUW.** Unité logique métier SAP pouvant regrouper plusieurs étapes de dialogue et différer les mises à jour jusqu’au commit. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/08 ├── EXECUTION EXPLOITATION ET ADMINISTRATION.md#sap-luw>).
+[^terme-classe]: **CLASSE.** Modèle orienté objet définissant état et comportements. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#classe>).
+
+[^outil-st22]: **ST22.** Transaction d’analyse des terminaisons anormales et dumps ABAP. Voir [le chapitre associé](<../🧩 11 ├── DEBUG ET ANALYSE/13 ├── ANALYSER LES DUMPS AVEC ST22.md>).

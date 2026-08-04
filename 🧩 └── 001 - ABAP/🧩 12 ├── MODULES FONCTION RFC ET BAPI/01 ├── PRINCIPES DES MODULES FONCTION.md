@@ -2,16 +2,16 @@
 
 ## 1.A RÉSULTAT ATTENDU
 
-- Situer le module fonction parmi les unités de modularisation ABAP
-- Comprendre son rôle d’interface globale réutilisable
-- Distinguer module fonction local, RFC et BAPI
-- Identifier les cas où une classe constitue un meilleur choix
+- Situer le module fonction[^terme-module-fonction] parmi les unités de modularisation ABAP[^terme-abap]
+- Comprendre son rôle d’interface globale[^terme-interface-globale] réutilisable
+- Distinguer module fonction local, RFC[^terme-rfc] et BAPI[^terme-bapi]
+- Identifier les cas où une classe[^terme-classe] constitue un meilleur choix
 
 ## 1.B DÉFINITION
 
 Un **module fonction** est une procédure globale gérée dans le Function Builder. Il appartient obligatoirement à un **groupe de fonctions** et peut être appelé depuis tout programme ABAP autorisé.
 
-Contrairement à un sous-programme `FORM`, son interface est enregistrée dans le Repository ABAP et peut être analysée indépendamment du programme appelant.
+Contrairement à un sous-programme `FORM`, son interface est enregistrée dans le Repository ABAP[^terme-repository-abap] et peut être analysée indépendamment du programme appelant.
 
 ```mermaid
 flowchart LR
@@ -45,9 +45,9 @@ Un module fonction possède :
 
 Créer un module fonction lorsque :
 
-- une API existante impose cette technologie ;
+- une API[^terme-api] existante impose cette technologie ;
 - le traitement doit être appelé par RFC ;
-- un framework SAP attend un module fonction ;
+- un framework SAP[^terme-acro-sap] attend un module fonction ;
 - une BAPI ou une interface classique doit être consommée ;
 - un traitement doit être enregistré en tâche de mise à jour.
 
@@ -65,11 +65,11 @@ Définir entrées, sorties, erreurs, effets de bord et responsabilité transacti
 
 ### 1.G.2 Étape 2 — Rechercher un module existant
 
-Dans `SE37`, rechercher par nom ou groupe de fonctions, puis lire documentation et statut de publication. Ne réutiliser un module non documenté ou interne que si sa stabilité est explicitement garantie.
+Dans `SE37`[^outil-se37], rechercher par nom ou groupe de fonctions, puis lire documentation et statut de publication. Ne réutiliser un module non documenté ou interne que si sa stabilité est explicitement garantie.
 
 ### 1.G.3 Étape 3 — Lire le contrat complet
 
-Examiner Import, Export, Changing, Tables et Exceptions. Pour chaque paramètre, relever type DDIC, caractère obligatoire, passage par valeur/référence et valeur par défaut.
+Examiner Import, Export, Changing, Tables et Exceptions. Pour chaque paramètre, relever type DDIC[^terme-acro-ddic], caractère obligatoire, passage par valeur/référence et valeur par défaut.
 
 ### 1.G.4 Étape 4 — Identifier les effets invisibles
 
@@ -107,3 +107,16 @@ Exécuter cas nominal, donnée absente et entrée invalide dans un système de t
 ---
 
 [Chapitre suivant — GROUPES DE FONCTIONS ET PROGRAMMES GÉNÉRÉS](<./02 ├── GROUPES DE FONCTIONS ET PROGRAMMES GENERES.md>)
+
+[^terme-module-fonction]: **MODULE FONCTION.** Procédure globale appelée avec `CALL FUNCTION` et définie dans un groupe de fonctions. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/06 ├── PROGRAMMES CLASSES ET OBJETS TECHNIQUES.md#module-fonction>).
+[^terme-abap]: **ABAP.** Langage de programmation de la plateforme ABAP, conçu pour développer des applications métier et techniques SAP. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#abap>).
+[^terme-interface-globale]: **INTERFACE GLOBALE.** Interface ABAP Objects enregistrée comme objet Repository et réutilisable par plusieurs classes et programmes. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/06 ├── PROGRAMMES CLASSES ET OBJETS TECHNIQUES.md#interface-globale>).
+[^terme-rfc]: **RFC.** Remote Function Call, mécanisme permettant d’appeler un module fonction compatible dans un autre contexte ou système. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/06 ├── PROGRAMMES CLASSES ET OBJETS TECHNIQUES.md#rfc>).
+[^terme-bapi]: **BAPI.** Interface métier publiée autour d’un Business Object SAP, généralement implémentée par un module fonction RFC. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/06 ├── PROGRAMMES CLASSES ET OBJETS TECHNIQUES.md#bapi>).
+[^terme-classe]: **CLASSE.** Modèle orienté objet définissant état et comportements. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#classe>).
+[^terme-repository-abap]: **REPOSITORY ABAP.** Ensemble central des objets de développement d’un système ABAP. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/03 ├── REPOSITORY PACKAGES ET TRANSPORTS.md#repository-abap>).
+[^terme-api]: **API.** Application Programming Interface, contrat exposant des opérations ou données utilisables par d’autres composants. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/10 └── ACRONYMES SAP.md#api>).
+[^terme-acro-sap]: **SAP.** Nom de l’éditeur et de son écosystème logiciel ; l’acronyme historique provient de l’allemand. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/10 └── ACRONYMES SAP.md#acro-sap>).
+[^terme-acro-ddic]: **DDIC.** Data Dictionary, abréviation courante de l’ABAP Dictionary. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/10 └── ACRONYMES SAP.md#acro-ddic>).
+
+[^outil-se37]: **SE37.** Function Builder utilisé pour rechercher, afficher, tester et maintenir les modules fonction. Voir [le chapitre associé](<03 ├── RECHERCHER ET ANALYSER AVEC SE37.md>).

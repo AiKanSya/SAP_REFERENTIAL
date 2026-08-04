@@ -6,7 +6,7 @@
 - Comprendre la différence entre `UPDATE` et `MODIFY`
 - Modifier une ligne ou un ensemble de lignes
 - Contrôler strictement la condition `WHERE`
-- Éviter les modifications directes des données métier SAP
+- Éviter les modifications directes des données métier SAP[^terme-acro-sap]
 
 ## 14.B UPDATE PAR CLÉ
 
@@ -72,7 +72,7 @@ Ce comportement est parfois pratique, mais il peut masquer une erreur fonctionne
 
 ## 14.G API MÉTIER
 
-Pour une donnée applicative SAP, une mise à jour SQL directe peut contourner :
+Pour une donnée applicative SAP, une mise à jour SQL[^terme-acro-sql] directe peut contourner :
 
 - validations métier ;
 - documents liés ;
@@ -82,7 +82,7 @@ Pour une donnée applicative SAP, une mise à jour SQL directe peut contourner :
 - contrôles d’autorisation ;
 - synchronisations et index applicatifs.
 
-Utiliser l’API officielle du domaine.
+Utiliser l’API[^terme-api] officielle du domaine.
 
 ## 14.H VÉRIFICATION
 
@@ -96,12 +96,12 @@ Utiliser l’API officielle du domaine.
 - Copier un exemple sans adapter les types, noms d’objets et données disponibles dans le système.
 - Tester uniquement le cas nominal et ignorer les valeurs initiales, absentes ou invalides.
 - Lire toutes les colonnes ou toutes les lignes par défaut.
-- Effectuer des commits dans une méthode réutilisable sans contrat explicite.
+- Effectuer des commits dans une méthode[^terme-methode] réutilisable sans contrat explicite.
 
 ## 14.J SNIPPET À RÉUTILISER
 
 > [!NOTE]
-> Adapter les noms `Z*`, les types DDIC, les données et les autorisations au système cible. Effectuer un contrôle syntaxique avant activation.
+> Adapter les noms `Z*`, les types DDIC[^terme-acro-ddic], les données et les autorisations au système cible. Effectuer un contrôle syntaxique avant activation.
 
 ```abap
 " Modifier uniquement les données de la table cible maîtrisée.
@@ -131,3 +131,9 @@ UPDATE zdev_product FROM @ls_product.
 ---
 
 [Chapitre suivant — SUPPRIMER DES DONNÉES AVEC DELETE](<./15 ├── SUPPRIMER DES DONNEES AVEC DELETE.md>)
+
+[^terme-acro-sap]: **SAP.** Nom de l’éditeur et de son écosystème logiciel ; l’acronyme historique provient de l’allemand. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/10 └── ACRONYMES SAP.md#acro-sap>).
+[^terme-acro-sql]: **SQL.** Structured Query Language. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/10 └── ACRONYMES SAP.md#acro-sql>).
+[^terme-api]: **API.** Application Programming Interface, contrat exposant des opérations ou données utilisables par d’autres composants. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/10 └── ACRONYMES SAP.md#api>).
+[^terme-methode]: **MÉTHODE.** Comportement déclaré dans une classe ou une interface et appelé avec une liste de paramètres définie. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#methode>).
+[^terme-acro-ddic]: **DDIC.** Data Dictionary, abréviation courante de l’ABAP Dictionary. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/10 └── ACRONYMES SAP.md#acro-ddic>).

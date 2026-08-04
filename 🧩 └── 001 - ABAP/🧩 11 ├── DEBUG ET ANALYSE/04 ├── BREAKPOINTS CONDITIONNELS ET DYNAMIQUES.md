@@ -4,7 +4,7 @@
 
 - Arrêter l’exécution uniquement dans le cas utile
 - Utiliser une condition pour éviter des milliers d’arrêts
-- Poser un breakpoint sur une instruction ou un événement
+- Poser un breakpoint[^terme-breakpoint] sur une instruction ou un événement
 - Réduire le coût d’analyse d’un traitement volumineux
 
 ## 4.B BREAKPOINT CONDITIONNEL
@@ -44,7 +44,7 @@ Le débogueur permet de demander un arrêt lorsqu’une instruction particulièr
 - `MESSAGE` ;
 - `AUTHORITY-CHECK` ;
 - `CALL FUNCTION` ;
-- `COMMIT WORK` ;
+- `COMMIT WORK`[^terme-commit-work] ;
 - `SELECT` selon les possibilités de la version.
 
 Cette technique est utile lorsque le programme source exact n’est pas connu.
@@ -55,7 +55,7 @@ Lorsque l’application émet un message précis, un breakpoint sur l’instruct
 
 Données utiles :
 
-- classe de messages ;
+- classe[^terme-classe] de messages ;
 - numéro ;
 - type ;
 - variables `sy-msgv1` à `sy-msgv4`.
@@ -64,13 +64,13 @@ Données utiles :
 
 Selon les outils disponibles, un breakpoint dynamique peut cibler :
 
-- une méthode ;
-- un module fonction ;
+- une méthode[^terme-methode] ;
+- un module fonction[^terme-module-fonction] ;
 - un sous-programme ;
-- une instruction ABAP ;
-- un écran ou un événement Dynpro.
+- une instruction ABAP[^terme-instruction-abap] ;
+- un écran ou un événement Dynpro[^terme-dynpro].
 
-Il évite de rechercher manuellement chaque appel dans un environnement complexe.
+Il évite de rechercher manuellement chaque appel dans un environnement[^terme-environnement] complexe.
 
 ## 4.G PRÉCAUTIONS
 
@@ -104,9 +104,9 @@ Supprimer les breakpoints après analyse. La procédure est validée lorsque l�
 
 ## 4.I VÉRIFICATION
 
-- Le scénario reproduit correspond au même utilisateur, mandant, transaction et jeu de données.
+- Le scénario reproduit correspond au même utilisateur, mandant[^terme-mandant], transaction et jeu de données.
 - L’horodatage et l’identifiant de l’analyse sont conservés.
-- La cause retenue est soutenue par une ligne source, une trace ou une valeur observée.
+- La cause retenue est soutenue par une ligne source, une trace[^terme-trace] ou une valeur observée.
 - Après correction, le même scénario ne reproduit plus le défaut et le résultat métier reste identique.
 
 ## 4.J ERREURS FRÉQUENTES
@@ -119,7 +119,7 @@ Supprimer les breakpoints après analyse. La procédure est validée lorsque l�
 ## 4.K SNIPPET À RÉUTILISER
 
 > [!NOTE]
-> Adapter les noms `Z*`, les types DDIC, les données et les autorisations au système cible. Effectuer un contrôle syntaxique avant activation.
+> Adapter les noms `Z*`, les types DDIC[^terme-acro-ddic], les données et les autorisations au système cible. Effectuer un contrôle syntaxique avant activation.
 
 ```abap
 lv_matnr = '000000000000006200'
@@ -143,3 +143,15 @@ lines( lt_items ) > 1000
 ---
 
 [Chapitre suivant — WATCHPOINTS](<./05 ├── WATCHPOINTS.md>)
+
+[^terme-breakpoint]: **BREAKPOINT.** Point d’arrêt suspendant l’exécution dans le débogueur. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/08 ├── EXECUTION EXPLOITATION ET ADMINISTRATION.md#breakpoint>).
+[^terme-commit-work]: **COMMIT WORK.** Instruction clôturant la SAP LUW courante, déclenchant notamment les mises à jour enregistrées et validant la base. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/08 ├── EXECUTION EXPLOITATION ET ADMINISTRATION.md#commit-work>).
+[^terme-classe]: **CLASSE.** Modèle orienté objet définissant état et comportements. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#classe>).
+[^terme-methode]: **MÉTHODE.** Comportement déclaré dans une classe ou une interface et appelé avec une liste de paramètres définie. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#methode>).
+[^terme-module-fonction]: **MODULE FONCTION.** Procédure globale appelée avec `CALL FUNCTION` et définie dans un groupe de fonctions. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/06 ├── PROGRAMMES CLASSES ET OBJETS TECHNIQUES.md#module-fonction>).
+[^terme-instruction-abap]: **INSTRUCTION ABAP.** Unité syntaxique terminée par un point. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#instruction-abap>).
+[^terme-dynpro]: **DYNPRO.** Écran classique SAP composé d’une définition d’écran et d’une logique PBO/PAI. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/02 ├── SAP GUI NAVIGATION ET TRANSACTIONS.md#dynpro>).
+[^terme-environnement]: **ENVIRONNEMENT.** Rôle fonctionnel attribué à un système dans le cycle de vie : développement, test, recette, préproduction ou production. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/01 ├── SYSTEMES ENVIRONNEMENTS ET MANDANTS.md#environnement>).
+[^terme-mandant]: **MANDANT.** Subdivision logique d’un système SAP. Il est identifié par un numéro à trois chiffres et isole une partie des données, du paramétrage et des utilisateurs. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/01 ├── SYSTEMES ENVIRONNEMENTS ET MANDANTS.md#mandant>).
+[^terme-trace]: **TRACE.** Enregistrement détaillé d’événements techniques pour analyser exécution, SQL ou appels. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/08 ├── EXECUTION EXPLOITATION ET ADMINISTRATION.md#trace>).
+[^terme-acro-ddic]: **DDIC.** Data Dictionary, abréviation courante de l’ABAP Dictionary. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/10 └── ACRONYMES SAP.md#acro-ddic>).

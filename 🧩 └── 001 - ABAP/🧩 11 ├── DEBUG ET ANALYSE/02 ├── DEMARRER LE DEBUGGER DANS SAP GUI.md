@@ -3,13 +3,13 @@
 ## 2.A RÉSULTAT ATTENDU
 
 - Démarrer le débogueur depuis un programme ou une transaction
-- Utiliser un breakpoint ou la commande de débogage SAP GUI
+- Utiliser un breakpoint[^terme-breakpoint] ou la commande de débogage SAP GUI[^terme-sap-gui]
 - Comprendre la création d’une session de débogage
 - Identifier les limites d’un contexte non dialogué
 
 ## 2.B DEPUIS LE CODE SOURCE
 
-Dans l’éditeur ABAP, placer un breakpoint sur une instruction exécutable, activer le programme, puis lancer le scénario.
+Dans l’éditeur ABAP[^terme-abap], placer un breakpoint sur une instruction exécutable, activer le programme, puis lancer le scénario.
 
 ```abap
 REPORT zdev_debug_demo.
@@ -22,9 +22,9 @@ Le débogueur s’ouvre lorsque le processeur ABAP atteint un breakpoint actif p
 
 ## 2.C DEPUIS UNE TRANSACTION SAP GUI
 
-Pour un traitement dialogué classique, saisir `/h` dans le champ de commande SAP GUI, valider, puis déclencher l’action à analyser. Le débogueur démarre au prochain point approprié du traitement ABAP.
+Pour un traitement dialogué classique, saisir `/h` dans le champ de commande[^terme-champ-commande] SAP GUI, valider, puis déclencher l’action à analyser. Le débogueur démarre au prochain point approprié du traitement ABAP.
 
-Cette méthode est utile lorsque :
+Cette méthode[^terme-methode] est utile lorsque :
 
 - le programme exact n’est pas encore connu ;
 - le traitement est déclenché par un bouton ;
@@ -35,7 +35,7 @@ Ne pas confondre `/h` avec une analyse complète. La commande permet d’entrer 
 
 ## 2.D DEPUIS SE38 OU SE80
 
-Selon l’outil et la version du système, un programme exécutable peut être lancé directement en mode débogage depuis les fonctions de test ou d’exécution.
+Selon l’outil et la version du système, un programme exécutable[^terme-programme-executable] peut être lancé directement en mode débogage depuis les fonctions de test ou d’exécution.
 
 Le point d’entrée initial peut se trouver avant l’événement recherché. Utiliser alors :
 
@@ -67,7 +67,7 @@ Vérifier :
 - que le code exécuté correspond à la bonne version active ;
 - que l’utilisateur du traitement est bien celui du breakpoint ;
 - que le traitement ne s’exécute pas en tâche de fond, en mise à jour ou via un appel externe ;
-- que le système et le mandant sont corrects ;
+- que le système et le mandant[^terme-mandant] sont corrects ;
 - que les autorisations de débogage sont présentes.
 
 ## 2.H ARRÊTER PROPREMENT
@@ -84,7 +84,7 @@ Une transaction interrompue peut conserver des verrous ou laisser une opération
 
 - Le scénario reproduit correspond au même utilisateur, mandant, transaction et jeu de données.
 - L’horodatage et l’identifiant de l’analyse sont conservés.
-- La cause retenue est soutenue par une ligne source, une trace ou une valeur observée.
+- La cause retenue est soutenue par une ligne source, une trace[^terme-trace] ou une valeur observée.
 - Après correction, le même scénario ne reproduit plus le défaut et le résultat métier reste identique.
 
 ## 2.J ERREURS FRÉQUENTES
@@ -97,7 +97,7 @@ Une transaction interrompue peut conserver des verrous ou laisser une opération
 ## 2.K SNIPPET À RÉUTILISER
 
 > [!NOTE]
-> Adapter les noms `Z*`, les types DDIC, les données et les autorisations au système cible. Effectuer un contrôle syntaxique avant activation.
+> Adapter les noms `Z*`, les types DDIC[^terme-acro-ddic], les données et les autorisations au système cible. Effectuer un contrôle syntaxique avant activation.
 
 ```abap
 REPORT zdev_debug_demo.
@@ -124,3 +124,13 @@ WRITE lv_total.
 ---
 
 [Chapitre suivant — BREAKPOINTS DE SESSION, EXTERNES ET DU DÉBOGUEUR](<./03 ├── BREAKPOINTS DE SESSION EXTERNES ET DU DEBUGGER.md>)
+
+[^terme-breakpoint]: **BREAKPOINT.** Point d’arrêt suspendant l’exécution dans le débogueur. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/08 ├── EXECUTION EXPLOITATION ET ADMINISTRATION.md#breakpoint>).
+[^terme-sap-gui]: **SAP GUI.** Client graphique permettant d’utiliser les transactions et écrans d’un système SAP. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/02 ├── SAP GUI NAVIGATION ET TRANSACTIONS.md#sap-gui>).
+[^terme-abap]: **ABAP.** Langage de programmation de la plateforme ABAP, conçu pour développer des applications métier et techniques SAP. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#abap>).
+[^terme-champ-commande]: **CHAMP DE COMMANDE.** Zone de SAP GUI utilisée pour saisir des codes de transaction et des commandes système. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/02 ├── SAP GUI NAVIGATION ET TRANSACTIONS.md#champ-commande>).
+[^terme-methode]: **MÉTHODE.** Comportement déclaré dans une classe ou une interface et appelé avec une liste de paramètres définie. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#methode>).
+[^terme-programme-executable]: **PROGRAMME EXÉCUTABLE.** Programme ABAP de type report pouvant être lancé directement, généralement avec `F8` ou par une transaction. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/06 ├── PROGRAMMES CLASSES ET OBJETS TECHNIQUES.md#programme-executable>).
+[^terme-mandant]: **MANDANT.** Subdivision logique d’un système SAP. Il est identifié par un numéro à trois chiffres et isole une partie des données, du paramétrage et des utilisateurs. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/01 ├── SYSTEMES ENVIRONNEMENTS ET MANDANTS.md#mandant>).
+[^terme-trace]: **TRACE.** Enregistrement détaillé d’événements techniques pour analyser exécution, SQL ou appels. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/08 ├── EXECUTION EXPLOITATION ET ADMINISTRATION.md#trace>).
+[^terme-acro-ddic]: **DDIC.** Data Dictionary, abréviation courante de l’ABAP Dictionary. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/10 └── ACRONYMES SAP.md#acro-ddic>).

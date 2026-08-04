@@ -2,12 +2,12 @@
 
 ## 12.A RÉSULTAT ATTENDU
 
-Exécuter les contrôles approfondis de la transaction `SLIN` sur des sources actives.
+Exécuter les contrôles approfondis de la transaction `SLIN`[^outil-slin] sur des sources actives.
 
 ## 12.B Exécution
 
 - appeler directement `SLIN` ;
-- ou utiliser le menu **Programme > Vérifier > Vérification étendue du programme** dans l’éditeur ABAP ;
+- ou utiliser le menu **Programme > Vérifier > Vérification étendue du programme** dans l’éditeur ABAP[^terme-abap] ;
 - sélectionner le programme et les groupes de contrôles ;
 - lancer l’analyse ;
 - ouvrir chaque message et naviguer vers la source.
@@ -20,7 +20,7 @@ Les options exactes dépendent de la release. Elles peuvent couvrir :
 - interfaces de procédures ;
 - conversions et accès mémoire ;
 - sécurité ;
-- package et dépendances ;
+- package[^terme-package] et dépendances ;
 - instructions problématiques.
 
 ## 12.D Source active
@@ -51,11 +51,11 @@ Contrôler et activer le programme et ses includes. SLIN analyse le code disponi
 
 ### 12.H.2 ÉTAPE 2 — LANCER SLIN SUR LE BON PÉRIMÈTRE
 
-Saisir `/nSLIN` ou utiliser l’entrée de contrôle étendu de l’éditeur. Renseigner le programme, la classe ou l’objet supporté puis sélectionner les groupes de contrôles nécessaires. Exécuter sans élargir inutilement à tout le système.
+Saisir `/nSLIN` ou utiliser l’entrée de contrôle étendu de l’éditeur. Renseigner le programme, la classe[^terme-classe] ou l’objet supporté puis sélectionner les groupes de contrôles nécessaires. Exécuter sans élargir inutilement à tout le système.
 
 ### 12.H.3 ÉTAPE 3 — CLASSER LES MESSAGES
 
-Regrouper les findings par flux de données, interface, exception, instruction dangereuse ou code inaccessible. Ouvrir la documentation de chaque règle. Commencer par les erreurs susceptibles de produire un défaut runtime.
+Regrouper les findings par flux de données, interface, exception[^terme-exception], instruction dangereuse ou code inaccessible. Ouvrir la documentation de chaque règle. Commencer par les erreurs susceptibles de produire un défaut runtime.
 
 ### 12.H.4 ÉTAPE 4 — NAVIGUER VERS LA SOURCE
 
@@ -67,7 +67,7 @@ Modifier le code, ajouter un test reproduisant la condition puis exécuter le p�
 
 ### 12.H.6 ÉTAPE 6 — RELANCER SLIN ET ATC
 
-Vérifier la disparition du message et l’absence de nouveaux findings. Exécuter ensuite la variante ATC ou SCI du projet, plus large que SLIN, avant livraison.
+Vérifier la disparition du message et l’absence de nouveaux findings. Exécuter ensuite la variante ATC[^terme-acro-atc] ou SCI[^outil-sci] du projet, plus large que SLIN, avant livraison.
 
 ## 12.I VÉRIFICATION
 
@@ -101,3 +101,12 @@ Ordre de transport  :
 - [ATC](<../🧩 00 ├── LEXIQUE SAP ET ABAP/10 └── ACRONYMES SAP.md#acro-atc>)
 - [ABAP](<../🧩 00 ├── LEXIQUE SAP ET ABAP/10 └── ACRONYMES SAP.md#acro-abap>)
 - [Trace](<../🧩 00 ├── LEXIQUE SAP ET ABAP/08 ├── EXECUTION EXPLOITATION ET ADMINISTRATION.md#trace>)
+
+[^terme-abap]: **ABAP.** Langage de programmation de la plateforme ABAP, conçu pour développer des applications métier et techniques SAP. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#abap>).
+[^terme-package]: **PACKAGE.** Conteneur logique qui regroupe les objets de développement et détermine notamment leur transportabilité. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/03 ├── REPOSITORY PACKAGES ET TRANSPORTS.md#package>).
+[^terme-classe]: **CLASSE.** Modèle orienté objet définissant état et comportements. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#classe>).
+[^terme-exception]: **EXCEPTION.** Objet ou signal représentant une situation anormale qu’un appelant peut traiter. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#exception>).
+[^terme-acro-atc]: **ATC.** ABAP Test Cockpit, infrastructure de contrôles statiques et de gouvernance qualité. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/10 └── ACRONYMES SAP.md#acro-atc>).
+
+[^outil-slin]: **SLIN.** Extended Program Check utilisé pour détecter des problèmes statiques au-delà du contrôle syntaxique. Voir [le chapitre associé](<12 ├── EXTENDED PROGRAM CHECK AVEC SLIN.md>).
+[^outil-sci]: **SCI.** Code Inspector utilisé pour exécuter des contrôles statiques sur un ensemble d’objets ABAP. Voir [le chapitre associé](<13 ├── CODE INSPECTOR AVEC SCI.md>).

@@ -9,9 +9,9 @@
 
 ## 5.B PERSPECTIVE DU MODULE
 
-Les directions sont définies du point de vue du module fonction.
+Les directions sont définies du point de vue du module fonction[^terme-module-fonction].
 
-| Section `SE37` | Sens dans le module              | Section lors de l’appel |
+| Section `SE37`[^outil-se37] | Sens dans le module              | Section lors de l’appel |
 | -------------- | -------------------------------- | ----------------------- |
 | Import         | Le module reçoit                 | `EXPORTING`             |
 | Export         | Le module retourne               | `IMPORTING`             |
@@ -50,7 +50,7 @@ Utiliser `CHANGING` seulement lorsqu’une donnée représente réellement un é
 
 ## 5.E PARAMÈTRES TABLES
 
-`TABLES` est une forme classique encore présente dans de nombreuses API. Pour un nouveau module non contraint par un framework, préférer généralement un paramètre tabulaire correctement typé dans `IMPORT`, `EXPORT` ou `CHANGING` lorsque la version le permet.
+`TABLES` est une forme classique encore présente dans de nombreuses API[^terme-api]. Pour un nouveau module non contraint par un framework, préférer généralement un paramètre tabulaire correctement typé dans `IMPORT`, `EXPORT` ou `CHANGING` lorsque la version le permet.
 
 ## 5.F FACULTATIF ET VALEUR PAR DÉFAUT
 
@@ -83,7 +83,7 @@ Lister données nécessaires, résultats, valeurs modifiées et erreurs. Une don
 
 ### 5.H.2 Étape 2 — Ajouter les paramètres
 
-Dans `SE37`, ouvrir le module en modification et saisir les paramètres dans les onglets correspondants. Utiliser des types DDIC adaptés au partage et des noms décrivant le rôle métier.
+Dans `SE37`, ouvrir le module en modification et saisir les paramètres dans les onglets correspondants. Utiliser des types DDIC[^terme-acro-ddic] adaptés au partage et des noms décrivant le rôle métier.
 
 ### 5.H.3 Étape 3 — Définir obligation et passage
 
@@ -95,7 +95,7 @@ Ajouter exceptions classiques ou structure de retour selon le type d’API. Chaq
 
 ### 5.H.5 Étape 5 — Tester chaque combinaison
 
-Exécuter tous les paramètres obligatoires, chaque option facultative et chaque exception. L’interface est validée lorsque l’appelant peut comprendre le résultat uniquement depuis la signature et la documentation.
+Exécuter tous les paramètres obligatoires, chaque option facultative et chaque exception[^terme-exception]. L’interface est validée lorsque l’appelant peut comprendre le résultat uniquement depuis la signature et la documentation.
 
 ## 5.I VÉRIFICATION
 
@@ -106,7 +106,7 @@ Exécuter tous les paramètres obligatoires, chaque option facultative et chaque
 ## 5.J ERREURS FRÉQUENTES
 
 - Appeler un module fonction sans lire sa documentation et ses exceptions.
-- Supposer qu’une BAPI effectue automatiquement le commit.
+- Supposer qu’une BAPI[^terme-bapi] effectue automatiquement le commit.
 
 ## 5.K FICHE DE CONTRÔLE À COPIER
 
@@ -140,3 +140,11 @@ Ordre de transport  :
 ---
 
 [Chapitre suivant — TYPAGE, PASSAGE DE PARAMÈTRES ET COMPATIBILITÉ](<./06 ├── TYPAGE PASSAGE DE PARAMETRES ET COMPATIBILITE.md>)
+
+[^terme-module-fonction]: **MODULE FONCTION.** Procédure globale appelée avec `CALL FUNCTION` et définie dans un groupe de fonctions. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/06 ├── PROGRAMMES CLASSES ET OBJETS TECHNIQUES.md#module-fonction>).
+[^terme-api]: **API.** Application Programming Interface, contrat exposant des opérations ou données utilisables par d’autres composants. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/10 └── ACRONYMES SAP.md#api>).
+[^terme-acro-ddic]: **DDIC.** Data Dictionary, abréviation courante de l’ABAP Dictionary. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/10 └── ACRONYMES SAP.md#acro-ddic>).
+[^terme-exception]: **EXCEPTION.** Objet ou signal représentant une situation anormale qu’un appelant peut traiter. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#exception>).
+[^terme-bapi]: **BAPI.** Interface métier publiée autour d’un Business Object SAP, généralement implémentée par un module fonction RFC. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/06 ├── PROGRAMMES CLASSES ET OBJETS TECHNIQUES.md#bapi>).
+
+[^outil-se37]: **SE37.** Function Builder utilisé pour rechercher, afficher, tester et maintenir les modules fonction. Voir [le chapitre associé](<03 ├── RECHERCHER ET ANALYSER AVEC SE37.md>).

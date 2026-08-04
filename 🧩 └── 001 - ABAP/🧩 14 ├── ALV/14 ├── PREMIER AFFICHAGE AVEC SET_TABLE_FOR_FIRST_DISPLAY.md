@@ -2,7 +2,7 @@
 
 ## 14.A RÉSULTAT ATTENDU
 
-- Appeler correctement la méthode d’affichage initial
+- Appeler correctement la méthode[^terme-methode] d’affichage initial
 - Distinguer premier affichage et rafraîchissement
 - Traiter les erreurs du Control Framework
 
@@ -76,7 +76,7 @@ Charger la table avant l’appel. Sa référence et sa structure doivent rester 
 
 ### 14.E.3 Étape 3 — Préparer les métadonnées
 
-Choisir une structure DDIC ou construire le catalogue de champs. Préparer aussi le layout, la variante et les fonctions à exclure avant le premier affichage.
+Choisir une structure DDIC[^terme-structure-abap] ou construire le catalogue de champs. Préparer aussi le layout, la variante et les fonctions à exclure avant le premier affichage.
 
 ### 14.E.4 Étape 4 — Appeler `SET_TABLE_FOR_FIRST_DISPLAY`
 
@@ -101,13 +101,13 @@ Vérifier le premier affichage, un retour PBO, un rafraîchissement, la navigati
 
 - Copier un exemple sans adapter les types, noms d’objets et données disponibles dans le système.
 - Tester uniquement le cas nominal et ignorer les valeurs initiales, absentes ou invalides.
-- Afficher un volume non borné dans l’ALV.
+- Afficher un volume non borné dans l’ALV[^terme-alv].
 - Rendre une cellule éditable sans validation ni sauvegarde transactionnelle.
 
 ## 14.H SNIPPET À RÉUTILISER
 
 > [!NOTE]
-> Adapter les noms `Z*`, les types DDIC, les données et les autorisations au système cible. Effectuer un contrôle syntaxique avant activation.
+> Adapter les noms `Z*`, les types DDIC[^terme-acro-ddic], les données et les autorisations au système cible. Effectuer un contrôle syntaxique avant activation.
 
 ```abap
 FORM display_grid.
@@ -149,3 +149,8 @@ ENDFORM.
 ---
 
 [Chapitre suivant — ÉVÉNEMENTS ET CLASSE RÉCEPTRICE](<./15 ├── EVENEMENTS ET CLASSE RECEPTRICE.md>)
+
+[^terme-methode]: **MÉTHODE.** Comportement déclaré dans une classe ou une interface et appelé avec une liste de paramètres définie. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#methode>).
+[^terme-structure-abap]: **STRUCTURE.** Objet ou type composé de plusieurs composants nommés. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#structure-abap>).
+[^terme-alv]: **ALV.** ABAP List Viewer, ensemble de technologies d’affichage tabulaire avec tri, filtre, total et variantes. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/06 ├── PROGRAMMES CLASSES ET OBJETS TECHNIQUES.md#alv>).
+[^terme-acro-ddic]: **DDIC.** Data Dictionary, abréviation courante de l’ABAP Dictionary. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/10 └── ACRONYMES SAP.md#acro-ddic>).

@@ -46,7 +46,7 @@ Le programme doit toujours relire la sélection au moment de l’action. Ne pas 
 
 ## 7.E PRINCIPES DE PRÉSENTATION
 
-- Préférer les textes issus du DDIC.
+- Préférer les textes issus du DDIC[^terme-acro-ddic].
 - Ne pas surcharger les couleurs.
 - Positionner les clés et identifiants à gauche.
 - Afficher les montants avec devise et les quantités avec unité.
@@ -85,7 +85,7 @@ Créer, recharger et supprimer une variante avec un utilisateur autorisé. Véri
 
 - Copier un exemple sans adapter les types, noms d’objets et données disponibles dans le système.
 - Tester uniquement le cas nominal et ignorer les valeurs initiales, absentes ou invalides.
-- Afficher un volume non borné dans l’ALV.
+- Afficher un volume non borné dans l’ALV[^terme-alv].
 - Rendre une cellule éditable sans validation ni sauvegarde transactionnelle.
 
 ## 7.I SNIPPET À RÉUTILISER
@@ -120,3 +120,6 @@ lo_layout->set_default( abap_true ).
 ---
 
 [Chapitre suivant — ÉVÉNEMENTS ET INTERACTIONS SALV](<./08 ├── EVENEMENTS ET INTERACTIONS SALV.md>)
+
+[^terme-acro-ddic]: **DDIC.** Data Dictionary, abréviation courante de l’ABAP Dictionary. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/10 └── ACRONYMES SAP.md#acro-ddic>).
+[^terme-alv]: **ALV.** ABAP List Viewer, ensemble de technologies d’affichage tabulaire avec tri, filtre, total et variantes. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/06 ├── PROGRAMMES CLASSES ET OBJETS TECHNIQUES.md#alv>).

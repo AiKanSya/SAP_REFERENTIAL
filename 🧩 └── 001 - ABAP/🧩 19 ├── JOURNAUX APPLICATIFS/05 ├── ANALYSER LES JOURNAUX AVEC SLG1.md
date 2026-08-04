@@ -4,18 +4,18 @@
 
 - Rechercher efficacement un journal
 - Lire les niveaux d’information disponibles
-- Constituer une méthode de diagnostic reproductible
+- Constituer une méthode[^terme-methode] de diagnostic reproductible
 
 ## 5.B CRITÈRES PRINCIPAUX
 
-La transaction `SLG1` permet de filtrer notamment par :
+La transaction `SLG1`[^outil-slg1] permet de filtrer notamment par :
 
 - objet et sous-objet ;
 - identifiant externe ;
 - période et heure de création ;
 - utilisateur ;
 - transaction ou programme ;
-- classe du journal ;
+- classe[^terme-classe] du journal ;
 - mode de création, par exemple dialogue ou batch.
 
 ## 5.C MÉTHODE DE RECHERCHE
@@ -58,7 +58,7 @@ Pour chaque anomalie, relever :
 
 ### 5.F.1 ÉTAPE 1 — RECUEILLIR LES CRITÈRES DE CORRÉLATION
 
-Relever objet, sous-objet, identifiant externe, programme, utilisateur, mandant et intervalle. Pour un job, récupérer l’heure exacte dans `SM37`; pour une interface, utiliser le fichier, lot ou message de corrélation.
+Relever objet, sous-objet, identifiant externe, programme, utilisateur, mandant[^terme-mandant] et intervalle. Pour un job[^terme-job], récupérer l’heure exacte dans `SM37`[^outil-sm37]; pour une interface, utiliser le fichier, lot ou message de corrélation.
 
 ### 5.F.2 ÉTAPE 2 — FILTRER DANS `SLG1`
 
@@ -122,3 +122,11 @@ Ordre de transport  :
 ---
 
 [Chapitre suivant — EN-TÊTE DU JOURNAL AVEC BAL_S_LOG](<./06 ├── EN TETE DU JOURNAL AVEC BAL_S_LOG.md>)
+
+[^terme-methode]: **MÉTHODE.** Comportement déclaré dans une classe ou une interface et appelé avec une liste de paramètres définie. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#methode>).
+[^terme-classe]: **CLASSE.** Modèle orienté objet définissant état et comportements. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#classe>).
+[^terme-mandant]: **MANDANT.** Subdivision logique d’un système SAP. Il est identifié par un numéro à trois chiffres et isole une partie des données, du paramétrage et des utilisateurs. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/01 ├── SYSTEMES ENVIRONNEMENTS ET MANDANTS.md#mandant>).
+[^terme-job]: **JOB.** Traitement planifié en arrière-plan composé d’une ou plusieurs étapes. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/06 ├── PROGRAMMES CLASSES ET OBJETS TECHNIQUES.md#job>).
+
+[^outil-slg1]: **SLG1.** Transaction de recherche et d’affichage des journaux applicatifs persistés. Voir [le chapitre associé](<05 ├── ANALYSER LES JOURNAUX AVEC SLG1.md>).
+[^outil-sm37]: **SM37.** Transaction de recherche, surveillance et administration des jobs d’arrière-plan. Voir [le chapitre associé](<../🧩 18 ├── TRAITEMENTS EN ARRIERE PLAN/15 ├── SURVEILLER LES JOBS AVEC SM37.md>).

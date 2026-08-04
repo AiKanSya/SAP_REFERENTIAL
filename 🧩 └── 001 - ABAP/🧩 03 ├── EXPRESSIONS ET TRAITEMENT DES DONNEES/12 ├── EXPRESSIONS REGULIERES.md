@@ -4,7 +4,7 @@
 
 - Comprendre l’usage d’une expression régulière
 - Distinguer recherche littérale, motif `CP` et regex
-- Utiliser les formes disponibles selon la version ABAP
+- Utiliser les formes disponibles selon la version ABAP[^terme-abap]
 - Valider un format simple
 - Éviter les expressions trop complexes et difficiles à maintenir
 
@@ -63,7 +63,7 @@ FIND REGEX `^[[:alpha:]]+-[[:digit:]]{4}$` IN lv_code.
 ```
 
 > [!IMPORTANT]
-> La disponibilité de `PCRE` dépend de la version du serveur ABAP. Vérifier la documentation intégrée du système avec `F1` avant de remplacer une implémentation existante.
+> La disponibilité de `PCRE` dépend de la version du serveur ABAP. Vérifier la documentation intégrée du système avec `F1`[^terme-aide-f1] avant de remplacer une implémentation existante.
 
 ## 12.E ANCRES ET QUANTIFICATEURS
 
@@ -133,7 +133,7 @@ La validation complète doit combiner :
 
 - contrôle de forme ;
 - conversion technique ;
-- règle métier ;
+- règle métier[^terme-regle-metier] ;
 - contrôle de référentiel si nécessaire.
 
 ## 12.I BONNES PRATIQUES
@@ -157,12 +157,12 @@ La validation complète doit combiner :
 - Copier un exemple sans adapter les types, noms d’objets et données disponibles dans le système.
 - Tester uniquement le cas nominal et ignorer les valeurs initiales, absentes ou invalides.
 - S’appuyer sur une conversion implicite pouvant tronquer ou arrondir.
-- Ignorer l’encodage et les formats externes.
+- Ignorer l’encodage[^terme-encodage] et les formats externes.
 
 ## 12.L SNIPPET À RÉUTILISER
 
 > [!NOTE]
-> Adapter les noms `Z*`, les types DDIC, les données et les autorisations au système cible. Effectuer un contrôle syntaxique avant activation.
+> Adapter les noms `Z*`, les types DDIC[^terme-acro-ddic], les données et les autorisations au système cible. Effectuer un contrôle syntaxique avant activation.
 
 ```abap
 IF lv_code CP `Z*-2026`.
@@ -187,3 +187,9 @@ ENDIF.
 ---
 
 [Chapitre suivant — DATES, HEURES ET HORODATAGES](<./13 └── DATES HEURES ET HORODATAGES.md>)
+
+[^terme-abap]: **ABAP.** Langage de programmation de la plateforme ABAP, conçu pour développer des applications métier et techniques SAP. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#abap>).
+[^terme-aide-f1]: **AIDE F1.** Aide contextuelle expliquant un champ, une fonction ou un mot-clé. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/02 ├── SAP GUI NAVIGATION ET TRANSACTIONS.md#aide-f1>).
+[^terme-regle-metier]: **RÈGLE MÉTIER.** Condition ou calcul imposé par le processus fonctionnel. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/09 ├── NOTIONS FONCTIONNELLES ET ORGANISATIONNELLES.md#regle-metier>).
+[^terme-encodage]: **ENCODAGE.** Règle transformant les caractères en octets et inversement. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/07 ├── INTERFACES ET INTEGRATION.md#encodage>).
+[^terme-acro-ddic]: **DDIC.** Data Dictionary, abréviation courante de l’ABAP Dictionary. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/10 └── ACRONYMES SAP.md#acro-ddic>).

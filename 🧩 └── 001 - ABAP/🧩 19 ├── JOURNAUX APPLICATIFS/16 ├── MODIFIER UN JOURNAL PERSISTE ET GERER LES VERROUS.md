@@ -4,7 +4,7 @@
 
 - Comprendre la séquence de modification d’un journal existant
 - Éviter les mises à jour concurrentes
-- Connaître les fonctions de verrouillage du BAL
+- Connaître les fonctions de verrouillage du BAL[^terme-acro-bal]
 
 ## 16.B SÉQUENCE
 
@@ -59,11 +59,11 @@ Charger le journal, retrouver son handle et lire l’en-tête ou les messages ci
 
 ### 16.E.5 ÉTAPE 5 — SAUVEGARDER ET DÉVERROUILLER
 
-Sauvegarder le handle modifié avec `BAL_DB_SAVE`, puis appeler `BAL_DB_DEQUEUE` dans le chemin nominal et les chemins d’erreur. Ne pas laisser un verrou actif après une exception gérée.
+Sauvegarder le handle modifié avec `BAL_DB_SAVE`, puis appeler `BAL_DB_DEQUEUE` dans le chemin nominal et les chemins d’erreur. Ne pas laisser un verrou actif après une exception[^terme-exception] gérée.
 
 ### 16.E.6 ÉTAPE 6 — VÉRIFIER LA CONCURRENCE ET L’HISTORIQUE
 
-Ouvrir le journal dans `SLG1` et confirmer uniquement les modifications prévues. Tester deux sessions sur le même journal, une erreur avant sauvegarde et une erreur après chargement. Vérifier que l’historique reste fidèle au traitement initial.
+Ouvrir le journal dans `SLG1`[^outil-slg1] et confirmer uniquement les modifications prévues. Tester deux sessions sur le même journal, une erreur avant sauvegarde et une erreur après chargement. Vérifier que l’historique reste fidèle au traitement initial.
 
 ## 16.F VÉRIFICATION
 
@@ -107,3 +107,8 @@ Ordre de transport  :
 ---
 
 [Chapitre suivant — GÉRER LES HANDLES ET LA MÉMOIRE BAL](<./17 ├── GERER LES HANDLES ET LA MEMOIRE BAL.md>)
+
+[^terme-acro-bal]: **BAL.** Business Application Log, API technique du journal applicatif. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/10 └── ACRONYMES SAP.md#acro-bal>).
+[^terme-exception]: **EXCEPTION.** Objet ou signal représentant une situation anormale qu’un appelant peut traiter. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#exception>).
+
+[^outil-slg1]: **SLG1.** Transaction de recherche et d’affichage des journaux applicatifs persistés. Voir [le chapitre associé](<05 ├── ANALYSER LES JOURNAUX AVEC SLG1.md>).

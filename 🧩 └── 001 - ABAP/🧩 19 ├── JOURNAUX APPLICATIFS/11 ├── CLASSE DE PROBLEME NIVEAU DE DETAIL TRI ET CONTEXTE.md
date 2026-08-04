@@ -19,7 +19,7 @@ La structure `BAL_S_MSG` contient notamment :
 | `CONTEXT`   | Données de contexte structurées         |
 | `PARAMS`    | Texte étendu ou callback de détail      |
 
-Le type du message et la classe de problème ne représentent pas la même notion. Un message `I` peut être important pour l’exploitation ; un message `E` peut ne concerner qu’un élément rejeté parmi plusieurs milliers.
+Le type du message et la classe[^terme-classe] de problème ne représentent pas la même notion. Un message `I` peut être important pour l’exploitation ; un message `E` peut ne concerner qu’un élément rejeté parmi plusieurs milliers.
 
 ## 11.C NIVEAUX DE DÉTAIL
 
@@ -37,17 +37,17 @@ Définir une convention projet, par exemple :
 - 2 : étape fonctionnelle ;
 - 3 : document traité ;
 - 5 : détail d’une règle ;
-- 9 : trace technique temporaire.
+- 9 : trace[^terme-trace] technique temporaire.
 
 ## 11.D CONTEXTE
 
-Le contexte permet d’associer à un message une structure DDIC contenant, par exemple, un document, un poste ou un identifiant de fichier. SAP limite la taille du contexte. Utiliser des champs de type caractère simplifie la compatibilité Unicode.
+Le contexte permet d’associer à un message une structure DDIC[^terme-structure-abap] contenant, par exemple, un document, un poste ou un identifiant de fichier. SAP[^terme-acro-sap] limite la taille du contexte. Utiliser des champs de type caractère simplifie la compatibilité Unicode.
 
 ## 11.E PROCESS
 
 ### 11.E.1 ÉTAPE 1 — DÉFINIR UNE CONVENTION DE NIVEAUX
 
-Documenter le sens de chaque `DETLEVEL` utilisé : résumé, étape, unité métier ou trace technique. Définir aussi les classes de problème et leur usage. La convention doit être commune aux programmes partageant le même objet BAL.
+Documenter le sens de chaque `DETLEVEL` utilisé : résumé, étape, unité métier ou trace technique. Définir aussi les classes de problème et leur usage. La convention doit être commune aux programmes partageant le même objet BAL[^terme-acro-bal].
 
 ### 11.E.2 ÉTAPE 2 — QUALIFIER CHAQUE MESSAGE
 
@@ -59,11 +59,11 @@ Construire `ALSORT` à partir d’une clé déterministe si l’ordre d’affich
 
 ### 11.E.4 ÉTAPE 4 — CRÉER UN CONTEXTE DDIC MINIMAL
 
-Définir une structure DDIC contenant les identifiants nécessaires au diagnostic : lot, document, poste ou fichier. Utiliser des types compatibles avec les limites BAL et exclure les données sensibles. Affecter ce contexte aux messages concernés.
+Définir une structure DDIC[^terme-acro-ddic] contenant les identifiants nécessaires au diagnostic : lot, document, poste ou fichier. Utiliser des types compatibles avec les limites BAL et exclure les données sensibles. Affecter ce contexte aux messages concernés.
 
 ### 11.E.5 ÉTAPE 5 — SAUVEGARDER ET AFFICHER PAR NIVEAU
 
-Persister le journal, puis l’ouvrir dans `SLG1` ou avec un profil BAL tenant compte du niveau de détail. Vérifier que le résumé reste lisible sans les traces fines et que le diagnostic complet apparaît lorsque le niveau est élargi.
+Persister le journal, puis l’ouvrir dans `SLG1`[^outil-slg1] ou avec un profil BAL tenant compte du niveau de détail. Vérifier que le résumé reste lisible sans les traces fines et que le diagnostic complet apparaît lorsque le niveau est élargi.
 
 ### 11.E.6 ÉTAPE 6 — TESTER VOLUME ET FILTRAGE
 
@@ -111,3 +111,12 @@ Ordre de transport  :
 ---
 
 [Chapitre suivant — CUMULER, MODIFIER ET SUPPRIMER DES MESSAGES](<./12 ├── CUMULER MODIFIER ET SUPPRIMER DES MESSAGES.md>)
+
+[^terme-classe]: **CLASSE.** Modèle orienté objet définissant état et comportements. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#classe>).
+[^terme-trace]: **TRACE.** Enregistrement détaillé d’événements techniques pour analyser exécution, SQL ou appels. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/08 ├── EXECUTION EXPLOITATION ET ADMINISTRATION.md#trace>).
+[^terme-structure-abap]: **STRUCTURE.** Objet ou type composé de plusieurs composants nommés. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#structure-abap>).
+[^terme-acro-sap]: **SAP.** Nom de l’éditeur et de son écosystème logiciel ; l’acronyme historique provient de l’allemand. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/10 └── ACRONYMES SAP.md#acro-sap>).
+[^terme-acro-bal]: **BAL.** Business Application Log, API technique du journal applicatif. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/10 └── ACRONYMES SAP.md#acro-bal>).
+[^terme-acro-ddic]: **DDIC.** Data Dictionary, abréviation courante de l’ABAP Dictionary. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/10 └── ACRONYMES SAP.md#acro-ddic>).
+
+[^outil-slg1]: **SLG1.** Transaction de recherche et d’affichage des journaux applicatifs persistés. Voir [le chapitre associé](<05 ├── ANALYSER LES JOURNAUX AVEC SLG1.md>).

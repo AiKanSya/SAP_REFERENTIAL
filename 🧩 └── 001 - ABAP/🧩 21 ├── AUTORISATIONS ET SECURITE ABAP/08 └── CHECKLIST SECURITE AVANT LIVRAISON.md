@@ -2,23 +2,23 @@
 
 ## 8.A RÉSULTAT ATTENDU
 
-Bloquer la livraison d’un développement ABAP qui expose une action ou une donnée sans contrôle suffisant.
+Bloquer la livraison d’un développement ABAP[^terme-abap] qui expose une action ou une donnée sans contrôle suffisant.
 
 ## 8.B CHECKLIST
 
 - Toutes les actions métier sensibles exécutent un `AUTHORITY-CHECK` et traitent immédiatement son résultat.
-- Les contrôles couvrent les dimensions métier, pas seulement `S_TCODE`.
+- Les contrôles couvrent les dimensions métier, pas seulement `S_TCODE`[^terme-s-tcode].
 - Les entrées externes sont validées en type, longueur, domaine et volume.
 - Les noms dynamiques proviennent d’une liste blanche.
 - Chaque `WITH PRIVILEGED ACCESS` est justifié, précédé d’un contrôle explicite et limité aux lignes et colonnes nécessaires.
 - Aucun secret, mot de passe ou jeton n’est codé en dur ou écrit dans les journaux.
 - Aucun chemin de fichier externe n’est utilisé directement.
-- Les appels RFC, HTTP et SOAP appliquent des contrôles dans le système cible.
+- Les appels RFC[^terme-rfc], HTTP et SOAP appliquent des contrôles dans le système cible.
 - Les messages utilisateur ne révèlent pas de détails internes inutiles.
 - Les données personnelles et financières ne sont pas dupliquées dans les traces.
-- Les contrôles `ATC`, `SCI` et les variantes de sécurité du projet sont exécutés.
+- Les contrôles `ATC`[^terme-acro-atc], `SCI`[^outil-sci] et les variantes de sécurité du projet sont exécutés.
 - Un test négatif prouve le refus pour chaque action protégée.
-- `STAUTHTRACE` confirme que les valeurs contrôlées correspondent au concept de rôles.
+- `STAUTHTRACE`[^outil-stauthtrace] confirme que les valeurs contrôlées correspondent au concept de rôles.
 
 ## 8.C PROCESS
 
@@ -32,7 +32,7 @@ La revue doit couvrir le code appelé indirectement, pas seulement le programme 
 
 Relever chaque valeur provenant d’un écran, d’un fichier, d’un appel distant, d’un paramétrage ou d’une base de données. Vérifier son type, sa longueur, son domaine, son volume maximal et son usage dynamique éventuel.
 
-Toute valeur utilisée comme nom de table, champ, classe, méthode, fonction, programme ou transaction doit provenir d’une liste d’autorisation fermée.
+Toute valeur utilisée comme nom de table, champ, classe[^terme-classe], méthode[^terme-methode], fonction, programme ou transaction doit provenir d’une liste d’autorisation fermée.
 
 ### 8.C.3 Étape 3 — Vérifier les décisions d’autorisation
 
@@ -43,7 +43,7 @@ Pour chaque action sensible, confirmer :
 - l’emplacement du contrôle avant l’opération ;
 - le traitement immédiat de `SY-SUBRC` ;
 - l’utilisateur réel pour les jobs, workflows et RFC ;
-- les lectures CDS qui désactivent la DCL avec `WITH PRIVILEGED ACCESS`.
+- les lectures CDS[^terme-acro-cds] qui désactivent la DCL avec `WITH PRIVILEGED ACCESS`.
 
 Tracer un scénario représentatif avec `STAUTHTRACE` et comparer les valeurs au concept de rôles.
 
@@ -100,3 +100,14 @@ Aucune anomalie de sécurité ouverte ne peut être compensée par la seule rest
 ## 8.F CHAPITRE ASSOCIÉ
 
 - [Lire une CDS protégée et utiliser WITH PRIVILEGED ACCESS](<../🧩 08 ├── OPEN SQL/19 └── LIRE UNE CDS PROTEGEE ET UTILISER WITH PRIVILEGED ACCESS.md>)
+
+[^terme-abap]: **ABAP.** Langage de programmation de la plateforme ABAP, conçu pour développer des applications métier et techniques SAP. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#abap>).
+[^terme-s-tcode]: **S_TCODE.** Objet d’autorisation contrôlé au démarrage d’une transaction pour le code de transaction demandé. Source : [SAP Help Portal](https://help.sap.com/docs/ABAP_PLATFORM_NEW/88c6b8647c8d40b39eb554e2d7b6bda1/5267167f439b11d1896f0000e8322d00.html).
+[^terme-rfc]: **RFC.** Remote Function Call, mécanisme permettant d’appeler un module fonction compatible dans un autre contexte ou système. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/06 ├── PROGRAMMES CLASSES ET OBJETS TECHNIQUES.md#rfc>).
+[^terme-acro-atc]: **ATC.** ABAP Test Cockpit, infrastructure de contrôles statiques et de gouvernance qualité. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/10 └── ACRONYMES SAP.md#acro-atc>).
+[^terme-classe]: **CLASSE.** Modèle orienté objet définissant état et comportements. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#classe>).
+[^terme-methode]: **MÉTHODE.** Comportement déclaré dans une classe ou une interface et appelé avec une liste de paramètres définie. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#methode>).
+[^terme-acro-cds]: **CDS.** Core Data Services, langage de modélisation de vues et entités de données. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/10 └── ACRONYMES SAP.md#acro-cds>).
+
+[^outil-sci]: **SCI.** Code Inspector utilisé pour exécuter des contrôles statiques sur un ensemble d’objets ABAP. Voir [le chapitre associé](<../🧩 20 ├── PERFORMANCE QUALITE ET TESTS/13 ├── CODE INSPECTOR AVEC SCI.md>).
+[^outil-stauthtrace]: **STAUTHTRACE.** Trace d’autorisations utilisée pour enregistrer et analyser les contrôles exécutés pendant un scénario. Voir [le chapitre associé](<02 ├── DIAGNOSTIQUER UN REFUS AVEC SU53 ET STAUTHTRACE.md>).

@@ -16,11 +16,11 @@ Un objet ne doit contenir que les champs réellement utilisés par le programme 
 
 Rechercher d’abord les champs d’autorisation existants dans `SU20`. Réutiliser un champ standard uniquement si sa définition correspond exactement à la dimension métier contrôlée.
 
-Si aucun champ adapté n’existe, créer un champ client dans `SU20` à partir d’un élément de données stable et documenté.
+Si aucun champ adapté n’existe, créer un champ client dans `SU20` à partir d’un élément de données[^terme-element-donnees] stable et documenté.
 
 ### 3.B.3 Étape 3 — Créer l’objet dans `SU21`
 
-Créer l’objet `Z...` dans une classe d’objets pertinente. Ajouter `ACTVT` lorsque la décision varie selon l’activité, puis ajouter uniquement les champs métier définis à l’étape 1.
+Créer l’objet `Z...` dans une classe[^terme-classe] d’objets pertinente. Ajouter `ACTVT` lorsque la décision varie selon l’activité, puis ajouter uniquement les champs métier définis à l’étape 1.
 
 Documenter pour chaque champ :
 
@@ -45,7 +45,7 @@ IF sy-subrc <> 0.
 ENDIF.
 ```
 
-Remplacer l’objet, le champ, l’activité et le message par les éléments validés dans `SU21`.
+Remplacer l’objet, le champ, l’activité et le message par les éléments validés dans `SU21`[^outil-su21].
 
 ### 3.B.5 Étape 5 — Intégrer l’objet au concept de rôles
 
@@ -63,7 +63,7 @@ Exécuter au minimum :
 4. un utilisateur possédant une valeur différente ;
 5. un contrôle avec valeur initiale si ce cas est possible dans l’application.
 
-Utiliser `STAUTHTRACE` pour confirmer que le programme transmet les valeurs prévues et que le rôle les couvre exactement.
+Utiliser `STAUTHTRACE`[^outil-stauthtrace] pour confirmer que le programme transmet les valeurs prévues et que le rôle les couvre exactement.
 
 ## 3.C CONTRÔLE
 
@@ -76,3 +76,9 @@ Utiliser `STAUTHTRACE` pour confirmer que le programme transmet les valeurs pré
 - [Creating Authorization Objects — SAP SE, SAP S/4HANA 2025 FPS01](https://help.sap.com/docs/ABAP_PLATFORM_NEW/ad77b44570314f6d8c3a8a807273084c/85fe532b277d451f9537b93f09a485d4.html)
 - [Creating an Authorization Field and Object — SAP SE, SAP S/4HANA](https://help.sap.com/docs/ABAP_PLATFORM_NEW/b5670aaaa2364a29935f40b16499972d/3679ef3995374110ab63971827411cc9.html)
 - [Authorization Checks in Your Own Developments — SAP SE, SAP S/4HANA](https://help.sap.com/docs/ABAP_PLATFORM_NEW/88c6b8647c8d40b39eb554e2d7b6bda1/5267167f439b11d1896f0000e8322d00.html)
+
+[^terme-element-donnees]: **ÉLÉMENT DE DONNÉES.** Objet DDIC qui attribue une signification métier, des libellés et une documentation à un type élémentaire ou à un domaine. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/05 ├── DONNEES DICTIONNAIRE ET BASE DE DONNEES.md#element-donnees>).
+[^terme-classe]: **CLASSE.** Modèle orienté objet définissant état et comportements. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#classe>).
+
+[^outil-su21]: **SU21.** Transaction de création et de maintenance des objets et classes d’autorisation. Voir [le chapitre associé](<03 ├── CREER UN OBJET D AUTORISATION.md>).
+[^outil-stauthtrace]: **STAUTHTRACE.** Trace d’autorisations utilisée pour enregistrer et analyser les contrôles exécutés pendant un scénario. Voir [le chapitre associé](<02 ├── DIAGNOSTIQUER UN REFUS AVEC SU53 ET STAUTHTRACE.md>).

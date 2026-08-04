@@ -2,7 +2,7 @@
 
 ## 2.A RÉSULTAT ATTENDU
 
-Ajouter un contenu binaire à un document BCS existant.
+Ajouter un contenu binaire à un document BCS[^terme-bcs] existant.
 
 ## 2.B PROCESS
 
@@ -28,7 +28,7 @@ Ajouter les destinataires, appeler `SEND`, traiter `CX_BCS` puis laisser l’uni
 
 ### 2.B.6 ÉTAPE 6 — CONTRÔLER LE FICHIER REÇU
 
-Ouvrir la pièce depuis la demande dans `SOST`, comparer sa taille et vérifier son intégrité avec l’application adaptée. Tester un fichier vide, un fichier proche de la limite et un contenu invalide.
+Ouvrir la pièce depuis la demande dans `SOST`[^outil-sost], comparer sa taille et vérifier son intégrité avec l’application adaptée. Tester un fichier vide, un fichier proche de la limite et un contenu invalide.
 
 ## 2.C CODE PRÊT À ADAPTER
 
@@ -51,3 +51,7 @@ lo_document->add_attachment(
 - La taille transmise correspond au nombre réel d’octets.
 - Le contenu est binaire et non une chaîne convertie implicitement.
 - Le fichier s’ouvre depuis la demande visible dans `SOST`.
+
+[^terme-bcs]: **BCS.** Business Communication Services, infrastructure ABAP orientée objet utilisée pour créer, adresser et envoyer des messages et documents, notamment avec des pièces jointes. Source : [SAP Help Portal](https://help.sap.com/docs/ABAP_PLATFORM_NEW/76bbc1db07d74a32aa9041ad9b841185/4d353bcfd2512304e10000000a15822b.html).
+
+[^outil-sost]: **SOST.** Transaction de surveillance des demandes d’envoi gérées par SAPconnect. Voir [le chapitre associé](<01 ├── ENVOYER UN EMAIL TEXTE AVEC CL BCS.md>).

@@ -8,7 +8,7 @@
 
 ## 4.B TRANSACTION
 
-La transaction `SLG0` maintient les objets du journal applicatif et leurs sous-objets.
+La transaction `SLG0`[^outil-slg0] maintient les objets du journal applicatif et leurs sous-objets.
 
 ```mermaid
 flowchart LR
@@ -26,15 +26,15 @@ Saisir `/nSLG0` et rechercher un objet correspondant au domaine, au propriétair
 
 ### 4.C.2 ÉTAPE 2 — CRÉER L’OBJET CLIENT
 
-Choisir la création, saisir un nom Z ou Y conforme aux conventions et une description destinée à l’exploitation. Le nom représente un domaine durable. Éviter les noms de programme, de ticket ou d’environnement.
+Choisir la création, saisir un nom Z ou Y conforme aux conventions et une description destinée à l’exploitation. Le nom représente un domaine durable. Éviter les noms de programme, de ticket ou d’environnement[^terme-environnement].
 
 ### 4.C.3 ÉTAPE 3 — CRÉER LES SOUS-OBJETS
 
-Ajouter un sous-objet par processus cohérent. Renseigner des descriptions permettant de choisir le filtre dans `SLG1`. Vérifier qu’aucun sous-objet existant ne couvre déjà le besoin.
+Ajouter un sous-objet par processus cohérent. Renseigner des descriptions permettant de choisir le filtre dans `SLG1`[^outil-slg1]. Vérifier qu’aucun sous-objet existant ne couvre déjà le besoin.
 
 ### 4.C.4 ÉTAPE 4 — ENREGISTRER DANS LE BON PACKAGE
 
-Affecter l’objet à un package transportable et à la demande Workbench attendue. Contrôler que l’objet et tous les sous-objets figurent dans la demande. Éviter `$TMP` pour une configuration destinée aux autres systèmes.
+Affecter l’objet à un package[^terme-package] transportable et à la demande Workbench attendue. Contrôler que l’objet et tous les sous-objets figurent dans la demande. Éviter `$TMP`[^terme-objet-local-tmp] pour une configuration destinée aux autres systèmes.
 
 ### 4.C.5 ÉTAPE 5 — TESTER AVEC UN JOURNAL MINIMAL
 
@@ -42,7 +42,7 @@ Créer un report Z qui utilise exactement l’objet et le sous-objet, appelle `B
 
 ### 4.C.6 ÉTAPE 6 — CONTRÔLER APRÈS TRANSPORT
 
-Dans le système cible, vérifier l’objet dans `SLG0` avant le premier job. Exécuter le test autorisé et rechercher le résultat dans `SLG1`. Documenter l’objet, les sous-objets et la politique de rétention.
+Dans le système cible, vérifier l’objet dans `SLG0` avant le premier job[^terme-job]. Exécuter le test autorisé et rechercher le résultat dans `SLG1`. Documenter l’objet, les sous-objets et la politique de rétention.
 
 ## 4.D CONTRÔLE PAR PROGRAMME
 
@@ -98,3 +98,11 @@ Ordre de transport  :
 ---
 
 [Chapitre suivant — ANALYSER LES JOURNAUX AVEC SLG1](<./05 ├── ANALYSER LES JOURNAUX AVEC SLG1.md>)
+
+[^terme-environnement]: **ENVIRONNEMENT.** Rôle fonctionnel attribué à un système dans le cycle de vie : développement, test, recette, préproduction ou production. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/01 ├── SYSTEMES ENVIRONNEMENTS ET MANDANTS.md#environnement>).
+[^terme-package]: **PACKAGE.** Conteneur logique qui regroupe les objets de développement et détermine notamment leur transportabilité. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/03 ├── REPOSITORY PACKAGES ET TRANSPORTS.md#package>).
+[^terme-objet-local-tmp]: **OBJET LOCAL $TMP.** Objet affecté au package local `$TMP`, non destiné au transport vers un autre système. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/03 ├── REPOSITORY PACKAGES ET TRANSPORTS.md#objet-local-tmp>).
+[^terme-job]: **JOB.** Traitement planifié en arrière-plan composé d’une ou plusieurs étapes. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/06 ├── PROGRAMMES CLASSES ET OBJETS TECHNIQUES.md#job>).
+
+[^outil-slg0]: **SLG0.** Transaction de définition des objets et sous-objets de journal applicatif. Voir [le chapitre associé](<04 ├── CREER UN OBJET AVEC SLG0.md>).
+[^outil-slg1]: **SLG1.** Transaction de recherche et d’affichage des journaux applicatifs persistés. Voir [le chapitre associé](<05 ├── ANALYSER LES JOURNAUX AVEC SLG1.md>).

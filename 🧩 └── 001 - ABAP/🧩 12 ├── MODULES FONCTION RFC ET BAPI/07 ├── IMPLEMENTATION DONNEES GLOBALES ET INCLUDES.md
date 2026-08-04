@@ -72,7 +72,7 @@ flowchart TD
 
 ## 7.F DÉPENDANCES
 
-Un module fonction doit pouvoir être compris à partir de :
+Un module fonction[^terme-module-fonction] doit pouvoir être compris à partir de :
 
 - son interface ;
 - son code ;
@@ -85,7 +85,7 @@ Une variable globale modifiée par un autre module du groupe constitue une dépe
 
 ### 7.G.1 Étape 1 — Localiser le source généré
 
-Depuis `SE37`, naviguer vers le groupe dans `SE80`. Identifier l’include du module et l’include TOP ; ne modifier pas les parties générées hors des zones prévues.
+Depuis `SE37`[^outil-se37], naviguer vers le groupe dans `SE80`[^outil-se80]. Identifier l’include du module et l’include TOP ; ne modifier pas les parties générées hors des zones prévues.
 
 ### 7.G.2 Étape 2 — Implémenter depuis la signature
 
@@ -97,7 +97,7 @@ Pour chaque globale utilisée, rechercher tous les modules consommateurs. Rempla
 
 ### 7.G.4 Étape 4 — Traiter erreurs et transaction
 
-Déclencher l’exception ou le retour prévu au point où la cause est connue. Ne lancer ni commit ni rollback sauf si le contrat du module en fait explicitement le propriétaire.
+Déclencher l’exception[^terme-exception] ou le retour prévu au point où la cause est connue. Ne lancer ni commit ni rollback sauf si le contrat du module en fait explicitement le propriétaire.
 
 ### 7.G.5 Étape 5 — Tester l’indépendance
 
@@ -115,12 +115,12 @@ Exécuter le module seul, puis après un autre module du groupe. Les résultats 
 - Copier un exemple sans adapter les types, noms d’objets et données disponibles dans le système.
 - Tester uniquement le cas nominal et ignorer les valeurs initiales, absentes ou invalides.
 - Appeler un module fonction sans lire sa documentation et ses exceptions.
-- Supposer qu’une BAPI effectue automatiquement le commit.
+- Supposer qu’une BAPI[^terme-bapi] effectue automatiquement le commit.
 
 ## 7.J SNIPPET À RÉUTILISER
 
 > [!NOTE]
-> Adapter les noms `Z*`, les types DDIC, les données et les autorisations au système cible. Effectuer un contrôle syntaxique avant activation.
+> Adapter les noms `Z*`, les types DDIC[^terme-acro-ddic], les données et les autorisations au système cible. Effectuer un contrôle syntaxique avant activation.
 
 ```abap
 FUNCTION z_dev_calculate_total.
@@ -149,3 +149,11 @@ ENDFUNCTION.
 ---
 
 [Chapitre suivant — APPELER UN MODULE FONCTION AVEC CALL FUNCTION](<./08 ├── APPELER UN MODULE FONCTION AVEC CALL FUNCTION.md>)
+
+[^terme-module-fonction]: **MODULE FONCTION.** Procédure globale appelée avec `CALL FUNCTION` et définie dans un groupe de fonctions. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/06 ├── PROGRAMMES CLASSES ET OBJETS TECHNIQUES.md#module-fonction>).
+[^terme-exception]: **EXCEPTION.** Objet ou signal représentant une situation anormale qu’un appelant peut traiter. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#exception>).
+[^terme-bapi]: **BAPI.** Interface métier publiée autour d’un Business Object SAP, généralement implémentée par un module fonction RFC. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/06 ├── PROGRAMMES CLASSES ET OBJETS TECHNIQUES.md#bapi>).
+[^terme-acro-ddic]: **DDIC.** Data Dictionary, abréviation courante de l’ABAP Dictionary. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/10 └── ACRONYMES SAP.md#acro-ddic>).
+
+[^outil-se37]: **SE37.** Function Builder utilisé pour rechercher, afficher, tester et maintenir les modules fonction. Voir [le chapitre associé](<03 ├── RECHERCHER ET ANALYSER AVEC SE37.md>).
+[^outil-se80]: **SE80.** Object Navigator utilisé pour parcourir et maintenir les objets du Repository ABAP. Voir [le chapitre associé](<../🧩 01 ├── FONDAMENTAUX ABAP/04 ├── EDITEURS ABAP SE38 ET SE80.md>).

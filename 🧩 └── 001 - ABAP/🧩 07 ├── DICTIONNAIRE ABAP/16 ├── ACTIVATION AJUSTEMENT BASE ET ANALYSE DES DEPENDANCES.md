@@ -5,7 +5,7 @@
 - Comprendre la différence entre version inactive et active
 - Activer les objets dans un ordre cohérent
 - Identifier les changements nécessitant un ajustement de base
-- Utiliser SE14 avec prudence
+- Utiliser SE14[^outil-se14] avec prudence
 - Analyser les dépendances avant et après modification
 
 ## 16.B VERSION ACTIVE ET VERSION INACTIVE
@@ -48,7 +48,7 @@ Exemples de modifications à risque :
 - ajout ou retrait d’un append ;
 - changement de paramètres techniques.
 
-Une modification indirecte d’un domaine ou d’un élément de données peut affecter plusieurs tables.
+Une modification indirecte d’un domaine ou d’un élément de données[^terme-element-donnees] peut affecter plusieurs tables.
 
 ## 16.E AJUSTEMENT DE BASE
 
@@ -56,7 +56,7 @@ Lorsque la définition active d’une table ne correspond plus à la structure p
 
 La transaction `SE14` fournit l’utilitaire de base de données permettant notamment :
 
-- d’afficher l’état DDIC et l’état base ;
+- d’afficher l’état DDIC[^terme-acro-ddic] et l’état base ;
 - d’activer et ajuster une table ;
 - de planifier certaines conversions ;
 - de reconstruire ou traiter des index selon les fonctions disponibles.
@@ -79,7 +79,7 @@ Une conversion peut :
 - entraîner une indisponibilité ;
 - provoquer une perte de données si une action destructive est choisie.
 
-Ne pas lancer une suppression, recréation ou conversion sur un environnement productif sans procédure validée, sauvegarde et coordination avec l’administration technique.
+Ne pas lancer une suppression, recréation ou conversion sur un environnement[^terme-environnement] productif sans procédure validée, sauvegarde et coordination avec l’administration technique.
 
 ## 16.G ANALYSE DES DÉPENDANCES
 
@@ -110,7 +110,7 @@ Après l’activation :
 
 ### 16.I.1 Étape 1 — Identifier l’écart
 
-Ouvrir l’objet dans `SE11`, vérifier son statut puis comparer définition active et version modifiée. Pour une table, utiliser les outils de base de données afin de distinguer erreur DDIC, objet physique manquant et conversion nécessaire.
+Ouvrir l’objet dans `SE11`[^outil-se11], vérifier son statut puis comparer définition active et version modifiée. Pour une table, utiliser les outils de base de données afin de distinguer erreur DDIC, objet physique manquant et conversion nécessaire.
 
 ### 16.I.2 Étape 2 — Analyser les dépendances
 
@@ -131,7 +131,7 @@ Comparer à nouveau DDIC et base, exécuter une lecture représentative et contr
 ## 16.J VÉRIFICATION
 
 - Le contrôle de cohérence ne retourne aucune erreur bloquante.
-- L’objet est actif et son entrée de répertoire pointe vers le package attendu.
+- L’objet est actif et son entrée de répertoire pointe vers le package[^terme-package] attendu.
 - La liste d’utilisation et les dépendances correspondent au périmètre prévu.
 - Pour une table Z, la structure active et la structure de base sont cohérentes.
 
@@ -171,3 +171,11 @@ Ordre de transport  :
 ---
 
 [Chapitre suivant — BONNES PRATIQUES DE MODÉLISATION DDIC](<./17 └── BONNES PRATIQUES DE MODELISATION DDIC.md>)
+
+[^terme-element-donnees]: **ÉLÉMENT DE DONNÉES.** Objet DDIC qui attribue une signification métier, des libellés et une documentation à un type élémentaire ou à un domaine. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/05 ├── DONNEES DICTIONNAIRE ET BASE DE DONNEES.md#element-donnees>).
+[^terme-acro-ddic]: **DDIC.** Data Dictionary, abréviation courante de l’ABAP Dictionary. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/10 └── ACRONYMES SAP.md#acro-ddic>).
+[^terme-environnement]: **ENVIRONNEMENT.** Rôle fonctionnel attribué à un système dans le cycle de vie : développement, test, recette, préproduction ou production. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/01 ├── SYSTEMES ENVIRONNEMENTS ET MANDANTS.md#environnement>).
+[^terme-package]: **PACKAGE.** Conteneur logique qui regroupe les objets de développement et détermine notamment leur transportabilité. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/03 ├── REPOSITORY PACKAGES ET TRANSPORTS.md#package>).
+
+[^outil-se14]: **SE14.** Utilitaire de base de données du Dictionary utilisé pour comparer ou ajuster la définition DDIC et l’objet physique. Voir [le chapitre associé](<16 ├── ACTIVATION AJUSTEMENT BASE ET ANALYSE DES DEPENDANCES.md>).
+[^outil-se11]: **SE11.** Transaction de l’ABAP Dictionary utilisée pour analyser et maintenir les objets DDIC. Voir [le chapitre associé](<02 ├── NAVIGATION ET ANALYSE AVEC SE11.md>).

@@ -2,7 +2,7 @@
 
 ## 5.A RÉSULTAT ATTENDU
 
-- Ajouter une ligne à une table interne
+- Ajouter une ligne à une table interne[^terme-table-interne]
 - Distinguer `APPEND` et `INSERT`
 - Ajouter une ligne initiale avec affectation directe
 - Construire plusieurs lignes avec `VALUE`
@@ -140,7 +140,7 @@ La seconde syntaxe respecte les règles de clé de la table cible.
 ## 5.M SNIPPET À RÉUTILISER
 
 > [!NOTE]
-> Adapter les noms `Z*`, les types DDIC, les données et les autorisations au système cible. Effectuer un contrôle syntaxique avant activation.
+> Adapter les noms `Z*`, les types DDIC[^terme-acro-ddic], les données et les autorisations au système cible. Effectuer un contrôle syntaxique avant activation.
 
 ```abap
 INSERT VALUE #( matnr = 'MAT-001'
@@ -172,3 +172,6 @@ ENDIF.
 ---
 
 [Chapitre suivant — LIRE UNE LIGNE AVEC READ TABLE](<./06 ├── LIRE UNE LIGNE AVEC READ TABLE.md>)
+
+[^terme-table-interne]: **TABLE INTERNE.** Collection dynamique de lignes stockée en mémoire dans le programme ABAP. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#table-interne>).
+[^terme-acro-ddic]: **DDIC.** Data Dictionary, abréviation courante de l’ABAP Dictionary. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/10 └── ACRONYMES SAP.md#acro-ddic>).

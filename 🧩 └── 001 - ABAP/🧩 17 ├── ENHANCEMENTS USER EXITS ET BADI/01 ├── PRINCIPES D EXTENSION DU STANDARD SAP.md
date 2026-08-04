@@ -3,12 +3,12 @@
 ## 1.A RÉSULTAT ATTENDU
 
 - Distinguer extension, paramétrage et modification
-- Comprendre pourquoi une extension doit rester séparée du code SAP
+- Comprendre pourquoi une extension doit rester séparée du code SAP[^terme-acro-sap]
 - Identifier les critères de choix d’une technique
 
 ## 1.B BESOIN D’EXTENSION
 
-Une extension ajoute ou adapte un comportement sans modifier directement l’objet Repository livré par SAP. Le code client est conservé dans un objet distinct, relié à un point prévu par SAP ou par l’Enhancement Framework.
+Une extension ajoute ou adapte un comportement sans modifier directement l’objet Repository[^terme-objet-repository] livré par SAP. Le code client est conservé dans un objet distinct, relié à un point prévu par SAP ou par l’Enhancement Framework.
 
 ```mermaid
 flowchart LR
@@ -21,7 +21,7 @@ flowchart LR
 
 | Approche                  | Effet sur le standard                                 | Risque de maintenance |
 | ------------------------- | ----------------------------------------------------- | --------------------- |
-| Customizing               | Aucun code modifié                                    | Faible                |
+| Customizing[^terme-customizing]               | Aucun code modifié                                    | Faible                |
 | Extension publiée par SAP | Code client séparé                                    | Maîtrisé              |
 | Enhancement implicite     | Code client séparé mais fortement lié à l’emplacement | Plus élevé            |
 | Modification directe      | Objet SAP modifié                                     | Élevé                 |
@@ -31,10 +31,10 @@ Une modification directe nécessite une clé de modification, crée un écart av
 ## 1.D PRINCIPES DE CONCEPTION
 
 - privilégier le paramétrage avant le code ;
-- rechercher une API ou un point d’extension publié ;
+- rechercher une API[^terme-api] ou un point d’extension publié ;
 - limiter l’implémentation à l’orchestration ;
-- placer la logique métier dans une classe client testable ;
-- ne pas exécuter de `COMMIT WORK` dans un exit sans contrat explicite ;
+- placer la logique métier dans une classe[^terme-classe] client testable ;
+- ne pas exécuter de `COMMIT WORK`[^terme-commit-work] dans un exit sans contrat explicite ;
 - documenter le point d’appel, le contexte et les effets de bord ;
 - tester l’activation et la désactivation de l’extension.
 
@@ -50,7 +50,7 @@ Exécuter le scénario avec un jeu de données identifié. Relever le programme,
 
 ### 1.E.3 ÉTAPE 3 — INVENTORIER LES MÉCANISMES FOURNIS
 
-Rechercher d’abord les BAdI et enhancement spots documentés, puis les customer exits, user exits, BTE ou points explicites propres au domaine. Examiner la documentation, les paramètres disponibles, le moment d’appel et les implémentations déjà actives.
+Rechercher d’abord les BAdI[^terme-acro-badi] et enhancement spots documentés, puis les customer exits, user exits, BTE[^terme-acro-bte] ou points explicites propres au domaine. Examiner la documentation, les paramètres disponibles, le moment d’appel et les implémentations déjà actives.
 
 ### 1.E.4 ÉTAPE 4 — CHOISIR LE POINT LE PLUS STABLE
 
@@ -67,7 +67,7 @@ Tester le cas cible, les scénarios hors périmètre, les erreurs et les exécut
 ## 1.F VÉRIFICATION
 
 - L’implémentation ou le projet est actif et transporté dans le bon ordre.
-- Un breakpoint confirme que le point d’extension est appelé dans le scénario visé.
+- Un breakpoint[^terme-breakpoint] confirme que le point d’extension est appelé dans le scénario visé.
 - Le comportement standard reste inchangé hors du périmètre fonctionnel prévu.
 - Aucune modification directe d’un objet SAP standard n’a été créée.
 
@@ -106,3 +106,13 @@ Ordre de transport  :
 ---
 
 [Chapitre suivant — CHOISIR UNE TECHNOLOGIE D’EXTENSION](<./02 ├── CHOISIR UNE TECHNOLOGIE D EXTENSION.md>)
+
+[^terme-acro-sap]: **SAP.** Nom de l’éditeur et de son écosystème logiciel ; l’acronyme historique provient de l’allemand. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/10 └── ACRONYMES SAP.md#acro-sap>).
+[^terme-objet-repository]: **OBJET REPOSITORY.** Unité de développement gérée par le Repository et le système de transport. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/03 ├── REPOSITORY PACKAGES ET TRANSPORTS.md#objet-repository>).
+[^terme-customizing]: **CUSTOMIZING.** Paramétrage permettant d’adapter le comportement standard SAP à l’organisation. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/09 ├── NOTIONS FONCTIONNELLES ET ORGANISATIONNELLES.md#customizing>).
+[^terme-api]: **API.** Application Programming Interface, contrat exposant des opérations ou données utilisables par d’autres composants. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/10 └── ACRONYMES SAP.md#api>).
+[^terme-classe]: **CLASSE.** Modèle orienté objet définissant état et comportements. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#classe>).
+[^terme-commit-work]: **COMMIT WORK.** Instruction clôturant la SAP LUW courante, déclenchant notamment les mises à jour enregistrées et validant la base. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/08 ├── EXECUTION EXPLOITATION ET ADMINISTRATION.md#commit-work>).
+[^terme-acro-badi]: **BADI.** Business Add-In, mécanisme d’extension orienté objet du standard SAP. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/10 └── ACRONYMES SAP.md#acro-badi>).
+[^terme-acro-bte]: **BTE.** Business Transaction Event, mécanisme d’extension utilisé notamment dans certains domaines financiers. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/10 └── ACRONYMES SAP.md#acro-bte>).
+[^terme-breakpoint]: **BREAKPOINT.** Point d’arrêt suspendant l’exécution dans le débogueur. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/08 ├── EXECUTION EXPLOITATION ET ADMINISTRATION.md#breakpoint>).

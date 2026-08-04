@@ -36,17 +36,17 @@ Utiliser un identifiant stable : nom complet, empreinte, identifiant métier ou 
 ## 22.E VALIDATIONS
 
 1. fichier attendu et taille autorisée ;
-2. encodage et format ;
+2. encodage[^terme-encodage] et format ;
 3. en-tête et version ;
 4. champs obligatoires ;
 5. conversions ;
-6. références SAP ;
+6. références SAP[^terme-acro-sap] ;
 7. autorisations métier ;
 8. doublons internes et historiques.
 
 ## 22.F TRANSACTION
 
-Éviter un `COMMIT WORK` par ligne. Définir une unité de traitement cohérente et connaître le comportement transactionnel des BAPI ou APIs appelées. Pour un succès partiel, enregistrer précisément les lignes validées et rejetées.
+Éviter un `COMMIT WORK`[^terme-commit-work] par ligne. Définir une unité de traitement cohérente et connaître le comportement transactionnel des BAPI[^terme-bapi] ou APIs appelées. Pour un succès partiel, enregistrer précisément les lignes validées et rejetées.
 
 ## 22.G REPRISE
 
@@ -93,8 +93,8 @@ Après succès, archiver le fichier avec son journal et ses compteurs. Après é
 
 ## 22.J ERREURS FRÉQUENTES
 
-- Mélanger fichiers frontend et serveur dans un même scénario.
-- Parser un CSV par simple séparation alors que les champs peuvent être échappés.
+- Mélanger fichiers frontend[^terme-frontend] et serveur dans un même scénario.
+- Parser un CSV[^terme-csv] par simple séparation alors que les champs peuvent être échappés.
 
 ## 22.K TERMES DU LEXIQUE
 
@@ -114,3 +114,10 @@ Après succès, archiver le fichier avec son journal et ses compteurs. Après é
 ---
 
 [Chapitre suivant — CONCEVOIR UNE INTERFACE D’EXPORT](<./23 ├── CONCEVOIR UNE INTERFACE D EXPORT.md>)
+
+[^terme-encodage]: **ENCODAGE.** Règle transformant les caractères en octets et inversement. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/07 ├── INTERFACES ET INTEGRATION.md#encodage>).
+[^terme-acro-sap]: **SAP.** Nom de l’éditeur et de son écosystème logiciel ; l’acronyme historique provient de l’allemand. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/10 └── ACRONYMES SAP.md#acro-sap>).
+[^terme-commit-work]: **COMMIT WORK.** Instruction clôturant la SAP LUW courante, déclenchant notamment les mises à jour enregistrées et validant la base. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/08 ├── EXECUTION EXPLOITATION ET ADMINISTRATION.md#commit-work>).
+[^terme-bapi]: **BAPI.** Interface métier publiée autour d’un Business Object SAP, généralement implémentée par un module fonction RFC. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/06 ├── PROGRAMMES CLASSES ET OBJETS TECHNIQUES.md#bapi>).
+[^terme-frontend]: **FRONTEND.** Poste ou couche cliente utilisée par l’utilisateur, par exemple SAP GUI for Windows. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/01 ├── SYSTEMES ENVIRONNEMENTS ET MANDANTS.md#frontend>).
+[^terme-csv]: **CSV.** Format texte tabulaire utilisant un séparateur de champs et des règles d’échappement. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/07 ├── INTERFACES ET INTEGRATION.md#csv>).

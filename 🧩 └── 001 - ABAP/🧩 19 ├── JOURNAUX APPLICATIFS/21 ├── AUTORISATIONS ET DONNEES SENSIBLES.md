@@ -14,7 +14,7 @@ L’accès aux journaux peut être protégé avec `S_APPL_LOG` selon :
 - `ALG_SUBOBJ` : sous-objet ;
 - `ACTVT` : activité autorisée.
 
-L’autorisation de démarrer `SLG1` ne suffit pas nécessairement pour consulter tous les objets.
+L’autorisation de démarrer `SLG1`[^outil-slg1] ne suffit pas nécessairement pour consulter tous les objets.
 
 ## 21.C CONCEPTION DES OBJETS
 
@@ -42,7 +42,7 @@ Masquer ou tronquer les valeurs. Préférer un identifiant de corrélation perme
 
 ## 21.E CONTRÔLE
 
-Tester les rôles avec `SU53` après un refus et faire analyser la trace d’autorisation avec les outils Basis appropriés. Ne pas contourner un refus en élargissant `S_APPL_LOG` à tous les objets sans justification.
+Tester les rôles avec `SU53`[^outil-su53] après un refus et faire analyser la trace[^terme-trace] d’autorisation avec les outils Basis appropriés. Ne pas contourner un refus en élargissant `S_APPL_LOG` à tous les objets sans justification.
 
 ## 21.F PROCESS
 
@@ -52,7 +52,7 @@ Lister les identifiants, messages, contextes et payloads envisagés. Marquer sec
 
 ### 21.F.2 ÉTAPE 2 — DÉCOUPER OBJETS ET SOUS-OBJETS
 
-Séparer les domaines dont les populations autorisées diffèrent. Vérifier que la nomenclature `SLG0` permet d’appliquer `S_APPL_LOG` sans donner accès à des journaux étrangers au rôle. Ne pas utiliser un objet unique pour toutes les applications Z.
+Séparer les domaines dont les populations autorisées diffèrent. Vérifier que la nomenclature `SLG0`[^outil-slg0] permet d’appliquer `S_APPL_LOG` sans donner accès à des journaux étrangers au rôle. Ne pas utiliser un objet unique pour toutes les applications Z.
 
 ### 21.F.3 ÉTAPE 3 — CONSTRUIRE LES RÔLES MINIMAUX
 
@@ -64,7 +64,7 @@ Créer des logs de deux périmètres, puis ouvrir `SLG1` avec des utilisateurs r
 
 ### 21.F.5 ÉTAPE 5 — VÉRIFIER LE CONTENU RÉEL
 
-Examiner en-têtes, variables T100, textes libres, exceptions et contextes dans `SLG1`. Tester les erreurs techniques, car elles contiennent souvent plus d’informations que le cas nominal. Confirmer qu’aucun secret complet n’apparaît dans un export ou un spool.
+Examiner en-têtes, variables T100, textes libres, exceptions et contextes dans `SLG1`. Tester les erreurs techniques, car elles contiennent souvent plus d’informations que le cas nominal. Confirmer qu’aucun secret complet n’apparaît dans un export ou un spool[^terme-spool].
 
 ### 21.F.6 ÉTAPE 6 — VALIDER RÉTENTION ET TRAÇABILITÉ
 
@@ -72,7 +72,7 @@ Aligner la durée de conservation sur la sensibilité et les obligations. Tester
 
 ## 21.G VÉRIFICATION
 
-- Le scénario reproduit correspond au même utilisateur, mandant, transaction et jeu de données.
+- Le scénario reproduit correspond au même utilisateur, mandant[^terme-mandant], transaction et jeu de données.
 - L’horodatage et l’identifiant de l’analyse sont conservés.
 - La cause retenue est soutenue par une ligne source, une trace ou une valeur observée.
 - Après correction, le même scénario ne reproduit plus le défaut et le résultat métier reste identique.
@@ -111,3 +111,11 @@ Ordre de transport  :
 ---
 
 [Chapitre suivant — API BAL CLASSIQUE, API OBJET ET CODE HISTORIQUE](<./22 ├── API BAL CLASSIQUE API OBJET ET CODE HISTORIQUE.md>)
+
+[^terme-trace]: **TRACE.** Enregistrement détaillé d’événements techniques pour analyser exécution, SQL ou appels. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/08 ├── EXECUTION EXPLOITATION ET ADMINISTRATION.md#trace>).
+[^terme-spool]: **SPOOL.** Infrastructure stockant et acheminant les sorties imprimables produites par les traitements SAP. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/06 ├── PROGRAMMES CLASSES ET OBJETS TECHNIQUES.md#spool>).
+[^terme-mandant]: **MANDANT.** Subdivision logique d’un système SAP. Il est identifié par un numéro à trois chiffres et isole une partie des données, du paramétrage et des utilisateurs. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/01 ├── SYSTEMES ENVIRONNEMENTS ET MANDANTS.md#mandant>).
+
+[^outil-slg1]: **SLG1.** Transaction de recherche et d’affichage des journaux applicatifs persistés. Voir [le chapitre associé](<05 ├── ANALYSER LES JOURNAUX AVEC SLG1.md>).
+[^outil-su53]: **SU53.** Transaction affichant les derniers contrôles d’autorisation en échec pour l’utilisateur courant. Voir [le chapitre associé](<../🧩 21 ├── AUTORISATIONS ET SECURITE ABAP/02 ├── DIAGNOSTIQUER UN REFUS AVEC SU53 ET STAUTHTRACE.md>).
+[^outil-slg0]: **SLG0.** Transaction de définition des objets et sous-objets de journal applicatif. Voir [le chapitre associé](<04 ├── CREER UN OBJET AVEC SLG0.md>).

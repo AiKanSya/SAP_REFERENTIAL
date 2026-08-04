@@ -2,7 +2,7 @@
 
 ## 2.A RÉSULTAT ATTENDU
 
-- Identifier les types élémentaires ABAP les plus courants
+- Identifier les types élémentaires ABAP[^terme-abap] les plus courants
 - Distinguer les types caractère, numériques et octets
 - Comprendre les différences entre longueur fixe et variable
 - Déclarer correctement une longueur et un nombre de décimales
@@ -46,7 +46,7 @@ La zone conserve une longueur fixe. Les positions non utilisées sont complété
 DATA lv_description TYPE string VALUE `Description de longueur variable`.
 ```
 
-`string` convient aux textes dont la longueur varie. Il ne faut pas l’utiliser automatiquement pour chaque champ métier : un type du Dictionnaire ABAP peut porter une sémantique et une longueur attendues par les interfaces SAP.
+`string` convient aux textes dont la longueur varie. Il ne faut pas l’utiliser automatiquement pour chaque champ métier : un type du Dictionnaire ABAP peut porter une sémantique et une longueur attendues par les interfaces SAP[^terme-acro-sap].
 
 ### 2.C.3 TYPE `n`
 
@@ -175,7 +175,7 @@ Même si `lv_id_text` et `lv_count` affichent des chiffres, leurs usages sont di
 ## 2.J SNIPPET À RÉUTILISER
 
 > [!NOTE]
-> Adapter les noms `Z*`, les types DDIC, les données et les autorisations au système cible. Effectuer un contrôle syntaxique avant activation.
+> Adapter les noms `Z*`, les types DDIC[^terme-acro-ddic], les données et les autorisations au système cible. Effectuer un contrôle syntaxique avant activation.
 
 ```abap
 REPORT zdemo_types_elementaires.
@@ -210,3 +210,7 @@ WRITE: / 'Identifiant :', lv_id_text,
 ---
 
 [Chapitre suivant — OBJETS DE DONNÉES ET VALEURS INITIALES](<./03 ├── OBJETS DE DONNEES ET VALEURS INITIALES.md>)
+
+[^terme-abap]: **ABAP.** Langage de programmation de la plateforme ABAP, conçu pour développer des applications métier et techniques SAP. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#abap>).
+[^terme-acro-sap]: **SAP.** Nom de l’éditeur et de son écosystème logiciel ; l’acronyme historique provient de l’allemand. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/10 └── ACRONYMES SAP.md#acro-sap>).
+[^terme-acro-ddic]: **DDIC.** Data Dictionary, abréviation courante de l’ABAP Dictionary. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/10 └── ACRONYMES SAP.md#acro-ddic>).

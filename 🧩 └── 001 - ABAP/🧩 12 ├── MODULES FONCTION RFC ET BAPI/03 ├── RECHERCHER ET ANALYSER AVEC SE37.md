@@ -2,14 +2,14 @@
 
 ## 3.A RÉSULTAT ATTENDU
 
-- Rechercher un module fonction existant avant d’en créer un
+- Rechercher un module fonction[^terme-module-fonction] existant avant d’en créer un
 - Lire son interface, son code et sa documentation
-- Identifier son groupe, son package et son type de traitement
+- Identifier son groupe, son package[^terme-package] et son type de traitement
 - Analyser ses appels et dépendances
 
 ## 3.B TRANSACTION SE37
 
-`SE37` ouvre le **Function Builder**. Elle permet de créer, afficher, modifier, tester et documenter un module fonction.
+`SE37`[^outil-se37] ouvre le **Function Builder**. Elle permet de créer, afficher, modifier, tester et documenter un module fonction.
 
 Avant toute création, rechercher une fonction existante.
 
@@ -31,7 +31,7 @@ Dans `SE37` :
 4. examiner les résultats ;
 5. confirmer la compatibilité fonctionnelle et technique.
 
-Utiliser les jokers uniquement comme support. Une fonction trouvée par son nom n’est pas automatiquement une API autorisée.
+Utiliser les jokers uniquement comme support. Une fonction trouvée par son nom n’est pas automatiquement une API[^terme-api] autorisée.
 
 ## 3.D ONGLETS À CONTRÔLER
 
@@ -51,19 +51,19 @@ Utiliser les jokers uniquement comme support. Une fonction trouvée par son nom 
 Utiliser notamment :
 
 - **Liste d’utilisation** pour identifier les appelants ;
-- navigation vers les types DDIC ;
+- navigation vers les types DDIC[^terme-acro-ddic] ;
 - navigation vers le groupe de fonctions ;
 - recherche de messages, classes, tables et modules appelés ;
 - documentation du module et de ses paramètres.
 
 ## 3.F ATTENTION AUX MODULES SAP
 
-La présence d’un module standard dans `SE37` ne garantit pas qu’il constitue une API publique. Vérifier :
+La présence d’un module standard dans `SE37` ne garantit pas qu’il constitue une API publique[^terme-api-publique]. Vérifier :
 
 - sa documentation ;
 - son statut de libération lorsqu’il est disponible ;
-- l’existence d’une BAPI ou API officielle ;
-- les recommandations propres au produit SAP ;
+- l’existence d’une BAPI[^terme-bapi] ou API officielle ;
+- les recommandations propres au produit SAP[^terme-acro-sap] ;
 - les dépendances internes et les notes SAP applicables.
 
 Ne pas appeler directement une fonction standard non documentée comme API simplement parce qu’un test `SE37` fonctionne.
@@ -76,7 +76,7 @@ Ouvrir `SE37` et utiliser le nom partiel, la recherche Repository ou le groupe d
 
 ### 3.G.2 Étape 2 — Vérifier le statut et la documentation
 
-Ouvrir chaque candidat en affichage. Lire texte court, documentation, attribut RFC/update et éventuelles restrictions d’utilisation.
+Ouvrir chaque candidat en affichage. Lire texte court, documentation, attribut[^terme-attribut] RFC[^terme-rfc]/update et éventuelles restrictions d’utilisation.
 
 ### 3.G.3 Étape 3 — Analyser la signature
 
@@ -132,3 +132,15 @@ Ordre de transport  :
 ---
 
 [Chapitre suivant — CRÉER UN GROUPE ET UN MODULE FONCTION](<./04 ├── CREER UN GROUPE ET UN MODULE FONCTION.md>)
+
+[^terme-module-fonction]: **MODULE FONCTION.** Procédure globale appelée avec `CALL FUNCTION` et définie dans un groupe de fonctions. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/06 ├── PROGRAMMES CLASSES ET OBJETS TECHNIQUES.md#module-fonction>).
+[^terme-package]: **PACKAGE.** Conteneur logique qui regroupe les objets de développement et détermine notamment leur transportabilité. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/03 ├── REPOSITORY PACKAGES ET TRANSPORTS.md#package>).
+[^terme-api]: **API.** Application Programming Interface, contrat exposant des opérations ou données utilisables par d’autres composants. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/10 └── ACRONYMES SAP.md#api>).
+[^terme-acro-ddic]: **DDIC.** Data Dictionary, abréviation courante de l’ABAP Dictionary. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/10 └── ACRONYMES SAP.md#acro-ddic>).
+[^terme-api-publique]: **API PUBLIQUE.** Ensemble des composants publics qu’une classe expose à ses consommateurs : méthodes, événements, types, constantes et attributs publics. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#api-publique>).
+[^terme-bapi]: **BAPI.** Interface métier publiée autour d’un Business Object SAP, généralement implémentée par un module fonction RFC. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/06 ├── PROGRAMMES CLASSES ET OBJETS TECHNIQUES.md#bapi>).
+[^terme-acro-sap]: **SAP.** Nom de l’éditeur et de son écosystème logiciel ; l’acronyme historique provient de l’allemand. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/10 └── ACRONYMES SAP.md#acro-sap>).
+[^terme-attribut]: **ATTRIBUT.** Composant de données déclaré dans une classe et appartenant soit à chaque instance, soit à la classe elle-même. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#attribut>).
+[^terme-rfc]: **RFC.** Remote Function Call, mécanisme permettant d’appeler un module fonction compatible dans un autre contexte ou système. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/06 ├── PROGRAMMES CLASSES ET OBJETS TECHNIQUES.md#rfc>).
+
+[^outil-se37]: **SE37.** Function Builder utilisé pour rechercher, afficher, tester et maintenir les modules fonction. Voir [le chapitre associé](<03 ├── RECHERCHER ET ANALYSER AVEC SE37.md>).

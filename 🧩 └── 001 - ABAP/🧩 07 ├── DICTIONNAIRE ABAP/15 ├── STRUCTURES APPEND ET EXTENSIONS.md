@@ -28,7 +28,7 @@ Plusieurs structures append peuvent être affectées au même objet lorsque le s
 Un append peut notamment :
 
 - ajouter de nouveaux champs ;
-- définir une clé étrangère sur certains champs existants ;
+- définir une clé étrangère[^terme-cle-etrangere] sur certains champs existants ;
 - affecter une aide à la recherche à certains champs existants.
 
 Les éléments ajoutés appartiennent à l’append et sont transportés avec lui.
@@ -39,13 +39,13 @@ Les éléments ajoutés appartiennent à l’append et sont transportés avec lu
 | ------------ | -------------------------------------------------------------------- |
 | Include      | Composer un objet que l’on maîtrise à partir d’une structure commune |
 | Append       | Étendre un objet existant sans changer directement son original      |
-| Modification | Changer directement un objet livré par SAP                           |
+| Modification | Changer directement un objet livré par SAP[^terme-acro-sap]                           |
 
 Pour une extension client, utiliser le mécanisme prévu par SAP. Une modification directe du standard complique les montées de version et doit être évitée.
 
 ## 15.E PROCESS
 
-Depuis la table ou la structure dans `SE11` :
+Depuis la table ou la structure dans `SE11`[^outil-se11] :
 
 ### 15.E.1 Étape 1 — Vérifier que l’extension est autorisée
 
@@ -61,7 +61,7 @@ Vérifier catégorie d’amélioration, types profonds/plats autorisés, référ
 
 ### 15.E.4 Étape 4 — Activer dans le bon ordre
 
-Activer d’abord les éléments de données, puis l’append et enfin contrôler l’objet cible. Lire le journal d’ajustement de base lorsqu’une table transparente est étendue.
+Activer d’abord les éléments de données, puis l’append et enfin contrôler l’objet cible. Lire le journal d’ajustement de base lorsqu’une table transparente[^terme-table-transparente] est étendue.
 
 ### 15.E.5 Étape 5 — Tester les consommateurs
 
@@ -112,7 +112,7 @@ Vérifier que l’append et toutes ses dépendances sont placés dans des ordres
 ## 15.J VÉRIFICATION
 
 - Le contrôle de cohérence ne retourne aucune erreur bloquante.
-- L’objet est actif et son entrée de répertoire pointe vers le package attendu.
+- L’objet est actif et son entrée de répertoire pointe vers le package[^terme-package] attendu.
 - La liste d’utilisation et les dépendances correspondent au périmètre prévu.
 - Pour une table Z, la structure active et la structure de base sont cohérentes.
 
@@ -153,3 +153,10 @@ Ordre de transport  :
 ---
 
 [Chapitre suivant — ACTIVATION, AJUSTEMENT BASE ET ANALYSE DES DÉPENDANCES](<./16 ├── ACTIVATION AJUSTEMENT BASE ET ANALYSE DES DEPENDANCES.md>)
+
+[^terme-cle-etrangere]: **CLÉ ÉTRANGÈRE.** Relation DDIC entre des champs d’une table et une table de contrôle. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/05 ├── DONNEES DICTIONNAIRE ET BASE DE DONNEES.md#cle-etrangere>).
+[^terme-acro-sap]: **SAP.** Nom de l’éditeur et de son écosystème logiciel ; l’acronyme historique provient de l’allemand. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/10 └── ACRONYMES SAP.md#acro-sap>).
+[^terme-table-transparente]: **TABLE TRANSPARENTE.** Table DDIC correspondant directement à une table physique de la base de données. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/05 ├── DONNEES DICTIONNAIRE ET BASE DE DONNEES.md#table-transparente>).
+[^terme-package]: **PACKAGE.** Conteneur logique qui regroupe les objets de développement et détermine notamment leur transportabilité. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/03 ├── REPOSITORY PACKAGES ET TRANSPORTS.md#package>).
+
+[^outil-se11]: **SE11.** Transaction de l’ABAP Dictionary utilisée pour analyser et maintenir les objets DDIC. Voir [le chapitre associé](<02 ├── NAVIGATION ET ANALYSE AVEC SE11.md>).

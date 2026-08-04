@@ -2,7 +2,7 @@
 
 ## 1.A RÉSULTAT ATTENDU
 
-- Comprendre l’exécution séquentielle d’un bloc ABAP
+- Comprendre l’exécution séquentielle d’un bloc ABAP[^terme-abap]
 - Identifier les structures de branchement et d’itération
 - Distinguer une structure de contrôle d’un bloc de traitement
 - Choisir entre exécution conditionnelle, répétition et interruption
@@ -120,7 +120,7 @@ Ce dossier couvre :
 Les sujets suivants seront traités ailleurs :
 
 - `LOOP AT`, `AT`, `ENDAT` et les expressions tabulaires : dossier **TABLES INTERNES** ;
-- `SELECT ... ENDSELECT` : dossier **OPEN SQL** ;
+- `SELECT ... ENDSELECT` : dossier **OPEN SQL[^terme-acro-sql]** ;
 - `TRY ... CATCH ... ENDTRY` : dossier **MESSAGES ET GESTION DES ERREURS** ;
 - appels de méthodes, modules fonction et sous-programmes : dossiers de modularisation.
 
@@ -141,7 +141,7 @@ Les sujets suivants seront traités ailleurs :
 ## 1.J SNIPPET À RÉUTILISER
 
 > [!NOTE]
-> Adapter les noms `Z*`, les types DDIC, les données et les autorisations au système cible. Effectuer un contrôle syntaxique avant activation.
+> Adapter les noms `Z*`, les types DDIC[^terme-acro-ddic], les données et les autorisations au système cible. Effectuer un contrôle syntaxique avant activation.
 
 ```abap
 START-OF-SELECTION.
@@ -167,3 +167,7 @@ START-OF-SELECTION.
 ---
 
 [Chapitre suivant — CONDITIONS AVEC IF, ELSEIF ET ELSE](<./02 ├── CONDITIONS AVEC IF ELSEIF ET ELSE.md>)
+
+[^terme-abap]: **ABAP.** Langage de programmation de la plateforme ABAP, conçu pour développer des applications métier et techniques SAP. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#abap>).
+[^terme-acro-sql]: **SQL.** Structured Query Language. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/10 └── ACRONYMES SAP.md#acro-sql>).
+[^terme-acro-ddic]: **DDIC.** Data Dictionary, abréviation courante de l’ABAP Dictionary. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/10 └── ACRONYMES SAP.md#acro-ddic>).

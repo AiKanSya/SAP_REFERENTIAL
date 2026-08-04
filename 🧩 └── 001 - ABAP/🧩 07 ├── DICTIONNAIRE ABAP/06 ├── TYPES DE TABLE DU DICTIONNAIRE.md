@@ -2,11 +2,11 @@
 
 ## 6.A RÉSULTAT ATTENDU
 
-- Définir un type global de table interne
+- Définir un type global de table interne[^terme-table-interne]
 - Choisir un type de ligne
 - Définir la catégorie d’accès et la clé
 - Réutiliser le type dans plusieurs programmes
-- Distinguer type de table DDIC et table persistante
+- Distinguer type de table DDIC[^terme-acro-ddic] et table persistante
 
 ## 6.B DÉFINITION
 
@@ -24,7 +24,7 @@ Un type de table comprend :
 
 - un type de ligne ;
 - une catégorie de table ;
-- une clé primaire ;
+- une clé primaire[^terme-cle-primaire] ;
 - éventuellement une taille initiale ou des propriétés complémentaires selon le système.
 
 ```mermaid
@@ -39,8 +39,8 @@ flowchart LR
 
 Le type de ligne peut être :
 
-- un élément de données ;
-- une structure DDIC ;
+- un élément de données[^terme-element-donnees] ;
+- une structure DDIC[^terme-structure-abap] ;
 - un type de référence ;
 - un autre type compatible selon les possibilités de la version.
 
@@ -89,8 +89,8 @@ Type de table : `ZTT_MESSAGE`
 | Objet                   | Réside en mémoire interne | Persiste en base |
 | ----------------------- | ------------------------: | ---------------: |
 | Type de table DDIC      | Définit seulement un type |              Non |
-| Table interne ABAP      |                       Oui |              Non |
-| Table transparente DDIC |           Non directement |              Oui |
+| Table interne ABAP[^terme-abap]      |                       Oui |              Non |
+| Table transparente[^terme-table-transparente] DDIC |           Non directement |              Oui |
 
 ## 6.I POINTS À RETENIR
 
@@ -108,7 +108,7 @@ Identifier le type de ligne partagé et les opérations dominantes : parcours s�
 
 ### 6.J.2 Étape 2 — Créer le type de table
 
-1. Ouvrir `SE11`, choisir **Type de données** et saisir un nom client.
+1. Ouvrir `SE11`[^outil-se11], choisir **Type de données[^terme-type-donnees]** et saisir un nom client.
 2. Choisir **Type table**.
 3. Renseigner comme type de ligne une structure ou un élément DDIC actif.
 4. Sélectionner la catégorie de table décidée.
@@ -130,7 +130,7 @@ Pour une clé unique, tenter une deuxième insertion avec la même clé et trait
 ## 6.K VÉRIFICATION
 
 - Le contrôle de cohérence ne retourne aucune erreur bloquante.
-- L’objet est actif et son entrée de répertoire pointe vers le package attendu.
+- L’objet est actif et son entrée de répertoire pointe vers le package[^terme-package] attendu.
 - La liste d’utilisation et les dépendances correspondent au périmètre prévu.
 - Pour une table Z, la structure active et la structure de base sont cohérentes.
 
@@ -166,3 +166,15 @@ DATA lt_messages TYPE ztt_message.
 ---
 
 [Chapitre suivant — TABLES TRANSPARENTES ET CHAMPS](<./07 ├── TABLES TRANSPARENTES ET CHAMPS.md>)
+
+[^terme-table-interne]: **TABLE INTERNE.** Collection dynamique de lignes stockée en mémoire dans le programme ABAP. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#table-interne>).
+[^terme-acro-ddic]: **DDIC.** Data Dictionary, abréviation courante de l’ABAP Dictionary. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/10 └── ACRONYMES SAP.md#acro-ddic>).
+[^terme-cle-primaire]: **CLÉ PRIMAIRE.** Ensemble minimal de champs identifiant de manière unique une ligne de table. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/05 ├── DONNEES DICTIONNAIRE ET BASE DE DONNEES.md#cle-primaire>).
+[^terme-element-donnees]: **ÉLÉMENT DE DONNÉES.** Objet DDIC qui attribue une signification métier, des libellés et une documentation à un type élémentaire ou à un domaine. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/05 ├── DONNEES DICTIONNAIRE ET BASE DE DONNEES.md#element-donnees>).
+[^terme-structure-abap]: **STRUCTURE.** Objet ou type composé de plusieurs composants nommés. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#structure-abap>).
+[^terme-abap]: **ABAP.** Langage de programmation de la plateforme ABAP, conçu pour développer des applications métier et techniques SAP. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#abap>).
+[^terme-table-transparente]: **TABLE TRANSPARENTE.** Table DDIC correspondant directement à une table physique de la base de données. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/05 ├── DONNEES DICTIONNAIRE ET BASE DE DONNEES.md#table-transparente>).
+[^terme-type-donnees]: **TYPE DE DONNÉES.** Définition des propriétés d’une valeur : nature, longueur, précision et opérations autorisées. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#type-donnees>).
+[^terme-package]: **PACKAGE.** Conteneur logique qui regroupe les objets de développement et détermine notamment leur transportabilité. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/03 ├── REPOSITORY PACKAGES ET TRANSPORTS.md#package>).
+
+[^outil-se11]: **SE11.** Transaction de l’ABAP Dictionary utilisée pour analyser et maintenir les objets DDIC. Voir [le chapitre associé](<02 ├── NAVIGATION ET ANALYSE AVEC SE11.md>).

@@ -2,7 +2,7 @@
 
 ## 4.A RÉSULTAT ATTENDU
 
-- Reconnaître un user exit historique codé dans un programme SAP
+- Reconnaître un user exit historique codé dans un programme SAP[^terme-acro-sap]
 - Comprendre son mode d’implémentation
 - Éviter la modification directe du programme principal
 
@@ -29,22 +29,22 @@ Le nom, l’emplacement et les paramètres dépendent de l’application. Ne pas
 - interface souvent constituée de données globales du programme ;
 - forte dépendance au contexte d’exécution ;
 - faible isolation par rapport au standard ;
-- transport du code client comme objet Repository.
+- transport du code client comme objet Repository[^terme-objet-repository].
 
 ## 4.D PRÉCAUTIONS
 
-- vérifier l’appel par breakpoint ;
+- vérifier l’appel par breakpoint[^terme-breakpoint] ;
 - ne modifier que l’include client prévu ;
 - ne pas dépendre de variables globales non documentées sans contrôle ;
 - ne pas interrompre le flux standard par `MESSAGE A`, `LEAVE` ou commit sans nécessité ;
-- encapsuler le traitement dans une classe client ;
+- encapsuler le traitement dans une classe[^terme-classe] client ;
 - documenter la transaction et l’événement métier concernés.
 
 ## 4.E PROCESS
 
 ### 4.E.1 ÉTAPE 1 — RETROUVER LE PROGRAMME RÉEL
 
-Depuis le scénario standard, relever le programme principal et la pile d’appels. Ouvrir l’objet en affichage dans `SE80` ou `SE38`. Ne pas rechercher uniquement dans le programme de transaction si le traitement est délégué à des includes ou groupes de fonctions.
+Depuis le scénario standard, relever le programme principal et la pile d’appels. Ouvrir l’objet en affichage dans `SE80`[^outil-se80] ou `SE38`[^outil-se38]. Ne pas rechercher uniquement dans le programme de transaction si le traitement est délégué à des includes ou groupes de fonctions.
 
 ### 4.E.2 ÉTAPE 2 — RECHERCHER LES CONVENTIONS D’EXIT
 
@@ -64,7 +64,7 @@ Ajouter le code uniquement dans l’include ou le mécanisme client prévu. Dél
 
 ### 4.E.6 ÉTAPE 6 — TESTER ACTIVATION ET NON-RÉGRESSION
 
-Activer les objets client et exécuter le scénario complet. Vérifier le résultat, les messages, la LUW et les performances. Contrôler ensuite un cas où la condition client est fausse afin de prouver que le standard reste inchangé.
+Activer les objets client et exécuter le scénario complet. Vérifier le résultat, les messages, la LUW[^terme-acro-luw] et les performances. Contrôler ensuite un cas où la condition client est fausse afin de prouver que le standard reste inchangé.
 
 ## 4.F VÉRIFICATION
 
@@ -83,7 +83,7 @@ Activer les objets client et exécuter le scénario complet. Vérifier le résul
 ## 4.H SNIPPET À RÉUTILISER
 
 > [!NOTE]
-> Adapter les noms `Z*`, les types DDIC, les données et les autorisations au système cible. Effectuer un contrôle syntaxique avant activation.
+> Adapter les noms `Z*`, les types DDIC[^terme-acro-ddic], les données et les autorisations au système cible. Effectuer un contrôle syntaxique avant activation.
 
 ```abap
 FORM userexit_prepare_data.
@@ -108,3 +108,13 @@ ENDFORM.
 ---
 
 [Chapitre suivant — CUSTOMER EXITS ET ENHANCEMENTS CLASSIQUES](<./05 ├── CUSTOMER EXITS ET ENHANCEMENTS CLASSIQUES.md>)
+
+[^terme-acro-sap]: **SAP.** Nom de l’éditeur et de son écosystème logiciel ; l’acronyme historique provient de l’allemand. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/10 └── ACRONYMES SAP.md#acro-sap>).
+[^terme-objet-repository]: **OBJET REPOSITORY.** Unité de développement gérée par le Repository et le système de transport. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/03 ├── REPOSITORY PACKAGES ET TRANSPORTS.md#objet-repository>).
+[^terme-breakpoint]: **BREAKPOINT.** Point d’arrêt suspendant l’exécution dans le débogueur. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/08 ├── EXECUTION EXPLOITATION ET ADMINISTRATION.md#breakpoint>).
+[^terme-classe]: **CLASSE.** Modèle orienté objet définissant état et comportements. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#classe>).
+[^terme-acro-luw]: **LUW.** Logical Unit of Work. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/10 └── ACRONYMES SAP.md#acro-luw>).
+[^terme-acro-ddic]: **DDIC.** Data Dictionary, abréviation courante de l’ABAP Dictionary. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/10 └── ACRONYMES SAP.md#acro-ddic>).
+
+[^outil-se80]: **SE80.** Object Navigator utilisé pour parcourir et maintenir les objets du Repository ABAP. Voir [le chapitre associé](<../🧩 01 ├── FONDAMENTAUX ABAP/04 ├── EDITEURS ABAP SE38 ET SE80.md>).
+[^outil-se38]: **SE38.** Éditeur ABAP classique utilisé pour créer, modifier, vérifier et exécuter des programmes. Voir [le chapitre associé](<../🧩 01 ├── FONDAMENTAUX ABAP/04 ├── EDITEURS ABAP SE38 ET SE80.md>).

@@ -87,7 +87,7 @@ Fermer le dataset, puis retourner les nombres de lignes acceptées, rejetées et
 ## 9.G VÉRIFICATION
 
 - Le fichier est créé ou lu dans l’emplacement attendu.
-- Le nombre de lignes, la taille et l’encodage correspondent au contrat.
+- Le nombre de lignes, la taille et l’encodage[^terme-encodage] correspondent au contrat.
 - Les caractères accentués, séparateurs, guillemets et fins de ligne sont testés.
 - Le traitement journalise les rejets et permet une reprise sans doublon.
 
@@ -95,13 +95,13 @@ Fermer le dataset, puis retourner les nombres de lignes acceptées, rejetées et
 
 - Copier un exemple sans adapter les types, noms d’objets et données disponibles dans le système.
 - Tester uniquement le cas nominal et ignorer les valeurs initiales, absentes ou invalides.
-- Mélanger fichiers frontend et serveur dans un même scénario.
-- Parser un CSV par simple séparation alors que les champs peuvent être échappés.
+- Mélanger fichiers frontend[^terme-frontend] et serveur dans un même scénario.
+- Parser un CSV[^terme-csv] par simple séparation alors que les champs peuvent être échappés.
 
 ## 9.I SNIPPET À RÉUTILISER
 
 > [!NOTE]
-> Adapter les noms `Z*`, les types DDIC, les données et les autorisations au système cible. Effectuer un contrôle syntaxique avant activation.
+> Adapter les noms `Z*`, les types DDIC[^terme-acro-ddic], les données et les autorisations au système cible. Effectuer un contrôle syntaxique avant activation.
 
 ```abap
 DATA lv_file    TYPE string.
@@ -141,3 +141,8 @@ CLOSE DATASET lv_file.
 ---
 
 [Chapitre suivant — ÉCRIRE AVEC `TRANSFER`](<./10 ├── ECRIRE AVEC TRANSFER.md>)
+
+[^terme-encodage]: **ENCODAGE.** Règle transformant les caractères en octets et inversement. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/07 ├── INTERFACES ET INTEGRATION.md#encodage>).
+[^terme-frontend]: **FRONTEND.** Poste ou couche cliente utilisée par l’utilisateur, par exemple SAP GUI for Windows. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/01 ├── SYSTEMES ENVIRONNEMENTS ET MANDANTS.md#frontend>).
+[^terme-csv]: **CSV.** Format texte tabulaire utilisant un séparateur de champs et des règles d’échappement. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/07 ├── INTERFACES ET INTEGRATION.md#csv>).
+[^terme-acro-ddic]: **DDIC.** Data Dictionary, abréviation courante de l’ABAP Dictionary. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/10 └── ACRONYMES SAP.md#acro-ddic>).

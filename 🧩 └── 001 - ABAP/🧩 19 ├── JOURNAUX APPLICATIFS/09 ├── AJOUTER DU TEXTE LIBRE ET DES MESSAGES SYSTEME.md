@@ -2,7 +2,7 @@
 
 ## 9.A RÉSULTAT ATTENDU
 
-- Ajouter un texte qui ne provient pas d’une classe de messages
+- Ajouter un texte qui ne provient pas d’une classe[^terme-classe] de messages
 - Connaître les limites du texte libre
 - Choisir entre T100 et texte libre
 
@@ -64,15 +64,15 @@ Passer `I_LOG_HANDLE`, le type de message, la classe de problème et le texte. T
 
 ### 9.E.4 ÉTAPE 4 — CAPTURER UN MESSAGE SYSTÈME IMMÉDIATEMENT
 
-Après une API renseignant `sy-msgid`, `sy-msgno`, `sy-msgty` et `sy-msgv1` à `sy-msgv4`, copier ces valeurs avant toute autre instruction susceptible de les écraser. Construire ensuite `BAL_S_MSG` et appeler `BAL_LOG_MSG_ADD`.
+Après une API[^terme-api] renseignant `sy-msgid`, `sy-msgno`, `sy-msgty` et `sy-msgv1` à `sy-msgv4`, copier ces valeurs avant toute autre instruction susceptible de les écraser. Construire ensuite `BAL_S_MSG` et appeler `BAL_LOG_MSG_ADD`.
 
 ### 9.E.5 ÉTAPE 5 — SAUVEGARDER LE JOURNAL CIBLÉ
 
-Passer uniquement le handle concerné à `BAL_DB_SAVE`. Contrôler le retour et respecter la stratégie de LUW. Ne pas exécuter un commit supplémentaire uniquement pour un texte de diagnostic.
+Passer uniquement le handle concerné à `BAL_DB_SAVE`. Contrôler le retour et respecter la stratégie de LUW[^terme-acro-luw]. Ne pas exécuter un commit supplémentaire uniquement pour un texte de diagnostic.
 
 ### 9.E.6 ÉTAPE 6 — VÉRIFIER RENDU ET CONFIDENTIALITÉ
 
-Ouvrir le journal dans `SLG1` et vérifier texte, gravité, troncature et recherche. Tester des accents, une valeur longue et une erreur système réelle. Faire relire le contenu du journal du point de vue des autorisations et de la protection des données.
+Ouvrir le journal dans `SLG1`[^outil-slg1] et vérifier texte, gravité, troncature et recherche. Tester des accents, une valeur longue et une erreur système réelle. Faire relire le contenu du journal du point de vue des autorisations et de la protection des données.
 
 ## 9.F VÉRIFICATION
 
@@ -91,7 +91,7 @@ Ouvrir le journal dans `SLG1` et vérifier texte, gravité, troncature et recher
 ## 9.H SNIPPET À RÉUTILISER
 
 > [!NOTE]
-> Adapter les noms `Z*`, les types DDIC, les données et les autorisations au système cible. Effectuer un contrôle syntaxique avant activation.
+> Adapter les noms `Z*`, les types DDIC[^terme-acro-ddic], les données et les autorisations au système cible. Effectuer un contrôle syntaxique avant activation.
 
 ```abap
 DATA lv_text TYPE c LENGTH 200.
@@ -125,3 +125,10 @@ CALL FUNCTION 'BAL_LOG_MSG_ADD_FREE_TEXT'
 ---
 
 [Chapitre suivant — AJOUTER DES EXCEPTIONS](<./10 ├── AJOUTER DES EXCEPTIONS.md>)
+
+[^terme-classe]: **CLASSE.** Modèle orienté objet définissant état et comportements. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#classe>).
+[^terme-api]: **API.** Application Programming Interface, contrat exposant des opérations ou données utilisables par d’autres composants. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/10 └── ACRONYMES SAP.md#api>).
+[^terme-acro-luw]: **LUW.** Logical Unit of Work. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/10 └── ACRONYMES SAP.md#acro-luw>).
+[^terme-acro-ddic]: **DDIC.** Data Dictionary, abréviation courante de l’ABAP Dictionary. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/10 └── ACRONYMES SAP.md#acro-ddic>).
+
+[^outil-slg1]: **SLG1.** Transaction de recherche et d’affichage des journaux applicatifs persistés. Voir [le chapitre associé](<05 ├── ANALYSER LES JOURNAUX AVEC SLG1.md>).

@@ -40,7 +40,7 @@ flowchart TD
 
 ## 10.D APPEL EXTERNE
 
-ABAP possède également des variantes permettant d’appeler un sous-programme d’un autre programme.
+ABAP[^terme-abap] possède également des variantes permettant d’appeler un sous-programme d’un autre programme.
 
 Exemple de syntaxe historique :
 
@@ -52,13 +52,13 @@ Des variantes dynamiques existent également.
 
 ## 10.E STATUT ET RECOMMANDATION
 
-La documentation ABAP classe les appels externes de sous-programmes parmi les éléments obsolètes. Ils créent une dépendance forte envers l’implémentation interne d’un autre programme.
+La documentation ABAP classe[^terme-classe] les appels externes de sous-programmes parmi les éléments obsolètes. Ils créent une dépendance forte envers l’implémentation interne d’un autre programme.
 
 À la place, utiliser une interface conçue pour être appelée :
 
-- méthode publique ;
-- module fonction ;
-- API ou service adapté au scénario.
+- méthode[^terme-methode] publique ;
+- module fonction[^terme-module-fonction] ;
+- API[^terme-api] ou service adapté au scénario.
 
 ## 10.F IF FOUND
 
@@ -116,7 +116,7 @@ Lorsqu’un appel externe existe déjà :
 ## 10.L SNIPPET À RÉUTILISER
 
 > [!NOTE]
-> Adapter les noms `Z*`, les types DDIC, les données et les autorisations au système cible. Effectuer un contrôle syntaxique avant activation.
+> Adapter les noms `Z*`, les types DDIC[^terme-acro-ddic], les données et les autorisations au système cible. Effectuer un contrôle syntaxique avant activation.
 
 ```abap
 DATA lv_form_name TYPE c LENGTH 30 VALUE 'DISPLAY_RESULT'.
@@ -140,3 +140,10 @@ PERFORM (lv_form_name).
 ---
 
 [Chapitre suivant — DEBUG ET ANALYSE DES APPELS](<./11 ├── DEBUG ET ANALYSE DES APPELS.md>)
+
+[^terme-abap]: **ABAP.** Langage de programmation de la plateforme ABAP, conçu pour développer des applications métier et techniques SAP. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#abap>).
+[^terme-classe]: **CLASSE.** Modèle orienté objet définissant état et comportements. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#classe>).
+[^terme-methode]: **MÉTHODE.** Comportement déclaré dans une classe ou une interface et appelé avec une liste de paramètres définie. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#methode>).
+[^terme-module-fonction]: **MODULE FONCTION.** Procédure globale appelée avec `CALL FUNCTION` et définie dans un groupe de fonctions. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/06 ├── PROGRAMMES CLASSES ET OBJETS TECHNIQUES.md#module-fonction>).
+[^terme-api]: **API.** Application Programming Interface, contrat exposant des opérations ou données utilisables par d’autres composants. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/10 └── ACRONYMES SAP.md#api>).
+[^terme-acro-ddic]: **DDIC.** Data Dictionary, abréviation courante de l’ABAP Dictionary. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/10 └── ACRONYMES SAP.md#acro-ddic>).

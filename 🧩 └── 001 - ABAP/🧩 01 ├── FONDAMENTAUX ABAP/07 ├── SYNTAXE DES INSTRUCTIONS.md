@@ -2,7 +2,7 @@
 
 ## 7.A RÉSULTAT ATTENDU
 
-- Comprendre la structure d’une instruction ABAP
+- Comprendre la structure d’une instruction ABAP[^terme-instruction-abap]
 - Utiliser correctement les points, espaces, littéraux et opérateurs
 - Distinguer mots-clés, additions et opérandes
 - Reconnaître les instructions chaînées
@@ -180,7 +180,7 @@ Il ne garantit pas :
 
 La documentation accessible depuis le système doit être privilégiée pour vérifier la syntaxe disponible sur sa version ABAP.
 
-Méthode :
+Méthode[^terme-methode] :
 
 1. placer le curseur sur le mot-clé ;
 2. ouvrir l’aide ;
@@ -206,7 +206,7 @@ START-OF-SELECTION.
 ```
 
 - `REPORT` introduit le programme ;
-- `DATA` déclare un objet de données ;
+- `DATA` déclare un objet de données[^terme-objet-donnees] ;
 - `START-OF-SELECTION` ouvre un bloc d’événement ;
 - `IF ... ENDIF` forme une structure de contrôle ;
 - chaque instruction se termine par un point.
@@ -215,7 +215,7 @@ START-OF-SELECTION.
 
 ### 7.L.1 Étape 1 — Préparer le report de test
 
-Ouvrir dans `SE38` un report Z réservé aux exercices. Confirmer son nom et son package avant de passer en modification afin de ne pas utiliser un programme applicatif.
+Ouvrir dans `SE38`[^outil-se38] un report Z réservé aux exercices. Confirmer son nom et son package[^terme-package] avant de passer en modification afin de ne pas utiliser un programme applicatif.
 
 ### 7.L.2 Étape 2 — Vérifier la terminaison d’une instruction
 
@@ -227,7 +227,7 @@ Répartir la même instruction sur plusieurs lignes sans ajouter de point interm
 
 ### 7.L.4 Étape 4 — Lire la syntaxe de la release
 
-Positionner le curseur sur le mot-clé, appuyer sur `F1` puis comparer la forme de base, les additions et les exemples. Si une addition documentée ailleurs est absente, ne pas l’utiliser avant d’avoir confirmé sa disponibilité sur cette release.
+Positionner le curseur sur le mot-clé, appuyer sur `F1`[^terme-aide-f1] puis comparer la forme de base, les additions et les exemples. Si une addition documentée ailleurs est absente, ne pas l’utiliser avant d’avoir confirmé sa disponibilité sur cette release.
 
 ### 7.L.5 Étape 5 — Valider
 
@@ -244,13 +244,13 @@ Relancer `Ctrl+F2`, traiter chaque erreur puis activer avec `Ctrl+F3`. Le contr�
 
 - Copier un exemple sans adapter les types, noms d’objets et données disponibles dans le système.
 - Tester uniquement le cas nominal et ignorer les valeurs initiales, absentes ou invalides.
-- Intervenir dans le mauvais système ou mandant.
+- Intervenir dans le mauvais système ou mandant[^terme-mandant].
 - Confondre sauvegarde et activation.
 
 ## 7.O SNIPPET À RÉUTILISER
 
 > [!NOTE]
-> Adapter les noms `Z*`, les types DDIC, les données et les autorisations au système cible. Effectuer un contrôle syntaxique avant activation.
+> Adapter les noms `Z*`, les types DDIC[^terme-acro-ddic], les données et les autorisations au système cible. Effectuer un contrôle syntaxique avant activation.
 
 ```abap
 REPORT zdemo_syntaxe.
@@ -283,3 +283,13 @@ START-OF-SELECTION.
 ---
 
 [Chapitre suivant — COMMENTAIRES ET CONVENTIONS](<./08 ├── COMMENTAIRES ET CONVENTIONS.md>)
+
+[^terme-instruction-abap]: **INSTRUCTION ABAP.** Unité syntaxique terminée par un point. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#instruction-abap>).
+[^terme-methode]: **MÉTHODE.** Comportement déclaré dans une classe ou une interface et appelé avec une liste de paramètres définie. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#methode>).
+[^terme-objet-donnees]: **OBJET DE DONNÉES.** Zone de mémoire typée contenant une valeur pendant l’exécution. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#objet-donnees>).
+[^terme-package]: **PACKAGE.** Conteneur logique qui regroupe les objets de développement et détermine notamment leur transportabilité. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/03 ├── REPOSITORY PACKAGES ET TRANSPORTS.md#package>).
+[^terme-aide-f1]: **AIDE F1.** Aide contextuelle expliquant un champ, une fonction ou un mot-clé. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/02 ├── SAP GUI NAVIGATION ET TRANSACTIONS.md#aide-f1>).
+[^terme-mandant]: **MANDANT.** Subdivision logique d’un système SAP. Il est identifié par un numéro à trois chiffres et isole une partie des données, du paramétrage et des utilisateurs. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/01 ├── SYSTEMES ENVIRONNEMENTS ET MANDANTS.md#mandant>).
+[^terme-acro-ddic]: **DDIC.** Data Dictionary, abréviation courante de l’ABAP Dictionary. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/10 └── ACRONYMES SAP.md#acro-ddic>).
+
+[^outil-se38]: **SE38.** Éditeur ABAP classique utilisé pour créer, modifier, vérifier et exécuter des programmes. Voir [le chapitre associé](<04 ├── EDITEURS ABAP SE38 ET SE80.md>).

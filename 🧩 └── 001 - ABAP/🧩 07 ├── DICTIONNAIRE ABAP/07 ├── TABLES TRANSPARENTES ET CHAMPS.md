@@ -2,9 +2,9 @@
 
 ## 7.A RÉSULTAT ATTENDU
 
-- Comprendre la relation entre définition DDIC et table physique
-- Créer une table transparente dans SE11
-- Définir les champs et la clé primaire
+- Comprendre la relation entre définition DDIC[^terme-acro-ddic] et table physique
+- Créer une table transparente[^terme-table-transparente] dans SE11[^outil-se11]
+- Définir les champs et la clé primaire[^terme-cle-primaire]
 - Maintenir les propriétés fonctionnelles de la table
 - Éviter les erreurs de modélisation courantes
 
@@ -12,7 +12,7 @@
 
 Une table transparente DDIC possède une représentation correspondante dans la base de données.
 
-La définition est indépendante du système de base de données utilisé. L’interface de base ABAP exploite les métadonnées du Dictionary lors des accès Open SQL.
+La définition est indépendante du système de base de données utilisé. L’interface de base ABAP[^terme-abap] exploite les métadonnées du Dictionary lors des accès Open SQL[^terme-acro-sql].
 
 ```mermaid
 flowchart LR
@@ -26,13 +26,13 @@ flowchart LR
 
 ### 7.C.1 Étape 1 — Définir la persistance
 
-Lister la clé métier, les données persistées, le propriétaire fonctionnel et le cycle de vie. Décider si la table est dépendante du mandant ; dans ce cas, prévoir `MANDT` en première position de la clé.
+Lister la clé métier, les données persistées, le propriétaire fonctionnel et le cycle de vie. Décider si la table est dépendante du mandant[^terme-mandant] ; dans ce cas, prévoir `MANDT`[^terme-mandt] en première position de la clé.
 
 ### 7.C.2 Étape 2 — Créer l’objet table
 
 1. Ouvrir `SE11`, choisir **Table de base de données** et saisir un nom client.
 2. Choisir **Créer** et renseigner le texte court.
-3. Sélectionner la classe de livraison correspondant au contenu : données applicatives, Customizing ou autre catégorie validée.
+3. Sélectionner la classe[^terme-classe] de livraison correspondant au contenu : données applicatives, Customizing[^terme-customizing] ou autre catégorie validée.
 4. Définir l’autorisation d’affichage/maintenance conformément au mode d’administration prévu.
 
 ### 7.C.3 Étape 3 — Définir la clé et les champs
@@ -61,7 +61,7 @@ Pour chaque champ, définir :
 
 - un nom technique ;
 - son appartenance éventuelle à la clé ;
-- un élément de données ou un type technique approprié ;
+- un élément de données[^terme-element-donnees] ou un type technique approprié ;
 - les références complémentaires pour les montants et quantités.
 
 Préférer des éléments de données réutilisables pour les champs métier.
@@ -88,7 +88,7 @@ Exemple :
 | ------------------------ | --------------------------------------------------------------------- |
 | Classe de livraison      | Quelle est la nature des données et leur comportement de transport ?  |
 | Affichage/maintenance    | Les données peuvent-elles être maintenues par les outils génériques ? |
-| Dépendance au mandant    | Les données sont-elles séparées par client SAP ?                      |
+| Dépendance au mandant    | Les données sont-elles séparées par client SAP[^terme-acro-sap] ?                      |
 | Catégorie d’amélioration | L’objet peut-il être étendu et avec quels types de composants ?       |
 
 ## 7.G TABLES DE PERSONNALISATION ET DONNÉES APPLICATIVES
@@ -101,7 +101,7 @@ Avant de choisir la classe de livraison, déterminer :
 - dans quel système elles sont créées ;
 - si elles doivent être transportées ;
 - si elles dépendent du mandant ;
-- si elles sont maintenues par SM30 ou par une application.
+- si elles sont maintenues par SM30[^outil-sm30] ou par une application.
 
 ## 7.H POINTS À RETENIR
 
@@ -130,7 +130,7 @@ Le contrôle est terminé lorsque définition active, objet physique, contenu de
 ## 7.J VÉRIFICATION
 
 - Le contrôle de cohérence ne retourne aucune erreur bloquante.
-- L’objet est actif et son entrée de répertoire pointe vers le package attendu.
+- L’objet est actif et son entrée de répertoire pointe vers le package[^terme-package] attendu.
 - La liste d’utilisation et les dépendances correspondent au périmètre prévu.
 - Pour une table Z, la structure active et la structure de base sont cohérentes.
 
@@ -171,3 +171,19 @@ Ordre de transport  :
 ---
 
 [Chapitre suivant — CLÉS, INDEX ET DÉPENDANCE AU MANDANT](<./08 ├── CLES INDEX ET DEPENDANCE AU MANDANT.md>)
+
+[^terme-acro-ddic]: **DDIC.** Data Dictionary, abréviation courante de l’ABAP Dictionary. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/10 └── ACRONYMES SAP.md#acro-ddic>).
+[^terme-table-transparente]: **TABLE TRANSPARENTE.** Table DDIC correspondant directement à une table physique de la base de données. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/05 ├── DONNEES DICTIONNAIRE ET BASE DE DONNEES.md#table-transparente>).
+[^terme-cle-primaire]: **CLÉ PRIMAIRE.** Ensemble minimal de champs identifiant de manière unique une ligne de table. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/05 ├── DONNEES DICTIONNAIRE ET BASE DE DONNEES.md#cle-primaire>).
+[^terme-abap]: **ABAP.** Langage de programmation de la plateforme ABAP, conçu pour développer des applications métier et techniques SAP. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#abap>).
+[^terme-acro-sql]: **SQL.** Structured Query Language. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/10 └── ACRONYMES SAP.md#acro-sql>).
+[^terme-mandant]: **MANDANT.** Subdivision logique d’un système SAP. Il est identifié par un numéro à trois chiffres et isole une partie des données, du paramétrage et des utilisateurs. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/01 ├── SYSTEMES ENVIRONNEMENTS ET MANDANTS.md#mandant>).
+[^terme-mandt]: **MANDT.** Champ technique de type mandant, généralement placé en première position de clé dans les tables dépendantes du mandant. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/05 ├── DONNEES DICTIONNAIRE ET BASE DE DONNEES.md#mandt>).
+[^terme-classe]: **CLASSE.** Modèle orienté objet définissant état et comportements. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#classe>).
+[^terme-customizing]: **CUSTOMIZING.** Paramétrage permettant d’adapter le comportement standard SAP à l’organisation. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/09 ├── NOTIONS FONCTIONNELLES ET ORGANISATIONNELLES.md#customizing>).
+[^terme-element-donnees]: **ÉLÉMENT DE DONNÉES.** Objet DDIC qui attribue une signification métier, des libellés et une documentation à un type élémentaire ou à un domaine. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/05 ├── DONNEES DICTIONNAIRE ET BASE DE DONNEES.md#element-donnees>).
+[^terme-acro-sap]: **SAP.** Nom de l’éditeur et de son écosystème logiciel ; l’acronyme historique provient de l’allemand. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/10 └── ACRONYMES SAP.md#acro-sap>).
+[^terme-package]: **PACKAGE.** Conteneur logique qui regroupe les objets de développement et détermine notamment leur transportabilité. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/03 ├── REPOSITORY PACKAGES ET TRANSPORTS.md#package>).
+
+[^outil-se11]: **SE11.** Transaction de l’ABAP Dictionary utilisée pour analyser et maintenir les objets DDIC. Voir [le chapitre associé](<02 ├── NAVIGATION ET ANALYSE AVEC SE11.md>).
+[^outil-sm30]: **SM30.** Transaction d’exécution d’un dialogue de maintenance généré pour une table ou une vue. Voir [le chapitre associé](<14 ├── GENERATEUR DE MAINTENANCE ET SM30.md>).

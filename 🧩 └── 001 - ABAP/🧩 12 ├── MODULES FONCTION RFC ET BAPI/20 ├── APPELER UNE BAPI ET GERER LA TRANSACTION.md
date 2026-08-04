@@ -2,7 +2,7 @@
 
 ## 20.A RÉSULTAT ATTENDU
 
-- Construire un appel BAPI complet
+- Construire un appel BAPI[^terme-bapi] complet
 - Analyser les retours métier
 - Valider avec `BAPI_TRANSACTION_COMMIT`
 - Annuler avec `BAPI_TRANSACTION_ROLLBACK`
@@ -49,7 +49,7 @@ ENDIF.
 
 ## 20.D COMMIT BAPI
 
-Après une BAPI de modification, utiliser le mécanisme transactionnel documenté par SAP. La documentation SAP précise l’usage de `BAPI_TRANSACTION_COMMIT` dans le modèle transactionnel BAPI.
+Après une BAPI de modification, utiliser le mécanisme transactionnel documenté par SAP[^terme-acro-sap]. La documentation SAP précise l’usage de `BAPI_TRANSACTION_COMMIT` dans le modèle transactionnel BAPI.
 
 Le paramètre `WAIT = abap_true` demande une validation synchrone des mises à jour, ce qui peut être nécessaire lorsque le traitement suivant doit lire immédiatement les données validées.
 
@@ -59,16 +59,16 @@ En présence d’une erreur métier ou technique avant validation, appeler `BAPI
 
 ## 20.F PIÈGES
 
-- Appeler `COMMIT WORK` directement sans respecter le modèle BAPI.
+- Appeler `COMMIT WORK`[^terme-commit-work] directement sans respecter le modèle BAPI.
 - Valider alors que `RETURN` contient une erreur.
 - Ignorer les avertissements ayant un impact métier.
-- Effectuer plusieurs opérations indépendantes dans une même LUW sans stratégie.
+- Effectuer plusieurs opérations indépendantes dans une même LUW[^terme-acro-luw] sans stratégie.
 - Supposer qu’un rollback distant annule des opérations déjà validées.
 - Oublier que certaines BAPI documentent un comportement transactionnel particulier.
 
 ## 20.G APPEL DISTANT
 
-Lorsque la BAPI est appelée via une destination RFC, la gestion de la transaction doit rester dans le même contexte RFC selon le modèle applicable. Vérifier la documentation de la BAPI et de l’environnement appelant.
+Lorsque la BAPI est appelée via une destination RFC[^terme-destination-rfc], la gestion de la transaction doit rester dans le même contexte RFC selon le modèle applicable. Vérifier la documentation de la BAPI et de l’environnement[^terme-environnement] appelant.
 
 ## 20.H PROCESS
 
@@ -78,7 +78,7 @@ Valider les entrées, renseigner structures et indicateurs `X`, puis conserver u
 
 ### 20.H.2 Étape 2 — Appeler la BAPI
 
-Insérer le modèle exact depuis `SE37`, mapper tous les paramètres obligatoires et récupérer la clé retournée ainsi que la table `RETURN`.
+Insérer le modèle exact depuis `SE37`[^outil-se37], mapper tous les paramètres obligatoires et récupérer la clé retournée ainsi que la table `RETURN`.
 
 ### 20.H.3 Étape 3 — Décider succès ou échec
 
@@ -90,7 +90,7 @@ En absence d’erreur bloquante, appeler `BAPI_TRANSACTION_COMMIT` avec attente 
 
 ### 20.H.5 Étape 5 — Relire l’objet
 
-Utiliser une BAPI ou API de lecture pour confirmer la persistance et la clé. Tester ensuite un cas d’erreur et vérifier qu’aucun objet partiel ne subsiste.
+Utiliser une BAPI ou API[^terme-api] de lecture pour confirmer la persistance et la clé. Tester ensuite un cas d’erreur et vérifier qu’aucun objet partiel ne subsiste.
 
 ## 20.I VÉRIFICATION
 
@@ -103,13 +103,13 @@ Utiliser une BAPI ou API de lecture pour confirmer la persistance et la clé. Te
 
 - Copier un exemple sans adapter les types, noms d’objets et données disponibles dans le système.
 - Tester uniquement le cas nominal et ignorer les valeurs initiales, absentes ou invalides.
-- Appeler un module fonction sans lire sa documentation et ses exceptions.
+- Appeler un module fonction[^terme-module-fonction] sans lire sa documentation et ses exceptions.
 - Supposer qu’une BAPI effectue automatiquement le commit.
 
 ## 20.K SNIPPET À RÉUTILISER
 
 > [!NOTE]
-> Adapter les noms `Z*`, les types DDIC, les données et les autorisations au système cible. Effectuer un contrôle syntaxique avant activation.
+> Adapter les noms `Z*`, les types DDIC[^terme-acro-ddic], les données et les autorisations au système cible. Effectuer un contrôle syntaxique avant activation.
 
 ```abap
 DATA lt_return TYPE TABLE OF bapiret2.
@@ -154,3 +154,15 @@ ENDIF.
 ---
 
 [Chapitre suivant — DIAGNOSTIC ET BONNES PRATIQUES](<./21 └── DIAGNOSTIC ET BONNES PRATIQUES.md>)
+
+[^terme-bapi]: **BAPI.** Interface métier publiée autour d’un Business Object SAP, généralement implémentée par un module fonction RFC. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/06 ├── PROGRAMMES CLASSES ET OBJETS TECHNIQUES.md#bapi>).
+[^terme-acro-sap]: **SAP.** Nom de l’éditeur et de son écosystème logiciel ; l’acronyme historique provient de l’allemand. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/10 └── ACRONYMES SAP.md#acro-sap>).
+[^terme-commit-work]: **COMMIT WORK.** Instruction clôturant la SAP LUW courante, déclenchant notamment les mises à jour enregistrées et validant la base. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/08 ├── EXECUTION EXPLOITATION ET ADMINISTRATION.md#commit-work>).
+[^terme-acro-luw]: **LUW.** Logical Unit of Work. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/10 └── ACRONYMES SAP.md#acro-luw>).
+[^terme-destination-rfc]: **DESTINATION RFC.** Configuration `SM59` décrivant comment joindre une cible RFC. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/07 ├── INTERFACES ET INTEGRATION.md#destination-rfc>).
+[^terme-environnement]: **ENVIRONNEMENT.** Rôle fonctionnel attribué à un système dans le cycle de vie : développement, test, recette, préproduction ou production. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/01 ├── SYSTEMES ENVIRONNEMENTS ET MANDANTS.md#environnement>).
+[^terme-api]: **API.** Application Programming Interface, contrat exposant des opérations ou données utilisables par d’autres composants. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/10 └── ACRONYMES SAP.md#api>).
+[^terme-module-fonction]: **MODULE FONCTION.** Procédure globale appelée avec `CALL FUNCTION` et définie dans un groupe de fonctions. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/06 ├── PROGRAMMES CLASSES ET OBJETS TECHNIQUES.md#module-fonction>).
+[^terme-acro-ddic]: **DDIC.** Data Dictionary, abréviation courante de l’ABAP Dictionary. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/10 └── ACRONYMES SAP.md#acro-ddic>).
+
+[^outil-se37]: **SE37.** Function Builder utilisé pour rechercher, afficher, tester et maintenir les modules fonction. Voir [le chapitre associé](<03 ├── RECHERCHER ET ANALYSER AVEC SE37.md>).

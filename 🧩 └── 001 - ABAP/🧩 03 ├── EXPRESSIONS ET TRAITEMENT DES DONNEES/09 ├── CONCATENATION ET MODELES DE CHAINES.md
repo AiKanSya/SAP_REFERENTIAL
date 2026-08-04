@@ -6,7 +6,7 @@
 - Utiliser `CONCATENATE` et l’opérateur `&&`
 - Construire un texte avec un modèle de chaîne
 - Formater une valeur intégrée dans un texte
-- Choisir une forme lisible et compatible avec la version ABAP
+- Choisir une forme lisible et compatible avec la version ABAP[^terme-abap]
 
 ## 9.B INSTRUCTION CONCATENATE
 
@@ -99,7 +99,7 @@ Les modèles de chaînes permettent d’insérer des caractères de contrôle :
 DATA(lv_multiline) = |Ligne 1\nLigne 2|.
 ```
 
-Selon le contexte de sortie, préférer les constantes prévues par les API utilisées, par exemple `cl_abap_char_utilities=>newline`, lorsque le consommateur attend une séquence précise.
+Selon le contexte de sortie, préférer les constantes prévues par les API[^terme-api] utilisées, par exemple `cl_abap_char_utilities=>newline`, lorsque le consommateur attend une séquence précise.
 
 ```abap
 DATA(lv_multiline) = |Ligne 1{ cl_abap_char_utilities=>newline }Ligne 2|.
@@ -138,12 +138,12 @@ La conversion inverse peut être appliquée avec `ALPHA = IN` lorsque le context
 - Copier un exemple sans adapter les types, noms d’objets et données disponibles dans le système.
 - Tester uniquement le cas nominal et ignorer les valeurs initiales, absentes ou invalides.
 - S’appuyer sur une conversion implicite pouvant tronquer ou arrondir.
-- Ignorer l’encodage et les formats externes.
+- Ignorer l’encodage[^terme-encodage] et les formats externes.
 
 ## 9.L SNIPPET À RÉUTILISER
 
 > [!NOTE]
-> Adapter les noms `Z*`, les types DDIC, les données et les autorisations au système cible. Effectuer un contrôle syntaxique avant activation.
+> Adapter les noms `Z*`, les types DDIC[^terme-acro-ddic], les données et les autorisations au système cible. Effectuer un contrôle syntaxique avant activation.
 
 ```abap
 DATA lv_quantity TYPE i VALUE 3.
@@ -168,3 +168,8 @@ DATA(lv_message) = |Quantité : { lv_quantity }, prix : { lv_price }|.
 ---
 
 [Chapitre suivant — ACCÈS PAR OFFSET ET LONGUEUR](<./10 ├── ACCES PAR OFFSET ET LONGUEUR.md>)
+
+[^terme-abap]: **ABAP.** Langage de programmation de la plateforme ABAP, conçu pour développer des applications métier et techniques SAP. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#abap>).
+[^terme-api]: **API.** Application Programming Interface, contrat exposant des opérations ou données utilisables par d’autres composants. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/10 └── ACRONYMES SAP.md#api>).
+[^terme-encodage]: **ENCODAGE.** Règle transformant les caractères en octets et inversement. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/07 ├── INTERFACES ET INTEGRATION.md#encodage>).
+[^terme-acro-ddic]: **DDIC.** Data Dictionary, abréviation courante de l’ABAP Dictionary. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/10 └── ACRONYMES SAP.md#acro-ddic>).

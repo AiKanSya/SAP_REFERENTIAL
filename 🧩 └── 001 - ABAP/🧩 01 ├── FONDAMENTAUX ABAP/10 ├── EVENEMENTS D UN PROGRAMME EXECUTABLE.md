@@ -2,7 +2,7 @@
 
 ## 10.A RÉSULTAT ATTENDU
 
-- Comprendre le pilotage événementiel d’un programme exécutable classique
+- Comprendre le pilotage événementiel d’un programme exécutable[^terme-programme-executable] classique
 - Connaître l’ordre principal des événements liés à l’écran de sélection
 - Utiliser `INITIALIZATION`, `AT SELECTION-SCREEN` et `START-OF-SELECTION`
 - Comprendre le rôle limité de `END-OF-SELECTION`
@@ -31,7 +31,7 @@ START-OF-SELECTION.
   WRITE / 'Traitement principal'.
 ```
 
-Le mot-clé n’est pas un appel explicite. L’environnement d’exécution déclenche l’événement au moment prévu.
+Le mot-clé n’est pas un appel explicite. L’environnement[^terme-environnement] d’exécution déclenche l’événement au moment prévu.
 
 ## 10.D `LOAD-OF-PROGRAM`
 
@@ -193,7 +193,7 @@ Créer un report Z avec un `PARAMETERS` simple. Ajouter `INITIALIZATION`, `AT SE
 
 ### 10.M.2 Étape 2 — Instrumenter l’ordre d’exécution
 
-Placer un breakpoint dans chaque bloc, activer puis exécuter. Noter l’ordre réel : initialisation avant affichage, validation après action sur l’écran, puis traitement principal après validation réussie.
+Placer un breakpoint[^terme-breakpoint] dans chaque bloc, activer puis exécuter. Noter l’ordre réel : initialisation avant affichage, validation après action sur l’écran, puis traitement principal après validation réussie.
 
 ### 10.M.3 Étape 3 — Tester le chemin valide
 
@@ -216,13 +216,13 @@ Le chapitre est validé lorsque les deux chemins prouvent l’ordre des événem
 
 - Copier un exemple sans adapter les types, noms d’objets et données disponibles dans le système.
 - Tester uniquement le cas nominal et ignorer les valeurs initiales, absentes ou invalides.
-- Intervenir dans le mauvais système ou mandant.
+- Intervenir dans le mauvais système ou mandant[^terme-mandant].
 - Confondre sauvegarde et activation.
 
 ## 10.P SNIPPET À RÉUTILISER
 
 > [!NOTE]
-> Adapter les noms `Z*`, les types DDIC, les données et les autorisations au système cible. Effectuer un contrôle syntaxique avant activation.
+> Adapter les noms `Z*`, les types DDIC[^terme-acro-ddic], les données et les autorisations au système cible. Effectuer un contrôle syntaxique avant activation.
 
 ```abap
 REPORT zdemo_events.
@@ -260,3 +260,9 @@ START-OF-SELECTION.
 ---
 
 [Chapitre suivant — ÉCRAN DE SÉLECTION SIMPLE](<./11 ├── ECRAN DE SELECTION SIMPLE.md>)
+
+[^terme-programme-executable]: **PROGRAMME EXÉCUTABLE.** Programme ABAP de type report pouvant être lancé directement, généralement avec `F8` ou par une transaction. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/06 ├── PROGRAMMES CLASSES ET OBJETS TECHNIQUES.md#programme-executable>).
+[^terme-environnement]: **ENVIRONNEMENT.** Rôle fonctionnel attribué à un système dans le cycle de vie : développement, test, recette, préproduction ou production. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/01 ├── SYSTEMES ENVIRONNEMENTS ET MANDANTS.md#environnement>).
+[^terme-breakpoint]: **BREAKPOINT.** Point d’arrêt suspendant l’exécution dans le débogueur. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/08 ├── EXECUTION EXPLOITATION ET ADMINISTRATION.md#breakpoint>).
+[^terme-mandant]: **MANDANT.** Subdivision logique d’un système SAP. Il est identifié par un numéro à trois chiffres et isole une partie des données, du paramétrage et des utilisateurs. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/01 ├── SYSTEMES ENVIRONNEMENTS ET MANDANTS.md#mandant>).
+[^terme-acro-ddic]: **DDIC.** Data Dictionary, abréviation courante de l’ABAP Dictionary. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/10 └── ACRONYMES SAP.md#acro-ddic>).

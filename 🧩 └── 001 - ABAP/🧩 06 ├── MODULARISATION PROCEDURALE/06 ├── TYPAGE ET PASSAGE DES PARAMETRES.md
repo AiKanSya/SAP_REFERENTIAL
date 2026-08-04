@@ -87,7 +87,7 @@ Cette forme doit être utilisée avec une intention claire ; elle peut introduir
 
 ## 6.G CONVERSIONS
 
-Lorsqu’un paramètre réel et un paramètre formel ne possèdent pas exactement le même type, ABAP peut effectuer une conversion selon les règles de compatibilité applicables.
+Lorsqu’un paramètre réel et un paramètre formel ne possèdent pas exactement le même type, ABAP[^terme-abap] peut effectuer une conversion selon les règles de compatibilité applicables.
 
 Risques :
 
@@ -139,7 +139,7 @@ Utiliser un type générique uniquement lorsque le traitement doit réellement f
 ## 6.M SNIPPET À RÉUTILISER
 
 > [!NOTE]
-> Adapter les noms `Z*`, les types DDIC, les données et les autorisations au système cible. Effectuer un contrôle syntaxique avant activation.
+> Adapter les noms `Z*`, les types DDIC[^terme-acro-ddic], les données et les autorisations au système cible. Effectuer un contrôle syntaxique avant activation.
 
 ```abap
 FORM normalize_text
@@ -167,3 +167,6 @@ ENDFORM.
 ---
 
 [Chapitre suivant — PORTÉE DES DONNÉES ET EFFETS DE BORD](<./07 ├── PORTEE DES DONNEES ET EFFETS DE BORD.md>)
+
+[^terme-abap]: **ABAP.** Langage de programmation de la plateforme ABAP, conçu pour développer des applications métier et techniques SAP. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#abap>).
+[^terme-acro-ddic]: **DDIC.** Data Dictionary, abréviation courante de l’ABAP Dictionary. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/10 └── ACRONYMES SAP.md#acro-ddic>).

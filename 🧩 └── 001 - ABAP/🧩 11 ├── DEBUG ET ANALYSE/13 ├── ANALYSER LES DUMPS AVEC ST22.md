@@ -2,8 +2,8 @@
 
 ## 13.A RÉSULTAT ATTENDU
 
-- Comprendre ce qu’est un dump ABAP
-- Retrouver un dump avec `ST22`
+- Comprendre ce qu’est un dump ABAP[^terme-dump-abap]
+- Retrouver un dump avec `ST22`[^outil-st22]
 - Lire les sections les plus utiles
 - Relier l’erreur d’exécution au code et aux données
 - Distinguer cause immédiate et cause initiale
@@ -12,7 +12,7 @@
 
 Lorsqu’une erreur d’exécution non gérée interrompt un programme ABAP, le système produit un **short dump** contenant le contexte technique disponible.
 
-`ST22` permet de lister et analyser les erreurs d’exécution enregistrées pour le système et le mandant accessibles à l’utilisateur autorisé.
+`ST22` permet de lister et analyser les erreurs d’exécution enregistrées pour le système et le mandant[^terme-mandant] accessibles à l’utilisateur autorisé.
 
 ## 13.C SÉLECTION
 
@@ -32,7 +32,7 @@ L’heure exacte fournie par l’utilisateur réduit fortement le périmètre.
 | Section              | Utilité                                  |
 | -------------------- | ---------------------------------------- |
 | Erreur d’exécution   | Catégorie technique                      |
-| Exception            | Classe d’exception non gérée éventuelle  |
+| Exception[^terme-exception]            | Classe[^terme-classe] d’exception non gérée éventuelle  |
 | Programme            | Objet interrompu                         |
 | Analyse de l’erreur  | Explication du mécanisme                 |
 | Comment corriger     | Orientations générales                   |
@@ -68,15 +68,15 @@ Ne pas ajouter systématiquement `CATCH cx_root`. Le traitement doit préserver 
 
 Un dump de mémoire, de temps maximal ou de ressources requiert souvent des outils complémentaires :
 
-- `SAT` ;
-- `ST05` ;
+- `SAT`[^outil-sat] ;
+- `ST05`[^outil-st05] ;
 - Memory Inspector ;
 - analyse du volume ;
-- contrôle des boucles et lectures SQL.
+- contrôle des boucles et lectures SQL[^terme-acro-sql].
 
 ## 13.H AUTORISATION
 
-L’accès aux dumps est protégé. SAP documente notamment l’objet d’autorisation `S_ABAPDUMP` pour l’analyse des dumps.
+L’accès aux dumps est protégé. SAP[^terme-acro-sap] documente notamment l’objet d’autorisation[^terme-objet-autorisation] `S_ABAPDUMP` pour l’analyse des dumps.
 
 ## 13.I PROCESS
 
@@ -104,7 +104,7 @@ Comparer les variables du dump avec les entrées et données persistées. Corrig
 
 - Le scénario reproduit correspond au même utilisateur, mandant, transaction et jeu de données.
 - L’horodatage et l’identifiant de l’analyse sont conservés.
-- La cause retenue est soutenue par une ligne source, une trace ou une valeur observée.
+- La cause retenue est soutenue par une ligne source, une trace[^terme-trace] ou une valeur observée.
 - Après correction, le même scénario ne reproduit plus le défaut et le résultat métier reste identique.
 
 ## 13.K ERREURS FRÉQUENTES
@@ -142,3 +142,16 @@ Ordre de transport  :
 ---
 
 [Chapitre suivant — ANALYSER LE TEMPS D’EXÉCUTION AVEC SAT](<./14 ├── ANALYSER LE TEMPS D EXECUTION AVEC SAT.md>)
+
+[^terme-dump-abap]: **DUMP ABAP.** Arrêt d’exécution produisant une analyse détaillée consultable dans `ST22`. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/08 ├── EXECUTION EXPLOITATION ET ADMINISTRATION.md#dump-abap>).
+[^terme-mandant]: **MANDANT.** Subdivision logique d’un système SAP. Il est identifié par un numéro à trois chiffres et isole une partie des données, du paramétrage et des utilisateurs. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/01 ├── SYSTEMES ENVIRONNEMENTS ET MANDANTS.md#mandant>).
+[^terme-exception]: **EXCEPTION.** Objet ou signal représentant une situation anormale qu’un appelant peut traiter. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#exception>).
+[^terme-classe]: **CLASSE.** Modèle orienté objet définissant état et comportements. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#classe>).
+[^terme-acro-sql]: **SQL.** Structured Query Language. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/10 └── ACRONYMES SAP.md#acro-sql>).
+[^terme-acro-sap]: **SAP.** Nom de l’éditeur et de son écosystème logiciel ; l’acronyme historique provient de l’allemand. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/10 └── ACRONYMES SAP.md#acro-sap>).
+[^terme-objet-autorisation]: **OBJET D’AUTORISATION.** Structure de contrôle contenant des champs vérifiés lors d’une action. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/09 ├── NOTIONS FONCTIONNELLES ET ORGANISATIONNELLES.md#objet-autorisation>).
+[^terme-trace]: **TRACE.** Enregistrement détaillé d’événements techniques pour analyser exécution, SQL ou appels. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/08 ├── EXECUTION EXPLOITATION ET ADMINISTRATION.md#trace>).
+
+[^outil-st22]: **ST22.** Transaction d’analyse des terminaisons anormales et dumps ABAP. Voir [le chapitre associé](<13 ├── ANALYSER LES DUMPS AVEC ST22.md>).
+[^outil-sat]: **SAT.** Runtime Analysis utilisée pour mesurer et analyser le temps d’exécution ABAP. Voir [le chapitre associé](<../🧩 20 ├── PERFORMANCE QUALITE ET TESTS/07 ├── MESURER LE TEMPS D EXECUTION AVEC SAT.md>).
+[^outil-st05]: **ST05.** Performance Trace utilisée notamment pour enregistrer et analyser les accès SQL. Voir [le chapitre associé](<../🧩 20 ├── PERFORMANCE QUALITE ET TESTS/08 ├── ANALYSER LES ACCES SQL AVEC ST05.md>).

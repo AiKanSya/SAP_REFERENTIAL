@@ -24,7 +24,7 @@ go_grid->refresh_table_display(
 
 ## 21.C SOFT REFRESH
 
-Un rafraîchissement logiciel conserve certains réglages frontend comme les tris, filtres et totalisations. L’utiliser seulement lorsque les changements apportés sont compatibles avec la conservation de cet état.
+Un rafraîchissement logiciel conserve certains réglages frontend[^terme-frontend] comme les tris, filtres et totalisations. L’utiliser seulement lorsque les changements apportés sont compatibles avec la conservation de cet état.
 
 ## 21.D CHARGER DE NOUVELLES DONNÉES
 
@@ -41,7 +41,7 @@ Le Control Framework gère normalement les échanges frontend. `CL_GUI_CFW=>FLUS
 
 ## 21.F ERREURS FRÉQUENTES
 
-- remplacer la table interne par une nouvelle référence incompatible ;
+- remplacer la table interne[^terme-table-interne] par une nouvelle référence incompatible ;
 - modifier la structure du catalogue sans réinitialisation adaptée ;
 - rafraîchir avant `CHECK_CHANGED_DATA` sur une grille éditable ;
 - perdre la sélection utilisateur après reconstruction complète du contrôle.
@@ -82,7 +82,7 @@ Vérifier le curseur, le défilement, la sélection, les filtres et les tris apr
 ## 21.I SNIPPET À RÉUTILISER
 
 > [!NOTE]
-> Adapter les noms `Z*`, les types DDIC, les données et les autorisations au système cible. Effectuer un contrôle syntaxique avant activation.
+> Adapter les noms `Z*`, les types DDIC[^terme-acro-ddic], les données et les autorisations au système cible. Effectuer un contrôle syntaxique avant activation.
 
 ```abap
 DATA ls_stable TYPE lvc_s_stbl.
@@ -110,3 +110,7 @@ go_grid->refresh_table_display(
 ---
 
 [Chapitre suivant — FONCTIONS CLASSIQUES REUSE ALV](<./22 ├── FONCTIONS CLASSIQUES REUSE ALV.md>)
+
+[^terme-frontend]: **FRONTEND.** Poste ou couche cliente utilisée par l’utilisateur, par exemple SAP GUI for Windows. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/01 ├── SYSTEMES ENVIRONNEMENTS ET MANDANTS.md#frontend>).
+[^terme-table-interne]: **TABLE INTERNE.** Collection dynamique de lignes stockée en mémoire dans le programme ABAP. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#table-interne>).
+[^terme-acro-ddic]: **DDIC.** Data Dictionary, abréviation courante de l’ABAP Dictionary. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/10 └── ACRONYMES SAP.md#acro-ddic>).

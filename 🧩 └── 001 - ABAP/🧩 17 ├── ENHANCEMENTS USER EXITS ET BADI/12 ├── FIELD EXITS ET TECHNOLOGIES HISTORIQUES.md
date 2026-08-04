@@ -8,7 +8,7 @@
 
 ## 12.B FIELD EXIT
 
-Un field exit est une ancienne technologie liée à un champ de saisie d’écran, généralement par l’intermédiaire de son élément de données. Il permet d’exécuter une logique de contrôle ou de transformation lors de la saisie.
+Un field exit est une ancienne technologie liée à un champ de saisie d’écran, généralement par l’intermédiaire de son élément de données[^terme-element-donnees]. Il permet d’exécuter une logique de contrôle ou de transformation lors de la saisie.
 
 ## 12.C LIMITES
 
@@ -17,13 +17,13 @@ Un field exit est une ancienne technologie liée à un champ de saisie d’écra
 - contexte applicatif limité ;
 - dépendance à l’activation système ;
 - diagnostic difficile lorsqu’un même champ est utilisé dans plusieurs transactions ;
-- alternatives plus explicites souvent disponibles : BAdI, validation applicative, screen exit ou enhancement framework.
+- alternatives plus explicites souvent disponibles : BAdI[^terme-acro-badi], validation applicative, screen exit ou enhancement framework.
 
 ## 12.D MAINTENANCE
 
 Lorsqu’un field exit existe :
 
-1. identifier le module fonction associé ;
+1. identifier le module fonction[^terme-module-fonction] associé ;
 2. rechercher tous les écrans concernés ;
 3. vérifier les conditions limitant son exécution ;
 4. analyser les effets lors des traitements batch ou interfaces ;
@@ -45,7 +45,7 @@ Rechercher toutes les utilisations de l’élément de données et les écrans s
 
 ### 12.F.3 ÉTAPE 3 — REPRODUIRE L’APPEL
 
-Placer un breakpoint dans le module existant et tester le scénario cible puis un autre écran utilisant le même élément. Relever la valeur d’entrée, la valeur retournée, les messages et la pile. Vérifier si un suffixe ou une affectation spécifique limite le périmètre.
+Placer un breakpoint[^terme-breakpoint] dans le module existant et tester le scénario cible puis un autre écran utilisant le même élément. Relever la valeur d’entrée, la valeur retournée, les messages et la pile. Vérifier si un suffixe ou une affectation spécifique limite le périmètre.
 
 ### 12.F.4 ÉTAPE 4 — ÉVALUER UNE ALTERNATIVE PLUS LOCALE
 
@@ -64,7 +64,7 @@ Conserver le module, l’élément de données, le périmètre, le paramétrage 
 - L’implémentation ou le projet est actif et transporté dans le bon ordre.
 - Un breakpoint confirme que le point d’extension est appelé dans le scénario visé.
 - Le comportement standard reste inchangé hors du périmètre fonctionnel prévu.
-- Aucune modification directe d’un objet SAP standard n’a été créée.
+- Aucune modification directe d’un objet SAP[^terme-acro-sap] standard n’a été créée.
 
 ## 12.H ERREURS FRÉQUENTES
 
@@ -101,3 +101,9 @@ Ordre de transport  :
 ---
 
 [Chapitre suivant — PRINCIPES DES BAdI](<./13 ├── PRINCIPES DES BADI.md>)
+
+[^terme-element-donnees]: **ÉLÉMENT DE DONNÉES.** Objet DDIC qui attribue une signification métier, des libellés et une documentation à un type élémentaire ou à un domaine. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/05 ├── DONNEES DICTIONNAIRE ET BASE DE DONNEES.md#element-donnees>).
+[^terme-acro-badi]: **BADI.** Business Add-In, mécanisme d’extension orienté objet du standard SAP. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/10 └── ACRONYMES SAP.md#acro-badi>).
+[^terme-module-fonction]: **MODULE FONCTION.** Procédure globale appelée avec `CALL FUNCTION` et définie dans un groupe de fonctions. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/06 ├── PROGRAMMES CLASSES ET OBJETS TECHNIQUES.md#module-fonction>).
+[^terme-breakpoint]: **BREAKPOINT.** Point d’arrêt suspendant l’exécution dans le débogueur. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/08 ├── EXECUTION EXPLOITATION ET ADMINISTRATION.md#breakpoint>).
+[^terme-acro-sap]: **SAP.** Nom de l’éditeur et de son écosystème logiciel ; l’acronyme historique provient de l’allemand. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/10 └── ACRONYMES SAP.md#acro-sap>).

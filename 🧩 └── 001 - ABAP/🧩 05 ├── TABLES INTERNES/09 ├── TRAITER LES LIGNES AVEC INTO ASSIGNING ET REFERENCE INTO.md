@@ -68,7 +68,7 @@ La variable de référence pointe vers la ligne de la table.
 
 ## 9.F COMPOSANTS DE CLÉ
 
-Modifier un composant appartenant à une clé triée ou hachée peut invalider l’organisation de la table. ABAP interdit ou limite ces modifications selon le contexte.
+Modifier un composant appartenant à une clé triée ou hachée peut invalider l’organisation de la table. ABAP[^terme-abap] interdit ou limite ces modifications selon le contexte.
 
 Approche sûre :
 
@@ -127,7 +127,7 @@ flowchart TD
 ## 9.L SNIPPET À RÉUTILISER
 
 > [!NOTE]
-> Adapter les noms `Z*`, les types DDIC, les données et les autorisations au système cible. Effectuer un contrôle syntaxique avant activation.
+> Adapter les noms `Z*`, les types DDIC[^terme-acro-ddic], les données et les autorisations au système cible. Effectuer un contrôle syntaxique avant activation.
 
 ```abap
 " Traiter la collection sans lecture SQL dans la boucle.
@@ -154,3 +154,6 @@ ENDLOOP.
 ---
 
 [Chapitre suivant — MODIFIER DES LIGNES](<./10 ├── MODIFIER DES LIGNES.md>)
+
+[^terme-abap]: **ABAP.** Langage de programmation de la plateforme ABAP, conçu pour développer des applications métier et techniques SAP. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#abap>).
+[^terme-acro-ddic]: **DDIC.** Data Dictionary, abréviation courante de l’ABAP Dictionary. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/10 └── ACRONYMES SAP.md#acro-ddic>).

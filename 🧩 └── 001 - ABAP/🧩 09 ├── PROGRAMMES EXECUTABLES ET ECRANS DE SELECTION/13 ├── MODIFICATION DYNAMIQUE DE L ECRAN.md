@@ -49,7 +49,7 @@ Cet événement correspond à la préparation de l’écran avant son affichage.
 | `GROUP1`           | Groupe issu de `MODIF ID`                        |
 | `NAME`             | Nom technique de l’élément                       |
 
-Les interactions entre propriétés dépendent du type d’élément. Tester le comportement réel dans SAP GUI.
+Les interactions entre propriétés dépendent du type d’élément. Tester le comportement réel dans SAP GUI[^terme-sap-gui].
 
 ## 13.E RAFRAÎCHISSEMENT
 
@@ -89,7 +89,7 @@ flowchart LR
 ## 13.I SNIPPET À RÉUTILISER
 
 > [!NOTE]
-> Adapter les noms `Z*`, les types DDIC, les données et les autorisations au système cible. Effectuer un contrôle syntaxique avant activation.
+> Adapter les noms `Z*`, les types DDIC[^terme-acro-ddic], les données et les autorisations au système cible. Effectuer un contrôle syntaxique avant activation.
 
 ```abap
 AT SELECTION-SCREEN OUTPUT.
@@ -122,3 +122,6 @@ AT SELECTION-SCREEN OUTPUT.
 ---
 
 [Chapitre suivant — VARIANTES DE SÉLECTION](<./14 ├── VARIANTES DE SELECTION.md>)
+
+[^terme-sap-gui]: **SAP GUI.** Client graphique permettant d’utiliser les transactions et écrans d’un système SAP. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/02 ├── SAP GUI NAVIGATION ET TRANSACTIONS.md#sap-gui>).
+[^terme-acro-ddic]: **DDIC.** Data Dictionary, abréviation courante de l’ABAP Dictionary. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/10 └── ACRONYMES SAP.md#acro-ddic>).

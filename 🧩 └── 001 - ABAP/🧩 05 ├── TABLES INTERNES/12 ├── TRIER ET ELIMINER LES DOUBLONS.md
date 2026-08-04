@@ -26,7 +26,7 @@ Pour une table standard, `SORT` réorganise les lignes selon les composants indi
 SORT lt_products BY matnr.
 ```
 
-Une table triée est déjà maintenue selon sa clé primaire. Un `SORT` qui contredit cet ordre n’est pas le mécanisme normal de traitement de cette catégorie.
+Une table triée est déjà maintenue selon sa clé primaire[^terme-cle-primaire]. Un `SORT` qui contredit cet ordre n’est pas le mécanisme normal de traitement de cette catégorie.
 
 ## 12.D TRI STABLE
 
@@ -120,7 +120,7 @@ Cette conception évite de construire des doublons pour les supprimer ensuite.
 ## 12.L SNIPPET À RÉUTILISER
 
 > [!NOTE]
-> Adapter les noms `Z*`, les types DDIC, les données et les autorisations au système cible. Effectuer un contrôle syntaxique avant activation.
+> Adapter les noms `Z*`, les types DDIC[^terme-acro-ddic], les données et les autorisations au système cible. Effectuer un contrôle syntaxique avant activation.
 
 ```abap
 DATA lt_materials TYPE STANDARD TABLE OF string
@@ -156,3 +156,6 @@ DELETE ADJACENT DUPLICATES FROM lt_materials
 ---
 
 [Chapitre suivant — CONSTRUIRE ET TRANSFORMER AVEC VALUE, FOR ET CORRESPONDING](<./13 ├── CONSTRUIRE ET TRANSFORMER AVEC VALUE FOR ET CORRESPONDING.md>)
+
+[^terme-cle-primaire]: **CLÉ PRIMAIRE.** Ensemble minimal de champs identifiant de manière unique une ligne de table. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/05 ├── DONNEES DICTIONNAIRE ET BASE DE DONNEES.md#cle-primaire>).
+[^terme-acro-ddic]: **DDIC.** Data Dictionary, abréviation courante de l’ABAP Dictionary. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/10 └── ACRONYMES SAP.md#acro-ddic>).

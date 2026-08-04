@@ -2,7 +2,7 @@
 
 ## 8.A RÉSULTAT ATTENDU
 
-- Ajouter un message issu d’une classe `SE91`
+- Ajouter un message issu d’une classe[^terme-classe] `SE91`[^outil-se91]
 - Réutiliser les champs système `sy-msg*`
 - Conserver traduction et texte long
 
@@ -55,7 +55,7 @@ L’instruction `MESSAGE ... INTO` formate le texte sans interrompre le traiteme
 
 - traduction centralisée ;
 - texte court stable ;
-- texte long disponible dans `SLG1` ;
+- texte long disponible dans `SLG1`[^outil-slg1] ;
 - données techniques exploitables ;
 - variables structurées ;
 - recherche plus précise par classe et numéro.
@@ -68,7 +68,7 @@ Créer ou ouvrir une classe Z, choisir un numéro libre et rédiger un texte sta
 
 ### 8.E.2 ÉTAPE 2 — CRÉER LE JOURNAL ET CONSERVER SON HANDLE
 
-Construire l’en-tête, appeler `BAL_LOG_CREATE` et vérifier le handle. Le message ne doit être ajouté qu’après une création réussie. Utiliser un objet et un sous-objet configurés dans `SLG0`.
+Construire l’en-tête, appeler `BAL_LOG_CREATE` et vérifier le handle. Le message ne doit être ajouté qu’après une création réussie. Utiliser un objet et un sous-objet configurés dans `SLG0`[^outil-slg0].
 
 ### 8.E.3 ÉTAPE 3 — CONSTRUIRE `BAL_S_MSG`
 
@@ -80,7 +80,7 @@ Passer le handle et la structure de message, puis traiter `LOG_NOT_FOUND`, `MSG_
 
 ### 8.E.5 ÉTAPE 5 — SAUVEGARDER LE JOURNAL
 
-Ajouter le handle à une table `BAL_T_LOGH` et appeler `BAL_DB_SAVE`. Aligner la sauvegarde sur la LUW du traitement. Ne pas utiliser `I_SAVE_ALL` dans un composant qui ne possède pas tous les logs de la session.
+Ajouter le handle à une table `BAL_T_LOGH` et appeler `BAL_DB_SAVE`. Aligner la sauvegarde sur la LUW[^terme-acro-luw] du traitement. Ne pas utiliser `I_SAVE_ALL` dans un composant qui ne possède pas tous les logs de la session.
 
 ### 8.E.6 ÉTAPE 6 — VÉRIFIER TEXTE ET VARIABLES
 
@@ -103,7 +103,7 @@ Ouvrir le journal dans `SLG1` avec plusieurs langues de connexion si elles sont 
 ## 8.H SNIPPET À RÉUTILISER
 
 > [!NOTE]
-> Adapter les noms `Z*`, les types DDIC, les données et les autorisations au système cible. Effectuer un contrôle syntaxique avant activation.
+> Adapter les noms `Z*`, les types DDIC[^terme-acro-ddic], les données et les autorisations au système cible. Effectuer un contrôle syntaxique avant activation.
 
 ```abap
 MESSAGE e004(zdev_log) WITH lv_document INTO DATA(lv_text).
@@ -140,3 +140,11 @@ CALL FUNCTION 'BAL_LOG_MSG_ADD'
 ---
 
 [Chapitre suivant — AJOUTER DU TEXTE LIBRE ET DES MESSAGES SYSTÈME](<./09 ├── AJOUTER DU TEXTE LIBRE ET DES MESSAGES SYSTEME.md>)
+
+[^terme-classe]: **CLASSE.** Modèle orienté objet définissant état et comportements. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#classe>).
+[^terme-acro-luw]: **LUW.** Logical Unit of Work. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/10 └── ACRONYMES SAP.md#acro-luw>).
+[^terme-acro-ddic]: **DDIC.** Data Dictionary, abréviation courante de l’ABAP Dictionary. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/10 └── ACRONYMES SAP.md#acro-ddic>).
+
+[^outil-se91]: **SE91.** Transaction de création et de maintenance des classes de messages SAP. Voir [le chapitre associé](<../🧩 10 ├── MESSAGES ET GESTION DES ERREURS/02 ├── CLASSES DE MESSAGES ET TRANSACTION SE91.md>).
+[^outil-slg1]: **SLG1.** Transaction de recherche et d’affichage des journaux applicatifs persistés. Voir [le chapitre associé](<05 ├── ANALYSER LES JOURNAUX AVEC SLG1.md>).
+[^outil-slg0]: **SLG0.** Transaction de définition des objets et sous-objets de journal applicatif. Voir [le chapitre associé](<04 ├── CREER UN OBJET AVEC SLG0.md>).

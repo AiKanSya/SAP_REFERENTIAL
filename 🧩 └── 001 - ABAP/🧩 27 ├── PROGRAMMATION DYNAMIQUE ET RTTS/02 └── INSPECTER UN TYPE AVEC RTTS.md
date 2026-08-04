@@ -8,7 +8,7 @@ Déterminer à l’exécution si une donnée est une structure et obtenir la des
 
 ### 2.B.1 ÉTAPE 1 — IDENTIFIER LE BESOIN D’INSPECTION
 
-Utiliser RTTS pour une API générique qui ne connaît pas statiquement le type reçu. Si le contrat est stable, déclarer une interface typée plutôt que reconstruire cette interface à l’exécution.
+Utiliser RTTS pour une API[^terme-api] générique qui ne connaît pas statiquement le type reçu. Si le contrat est stable, déclarer une interface typée plutôt que reconstruire cette interface à l’exécution.
 
 ### 2.B.2 ÉTAPE 2 — OBTENIR LE DESCRIPTEUR
 
@@ -24,11 +24,11 @@ Après le test de catégorie, convertir la référence avec `CAST CL_ABAP_STRUCT
 
 ### 2.B.5 ÉTAPE 5 — PARCOURIR LES COMPOSANTS
 
-Lire `COMPONENTS` et relever pour chaque entrée le nom et le descripteur de type. Ne pas supposer que `ABSOLUTE_NAME` est renseigné de la même manière pour un type local, anonyme et DDIC.
+Lire `COMPONENTS` et relever pour chaque entrée le nom et le descripteur de type. Ne pas supposer que `ABSOLUTE_NAME` est renseigné de la même manière pour un type local, anonyme et DDIC[^terme-acro-ddic].
 
 ### 2.B.6 ÉTAPE 6 — TESTER PLUSIEURS FORMES DE TYPES
 
-Exécuter le code avec une structure DDIC, une structure locale, un type élémentaire et une table interne. Vérifier que seuls les types structures atteignent le cast et la boucle.
+Exécuter le code avec une structure DDIC[^terme-structure-abap], une structure locale, un type élémentaire et une table interne[^terme-table-interne]. Vérifier que seuls les types structures atteignent le cast et la boucle.
 
 ## 2.C CODE PRÊT À ADAPTER
 
@@ -49,3 +49,8 @@ ENDIF.
 
 - Tester la catégorie avant tout cast descendant.
 - Ne pas utiliser RTTS pour remplacer une interface ou un type DDIC stable.
+
+[^terme-api]: **API.** Application Programming Interface, contrat exposant des opérations ou données utilisables par d’autres composants. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/10 └── ACRONYMES SAP.md#api>).
+[^terme-acro-ddic]: **DDIC.** Data Dictionary, abréviation courante de l’ABAP Dictionary. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/10 └── ACRONYMES SAP.md#acro-ddic>).
+[^terme-structure-abap]: **STRUCTURE.** Objet ou type composé de plusieurs composants nommés. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#structure-abap>).
+[^terme-table-interne]: **TABLE INTERNE.** Collection dynamique de lignes stockée en mémoire dans le programme ABAP. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#table-interne>).

@@ -3,16 +3,16 @@
 ## 13.A RÉSULTAT ATTENDU
 
 - Insérer une ligne dans une table client
-- Insérer plusieurs lignes depuis une table interne
+- Insérer plusieurs lignes depuis une table interne[^terme-table-interne]
 - Gérer une clé déjà existante
 - Comprendre `sy-subrc` et `sy-dbcnt`
-- Éviter les écritures directes dans les tables applicatives SAP
+- Éviter les écritures directes dans les tables applicatives SAP[^terme-acro-sap]
 
 ## 13.B TABLE D’EXEMPLE
 
 Les exemples supposent une table client fictive `ZDEV_PRODUCT` contenant notamment :
 
-- `MANDT` ;
+- `MANDT`[^terme-mandt] ;
 - `PRODUCT_ID` comme clé métier ;
 - `DESCRIPTION` ;
 - `CATEGORY` ;
@@ -21,7 +21,7 @@ Les exemples supposent une table client fictive `ZDEV_PRODUCT` contenant notamme
 - `ACTIVE`.
 
 > [!CAUTION]
-> Ne jamais transposer cet exemple à une table applicative SAP standard. Utiliser l’API métier, la BAPI ou l’objet de service prévu par SAP.
+> Ne jamais transposer cet exemple à une table applicative SAP standard. Utiliser l’API[^terme-api] métier, la BAPI[^terme-bapi] ou l’objet de service prévu par SAP.
 
 ## 13.C INSÉRER UNE LIGNE
 
@@ -61,7 +61,7 @@ INSERT zdev_product FROM TABLE @lt_products.
 
 ## 13.E CLÉ EN DOUBLE
 
-Lorsqu’une clé primaire ou un index unique existe déjà :
+Lorsqu’une clé primaire[^terme-cle-primaire] ou un index unique existe déjà :
 
 - une insertion simple échoue avec un code retour approprié ;
 - une insertion en masse peut lever `CX_SY_OPEN_SQL_DB` selon la variante ;
@@ -77,7 +77,7 @@ Cette addition ne met pas à jour les lignes existantes. Elle ignore seulement l
 
 ## 13.F MANDANT
 
-Pour une table dépendante du mandant, la gestion implicite utilise le mandant courant. Une valeur de `MANDT` fournie dans la structure source n’est normalement pas utilisée comme un champ métier ordinaire.
+Pour une table dépendante du mandant[^terme-mandant], la gestion implicite utilise le mandant courant. Une valeur de `MANDT` fournie dans la structure source n’est normalement pas utilisée comme un champ métier ordinaire.
 
 ## 13.G VÉRIFICATION
 
@@ -91,12 +91,12 @@ Pour une table dépendante du mandant, la gestion implicite utilise le mandant c
 - Copier un exemple sans adapter les types, noms d’objets et données disponibles dans le système.
 - Tester uniquement le cas nominal et ignorer les valeurs initiales, absentes ou invalides.
 - Lire toutes les colonnes ou toutes les lignes par défaut.
-- Effectuer des commits dans une méthode réutilisable sans contrat explicite.
+- Effectuer des commits dans une méthode[^terme-methode] réutilisable sans contrat explicite.
 
 ## 13.I SNIPPET À RÉUTILISER
 
 > [!NOTE]
-> Adapter les noms `Z*`, les types DDIC, les données et les autorisations au système cible. Effectuer un contrôle syntaxique avant activation.
+> Adapter les noms `Z*`, les types DDIC[^terme-acro-ddic], les données et les autorisations au système cible. Effectuer un contrôle syntaxique avant activation.
 
 ```abap
 " Modifier uniquement les données de la table cible maîtrisée.
@@ -135,3 +135,13 @@ ENDIF.
 ---
 
 [Chapitre suivant — MODIFIER DES DONNÉES AVEC UPDATE ET MODIFY](<./14 ├── MODIFIER DES DONNEES AVEC UPDATE ET MODIFY.md>)
+
+[^terme-table-interne]: **TABLE INTERNE.** Collection dynamique de lignes stockée en mémoire dans le programme ABAP. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#table-interne>).
+[^terme-acro-sap]: **SAP.** Nom de l’éditeur et de son écosystème logiciel ; l’acronyme historique provient de l’allemand. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/10 └── ACRONYMES SAP.md#acro-sap>).
+[^terme-mandt]: **MANDT.** Champ technique de type mandant, généralement placé en première position de clé dans les tables dépendantes du mandant. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/05 ├── DONNEES DICTIONNAIRE ET BASE DE DONNEES.md#mandt>).
+[^terme-api]: **API.** Application Programming Interface, contrat exposant des opérations ou données utilisables par d’autres composants. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/10 └── ACRONYMES SAP.md#api>).
+[^terme-bapi]: **BAPI.** Interface métier publiée autour d’un Business Object SAP, généralement implémentée par un module fonction RFC. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/06 ├── PROGRAMMES CLASSES ET OBJETS TECHNIQUES.md#bapi>).
+[^terme-cle-primaire]: **CLÉ PRIMAIRE.** Ensemble minimal de champs identifiant de manière unique une ligne de table. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/05 ├── DONNEES DICTIONNAIRE ET BASE DE DONNEES.md#cle-primaire>).
+[^terme-mandant]: **MANDANT.** Subdivision logique d’un système SAP. Il est identifié par un numéro à trois chiffres et isole une partie des données, du paramétrage et des utilisateurs. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/01 ├── SYSTEMES ENVIRONNEMENTS ET MANDANTS.md#mandant>).
+[^terme-methode]: **MÉTHODE.** Comportement déclaré dans une classe ou une interface et appelé avec une liste de paramètres définie. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#methode>).
+[^terme-acro-ddic]: **DDIC.** Data Dictionary, abréviation courante de l’ABAP Dictionary. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/10 └── ACRONYMES SAP.md#acro-ddic>).

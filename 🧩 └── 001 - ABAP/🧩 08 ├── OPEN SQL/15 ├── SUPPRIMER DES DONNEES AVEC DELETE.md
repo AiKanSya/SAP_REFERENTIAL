@@ -65,7 +65,7 @@ Exécuter l’autorisation métier avant la suppression. Vérifier l’existence
 
 ### 15.E.5 Étape 5 — Supprimer dans la LUW responsable
 
-Exécuter `DELETE`, contrôler `SY-SUBRC` et comparer `SY-DBCNT` au nombre validé. Ne lancer `COMMIT WORK` que dans la couche propriétaire de la transaction ; sinon retourner le résultat à l’appelant.
+Exécuter `DELETE`, contrôler `SY-SUBRC` et comparer `SY-DBCNT` au nombre validé. Ne lancer `COMMIT WORK`[^terme-commit-work] que dans la couche propriétaire de la transaction ; sinon retourner le résultat à l’appelant.
 
 ### 15.E.6 Étape 6 — Contrôler après suppression
 
@@ -99,12 +99,12 @@ Pour certaines données, une désactivation avec un indicateur d’état est pr�
 - Copier un exemple sans adapter les types, noms d’objets et données disponibles dans le système.
 - Tester uniquement le cas nominal et ignorer les valeurs initiales, absentes ou invalides.
 - Lire toutes les colonnes ou toutes les lignes par défaut.
-- Effectuer des commits dans une méthode réutilisable sans contrat explicite.
+- Effectuer des commits dans une méthode[^terme-methode] réutilisable sans contrat explicite.
 
 ## 15.J SNIPPET À RÉUTILISER
 
 > [!NOTE]
-> Adapter les noms `Z*`, les types DDIC, les données et les autorisations au système cible. Effectuer un contrôle syntaxique avant activation.
+> Adapter les noms `Z*`, les types DDIC[^terme-acro-ddic], les données et les autorisations au système cible. Effectuer un contrôle syntaxique avant activation.
 
 ```abap
 " Modifier uniquement les données de la table cible maîtrisée.
@@ -134,3 +134,7 @@ ENDIF.
 ---
 
 [Chapitre suivant — CODES RETOUR ET EXCEPTIONS SQL](<./16 ├── CODES RETOUR ET EXCEPTIONS SQL.md>)
+
+[^terme-commit-work]: **COMMIT WORK.** Instruction clôturant la SAP LUW courante, déclenchant notamment les mises à jour enregistrées et validant la base. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/08 ├── EXECUTION EXPLOITATION ET ADMINISTRATION.md#commit-work>).
+[^terme-methode]: **MÉTHODE.** Comportement déclaré dans une classe ou une interface et appelé avec une liste de paramètres définie. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#methode>).
+[^terme-acro-ddic]: **DDIC.** Data Dictionary, abréviation courante de l’ABAP Dictionary. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/10 └── ACRONYMES SAP.md#acro-ddic>).

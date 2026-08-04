@@ -2,8 +2,8 @@
 
 ## 23.A RÉSULTAT ATTENDU
 
-- Utiliser les démonstrations standard SAP
-- Tester chaque étape du cycle BAL
+- Utiliser les démonstrations standard SAP[^terme-acro-sap]
+- Tester chaque étape du cycle BAL[^terme-acro-bal]
 - Diagnostiquer un journal absent ou incomplet
 
 ## 23.B PROGRAMMES STANDARD
@@ -18,7 +18,7 @@ SAP documente plusieurs programmes de démonstration :
 | `SBAL_DEMO_04` | Profils et affichage            |
 | `SBAL_DEMO_05` | Interface base de données       |
 
-Analyser ces programmes dans `SE38` ou `SE80` avant d’inventer une implémentation spécifique.
+Analyser ces programmes dans `SE38`[^outil-se38] ou `SE80`[^outil-se80] avant d’inventer une implémentation spécifique.
 
 ## 23.C PROCESS
 
@@ -28,15 +28,15 @@ Ouvrir les programmes `SBAL_DEMO_*` disponibles dans `SE38` ou `SE80`. Vérifier
 
 ### 23.C.2 ÉTAPE 2 — CONFIGURER UN OBJET DE TEST
 
-Créer ou utiliser un objet et un sous-objet Z dédiés dans `SLG0`. Définir un identifiant externe unique. Ne pas tester avec un objet productif si la démonstration peut créer ou supprimer des journaux persistants.
+Créer ou utiliser un objet et un sous-objet Z dédiés dans `SLG0`[^outil-slg0]. Définir un identifiant externe unique. Ne pas tester avec un objet productif si la démonstration peut créer ou supprimer des journaux persistants.
 
 ### 23.C.3 ÉTAPE 3 — TESTER LE CYCLE EN MÉMOIRE
 
-Créer le log, ajouter un message `S`, `W`, `E`, un texte libre et une exception. Contrôler chaque retour et conserver les handles. Afficher le journal en dialogue avec un profil adapté.
+Créer le log, ajouter un message `S`, `W`, `E`, un texte libre et une exception[^terme-exception]. Contrôler chaque retour et conserver les handles. Afficher le journal en dialogue avec un profil adapté.
 
 ### 23.C.4 ÉTAPE 4 — TESTER LA PERSISTANCE
 
-Sauvegarder uniquement le handle créé, relever le numéro persistant puis rechercher dans `SLG1`. Comparer en-tête, messages, niveaux et contexte. Tester aussi le comportement après rollback selon la stratégie retenue.
+Sauvegarder uniquement le handle créé, relever le numéro persistant puis rechercher dans `SLG1`[^outil-slg1]. Comparer en-tête, messages, niveaux et contexte. Tester aussi le comportement après rollback selon la stratégie retenue.
 
 ### 23.C.5 ÉTAPE 5 — TESTER RECHERCHE ET CHARGEMENT
 
@@ -44,7 +44,7 @@ Construire un filtre sélectif pour `BAL_DB_SEARCH`, charger l’en-tête retour
 
 ### 23.C.6 ÉTAPE 6 — DIAGNOSTIQUER UN LOG ABSENT
 
-Contrôler successivement configuration `SLG0`, en-tête, retour de `BAL_LOG_CREATE`, handle des ajouts, retour de `BAL_DB_SAVE`, LUW, filtres `SLG1` et autorisations. Conserver la première étape en échec avant de modifier le code.
+Contrôler successivement configuration `SLG0`, en-tête, retour de `BAL_LOG_CREATE`, handle des ajouts, retour de `BAL_DB_SAVE`, LUW[^terme-acro-luw], filtres `SLG1` et autorisations. Conserver la première étape en échec avant de modifier le code.
 
 ### 23.C.7 ÉTAPE 7 — TESTER UN UTILISATEUR REPRÉSENTATIF
 
@@ -70,7 +70,7 @@ Contrôler :
 - niveau de détail ou filtre d’affichage ;
 - cumul involontaire ;
 - journal retiré de la mémoire ;
-- rollback ou échec de l’update task ;
+- rollback ou échec de l’update task[^terme-update-task] ;
 - sélection trop restrictive dans `SLG1`.
 
 ## 23.F VÉRIFICATION
@@ -115,3 +115,14 @@ Ordre de transport  :
 ---
 
 [Chapitre suivant — BONNES PRATIQUES ET CHECKLIST](<./24 └── BONNES PRATIQUES ET CHECKLIST.md>)
+
+[^terme-acro-sap]: **SAP.** Nom de l’éditeur et de son écosystème logiciel ; l’acronyme historique provient de l’allemand. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/10 └── ACRONYMES SAP.md#acro-sap>).
+[^terme-acro-bal]: **BAL.** Business Application Log, API technique du journal applicatif. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/10 └── ACRONYMES SAP.md#acro-bal>).
+[^terme-exception]: **EXCEPTION.** Objet ou signal représentant une situation anormale qu’un appelant peut traiter. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#exception>).
+[^terme-acro-luw]: **LUW.** Logical Unit of Work. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/10 └── ACRONYMES SAP.md#acro-luw>).
+[^terme-update-task]: **UPDATE TASK.** Mécanisme différant des mises à jour pour les exécuter lors du `COMMIT WORK` dans des processus de mise à jour. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/08 ├── EXECUTION EXPLOITATION ET ADMINISTRATION.md#update-task>).
+
+[^outil-se38]: **SE38.** Éditeur ABAP classique utilisé pour créer, modifier, vérifier et exécuter des programmes. Voir [le chapitre associé](<../🧩 01 ├── FONDAMENTAUX ABAP/04 ├── EDITEURS ABAP SE38 ET SE80.md>).
+[^outil-se80]: **SE80.** Object Navigator utilisé pour parcourir et maintenir les objets du Repository ABAP. Voir [le chapitre associé](<../🧩 01 ├── FONDAMENTAUX ABAP/04 ├── EDITEURS ABAP SE38 ET SE80.md>).
+[^outil-slg0]: **SLG0.** Transaction de définition des objets et sous-objets de journal applicatif. Voir [le chapitre associé](<04 ├── CREER UN OBJET AVEC SLG0.md>).
+[^outil-slg1]: **SLG1.** Transaction de recherche et d’affichage des journaux applicatifs persistés. Voir [le chapitre associé](<05 ├── ANALYSER LES JOURNAUX AVEC SLG1.md>).

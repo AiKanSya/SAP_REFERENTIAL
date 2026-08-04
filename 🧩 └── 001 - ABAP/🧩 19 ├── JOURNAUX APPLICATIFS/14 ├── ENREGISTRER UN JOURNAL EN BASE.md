@@ -31,7 +31,7 @@ Lors de la sauvegarde, le framework attribue un numéro interne définitif. Le p
 
 ## 14.D UPDATE TASK
 
-Le framework permet une sauvegarde en update task. Ce choix doit être aligné sur la SAP LUW :
+Le framework permet une sauvegarde en update task[^terme-update-task]. Ce choix doit être aligné sur la SAP LUW[^terme-sap-luw] :
 
 - journal métier atomique avec la transaction ;
 - journal technique qui doit survivre à un rollback ;
@@ -41,13 +41,13 @@ Ces objectifs sont différents. Aucun mode unique ne convient à tous les traite
 
 ## 14.E RÈGLE
 
-Ne pas ajouter un `COMMIT WORK` uniquement pour sauvegarder le journal sans analyser son impact sur la transaction métier. Un commit mal placé découpe la SAP LUW et peut rendre un rollback impossible.
+Ne pas ajouter un `COMMIT WORK`[^terme-commit-work] uniquement pour sauvegarder le journal sans analyser son impact sur la transaction métier. Un commit mal placé découpe la SAP LUW et peut rendre un rollback impossible.
 
 ## 14.F PROCESS
 
 ### 14.F.1 ÉTAPE 1 — DÉFINIR LA RELATION AVEC LA TRANSACTION MÉTIER
 
-Décider si le journal doit être validé avec les données métier, être sauvegardé en update task ou survivre à un rollback. Documenter ce comportement pour les succès et les erreurs. Ne pas choisir le mode uniquement pour rendre `SLG1` immédiatement visible.
+Décider si le journal doit être validé avec les données métier, être sauvegardé en update task ou survivre à un rollback. Documenter ce comportement pour les succès et les erreurs. Ne pas choisir le mode uniquement pour rendre `SLG1`[^outil-slg1] immédiatement visible.
 
 ### 14.F.2 ÉTAPE 2 — CONSTITUER LA TABLE DE HANDLES
 
@@ -59,11 +59,11 @@ Passer la table dans `I_T_LOG_HANDLE` et récupérer les numéros créés si l�
 
 ### 14.F.4 ÉTAPE 4 — GÉRER L’ÉCHEC DE SAUVEGARDE
 
-Selon la criticité, écrire un message dans le journal de job, le spool ou une trace de secours. Ne pas lancer un commit supplémentaire ni masquer l’échec du traitement principal. Conserver l’identifiant externe afin de corréler une tentative ultérieure.
+Selon la criticité, écrire un message dans le journal de job[^terme-job], le spool[^terme-spool] ou une trace[^terme-trace] de secours. Ne pas lancer un commit supplémentaire ni masquer l’échec du traitement principal. Conserver l’identifiant externe afin de corréler une tentative ultérieure.
 
 ### 14.F.5 ÉTAPE 5 — TERMINER LA LUW AU BON NIVEAU
 
-Laisser l’orchestrateur métier exécuter commit ou rollback conformément au contrat. Vérifier le comportement de la sauvegarde BAL dans les deux chemins. Une API de journalisation ne doit pas posséder implicitement le commit global.
+Laisser l’orchestrateur métier exécuter commit ou rollback conformément au contrat. Vérifier le comportement de la sauvegarde BAL[^terme-acro-bal] dans les deux chemins. Une API[^terme-api] de journalisation ne doit pas posséder implicitement le commit global.
 
 ### 14.F.6 ÉTAPE 6 — CONTRÔLER NUMÉRO ET VISIBILITÉ
 
@@ -86,7 +86,7 @@ Après validation, rechercher le journal dans `SLG1` et rapprocher handle, ident
 ## 14.I SNIPPET À RÉUTILISER
 
 > [!NOTE]
-> Adapter les noms `Z*`, les types DDIC, les données et les autorisations au système cible. Effectuer un contrôle syntaxique avant activation.
+> Adapter les noms `Z*`, les types DDIC[^terme-acro-ddic], les données et les autorisations au système cible. Effectuer un contrôle syntaxique avant activation.
 
 ```abap
 DATA lt_log_handles TYPE bal_t_logh.
@@ -117,3 +117,15 @@ ENDIF.
 ---
 
 [Chapitre suivant — RECHERCHER ET CHARGER DES JOURNAUX](<./15 ├── RECHERCHER ET CHARGER DES JOURNAUX.md>)
+
+[^terme-update-task]: **UPDATE TASK.** Mécanisme différant des mises à jour pour les exécuter lors du `COMMIT WORK` dans des processus de mise à jour. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/08 ├── EXECUTION EXPLOITATION ET ADMINISTRATION.md#update-task>).
+[^terme-sap-luw]: **SAP LUW.** Unité logique métier SAP pouvant regrouper plusieurs étapes de dialogue et différer les mises à jour jusqu’au commit. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/08 ├── EXECUTION EXPLOITATION ET ADMINISTRATION.md#sap-luw>).
+[^terme-commit-work]: **COMMIT WORK.** Instruction clôturant la SAP LUW courante, déclenchant notamment les mises à jour enregistrées et validant la base. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/08 ├── EXECUTION EXPLOITATION ET ADMINISTRATION.md#commit-work>).
+[^terme-job]: **JOB.** Traitement planifié en arrière-plan composé d’une ou plusieurs étapes. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/06 ├── PROGRAMMES CLASSES ET OBJETS TECHNIQUES.md#job>).
+[^terme-spool]: **SPOOL.** Infrastructure stockant et acheminant les sorties imprimables produites par les traitements SAP. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/06 ├── PROGRAMMES CLASSES ET OBJETS TECHNIQUES.md#spool>).
+[^terme-trace]: **TRACE.** Enregistrement détaillé d’événements techniques pour analyser exécution, SQL ou appels. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/08 ├── EXECUTION EXPLOITATION ET ADMINISTRATION.md#trace>).
+[^terme-acro-bal]: **BAL.** Business Application Log, API technique du journal applicatif. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/10 └── ACRONYMES SAP.md#acro-bal>).
+[^terme-api]: **API.** Application Programming Interface, contrat exposant des opérations ou données utilisables par d’autres composants. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/10 └── ACRONYMES SAP.md#api>).
+[^terme-acro-ddic]: **DDIC.** Data Dictionary, abréviation courante de l’ABAP Dictionary. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/10 └── ACRONYMES SAP.md#acro-ddic>).
+
+[^outil-slg1]: **SLG1.** Transaction de recherche et d’affichage des journaux applicatifs persistés. Voir [le chapitre associé](<05 ├── ANALYSER LES JOURNAUX AVEC SLG1.md>).

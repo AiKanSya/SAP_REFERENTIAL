@@ -6,7 +6,7 @@
 - Renommer une colonne avec `AS`
 - Utiliser des littéraux et variables hôte
 - Effectuer des calculs simples dans la requête
-- Comprendre le typage des expressions SQL
+- Comprendre le typage des expressions SQL[^terme-acro-sql]
 
 ## 4.B LISTE DE CHAMPS
 
@@ -48,7 +48,7 @@ SELECT carrid, carrname, @lc_currency AS requested_currency
   INTO TABLE @DATA(lt_carriers).
 ```
 
-Le préfixe `@` indique une donnée fournie par le programme ABAP.
+Le préfixe `@` indique une donnée fournie par le programme ABAP[^terme-abap].
 
 ## 4.E EXPRESSIONS ARITHMÉTIQUES
 
@@ -100,12 +100,12 @@ ABAP SQL propose des fonctions de chaînes, numériques, dates et conversions. L
 - Copier un exemple sans adapter les types, noms d’objets et données disponibles dans le système.
 - Tester uniquement le cas nominal et ignorer les valeurs initiales, absentes ou invalides.
 - Lire toutes les colonnes ou toutes les lignes par défaut.
-- Effectuer des commits dans une méthode réutilisable sans contrat explicite.
+- Effectuer des commits dans une méthode[^terme-methode] réutilisable sans contrat explicite.
 
 ## 4.J SNIPPET À RÉUTILISER
 
 > [!NOTE]
-> Adapter les noms `Z*`, les types DDIC, les données et les autorisations au système cible. Effectuer un contrôle syntaxique avant activation.
+> Adapter les noms `Z*`, les types DDIC[^terme-acro-ddic], les données et les autorisations au système cible. Effectuer un contrôle syntaxique avant activation.
 
 ```abap
 " Lire uniquement les colonnes et les lignes nécessaires.
@@ -131,7 +131,7 @@ SELECT carrid,
 ## 4.L MODÈLE DE DÉMONSTRATION SFLIGHT
 
 > [!NOTE]
-> Les tables `SCARR`, `SPFLI` et `SFLIGHT` appartiennent au modèle de démonstration SAP et peuvent être absentes ou non alimentées dans certains systèmes. Dans ce cas, remplacer les exemples par une table Z de démonstration ou par une source en lecture seule autorisée, sans modifier une table applicative standard.
+> Les tables `SCARR`, `SPFLI` et `SFLIGHT` appartiennent au modèle de démonstration SAP[^terme-acro-sap] et peuvent être absentes ou non alimentées dans certains systèmes. Dans ce cas, remplacer les exemples par une table Z de démonstration ou par une source en lecture seule autorisée, sans modifier une table applicative standard.
 
 ## 4.M RÉFÉRENCES OFFICIELLES SAP
 
@@ -143,3 +143,9 @@ SELECT carrid,
 ---
 
 [Chapitre suivant — CONDITIONS WHERE ET VARIABLES HÔTE](<./05 ├── CONDITIONS WHERE ET VARIABLES HOTE.md>)
+
+[^terme-acro-sql]: **SQL.** Structured Query Language. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/10 └── ACRONYMES SAP.md#acro-sql>).
+[^terme-abap]: **ABAP.** Langage de programmation de la plateforme ABAP, conçu pour développer des applications métier et techniques SAP. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#abap>).
+[^terme-methode]: **MÉTHODE.** Comportement déclaré dans une classe ou une interface et appelé avec une liste de paramètres définie. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#methode>).
+[^terme-acro-ddic]: **DDIC.** Data Dictionary, abréviation courante de l’ABAP Dictionary. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/10 └── ACRONYMES SAP.md#acro-ddic>).
+[^terme-acro-sap]: **SAP.** Nom de l’éditeur et de son écosystème logiciel ; l’acronyme historique provient de l’allemand. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/10 └── ACRONYMES SAP.md#acro-sap>).

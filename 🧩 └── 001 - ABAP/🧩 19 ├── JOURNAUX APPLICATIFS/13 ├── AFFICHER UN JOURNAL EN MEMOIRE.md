@@ -4,7 +4,7 @@
 
 - Afficher un journal avant sa sauvegarde
 - Utiliser un profil standard
-- Distinguer l’affichage BAL de `SLG1`
+- Distinguer l’affichage BAL[^terme-acro-bal] de `SLG1`[^outil-slg1]
 
 ## 13.B AFFICHAGE SIMPLE
 
@@ -37,17 +37,17 @@ Le framework fournit notamment :
 - `BAL_DSP_PROFILE_POPUP_GET` ;
 - `BAL_DSP_PROFILE_DETLEVEL_GET`.
 
-Le profil BAL est une structure technique `BAL_S_PROF`. Il ne s’agit pas d’une variante utilisateur ALV classique.
+Le profil BAL est une structure technique `BAL_S_PROF`. Il ne s’agit pas d’une variante utilisateur ALV[^terme-alv] classique.
 
 ## 13.D LIMITES
 
-L’affichage immédiat exige une session dialogue. Il ne doit pas être utilisé comme dépendance d’un traitement batch. En arrière-plan, sauvegarder le journal et fournir son objet, son sous-objet et son identifiant externe dans le spool ou le journal de job.
+L’affichage immédiat exige une session dialogue. Il ne doit pas être utilisé comme dépendance d’un traitement batch. En arrière-plan, sauvegarder le journal et fournir son objet, son sous-objet et son identifiant externe dans le spool[^terme-spool] ou le journal de job[^terme-job].
 
 ## 13.E PROCESS
 
 ### 13.E.1 ÉTAPE 1 — VÉRIFIER LE CONTEXTE DIALOGUE
 
-Réserver l’affichage immédiat à une session SAP GUI. En batch, ne pas appeler l’API d’affichage ; sauvegarder le journal et écrire ses critères de recherche dans le spool ou le journal de job.
+Réserver l’affichage immédiat à une session SAP GUI[^terme-session-sap-gui]. En batch, ne pas appeler l’API[^terme-api] d’affichage ; sauvegarder le journal et écrire ses critères de recherche dans le spool ou le journal de job.
 
 ### 13.E.2 ÉTAPE 2 — PRÉPARER LES HANDLES CIBLÉS
 
@@ -86,7 +86,7 @@ Après ou avant l’affichage selon le flux, appeler explicitement `BAL_DB_SAVE`
 ## 13.H SNIPPET À RÉUTILISER
 
 > [!NOTE]
-> Adapter les noms `Z*`, les types DDIC, les données et les autorisations au système cible. Effectuer un contrôle syntaxique avant activation.
+> Adapter les noms `Z*`, les types DDIC[^terme-acro-ddic], les données et les autorisations au système cible. Effectuer un contrôle syntaxique avant activation.
 
 ```abap
 DATA:
@@ -121,3 +121,13 @@ CALL FUNCTION 'BAL_DSP_LOG_DISPLAY'
 ---
 
 [Chapitre suivant — ENREGISTRER UN JOURNAL EN BASE](<./14 ├── ENREGISTRER UN JOURNAL EN BASE.md>)
+
+[^terme-acro-bal]: **BAL.** Business Application Log, API technique du journal applicatif. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/10 └── ACRONYMES SAP.md#acro-bal>).
+[^terme-alv]: **ALV.** ABAP List Viewer, ensemble de technologies d’affichage tabulaire avec tri, filtre, total et variantes. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/06 ├── PROGRAMMES CLASSES ET OBJETS TECHNIQUES.md#alv>).
+[^terme-spool]: **SPOOL.** Infrastructure stockant et acheminant les sorties imprimables produites par les traitements SAP. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/06 ├── PROGRAMMES CLASSES ET OBJETS TECHNIQUES.md#spool>).
+[^terme-job]: **JOB.** Traitement planifié en arrière-plan composé d’une ou plusieurs étapes. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/06 ├── PROGRAMMES CLASSES ET OBJETS TECHNIQUES.md#job>).
+[^terme-session-sap-gui]: **SESSION SAP GUI.** Fenêtre de travail indépendante ouverte pour un même utilisateur et un même système. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/02 ├── SAP GUI NAVIGATION ET TRANSACTIONS.md#session-sap-gui>).
+[^terme-api]: **API.** Application Programming Interface, contrat exposant des opérations ou données utilisables par d’autres composants. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/10 └── ACRONYMES SAP.md#api>).
+[^terme-acro-ddic]: **DDIC.** Data Dictionary, abréviation courante de l’ABAP Dictionary. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/10 └── ACRONYMES SAP.md#acro-ddic>).
+
+[^outil-slg1]: **SLG1.** Transaction de recherche et d’affichage des journaux applicatifs persistés. Voir [le chapitre associé](<05 ├── ANALYSER LES JOURNAUX AVEC SLG1.md>).

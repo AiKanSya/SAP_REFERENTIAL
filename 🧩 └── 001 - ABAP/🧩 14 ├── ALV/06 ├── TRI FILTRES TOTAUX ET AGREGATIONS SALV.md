@@ -35,7 +35,7 @@ Les agrégations possibles dépendent du type de la colonne. Les champs de quant
 
 ## 6.D FILTRES
 
-Les filtres ALV n’ont pas le même objectif qu’un `WHERE` SQL :
+Les filtres ALV[^terme-alv] n’ont pas le même objectif qu’un `WHERE` SQL[^terme-acro-sql] :
 
 - `WHERE` réduit les données lues en base ;
 - le filtre ALV agit sur les données déjà chargées dans la table de sortie.
@@ -54,7 +54,7 @@ flowchart LR
 
 ## 6.F GESTION DES EXCEPTIONS
 
-Les méthodes de tri et d’agrégation peuvent lever des exceptions SALV en cas de colonne inconnue ou de combinaison non autorisée. Les traiter localement ou les propager selon l’architecture du programme.
+Les méthodes de tri et d’agrégation peuvent lever des exceptions SALV[^terme-acro-salv] en cas de colonne inconnue ou de combinaison non autorisée. Les traiter localement ou les propager selon l’architecture du programme.
 
 ## 6.G PROCESS
 
@@ -99,7 +99,7 @@ Tester une table vide, un seul groupe, plusieurs groupes et des valeurs initiale
 ## 6.J SNIPPET À RÉUTILISER
 
 > [!NOTE]
-> Adapter les noms `Z*`, les types DDIC, les données et les autorisations au système cible. Effectuer un contrôle syntaxique avant activation.
+> Adapter les noms `Z*`, les types DDIC[^terme-acro-ddic], les données et les autorisations au système cible. Effectuer un contrôle syntaxique avant activation.
 
 ```abap
 DATA lo_sorts TYPE REF TO cl_salv_sorts.
@@ -126,3 +126,8 @@ lo_sorts->add_sort(
 ---
 
 [Chapitre suivant — AFFICHAGE, MISE EN FORME ET LAYOUT SALV](<./07 ├── AFFICHAGE MISE EN FORME ET LAYOUT SALV.md>)
+
+[^terme-alv]: **ALV.** ABAP List Viewer, ensemble de technologies d’affichage tabulaire avec tri, filtre, total et variantes. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/06 ├── PROGRAMMES CLASSES ET OBJETS TECHNIQUES.md#alv>).
+[^terme-acro-sql]: **SQL.** Structured Query Language. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/10 └── ACRONYMES SAP.md#acro-sql>).
+[^terme-acro-salv]: **SALV.** Simple ALV / famille de classes `CL_SALV_*`. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/10 └── ACRONYMES SAP.md#acro-salv>).
+[^terme-acro-ddic]: **DDIC.** Data Dictionary, abréviation courante de l’ABAP Dictionary. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/10 └── ACRONYMES SAP.md#acro-ddic>).

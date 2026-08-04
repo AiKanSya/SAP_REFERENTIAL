@@ -2,7 +2,7 @@
 
 ## 9.A RÉSULTAT ATTENDU
 
-- Déclarer et lever une exception classique
+- Déclarer et lever une exception[^terme-exception] classique
 - Associer les exceptions à `sy-subrc`
 - Gérer les messages émis par un module
 - Distinguer exceptions classiques et exceptions par classes
@@ -71,7 +71,7 @@ Ne pas mélanger sans conception claire :
 - interface classique avec `EXCEPTIONS` et `sy-subrc` ;
 - interface par classes avec `RAISING`, `TRY` et `CATCH`.
 
-Les deux approches ont des règles différentes. Pour un module RFC, vérifier spécifiquement les contraintes de transport des erreurs entre systèmes.
+Les deux approches ont des règles différentes. Pour un module RFC[^terme-rfc], vérifier spécifiquement les contraintes de transport des erreurs entre systèmes.
 
 ```mermaid
 flowchart TD
@@ -106,7 +106,7 @@ Dans l’implémentation, lever l’exception dès que la condition est prouvée
 
 ### 9.G.4 Étape 4 — Mapper dans l’appelant
 
-Dans `CALL FUNCTION`, affecter des valeurs de `SY-SUBRC` distinctes et les traiter immédiatement. Conserver le message système pertinent lorsque l’API le prévoit, sans exposer un texte technique brut à l’utilisateur final.
+Dans `CALL FUNCTION`, affecter des valeurs de `SY-SUBRC` distinctes et les traiter immédiatement. Conserver le message système pertinent lorsque l’API[^terme-api] le prévoit, sans exposer un texte technique brut à l’utilisateur final.
 
 ### 9.G.5 Étape 5 — Tester chaque exception
 
@@ -123,13 +123,13 @@ Préparer une entrée par cas, vérifier le code reçu et l’absence d’effet 
 
 - Copier un exemple sans adapter les types, noms d’objets et données disponibles dans le système.
 - Tester uniquement le cas nominal et ignorer les valeurs initiales, absentes ou invalides.
-- Appeler un module fonction sans lire sa documentation et ses exceptions.
-- Supposer qu’une BAPI effectue automatiquement le commit.
+- Appeler un module fonction[^terme-module-fonction] sans lire sa documentation et ses exceptions.
+- Supposer qu’une BAPI[^terme-bapi] effectue automatiquement le commit.
 
 ## 9.J SNIPPET À RÉUTILISER
 
 > [!NOTE]
-> Adapter les noms `Z*`, les types DDIC, les données et les autorisations au système cible. Effectuer un contrôle syntaxique avant activation.
+> Adapter les noms `Z*`, les types DDIC[^terme-acro-ddic], les données et les autorisations au système cible. Effectuer un contrôle syntaxique avant activation.
 
 ```abap
 CALL FUNCTION 'Z_DEV_PRODUCT_GET'
@@ -161,3 +161,10 @@ CALL FUNCTION 'Z_DEV_PRODUCT_GET'
 ---
 
 [Chapitre suivant — TEST, DOCUMENTATION ET LIBÉRATION](<./10 ├── TEST DOCUMENTATION ET LIBERATION.md>)
+
+[^terme-exception]: **EXCEPTION.** Objet ou signal représentant une situation anormale qu’un appelant peut traiter. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#exception>).
+[^terme-rfc]: **RFC.** Remote Function Call, mécanisme permettant d’appeler un module fonction compatible dans un autre contexte ou système. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/06 ├── PROGRAMMES CLASSES ET OBJETS TECHNIQUES.md#rfc>).
+[^terme-api]: **API.** Application Programming Interface, contrat exposant des opérations ou données utilisables par d’autres composants. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/10 └── ACRONYMES SAP.md#api>).
+[^terme-module-fonction]: **MODULE FONCTION.** Procédure globale appelée avec `CALL FUNCTION` et définie dans un groupe de fonctions. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/06 ├── PROGRAMMES CLASSES ET OBJETS TECHNIQUES.md#module-fonction>).
+[^terme-bapi]: **BAPI.** Interface métier publiée autour d’un Business Object SAP, généralement implémentée par un module fonction RFC. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/06 ├── PROGRAMMES CLASSES ET OBJETS TECHNIQUES.md#bapi>).
+[^terme-acro-ddic]: **DDIC.** Data Dictionary, abréviation courante de l’ABAP Dictionary. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/10 └── ACRONYMES SAP.md#acro-ddic>).

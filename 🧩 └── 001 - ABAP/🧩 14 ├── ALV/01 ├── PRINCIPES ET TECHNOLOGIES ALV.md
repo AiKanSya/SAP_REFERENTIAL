@@ -2,7 +2,7 @@
 
 ## 1.A RÉSULTAT ATTENDU
 
-- Comprendre le rôle de l’ALV dans SAP GUI
+- Comprendre le rôle de l’ALV[^terme-alv] dans SAP GUI[^terme-sap-gui]
 - Identifier les principales technologies ALV
 - Distinguer affichage, interaction et édition
 - Choisir une solution adaptée au besoin
@@ -11,7 +11,7 @@
 
 **ALV** signifie **SAP List Viewer**. Il fournit des composants standard pour présenter des données tabulaires avec des fonctions déjà disponibles : tri, filtre, changement de colonnes, totalisation, export et variantes de mise en page.
 
-L’ALV ne récupère pas les données métier. Le programme ABAP reste responsable de la sélection, des contrôles et de la construction de la table interne affichée.
+L’ALV ne récupère pas les données métier. Le programme ABAP[^terme-abap] reste responsable de la sélection, des contrôles et de la construction de la table interne[^terme-table-interne] affichée.
 
 ```mermaid
 flowchart LR
@@ -25,7 +25,7 @@ flowchart LR
 
 | Technologie          | Objet principal                     | Usage dominant                                    |
 | -------------------- | ----------------------------------- | ------------------------------------------------- |
-| SALV                 | `CL_SALV_TABLE`                     | Affichage rapide, principalement en lecture seule |
+| SALV[^terme-acro-salv]                 | `CL_SALV_TABLE`                     | Affichage rapide, principalement en lecture seule |
 | ALV Grid Control     | `CL_GUI_ALV_GRID`                   | Contrôle fin, événements, cellules éditables      |
 | Fonctions classiques | `REUSE_ALV_GRID_DISPLAY` et famille | Maintenance de programmes historiques             |
 
@@ -75,3 +75,9 @@ Cette séparation évite de placer des accès base de données ou des règles m�
 ---
 
 [Chapitre suivant — CHOISIR ENTRE SALV, ALV GRID ET FONCTIONS CLASSIQUES](<./02 ├── CHOISIR ENTRE SALV ALV GRID ET FONCTIONS CLASSIQUES.md>)
+
+[^terme-alv]: **ALV.** ABAP List Viewer, ensemble de technologies d’affichage tabulaire avec tri, filtre, total et variantes. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/06 ├── PROGRAMMES CLASSES ET OBJETS TECHNIQUES.md#alv>).
+[^terme-sap-gui]: **SAP GUI.** Client graphique permettant d’utiliser les transactions et écrans d’un système SAP. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/02 ├── SAP GUI NAVIGATION ET TRANSACTIONS.md#sap-gui>).
+[^terme-abap]: **ABAP.** Langage de programmation de la plateforme ABAP, conçu pour développer des applications métier et techniques SAP. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#abap>).
+[^terme-table-interne]: **TABLE INTERNE.** Collection dynamique de lignes stockée en mémoire dans le programme ABAP. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#table-interne>).
+[^terme-acro-salv]: **SALV.** Simple ALV / famille de classes `CL_SALV_*`. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/10 └── ACRONYMES SAP.md#acro-salv>).

@@ -2,23 +2,23 @@
 
 ## 2.A RÉSULTAT ATTENDU
 
-- Comprendre les attributs d’un programme exécutable
-- Lancer un programme avec les transactions SAP GUI adaptées
+- Comprendre les attributs d’un programme exécutable[^terme-programme-executable]
+- Lancer un programme avec les transactions SAP GUI[^terme-sap-gui] adaptées
 - Distinguer exécution, modification et documentation
-- Préparer une utilisation par transaction ou job
-- Éviter les dépendances implicites à l’environnement utilisateur
+- Préparer une utilisation par transaction ou job[^terme-job]
+- Éviter les dépendances implicites à l’environnement[^terme-environnement] utilisateur
 
 ## 2.B ATTRIBUTS DU PROGRAMME
 
-Lors de la création dans `SE38` ou `SE80`, le programme reçoit notamment :
+Lors de la création dans `SE38`[^outil-se38] ou `SE80`[^outil-se80], le programme reçoit notamment :
 
-| Attribut    | Rôle                                         |
+| Attribut[^terme-attribut]    | Rôle                                         |
 | ----------- | -------------------------------------------- |
 | Titre       | Description fonctionnelle courte             |
 | Type        | Programme exécutable                         |
 | Statut      | Classification du programme selon le système |
 | Application | Domaine applicatif                           |
-| Package     | Affectation au Repository et au transport    |
+| Package[^terme-package]     | Affectation au Repository et au transport    |
 
 D’autres attributs peuvent apparaître selon la version du système.
 
@@ -27,11 +27,11 @@ D’autres attributs peuvent apparaître selon la version du système.
 | Transaction | Usage                                              |
 | ----------- | -------------------------------------------------- |
 | `SE38`      | Créer, modifier, vérifier et exécuter un programme |
-| `SA38`      | Exécuter un programme existant                     |
+| `SA38`[^outil-sa38]      | Exécuter un programme existant                     |
 | `SE80`      | Naviguer dans le package et les objets liés        |
-| `SE93`      | Créer ou analyser une transaction associée         |
+| `SE93`[^terme-transaction-se93]      | Créer ou analyser une transaction associée         |
 
-Avant une modification, vérifier le système, le mandant, le package et l’ordre de transport.
+Avant une modification, vérifier le système, le mandant[^terme-mandant], le package et l’ordre de transport[^terme-ordre-transport].
 
 ## 2.D PROCESS
 
@@ -51,7 +51,7 @@ Choisir **Exécuter**, puis renseigner l’écran avec un périmètre minimal et
 
 ### 2.D.4 Étape 4 — Exécuter et relever le résultat
 
-Lancer avec `F8`. Noter messages, spool, journal, nombre d’objets traités et éventuel job créé. Si l’écran revient sans résultat, vérifier la barre de statut et les journaux prévus par le programme.
+Lancer avec `F8`. Noter messages, spool[^terme-spool], journal, nombre d’objets traités et éventuel job créé. Si l’écran revient sans résultat, vérifier la barre de statut[^terme-barre-statut] et les journaux prévus par le programme.
 
 ### 2.D.5 Étape 5 — Valider l’absence d’effet involontaire
 
@@ -74,7 +74,7 @@ Les autorisations de transaction et les autorisations métier répondent à des 
 
 ## 2.F DOCUMENTATION DU PROGRAMME
 
-La documentation d’un programme exécutable peut être maintenue depuis l’éditeur ABAP. Elle doit préciser :
+La documentation d’un programme exécutable peut être maintenue depuis l’éditeur ABAP[^terme-abap]. Elle doit préciser :
 
 - l’objectif fonctionnel ;
 - les données traitées ;
@@ -138,3 +138,20 @@ Ordre de transport  :
 ---
 
 [Chapitre suivant — CYCLE D’EXÉCUTION ET ÉVÉNEMENTS](<./03 ├── CYCLE D EXECUTION ET EVENEMENTS.md>)
+
+[^terme-programme-executable]: **PROGRAMME EXÉCUTABLE.** Programme ABAP de type report pouvant être lancé directement, généralement avec `F8` ou par une transaction. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/06 ├── PROGRAMMES CLASSES ET OBJETS TECHNIQUES.md#programme-executable>).
+[^terme-sap-gui]: **SAP GUI.** Client graphique permettant d’utiliser les transactions et écrans d’un système SAP. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/02 ├── SAP GUI NAVIGATION ET TRANSACTIONS.md#sap-gui>).
+[^terme-job]: **JOB.** Traitement planifié en arrière-plan composé d’une ou plusieurs étapes. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/06 ├── PROGRAMMES CLASSES ET OBJETS TECHNIQUES.md#job>).
+[^terme-environnement]: **ENVIRONNEMENT.** Rôle fonctionnel attribué à un système dans le cycle de vie : développement, test, recette, préproduction ou production. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/01 ├── SYSTEMES ENVIRONNEMENTS ET MANDANTS.md#environnement>).
+[^terme-attribut]: **ATTRIBUT.** Composant de données déclaré dans une classe et appartenant soit à chaque instance, soit à la classe elle-même. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#attribut>).
+[^terme-package]: **PACKAGE.** Conteneur logique qui regroupe les objets de développement et détermine notamment leur transportabilité. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/03 ├── REPOSITORY PACKAGES ET TRANSPORTS.md#package>).
+[^terme-transaction-se93]: **TRANSACTION SE93.** Objet Repository associant un code de transaction à une cible de démarrage. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/06 ├── PROGRAMMES CLASSES ET OBJETS TECHNIQUES.md#transaction-se93>).
+[^terme-mandant]: **MANDANT.** Subdivision logique d’un système SAP. Il est identifié par un numéro à trois chiffres et isole une partie des données, du paramétrage et des utilisateurs. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/01 ├── SYSTEMES ENVIRONNEMENTS ET MANDANTS.md#mandant>).
+[^terme-ordre-transport]: **ORDRE DE TRANSPORT.** Conteneur qui regroupe des modifications à exporter puis importer dans d’autres systèmes. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/03 ├── REPOSITORY PACKAGES ET TRANSPORTS.md#ordre-transport>).
+[^terme-spool]: **SPOOL.** Infrastructure stockant et acheminant les sorties imprimables produites par les traitements SAP. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/06 ├── PROGRAMMES CLASSES ET OBJETS TECHNIQUES.md#spool>).
+[^terme-barre-statut]: **BARRE DE STATUT.** Zone inférieure de SAP GUI affichant messages et informations de session. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/02 ├── SAP GUI NAVIGATION ET TRANSACTIONS.md#barre-statut>).
+[^terme-abap]: **ABAP.** Langage de programmation de la plateforme ABAP, conçu pour développer des applications métier et techniques SAP. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#abap>).
+
+[^outil-se38]: **SE38.** Éditeur ABAP classique utilisé pour créer, modifier, vérifier et exécuter des programmes. Voir [le chapitre associé](<../🧩 01 ├── FONDAMENTAUX ABAP/04 ├── EDITEURS ABAP SE38 ET SE80.md>).
+[^outil-se80]: **SE80.** Object Navigator utilisé pour parcourir et maintenir les objets du Repository ABAP. Voir [le chapitre associé](<../🧩 01 ├── FONDAMENTAUX ABAP/04 ├── EDITEURS ABAP SE38 ET SE80.md>).
+[^outil-sa38]: **SA38.** Transaction d’exécution d’un programme ABAP sans accès direct à son édition. Voir [le chapitre associé](<../🧩 01 ├── FONDAMENTAUX ABAP/04 ├── EDITEURS ABAP SE38 ET SE80.md>).

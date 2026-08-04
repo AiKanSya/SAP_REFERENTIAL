@@ -2,7 +2,7 @@
 
 ## 10.A RÉSULTAT ATTENDU
 
-- Ajouter une exception de classe au journal
+- Ajouter une exception[^terme-exception] de classe[^terme-classe] au journal
 - Préserver son texte et son niveau de gravité
 - Distinguer journalisation et traitement de l’exception
 
@@ -73,7 +73,7 @@ Après journalisation, décider explicitement de poursuivre l’élément suivan
 
 ### 10.D.6 ÉTAPE 6 — TESTER PROPAGATION ET SAUVEGARDE
 
-Provoquer une exception T100 puis une exception sans interface T100. Vérifier le texte dans `SLG1`, le statut métier, la propagation et la persistance du journal en cas de rollback. Aucun `CATCH` ne doit transformer silencieusement l’échec en succès.
+Provoquer une exception T100 puis une exception sans interface T100. Vérifier le texte dans `SLG1`[^outil-slg1], le statut métier, la propagation et la persistance du journal en cas de rollback. Aucun `CATCH` ne doit transformer silencieusement l’échec en succès.
 
 ## 10.E VÉRIFICATION
 
@@ -92,7 +92,7 @@ Provoquer une exception T100 puis une exception sans interface T100. Vérifier l
 ## 10.G SNIPPET À RÉUTILISER
 
 > [!NOTE]
-> Adapter les noms `Z*`, les types DDIC, les données et les autorisations au système cible. Effectuer un contrôle syntaxique avant activation.
+> Adapter les noms `Z*`, les types DDIC[^terme-acro-ddic], les données et les autorisations au système cible. Effectuer un contrôle syntaxique avant activation.
 
 ```abap
 TRY.
@@ -131,3 +131,9 @@ ENDTRY.
 ---
 
 [Chapitre suivant — CLASSE DE PROBLÈME, NIVEAU DE DÉTAIL, TRI ET CONTEXTE](<./11 ├── CLASSE DE PROBLEME NIVEAU DE DETAIL TRI ET CONTEXTE.md>)
+
+[^terme-exception]: **EXCEPTION.** Objet ou signal représentant une situation anormale qu’un appelant peut traiter. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#exception>).
+[^terme-classe]: **CLASSE.** Modèle orienté objet définissant état et comportements. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#classe>).
+[^terme-acro-ddic]: **DDIC.** Data Dictionary, abréviation courante de l’ABAP Dictionary. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/10 └── ACRONYMES SAP.md#acro-ddic>).
+
+[^outil-slg1]: **SLG1.** Transaction de recherche et d’affichage des journaux applicatifs persistés. Voir [le chapitre associé](<05 ├── ANALYSER LES JOURNAUX AVEC SLG1.md>).

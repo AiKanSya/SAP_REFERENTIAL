@@ -9,10 +9,10 @@
 ## 3.B DÉMARCHE
 
 1. Reproduire le cas métier avec des données de test.
-2. Identifier la transaction, le programme, la classe ou le groupe de fonctions.
-3. Rechercher les BAdI, customer exits et enhancement spots du package.
+2. Identifier la transaction, le programme, la classe[^terme-classe] ou le groupe de fonctions.
+3. Rechercher les BAdI[^terme-acro-badi], customer exits et enhancement spots du package[^terme-package].
 4. Inspecter le code appelant et la documentation du point.
-5. Placer un breakpoint dans l’interface candidate.
+5. Placer un breakpoint[^terme-breakpoint] dans l’interface candidate.
 6. Vérifier les paramètres réellement disponibles.
 7. Contrôler le moment de l’appel par rapport aux validations et au commit.
 
@@ -20,13 +20,13 @@
 
 | Outil    | Usage                                                        |
 | -------- | ------------------------------------------------------------ |
-| `SE84`   | Repository Information System et recherche par package       |
-| `SE80`   | Navigation dans les objets et Enhancement Information System |
-| `SMOD`   | Recherche d’enhancements classiques                          |
-| `SE18`   | Recherche et analyse des définitions BAdI                    |
-| `SE19`   | Analyse des implémentations BAdI                             |
-| `SE24`   | Analyse des interfaces et classes d’implémentation           |
-| `SE37`   | Analyse des function module exits                            |
+| `SE84`[^outil-se84]   | Repository Information System et recherche par package       |
+| `SE80`[^outil-se80]   | Navigation dans les objets et Enhancement Information System |
+| `SMOD`[^outil-smod]   | Recherche d’enhancements classiques                          |
+| `SE18`[^outil-se18]   | Recherche et analyse des définitions BAdI                    |
+| `SE19`[^outil-se19]   | Analyse des implémentations BAdI                             |
+| `SE24`[^terme-class-builder-se24]   | Analyse des interfaces et classes d’implémentation           |
+| `SE37`[^outil-se37]   | Analyse des function module exits                            |
 | Debugger | Preuve du point d’appel et du contexte                       |
 
 ## 3.D RECHERCHE DANS LE CODE
@@ -57,7 +57,7 @@ Un point d’extension n’est valide que si :
 
 ### 3.F.1 ÉTAPE 1 — CAPTURER LE SCÉNARIO EXACT
 
-Relever la transaction ou l’application, l’action utilisateur, la clé métier, l’utilisateur, le mandant et le résultat attendu. Réduire le scénario à une reproduction unique afin de limiter les appels observés.
+Relever la transaction ou l’application, l’action utilisateur, la clé métier, l’utilisateur, le mandant[^terme-mandant] et le résultat attendu. Réduire le scénario à une reproduction unique afin de limiter les appels observés.
 
 ### 3.F.2 ÉTAPE 2 — IDENTIFIER LES OBJETS EXÉCUTÉS
 
@@ -65,7 +65,7 @@ Utiliser les informations système, la pile d’appels du débogueur et le Repos
 
 ### 3.F.3 ÉTAPE 3 — RECHERCHER LES POINTS CANDIDATS
 
-Rechercher dans le code et le Repository les appels de BAdI, enhancement points/sections, `CALL CUSTOMER-FUNCTION`, user exits et mécanismes propres au domaine. Pour FI, compléter par les événements BTE lorsque le processus le prévoit.
+Rechercher dans le code et le Repository les appels de BAdI, enhancement points/sections, `CALL CUSTOMER-FUNCTION`, user exits et mécanismes propres au domaine. Pour FI, compléter par les événements BTE[^terme-acro-bte] lorsque le processus le prévoit.
 
 ### 3.F.4 ÉTAPE 4 — ANALYSER LE CONTRAT DE CHAQUE POINT
 
@@ -77,14 +77,14 @@ Placer un breakpoint dans les candidats les plus pertinents et reproduire le sc�
 
 ### 3.F.6 ÉTAPE 6 — VÉRIFIER L’ACTIVATION EXISTANTE
 
-Contrôler les implémentations BAdI, projets CMOD ou enhancements déjà actifs dans le système. Comparer leurs filtres et leur périmètre au besoin. Conserver le nom technique et la preuve runtime du point finalement retenu.
+Contrôler les implémentations BAdI, projets CMOD[^outil-cmod] ou enhancements déjà actifs dans le système. Comparer leurs filtres et leur périmètre au besoin. Conserver le nom technique et la preuve runtime du point finalement retenu.
 
 ## 3.G VÉRIFICATION
 
 - L’implémentation ou le projet est actif et transporté dans le bon ordre.
 - Un breakpoint confirme que le point d’extension est appelé dans le scénario visé.
 - Le comportement standard reste inchangé hors du périmètre fonctionnel prévu.
-- Aucune modification directe d’un objet SAP standard n’a été créée.
+- Aucune modification directe d’un objet SAP[^terme-acro-sap] standard n’a été créée.
 
 ## 3.H ERREURS FRÉQUENTES
 
@@ -96,7 +96,7 @@ Contrôler les implémentations BAdI, projets CMOD ou enhancements déjà actifs
 ## 3.I SNIPPET À RÉUTILISER
 
 > [!NOTE]
-> Adapter les noms `Z*`, les types DDIC, les données et les autorisations au système cible. Effectuer un contrôle syntaxique avant activation.
+> Adapter les noms `Z*`, les types DDIC[^terme-acro-ddic], les données et les autorisations au système cible. Effectuer un contrôle syntaxique avant activation.
 
 ```abap
 CALL CUSTOMER-FUNCTION
@@ -121,3 +121,21 @@ ENHANCEMENT-SECTION
 ---
 
 [Chapitre suivant — USER EXITS DANS LES PROGRAMMES STANDARD](<./04 ├── USER EXITS DANS LES PROGRAMMES STANDARD.md>)
+
+[^terme-classe]: **CLASSE.** Modèle orienté objet définissant état et comportements. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#classe>).
+[^terme-acro-badi]: **BADI.** Business Add-In, mécanisme d’extension orienté objet du standard SAP. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/10 └── ACRONYMES SAP.md#acro-badi>).
+[^terme-package]: **PACKAGE.** Conteneur logique qui regroupe les objets de développement et détermine notamment leur transportabilité. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/03 ├── REPOSITORY PACKAGES ET TRANSPORTS.md#package>).
+[^terme-breakpoint]: **BREAKPOINT.** Point d’arrêt suspendant l’exécution dans le débogueur. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/08 ├── EXECUTION EXPLOITATION ET ADMINISTRATION.md#breakpoint>).
+[^terme-class-builder-se24]: **CLASS BUILDER (SE24).** Outil SAP GUI utilisé pour créer, afficher, modifier, tester et documenter les classes et interfaces globales ABAP. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/06 ├── PROGRAMMES CLASSES ET OBJETS TECHNIQUES.md#class-builder-se24>).
+[^terme-mandant]: **MANDANT.** Subdivision logique d’un système SAP. Il est identifié par un numéro à trois chiffres et isole une partie des données, du paramétrage et des utilisateurs. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/01 ├── SYSTEMES ENVIRONNEMENTS ET MANDANTS.md#mandant>).
+[^terme-acro-bte]: **BTE.** Business Transaction Event, mécanisme d’extension utilisé notamment dans certains domaines financiers. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/10 └── ACRONYMES SAP.md#acro-bte>).
+[^terme-acro-sap]: **SAP.** Nom de l’éditeur et de son écosystème logiciel ; l’acronyme historique provient de l’allemand. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/10 └── ACRONYMES SAP.md#acro-sap>).
+[^terme-acro-ddic]: **DDIC.** Data Dictionary, abréviation courante de l’ABAP Dictionary. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/10 └── ACRONYMES SAP.md#acro-ddic>).
+
+[^outil-se84]: **SE84.** Repository Information System utilisé pour rechercher des objets et analyser leurs utilisations. Voir [le chapitre associé](<../🧩 01 ├── FONDAMENTAUX ABAP/02 ├── OBJETS DU REPOSITORY ABAP.md>).
+[^outil-se80]: **SE80.** Object Navigator utilisé pour parcourir et maintenir les objets du Repository ABAP. Voir [le chapitre associé](<../🧩 01 ├── FONDAMENTAUX ABAP/04 ├── EDITEURS ABAP SE38 ET SE80.md>).
+[^outil-smod]: **SMOD.** Transaction de recherche et d’analyse des enhancements SAP classiques. Voir [le chapitre associé](<06 ├── ANALYSER UN ENHANCEMENT AVEC SMOD.md>).
+[^outil-se18]: **SE18.** BAdI Builder utilisé pour rechercher et analyser les définitions de BAdI. Voir [le chapitre associé](<14 ├── ANALYSER UNE DEFINITION BADI AVEC SE18.md>).
+[^outil-se19]: **SE19.** BAdI Builder utilisé pour créer et maintenir les implémentations de BAdI. Voir [le chapitre associé](<15 ├── IMPLEMENTER UNE BADI AVEC SE19.md>).
+[^outil-se37]: **SE37.** Function Builder utilisé pour rechercher, afficher, tester et maintenir les modules fonction. Voir [le chapitre associé](<../🧩 12 ├── MODULES FONCTION RFC ET BAPI/03 ├── RECHERCHER ET ANALYSER AVEC SE37.md>).
+[^outil-cmod]: **CMOD.** Transaction de gestion des projets d’extensions client classiques. Voir [le chapitre associé](<07 ├── CREER ET ACTIVER UN PROJET CMOD.md>).

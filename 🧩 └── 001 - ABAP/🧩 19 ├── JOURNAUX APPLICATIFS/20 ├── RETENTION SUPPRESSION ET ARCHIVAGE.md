@@ -4,7 +4,7 @@
 
 - Définir une durée de conservation
 - Supprimer les journaux de façon contrôlée
-- Éviter la croissance illimitée des tables BAL
+- Éviter la croissance illimitée des tables BAL[^terme-acro-bal]
 
 ## 20.B PRINCIPES
 
@@ -19,7 +19,7 @@ Un journal applicatif est une donnée technique persistante. Sa durée de conser
 
 ## 20.C SUPPRESSION AVEC SLG2
 
-La transaction `SLG2` utilise le programme de suppression standard du BAL. La sélection doit cibler l’objet, le sous-objet, la période ou la date d’expiration.
+La transaction `SLG2`[^outil-slg2] utilise le programme de suppression standard du BAL. La sélection doit cibler l’objet, le sous-objet, la période ou la date d’expiration.
 
 ```mermaid
 flowchart LR
@@ -33,15 +33,15 @@ Planifier la suppression en arrière-plan pour les volumes importants.
 
 ## 20.D ARCHIVAGE
 
-L’objet d’archivage `BC_SBAL` permet d’archiver les journaux applicatifs. SAP fournit notamment des programmes pour écrire les données BAL dans les archives puis supprimer les données archivées des tables d’origine.
+L’objet d’archivage `BC_SBAL` permet d’archiver les journaux applicatifs. SAP[^terme-acro-sap] fournit notamment des programmes pour écrire les données BAL dans les archives puis supprimer les données archivées des tables d’origine.
 
 ## 20.E PRÉCAUTIONS
 
 - ne pas supprimer tous les objets sans filtre ;
-- tester la sélection en environnement non productif ;
+- tester la sélection en environnement[^terme-environnement] non productif ;
 - aligner `DATE_DEL` et la politique d’exploitation ;
 - documenter la responsabilité du nettoyage ;
-- surveiller les tables techniques et les temps de sélection `SLG1`.
+- surveiller les tables techniques et les temps de sélection `SLG1`[^outil-slg1].
 
 ## 20.F PROCESS
 
@@ -59,7 +59,7 @@ Saisir `/nSLG2`, filtrer sur objet, sous-objet et période ou expiration. Commen
 
 ### 20.F.4 ÉTAPE 4 — PLANIFIER LA SUPPRESSION EN BATCH
 
-Pour un volume important, sauvegarder la sélection dans une variante et planifier le programme standard via la procédure d’exploitation. Utiliser un utilisateur technique autorisé. Conserver le journal du job et les critères appliqués.
+Pour un volume important, sauvegarder la sélection dans une variante et planifier le programme standard via la procédure d’exploitation. Utiliser un utilisateur technique autorisé. Conserver le journal du job[^terme-job] et les critères appliqués.
 
 ### 20.F.5 ÉTAPE 5 — UTILISER L’ARCHIVAGE SI NÉCESSAIRE
 
@@ -111,3 +111,11 @@ Ordre de transport  :
 ---
 
 [Chapitre suivant — AUTORISATIONS ET DONNÉES SENSIBLES](<./21 ├── AUTORISATIONS ET DONNEES SENSIBLES.md>)
+
+[^terme-acro-bal]: **BAL.** Business Application Log, API technique du journal applicatif. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/10 └── ACRONYMES SAP.md#acro-bal>).
+[^terme-acro-sap]: **SAP.** Nom de l’éditeur et de son écosystème logiciel ; l’acronyme historique provient de l’allemand. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/10 └── ACRONYMES SAP.md#acro-sap>).
+[^terme-environnement]: **ENVIRONNEMENT.** Rôle fonctionnel attribué à un système dans le cycle de vie : développement, test, recette, préproduction ou production. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/01 ├── SYSTEMES ENVIRONNEMENTS ET MANDANTS.md#environnement>).
+[^terme-job]: **JOB.** Traitement planifié en arrière-plan composé d’une ou plusieurs étapes. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/06 ├── PROGRAMMES CLASSES ET OBJETS TECHNIQUES.md#job>).
+
+[^outil-slg2]: **SLG2.** Transaction de suppression planifiée ou contrôlée des journaux applicatifs persistés. Voir [le chapitre associé](<20 ├── RETENTION SUPPRESSION ET ARCHIVAGE.md>).
+[^outil-slg1]: **SLG1.** Transaction de recherche et d’affichage des journaux applicatifs persistés. Voir [le chapitre associé](<05 ├── ANALYSER LES JOURNAUX AVEC SLG1.md>).

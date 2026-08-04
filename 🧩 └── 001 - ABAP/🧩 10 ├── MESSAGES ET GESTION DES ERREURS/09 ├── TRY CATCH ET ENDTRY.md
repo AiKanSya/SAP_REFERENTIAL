@@ -2,7 +2,7 @@
 
 ## 9.A RÉSULTAT ATTENDU
 
-- Intercepter une exception de classe
+- Intercepter une exception[^terme-exception] de classe[^terme-classe]
 - Délimiter précisément la zone protégée
 - Récupérer l’objet d’exception
 - Ordonner les blocs `CATCH`
@@ -77,7 +77,7 @@ CATCH cx_root INTO DATA(lx_root).
 
 Cette interception capture un ensemble très large d’exceptions. Elle peut masquer un défaut de programmation ou empêcher la production d’un dump utile.
 
-Elle est acceptable à une frontière technique contrôlée lorsqu’une trace complète est produite et que la stratégie de poursuite est explicite.
+Elle est acceptable à une frontière technique contrôlée lorsqu’une trace[^terme-trace] complète est produite et que la stratégie de poursuite est explicite.
 
 ## 9.H LIMITER LE BLOC TRY
 
@@ -91,7 +91,7 @@ Un bloc court permet d’identifier clairement la cause et évite d’intercepte
 
 ### 9.I.1 Étape 1 — Identifier les exceptions attendues
 
-Ouvrir la signature de l’appel et relever les classes déclarées ainsi que leurs relations d’héritage. Ne créer pas un `CATCH cx_root` général sans stratégie de traitement ou de retransmission.
+Ouvrir la signature de l’appel et relever les classes déclarées ainsi que leurs relations d’héritage[^terme-heritage]. Ne créer pas un `CATCH cx_root` général sans stratégie de traitement ou de retransmission.
 
 ### 9.I.2 Étape 2 — Délimiter le bloc TRY
 
@@ -103,7 +103,7 @@ Intercepter d’abord les classes les plus spécifiques, puis leurs superclasses
 
 ### 9.I.4 Étape 4 — Protéger les ressources et la transaction
 
-Fermer fichiers, result sets ou connexions dans le chemin d’erreur prévu. Si l’opération a modifié des données, laisser la couche propriétaire de la LUW décider du rollback ou du commit.
+Fermer fichiers, result sets ou connexions dans le chemin d’erreur prévu. Si l’opération a modifié des données, laisser la couche propriétaire de la LUW[^terme-acro-luw] décider du rollback ou du commit.
 
 ### 9.I.5 Étape 5 — Tester chaque branche
 
@@ -128,7 +128,7 @@ Le bloc est validé lorsque aucune exception attendue n’est avalée silencieus
 ## 9.L SNIPPET À RÉUTILISER
 
 > [!NOTE]
-> Adapter les noms `Z*`, les types DDIC, les données et les autorisations au système cible. Effectuer un contrôle syntaxique avant activation.
+> Adapter les noms `Z*`, les types DDIC[^terme-acro-ddic], les données et les autorisations au système cible. Effectuer un contrôle syntaxique avant activation.
 
 ```abap
 " Propager ou traiter l’erreur au niveau qui sait prendre une décision.
@@ -155,3 +155,10 @@ ENDTRY.
 ---
 
 [Chapitre suivant — LEVER UNE EXCEPTION AVEC RAISE EXCEPTION](<./10 ├── LEVER UNE EXCEPTION AVEC RAISE EXCEPTION.md>)
+
+[^terme-exception]: **EXCEPTION.** Objet ou signal représentant une situation anormale qu’un appelant peut traiter. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#exception>).
+[^terme-classe]: **CLASSE.** Modèle orienté objet définissant état et comportements. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#classe>).
+[^terme-trace]: **TRACE.** Enregistrement détaillé d’événements techniques pour analyser exécution, SQL ou appels. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/08 ├── EXECUTION EXPLOITATION ET ADMINISTRATION.md#trace>).
+[^terme-heritage]: **HÉRITAGE.** Relation permettant à une sous-classe de reprendre les composants accessibles d’une super-classe et de spécialiser son comportement. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#heritage>).
+[^terme-acro-luw]: **LUW.** Logical Unit of Work. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/10 └── ACRONYMES SAP.md#acro-luw>).
+[^terme-acro-ddic]: **DDIC.** Data Dictionary, abréviation courante de l’ABAP Dictionary. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/10 └── ACRONYMES SAP.md#acro-ddic>).

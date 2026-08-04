@@ -44,7 +44,7 @@ IDOC_0000000123456789
 RUN_4F8A2C
 ```
 
-L’identifiant doit être reproductible dans les autres outils de suivi : nom du fichier, identifiant CPI, numéro de job, document SAP ou identifiant de corrélation.
+L’identifiant doit être reproductible dans les autres outils de suivi : nom du fichier, identifiant CPI, numéro de job[^terme-job], document SAP[^terme-document-sap] ou identifiant de corrélation.
 
 ## 19.E SUCCÈS PARTIEL
 
@@ -73,7 +73,7 @@ Maintenir des compteurs lus, valides, réussis, avertis, rejetés et en erreur. 
 
 ### 19.F.4 ÉTAPE 4 — CONSERVER LE CONTEXTE DES REJETS
 
-Pour chaque rejet, enregistrer numéro de ligne, document ou unité, règle et cause. Utiliser un contexte DDIC ou un fichier de rejets pour les grands volumes. Définir un seuil empêchant le journal BAL de devenir le stockage de toutes les données sources.
+Pour chaque rejet, enregistrer numéro de ligne, document ou unité, règle et cause. Utiliser un contexte DDIC[^terme-acro-ddic] ou un fichier de rejets pour les grands volumes. Définir un seuil empêchant le journal BAL[^terme-acro-bal] de devenir le stockage de toutes les données sources.
 
 ### 19.F.5 ÉTAPE 5 — ÉCRIRE LE STATUT FINAL ET LA REPRISE
 
@@ -81,7 +81,7 @@ Ajouter un message synthétisant succès complet, partiel, fonctionnel, techniqu
 
 ### 19.F.6 ÉTAPE 6 — TESTER VOLUME ET REJEU
 
-Exécuter un lot nominal, vide, partiellement invalide, interrompu et dupliqué. Vérifier lisibilité dans `SLG1`, taille, temps de sauvegarde, compteurs et absence de données sensibles. La relance doit produire un nouveau log corrélé sans doubler le résultat métier.
+Exécuter un lot nominal, vide, partiellement invalide, interrompu et dupliqué. Vérifier lisibilité dans `SLG1`[^outil-slg1], taille, temps de sauvegarde, compteurs et absence de données sensibles. La relance doit produire un nouveau log corrélé sans doubler le résultat métier.
 
 ## 19.G VÉRIFICATION
 
@@ -125,3 +125,10 @@ Ordre de transport  :
 ---
 
 [Chapitre suivant — RÉTENTION, SUPPRESSION ET ARCHIVAGE](<./20 ├── RETENTION SUPPRESSION ET ARCHIVAGE.md>)
+
+[^terme-job]: **JOB.** Traitement planifié en arrière-plan composé d’une ou plusieurs étapes. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/06 ├── PROGRAMMES CLASSES ET OBJETS TECHNIQUES.md#job>).
+[^terme-document-sap]: **DOCUMENT SAP.** Objet transactionnel enregistré avec en-tête, postes, statuts et références. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/09 ├── NOTIONS FONCTIONNELLES ET ORGANISATIONNELLES.md#document-sap>).
+[^terme-acro-ddic]: **DDIC.** Data Dictionary, abréviation courante de l’ABAP Dictionary. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/10 └── ACRONYMES SAP.md#acro-ddic>).
+[^terme-acro-bal]: **BAL.** Business Application Log, API technique du journal applicatif. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/10 └── ACRONYMES SAP.md#acro-bal>).
+
+[^outil-slg1]: **SLG1.** Transaction de recherche et d’affichage des journaux applicatifs persistés. Voir [le chapitre associé](<05 ├── ANALYSER LES JOURNAUX AVEC SLG1.md>).

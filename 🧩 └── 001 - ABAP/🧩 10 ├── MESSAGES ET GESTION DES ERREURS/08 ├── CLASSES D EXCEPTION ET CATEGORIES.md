@@ -6,11 +6,11 @@
 - Identifier la hiérarchie issue de `CX_ROOT`
 - Distinguer `CX_STATIC_CHECK`, `CX_DYNAMIC_CHECK` et `CX_NO_CHECK`
 - Choisir une catégorie cohérente
-- Préparer la création d’une exception client
+- Préparer la création d’une exception[^terme-exception] client
 
 ## 8.B PRINCIPE
 
-Une exception de classe est un objet qui représente une situation d’erreur. Elle peut contenir :
+Une exception de classe[^terme-classe] est un objet qui représente une situation d’erreur. Elle peut contenir :
 
 - un type précis ;
 - un texte ;
@@ -37,7 +37,7 @@ Elle convient lorsque le contrat doit imposer une décision explicite à l’app
 
 Une exception héritant de `CX_DYNAMIC_CHECK` doit être déclarée lorsqu’elle est propagée par une procédure. Le contrôle statique aux différents niveaux d’appel est moins strict que pour `CX_STATIC_CHECK`.
 
-Elle convient à certaines situations dont l’occurrence dépend fortement des données ou de l’environnement d’exécution.
+Elle convient à certaines situations dont l’occurrence dépend fortement des données ou de l’environnement[^terme-environnement] d’exécution.
 
 ## 8.E CX_NO_CHECK
 
@@ -59,21 +59,21 @@ Le choix doit être effectué selon le contrat attendu, pas selon la volonté d�
 
 ## 8.G CLASSES STANDARD CX_SY
 
-Le runtime ABAP utilise de nombreuses classes prédéfinies commençant par `CX_SY_`, par exemple pour :
+Le runtime ABAP[^terme-abap] utilise de nombreuses classes prédéfinies commençant par `CX_SY_`, par exemple pour :
 
 - conversions ;
 - calculs arithmétiques ;
 - accès hors limites ;
 - références initiales ;
-- erreurs Open SQL interceptables.
+- erreurs Open SQL[^terme-acro-sql] interceptables.
 
 La documentation de chaque instruction indique les exceptions pouvant être levées.
 
 ## 8.H CRÉATION DANS SAP GUI
 
-Une classe d’exception peut être créée avec les outils du Workbench, notamment `SE24` ou `SE80` selon l’organisation du projet.
+Une classe d’exception peut être créée avec les outils du Workbench, notamment `SE24`[^terme-class-builder-se24] ou `SE80`[^outil-se80] selon l’organisation du projet.
 
-La création détaillée des classes sera approfondie dans le dossier ABAP Objects. Dans ce dossier, l’objectif est d’utiliser correctement leur contrat d’erreur.
+La création détaillée des classes sera approfondie dans le dossier ABAP Objects[^terme-abap-objects]. Dans ce dossier, l’objectif est d’utiliser correctement leur contrat d’erreur.
 
 ## 8.I PROCESS
 
@@ -123,3 +123,13 @@ Créer un test qui provoque chaque texte, vérifie les attributs et contrôle la
 ---
 
 [Chapitre suivant — TRY, CATCH ET ENDTRY](<./09 ├── TRY CATCH ET ENDTRY.md>)
+
+[^terme-exception]: **EXCEPTION.** Objet ou signal représentant une situation anormale qu’un appelant peut traiter. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#exception>).
+[^terme-classe]: **CLASSE.** Modèle orienté objet définissant état et comportements. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#classe>).
+[^terme-environnement]: **ENVIRONNEMENT.** Rôle fonctionnel attribué à un système dans le cycle de vie : développement, test, recette, préproduction ou production. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/01 ├── SYSTEMES ENVIRONNEMENTS ET MANDANTS.md#environnement>).
+[^terme-abap]: **ABAP.** Langage de programmation de la plateforme ABAP, conçu pour développer des applications métier et techniques SAP. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#abap>).
+[^terme-acro-sql]: **SQL.** Structured Query Language. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/10 └── ACRONYMES SAP.md#acro-sql>).
+[^terme-class-builder-se24]: **CLASS BUILDER (SE24).** Outil SAP GUI utilisé pour créer, afficher, modifier, tester et documenter les classes et interfaces globales ABAP. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/06 ├── PROGRAMMES CLASSES ET OBJETS TECHNIQUES.md#class-builder-se24>).
+[^terme-abap-objects]: **ABAP OBJECTS.** Extension orientée objet du langage ABAP fournissant classes, interfaces, héritage, événements et exceptions de classe. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#abap-objects>).
+
+[^outil-se80]: **SE80.** Object Navigator utilisé pour parcourir et maintenir les objets du Repository ABAP. Voir [le chapitre associé](<../🧩 01 ├── FONDAMENTAUX ABAP/04 ├── EDITEURS ABAP SE38 ET SE80.md>).

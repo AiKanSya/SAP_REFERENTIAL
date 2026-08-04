@@ -2,8 +2,8 @@
 
 ## 8.A RÉSULTAT ATTENDU
 
-- Utiliser le constructeur d’instance `CONSTRUCTOR`.
-- Comprendre le constructeur de classe `CLASS_CONSTRUCTOR`.
+- Utiliser le constructeur d’instance[^terme-constructeur-instance] `CONSTRUCTOR`.
+- Comprendre le constructeur de classe[^terme-constructeur-classe] `CLASS_CONSTRUCTOR`.
 - Garantir qu’un objet est valide immédiatement après sa création.
 
 ## 8.B CONSTRUCTEUR D’INSTANCE
@@ -26,15 +26,15 @@ Lister les dépendances et valeurs sans lesquelles l’objet ne peut pas fonctio
 
 ### 8.C.2 Étape 2 — Définir la signature du constructeur
 
-Dans `SE24`, ouvrir `CONSTRUCTOR`. Ajouter chaque dépendance obligatoire en `IMPORTING` avec son type d’interface ou DDIC, puis déclarer les exceptions autorisées par la signature du constructeur sur la release cible.
+Dans `SE24`[^terme-class-builder-se24], ouvrir `CONSTRUCTOR`. Ajouter chaque dépendance obligatoire en `IMPORTING` avec son type d’interface ou DDIC[^terme-acro-ddic], puis déclarer les exceptions autorisées par la signature du constructeur sur la release cible.
 
 ### 8.C.3 Étape 3 — Valider avant affectation
 
-Dans l’implémentation, vérifier références liées, plages et cohérence. Lever l’exception avant de rendre une instance partiellement initialisée.
+Dans l’implémentation, vérifier références liées, plages et cohérence. Lever l’exception[^terme-exception] avant de rendre une instance partiellement initialisée.
 
 ### 8.C.4 Étape 4 — Affecter l’état privé
 
-Copier les paramètres validés vers les attributs privés. Éviter les appels externes ou commits dans le constructeur ; déplacer les traitements lourds vers une méthode ou une factory.
+Copier les paramètres validés vers les attributs privés. Éviter les appels externes ou commits dans le constructeur ; déplacer les traitements lourds vers une méthode[^terme-methode] ou une factory.
 
 ### 8.C.5 Étape 5 — Tester la création
 
@@ -91,8 +91,8 @@ Une classe de service dépend d’un repository. Sans ce repository, aucune mét
 ## 8.G CONTRÔLE
 
 - Une référence non liée provoque l’exception attendue.
-- Après création, toutes les méthodes publiques peuvent supposer l’invariant respecté.
-- Le constructeur ne contient pas de `COMMIT WORK` ni de dialogue utilisateur.
+- Après création, toutes les méthodes publiques peuvent supposer l’invariant[^terme-invariant] respecté.
+- Le constructeur ne contient pas de `COMMIT WORK`[^terme-commit-work] ni de dialogue utilisateur.
 
 ## 8.H ERREURS FRÉQUENTES
 
@@ -102,9 +102,9 @@ Une classe de service dépend d’un repository. Sans ce repository, aucune mét
 
 ## 8.I COMPATIBILITÉ S/4HANA
 
-- Statut : compatible avec le développement ABAP classique sur SAP S/4HANA.
-- Vérifier la syntaxe exacte avec l’aide `F1` du système cible lorsque plusieurs versions d’ABAP Platform sont prises en charge.
-- Les objets globaux doivent être créés dans le package et l’ordre de transport du projet.
+- Statut : compatible avec le développement ABAP[^terme-abap] classique sur SAP[^terme-acro-sap] S/4HANA.
+- Vérifier la syntaxe exacte avec l’aide `F1`[^terme-aide-f1] du système cible lorsque plusieurs versions d’ABAP Platform sont prises en charge.
+- Les objets globaux doivent être créés dans le package[^terme-package] et l’ordre de transport[^terme-ordre-transport] du projet.
 
 ## 8.J RÉFÉRENCES OFFICIELLES SAP
 
@@ -114,3 +114,17 @@ Une classe de service dépend d’un repository. Sans ce repository, aucune mét
 ---
 
 [Chapitre suivant — RÉFÉRENCES D’OBJET ET CYCLE DE VIE](<./09 ├── REFERENCES D OBJET ET CYCLE DE VIE.md>)
+
+[^terme-constructeur-instance]: **CONSTRUCTEUR D’INSTANCE.** Méthode spéciale `CONSTRUCTOR`, exécutée automatiquement lors de la création d’un objet avec `NEW` ou `CREATE OBJECT`. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#constructeur-instance>).
+[^terme-constructeur-classe]: **CONSTRUCTEUR DE CLASSE.** Méthode statique spéciale `CLASS_CONSTRUCTOR`, appelée automatiquement une seule fois avant le premier accès actif à la classe dans une session interne. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#constructeur-classe>).
+[^terme-class-builder-se24]: **CLASS BUILDER (SE24).** Outil SAP GUI utilisé pour créer, afficher, modifier, tester et documenter les classes et interfaces globales ABAP. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/06 ├── PROGRAMMES CLASSES ET OBJETS TECHNIQUES.md#class-builder-se24>).
+[^terme-acro-ddic]: **DDIC.** Data Dictionary, abréviation courante de l’ABAP Dictionary. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/10 └── ACRONYMES SAP.md#acro-ddic>).
+[^terme-exception]: **EXCEPTION.** Objet ou signal représentant une situation anormale qu’un appelant peut traiter. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#exception>).
+[^terme-methode]: **MÉTHODE.** Comportement déclaré dans une classe ou une interface et appelé avec une liste de paramètres définie. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#methode>).
+[^terme-invariant]: **INVARIANT.** Condition qui doit rester vraie pendant toute la durée de vie valide d’un objet. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#invariant>).
+[^terme-commit-work]: **COMMIT WORK.** Instruction clôturant la SAP LUW courante, déclenchant notamment les mises à jour enregistrées et validant la base. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/08 ├── EXECUTION EXPLOITATION ET ADMINISTRATION.md#commit-work>).
+[^terme-abap]: **ABAP.** Langage de programmation de la plateforme ABAP, conçu pour développer des applications métier et techniques SAP. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#abap>).
+[^terme-acro-sap]: **SAP.** Nom de l’éditeur et de son écosystème logiciel ; l’acronyme historique provient de l’allemand. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/10 └── ACRONYMES SAP.md#acro-sap>).
+[^terme-aide-f1]: **AIDE F1.** Aide contextuelle expliquant un champ, une fonction ou un mot-clé. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/02 ├── SAP GUI NAVIGATION ET TRANSACTIONS.md#aide-f1>).
+[^terme-package]: **PACKAGE.** Conteneur logique qui regroupe les objets de développement et détermine notamment leur transportabilité. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/03 ├── REPOSITORY PACKAGES ET TRANSPORTS.md#package>).
+[^terme-ordre-transport]: **ORDRE DE TRANSPORT.** Conteneur qui regroupe des modifications à exporter puis importer dans d’autres systèmes. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/03 ├── REPOSITORY PACKAGES ET TRANSPORTS.md#ordre-transport>).

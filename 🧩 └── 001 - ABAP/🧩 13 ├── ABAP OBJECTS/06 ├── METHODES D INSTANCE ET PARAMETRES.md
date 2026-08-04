@@ -2,7 +2,7 @@
 
 ## 6.A RÉSULTAT ATTENDU
 
-- Définir une méthode d’instance dans `SE24`.
+- Définir une méthode d’instance[^terme-methode-instance] dans `SE24`[^terme-class-builder-se24].
 - Choisir les catégories de paramètres.
 - Concevoir une signature compréhensible et stable.
 
@@ -14,7 +14,7 @@
 | `RETURNING` | Résultat principal unique                      |
 | `EXPORTING` | Résultats supplémentaires                      |
 | `CHANGING`  | Donnée réellement modifiée par la méthode      |
-| `RAISING`   | Exceptions de classe que l’appelant doit gérer |
+| `RAISING`   | Exceptions de classe[^terme-classe] que l’appelant doit gérer |
 
 Une méthode fonctionnelle courte privilégie souvent `IMPORTING` et un seul `RETURNING`. `CHANGING` doit rester explicite : l’appelant doit comprendre que sa donnée peut être modifiée.
 
@@ -26,11 +26,11 @@ Décider que `CALCULATE_TOTAL` reçoit une table d’articles et retourne un mon
 
 ### 6.C.2 Étape 2 — Créer la méthode
 
-Dans **Méthodes**, créer `CALCULATE_TOTAL`, niveau instance, visibilité publique. Ouvrir immédiatement les paramètres et ne pas activer une méthode vide dont la signature n’a pas encore été définie. Vérifier que le nom décrit le résultat du calcul sans exposer son implémentation.
+Dans **Méthodes**, créer `CALCULATE_TOTAL`, niveau instance, visibilité[^terme-visibilite] publique. Ouvrir immédiatement les paramètres et ne pas activer une méthode vide dont la signature n’a pas encore été définie. Vérifier que le nom décrit le résultat du calcul sans exposer son implémentation.
 
 ### 6.C.3 Étape 3 — Créer la signature complète
 
-Ajouter `IT_ITEMS` dans `IMPORTING` avec le type de table exact. Ajouter `RV_TOTAL` dans `RETURNING`, passage par valeur, avec le type montant prévu. Dans `RAISING`, ajouter la classe d’exception utilisée pour une ligne invalide.
+Ajouter `IT_ITEMS` dans `IMPORTING` avec le type de table exact. Ajouter `RV_TOTAL` dans `RETURNING`, passage par valeur, avec le type montant prévu. Dans `RAISING`, ajouter la classe d’exception[^terme-exception] utilisée pour une ligne invalide.
 
 ### 6.C.4 Étape 4 — Implémenter avec l’état d’instance nécessaire
 
@@ -95,9 +95,9 @@ La configuration exacte dépend de la catégorie de paramètre et de la release.
 
 ## 6.I COMPATIBILITÉ S/4HANA
 
-- Statut : compatible avec le développement ABAP classique sur SAP S/4HANA.
-- Vérifier la syntaxe exacte avec l’aide `F1` du système cible lorsque plusieurs versions d’ABAP Platform sont prises en charge.
-- Les objets globaux doivent être créés dans le package et l’ordre de transport du projet.
+- Statut : compatible avec le développement ABAP[^terme-abap] classique sur SAP[^terme-acro-sap] S/4HANA.
+- Vérifier la syntaxe exacte avec l’aide `F1`[^terme-aide-f1] du système cible lorsque plusieurs versions d’ABAP Platform sont prises en charge.
+- Les objets globaux doivent être créés dans le package[^terme-package] et l’ordre de transport[^terme-ordre-transport] du projet.
 
 ## 6.J RÉFÉRENCES OFFICIELLES SAP
 
@@ -107,3 +107,14 @@ La configuration exacte dépend de la catégorie de paramètre et de la release.
 ---
 
 [Chapitre suivant — MÉTHODES STATIQUES ET COMPOSANTS DE CLASSE](<./07 ├── METHODES STATIQUES ET COMPOSANTS DE CLASSE.md>)
+
+[^terme-methode-instance]: **MÉTHODE D’INSTANCE.** Méthode appelée sur une instance avec l’opérateur `->` et pouvant accéder à son état. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#methode-instance>).
+[^terme-class-builder-se24]: **CLASS BUILDER (SE24).** Outil SAP GUI utilisé pour créer, afficher, modifier, tester et documenter les classes et interfaces globales ABAP. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/06 ├── PROGRAMMES CLASSES ET OBJETS TECHNIQUES.md#class-builder-se24>).
+[^terme-classe]: **CLASSE.** Modèle orienté objet définissant état et comportements. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#classe>).
+[^terme-visibilite]: **VISIBILITÉ.** Règle déterminant où un composant de classe peut être utilisé : `PUBLIC`, `PROTECTED` ou `PRIVATE`. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#visibilite>).
+[^terme-exception]: **EXCEPTION.** Objet ou signal représentant une situation anormale qu’un appelant peut traiter. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#exception>).
+[^terme-abap]: **ABAP.** Langage de programmation de la plateforme ABAP, conçu pour développer des applications métier et techniques SAP. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#abap>).
+[^terme-acro-sap]: **SAP.** Nom de l’éditeur et de son écosystème logiciel ; l’acronyme historique provient de l’allemand. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/10 └── ACRONYMES SAP.md#acro-sap>).
+[^terme-aide-f1]: **AIDE F1.** Aide contextuelle expliquant un champ, une fonction ou un mot-clé. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/02 ├── SAP GUI NAVIGATION ET TRANSACTIONS.md#aide-f1>).
+[^terme-package]: **PACKAGE.** Conteneur logique qui regroupe les objets de développement et détermine notamment leur transportabilité. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/03 ├── REPOSITORY PACKAGES ET TRANSPORTS.md#package>).
+[^terme-ordre-transport]: **ORDRE DE TRANSPORT.** Conteneur qui regroupe des modifications à exporter puis importer dans d’autres systèmes. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/03 ├── REPOSITORY PACKAGES ET TRANSPORTS.md#ordre-transport>).

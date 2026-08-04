@@ -10,7 +10,7 @@
 
 | Action                | Usage                                                    |
 | --------------------- | -------------------------------------------------------- |
-| Copier                | Créer une nouvelle définition à partir d’un job existant |
+| Copier                | Créer une nouvelle définition à partir d’un job[^terme-job] existant |
 | Replanifier           | Affecter une nouvelle condition de démarrage             |
 | Retirer la libération | Empêcher un job encore modifiable de démarrer            |
 | Annuler               | Interrompre un job actif                                 |
@@ -22,7 +22,7 @@ Les actions disponibles dépendent du statut et des autorisations.
 
 1. identifier l’étape active ;
 2. vérifier si le programme est en phase d’écriture ;
-3. rechercher les verrous dans `SM12` ;
+3. rechercher les verrous dans `SM12`[^outil-sm12] ;
 4. vérifier les effets externes déjà déclenchés ;
 5. déterminer la procédure de reprise ;
 6. conserver le journal et les éléments de diagnostic.
@@ -43,7 +43,7 @@ Modifier une occurrence ne modifie pas nécessairement toute la série de la man
 
 ### 19.E.1 ÉTAPE 1 — SAUVEGARDER L’ÉTAT INITIAL
 
-Dans `SM37`, sélectionner l’occurrence exacte et relever nom, numéro, statut, étapes, variantes, utilisateur, condition et journal. Vérifier l’état métier déjà produit. Toute action de gestion doit rester corrélable au job initial.
+Dans `SM37`[^outil-sm37], sélectionner l’occurrence exacte et relever nom, numéro, statut, étapes, variantes, utilisateur, condition et journal. Vérifier l’état métier déjà produit. Toute action de gestion doit rester corrélable au job initial.
 
 ### 19.E.2 ÉTAPE 2 — CHOISIR L’ACTION SELON LE STATUT
 
@@ -51,7 +51,7 @@ Modifier ou replanifier un job qui n’a pas encore commencé selon les autorisa
 
 ### 19.E.3 ÉTAPE 3 — MODIFIER OU COPIER SANS PERDRE LES PARAMÈTRES
 
-Après l’action dans `SM37`, ouvrir le nouveau job et comparer toutes les étapes, variantes, utilisateurs, paramètres de spool et conditions. Changer uniquement la cause identifiée. Un job copié peut conserver une variante ou un utilisateur inadapté.
+Après l’action dans `SM37`, ouvrir le nouveau job et comparer toutes les étapes, variantes, utilisateurs, paramètres de spool[^terme-spool] et conditions. Changer uniquement la cause identifiée. Un job copié peut conserver une variante ou un utilisateur inadapté.
 
 ### 19.E.4 ÉTAPE 4 — ANNULER EN CONNAISSANT LES EFFETS
 
@@ -106,4 +106,11 @@ Ordre de transport  :
 
 ---
 
-[Chapitre suivant — DEBUGGER UN JOB AVEC `JDBG`](<./20 ├── DEBUGGER UN JOB AVEC JDBG.md>)
+[Chapitre suivant — DEBUGGER UN JOB AVEC `JDBG`[^outil-jdbg]](<./20 ├── DEBUGGER UN JOB AVEC JDBG.md>)
+
+[^terme-job]: **JOB.** Traitement planifié en arrière-plan composé d’une ou plusieurs étapes. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/06 ├── PROGRAMMES CLASSES ET OBJETS TECHNIQUES.md#job>).
+[^terme-spool]: **SPOOL.** Infrastructure stockant et acheminant les sorties imprimables produites par les traitements SAP. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/06 ├── PROGRAMMES CLASSES ET OBJETS TECHNIQUES.md#spool>).
+
+[^outil-sm12]: **SM12.** Transaction de surveillance et d’administration des entrées de verrouillage SAP. Voir [le chapitre associé](<../🧩 16 ├── LUW VERROUILLAGES ET MISES A JOUR/12 ├── ANALYSER LES VERROUS AVEC SM12.md>).
+[^outil-sm37]: **SM37.** Transaction de recherche, surveillance et administration des jobs d’arrière-plan. Voir [le chapitre associé](<15 ├── SURVEILLER LES JOBS AVEC SM37.md>).
+[^outil-jdbg]: **JDBG.** Commande utilisée depuis SM37 pour démarrer le débogage contrôlé d’un job sélectionné. Voir [le chapitre associé](<20 ├── DEBUGGER UN JOB AVEC JDBG.md>).

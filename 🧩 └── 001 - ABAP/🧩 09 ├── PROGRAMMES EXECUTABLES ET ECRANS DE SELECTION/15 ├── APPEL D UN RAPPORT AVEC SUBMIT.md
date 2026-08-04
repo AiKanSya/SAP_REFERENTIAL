@@ -2,7 +2,7 @@
 
 ## 15.A RÉSULTAT ATTENDU
 
-- Appeler un programme exécutable depuis ABAP
+- Appeler un programme exécutable[^terme-programme-executable] depuis ABAP[^terme-abap]
 - Transmettre des paramètres et critères
 - Revenir au programme appelant
 - Utiliser une variante ou une table de sélection
@@ -81,9 +81,9 @@ Cette forme impose une interaction utilisateur et n’est pas adaptée à tous l
 
 ## 15.G SORTIE DE LISTE
 
-`SUBMIT` permet aussi d’exporter une liste classique vers la mémoire ABAP ou le spool avec des additions dédiées. Cette technique est spécifique aux listes classiques.
+`SUBMIT` permet aussi d’exporter une liste classique vers la mémoire ABAP ou le spool[^terme-spool] avec des additions dédiées. Cette technique est spécifique aux listes classiques.
 
-Pour échanger des données structurées, préférer une interface de procédure ou de classe explicitement typée.
+Pour échanger des données structurées, préférer une interface de procédure ou de classe[^terme-classe] explicitement typée.
 
 ## 15.H APPEL DYNAMIQUE
 
@@ -113,7 +113,7 @@ flowchart TD
 ## 15.K SNIPPET À RÉUTILISER
 
 > [!NOTE]
-> Adapter les noms `Z*`, les types DDIC, les données et les autorisations au système cible. Effectuer un contrôle syntaxique avant activation.
+> Adapter les noms `Z*`, les types DDIC[^terme-acro-ddic], les données et les autorisations au système cible. Effectuer un contrôle syntaxique avant activation.
 
 ```abap
 DATA lt_selection TYPE STANDARD TABLE OF rsparams WITH EMPTY KEY.
@@ -155,3 +155,9 @@ SUBMIT zdev_target
 ---
 
 [Chapitre suivant — SORTIE D’UN PROGRAMME EXÉCUTABLE](<./16 ├── SORTIE D UN PROGRAMME EXECUTABLE.md>)
+
+[^terme-programme-executable]: **PROGRAMME EXÉCUTABLE.** Programme ABAP de type report pouvant être lancé directement, généralement avec `F8` ou par une transaction. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/06 ├── PROGRAMMES CLASSES ET OBJETS TECHNIQUES.md#programme-executable>).
+[^terme-abap]: **ABAP.** Langage de programmation de la plateforme ABAP, conçu pour développer des applications métier et techniques SAP. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#abap>).
+[^terme-spool]: **SPOOL.** Infrastructure stockant et acheminant les sorties imprimables produites par les traitements SAP. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/06 ├── PROGRAMMES CLASSES ET OBJETS TECHNIQUES.md#spool>).
+[^terme-classe]: **CLASSE.** Modèle orienté objet définissant état et comportements. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#classe>).
+[^terme-acro-ddic]: **DDIC.** Data Dictionary, abréviation courante de l’ABAP Dictionary. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/10 └── ACRONYMES SAP.md#acro-ddic>).

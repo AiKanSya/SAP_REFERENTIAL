@@ -10,7 +10,7 @@
 
 ## 3.B LES TROIS CATÉGORIES
 
-| Catégorie ABAP   | Organisation                                      | Index primaire | Clé primaire           |
+| Catégorie ABAP[^terme-abap]   | Organisation                                      | Index primaire | Clé primaire[^terme-cle-primaire]           |
 | ---------------- | ------------------------------------------------- | -------------: | ---------------------- |
 | `STANDARD TABLE` | Séquence gérée principalement par index           |            Oui | Non unique ou vide     |
 | `SORTED TABLE`   | Lignes maintenues dans l’ordre de la clé primaire |            Oui | Unique ou non unique   |
@@ -143,7 +143,7 @@ Choisir la catégorie à partir des accès réels :
 ## 3.K SNIPPET À RÉUTILISER
 
 > [!NOTE]
-> Adapter les noms `Z*`, les types DDIC, les données et les autorisations au système cible. Effectuer un contrôle syntaxique avant activation.
+> Adapter les noms `Z*`, les types DDIC[^terme-acro-ddic], les données et les autorisations au système cible. Effectuer un contrôle syntaxique avant activation.
 
 ```abap
 " Accéder à la ligne par une clé adaptée au besoin.
@@ -169,3 +169,7 @@ READ TABLE lt_products
 ---
 
 [Chapitre suivant — CLÉS PRIMAIRES ET UNICITÉ](<./04 ├── CLES PRIMAIRES ET UNICITE.md>)
+
+[^terme-abap]: **ABAP.** Langage de programmation de la plateforme ABAP, conçu pour développer des applications métier et techniques SAP. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#abap>).
+[^terme-cle-primaire]: **CLÉ PRIMAIRE.** Ensemble minimal de champs identifiant de manière unique une ligne de table. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/05 ├── DONNEES DICTIONNAIRE ET BASE DE DONNEES.md#cle-primaire>).
+[^terme-acro-ddic]: **DDIC.** Data Dictionary, abréviation courante de l’ABAP Dictionary. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/10 └── ACRONYMES SAP.md#acro-ddic>).

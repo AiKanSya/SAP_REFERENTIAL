@@ -20,7 +20,7 @@ Convertir la valeur dans la casse et le type attendus, refuser une valeur initia
 
 ### 1.B.4 ÉTAPE 4 — EXÉCUTER L’AFFECTATION
 
-Appeler `ASSIGN COMPONENT ... OF STRUCTURE ...` vers un field-symbol. Le nom doit être validé avant l’instruction dynamique.
+Appeler `ASSIGN COMPONENT ... OF STRUCTURE ...` vers un field-symbol[^terme-field-symbol]. Le nom doit être validé avant l’instruction dynamique.
 
 ### 1.B.5 ÉTAPE 5 — TESTER SY-SUBRC AVANT L’ACCÈS
 
@@ -28,7 +28,7 @@ Lire ou convertir le field-symbol uniquement lorsque `SY-SUBRC = 0` et que le fi
 
 ### 1.B.6 ÉTAPE 6 — TESTER LES CAS LIMITES
 
-Vérifier un composant autorisé, un composant existant mais interdit, un nom inconnu, une valeur initiale et une casse différente. Exécuter les contrôles ATC ou SCI de sécurité disponibles sur le système.
+Vérifier un composant autorisé, un composant existant mais interdit, un nom inconnu, une valeur initiale et une casse différente. Exécuter les contrôles ATC[^terme-acro-atc] ou SCI[^outil-sci] de sécurité disponibles sur le système.
 
 ## 1.C CODE PRÊT À ADAPTER
 
@@ -48,3 +48,8 @@ ENDIF.
 
 - Tester immédiatement `SY-SUBRC` avant d’accéder au field-symbol.
 - Le nom dynamique doit provenir d’une liste blanche lorsque sa source est externe.
+
+[^terme-field-symbol]: **FIELD-SYMBOL.** Alias dynamique vers une zone de mémoire existante. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#field-symbol>).
+[^terme-acro-atc]: **ATC.** ABAP Test Cockpit, infrastructure de contrôles statiques et de gouvernance qualité. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/10 └── ACRONYMES SAP.md#acro-atc>).
+
+[^outil-sci]: **SCI.** Code Inspector utilisé pour exécuter des contrôles statiques sur un ensemble d’objets ABAP. Voir [le chapitre associé](<../🧩 20 ├── PERFORMANCE QUALITE ET TESTS/13 ├── CODE INSPECTOR AVEC SCI.md>).

@@ -6,7 +6,7 @@ Exprimer clairement le résultat attendu avec `CL_ABAP_UNIT_ASSERT`.
 
 ## 19.B Assertions courantes
 
-| Besoin              | Méthode typique      |
+| Besoin              | Méthode[^terme-methode] typique      |
 | ------------------- | -------------------- |
 | égalité             | `ASSERT_EQUALS`      |
 | valeur initiale     | `ASSERT_INITIAL`     |
@@ -48,7 +48,7 @@ Le message doit indiquer le comportement attendu et le contexte, pas seulement �
 
 ### 19.G.2 ÉTAPE 2 — CHOISIR L’ASSERTION LA PLUS PRÉCISE
 
-Utiliser `ASSERT_EQUALS` pour une valeur, `ASSERT_INITIAL` ou `ASSERT_NOT_INITIAL` pour l’état initial, `ASSERT_TRUE`/`FALSE` pour un booléen et `ASSERT_BOUND` pour une référence. Réserver `FAIL` à l’absence d’un événement attendu comme une exception.
+Utiliser `ASSERT_EQUALS` pour une valeur, `ASSERT_INITIAL` ou `ASSERT_NOT_INITIAL` pour l’état initial, `ASSERT_TRUE`/`FALSE` pour un booléen et `ASSERT_BOUND` pour une référence. Réserver `FAIL` à l’absence d’un événement attendu comme une exception[^terme-exception].
 
 ### 19.G.3 ÉTAPE 3 — NORMALISER UNIQUEMENT LA SÉMANTIQUE NON SIGNIFICATIVE
 
@@ -81,7 +81,7 @@ Relancer tous les tests du composant et vérifier qu’un échec n’est pas mas
 ## 19.J SNIPPET À RÉUTILISER
 
 > [!NOTE]
-> Adapter les noms `Z*`, les types DDIC, les données et les autorisations au système cible. Effectuer un contrôle syntaxique avant activation.
+> Adapter les noms `Z*`, les types DDIC[^terme-acro-ddic], les données et les autorisations au système cible. Effectuer un contrôle syntaxique avant activation.
 
 ```abap
 " Vérifier un seul comportement observable avec une attente explicite.
@@ -96,3 +96,7 @@ cl_abap_unit_assert=>assert_equals(
 - [ATC](<../🧩 00 ├── LEXIQUE SAP ET ABAP/10 └── ACRONYMES SAP.md#acro-atc>)
 - [ABAP](<../🧩 00 ├── LEXIQUE SAP ET ABAP/10 └── ACRONYMES SAP.md#acro-abap>)
 - [Trace](<../🧩 00 ├── LEXIQUE SAP ET ABAP/08 ├── EXECUTION EXPLOITATION ET ADMINISTRATION.md#trace>)
+
+[^terme-methode]: **MÉTHODE.** Comportement déclaré dans une classe ou une interface et appelé avec une liste de paramètres définie. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#methode>).
+[^terme-exception]: **EXCEPTION.** Objet ou signal représentant une situation anormale qu’un appelant peut traiter. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#exception>).
+[^terme-acro-ddic]: **DDIC.** Data Dictionary, abréviation courante de l’ABAP Dictionary. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/10 └── ACRONYMES SAP.md#acro-ddic>).

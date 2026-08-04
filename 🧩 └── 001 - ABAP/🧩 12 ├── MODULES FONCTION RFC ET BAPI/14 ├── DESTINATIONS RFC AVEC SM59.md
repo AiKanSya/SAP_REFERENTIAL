@@ -2,8 +2,8 @@
 
 ## 14.A RÉSULTAT ATTENDU
 
-- Comprendre le rôle d’une destination RFC
-- Lire et tester une destination dans `SM59`
+- Comprendre le rôle d’une destination RFC[^terme-destination-rfc]
+- Lire et tester une destination dans `SM59`[^outil-sm59]
 - Identifier les principaux types de connexion
 - Séparer développement et administration
 
@@ -11,7 +11,7 @@
 
 Une destination RFC fournit au runtime les informations nécessaires pour atteindre une cible. Les destinations sont maintenues dans la transaction `SM59`.
 
-Dans un appel ABAP :
+Dans un appel ABAP[^terme-abap] :
 
 ```abap
 CALL FUNCTION 'Z_DEV_PRODUCT_GET'
@@ -44,8 +44,8 @@ Une destination peut contenir :
 
 - hôte ou système cible ;
 - numéro de système ;
-- mandant ;
-- utilisateur ou méthode d’authentification ;
+- mandant[^terme-mandant] ;
+- utilisateur ou méthode[^terme-methode] d’authentification ;
 - langue ;
 - paramètres de connexion ;
 - options de sécurité ;
@@ -119,13 +119,13 @@ Après succès technique, appeler un module autorisé non destructif. La destina
 
 - Copier un exemple sans adapter les types, noms d’objets et données disponibles dans le système.
 - Tester uniquement le cas nominal et ignorer les valeurs initiales, absentes ou invalides.
-- Appeler un module fonction sans lire sa documentation et ses exceptions.
-- Supposer qu’une BAPI effectue automatiquement le commit.
+- Appeler un module fonction[^terme-module-fonction] sans lire sa documentation et ses exceptions.
+- Supposer qu’une BAPI[^terme-bapi] effectue automatiquement le commit.
 
 ## 14.J SNIPPET À RÉUTILISER
 
 > [!NOTE]
-> Adapter les noms `Z*`, les types DDIC, les données et les autorisations au système cible. Effectuer un contrôle syntaxique avant activation.
+> Adapter les noms `Z*`, les types DDIC[^terme-acro-ddic], les données et les autorisations au système cible. Effectuer un contrôle syntaxique avant activation.
 
 ```abap
 CALL FUNCTION 'Z_DEV_PRODUCT_GET'
@@ -157,3 +157,13 @@ CALL FUNCTION 'Z_DEV_PRODUCT_GET'
 ---
 
 [Chapitre suivant — APPELS RFC SYNCHRONES ET ASYNCHRONES](<./15 ├── APPELS RFC SYNCHRONES ET ASYNCHRONES.md>)
+
+[^terme-destination-rfc]: **DESTINATION RFC.** Configuration `SM59` décrivant comment joindre une cible RFC. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/07 ├── INTERFACES ET INTEGRATION.md#destination-rfc>).
+[^terme-abap]: **ABAP.** Langage de programmation de la plateforme ABAP, conçu pour développer des applications métier et techniques SAP. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#abap>).
+[^terme-mandant]: **MANDANT.** Subdivision logique d’un système SAP. Il est identifié par un numéro à trois chiffres et isole une partie des données, du paramétrage et des utilisateurs. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/01 ├── SYSTEMES ENVIRONNEMENTS ET MANDANTS.md#mandant>).
+[^terme-methode]: **MÉTHODE.** Comportement déclaré dans une classe ou une interface et appelé avec une liste de paramètres définie. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#methode>).
+[^terme-module-fonction]: **MODULE FONCTION.** Procédure globale appelée avec `CALL FUNCTION` et définie dans un groupe de fonctions. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/06 ├── PROGRAMMES CLASSES ET OBJETS TECHNIQUES.md#module-fonction>).
+[^terme-bapi]: **BAPI.** Interface métier publiée autour d’un Business Object SAP, généralement implémentée par un module fonction RFC. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/06 ├── PROGRAMMES CLASSES ET OBJETS TECHNIQUES.md#bapi>).
+[^terme-acro-ddic]: **DDIC.** Data Dictionary, abréviation courante de l’ABAP Dictionary. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/10 └── ACRONYMES SAP.md#acro-ddic>).
+
+[^outil-sm59]: **SM59.** Transaction de création, test et maintenance des destinations RFC. Voir [le chapitre associé](<14 ├── DESTINATIONS RFC AVEC SM59.md>).

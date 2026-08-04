@@ -8,17 +8,17 @@
 
 ## 19.B RECHERCHE
 
-Dans `SM13`, filtrer notamment par :
+Dans `SM13`[^outil-sm13], filtrer notamment par :
 
 - utilisateur ;
 - date et heure ;
-- mandant ;
+- mandant[^terme-mandant] ;
 - statut ;
 - transaction ou identifiant de demande.
 
 Analyser ensuite :
 
-- le module fonction en erreur ;
+- le module fonction[^terme-module-fonction] en erreur ;
 - le message ou le dump associé ;
 - les paramètres enregistrés ;
 - les modules V1 et V2 de la demande ;
@@ -35,15 +35,15 @@ flowchart TD
     D -->|"Non"| F["Correction métier contrôlée"]
 ```
 
-Ne pas relancer mécaniquement une demande ancienne. Les données ou le customizing peuvent avoir changé, et un traitement manuel peut avoir déjà compensé l’erreur.
+Ne pas relancer mécaniquement une demande ancienne. Les données ou le customizing[^terme-customizing] peuvent avoir changé, et un traitement manuel peut avoir déjà compensé l’erreur.
 
 ## 19.D OUTILS ASSOCIÉS
 
-- `ST22` pour un dump du module de mise à jour ;
-- `SM12` pour les verrous ;
-- `SM21` pour le journal système ;
-- `SLG1` si l’application écrit un journal applicatif ;
-- `SM14` pour l’état administratif du système de mise à jour.
+- `ST22`[^outil-st22] pour un dump du module de mise à jour ;
+- `SM12`[^outil-sm12] pour les verrous ;
+- `SM21`[^outil-sm21] pour le journal système ;
+- `SLG1`[^outil-slg1] si l’application écrit un journal applicatif ;
+- `SM14`[^outil-sm14] pour l’état administratif du système de mise à jour.
 
 ## 19.E PROCESS
 
@@ -57,7 +57,7 @@ Saisir `/nSM13`, renseigner l’utilisateur et la période la plus courte possib
 
 ### 19.E.3 ÉTAPE 3 — LOCALISER LE PREMIER MODULE EN ÉCHEC
 
-Consulter les détails et les données enregistrées pour identifier le module qui a échoué, son message et ses paramètres. Distinguer la première erreur des modules seulement non exécutés ensuite. Corréler le code actif et les valeurs enregistrées au moment de la SAP LUW initiale.
+Consulter les détails et les données enregistrées pour identifier le module qui a échoué, son message et ses paramètres. Distinguer la première erreur des modules seulement non exécutés ensuite. Corréler le code actif et les valeurs enregistrées au moment de la SAP LUW[^terme-sap-luw] initiale.
 
 ### 19.E.4 ÉTAPE 4 — CONTRÔLER L’ÉTAT MÉTIER PERSISTANT
 
@@ -120,3 +120,15 @@ Ordre de transport  :
 ---
 
 [Chapitre suivant — CONCEPTION, DIAGNOSTIC ET BONNES PRATIQUES](<./20 └── CONCEPTION DIAGNOSTIC ET BONNES PRATIQUES.md>)
+
+[^terme-mandant]: **MANDANT.** Subdivision logique d’un système SAP. Il est identifié par un numéro à trois chiffres et isole une partie des données, du paramétrage et des utilisateurs. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/01 ├── SYSTEMES ENVIRONNEMENTS ET MANDANTS.md#mandant>).
+[^terme-module-fonction]: **MODULE FONCTION.** Procédure globale appelée avec `CALL FUNCTION` et définie dans un groupe de fonctions. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/06 ├── PROGRAMMES CLASSES ET OBJETS TECHNIQUES.md#module-fonction>).
+[^terme-customizing]: **CUSTOMIZING.** Paramétrage permettant d’adapter le comportement standard SAP à l’organisation. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/09 ├── NOTIONS FONCTIONNELLES ET ORGANISATIONNELLES.md#customizing>).
+[^terme-sap-luw]: **SAP LUW.** Unité logique métier SAP pouvant regrouper plusieurs étapes de dialogue et différer les mises à jour jusqu’au commit. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/08 ├── EXECUTION EXPLOITATION ET ADMINISTRATION.md#sap-luw>).
+
+[^outil-sm13]: **SM13.** Transaction de surveillance et de reprise des enregistrements de mise à jour SAP. Voir [le chapitre associé](<19 ├── ANALYSER ET REPRENDRE LES UPDATES AVEC SM13.md>).
+[^outil-st22]: **ST22.** Transaction d’analyse des terminaisons anormales et dumps ABAP. Voir [le chapitre associé](<../🧩 11 ├── DEBUG ET ANALYSE/13 ├── ANALYSER LES DUMPS AVEC ST22.md>).
+[^outil-sm12]: **SM12.** Transaction de surveillance et d’administration des entrées de verrouillage SAP. Voir [le chapitre associé](<12 ├── ANALYSER LES VERROUS AVEC SM12.md>).
+[^outil-sm21]: **SM21.** Transaction de consultation du journal système SAP. Voir [le chapitre associé](<../🧩 18 ├── TRAITEMENTS EN ARRIERE PLAN/22 ├── ANALYSER LES ECHECS ET LES RETARDS.md>).
+[^outil-slg1]: **SLG1.** Transaction de recherche et d’affichage des journaux applicatifs persistés. Voir [le chapitre associé](<../🧩 19 ├── JOURNAUX APPLICATIFS/05 ├── ANALYSER LES JOURNAUX AVEC SLG1.md>).
+[^outil-sm14]: **SM14.** Transaction d’administration du système de mise à jour SAP. Voir [le chapitre associé](<19 ├── ANALYSER ET REPRENDRE LES UPDATES AVEC SM13.md>).

@@ -16,7 +16,7 @@ flowchart LR
     D --> E["CLOSE DATASET"]
 ```
 
-`OPEN DATASET` ouvre un fichier sur le serveur d’application. Le mode choisi conditionne les opérations suivantes.
+`OPEN DATASET` ouvre un fichier sur le serveur d’application[^terme-fichier-serveur-application]. Le mode choisi conditionne les opérations suivantes.
 
 | Accès           | Usage                                   |
 | --------------- | --------------------------------------- |
@@ -58,17 +58,17 @@ La liste exacte des exceptions dépend de l’instruction et du mode. Elle doit 
 
 ## 6.D FERMETURE
 
-Fermer explicitement chaque fichier dès que son utilisation est terminée. Une structure locale de traitement ou une méthode dédiée limite les chemins de sortie qui oublient `CLOSE DATASET`.
+Fermer explicitement chaque fichier dès que son utilisation est terminée. Une structure locale de traitement ou une méthode[^terme-methode] dédiée limite les chemins de sortie qui oublient `CLOSE DATASET`.
 
 ## 6.E PROCESS
 
 ### 6.E.1 Étape 1 — Résoudre et valider le nom de fichier
 
-Obtenir un chemin physique absolu à partir d’un nom logique configuré dans `FILE`. Ne pas construire le chemin par concaténation d’une entrée utilisateur.
+Obtenir un chemin physique absolu à partir d’un nom logique configuré dans `FILE`[^outil-file]. Ne pas construire le chemin par concaténation d’une entrée utilisateur.
 
 ### 6.E.2 Étape 2 — Choisir un mode d’ouverture explicite
 
-Déterminer si le traitement lit, crée, remplace ou ajoute des données. Préciser le mode texte ou binaire et, en mode texte, l’encodage.
+Déterminer si le traitement lit, crée, remplace ou ajoute des données. Préciser le mode texte ou binaire et, en mode texte, l’encodage[^terme-encodage].
 
 ### 6.E.3 Étape 3 — Exécuter `OPEN DATASET`
 
@@ -97,13 +97,13 @@ Tester l’ouverture réussie, le fichier absent, le refus d’autorisation, l�
 
 - Copier un exemple sans adapter les types, noms d’objets et données disponibles dans le système.
 - Tester uniquement le cas nominal et ignorer les valeurs initiales, absentes ou invalides.
-- Mélanger fichiers frontend et serveur dans un même scénario.
-- Parser un CSV par simple séparation alors que les champs peuvent être échappés.
+- Mélanger fichiers frontend[^terme-frontend] et serveur dans un même scénario.
+- Parser un CSV[^terme-csv] par simple séparation alors que les champs peuvent être échappés.
 
 ## 6.H SNIPPET À RÉUTILISER
 
 > [!NOTE]
-> Adapter les noms `Z*`, les types DDIC, les données et les autorisations au système cible. Effectuer un contrôle syntaxique avant activation.
+> Adapter les noms `Z*`, les types DDIC[^terme-acro-ddic], les données et les autorisations au système cible. Effectuer un contrôle syntaxique avant activation.
 
 ```abap
 DATA lv_file TYPE string VALUE '/interface/in/products.csv'.
@@ -150,3 +150,12 @@ ENDTRY.
 ---
 
 [Chapitre suivant — FICHIERS TEXTE ET MODES D’ACCÈS](<./07 ├── FICHIERS TEXTE ET MODES D ACCES.md>)
+
+[^terme-fichier-serveur-application]: **SERVEUR D’APPLICATION.** Emplacement du backend où un programme ABAP peut lire ou écrire avec `OPEN DATASET`. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/07 ├── INTERFACES ET INTEGRATION.md#fichier-serveur-application>).
+[^terme-methode]: **MÉTHODE.** Comportement déclaré dans une classe ou une interface et appelé avec une liste de paramètres définie. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#methode>).
+[^terme-encodage]: **ENCODAGE.** Règle transformant les caractères en octets et inversement. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/07 ├── INTERFACES ET INTEGRATION.md#encodage>).
+[^terme-frontend]: **FRONTEND.** Poste ou couche cliente utilisée par l’utilisateur, par exemple SAP GUI for Windows. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/01 ├── SYSTEMES ENVIRONNEMENTS ET MANDANTS.md#frontend>).
+[^terme-csv]: **CSV.** Format texte tabulaire utilisant un séparateur de champs et des règles d’échappement. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/07 ├── INTERFACES ET INTEGRATION.md#csv>).
+[^terme-acro-ddic]: **DDIC.** Data Dictionary, abréviation courante de l’ABAP Dictionary. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/10 └── ACRONYMES SAP.md#acro-ddic>).
+
+[^outil-file]: **FILE.** Transaction de maintenance des noms et chemins de fichiers logiques. Voir [le chapitre associé](<04 ├── NOMS ET CHEMINS LOGIQUES AVEC FILE.md>).

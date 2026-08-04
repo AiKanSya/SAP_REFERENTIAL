@@ -2,14 +2,14 @@
 
 ## 2.A RÉSULTAT ATTENDU
 
-Déterminer si l’échec provient de la génération ABAP, de la requête spool, de la requête de sortie, du périphérique ou du système d’impression externe.
+Déterminer si l’échec provient de la génération ABAP[^terme-abap], de la requête spool[^terme-spool], de la requête de sortie, du périphérique ou du système d’impression externe.
 
 ## 2.B PRÉREQUIS
 
 - Numéro de requête spool ou utilisateur, date et heure de création.
 - Nom du programme ou du formulaire producteur.
 - Périphérique de sortie attendu.
-- Autorisations d’affichage dans `SP01`.
+- Autorisations d’affichage dans `SP01`[^outil-sp01].
 
 ## 2.C PROCESS
 
@@ -19,7 +19,7 @@ Limiter la sélection à l’utilisateur, au programme, au titre et à l’inter
 
 ### 2.C.2 ÉTAPE 2 — VÉRIFIER LE CONTENU GÉNÉRÉ
 
-Afficher le contenu dans SAP. S’il est absent, incomplet ou incorrect, revenir au programme, au Smart Form ou au formulaire Adobe avant d’analyser l’infrastructure d’impression.
+Afficher le contenu dans SAP[^terme-acro-sap]. S’il est absent, incomplet ou incorrect, revenir au programme, au Smart Form ou au formulaire Adobe avant d’analyser l’infrastructure d’impression.
 
 ### 2.C.3 ÉTAPE 3 — EXAMINER LES REQUÊTES DE SORTIE
 
@@ -27,7 +27,7 @@ Si le contenu est correct, ouvrir les requêtes de sortie associées. Relever le
 
 ### 2.C.4 ÉTAPE 4 — CONTRÔLER LA CONFIGURATION SAP
 
-Avec l’équipe Basis, vérifier le périphérique, le serveur spool, le format de page et la méthode d’accès. Comparer ces valeurs à une sortie réussie utilisant la même chaîne d’impression.
+Avec l’équipe Basis, vérifier le périphérique, le serveur spool, le format de page et la méthode[^terme-methode] d’accès. Comparer ces valeurs à une sortie réussie utilisant la même chaîne d’impression.
 
 ### 2.C.5 ÉTAPE 5 — SUIVRE LA SORTIE HORS DE SAP
 
@@ -55,7 +55,7 @@ Relancer une seule sortie contrôlée, confirmer le nouveau statut, l’absence 
 ## 2.E VALEURS À COMMUNIQUER À BASIS
 
 - numéro de spool et numéro de requête de sortie ;
-- date, heure, mandant et utilisateur ;
+- date, heure, mandant[^terme-mandant] et utilisateur ;
 - périphérique SAP et serveur spool ;
 - statut et texte complet du journal ;
 - résultat de l’affichage du contenu dans SAP ;
@@ -73,3 +73,11 @@ Relancer une seule sortie contrôlée, confirmer le nouveau statut, l’absence 
 ## 2.G COMPATIBILITÉ S/4HANA
 
 Statut : compatible pour les sorties classiques. La chaîne exacte dépend du formulaire, du périphérique et de l’architecture d’impression du système.
+
+[^terme-abap]: **ABAP.** Langage de programmation de la plateforme ABAP, conçu pour développer des applications métier et techniques SAP. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#abap>).
+[^terme-spool]: **SPOOL.** Infrastructure stockant et acheminant les sorties imprimables produites par les traitements SAP. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/06 ├── PROGRAMMES CLASSES ET OBJETS TECHNIQUES.md#spool>).
+[^terme-acro-sap]: **SAP.** Nom de l’éditeur et de son écosystème logiciel ; l’acronyme historique provient de l’allemand. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/10 └── ACRONYMES SAP.md#acro-sap>).
+[^terme-methode]: **MÉTHODE.** Comportement déclaré dans une classe ou une interface et appelé avec une liste de paramètres définie. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#methode>).
+[^terme-mandant]: **MANDANT.** Subdivision logique d’un système SAP. Il est identifié par un numéro à trois chiffres et isole une partie des données, du paramétrage et des utilisateurs. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/01 ├── SYSTEMES ENVIRONNEMENTS ET MANDANTS.md#mandant>).
+
+[^outil-sp01]: **SP01.** Transaction de recherche, affichage et diagnostic des demandes spool. Voir [le chapitre associé](<02 └── DIAGNOSTIQUER UNE SORTIE SPOOL.md>).

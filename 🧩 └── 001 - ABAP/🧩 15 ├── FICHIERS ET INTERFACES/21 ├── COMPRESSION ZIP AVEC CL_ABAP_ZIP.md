@@ -22,7 +22,7 @@ lo_zip->add(
 lv_archive = lo_zip->save( ).
 ```
 
-Le contenu ajouté doit être binaire (`xstring`). Un texte doit donc être converti dans l’encodage prévu avant compression.
+Le contenu ajouté doit être binaire (`xstring`). Un texte doit donc être converti dans l’encodage[^terme-encodage] prévu avant compression.
 
 ## 21.C LECTURE
 
@@ -34,7 +34,7 @@ lo_zip->load( zip = lv_archive ).
 DATA(lv_file_content) = lo_zip->get( name = 'products.csv' ).
 ```
 
-Les signatures doivent être vérifiées dans `SE24` selon la version.
+Les signatures doivent être vérifiées dans `SE24`[^terme-class-builder-se24] selon la version.
 
 ## 21.D TRANSPORT
 
@@ -42,7 +42,7 @@ Les signatures doivent être vérifiées dans `SE24` selon la version.
 
 - écrire le `xstring` sur le serveur en mode binaire ;
 - ou le télécharger avec `GUI_DOWNLOAD` en mode binaire ;
-- ou le transmettre à une API adaptée.
+- ou le transmettre à une API[^terme-api] adaptée.
 
 ## 21.E SÉCURITÉ
 
@@ -65,7 +65,7 @@ Instancier `CL_ABAP_ZIP`. Ajouter chaque entrée avec un nom relatif explicite e
 
 ### 21.F.3 ÉTAPE 3 — PRODUIRE LE CONTENU ZIP
 
-Appeler la méthode de sauvegarde de l’objet ZIP afin d’obtenir l’archive complète sous forme de `XSTRING`. Vérifier que le résultat n’est pas initial et relever sa taille. Une archive n’est publiable qu’après l’ajout réussi de toutes les entrées attendues.
+Appeler la méthode[^terme-methode] de sauvegarde de l’objet ZIP afin d’obtenir l’archive complète sous forme de `XSTRING`. Vérifier que le résultat n’est pas initial et relever sa taille. Une archive n’est publiable qu’après l’ajout réussi de toutes les entrées attendues.
 
 ### 21.F.4 ÉTAPE 4 — PERSISTER OU TRANSMETTRE L’ARCHIVE
 
@@ -90,13 +90,13 @@ Tester une archive vide, une entrée vide, deux noms identiques, un volume repr�
 
 - Copier un exemple sans adapter les types, noms d’objets et données disponibles dans le système.
 - Tester uniquement le cas nominal et ignorer les valeurs initiales, absentes ou invalides.
-- Mélanger fichiers frontend et serveur dans un même scénario.
-- Parser un CSV par simple séparation alors que les champs peuvent être échappés.
+- Mélanger fichiers frontend[^terme-frontend] et serveur dans un même scénario.
+- Parser un CSV[^terme-csv] par simple séparation alors que les champs peuvent être échappés.
 
 ## 21.I SNIPPET À RÉUTILISER
 
 > [!NOTE]
-> Adapter les noms `Z*`, les types DDIC, les données et les autorisations au système cible. Effectuer un contrôle syntaxique avant activation.
+> Adapter les noms `Z*`, les types DDIC[^terme-acro-ddic], les données et les autorisations au système cible. Effectuer un contrôle syntaxique avant activation.
 
 ```abap
 " Construire les dépendances avant d’exécuter le traitement.
@@ -124,3 +124,11 @@ DATA(lv_file_content) = lo_zip->get( name = 'products.csv' ).
 ---
 
 [Chapitre suivant — CONCEVOIR UNE INTERFACE D’IMPORT](<./22 ├── CONCEVOIR UNE INTERFACE D IMPORT.md>)
+
+[^terme-encodage]: **ENCODAGE.** Règle transformant les caractères en octets et inversement. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/07 ├── INTERFACES ET INTEGRATION.md#encodage>).
+[^terme-class-builder-se24]: **CLASS BUILDER (SE24).** Outil SAP GUI utilisé pour créer, afficher, modifier, tester et documenter les classes et interfaces globales ABAP. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/06 ├── PROGRAMMES CLASSES ET OBJETS TECHNIQUES.md#class-builder-se24>).
+[^terme-api]: **API.** Application Programming Interface, contrat exposant des opérations ou données utilisables par d’autres composants. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/10 └── ACRONYMES SAP.md#api>).
+[^terme-methode]: **MÉTHODE.** Comportement déclaré dans une classe ou une interface et appelé avec une liste de paramètres définie. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#methode>).
+[^terme-frontend]: **FRONTEND.** Poste ou couche cliente utilisée par l’utilisateur, par exemple SAP GUI for Windows. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/01 ├── SYSTEMES ENVIRONNEMENTS ET MANDANTS.md#frontend>).
+[^terme-csv]: **CSV.** Format texte tabulaire utilisant un séparateur de champs et des règles d’échappement. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/07 ├── INTERFACES ET INTEGRATION.md#csv>).
+[^terme-acro-ddic]: **DDIC.** Data Dictionary, abréviation courante de l’ABAP Dictionary. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/10 └── ACRONYMES SAP.md#acro-ddic>).

@@ -6,7 +6,7 @@ Mesurer quelles parties du code ont réellement été exécutées pendant une ca
 
 ## 22.B Transaction SCOV
 
-`SCOV` permet d’activer la collecte, de définir des groupes et d’afficher la couverture selon les fonctions disponibles sur la release.
+`SCOV`[^outil-scov] permet d’activer la collecte, de définir des groupes et d’afficher la couverture selon les fonctions disponibles sur la release.
 
 ## 22.C Interprétation
 
@@ -48,7 +48,7 @@ Une branche métier critique non couverte est prioritaire. Une ligne technique s
 
 ### 22.H.1 ÉTAPE 1 — DÉFINIR LE PÉRIMÈTRE ET LE SCÉNARIO
 
-Lister classes, programmes ou package à mesurer et les tests censés les couvrir. Définir les cas nominal, limites et erreur. La couverture mesure l’exécution du code, pas la pertinence des assertions.
+Lister classes, programmes ou package[^terme-package] à mesurer et les tests censés les couvrir. Définir les cas nominal, limites et erreur. La couverture mesure l’exécution du code, pas la pertinence des assertions.
 
 ### 22.H.2 ÉTAPE 2 — CRÉER UNE MESURE DANS `SCOV`
 
@@ -56,11 +56,11 @@ Saisir `/nSCOV`, créer ou sélectionner une mesure et renseigner le périmètre
 
 ### 22.H.3 ÉTAPE 3 — DÉMARRER LA COLLECTE
 
-Activer la mesure juste avant les tests. Exécuter ABAP Unit puis les scénarios d’intégration prévus sous les utilisateurs inclus. Éviter des activités non liées qui augmenteraient artificiellement la couverture.
+Activer la mesure juste avant les tests. Exécuter ABAP[^terme-abap] Unit puis les scénarios d’intégration prévus sous les utilisateurs inclus. Éviter des activités non liées qui augmenteraient artificiellement la couverture.
 
 ### 22.H.4 ÉTAPE 4 — ARRÊTER ET OUVRIR LE RÉSULTAT
 
-Désactiver la collecte dès la fin. Afficher la couverture par objet, méthode et branche lorsque disponible. Identifier le code non exécuté important et les chemins seulement couverts par un test sans assertion utile.
+Désactiver la collecte dès la fin. Afficher la couverture par objet, méthode[^terme-methode] et branche lorsque disponible. Identifier le code non exécuté important et les chemins seulement couverts par un test sans assertion utile.
 
 ### 22.H.5 ÉTAPE 5 — AJOUTER DES TESTS CIBLÉS
 
@@ -102,3 +102,9 @@ Ordre de transport  :
 - [ATC](<../🧩 00 ├── LEXIQUE SAP ET ABAP/10 └── ACRONYMES SAP.md#acro-atc>)
 - [ABAP](<../🧩 00 ├── LEXIQUE SAP ET ABAP/10 └── ACRONYMES SAP.md#acro-abap>)
 - [Trace](<../🧩 00 ├── LEXIQUE SAP ET ABAP/08 ├── EXECUTION EXPLOITATION ET ADMINISTRATION.md#trace>)
+
+[^terme-package]: **PACKAGE.** Conteneur logique qui regroupe les objets de développement et détermine notamment leur transportabilité. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/03 ├── REPOSITORY PACKAGES ET TRANSPORTS.md#package>).
+[^terme-abap]: **ABAP.** Langage de programmation de la plateforme ABAP, conçu pour développer des applications métier et techniques SAP. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#abap>).
+[^terme-methode]: **MÉTHODE.** Comportement déclaré dans une classe ou une interface et appelé avec une liste de paramètres définie. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#methode>).
+
+[^outil-scov]: **SCOV.** Coverage Analyzer utilisé pour mesurer la couverture d’exécution du code ABAP. Voir [le chapitre associé](<22 ├── MESURER LA COUVERTURE AVEC SCOV.md>).

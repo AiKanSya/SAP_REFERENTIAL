@@ -2,7 +2,7 @@
 
 ## 10.A RÉSULTAT ATTENDU
 
-- Déclencher explicitement une exception
+- Déclencher explicitement une exception[^terme-exception]
 - Utiliser `RAISE EXCEPTION TYPE`
 - Transmettre des valeurs au constructeur
 - Chaîner une cause avec `PREVIOUS`
@@ -17,7 +17,7 @@ IF iv_matnr IS INITIAL.
 ENDIF.
 ```
 
-L’instruction crée un objet de la classe indiquée et interrompt le bloc de traitement courant.
+L’instruction crée un objet de la classe[^terme-classe] indiquée et interrompt le bloc de traitement courant.
 
 ## 10.C PARAMÈTRES DU CONSTRUCTEUR
 
@@ -58,7 +58,7 @@ TRY.
 ENDTRY.
 ```
 
-L’attribut `PREVIOUS` conserve la cause technique initiale. Le niveau supérieur peut présenter une erreur métier tout en préservant le diagnostic complet.
+L’attribut[^terme-attribut] `PREVIOUS` conserve la cause technique initiale. Le niveau supérieur peut présenter une erreur métier tout en préservant le diagnostic complet.
 
 ```mermaid
 flowchart LR
@@ -102,7 +102,7 @@ Le nom de la classe doit exprimer la nature de l’erreur. L’appelant peut alo
 ## 10.J SNIPPET À RÉUTILISER
 
 > [!NOTE]
-> Adapter les noms `Z*`, les types DDIC, les données et les autorisations au système cible. Effectuer un contrôle syntaxique avant activation.
+> Adapter les noms `Z*`, les types DDIC[^terme-acro-ddic], les données et les autorisations au système cible. Effectuer un contrôle syntaxique avant activation.
 
 ```abap
 " Propager ou traiter l’erreur au niveau qui sait prendre une décision.
@@ -130,3 +130,8 @@ ENDTRY.
 ---
 
 [Chapitre suivant — PROPAGER UNE EXCEPTION AVEC RAISING](<./11 ├── PROPAGER UNE EXCEPTION AVEC RAISING.md>)
+
+[^terme-exception]: **EXCEPTION.** Objet ou signal représentant une situation anormale qu’un appelant peut traiter. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#exception>).
+[^terme-classe]: **CLASSE.** Modèle orienté objet définissant état et comportements. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#classe>).
+[^terme-attribut]: **ATTRIBUT.** Composant de données déclaré dans une classe et appartenant soit à chaque instance, soit à la classe elle-même. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#attribut>).
+[^terme-acro-ddic]: **DDIC.** Data Dictionary, abréviation courante de l’ABAP Dictionary. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/10 └── ACRONYMES SAP.md#acro-ddic>).

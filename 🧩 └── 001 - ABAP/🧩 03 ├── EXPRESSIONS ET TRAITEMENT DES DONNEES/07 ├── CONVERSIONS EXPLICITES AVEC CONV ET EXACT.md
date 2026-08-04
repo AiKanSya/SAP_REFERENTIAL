@@ -59,7 +59,7 @@ La conversion du premier opérande impose une arithmétique décimale adaptée a
 
 ## 7.E OPÉRATEUR EXACT
 
-`EXACT` effectue une conversion stricte. Une exception est levée lorsque la conversion ne peut pas être réalisée sans perte interdite par ses règles.
+`EXACT` effectue une conversion stricte. Une exception[^terme-exception] est levée lorsque la conversion ne peut pas être réalisée sans perte interdite par ses règles.
 
 ```abap
 DATA lv_source TYPE decfloat34 VALUE '12.50'.
@@ -109,7 +109,7 @@ Une saisie externe doit être validée avant utilisation dans un calcul métier.
 
 ## 7.H CONVERSION ET FORMATAGE
 
-`CONV` modifie un type de données. Il ne remplace pas une règle d’affichage dépendante du format utilisateur, de la devise ou de l’unité.
+`CONV` modifie un type de données[^terme-type-donnees]. Il ne remplace pas une règle d’affichage dépendante du format utilisateur, de la devise ou de l’unité.
 
 Exemple de conversion technique :
 
@@ -144,12 +144,12 @@ Le premier produit une valeur `string`. Le second applique une option de formata
 - Copier un exemple sans adapter les types, noms d’objets et données disponibles dans le système.
 - Tester uniquement le cas nominal et ignorer les valeurs initiales, absentes ou invalides.
 - S’appuyer sur une conversion implicite pouvant tronquer ou arrondir.
-- Ignorer l’encodage et les formats externes.
+- Ignorer l’encodage[^terme-encodage] et les formats externes.
 
 ## 7.L SNIPPET À RÉUTILISER
 
 > [!NOTE]
-> Adapter les noms `Z*`, les types DDIC, les données et les autorisations au système cible. Effectuer un contrôle syntaxique avant activation.
+> Adapter les noms `Z*`, les types DDIC[^terme-acro-ddic], les données et les autorisations au système cible. Effectuer un contrôle syntaxique avant activation.
 
 ```abap
 PARAMETERS p_value TYPE c LENGTH 20.
@@ -179,3 +179,8 @@ START-OF-SELECTION.
 ---
 
 [Chapitre suivant — TRAITEMENT DES CHAÎNES DE CARACTÈRES](<./08 ├── TRAITEMENT DES CHAINES DE CARACTERES.md>)
+
+[^terme-exception]: **EXCEPTION.** Objet ou signal représentant une situation anormale qu’un appelant peut traiter. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#exception>).
+[^terme-type-donnees]: **TYPE DE DONNÉES.** Définition des propriétés d’une valeur : nature, longueur, précision et opérations autorisées. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#type-donnees>).
+[^terme-encodage]: **ENCODAGE.** Règle transformant les caractères en octets et inversement. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/07 ├── INTERFACES ET INTEGRATION.md#encodage>).
+[^terme-acro-ddic]: **DDIC.** Data Dictionary, abréviation courante de l’ABAP Dictionary. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/10 └── ACRONYMES SAP.md#acro-ddic>).

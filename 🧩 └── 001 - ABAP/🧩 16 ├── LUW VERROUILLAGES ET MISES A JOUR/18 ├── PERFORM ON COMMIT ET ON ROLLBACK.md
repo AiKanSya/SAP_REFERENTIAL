@@ -2,7 +2,7 @@
 
 ## 18.A RÉSULTAT ATTENDU
 
-- Comprendre les routines enregistrées pour la fin de LUW
+- Comprendre les routines enregistrées pour la fin de LUW[^terme-acro-luw]
 - Maintenir du code procédural existant
 - Préférer des mécanismes à interface explicite pour les nouveaux développements
 
@@ -19,7 +19,7 @@ FORM prepare_update.
 ENDFORM.
 ```
 
-La routine `ON COMMIT` est exécutée lorsque `COMMIT WORK` traite les procédures enregistrées. La routine `ON ROLLBACK` est exécutée lors d’un `ROLLBACK WORK`.
+La routine `ON COMMIT` est exécutée lorsque `COMMIT WORK`[^terme-commit-work] traite les procédures enregistrées. La routine `ON ROLLBACK` est exécutée lors d’un `ROLLBACK WORK`[^terme-rollback-work].
 
 ## 18.C RESTRICTIONS
 
@@ -27,7 +27,7 @@ Dans ces routines, certaines instructions transactionnelles sont interdites, not
 
 ## 18.D POSITIONNEMENT
 
-Ce mécanisme reste important pour analyser des applications classiques. Pour un nouveau développement, préférer une orchestration explicite et des modules de mise à jour à interface claire lorsque l’update task est réellement nécessaire.
+Ce mécanisme reste important pour analyser des applications classiques. Pour un nouveau développement, préférer une orchestration explicite et des modules de mise à jour à interface claire lorsque l’update task[^terme-update-task] est réellement nécessaire.
 
 ## 18.E PROCESS
 
@@ -45,7 +45,7 @@ Vérifier que les routines ne déclenchent pas elles-mêmes un nouveau commit ou
 
 ### 18.E.4 ÉTAPE 4 — TESTER LE CHEMIN COMMIT
 
-Enregistrer les routines puis exécuter un commit dans un report Z contrôlé. Poser des points d’arrêt dans les `FORM` et vérifier leur ordre, les valeurs globales observées et les modules de mise à jour enregistrés. Contrôler ensuite les données et `SM13`.
+Enregistrer les routines puis exécuter un commit dans un report Z contrôlé. Poser des points d’arrêt dans les `FORM` et vérifier leur ordre, les valeurs globales observées et les modules de mise à jour enregistrés. Contrôler ensuite les données et `SM13`[^outil-sm13].
 
 ### 18.E.5 ÉTAPE 5 — TESTER LE CHEMIN ROLLBACK
 
@@ -72,7 +72,7 @@ Pour une correction, préserver l’ordre et les dépendances tant que des tests
 ## 18.H SNIPPET À RÉUTILISER
 
 > [!NOTE]
-> Adapter les noms `Z*`, les types DDIC, les données et les autorisations au système cible. Effectuer un contrôle syntaxique avant activation.
+> Adapter les noms `Z*`, les types DDIC[^terme-acro-ddic], les données et les autorisations au système cible. Effectuer un contrôle syntaxique avant activation.
 
 ```abap
 PERFORM prepare_update ON COMMIT.
@@ -103,3 +103,11 @@ ENDFORM.
 ---
 
 [Chapitre suivant — ANALYSER ET REPRENDRE LES UPDATES AVEC `SM13`](<./19 ├── ANALYSER ET REPRENDRE LES UPDATES AVEC SM13.md>)
+
+[^terme-acro-luw]: **LUW.** Logical Unit of Work. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/10 └── ACRONYMES SAP.md#acro-luw>).
+[^terme-commit-work]: **COMMIT WORK.** Instruction clôturant la SAP LUW courante, déclenchant notamment les mises à jour enregistrées et validant la base. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/08 ├── EXECUTION EXPLOITATION ET ADMINISTRATION.md#commit-work>).
+[^terme-rollback-work]: **ROLLBACK WORK.** Instruction annulant les modifications non validées de la LUW courante et les tâches de mise à jour enregistrées. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/08 ├── EXECUTION EXPLOITATION ET ADMINISTRATION.md#rollback-work>).
+[^terme-update-task]: **UPDATE TASK.** Mécanisme différant des mises à jour pour les exécuter lors du `COMMIT WORK` dans des processus de mise à jour. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/08 ├── EXECUTION EXPLOITATION ET ADMINISTRATION.md#update-task>).
+[^terme-acro-ddic]: **DDIC.** Data Dictionary, abréviation courante de l’ABAP Dictionary. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/10 └── ACRONYMES SAP.md#acro-ddic>).
+
+[^outil-sm13]: **SM13.** Transaction de surveillance et de reprise des enregistrements de mise à jour SAP. Voir [le chapitre associé](<19 ├── ANALYSER ET REPRENDRE LES UPDATES AVEC SM13.md>).

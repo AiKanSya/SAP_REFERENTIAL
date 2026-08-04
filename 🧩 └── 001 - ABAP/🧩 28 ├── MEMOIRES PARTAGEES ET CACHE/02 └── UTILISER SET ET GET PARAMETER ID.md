@@ -2,13 +2,13 @@
 
 ## 2.A RÉSULTAT ATTENDU
 
-Préremplir un champ compatible avec un paramètre utilisateur SAP.
+Préremplir un champ compatible avec un paramètre utilisateur SAP[^terme-acro-sap].
 
 ## 2.B PROCESS
 
 ### 2.B.1 ÉTAPE 1 — IDENTIFIER LE PARAMETER ID RÉEL
 
-Ouvrir l’élément de données du champ dans `SE11` ou utiliser l’aide technique de l’écran. Relever l’identifiant de paramètre exact ; ne pas le déduire du nom du champ.
+Ouvrir l’élément de données[^terme-element-donnees] du champ dans `SE11`[^outil-se11] ou utiliser l’aide technique de l’écran. Relever l’identifiant de paramètre exact ; ne pas le déduire du nom du champ.
 
 ### 2.B.2 ÉTAPE 2 — TYPER LA VALEUR
 
@@ -48,3 +48,8 @@ ENDIF.
 
 - Confirmer l’identifiant de paramètre dans l’élément de données ou l’aide du champ.
 - Ne pas utiliser la mémoire SAP pour transporter des données sensibles ou un état transactionnel.
+
+[^terme-acro-sap]: **SAP.** Nom de l’éditeur et de son écosystème logiciel ; l’acronyme historique provient de l’allemand. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/10 └── ACRONYMES SAP.md#acro-sap>).
+[^terme-element-donnees]: **ÉLÉMENT DE DONNÉES.** Objet DDIC qui attribue une signification métier, des libellés et une documentation à un type élémentaire ou à un domaine. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/05 ├── DONNEES DICTIONNAIRE ET BASE DE DONNEES.md#element-donnees>).
+
+[^outil-se11]: **SE11.** Transaction de l’ABAP Dictionary utilisée pour analyser et maintenir les objets DDIC. Voir [le chapitre associé](<../🧩 07 ├── DICTIONNAIRE ABAP/02 ├── NAVIGATION ET ANALYSE AVEC SE11.md>).

@@ -38,7 +38,7 @@ La valeur appropriée dépend du besoin technique et fonctionnel. Ne pas suppose
 
 ## 13.D METTRE À JOUR L’HEURE SYSTÈME
 
-Les champs `sy-datum` et `sy-uzeit` correspondent au moment où l’environnement d’exécution les a renseignés. Pour actualiser ces valeurs pendant un traitement long :
+Les champs `sy-datum` et `sy-uzeit` correspondent au moment où l’environnement[^terme-environnement] d’exécution les a renseignés. Pour actualiser ces valeurs pendant un traitement long :
 
 ```abap
 GET TIME.
@@ -78,11 +78,11 @@ lv_month = sy-datum+4(2).
 lv_day   = sy-datum+6(2).
 ```
 
-Cette extraction lit la représentation interne. Elle ne remplace pas une API de calendrier pour calculer le dernier jour d’un mois, les jours ouvrés ou les périodes fiscales.
+Cette extraction lit la représentation interne. Elle ne remplace pas une API[^terme-api] de calendrier pour calculer le dernier jour d’un mois, les jours ouvrés ou les périodes fiscales.
 
 ## 13.G CALCULS SUR LES HEURES
 
-ABAP peut interpréter une heure comme un nombre de secondes depuis minuit dans certains calculs.
+ABAP[^terme-abap] peut interpréter une heure comme un nombre de secondes depuis minuit dans certains calculs.
 
 ```abap
 DATA lv_start_time TYPE t VALUE '083000'.
@@ -99,7 +99,7 @@ Résultat : `6300` secondes.
 
 ## 13.H HORODATAGE
 
-Un horodatage représente un instant absolu. Dans l’ABAP classique, les types DDIC `TIMESTAMP` et `TIMESTAMPL` sont couramment utilisés selon la précision attendue.
+Un horodatage représente un instant absolu. Dans l’ABAP classique, les types DDIC[^terme-acro-ddic] `TIMESTAMP` et `TIMESTAMPL` sont couramment utilisés selon la précision attendue.
 
 ```abap
 DATA lv_timestamp TYPE timestamp.
@@ -154,7 +154,7 @@ Le format d’affichage ne doit pas être utilisé comme format interne d’éch
 
 ## 13.K CAS NÉCESSITANT UNE API MÉTIER
 
-Ne pas implémenter manuellement sans vérifier les API SAP disponibles :
+Ne pas implémenter manuellement sans vérifier les API SAP[^terme-acro-sap] disponibles :
 
 - dernier jour du mois ;
 - calendrier usine ;
@@ -176,7 +176,7 @@ Ne pas implémenter manuellement sans vérifier les API SAP disponibles :
 - Copier un exemple sans adapter les types, noms d’objets et données disponibles dans le système.
 - Tester uniquement le cas nominal et ignorer les valeurs initiales, absentes ou invalides.
 - S’appuyer sur une conversion implicite pouvant tronquer ou arrondir.
-- Ignorer l’encodage et les formats externes.
+- Ignorer l’encodage[^terme-encodage] et les formats externes.
 
 ## 13.N SNIPPET À RÉUTILISER
 
@@ -200,3 +200,10 @@ DATA(lv_time_text) = |{ sy-timlo TIME = USER }|.
 - [Date and Time Processing — ABAP Keyword Documentation](https://help.sap.com/doc/abapdocu_latest_index_htm/latest/en-US/ABENDATE_TIME_SOURCE_FIELDS.html)
 - [System Fields for Date and Time — ABAP Keyword Documentation](https://help.sap.com/doc/abapdocu_latest_index_htm/latest/en-US/ABENTIME_SYSTEM_FIELDS.html)
 - [CONVERT DATE, TIME STAMP — ABAP Keyword Documentation](https://help.sap.com/doc/abapdocu_latest_index_htm/latest/en-US/ABAPCONVERT_DATE_TIME-STAMP.html)
+
+[^terme-environnement]: **ENVIRONNEMENT.** Rôle fonctionnel attribué à un système dans le cycle de vie : développement, test, recette, préproduction ou production. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/01 ├── SYSTEMES ENVIRONNEMENTS ET MANDANTS.md#environnement>).
+[^terme-api]: **API.** Application Programming Interface, contrat exposant des opérations ou données utilisables par d’autres composants. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/10 └── ACRONYMES SAP.md#api>).
+[^terme-abap]: **ABAP.** Langage de programmation de la plateforme ABAP, conçu pour développer des applications métier et techniques SAP. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#abap>).
+[^terme-acro-ddic]: **DDIC.** Data Dictionary, abréviation courante de l’ABAP Dictionary. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/10 └── ACRONYMES SAP.md#acro-ddic>).
+[^terme-acro-sap]: **SAP.** Nom de l’éditeur et de son écosystème logiciel ; l’acronyme historique provient de l’allemand. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/10 └── ACRONYMES SAP.md#acro-sap>).
+[^terme-encodage]: **ENCODAGE.** Règle transformant les caractères en octets et inversement. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/07 ├── INTERFACES ET INTEGRATION.md#encodage>).

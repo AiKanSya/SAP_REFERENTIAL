@@ -27,7 +27,7 @@ flowchart LR
 | `S_PROGRAM`  | Autorisation d’exécuter des groupes de programmes protégés                         |
 | `S_RZL_ADM`  | Certaines opérations d’administration, notamment liées aux programmes externes     |
 
-Les champs et valeurs exacts doivent être analysés dans `SU21` et via la documentation de l’objet sur le système cible.
+Les champs et valeurs exacts doivent être analysés dans `SU21`[^outil-su21] et via la documentation de l’objet sur le système cible.
 
 ## 14.D COMPTE TECHNIQUE
 
@@ -35,20 +35,20 @@ Un compte batch doit :
 
 - être nominativement ou fonctionnellement identifié ;
 - disposer du minimum d’autorisations ;
-- ne pas être un super-utilisateur ;
+- ne pas être un super[^terme-super-reference]-utilisateur ;
 - avoir une gestion de mot de passe et de verrouillage adaptée à son type ;
 - être surveillé et documenté ;
 - être remplacé proprement lors d’un changement d’organisation.
 
 ## 14.E DIAGNOSTIC
 
-Un job peut être planifié avec succès puis échouer à l’exécution pour défaut d’autorisation. Examiner le journal, `SU53` lorsque le contexte le permet, et les traces `STAUTHTRACE` ou `ST01` selon la procédure de sécurité.
+Un job[^terme-job] peut être planifié avec succès puis échouer à l’exécution pour défaut d’autorisation. Examiner le journal, `SU53`[^outil-su53] lorsque le contexte le permet, et les traces `STAUTHTRACE`[^outil-stauthtrace] ou `ST01`[^outil-st01] selon la procédure de sécurité.
 
 ## 14.F PROCESS
 
 ### 14.F.1 ÉTAPE 1 — IDENTIFIER LES DEUX UTILISATEURS
 
-Dans `SM37`, ouvrir le job et relever son créateur puis l’utilisateur de chaque étape. Distinguer les droits nécessaires pour planifier ou libérer le job de ceux nécessaires au programme métier exécuté.
+Dans `SM37`[^outil-sm37], ouvrir le job et relever son créateur puis l’utilisateur de chaque étape. Distinguer les droits nécessaires pour planifier ou libérer le job de ceux nécessaires au programme métier exécuté.
 
 ### 14.F.2 ÉTAPE 2 — REPRODUIRE SOUS L’IDENTITÉ D’EXÉCUTION
 
@@ -56,7 +56,7 @@ Utiliser une exécution de test planifiée avec le même utilisateur technique e
 
 ### 14.F.3 ÉTAPE 3 — LOCALISER LE CONTRÔLE REFUSÉ
 
-Lire le journal de job et les messages applicatifs. Déclencher une trace d’autorisations ciblée selon la procédure sécurité, par exemple `STAUTHTRACE` ou `ST01`, sur l’utilisateur et l’intervalle exacts. Relever l’objet, les champs et les valeurs refusés.
+Lire le journal de job et les messages applicatifs. Déclencher une trace[^terme-trace] d’autorisations ciblée selon la procédure sécurité, par exemple `STAUTHTRACE` ou `ST01`, sur l’utilisateur et l’intervalle exacts. Relever l’objet, les champs et les valeurs refusés.
 
 ### 14.F.4 ÉTAPE 4 — CLASSER L’AUTORISATION
 
@@ -72,7 +72,7 @@ Planifier à nouveau avec le même programme, la même variante et le même util
 
 ## 14.G VÉRIFICATION
 
-- Le scénario reproduit correspond au même utilisateur, mandant, transaction et jeu de données.
+- Le scénario reproduit correspond au même utilisateur, mandant[^terme-mandant], transaction et jeu de données.
 - L’horodatage et l’identifiant de l’analyse sont conservés.
 - La cause retenue est soutenue par une ligne source, une trace ou une valeur observée.
 - Après correction, le même scénario ne reproduit plus le défaut et le résultat métier reste identique.
@@ -112,3 +112,14 @@ Ordre de transport  :
 ---
 
 [Chapitre suivant — SURVEILLER LES JOBS AVEC `SM37`](<./15 ├── SURVEILLER LES JOBS AVEC SM37.md>)
+
+[^terme-super-reference]: **SUPER.** Pseudo-référence permettant à une sous-classe d’accéder à l’implémentation héritée de sa super-classe. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#super-reference>).
+[^terme-job]: **JOB.** Traitement planifié en arrière-plan composé d’une ou plusieurs étapes. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/06 ├── PROGRAMMES CLASSES ET OBJETS TECHNIQUES.md#job>).
+[^terme-trace]: **TRACE.** Enregistrement détaillé d’événements techniques pour analyser exécution, SQL ou appels. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/08 ├── EXECUTION EXPLOITATION ET ADMINISTRATION.md#trace>).
+[^terme-mandant]: **MANDANT.** Subdivision logique d’un système SAP. Il est identifié par un numéro à trois chiffres et isole une partie des données, du paramétrage et des utilisateurs. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/01 ├── SYSTEMES ENVIRONNEMENTS ET MANDANTS.md#mandant>).
+
+[^outil-su21]: **SU21.** Transaction de création et de maintenance des objets et classes d’autorisation. Voir [le chapitre associé](<../🧩 21 ├── AUTORISATIONS ET SECURITE ABAP/03 ├── CREER UN OBJET D AUTORISATION.md>).
+[^outil-su53]: **SU53.** Transaction affichant les derniers contrôles d’autorisation en échec pour l’utilisateur courant. Voir [le chapitre associé](<../🧩 21 ├── AUTORISATIONS ET SECURITE ABAP/02 ├── DIAGNOSTIQUER UN REFUS AVEC SU53 ET STAUTHTRACE.md>).
+[^outil-stauthtrace]: **STAUTHTRACE.** Trace d’autorisations utilisée pour enregistrer et analyser les contrôles exécutés pendant un scénario. Voir [le chapitre associé](<../🧩 21 ├── AUTORISATIONS ET SECURITE ABAP/02 ├── DIAGNOSTIQUER UN REFUS AVEC SU53 ET STAUTHTRACE.md>).
+[^outil-st01]: **ST01.** Trace système classique pouvant enregistrer notamment les contrôles d’autorisation et certains accès techniques. Voir [le chapitre associé](<../🧩 21 ├── AUTORISATIONS ET SECURITE ABAP/02 ├── DIAGNOSTIQUER UN REFUS AVEC SU53 ET STAUTHTRACE.md>).
+[^outil-sm37]: **SM37.** Transaction de recherche, surveillance et administration des jobs d’arrière-plan. Voir [le chapitre associé](<15 ├── SURVEILLER LES JOBS AVEC SM37.md>).

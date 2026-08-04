@@ -2,7 +2,7 @@
 
 ## 16.A RÉSULTAT ATTENDU
 
-- Déclarer un événement dans une classe globale.
+- Déclarer un événement dans une classe globale[^terme-classe-globale].
 - Lever l’événement.
 - Enregistrer un gestionnaire avec `SET HANDLER`.
 - Maîtriser la durée de vie des émetteurs et récepteurs.
@@ -27,7 +27,7 @@ Utiliser `RAISE EVENT` après la mise à jour réussie de la progression. Ne lev
 
 ### 16.C.4 Étape 4 — Créer le gestionnaire
 
-Dans la classe réceptrice, déclarer une méthode `FOR EVENT progress_changed OF ...` avec les paramètres générés, puis implémenter un traitement sans modifier l’émetteur de façon récursive.
+Dans la classe réceptrice, déclarer une méthode[^terme-methode] `FOR EVENT progress_changed OF ...` avec les paramètres générés, puis implémenter un traitement sans modifier l’émetteur de façon récursive.
 
 ### 16.C.5 Étape 5 — Enregistrer et tester
 
@@ -75,7 +75,7 @@ lo_service->execute( ).
 
 - Le récepteur doit exister au moment où l’événement est levé.
 - Le gestionnaire ne doit pas provoquer de dépendance circulaire incontrôlée.
-- Une exception dans un gestionnaire suit les règles spécifiques des événements et doit être conçue avec prudence.
+- Une exception[^terme-exception] dans un gestionnaire suit les règles spécifiques des événements et doit être conçue avec prudence.
 - Les événements ne remplacent pas un résultat de méthode requis immédiatement.
 
 ## 16.G CONTRÔLE
@@ -92,9 +92,9 @@ lo_service->execute( ).
 
 ## 16.I COMPATIBILITÉ S/4HANA
 
-- Statut : compatible avec le développement ABAP classique sur SAP S/4HANA.
-- Vérifier la syntaxe exacte avec l’aide `F1` du système cible lorsque plusieurs versions d’ABAP Platform sont prises en charge.
-- Les objets globaux doivent être créés dans le package et l’ordre de transport du projet.
+- Statut : compatible avec le développement ABAP[^terme-abap] classique sur SAP[^terme-acro-sap] S/4HANA.
+- Vérifier la syntaxe exacte avec l’aide `F1`[^terme-aide-f1] du système cible lorsque plusieurs versions d’ABAP Platform sont prises en charge.
+- Les objets globaux doivent être créés dans le package[^terme-package] et l’ordre de transport[^terme-ordre-transport] du projet.
 
 ## 16.J RÉFÉRENCES OFFICIELLES SAP
 
@@ -104,3 +104,12 @@ lo_service->execute( ).
 ---
 
 [Chapitre suivant — FACTORY METHOD ET SIMPLE FACTORY](<./17 ├── FACTORY METHOD ET SIMPLE FACTORY.md>)
+
+[^terme-classe-globale]: **CLASSE GLOBALE.** Classe Repository réutilisable dans le système ABAP. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/06 ├── PROGRAMMES CLASSES ET OBJETS TECHNIQUES.md#classe-globale>).
+[^terme-methode]: **MÉTHODE.** Comportement déclaré dans une classe ou une interface et appelé avec une liste de paramètres définie. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#methode>).
+[^terme-exception]: **EXCEPTION.** Objet ou signal représentant une situation anormale qu’un appelant peut traiter. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#exception>).
+[^terme-abap]: **ABAP.** Langage de programmation de la plateforme ABAP, conçu pour développer des applications métier et techniques SAP. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#abap>).
+[^terme-acro-sap]: **SAP.** Nom de l’éditeur et de son écosystème logiciel ; l’acronyme historique provient de l’allemand. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/10 └── ACRONYMES SAP.md#acro-sap>).
+[^terme-aide-f1]: **AIDE F1.** Aide contextuelle expliquant un champ, une fonction ou un mot-clé. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/02 ├── SAP GUI NAVIGATION ET TRANSACTIONS.md#aide-f1>).
+[^terme-package]: **PACKAGE.** Conteneur logique qui regroupe les objets de développement et détermine notamment leur transportabilité. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/03 ├── REPOSITORY PACKAGES ET TRANSPORTS.md#package>).
+[^terme-ordre-transport]: **ORDRE DE TRANSPORT.** Conteneur qui regroupe des modifications à exporter puis importer dans d’autres systèmes. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/03 ├── REPOSITORY PACKAGES ET TRANSPORTS.md#ordre-transport>).

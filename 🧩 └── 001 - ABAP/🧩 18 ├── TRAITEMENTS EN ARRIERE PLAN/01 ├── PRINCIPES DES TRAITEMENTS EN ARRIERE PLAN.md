@@ -2,13 +2,13 @@
 
 ## 1.A RÉSULTAT ATTENDU
 
-- Comprendre le rôle du traitement de fond dans un système SAP
-- Distinguer une exécution en dialogue d’un job
+- Comprendre le rôle du traitement de fond dans un système SAP[^terme-systeme-sap]
+- Distinguer une exécution en dialogue d’un job[^terme-job]
 - Identifier les contraintes techniques d’un programme batch
 
 ## 1.B DÉFINITION
 
-Un traitement en arrière-plan exécute une ou plusieurs étapes sans session utilisateur interactive. Le système planifie le job, attend que sa condition de démarrage soit satisfaite, puis affecte ses étapes à un processus de travail de fond disponible.
+Un traitement en arrière-plan exécute une ou plusieurs étapes sans session utilisateur interactive. Le système planifie le job, attend que sa condition de démarrage soit satisfaite, puis affecte ses étapes à un processus de travail[^terme-processus-travail] de fond disponible.
 
 ```mermaid
 flowchart LR
@@ -34,13 +34,13 @@ flowchart LR
 | ----------------------- | --------------------------- | ------------------------------ |
 | Interaction utilisateur | Possible                    | Impossible pendant l’exécution |
 | Démarrage               | Immédiat depuis une session | Selon une condition planifiée  |
-| Sortie classique        | Écran SAP GUI               | Journal et spool               |
+| Sortie classique        | Écran SAP GUI[^terme-sap-gui]               | Journal et spool[^terme-spool]               |
 | Durée attendue          | Courte                      | Peut être longue               |
-| Ressource               | Processus de dialogue       | Processus de fond              |
+| Ressource               | Processus de dialogue[^terme-processus-dialogue]       | Processus de fond              |
 
 ## 1.E LIMITE DE PÉRIMÈTRE
 
-Ce dossier traite des jobs classiques de l’AS ABAP accessibles principalement avec `SM36` et `SM37`. Les applications Fiori **Application Jobs**, les modèles RAP et les développements ADT sont hors périmètre.
+Ce dossier traite des jobs classiques de l’AS ABAP[^terme-abap] accessibles principalement avec `SM36`[^outil-sm36] et `SM37`[^outil-sm37]. Les applications Fiori **Application Jobs**, les modèles RAP[^terme-acro-rap] et les développements ADT[^terme-acro-adt] sont hors périmètre.
 
 ## 1.F PROCESS
 
@@ -62,7 +62,7 @@ Créer un écran de sélection contrôlant dates, plages, mode test et taille de
 
 ### 1.F.5 ÉTAPE 5 — PLANIFIER AVEC LE BON UTILISATEUR
 
-Créer le job avec un utilisateur technique possédant uniquement les autorisations requises. Définir l’étape, la condition de démarrage et la classe conformément aux règles Basis. Vérifier dans `SM37` le statut libéré et les paramètres effectifs.
+Créer le job avec un utilisateur technique possédant uniquement les autorisations requises. Définir l’étape, la condition de démarrage et la classe[^terme-classe] conformément aux règles Basis. Vérifier dans `SM37` le statut libéré et les paramètres effectifs.
 
 ### 1.F.6 ÉTAPE 6 — TESTER ÉCHEC ET REPRISE
 
@@ -110,3 +110,17 @@ Ordre de transport  :
 ---
 
 [Chapitre suivant — ARCHITECTURE ET PROCESSUS DE TRAVAIL BATCH](<./02 ├── ARCHITECTURE ET PROCESSUS DE TRAVAIL BATCH.md>)
+
+[^terme-systeme-sap]: **SYSTÈME SAP.** Ensemble technique cohérent comprenant au minimum une base de données et un ou plusieurs serveurs d’applications. Il est généralement identifié par un SID de trois caractères. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/01 ├── SYSTEMES ENVIRONNEMENTS ET MANDANTS.md#systeme-sap>).
+[^terme-job]: **JOB.** Traitement planifié en arrière-plan composé d’une ou plusieurs étapes. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/06 ├── PROGRAMMES CLASSES ET OBJETS TECHNIQUES.md#job>).
+[^terme-processus-travail]: **PROCESSUS DE TRAVAIL.** Processus serveur exécutant une catégorie de traitement ABAP. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/08 ├── EXECUTION EXPLOITATION ET ADMINISTRATION.md#processus-travail>).
+[^terme-sap-gui]: **SAP GUI.** Client graphique permettant d’utiliser les transactions et écrans d’un système SAP. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/02 ├── SAP GUI NAVIGATION ET TRANSACTIONS.md#sap-gui>).
+[^terme-spool]: **SPOOL.** Infrastructure stockant et acheminant les sorties imprimables produites par les traitements SAP. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/06 ├── PROGRAMMES CLASSES ET OBJETS TECHNIQUES.md#spool>).
+[^terme-processus-dialogue]: **PROCESSUS DE DIALOGUE.** Processus de travail traitant les requêtes interactives SAP GUI. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/08 ├── EXECUTION EXPLOITATION ET ADMINISTRATION.md#processus-dialogue>).
+[^terme-abap]: **ABAP.** Langage de programmation de la plateforme ABAP, conçu pour développer des applications métier et techniques SAP. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#abap>).
+[^terme-acro-rap]: **RAP.** ABAP RESTful Application Programming Model. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/10 └── ACRONYMES SAP.md#acro-rap>).
+[^terme-acro-adt]: **ADT.** ABAP Development Tools, environnement de développement ABAP intégré à Eclipse. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/10 └── ACRONYMES SAP.md#acro-adt>).
+[^terme-classe]: **CLASSE.** Modèle orienté objet définissant état et comportements. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#classe>).
+
+[^outil-sm36]: **SM36.** Transaction de définition et de planification des jobs d’arrière-plan. Voir [le chapitre associé](<06 ├── PLANIFIER UN JOB AVEC SM36.md>).
+[^outil-sm37]: **SM37.** Transaction de recherche, surveillance et administration des jobs d’arrière-plan. Voir [le chapitre associé](<15 ├── SURVEILLER LES JOBS AVEC SM37.md>).

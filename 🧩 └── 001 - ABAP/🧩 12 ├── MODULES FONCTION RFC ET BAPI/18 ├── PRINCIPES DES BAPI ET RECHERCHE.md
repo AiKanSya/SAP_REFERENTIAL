@@ -2,14 +2,14 @@
 
 ## 18.A RÉSULTAT ATTENDU
 
-- Définir une BAPI
-- Distinguer BAPI et module RFC générique
+- Définir une BAPI[^terme-bapi]
+- Distinguer BAPI et module RFC[^terme-rfc] générique
 - Rechercher une BAPI existante
 - Vérifier son contrat et sa documentation
 
 ## 18.B DÉFINITION
 
-Une **Business Application Programming Interface** est une interface métier standardisée exposant une opération sur un objet ou un processus SAP. Elle est généralement implémentée par un module fonction distant.
+Une **Business Application Programming Interface** est une interface métier standardisée exposant une opération sur un objet ou un processus SAP[^terme-acro-sap]. Elle est généralement implémentée par un module fonction[^terme-module-fonction] distant.
 
 ```mermaid
 flowchart LR
@@ -25,7 +25,7 @@ flowchart LR
 | Technologie de communication   | Contrat métier standardisé                                 |
 | Peut être purement technique   | Porte une sémantique métier                                |
 | Peut être spécifique client    | Peut être fournie par SAP ou définie selon les règles BAPI |
-| Pas nécessairement liée au BOR | Historiquement exposée comme méthode d’un objet BOR        |
+| Pas nécessairement liée au BOR | Historiquement exposée comme méthode[^terme-methode] d’un objet BOR        |
 
 Toute BAPI est liée à la technologie RFC classique, mais tout module RFC n’est pas une BAPI.
 
@@ -34,8 +34,8 @@ Toute BAPI est liée à la technologie RFC classique, mais tout module RFC n’e
 Outils classiques selon le système :
 
 - `BAPI` ou BAPI Explorer ;
-- `SWO1` et Business Object Repository ;
-- `SE37` pour l’interface technique ;
+- `SWO1`[^outil-swo1] et Business Object[^terme-business-object] Repository ;
+- `SE37`[^outil-se37] pour l’interface technique[^terme-interface-integration] ;
 - documentation de l’application SAP ;
 - Repository Information System.
 
@@ -65,7 +65,7 @@ Une BAPI peut être testée dans `SE37`, mais le test isolé peut être incomple
 
 ## 18.G CHOIX D API
 
-Lorsqu’une API officielle plus récente existe pour le scénario, suivre la recommandation du produit SAP. Ne pas choisir une BAPI uniquement parce qu’elle est connue ou facile à appeler.
+Lorsqu’une API[^terme-api] officielle plus récente existe pour le scénario, suivre la recommandation du produit SAP. Ne pas choisir une BAPI uniquement parce qu’elle est connue ou facile à appeler.
 
 ## 18.H PROCESS
 
@@ -132,3 +132,15 @@ Ordre de transport  :
 ---
 
 [Chapitre suivant — INTERFACES BAPI, STRUCTURES X ET RETURN](<./19 ├── INTERFACES BAPI STRUCTURES X ET RETURN.md>)
+
+[^terme-bapi]: **BAPI.** Interface métier publiée autour d’un Business Object SAP, généralement implémentée par un module fonction RFC. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/06 ├── PROGRAMMES CLASSES ET OBJETS TECHNIQUES.md#bapi>).
+[^terme-rfc]: **RFC.** Remote Function Call, mécanisme permettant d’appeler un module fonction compatible dans un autre contexte ou système. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/06 ├── PROGRAMMES CLASSES ET OBJETS TECHNIQUES.md#rfc>).
+[^terme-acro-sap]: **SAP.** Nom de l’éditeur et de son écosystème logiciel ; l’acronyme historique provient de l’allemand. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/10 └── ACRONYMES SAP.md#acro-sap>).
+[^terme-module-fonction]: **MODULE FONCTION.** Procédure globale appelée avec `CALL FUNCTION` et définie dans un groupe de fonctions. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/06 ├── PROGRAMMES CLASSES ET OBJETS TECHNIQUES.md#module-fonction>).
+[^terme-methode]: **MÉTHODE.** Comportement déclaré dans une classe ou une interface et appelé avec une liste de paramètres définie. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#methode>).
+[^terme-business-object]: **BUSINESS OBJECT.** Représentation métier d’une entité avec données, opérations et cycle de vie. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/09 ├── NOTIONS FONCTIONNELLES ET ORGANISATIONNELLES.md#business-object>).
+[^terme-interface-integration]: **INTERFACE.** Mécanisme d’échange de données ou de fonctions entre composants. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/07 ├── INTERFACES ET INTEGRATION.md#interface-integration>).
+[^terme-api]: **API.** Application Programming Interface, contrat exposant des opérations ou données utilisables par d’autres composants. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/10 └── ACRONYMES SAP.md#api>).
+
+[^outil-swo1]: **SWO1.** Business Object Builder utilisé pour afficher et maintenir les objets BOR classiques. Voir [le chapitre associé](<../🧩 33 ├── WORKFLOW CLASSIQUE/01 └── DIAGNOSTIQUER UN WORKFLOW NON DEMARRE.md>).
+[^outil-se37]: **SE37.** Function Builder utilisé pour rechercher, afficher, tester et maintenir les modules fonction. Voir [le chapitre associé](<03 ├── RECHERCHER ET ANALYSER AVEC SE37.md>).

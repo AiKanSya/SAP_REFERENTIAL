@@ -2,13 +2,13 @@
 
 ## 2.A RÉSULTAT ATTENDU
 
-Identifier le dynpro, le champ, la commande ou la donnée qui bloque une session batch input, puis valider une nouvelle session corrigée.
+Identifier le dynpro[^terme-dynpro], le champ, la commande ou la donnée qui bloque une session batch input, puis valider une nouvelle session corrigée.
 
 ## 2.B PRÉREQUIS
 
 - Nom de la session, utilisateur créateur et date de création.
 - Transaction cible et programme qui génère la session.
-- Autorisation de traiter la session dans `SM35`.
+- Autorisation de traiter la session dans `SM35`[^outil-sm35].
 - Données métier permettant de vérifier les documents déjà créés.
 
 ## 2.C PROCESS
@@ -59,10 +59,10 @@ Passer au mode de fond uniquement lorsque l’échantillon termine sans erreur. 
 
 | Symptôme | Cause probable | Correction |
 |---|---|---|
-| Dynpro inattendu | Écran modifié ou branche fonctionnelle différente | Refaire `SHDB` avec les mêmes données |
+| Dynpro inattendu | Écran modifié ou branche fonctionnelle différente | Refaire `SHDB`[^outil-shdb] avec les mêmes données |
 | Champ inexistant | Nom technique obsolète | Relever le champ dans le nouvel enregistrement |
 | Valeur non acceptée | Format date/nombre ou code externe incorrect | Transmettre le format attendu par l’écran |
-| OK_CODE inconnu | Bouton ou statut GUI modifié | Relever la commande actuelle dans `SHDB` |
+| OK_CODE inconnu | Bouton ou statut GUI[^terme-acro-gui] modifié | Relever la commande actuelle dans `SHDB` |
 | Document déjà créé | Échec après sauvegarde partielle | Rechercher le résultat avant retraitement |
 | Fonctionne au premier plan seulement | Popup ou message non géré | Ajouter le dynpro réel ou remplacer la technique |
 
@@ -75,4 +75,11 @@ Passer au mode de fond uniquement lorsque l’échantillon termine sans erreur. 
 
 ## 2.G COMPATIBILITÉ S/4HANA
 
-Statut : compatible mais historique. Un changement d’écran S/4HANA peut casser la séquence ; une API ou l’outil de migration officiel doit être privilégié pour un nouveau flux.
+Statut : compatible mais historique. Un changement d’écran S/4HANA peut casser la séquence ; une API[^terme-api] ou l’outil de migration officiel doit être privilégié pour un nouveau flux.
+
+[^terme-dynpro]: **DYNPRO.** Écran classique SAP composé d’une définition d’écran et d’une logique PBO/PAI. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/02 ├── SAP GUI NAVIGATION ET TRANSACTIONS.md#dynpro>).
+[^terme-acro-gui]: **GUI.** Graphical User Interface. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/10 └── ACRONYMES SAP.md#acro-gui>).
+[^terme-api]: **API.** Application Programming Interface, contrat exposant des opérations ou données utilisables par d’autres composants. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/10 └── ACRONYMES SAP.md#api>).
+
+[^outil-sm35]: **SM35.** Transaction de surveillance, traitement et diagnostic des sessions batch input. Voir [le chapitre associé](<02 └── DIAGNOSTIQUER UNE SESSION SM35.md>).
+[^outil-shdb]: **SHDB.** Transaction d’enregistrement d’un scénario de dialogue pour préparer un traitement batch input. Voir [le chapitre associé](<01 ├── EXECUTER UN BATCH INPUT AVEC CALL TRANSACTION.md>).

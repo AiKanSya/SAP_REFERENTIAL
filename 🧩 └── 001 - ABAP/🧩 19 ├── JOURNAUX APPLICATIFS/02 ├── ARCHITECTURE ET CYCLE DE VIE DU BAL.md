@@ -20,7 +20,7 @@ flowchart TD
     G --> H["Rechercher et charger ultérieurement"]
 ```
 
-Les fonctions `BAL_LOG_*` travaillent principalement sur les journaux présents dans la mémoire globale du groupe de fonctions BAL. La fonction `BAL_DB_SAVE` assure ensuite la persistance.
+Les fonctions `BAL_LOG_*` travaillent principalement sur les journaux présents dans la mémoire globale du groupe de fonctions BAL[^terme-acro-bal]. La fonction `BAL_DB_SAVE` assure ensuite la persistance.
 
 ## 2.C IDENTIFIANTS
 
@@ -28,7 +28,7 @@ Les fonctions `BAL_LOG_*` travaillent principalement sur les journaux présents 
 | --------------- | ------------------------------------------------------- |
 | Object          | Domaine applicatif stable                               |
 | Subobject       | Sous-processus ou scénario                              |
-| External number | Identifiant métier ou technique exploitable dans `SLG1` |
+| External number | Identifiant métier ou technique exploitable dans `SLG1`[^outil-slg1] |
 | Log handle      | Identifiant technique permanent du journal              |
 | Log number      | Numéro interne attribué lors de la sauvegarde en base   |
 | Message handle  | Identifie un message précis dans un journal             |
@@ -41,13 +41,13 @@ Les données persistées sont gérées par le framework BAL. Le code applicatif 
 
 ## 2.E RÈGLE DE CONCEPTION
 
-Encapsuler le BAL dans une classe ou un composant applicatif évite de disperser les appels de modules fonction dans tout le programme. L’appelant doit manipuler des opérations métier comme `ADD_SUCCESS`, `ADD_WARNING`, `ADD_EXCEPTION` et `SAVE`.
+Encapsuler le BAL dans une classe[^terme-classe] ou un composant applicatif évite de disperser les appels de modules fonction dans tout le programme. L’appelant doit manipuler des opérations métier comme `ADD_SUCCESS`, `ADD_WARNING`, `ADD_EXCEPTION` et `SAVE`.
 
 ## 2.F PROCESS
 
 ### 2.F.1 ÉTAPE 1 — CONFIGURER LE DOMAINE
 
-Créer ou vérifier l’objet et ses sous-objets dans `SLG0`. Transporter cette configuration avant le code qui l’utilise. Conserver une nomenclature stable entre dialogue, batch et interfaces du même domaine.
+Créer ou vérifier l’objet et ses sous-objets dans `SLG0`[^outil-slg0]. Transporter cette configuration avant le code qui l’utilise. Conserver une nomenclature stable entre dialogue, batch et interfaces du même domaine.
 
 ### 2.F.2 ÉTAPE 2 — CRÉER UN EN-TÊTE D’EXÉCUTION
 
@@ -59,7 +59,7 @@ Ajouter les messages au handle exact pendant le traitement. Structurer les messa
 
 ### 2.F.4 ÉTAPE 4 — AFFICHER OU EXPOSER LE JOURNAL COURANT
 
-En dialogue, afficher le journal en mémoire seulement si le scénario le requiert. En batch, écrire un résumé dans le journal de job et conserver l’identifiant externe permettant l’ouverture dans `SLG1`.
+En dialogue, afficher le journal en mémoire seulement si le scénario le requiert. En batch, écrire un résumé dans le journal de job[^terme-job] et conserver l’identifiant externe permettant l’ouverture dans `SLG1`.
 
 ### 2.F.5 ÉTAPE 5 — PERSISTER LES HANDLES CIBLÉS
 
@@ -111,3 +111,10 @@ Ordre de transport  :
 ---
 
 [Chapitre suivant — OBJETS, SOUS-OBJETS ET IDENTIFIANTS](<./03 ├── OBJETS SOUS OBJETS ET IDENTIFIANTS.md>)
+
+[^terme-acro-bal]: **BAL.** Business Application Log, API technique du journal applicatif. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/10 └── ACRONYMES SAP.md#acro-bal>).
+[^terme-classe]: **CLASSE.** Modèle orienté objet définissant état et comportements. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#classe>).
+[^terme-job]: **JOB.** Traitement planifié en arrière-plan composé d’une ou plusieurs étapes. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/06 ├── PROGRAMMES CLASSES ET OBJETS TECHNIQUES.md#job>).
+
+[^outil-slg1]: **SLG1.** Transaction de recherche et d’affichage des journaux applicatifs persistés. Voir [le chapitre associé](<05 ├── ANALYSER LES JOURNAUX AVEC SLG1.md>).
+[^outil-slg0]: **SLG0.** Transaction de définition des objets et sous-objets de journal applicatif. Voir [le chapitre associé](<04 ├── CREER UN OBJET AVEC SLG0.md>).

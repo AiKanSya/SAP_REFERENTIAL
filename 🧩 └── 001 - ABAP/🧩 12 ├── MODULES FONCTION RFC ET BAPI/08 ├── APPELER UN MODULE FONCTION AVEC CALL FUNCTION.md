@@ -2,7 +2,7 @@
 
 ## 8.A RÉSULTAT ATTENDU
 
-- Générer un appel depuis l’éditeur ABAP
+- Générer un appel depuis l’éditeur ABAP[^terme-abap]
 - Mapper correctement les paramètres
 - Contrôler les paramètres facultatifs
 - Traiter le code retour immédiatement
@@ -25,7 +25,7 @@ Le sens est inversé par rapport à l’interface du module : l’appelant **exp
 
 ## 8.C GÉNÉRER LE MODÈLE
 
-Dans l’éditeur ABAP classique, utiliser la fonction **Modèle / Pattern** pour insérer l’appel. Cette méthode réduit les erreurs de nom et permet de partir de l’interface active.
+Dans l’éditeur ABAP classique, utiliser la fonction **Modèle / Pattern** pour insérer l’appel. Cette méthode[^terme-methode] réduit les erreurs de nom et permet de partir de l’interface active.
 
 ## 8.D PARAMÈTRES NOMMÉS
 
@@ -70,11 +70,11 @@ flowchart TD
 
 ### 8.H.1 Étape 1 — Copier la signature exacte
 
-Afficher le module dans `SE37`, puis insérer son modèle d’appel depuis l’éditeur ABAP. Ne recopier pas une signature de mémoire : paramètres et exceptions dépendent de la version active.
+Afficher le module dans `SE37`[^outil-se37], puis insérer son modèle d’appel depuis l’éditeur ABAP. Ne recopier pas une signature de mémoire : paramètres et exceptions dépendent de la version active.
 
 ### 8.H.2 Étape 2 — Préparer des variables typées
 
-Déclarer chaque entrée et sortie avec le type DDIC de l’interface. Alimenter les paramètres obligatoires et documenter toute valeur facultative omise.
+Déclarer chaque entrée et sortie avec le type DDIC[^terme-acro-ddic] de l’interface. Alimenter les paramètres obligatoires et documenter toute valeur facultative omise.
 
 ### 8.H.3 Étape 3 — Implémenter CALL FUNCTION
 
@@ -82,7 +82,7 @@ Conserver les sections `EXPORTING`, `IMPORTING`, `CHANGING`, `TABLES` réellemen
 
 ### 8.H.4 Étape 4 — Traiter immédiatement le résultat
 
-Tester `SY-SUBRC` juste après l’appel. Ne lire les sorties comme valides que pour les codes documentés. Transformer l’erreur en exception, message ou retour contrôlé au niveau responsable.
+Tester `SY-SUBRC` juste après l’appel. Ne lire les sorties comme valides que pour les codes documentés. Transformer l’erreur en exception[^terme-exception], message ou retour contrôlé au niveau responsable.
 
 ### 8.H.5 Étape 5 — Tester les chemins
 
@@ -99,8 +99,8 @@ Exécuter un cas nominal puis chaque exception reproductible. L’appel est vali
 
 - Copier un exemple sans adapter les types, noms d’objets et données disponibles dans le système.
 - Tester uniquement le cas nominal et ignorer les valeurs initiales, absentes ou invalides.
-- Appeler un module fonction sans lire sa documentation et ses exceptions.
-- Supposer qu’une BAPI effectue automatiquement le commit.
+- Appeler un module fonction[^terme-module-fonction] sans lire sa documentation et ses exceptions.
+- Supposer qu’une BAPI[^terme-bapi] effectue automatiquement le commit.
 
 ## 8.K SNIPPET À RÉUTILISER
 
@@ -135,3 +135,12 @@ CALL FUNCTION 'Z_DEV_PRODUCT_GET'
 ---
 
 [Chapitre suivant — EXCEPTIONS CLASSIQUES ET MESSAGES](<./09 ├── EXCEPTIONS CLASSIQUES ET MESSAGES.md>)
+
+[^terme-abap]: **ABAP.** Langage de programmation de la plateforme ABAP, conçu pour développer des applications métier et techniques SAP. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#abap>).
+[^terme-methode]: **MÉTHODE.** Comportement déclaré dans une classe ou une interface et appelé avec une liste de paramètres définie. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#methode>).
+[^terme-acro-ddic]: **DDIC.** Data Dictionary, abréviation courante de l’ABAP Dictionary. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/10 └── ACRONYMES SAP.md#acro-ddic>).
+[^terme-exception]: **EXCEPTION.** Objet ou signal représentant une situation anormale qu’un appelant peut traiter. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#exception>).
+[^terme-module-fonction]: **MODULE FONCTION.** Procédure globale appelée avec `CALL FUNCTION` et définie dans un groupe de fonctions. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/06 ├── PROGRAMMES CLASSES ET OBJETS TECHNIQUES.md#module-fonction>).
+[^terme-bapi]: **BAPI.** Interface métier publiée autour d’un Business Object SAP, généralement implémentée par un module fonction RFC. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/06 ├── PROGRAMMES CLASSES ET OBJETS TECHNIQUES.md#bapi>).
+
+[^outil-se37]: **SE37.** Function Builder utilisé pour rechercher, afficher, tester et maintenir les modules fonction. Voir [le chapitre associé](<03 ├── RECHERCHER ET ANALYSER AVEC SE37.md>).

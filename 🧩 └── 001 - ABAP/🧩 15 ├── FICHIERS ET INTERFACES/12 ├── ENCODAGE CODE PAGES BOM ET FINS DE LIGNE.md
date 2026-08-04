@@ -3,7 +3,7 @@
 ## 12.A RÉSULTAT ATTENDU
 
 - Comprendre les causes des caractères corrompus
-- Définir un encodage explicite
+- Définir un encodage[^terme-encodage] explicite
 - Tester les différences de plateformes
 
 ## 12.B ENCODAGE
@@ -30,7 +30,7 @@ OPEN DATASET lv_file
   WITH BYTE-ORDER MARK.
 ```
 
-La disponibilité et le comportement exact des additions doivent être vérifiés sur la version ABAP cible.
+La disponibilité et le comportement exact des additions doivent être vérifiés sur la version ABAP[^terme-abap] cible.
 
 ## 12.D FINS DE LIGNE
 
@@ -97,13 +97,13 @@ Contrôler le fichier dans l’application cible et, si nécessaire, examiner se
 
 - Copier un exemple sans adapter les types, noms d’objets et données disponibles dans le système.
 - Tester uniquement le cas nominal et ignorer les valeurs initiales, absentes ou invalides.
-- Mélanger fichiers frontend et serveur dans un même scénario.
-- Parser un CSV par simple séparation alors que les champs peuvent être échappés.
+- Mélanger fichiers frontend[^terme-frontend] et serveur dans un même scénario.
+- Parser un CSV[^terme-csv] par simple séparation alors que les champs peuvent être échappés.
 
 ## 12.J SNIPPET À RÉUTILISER
 
 > [!NOTE]
-> Adapter les noms `Z*`, les types DDIC, les données et les autorisations au système cible. Effectuer un contrôle syntaxique avant activation.
+> Adapter les noms `Z*`, les types DDIC[^terme-acro-ddic], les données et les autorisations au système cible. Effectuer un contrôle syntaxique avant activation.
 
 ```abap
 " Ouvrir le fichier avec le mode et l’encodage attendus.
@@ -132,3 +132,9 @@ OPEN DATASET lv_file
 ---
 
 [Chapitre suivant — SERVICES FICHIERS DU FRONTEND](<./13 ├── SERVICES FICHIERS DU FRONTEND.md>)
+
+[^terme-encodage]: **ENCODAGE.** Règle transformant les caractères en octets et inversement. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/07 ├── INTERFACES ET INTEGRATION.md#encodage>).
+[^terme-abap]: **ABAP.** Langage de programmation de la plateforme ABAP, conçu pour développer des applications métier et techniques SAP. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#abap>).
+[^terme-frontend]: **FRONTEND.** Poste ou couche cliente utilisée par l’utilisateur, par exemple SAP GUI for Windows. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/01 ├── SYSTEMES ENVIRONNEMENTS ET MANDANTS.md#frontend>).
+[^terme-csv]: **CSV.** Format texte tabulaire utilisant un séparateur de champs et des règles d’échappement. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/07 ├── INTERFACES ET INTEGRATION.md#csv>).
+[^terme-acro-ddic]: **DDIC.** Data Dictionary, abréviation courante de l’ABAP Dictionary. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/10 └── ACRONYMES SAP.md#acro-ddic>).

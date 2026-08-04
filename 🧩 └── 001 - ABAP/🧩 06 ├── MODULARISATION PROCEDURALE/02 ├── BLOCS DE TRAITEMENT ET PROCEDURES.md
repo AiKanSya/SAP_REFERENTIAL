@@ -5,17 +5,17 @@
 - Distinguer bloc d’événement et procédure
 - Comprendre qui déclenche chaque bloc de traitement
 - Identifier les limites d’un bloc de traitement
-- Situer les sous-programmes dans un programme exécutable
+- Situer les sous-programmes dans un programme exécutable[^terme-programme-executable]
 - Éviter de confondre séquence source et séquence d’exécution
 
 ## 2.B BLOC DE TRAITEMENT
 
-Un programme ABAP est composé de blocs de traitement. Chaque bloc possède un point d’entrée et une fin déterminée par sa syntaxe.
+Un programme ABAP[^terme-abap] est composé de blocs de traitement. Chaque bloc possède un point d’entrée et une fin déterminée par sa syntaxe.
 
 Les deux catégories principales utiles ici sont :
 
-- les blocs d’événements, déclenchés par l’environnement d’exécution ABAP ;
-- les procédures, appelées explicitement par une instruction ABAP.
+- les blocs d’événements, déclenchés par l’environnement[^terme-environnement] d’exécution ABAP ;
+- les procédures, appelées explicitement par une instruction ABAP[^terme-instruction-abap].
 
 ```mermaid
 flowchart TD
@@ -103,8 +103,8 @@ ENDFORM.
 | ---------------- | ------------------------ | ------------------- | --------------------- |
 | Bloc d’événement | Runtime ABAP             | Non                 | `START-OF-SELECTION`  |
 | Sous-programme   | Instruction du programme | Oui                 | `PERFORM` vers `FORM` |
-| Module fonction  | `CALL FUNCTION`          | Oui                 | Dossier dédié         |
-| Méthode          | Appel de méthode         | Oui                 | Dossier ABAP Objects  |
+| Module fonction[^terme-module-fonction]  | `CALL FUNCTION`          | Oui                 | Dossier dédié         |
+| Méthode[^terme-methode]          | Appel de méthode         | Oui                 | Dossier ABAP Objects[^terme-abap-objects]  |
 
 ## 2.H POINTS À RETENIR
 
@@ -131,7 +131,7 @@ ENDFORM.
 ## 2.K SNIPPET À RÉUTILISER
 
 > [!NOTE]
-> Adapter les noms `Z*`, les types DDIC, les données et les autorisations au système cible. Effectuer un contrôle syntaxique avant activation.
+> Adapter les noms `Z*`, les types DDIC[^terme-acro-ddic], les données et les autorisations au système cible. Effectuer un contrôle syntaxique avant activation.
 
 ```abap
 REPORT z_demo_blocks.
@@ -165,3 +165,12 @@ ENDFORM.
 ---
 
 [Chapitre suivant — SOUS-PROGRAMMES AVEC FORM ET ENDFORM](<./03 ├── SOUS PROGRAMMES AVEC FORM ET ENDFORM.md>)
+
+[^terme-programme-executable]: **PROGRAMME EXÉCUTABLE.** Programme ABAP de type report pouvant être lancé directement, généralement avec `F8` ou par une transaction. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/06 ├── PROGRAMMES CLASSES ET OBJETS TECHNIQUES.md#programme-executable>).
+[^terme-abap]: **ABAP.** Langage de programmation de la plateforme ABAP, conçu pour développer des applications métier et techniques SAP. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#abap>).
+[^terme-environnement]: **ENVIRONNEMENT.** Rôle fonctionnel attribué à un système dans le cycle de vie : développement, test, recette, préproduction ou production. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/01 ├── SYSTEMES ENVIRONNEMENTS ET MANDANTS.md#environnement>).
+[^terme-instruction-abap]: **INSTRUCTION ABAP.** Unité syntaxique terminée par un point. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#instruction-abap>).
+[^terme-module-fonction]: **MODULE FONCTION.** Procédure globale appelée avec `CALL FUNCTION` et définie dans un groupe de fonctions. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/06 ├── PROGRAMMES CLASSES ET OBJETS TECHNIQUES.md#module-fonction>).
+[^terme-methode]: **MÉTHODE.** Comportement déclaré dans une classe ou une interface et appelé avec une liste de paramètres définie. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#methode>).
+[^terme-abap-objects]: **ABAP OBJECTS.** Extension orientée objet du langage ABAP fournissant classes, interfaces, héritage, événements et exceptions de classe. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#abap-objects>).
+[^terme-acro-ddic]: **DDIC.** Data Dictionary, abréviation courante de l’ABAP Dictionary. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/10 └── ACRONYMES SAP.md#acro-ddic>).

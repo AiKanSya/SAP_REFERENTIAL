@@ -2,10 +2,10 @@
 
 ## 15.A RÉSULTAT ATTENDU
 
-- Utiliser `ASSERT` pour vérifier un invariant
+- Utiliser `ASSERT` pour vérifier un invariant[^terme-invariant]
 - Distinguer assertion et validation métier
 - Comprendre les groupes de points de contrôle
-- Utiliser la transaction `SAAB`
+- Utiliser la transaction `SAAB`[^outil-saab]
 - Éviter les assertions sur des erreurs utilisateur prévisibles
 
 ## 15.B PRINCIPE
@@ -39,7 +39,7 @@ Mauvais :
 ASSERT p_quantity > 0.
 ```
 
-Une quantité saisie à zéro est une situation prévisible. L’utilisateur doit recevoir un message contrôlé ou une exception métier.
+Une quantité saisie à zéro est une situation prévisible. L’utilisateur doit recevoir un message contrôlé ou une exception[^terme-exception] métier.
 
 Correct :
 
@@ -61,7 +61,7 @@ ASSERT ID zdev_check
 
 L’ajout `ID` associe l’assertion à un groupe de points de contrôle. La transaction `SAAB` permet de configurer son activation et son comportement selon le système.
 
-Les ajouts disponibles dépendent de la syntaxe supportée par la version ABAP.
+Les ajouts disponibles dépendent de la syntaxe supportée par la version ABAP[^terme-abap].
 
 ## 15.F POINTS DE CONTRÔLE ACTIVABLES
 
@@ -107,7 +107,7 @@ Les tests seront traités dans le dossier qualité et tests.
 ## 15.K SNIPPET À RÉUTILISER
 
 > [!NOTE]
-> Adapter les noms `Z*`, les types DDIC, les données et les autorisations au système cible. Effectuer un contrôle syntaxique avant activation.
+> Adapter les noms `Z*`, les types DDIC[^terme-acro-ddic], les données et les autorisations au système cible. Effectuer un contrôle syntaxique avant activation.
 
 ```abap
 " Vérifier un seul comportement observable avec une attente explicite.
@@ -132,3 +132,10 @@ ASSERT ID zdev_check
 ---
 
 [Chapitre suivant — STRATÉGIE ET BONNES PRATIQUES](<./16 └── STRATEGIE ET BONNES PRATIQUES.md>)
+
+[^terme-invariant]: **INVARIANT.** Condition qui doit rester vraie pendant toute la durée de vie valide d’un objet. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#invariant>).
+[^terme-exception]: **EXCEPTION.** Objet ou signal représentant une situation anormale qu’un appelant peut traiter. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#exception>).
+[^terme-abap]: **ABAP.** Langage de programmation de la plateforme ABAP, conçu pour développer des applications métier et techniques SAP. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#abap>).
+[^terme-acro-ddic]: **DDIC.** Data Dictionary, abréviation courante de l’ABAP Dictionary. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/10 └── ACRONYMES SAP.md#acro-ddic>).
+
+[^outil-saab]: **SAAB.** Transaction de maintenance des groupes de points de contrôle et de leurs activations. Voir [le chapitre associé](<../🧩 11 ├── DEBUG ET ANALYSE/03 ├── BREAKPOINTS DE SESSION EXTERNES ET DU DEBUGGER.md>).

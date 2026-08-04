@@ -21,7 +21,7 @@ ls_log-date_del   = sy-datum + 90.
 ls_log-del_before = abap_true.
 ```
 
-Les noms exacts des champs disponibles doivent être contrôlés dans `SE11` sur la version du système. Les champs essentiels restent l’objet, le sous-objet et l’identifiant externe.
+Les noms exacts des champs disponibles doivent être contrôlés dans `SE11`[^outil-se11] sur la version du système. Les champs essentiels restent l’objet, le sous-objet et l’identifiant externe.
 
 ## 6.C DATE D’EXPIRATION
 
@@ -30,7 +30,7 @@ Le journal peut posséder :
 - une date après laquelle il devient supprimable ;
 - un indicateur interdisant sa suppression avant cette date.
 
-Cette information ne supprime pas automatiquement le journal. Elle alimente la stratégie de nettoyage exécutée avec `SLG2`, les programmes de suppression ou l’archivage.
+Cette information ne supprime pas automatiquement le journal. Elle alimente la stratégie de nettoyage exécutée avec `SLG2`[^outil-slg2], les programmes de suppression ou l’archivage.
 
 ## 6.D STATUT ET CONTEXTE
 
@@ -47,7 +47,7 @@ Ne pas dupliquer dans l’en-tête toutes les informations déjà présentes dan
 
 ### 6.E.1 ÉTAPE 1 — VALIDER OBJET ET SOUS-OBJET
 
-Vérifier dans `SLG0` la combinaison à utiliser. Centraliser ces valeurs dans des constantes. Ne pas construire dynamiquement un sous-objet à partir d’une donnée métier non configurée.
+Vérifier dans `SLG0`[^outil-slg0] la combinaison à utiliser. Centraliser ces valeurs dans des constantes. Ne pas construire dynamiquement un sous-objet à partir d’une donnée métier non configurée.
 
 ### 6.E.2 ÉTAPE 2 — CRÉER LA STRUCTURE D’EN-TÊTE
 
@@ -67,12 +67,12 @@ Passer l’en-tête à `BAL_LOG_CREATE`, récupérer `BALLOGHNDL` et traiter `LO
 
 ### 6.E.6 ÉTAPE 6 — VÉRIFIER L’EN-TÊTE PERSISTÉ
 
-Ajouter un message, sauvegarder le handle puis rechercher le journal dans `SLG1`. Comparer objet, sous-objet, identifiant externe, programme, utilisateur et expiration au contrat défini.
+Ajouter un message, sauvegarder le handle puis rechercher le journal dans `SLG1`[^outil-slg1]. Comparer objet, sous-objet, identifiant externe, programme, utilisateur et expiration au contrat défini.
 
 ## 6.F VÉRIFICATION
 
 - Le contrôle de cohérence ne retourne aucune erreur bloquante.
-- L’objet est actif et son entrée de répertoire pointe vers le package attendu.
+- L’objet est actif et son entrée de répertoire pointe vers le package[^terme-package] attendu.
 - La liste d’utilisation et les dépendances correspondent au périmètre prévu.
 - Pour une table Z, la structure active et la structure de base sont cohérentes.
 
@@ -86,7 +86,7 @@ Ajouter un message, sauvegarder le handle puis rechercher le journal dans `SLG1`
 ## 6.H SNIPPET À RÉUTILISER
 
 > [!NOTE]
-> Adapter les noms `Z*`, les types DDIC, les données et les autorisations au système cible. Effectuer un contrôle syntaxique avant activation.
+> Adapter les noms `Z*`, les types DDIC[^terme-acro-ddic], les données et les autorisations au système cible. Effectuer un contrôle syntaxique avant activation.
 
 ```abap
 DATA ls_log TYPE bal_s_log.
@@ -113,3 +113,11 @@ ls_log-del_before = abap_true.
 ---
 
 [Chapitre suivant — CRÉER UN JOURNAL AVEC BAL_LOG_CREATE](<./07 ├── CREER UN JOURNAL AVEC BAL_LOG_CREATE.md>)
+
+[^terme-package]: **PACKAGE.** Conteneur logique qui regroupe les objets de développement et détermine notamment leur transportabilité. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/03 ├── REPOSITORY PACKAGES ET TRANSPORTS.md#package>).
+[^terme-acro-ddic]: **DDIC.** Data Dictionary, abréviation courante de l’ABAP Dictionary. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/10 └── ACRONYMES SAP.md#acro-ddic>).
+
+[^outil-se11]: **SE11.** Transaction de l’ABAP Dictionary utilisée pour analyser et maintenir les objets DDIC. Voir [le chapitre associé](<../🧩 07 ├── DICTIONNAIRE ABAP/02 ├── NAVIGATION ET ANALYSE AVEC SE11.md>).
+[^outil-slg2]: **SLG2.** Transaction de suppression planifiée ou contrôlée des journaux applicatifs persistés. Voir [le chapitre associé](<20 ├── RETENTION SUPPRESSION ET ARCHIVAGE.md>).
+[^outil-slg0]: **SLG0.** Transaction de définition des objets et sous-objets de journal applicatif. Voir [le chapitre associé](<04 ├── CREER UN OBJET AVEC SLG0.md>).
+[^outil-slg1]: **SLG1.** Transaction de recherche et d’affichage des journaux applicatifs persistés. Voir [le chapitre associé](<05 ├── ANALYSER LES JOURNAUX AVEC SLG1.md>).

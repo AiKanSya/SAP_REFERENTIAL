@@ -4,9 +4,9 @@
 
 - Configurer le comportement des champs de sélection
 - Utiliser les additions sans dégrader l’ergonomie
-- Gérer majuscules, visibilité et longueur affichée
+- Gérer majuscules, visibilité[^terme-visibilite] et longueur affichée
 - Déclencher un rafraîchissement par commande utilisateur
-- Distinguer contrainte technique et règle métier
+- Distinguer contrainte technique et règle métier[^terme-regle-metier]
 
 ## 8.B OPTIONS COURANTES DE PARAMETERS
 
@@ -65,7 +65,7 @@ PARAMETERS p_carr TYPE scarr-carrid
   MATCHCODE OBJECT zsh_carrid. " Exemple de search help client
 ```
 
-Privilégier l’aide à la recherche portée par le type DDIC. Une aide explicitement imposée doit correspondre exactement au besoin du champ.
+Privilégier l’aide à la recherche portée par le type DDIC[^terme-acro-ddic]. Une aide explicitement imposée doit correspondre exactement au besoin du champ.
 
 ## 8.G RÈGLE D’ERGONOMIE
 
@@ -113,7 +113,7 @@ PARAMETERS:
 ## 8.L MODÈLE DE DÉMONSTRATION SFLIGHT
 
 > [!NOTE]
-> Les tables `SCARR`, `SPFLI` et `SFLIGHT` appartiennent au modèle de démonstration SAP et peuvent être absentes ou non alimentées dans certains systèmes. Dans ce cas, remplacer les exemples par une table Z de démonstration ou par une source en lecture seule autorisée, sans modifier une table applicative standard.
+> Les tables `SCARR`, `SPFLI` et `SFLIGHT` appartiennent au modèle de démonstration SAP[^terme-acro-sap] et peuvent être absentes ou non alimentées dans certains systèmes. Dans ce cas, remplacer les exemples par une table Z de démonstration ou par une source en lecture seule autorisée, sans modifier une table applicative standard.
 
 ## 8.M RÉFÉRENCES OFFICIELLES SAP
 
@@ -125,3 +125,8 @@ PARAMETERS:
 ---
 
 [Chapitre suivant — MISE EN PAGE AVEC SELECTION-SCREEN](<./09 ├── MISE EN PAGE AVEC SELECTION SCREEN.md>)
+
+[^terme-visibilite]: **VISIBILITÉ.** Règle déterminant où un composant de classe peut être utilisé : `PUBLIC`, `PROTECTED` ou `PRIVATE`. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#visibilite>).
+[^terme-regle-metier]: **RÈGLE MÉTIER.** Condition ou calcul imposé par le processus fonctionnel. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/09 ├── NOTIONS FONCTIONNELLES ET ORGANISATIONNELLES.md#regle-metier>).
+[^terme-acro-ddic]: **DDIC.** Data Dictionary, abréviation courante de l’ABAP Dictionary. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/10 └── ACRONYMES SAP.md#acro-ddic>).
+[^terme-acro-sap]: **SAP.** Nom de l’éditeur et de son écosystème logiciel ; l’acronyme historique provient de l’allemand. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/10 └── ACRONYMES SAP.md#acro-sap>).

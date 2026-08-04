@@ -8,7 +8,7 @@
 
 ## 12.B TABLE DE SORTIE
 
-La table affichée doit représenter le contrat entre le programme et l’ALV. Éviter d’afficher directement une table de base lorsqu’une structure dédiée permet de :
+La table affichée doit représenter le contrat entre le programme et l’ALV[^terme-alv]. Éviter d’afficher directement une table de base lorsqu’une structure dédiée permet de :
 
 - renommer les champs ;
 - ajouter des indicateurs ;
@@ -44,7 +44,7 @@ APPEND gs_fieldcat TO gt_fieldcat.
 | Champ                      | Fonction                     |
 | -------------------------- | ---------------------------- |
 | `FIELDNAME`                | Champ de la table de sortie  |
-| `REF_TABLE`, `REF_FIELD`   | Référence DDIC               |
+| `REF_TABLE`, `REF_FIELD`   | Référence DDIC[^terme-acro-ddic]               |
 | `COLTEXT`                  | Texte de colonne             |
 | `KEY`                      | Colonne clé                  |
 | `EDIT`                     | Colonne modifiable           |
@@ -58,7 +58,7 @@ APPEND gs_fieldcat TO gt_fieldcat.
 
 ## 12.E GÉNÉRATION AUTOMATIQUE
 
-Lorsque la table de sortie correspond à une structure DDIC, `I_STRUCTURE_NAME` peut éviter un catalogue manuel. Ne fournir un catalogue explicite que lorsque des propriétés doivent être adaptées.
+Lorsque la table de sortie correspond à une structure DDIC[^terme-structure-abap], `I_STRUCTURE_NAME` peut éviter un catalogue manuel. Ne fournir un catalogue explicite que lorsque des propriétés doivent être adaptées.
 
 ## 12.F PROCESS
 
@@ -76,7 +76,7 @@ Utiliser `I_STRUCTURE_NAME` lorsque la table suit une structure DDIC adaptée. C
 
 ### 12.F.4 Étape 4 — Décrire chaque colonne manuelle
 
-Renseigner au minimum `FIELDNAME` avec le nom exact du composant. Ajouter les références DDIC, textes, longueur, clé, visibilité, unité ou devise selon la sémantique du champ.
+Renseigner au minimum `FIELDNAME` avec le nom exact du composant. Ajouter les références DDIC, textes, longueur, clé, visibilité[^terme-visibilite], unité ou devise selon la sémantique du champ.
 
 ### 12.F.5 Étape 5 — Valider le catalogue avant l’affichage
 
@@ -135,7 +135,7 @@ APPEND gs_fieldcat TO gt_fieldcat.
 ## 12.K MODÈLE DE DÉMONSTRATION SFLIGHT
 
 > [!NOTE]
-> Les tables `SCARR`, `SPFLI` et `SFLIGHT` appartiennent au modèle de démonstration SAP et peuvent être absentes ou non alimentées dans certains systèmes. Dans ce cas, remplacer les exemples par une table Z de démonstration ou par une source en lecture seule autorisée, sans modifier une table applicative standard.
+> Les tables `SCARR`, `SPFLI` et `SFLIGHT` appartiennent au modèle de démonstration SAP[^terme-acro-sap] et peuvent être absentes ou non alimentées dans certains systèmes. Dans ce cas, remplacer les exemples par une table Z de démonstration ou par une source en lecture seule autorisée, sans modifier une table applicative standard.
 
 ## 12.L RÉFÉRENCES OFFICIELLES SAP
 
@@ -145,3 +145,9 @@ APPEND gs_fieldcat TO gt_fieldcat.
 ---
 
 [Chapitre suivant — LAYOUT ET VARIANTES DU GRID](<./13 ├── LAYOUT ET VARIANTES DU GRID.md>)
+
+[^terme-alv]: **ALV.** ABAP List Viewer, ensemble de technologies d’affichage tabulaire avec tri, filtre, total et variantes. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/06 ├── PROGRAMMES CLASSES ET OBJETS TECHNIQUES.md#alv>).
+[^terme-acro-ddic]: **DDIC.** Data Dictionary, abréviation courante de l’ABAP Dictionary. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/10 └── ACRONYMES SAP.md#acro-ddic>).
+[^terme-structure-abap]: **STRUCTURE.** Objet ou type composé de plusieurs composants nommés. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#structure-abap>).
+[^terme-visibilite]: **VISIBILITÉ.** Règle déterminant où un composant de classe peut être utilisé : `PUBLIC`, `PROTECTED` ou `PRIVATE`. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#visibilite>).
+[^terme-acro-sap]: **SAP.** Nom de l’éditeur et de son écosystème logiciel ; l’acronyme historique provient de l’allemand. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/10 └── ACRONYMES SAP.md#acro-sap>).

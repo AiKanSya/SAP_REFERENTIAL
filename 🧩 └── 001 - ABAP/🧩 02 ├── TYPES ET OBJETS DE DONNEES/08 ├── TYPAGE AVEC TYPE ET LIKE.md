@@ -10,7 +10,7 @@
 
 ## 8.B `TYPE`
 
-`TYPE` référence un type de données.
+`TYPE` référence un type de données[^terme-type-donnees].
 
 ```abap
 DATA lv_count TYPE i.
@@ -29,11 +29,11 @@ Dans ces exemples, la source de typage est respectivement :
 
 - un type intégré ;
 - un type local ;
-- un type global du Dictionnaire ABAP.
+- un type global du Dictionnaire ABAP[^terme-abap].
 
 ## 8.C `LIKE`
 
-`LIKE` reprend le type d’un objet de données visible.
+`LIKE` reprend le type d’un objet de données[^terme-objet-donnees] visible.
 
 ```abap
 DATA lv_source TYPE p LENGTH 8 DECIMALS 2.
@@ -100,7 +100,7 @@ Un choix insuffisant peut entraîner un dépassement arithmétique.
 
 ## 8.G `TYPE LINE OF`
 
-Pour une table interne visible, `TYPE LINE OF` permet de reprendre le type de ligne :
+Pour une table interne[^terme-table-interne] visible, `TYPE LINE OF` permet de reprendre le type de ligne :
 
 ```abap
 DATA lt_messages TYPE STANDARD TABLE OF string WITH EMPTY KEY.
@@ -172,7 +172,7 @@ WRITE: / lv_total_amount, lv_copy.
 ## 8.M SNIPPET À RÉUTILISER
 
 > [!NOTE]
-> Adapter les noms `Z*`, les types DDIC, les données et les autorisations au système cible. Effectuer un contrôle syntaxique avant activation.
+> Adapter les noms `Z*`, les types DDIC[^terme-acro-ddic], les données et les autorisations au système cible. Effectuer un contrôle syntaxique avant activation.
 
 ```abap
 REPORT zdemo_type_like.
@@ -209,3 +209,9 @@ WRITE: / lv_total_amount, lv_copy.
 ---
 
 [Chapitre suivant — DÉCLARATIONS INLINE ET INFÉRENCE](<./09 ├── DECLARATIONS INLINE ET INFERENCE.md>)
+
+[^terme-type-donnees]: **TYPE DE DONNÉES.** Définition des propriétés d’une valeur : nature, longueur, précision et opérations autorisées. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#type-donnees>).
+[^terme-abap]: **ABAP.** Langage de programmation de la plateforme ABAP, conçu pour développer des applications métier et techniques SAP. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#abap>).
+[^terme-objet-donnees]: **OBJET DE DONNÉES.** Zone de mémoire typée contenant une valeur pendant l’exécution. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#objet-donnees>).
+[^terme-table-interne]: **TABLE INTERNE.** Collection dynamique de lignes stockée en mémoire dans le programme ABAP. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#table-interne>).
+[^terme-acro-ddic]: **DDIC.** Data Dictionary, abréviation courante de l’ABAP Dictionary. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/10 └── ACRONYMES SAP.md#acro-ddic>).

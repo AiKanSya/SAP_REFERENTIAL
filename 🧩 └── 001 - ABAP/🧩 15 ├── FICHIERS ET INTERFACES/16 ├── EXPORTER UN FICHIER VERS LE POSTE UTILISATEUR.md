@@ -39,19 +39,19 @@ Le dialogue de sauvegarde choisit le chemin. `GUI_DOWNLOAD` écrit le contenu. L
 
 ## 16.D CSV ET EXCEL
 
-Un CSV reste un fichier texte. Son ouverture correcte dans Excel dépend notamment :
+Un CSV[^terme-csv] reste un fichier texte. Son ouverture correcte dans Excel dépend notamment :
 
 - du séparateur ;
-- de l’encodage ;
+- de l’encodage[^terme-encodage] ;
 - du format régional ;
 - des guillemets ;
 - des conversions automatiques de dates ou zéros initiaux.
 
-Pour un vrai fichier Office Open XML, utiliser une technologie explicitement prévue pour ce format et disponible dans le système.
+Pour un vrai fichier Office Open XML[^terme-xml], utiliser une technologie explicitement prévue pour ce format et disponible dans le système.
 
 ## 16.E SÉCURITÉ
 
-Ne lancer aucune application locale automatiquement après téléchargement sans besoin justifié. Pour afficher un document temporaire, SAP fournit des services frontend spécifiques plus sûrs que l’enchaînement historique téléchargement puis exécution.
+Ne lancer aucune application locale automatiquement après téléchargement sans besoin justifié. Pour afficher un document temporaire, SAP[^terme-acro-sap] fournit des services frontend[^terme-frontend] spécifiques plus sûrs que l’enchaînement historique téléchargement puis exécution.
 
 ## 16.F PROCESS
 
@@ -61,7 +61,7 @@ Construire le contenu final avant d’ouvrir la boîte de sauvegarde. Pour un te
 
 ### 16.F.2 ÉTAPE 2 — CONTRÔLER LA DISPONIBILITÉ DU FRONTEND
 
-Exécuter l’export en mode dialogue et vérifier les services SAP GUI avant tout appel local. Un programme prévu pour l’arrière-plan doit utiliser un fichier serveur ou un autre canal ; il ne doit pas tenter de contourner l’absence de frontend.
+Exécuter l’export en mode dialogue et vérifier les services SAP GUI[^terme-sap-gui] avant tout appel local. Un programme prévu pour l’arrière-plan doit utiliser un fichier serveur ou un autre canal ; il ne doit pas tenter de contourner l’absence de frontend.
 
 ### 16.F.3 ÉTAPE 3 — CHOISIR LA DESTINATION
 
@@ -81,9 +81,9 @@ Réouvrir le fichier avec un outil indépendant et vérifier les accents, sépar
 
 ## 16.G VÉRIFICATION
 
-- Le scénario reproduit correspond au même utilisateur, mandant, transaction et jeu de données.
+- Le scénario reproduit correspond au même utilisateur, mandant[^terme-mandant], transaction et jeu de données.
 - L’horodatage et l’identifiant de l’analyse sont conservés.
-- La cause retenue est soutenue par une ligne source, une trace ou une valeur observée.
+- La cause retenue est soutenue par une ligne source, une trace[^terme-trace] ou une valeur observée.
 - Après correction, le même scénario ne reproduit plus le défaut et le résultat métier reste identique.
 
 ## 16.H ERREURS FRÉQUENTES
@@ -96,7 +96,7 @@ Réouvrir le fichier avec un outil indépendant et vérifier les accents, sépar
 ## 16.I SNIPPET À RÉUTILISER
 
 > [!NOTE]
-> Adapter les noms `Z*`, les types DDIC, les données et les autorisations au système cible. Effectuer un contrôle syntaxique avant activation.
+> Adapter les noms `Z*`, les types DDIC[^terme-acro-ddic], les données et les autorisations au système cible. Effectuer un contrôle syntaxique avant activation.
 
 ```abap
 DATA lt_lines    TYPE STANDARD TABLE OF string WITH EMPTY KEY.
@@ -141,3 +141,13 @@ ENDIF.
 ---
 
 [Chapitre suivant — CONSTRUIRE ET LIRE DES FICHIERS CSV](<./17 ├── CONSTRUIRE ET LIRE DES FICHIERS CSV.md>)
+
+[^terme-csv]: **CSV.** Format texte tabulaire utilisant un séparateur de champs et des règles d’échappement. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/07 ├── INTERFACES ET INTEGRATION.md#csv>).
+[^terme-encodage]: **ENCODAGE.** Règle transformant les caractères en octets et inversement. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/07 ├── INTERFACES ET INTEGRATION.md#encodage>).
+[^terme-xml]: **XML.** Format texte hiérarchique basé sur des balises. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/07 ├── INTERFACES ET INTEGRATION.md#xml>).
+[^terme-acro-sap]: **SAP.** Nom de l’éditeur et de son écosystème logiciel ; l’acronyme historique provient de l’allemand. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/10 └── ACRONYMES SAP.md#acro-sap>).
+[^terme-frontend]: **FRONTEND.** Poste ou couche cliente utilisée par l’utilisateur, par exemple SAP GUI for Windows. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/01 ├── SYSTEMES ENVIRONNEMENTS ET MANDANTS.md#frontend>).
+[^terme-sap-gui]: **SAP GUI.** Client graphique permettant d’utiliser les transactions et écrans d’un système SAP. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/02 ├── SAP GUI NAVIGATION ET TRANSACTIONS.md#sap-gui>).
+[^terme-mandant]: **MANDANT.** Subdivision logique d’un système SAP. Il est identifié par un numéro à trois chiffres et isole une partie des données, du paramétrage et des utilisateurs. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/01 ├── SYSTEMES ENVIRONNEMENTS ET MANDANTS.md#mandant>).
+[^terme-trace]: **TRACE.** Enregistrement détaillé d’événements techniques pour analyser exécution, SQL ou appels. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/08 ├── EXECUTION EXPLOITATION ET ADMINISTRATION.md#trace>).
+[^terme-acro-ddic]: **DDIC.** Data Dictionary, abréviation courante de l’ABAP Dictionary. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/10 └── ACRONYMES SAP.md#acro-ddic>).

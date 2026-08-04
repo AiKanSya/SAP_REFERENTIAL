@@ -2,7 +2,7 @@
 
 ## 8.A RÉSULTAT ATTENDU
 
-- Utiliser les différentes formes de commentaires ABAP
+- Utiliser les différentes formes de commentaires ABAP[^terme-abap]
 - Distinguer commentaire, ABAP Doc, pseudo-commentaire et pragma
 - Documenter l’intention sans paraphraser le code
 - Appliquer des conventions cohérentes sans les confondre avec la syntaxe ABAP
@@ -62,7 +62,7 @@ CLASS lcl_calculator DEFINITION.
 ENDCLASS.
 ```
 
-ABAP Doc est destiné à documenter des éléments d’API ou de déclaration. Il ne remplace pas une documentation fonctionnelle ou d’architecture.
+ABAP Doc est destiné à documenter des éléments d’API[^terme-api] ou de déclaration. Il ne remplace pas une documentation fonctionnelle ou d’architecture.
 
 ## 8.F PSEUDO-COMMENTAIRES ET PRAGMAS
 
@@ -134,10 +134,10 @@ Ces préfixes sont des conventions de projet fréquemment rencontrées :
 | `lv_`               | variable locale                            |
 | `gv_`               | variable globale                           |
 | `ls_`               | structure locale                           |
-| `lt_`               | table interne locale                       |
-| `lo_`               | référence d’objet locale                   |
+| `lt_`               | table interne[^terme-table-interne] locale                       |
+| `lo_`               | référence d’objet[^terme-reference] locale                   |
 | `lc_`               | constante locale                           |
-| `iv_`, `ev_`, `rv_` | paramètres de méthode selon leur direction |
+| `iv_`, `ev_`, `rv_` | paramètres de méthode[^terme-methode] selon leur direction |
 
 > [!IMPORTANT]
 > Ces préfixes ne font pas partie du langage. Appliquer la convention réellement retenue par le projet et éviter de mélanger plusieurs systèmes de nommage dans un même objet.
@@ -156,7 +156,7 @@ Un cartouche peut contenir :
 Éviter d’y dupliquer des informations déjà fiables dans :
 
 - le Repository ;
-- l’ordre de transport ;
+- l’ordre de transport[^terme-ordre-transport] ;
 - l’outil de suivi ;
 - l’historique de versions.
 
@@ -215,13 +215,13 @@ Exécuter contrôle syntaxique et contrôles statiques. Pour une logique sensibl
 
 - Copier un exemple sans adapter les types, noms d’objets et données disponibles dans le système.
 - Tester uniquement le cas nominal et ignorer les valeurs initiales, absentes ou invalides.
-- Intervenir dans le mauvais système ou mandant.
+- Intervenir dans le mauvais système ou mandant[^terme-mandant].
 - Confondre sauvegarde et activation.
 
 ## 8.O SNIPPET À RÉUTILISER
 
 > [!NOTE]
-> Adapter les noms `Z*`, les types DDIC, les données et les autorisations au système cible. Effectuer un contrôle syntaxique avant activation.
+> Adapter les noms `Z*`, les types DDIC[^terme-acro-ddic], les données et les autorisations au système cible. Effectuer un contrôle syntaxique avant activation.
 
 ```abap
 CLASS lcl_calculator DEFINITION.
@@ -257,3 +257,12 @@ ENDCLASS.
 ---
 
 [Chapitre suivant — ACTIVATION, EXÉCUTION ET VÉRIFICATION](<./09 ├── ACTIVATION EXECUTION ET VERIFICATION.md>)
+
+[^terme-abap]: **ABAP.** Langage de programmation de la plateforme ABAP, conçu pour développer des applications métier et techniques SAP. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#abap>).
+[^terme-api]: **API.** Application Programming Interface, contrat exposant des opérations ou données utilisables par d’autres composants. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/10 └── ACRONYMES SAP.md#api>).
+[^terme-table-interne]: **TABLE INTERNE.** Collection dynamique de lignes stockée en mémoire dans le programme ABAP. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#table-interne>).
+[^terme-reference]: **RÉFÉRENCE.** Valeur qui pointe vers un objet de données ou une instance de classe. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#reference>).
+[^terme-methode]: **MÉTHODE.** Comportement déclaré dans une classe ou une interface et appelé avec une liste de paramètres définie. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#methode>).
+[^terme-ordre-transport]: **ORDRE DE TRANSPORT.** Conteneur qui regroupe des modifications à exporter puis importer dans d’autres systèmes. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/03 ├── REPOSITORY PACKAGES ET TRANSPORTS.md#ordre-transport>).
+[^terme-mandant]: **MANDANT.** Subdivision logique d’un système SAP. Il est identifié par un numéro à trois chiffres et isole une partie des données, du paramétrage et des utilisateurs. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/01 ├── SYSTEMES ENVIRONNEMENTS ET MANDANTS.md#mandant>).
+[^terme-acro-ddic]: **DDIC.** Data Dictionary, abréviation courante de l’ABAP Dictionary. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/10 └── ACRONYMES SAP.md#acro-ddic>).

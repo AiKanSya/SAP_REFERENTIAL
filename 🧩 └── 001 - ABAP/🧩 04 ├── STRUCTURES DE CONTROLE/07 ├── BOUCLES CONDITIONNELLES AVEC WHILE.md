@@ -100,7 +100,7 @@ La limite protège le système contre un état fonctionnel qui ne progresse plus
 | Nombre d’itérations connu                         | `DO n TIMES`                               |
 | Répétition pilotée par un état                    | `WHILE`                                    |
 | Boucle volontairement ouverte avec sortie interne | `DO` avec `EXIT`, à utiliser avec prudence |
-| Parcours d’une table interne                      | `LOOP AT`, traité ultérieurement           |
+| Parcours d’une table interne[^terme-table-interne]                      | `LOOP AT`, traité ultérieurement           |
 
 ## 7.G CONDITION TROP COMPLEXE
 
@@ -156,7 +156,7 @@ ENDWHILE.
 ## 7.J SNIPPET À RÉUTILISER
 
 > [!NOTE]
-> Adapter les noms `Z*`, les types DDIC, les données et les autorisations au système cible. Effectuer un contrôle syntaxique avant activation.
+> Adapter les noms `Z*`, les types DDIC[^terme-acro-ddic], les données et les autorisations au système cible. Effectuer un contrôle syntaxique avant activation.
 
 ```abap
 DATA lv_can_continue TYPE abap_bool.
@@ -193,3 +193,6 @@ ENDWHILE.
 ---
 
 [Chapitre suivant — COMPTEUR DE BOUCLE SY-INDEX](<./08 ├── COMPTEUR DE BOUCLE SY INDEX.md>)
+
+[^terme-table-interne]: **TABLE INTERNE.** Collection dynamique de lignes stockée en mémoire dans le programme ABAP. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#table-interne>).
+[^terme-acro-ddic]: **DDIC.** Data Dictionary, abréviation courante de l’ABAP Dictionary. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/10 └── ACRONYMES SAP.md#acro-ddic>).

@@ -6,7 +6,7 @@
 - Réduire les dépendances globales
 - Transformer un bloc monolithique en procédures cohérentes
 - Identifier les syntaxes historiques à ne plus introduire
-- Préparer une évolution vers ABAP Objects
+- Préparer une évolution vers ABAP Objects[^terme-abap-objects]
 
 ## 12.B CARACTÉRISTIQUES D’UN BON SOUS-PROGRAMME
 
@@ -108,14 +108,14 @@ Dans du nouveau code :
 
 ## 12.H SOUS-PROGRAMMES OU MÉTHODES
 
-Les sous-programmes restent nécessaires pour comprendre et maintenir de nombreux développements classiques SAP GUI.
+Les sous-programmes restent nécessaires pour comprendre et maintenir de nombreux développements classiques SAP GUI[^terme-sap-gui].
 
-Pour un nouveau développement, une méthode offre généralement :
+Pour un nouveau développement, une méthode[^terme-methode] offre généralement :
 
-- une visibilité contrôlée ;
+- une visibilité[^terme-visibilite] contrôlée ;
 - une interface nommée ;
-- des exceptions de classe ;
-- une meilleure encapsulation ;
+- des exceptions de classe[^terme-classe] ;
+- une meilleure encapsulation[^terme-encapsulation] ;
 - des possibilités de test et de réutilisation supérieures.
 
 Le passage aux méthodes sera traité dans le dossier `ABAP OBJECTS`. Il n’implique pas obligatoirement Eclipse : les classes peuvent également être maintenues avec les outils SAP GUI selon le système.
@@ -170,9 +170,9 @@ La refactorisation est terminée lorsque le scénario principal est lisible, les
 
 ## 12.L VÉRIFICATION
 
-- Le scénario reproduit correspond au même utilisateur, mandant, transaction et jeu de données.
+- Le scénario reproduit correspond au même utilisateur, mandant[^terme-mandant], transaction et jeu de données.
 - L’horodatage et l’identifiant de l’analyse sont conservés.
-- La cause retenue est soutenue par une ligne source, une trace ou une valeur observée.
+- La cause retenue est soutenue par une ligne source, une trace[^terme-trace] ou une valeur observée.
 - Après correction, le même scénario ne reproduit plus le défaut et le résultat métier reste identique.
 
 ## 12.M ERREURS FRÉQUENTES
@@ -185,7 +185,7 @@ La refactorisation est terminée lorsque le scénario principal est lisible, les
 ## 12.N SNIPPET À RÉUTILISER
 
 > [!NOTE]
-> Adapter les noms `Z*`, les types DDIC, les données et les autorisations au système cible. Effectuer un contrôle syntaxique avant activation.
+> Adapter les noms `Z*`, les types DDIC[^terme-acro-ddic], les données et les autorisations au système cible. Effectuer un contrôle syntaxique avant activation.
 
 ```abap
 START-OF-SELECTION.
@@ -218,3 +218,13 @@ START-OF-SELECTION.
 - [Source Code Organization — ABAP Keyword Documentation](https://help.sap.com/doc/abapdocu_latest_index_htm/latest/en-US/ABENSOURCE_CODE_ORGA_GDL.html)
 - [ABAP Objects as a Programming Model — ABAP Keyword Documentation](https://help.sap.com/doc/abapdocu_latest_index_htm/latest/en-US/ABENABAP_OBJ_PROGR_MODEL_GUIDL.html)
 - [Naming — ABAP Programming Guidelines](https://help.sap.com/doc/abapdocu_latest_index_htm/latest/en-US/ABENNAMING_GDL.html)
+
+[^terme-abap-objects]: **ABAP OBJECTS.** Extension orientée objet du langage ABAP fournissant classes, interfaces, héritage, événements et exceptions de classe. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#abap-objects>).
+[^terme-sap-gui]: **SAP GUI.** Client graphique permettant d’utiliser les transactions et écrans d’un système SAP. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/02 ├── SAP GUI NAVIGATION ET TRANSACTIONS.md#sap-gui>).
+[^terme-methode]: **MÉTHODE.** Comportement déclaré dans une classe ou une interface et appelé avec une liste de paramètres définie. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#methode>).
+[^terme-visibilite]: **VISIBILITÉ.** Règle déterminant où un composant de classe peut être utilisé : `PUBLIC`, `PROTECTED` ou `PRIVATE`. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#visibilite>).
+[^terme-classe]: **CLASSE.** Modèle orienté objet définissant état et comportements. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#classe>).
+[^terme-encapsulation]: **ENCAPSULATION.** Principe consistant à protéger l’état interne d’un objet et à imposer son utilisation par une API contrôlée. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#encapsulation>).
+[^terme-mandant]: **MANDANT.** Subdivision logique d’un système SAP. Il est identifié par un numéro à trois chiffres et isole une partie des données, du paramétrage et des utilisateurs. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/01 ├── SYSTEMES ENVIRONNEMENTS ET MANDANTS.md#mandant>).
+[^terme-trace]: **TRACE.** Enregistrement détaillé d’événements techniques pour analyser exécution, SQL ou appels. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/08 ├── EXECUTION EXPLOITATION ET ADMINISTRATION.md#trace>).
+[^terme-acro-ddic]: **DDIC.** Data Dictionary, abréviation courante de l’ABAP Dictionary. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/10 └── ACRONYMES SAP.md#acro-ddic>).

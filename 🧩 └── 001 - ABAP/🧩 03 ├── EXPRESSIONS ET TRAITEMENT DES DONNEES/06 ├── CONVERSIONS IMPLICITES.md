@@ -2,7 +2,7 @@
 
 ## 6.A RÉSULTAT ATTENDU
 
-- Comprendre pourquoi ABAP convertit certaines valeurs automatiquement
+- Comprendre pourquoi ABAP[^terme-abap] convertit certaines valeurs automatiquement
 - Identifier les principaux contextes de conversion
 - Reconnaître les pertes de données possibles
 - Éviter les conversions dépendantes d’un type cible mal choisi
@@ -132,7 +132,7 @@ Rendre la conversion visible lorsque :
 - une chaîne doit être interprétée comme un nombre ;
 - la comparaison dépend du type choisi ;
 - une erreur de conversion doit être interceptée ;
-- le code doit expliquer une règle métier.
+- le code doit expliquer une règle métier[^terme-regle-metier].
 
 ## 6.J VÉRIFICATION
 
@@ -146,12 +146,12 @@ Rendre la conversion visible lorsque :
 - Copier un exemple sans adapter les types, noms d’objets et données disponibles dans le système.
 - Tester uniquement le cas nominal et ignorer les valeurs initiales, absentes ou invalides.
 - S’appuyer sur une conversion implicite pouvant tronquer ou arrondir.
-- Ignorer l’encodage et les formats externes.
+- Ignorer l’encodage[^terme-encodage] et les formats externes.
 
 ## 6.L SNIPPET À RÉUTILISER
 
 > [!NOTE]
-> Adapter les noms `Z*`, les types DDIC, les données et les autorisations au système cible. Effectuer un contrôle syntaxique avant activation.
+> Adapter les noms `Z*`, les types DDIC[^terme-acro-ddic], les données et les autorisations au système cible. Effectuer un contrôle syntaxique avant activation.
 
 ```abap
 DATA lv_number TYPE i VALUE 10.
@@ -178,3 +178,8 @@ ENDIF.
 ---
 
 [Chapitre suivant — CONVERSIONS EXPLICITES AVEC CONV ET EXACT](<./07 ├── CONVERSIONS EXPLICITES AVEC CONV ET EXACT.md>)
+
+[^terme-abap]: **ABAP.** Langage de programmation de la plateforme ABAP, conçu pour développer des applications métier et techniques SAP. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#abap>).
+[^terme-regle-metier]: **RÈGLE MÉTIER.** Condition ou calcul imposé par le processus fonctionnel. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/09 ├── NOTIONS FONCTIONNELLES ET ORGANISATIONNELLES.md#regle-metier>).
+[^terme-encodage]: **ENCODAGE.** Règle transformant les caractères en octets et inversement. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/07 ├── INTERFACES ET INTEGRATION.md#encodage>).
+[^terme-acro-ddic]: **DDIC.** Data Dictionary, abréviation courante de l’ABAP Dictionary. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/10 └── ACRONYMES SAP.md#acro-ddic>).

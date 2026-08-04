@@ -39,7 +39,7 @@ L’ordre exact des clauses dépend de la syntaxe prise en charge par la release
 
 ## 6.D ORDRE NON GARANTI
 
-Sans `ORDER BY`, l’ordre des lignes d’un résultat SQL n’est pas garanti.
+Sans `ORDER BY`, l’ordre des lignes d’un résultat SQL[^terme-acro-sql] n’est pas garanti.
 
 ```mermaid
 flowchart LR
@@ -47,7 +47,7 @@ flowchart LR
     B --> C["Résultat potentiellement différent après migration ou optimisation"]
 ```
 
-Ne jamais supposer que la base renvoie les lignes selon la clé primaire ou l’ordre physique.
+Ne jamais supposer que la base renvoie les lignes selon la clé primaire[^terme-cle-primaire] ou l’ordre physique.
 
 ## 6.E ORDER BY
 
@@ -84,12 +84,12 @@ Une pagination stable exige :
 - Copier un exemple sans adapter les types, noms d’objets et données disponibles dans le système.
 - Tester uniquement le cas nominal et ignorer les valeurs initiales, absentes ou invalides.
 - Lire toutes les colonnes ou toutes les lignes par défaut.
-- Effectuer des commits dans une méthode réutilisable sans contrat explicite.
+- Effectuer des commits dans une méthode[^terme-methode] réutilisable sans contrat explicite.
 
 ## 6.I SNIPPET À RÉUTILISER
 
 > [!NOTE]
-> Adapter les noms `Z*`, les types DDIC, les données et les autorisations au système cible. Effectuer un contrôle syntaxique avant activation.
+> Adapter les noms `Z*`, les types DDIC[^terme-acro-ddic], les données et les autorisations au système cible. Effectuer un contrôle syntaxique avant activation.
 
 ```abap
 " Lire uniquement les colonnes et les lignes nécessaires.
@@ -112,7 +112,7 @@ SELECT fldate, price, currency
 ## 6.K MODÈLE DE DÉMONSTRATION SFLIGHT
 
 > [!NOTE]
-> Les tables `SCARR`, `SPFLI` et `SFLIGHT` appartiennent au modèle de démonstration SAP et peuvent être absentes ou non alimentées dans certains systèmes. Dans ce cas, remplacer les exemples par une table Z de démonstration ou par une source en lecture seule autorisée, sans modifier une table applicative standard.
+> Les tables `SCARR`, `SPFLI` et `SFLIGHT` appartiennent au modèle de démonstration SAP[^terme-acro-sap] et peuvent être absentes ou non alimentées dans certains systèmes. Dans ce cas, remplacer les exemples par une table Z de démonstration ou par une source en lecture seule autorisée, sans modifier une table applicative standard.
 
 ## 6.L RÉFÉRENCES OFFICIELLES SAP
 
@@ -125,3 +125,9 @@ SELECT fldate, price, currency
 ---
 
 [Chapitre suivant — RÉCEPTION DES RÉSULTATS AVEC INTO](<./07 ├── RECEPTION DES RESULTATS AVEC INTO.md>)
+
+[^terme-acro-sql]: **SQL.** Structured Query Language. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/10 └── ACRONYMES SAP.md#acro-sql>).
+[^terme-cle-primaire]: **CLÉ PRIMAIRE.** Ensemble minimal de champs identifiant de manière unique une ligne de table. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/05 ├── DONNEES DICTIONNAIRE ET BASE DE DONNEES.md#cle-primaire>).
+[^terme-methode]: **MÉTHODE.** Comportement déclaré dans une classe ou une interface et appelé avec une liste de paramètres définie. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#methode>).
+[^terme-acro-ddic]: **DDIC.** Data Dictionary, abréviation courante de l’ABAP Dictionary. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/10 └── ACRONYMES SAP.md#acro-ddic>).
+[^terme-acro-sap]: **SAP.** Nom de l’éditeur et de son écosystème logiciel ; l’acronyme historique provient de l’allemand. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/10 └── ACRONYMES SAP.md#acro-sap>).

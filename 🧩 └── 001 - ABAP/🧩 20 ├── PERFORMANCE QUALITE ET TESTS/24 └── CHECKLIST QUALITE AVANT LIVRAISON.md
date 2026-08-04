@@ -2,12 +2,12 @@
 
 ## 24.A RÉSULTAT ATTENDU
 
-Vérifier qu’un développement ABAP est techniquement prêt avant la libération de son transport.
+Vérifier qu’un développement ABAP[^terme-abap] est techniquement prêt avant la libération de son transport.
 
 ## 24.B Code et activation
 
 - [ ] Tous les objets sont actifs.
-- [ ] Aucun code temporaire, breakpoint ou donnée de test ne subsiste.
+- [ ] Aucun code temporaire, breakpoint[^terme-breakpoint] ou donnée de test ne subsiste.
 - [ ] Les noms, commentaires et interfaces sont compréhensibles.
 - [ ] Les exceptions et codes retour sont traités.
 - [ ] Les autorisations et données sensibles ont été examinées.
@@ -15,8 +15,8 @@ Vérifier qu’un développement ABAP est techniquement prêt avant la libérati
 ## 24.C Qualité statique
 
 - [ ] Contrôle syntaxique sans erreur.
-- [ ] `SLIN` exécuté lorsque pertinent.
-- [ ] Contrôle `SCI` ou `ATC` avec la variante projet.
+- [ ] `SLIN`[^outil-slin] exécuté lorsque pertinent.
+- [ ] Contrôle `SCI`[^outil-sci] ou `ATC`[^terme-acro-atc] avec la variante projet.
 - [ ] Findings prioritaires corrigés.
 - [ ] Exemptions limitées, justifiées et approuvées.
 
@@ -31,17 +31,17 @@ Vérifier qu’un développement ABAP est techniquement prêt avant la libérati
 ## 24.E Performance
 
 - [ ] Volumétrie représentative utilisée.
-- [ ] Aucun accès SQL dans une boucle sans justification mesurée.
+- [ ] Aucun accès SQL[^terme-acro-sql] dans une boucle sans justification mesurée.
 - [ ] Colonnes et lignes SQL limitées au besoin.
 - [ ] Catégories et clés des tables internes adaptées.
-- [ ] `SAT`, `ST05`, `SQLM` ou `SWLT` utilisés si le risque le justifie.
+- [ ] `SAT`[^outil-sat], `ST05`[^outil-st05], `SQLM`[^outil-sqlm] ou `SWLT`[^outil-swlt] utilisés si le risque le justifie.
 - [ ] Mesure avant/après conservée pour toute optimisation.
 
 ## 24.F Exploitation
 
 - [ ] Messages et journaux permettent le diagnostic.
 - [ ] Batch, reprise et idempotence validés si applicables.
-- [ ] Verrous et LUW sont cohérents.
+- [ ] Verrous et LUW[^terme-acro-luw] sont cohérents.
 - [ ] Documentation technique et procédure de test mises à jour.
 - [ ] Contenu du transport contrôlé avant libération.
 
@@ -60,7 +60,7 @@ La livraison ne repose pas sur « le programme fonctionne sur mon cas ». Elle r
 
 ### 24.I.1 ÉTAPE 1 — FIGER LE PÉRIMÈTRE LIVRÉ
 
-Lister tous les objets de la demande, dépendances DDIC, classes, programmes, messages et paramétrages. Vérifier qu’ils sont actifs et transportables. Comparer cette liste au besoin et aux objets réellement modifiés.
+Lister tous les objets de la demande, dépendances DDIC[^terme-acro-ddic], classes, programmes, messages et paramétrages. Vérifier qu’ils sont actifs et transportables. Comparer cette liste au besoin et aux objets réellement modifiés.
 
 ### 24.I.2 ÉTAPE 2 — EXÉCUTER LES CONTRÔLES STATIQUES
 
@@ -68,7 +68,7 @@ Lancer syntaxe, activation, SLIN et la variante ATC/SCI obligatoire sur le péri
 
 ### 24.I.3 ÉTAPE 3 — EXÉCUTER LES TESTS AUTOMATIQUES
 
-Lancer ABAP Unit au niveau de l’objet puis du package. Ouvrir chaque échec et éliminer les dépendances d’ordre ou de données. Contrôler la couverture des branches critiques avec SCOV lorsque requise.
+Lancer ABAP Unit au niveau de l’objet puis du package[^terme-package]. Ouvrir chaque échec et éliminer les dépendances d’ordre ou de données. Contrôler la couverture des branches critiques avec SCOV[^outil-scov] lorsque requise.
 
 ### 24.I.4 ÉTAPE 4 — EXÉCUTER LA NON-RÉGRESSION FONCTIONNELLE
 
@@ -84,9 +84,9 @@ Vérifier ordre d’import, prérequis, variantes et procédure de validation da
 
 ## 24.J VÉRIFICATION
 
-- Le scénario reproduit correspond au même utilisateur, mandant, transaction et jeu de données.
+- Le scénario reproduit correspond au même utilisateur, mandant[^terme-mandant], transaction et jeu de données.
 - L’horodatage et l’identifiant de l’analyse sont conservés.
-- La cause retenue est soutenue par une ligne source, une trace ou une valeur observée.
+- La cause retenue est soutenue par une ligne source, une trace[^terme-trace] ou une valeur observée.
 - Après correction, le même scénario ne reproduit plus le défaut et le résultat métier reste identique.
 
 ## 24.K ERREURS FRÉQUENTES
@@ -114,3 +114,21 @@ Ordre de transport  :
 - [ATC](<../🧩 00 ├── LEXIQUE SAP ET ABAP/10 └── ACRONYMES SAP.md#acro-atc>)
 - [ABAP](<../🧩 00 ├── LEXIQUE SAP ET ABAP/10 └── ACRONYMES SAP.md#acro-abap>)
 - [Trace](<../🧩 00 ├── LEXIQUE SAP ET ABAP/08 ├── EXECUTION EXPLOITATION ET ADMINISTRATION.md#trace>)
+
+[^terme-abap]: **ABAP.** Langage de programmation de la plateforme ABAP, conçu pour développer des applications métier et techniques SAP. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#abap>).
+[^terme-breakpoint]: **BREAKPOINT.** Point d’arrêt suspendant l’exécution dans le débogueur. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/08 ├── EXECUTION EXPLOITATION ET ADMINISTRATION.md#breakpoint>).
+[^terme-acro-atc]: **ATC.** ABAP Test Cockpit, infrastructure de contrôles statiques et de gouvernance qualité. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/10 └── ACRONYMES SAP.md#acro-atc>).
+[^terme-acro-sql]: **SQL.** Structured Query Language. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/10 └── ACRONYMES SAP.md#acro-sql>).
+[^terme-acro-luw]: **LUW.** Logical Unit of Work. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/10 └── ACRONYMES SAP.md#acro-luw>).
+[^terme-acro-ddic]: **DDIC.** Data Dictionary, abréviation courante de l’ABAP Dictionary. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/10 └── ACRONYMES SAP.md#acro-ddic>).
+[^terme-package]: **PACKAGE.** Conteneur logique qui regroupe les objets de développement et détermine notamment leur transportabilité. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/03 ├── REPOSITORY PACKAGES ET TRANSPORTS.md#package>).
+[^terme-mandant]: **MANDANT.** Subdivision logique d’un système SAP. Il est identifié par un numéro à trois chiffres et isole une partie des données, du paramétrage et des utilisateurs. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/01 ├── SYSTEMES ENVIRONNEMENTS ET MANDANTS.md#mandant>).
+[^terme-trace]: **TRACE.** Enregistrement détaillé d’événements techniques pour analyser exécution, SQL ou appels. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/08 ├── EXECUTION EXPLOITATION ET ADMINISTRATION.md#trace>).
+
+[^outil-slin]: **SLIN.** Extended Program Check utilisé pour détecter des problèmes statiques au-delà du contrôle syntaxique. Voir [le chapitre associé](<12 ├── EXTENDED PROGRAM CHECK AVEC SLIN.md>).
+[^outil-sci]: **SCI.** Code Inspector utilisé pour exécuter des contrôles statiques sur un ensemble d’objets ABAP. Voir [le chapitre associé](<13 ├── CODE INSPECTOR AVEC SCI.md>).
+[^outil-sat]: **SAT.** Runtime Analysis utilisée pour mesurer et analyser le temps d’exécution ABAP. Voir [le chapitre associé](<07 ├── MESURER LE TEMPS D EXECUTION AVEC SAT.md>).
+[^outil-st05]: **ST05.** Performance Trace utilisée notamment pour enregistrer et analyser les accès SQL. Voir [le chapitre associé](<08 ├── ANALYSER LES ACCES SQL AVEC ST05.md>).
+[^outil-sqlm]: **SQLM.** SQL Monitor utilisé pour agréger l’usage des instructions SQL pendant une période d’enregistrement. Voir [le chapitre associé](<09 ├── SURVEILLER LES ACCES SQL AVEC SQLM.md>).
+[^outil-swlt]: **SWLT.** SQL Performance Tuning Worklist utilisée pour rapprocher usage productif et résultats de contrôles statiques. Voir [le chapitre associé](<10 ├── PRIORISER AVEC SWLT.md>).
+[^outil-scov]: **SCOV.** Coverage Analyzer utilisé pour mesurer la couverture d’exécution du code ABAP. Voir [le chapitre associé](<22 ├── MESURER LA COUVERTURE AVEC SCOV.md>).

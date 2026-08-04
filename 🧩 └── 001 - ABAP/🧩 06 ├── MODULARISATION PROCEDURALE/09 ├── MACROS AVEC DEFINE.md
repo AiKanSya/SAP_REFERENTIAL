@@ -2,7 +2,7 @@
 
 ## 9.A RÉSULTAT ATTENDU
 
-- Comprendre le fonctionnement d’une macro ABAP
+- Comprendre le fonctionnement d’une macro ABAP[^terme-abap]
 - Définir une macro avec `DEFINE`
 - Utiliser les paramètres positionnels `&1` à `&9`
 - Identifier les limites de ce mécanisme
@@ -98,9 +98,9 @@ Les macros existent dans du code classique, des frameworks historiques et certai
 
 Pour du nouveau code métier, préférer :
 
-- une méthode ;
+- une méthode[^terme-methode] ;
 - un sous-programme local dans un programme procédural existant ;
-- un module fonction lorsqu’une interface globale est réellement requise.
+- un module fonction[^terme-module-fonction] lorsqu’une interface globale[^terme-interface-globale] est réellement requise.
 
 ## 9.I POINTS À RETENIR
 
@@ -127,7 +127,7 @@ Pour du nouveau code métier, préférer :
 ## 9.L SNIPPET À RÉUTILISER
 
 > [!NOTE]
-> Adapter les noms `Z*`, les types DDIC, les données et les autorisations au système cible. Effectuer un contrôle syntaxique avant activation.
+> Adapter les noms `Z*`, les types DDIC[^terme-acro-ddic], les données et les autorisations au système cible. Effectuer un contrôle syntaxique avant activation.
 
 ```abap
 REPORT z_demo_macro_01.
@@ -164,3 +164,9 @@ START-OF-SELECTION.
 ---
 
 [Chapitre suivant — APPELS DYNAMIQUES ET EXTERNES](<./10 ├── APPELS DYNAMIQUES ET EXTERNES.md>)
+
+[^terme-abap]: **ABAP.** Langage de programmation de la plateforme ABAP, conçu pour développer des applications métier et techniques SAP. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#abap>).
+[^terme-methode]: **MÉTHODE.** Comportement déclaré dans une classe ou une interface et appelé avec une liste de paramètres définie. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#methode>).
+[^terme-module-fonction]: **MODULE FONCTION.** Procédure globale appelée avec `CALL FUNCTION` et définie dans un groupe de fonctions. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/06 ├── PROGRAMMES CLASSES ET OBJETS TECHNIQUES.md#module-fonction>).
+[^terme-interface-globale]: **INTERFACE GLOBALE.** Interface ABAP Objects enregistrée comme objet Repository et réutilisable par plusieurs classes et programmes. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/06 ├── PROGRAMMES CLASSES ET OBJETS TECHNIQUES.md#interface-globale>).
+[^terme-acro-ddic]: **DDIC.** Data Dictionary, abréviation courante de l’ABAP Dictionary. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/10 └── ACRONYMES SAP.md#acro-ddic>).

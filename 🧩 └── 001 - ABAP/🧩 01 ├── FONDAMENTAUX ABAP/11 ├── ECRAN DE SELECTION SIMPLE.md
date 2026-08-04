@@ -2,7 +2,7 @@
 
 ## 11.A RÉSULTAT ATTENDU
 
-- Définir l’écran de sélection standard d’un programme exécutable
+- Définir l’écran de sélection standard d’un programme exécutable[^terme-programme-executable]
 - Utiliser `PARAMETERS`, `SELECT-OPTIONS` et `SELECTION-SCREEN`
 - Comprendre la structure technique d’un critère de sélection
 - Maintenir les textes affichés à l’utilisateur
@@ -35,7 +35,7 @@ Le numéro technique de l’écran standard est généralement `1000`.
 
 ## 11.D `PARAMETERS`
 
-`PARAMETERS` crée un objet de données global et un champ de saisie associé.
+`PARAMETERS` crée un objet de données[^terme-objet-donnees] global et un champ de saisie associé.
 
 ```abap
 PARAMETERS p_name TYPE c LENGTH 30.
@@ -61,7 +61,7 @@ PARAMETERS p_mode_b RADIOBUTTON GROUP mod.
 
 ## 11.E `SELECT-OPTIONS`
 
-`SELECT-OPTIONS` crée un critère de sélection et une table interne de sélection.
+`SELECT-OPTIONS` crée un critère de sélection et une table interne[^terme-table-interne] de sélection.
 
 ```abap
 DATA gv_date TYPE sy-datum.
@@ -151,7 +151,7 @@ INITIALIZATION.
     low    = sy-datum ) TO s_date.
 ```
 
-La syntaxe `VALUE #( )` nécessite une version ABAP compatible. Sur un système plus ancien, remplir une ligne puis utiliser `APPEND`.
+La syntaxe `VALUE #( )` nécessite une version ABAP[^terme-abap] compatible. Sur un système plus ancien, remplir une ligne puis utiliser `APPEND`.
 
 ## 11.I VALIDATION
 
@@ -215,14 +215,14 @@ TEXT-001 = Critères principaux
 - limiter les valeurs par défaut trompeuses ;
 - valider les combinaisons de critères ;
 - traiter explicitement les sélections vides ;
-- ne pas construire une clause SQL dynamique non maîtrisée à partir des saisies ;
+- ne pas construire une clause SQL[^terme-acro-sql] dynamique non maîtrisée à partir des saisies ;
 - tester les inclusions, exclusions et intervalles d’un `SELECT-OPTIONS`.
 
 ## 11.L PROCESS
 
 ### 11.L.1 Étape 1 — Déclarer les critères
 
-Créer un report Z dans `SE38`. Déclarer un `PARAMETERS` pour une valeur unique et un `SELECT-OPTIONS` référencé à un champ DDIC. Vérifier que les libellés et aides de saisie proviennent des références attendues.
+Créer un report Z dans `SE38`[^outil-se38]. Déclarer un `PARAMETERS` pour une valeur unique et un `SELECT-OPTIONS` référencé à un champ DDIC[^terme-acro-ddic]. Vérifier que les libellés et aides de saisie proviennent des références attendues.
 
 ### 11.L.2 Étape 2 — Définir les valeurs initiales
 
@@ -249,7 +249,7 @@ Le chapitre est terminé lorsque chaque forme de sélection produit les lignes a
 
 - Copier un exemple sans adapter les types, noms d’objets et données disponibles dans le système.
 - Tester uniquement le cas nominal et ignorer les valeurs initiales, absentes ou invalides.
-- Intervenir dans le mauvais système ou mandant.
+- Intervenir dans le mauvais système ou mandant[^terme-mandant].
 - Confondre sauvegarde et activation.
 
 ## 11.O SNIPPET À RÉUTILISER
@@ -301,3 +301,13 @@ START-OF-SELECTION.
 ---
 
 [Chapitre suivant — PREMIERS OUTILS DE DEBUG](<./12 └── PREMIERS OUTILS DE DEBUG.md>)
+
+[^terme-programme-executable]: **PROGRAMME EXÉCUTABLE.** Programme ABAP de type report pouvant être lancé directement, généralement avec `F8` ou par une transaction. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/06 ├── PROGRAMMES CLASSES ET OBJETS TECHNIQUES.md#programme-executable>).
+[^terme-objet-donnees]: **OBJET DE DONNÉES.** Zone de mémoire typée contenant une valeur pendant l’exécution. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#objet-donnees>).
+[^terme-table-interne]: **TABLE INTERNE.** Collection dynamique de lignes stockée en mémoire dans le programme ABAP. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#table-interne>).
+[^terme-abap]: **ABAP.** Langage de programmation de la plateforme ABAP, conçu pour développer des applications métier et techniques SAP. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#abap>).
+[^terme-acro-sql]: **SQL.** Structured Query Language. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/10 └── ACRONYMES SAP.md#acro-sql>).
+[^terme-acro-ddic]: **DDIC.** Data Dictionary, abréviation courante de l’ABAP Dictionary. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/10 └── ACRONYMES SAP.md#acro-ddic>).
+[^terme-mandant]: **MANDANT.** Subdivision logique d’un système SAP. Il est identifié par un numéro à trois chiffres et isole une partie des données, du paramétrage et des utilisateurs. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/01 ├── SYSTEMES ENVIRONNEMENTS ET MANDANTS.md#mandant>).
+
+[^outil-se38]: **SE38.** Éditeur ABAP classique utilisé pour créer, modifier, vérifier et exécuter des programmes. Voir [le chapitre associé](<04 ├── EDITEURS ABAP SE38 ET SE80.md>).

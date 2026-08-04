@@ -10,7 +10,7 @@
 
 | Catégorie | Usage                                                       | Caractéristique                                                                    |
 | --------- | ----------------------------------------------------------- | ---------------------------------------------------------------------------------- |
-| V1        | Données primaires indispensables à la transaction           | Exécutées en premier, dans l’ordre d’enregistrement, dans une database LUW commune |
+| V1        | Données primaires indispensables à la transaction           | Exécutées en premier, dans l’ordre d’enregistrement, dans une database LUW[^terme-acro-luw] commune |
 | V2        | Données secondaires pouvant suivre la validation principale | Exécutées après la réussite de V1, éventuellement par des processus dédiés         |
 
 ```mermaid
@@ -36,15 +36,15 @@ Lister les tables et effets produits par la transaction. Marquer comme V1 tout c
 
 ### 16.D.2 ÉTAPE 2 — CONFIGURER LE TYPE DE MISE À JOUR
 
-Dans `SE37`, afficher le module fonction et contrôler ses attributs de traitement. Pour un module Z, affecter le type de mise à jour conforme au classement retenu, puis contrôler et activer le groupe de fonctions. Ne pas modifier le type d’un module standard.
+Dans `SE37`[^outil-se37], afficher le module fonction[^terme-module-fonction] et contrôler ses attributs de traitement. Pour un module Z, affecter le type de mise à jour conforme au classement retenu, puis contrôler et activer le groupe de fonctions. Ne pas modifier le type d’un module standard.
 
 ### 16.D.3 ÉTAPE 3 — ENREGISTRER LES APPELS DANS LE BON ORDRE LOGIQUE
 
-Préparer des paramètres complets, enregistrer les modules V1 et V2 dans la même SAP LUW, puis laisser l’orchestrateur décider du commit. Ne pas créer une dépendance V1 vers un résultat qui ne sera produit qu’en V2.
+Préparer des paramètres complets, enregistrer les modules V1 et V2 dans la même SAP LUW[^terme-sap-luw], puis laisser l’orchestrateur décider du commit. Ne pas créer une dépendance V1 vers un résultat qui ne sera produit qu’en V2.
 
 ### 16.D.4 ÉTAPE 4 — TESTER LE SUCCÈS COMPLET
 
-Exécuter le scénario avec `COMMIT WORK AND WAIT`. Vérifier immédiatement les données V1, puis contrôler l’exécution des données V2 dans `SM13` ou dans les tables concernées. Documenter le délai acceptable pour les résultats secondaires.
+Exécuter le scénario avec `COMMIT WORK AND WAIT`. Vérifier immédiatement les données V1, puis contrôler l’exécution des données V2 dans `SM13`[^outil-sm13] ou dans les tables concernées. Documenter le délai acceptable pour les résultats secondaires.
 
 ### 16.D.5 ÉTAPE 5 — PROVOQUER UN ÉCHEC V1
 
@@ -84,3 +84,10 @@ Faire échouer séparément une mise à jour V2 et vérifier que le document pri
 ---
 
 [Chapitre suivant — MISE À JOUR LOCALE AVEC `SET UPDATE TASK LOCAL`](<./17 ├── MISE A JOUR LOCALE AVEC SET UPDATE TASK LOCAL.md>)
+
+[^terme-acro-luw]: **LUW.** Logical Unit of Work. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/10 └── ACRONYMES SAP.md#acro-luw>).
+[^terme-module-fonction]: **MODULE FONCTION.** Procédure globale appelée avec `CALL FUNCTION` et définie dans un groupe de fonctions. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/06 ├── PROGRAMMES CLASSES ET OBJETS TECHNIQUES.md#module-fonction>).
+[^terme-sap-luw]: **SAP LUW.** Unité logique métier SAP pouvant regrouper plusieurs étapes de dialogue et différer les mises à jour jusqu’au commit. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/08 ├── EXECUTION EXPLOITATION ET ADMINISTRATION.md#sap-luw>).
+
+[^outil-se37]: **SE37.** Function Builder utilisé pour rechercher, afficher, tester et maintenir les modules fonction. Voir [le chapitre associé](<../🧩 12 ├── MODULES FONCTION RFC ET BAPI/03 ├── RECHERCHER ET ANALYSER AVEC SE37.md>).
+[^outil-sm13]: **SM13.** Transaction de surveillance et de reprise des enregistrements de mise à jour SAP. Voir [le chapitre associé](<19 ├── ANALYSER ET REPRENDRE LES UPDATES AVEC SM13.md>).

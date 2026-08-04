@@ -10,15 +10,15 @@
 
 ### 6.B.1 ÉTAPE 1 — OUVRIR LA DÉFINITION DANS `SMOD`
 
-Saisir `/nSMOD`, entrer le nom exact de l’enhancement et choisir **Afficher**. Si le nom est inconnu, utiliser la recherche par composant ou package, puis confirmer chaque résultat avec le programme réellement exécuté.
+Saisir `/nSMOD`, entrer le nom exact de l’enhancement et choisir **Afficher**. Si le nom est inconnu, utiliser la recherche par composant ou package[^terme-package], puis confirmer chaque résultat avec le programme réellement exécuté.
 
 ### 6.B.2 ÉTAPE 2 — LIRE LA DOCUMENTATION
 
-Ouvrir la documentation SAP et relever le processus couvert, les conditions d’appel et les restrictions. Comparer ces informations au besoin fonctionnel. Ne pas continuer avec un enhancement dont le contrat ne correspond qu’approximativement au scénario.
+Ouvrir la documentation SAP[^terme-acro-sap] et relever le processus couvert, les conditions d’appel et les restrictions. Comparer ces informations au besoin fonctionnel. Ne pas continuer avec un enhancement dont le contrat ne correspond qu’approximativement au scénario.
 
 ### 6.B.3 ÉTAPE 3 — INVENTORIER LES COMPOSANTS
 
-Afficher la liste complète des function, screen et menu exits ainsi que les objets DDIC liés. Pour chaque composant, noter son objet technique, son interface et son rôle. Identifier les composants obligatoires les uns pour les autres.
+Afficher la liste complète des function, screen et menu exits ainsi que les objets DDIC[^terme-acro-ddic] liés. Pour chaque composant, noter son objet technique, son interface et son rôle. Identifier les composants obligatoires les uns pour les autres.
 
 ### 6.B.4 ÉTAPE 4 — REMONTER AU CODE APPELANT
 
@@ -26,7 +26,7 @@ Ouvrir le module `EXIT_*`, l’écran ou le code fonction puis retrouver son uti
 
 ### 6.B.5 ÉTAPE 5 — CONFIRMER L’EXÉCUTION
 
-Placer un breakpoint dans le module ou l’include client et reproduire le scénario. Contrôler la pile d’appels, les paramètres, le nombre de passages et le contexte transactionnel. Conserver ces éléments comme preuve du point retenu.
+Placer un breakpoint[^terme-breakpoint] dans le module ou l’include client et reproduire le scénario. Contrôler la pile d’appels, les paramètres, le nombre de passages et le contexte transactionnel. Conserver ces éléments comme preuve du point retenu.
 
 ### 6.B.6 ÉTAPE 6 — IDENTIFIER LE PROJET `CMOD`
 
@@ -46,7 +46,7 @@ Rechercher si l’enhancement est déjà affecté à un projet client. Vérifier
 
 ## 6.D RECHERCHE PAR PACKAGE
 
-Lorsque le nom est inconnu, utiliser `SE84` ou la recherche étendue de `SMOD`. Une recherche par transaction doit être complétée par l’analyse du programme réellement exécuté.
+Lorsque le nom est inconnu, utiliser `SE84`[^outil-se84] ou la recherche étendue de `SMOD`[^outil-smod]. Une recherche par transaction doit être complétée par l’analyse du programme réellement exécuté.
 
 ## 6.E CONTRÔLE PAR DEBUG
 
@@ -99,4 +99,13 @@ Ordre de transport  :
 
 ---
 
-[Chapitre suivant — CRÉER ET ACTIVER UN PROJET `CMOD`](<./07 ├── CREER ET ACTIVER UN PROJET CMOD.md>)
+[Chapitre suivant — CRÉER ET ACTIVER UN PROJET `CMOD`[^outil-cmod]](<./07 ├── CREER ET ACTIVER UN PROJET CMOD.md>)
+
+[^terme-package]: **PACKAGE.** Conteneur logique qui regroupe les objets de développement et détermine notamment leur transportabilité. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/03 ├── REPOSITORY PACKAGES ET TRANSPORTS.md#package>).
+[^terme-acro-sap]: **SAP.** Nom de l’éditeur et de son écosystème logiciel ; l’acronyme historique provient de l’allemand. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/10 └── ACRONYMES SAP.md#acro-sap>).
+[^terme-acro-ddic]: **DDIC.** Data Dictionary, abréviation courante de l’ABAP Dictionary. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/10 └── ACRONYMES SAP.md#acro-ddic>).
+[^terme-breakpoint]: **BREAKPOINT.** Point d’arrêt suspendant l’exécution dans le débogueur. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/08 ├── EXECUTION EXPLOITATION ET ADMINISTRATION.md#breakpoint>).
+
+[^outil-se84]: **SE84.** Repository Information System utilisé pour rechercher des objets et analyser leurs utilisations. Voir [le chapitre associé](<../🧩 01 ├── FONDAMENTAUX ABAP/02 ├── OBJETS DU REPOSITORY ABAP.md>).
+[^outil-smod]: **SMOD.** Transaction de recherche et d’analyse des enhancements SAP classiques. Voir [le chapitre associé](<06 ├── ANALYSER UN ENHANCEMENT AVEC SMOD.md>).
+[^outil-cmod]: **CMOD.** Transaction de gestion des projets d’extensions client classiques. Voir [le chapitre associé](<07 ├── CREER ET ACTIVER UN PROJET CMOD.md>).

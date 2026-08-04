@@ -6,7 +6,7 @@ Obtenir un numéro unique depuis l’objet de plage `ZDEMO_NR`.
 
 ## 1.B PRÉREQUIS
 
-- Objet et intervalle créés dans `SNRO`.
+- Objet et intervalle créés dans `SNRO`[^outil-snro].
 - Intervalle `01` disponible pour l’exercice courant.
 
 ## 1.C PROCESS
@@ -17,7 +17,7 @@ Créer ou examiner l’objet `ZDEMO_NR` dans `SNRO`. Relever la longueur, le dom
 
 ### 1.C.2 ÉTAPE 2 — MAINTENIR L’INTERVALLE
 
-Créer l’intervalle `01` dans le mandant approprié avec des bornes non chevauchantes. Si l’objet dépend d’un sous-objet ou d’un exercice, maintenir exactement la combinaison utilisée par le programme.
+Créer l’intervalle `01` dans le mandant[^terme-mandant] approprié avec des bornes non chevauchantes. Si l’objet dépend d’un sous-objet ou d’un exercice, maintenir exactement la combinaison utilisée par le programme.
 
 ### 1.C.3 ÉTAPE 3 — TYPER LA VALEUR RETOURNÉE
 
@@ -37,7 +37,7 @@ Utiliser la valeur retournée comme clé dans la même unité de travail que la 
 
 ### 1.C.7 ÉTAPE 7 — TESTER LA CONCURRENCE ET LES BORNES
 
-Exécuter plusieurs appels parallèles en environnement de test, contrôler l’unicité, puis tester une configuration proche de la borne supérieure. Vérifier aussi le comportement après rollback métier.
+Exécuter plusieurs appels parallèles en environnement[^terme-environnement] de test, contrôler l’unicité, puis tester une configuration proche de la borne supérieure. Vérifier aussi le comportement après rollback métier.
 
 ## 1.D CODE PRÊT À ADAPTER
 
@@ -68,4 +68,10 @@ ENDIF.
 ## 1.E CONTRÔLE
 
 - Deux appels validés ne doivent pas attribuer le même numéro.
-- Un numéro demandé peut être consommé même si la transaction métier est annulée ; ne pas exiger une numérotation sans trou sans règle métier explicite.
+- Un numéro demandé peut être consommé même si la transaction métier est annulée ; ne pas exiger une numérotation sans trou sans règle métier[^terme-regle-metier] explicite.
+
+[^terme-mandant]: **MANDANT.** Subdivision logique d’un système SAP. Il est identifié par un numéro à trois chiffres et isole une partie des données, du paramétrage et des utilisateurs. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/01 ├── SYSTEMES ENVIRONNEMENTS ET MANDANTS.md#mandant>).
+[^terme-environnement]: **ENVIRONNEMENT.** Rôle fonctionnel attribué à un système dans le cycle de vie : développement, test, recette, préproduction ou production. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/01 ├── SYSTEMES ENVIRONNEMENTS ET MANDANTS.md#environnement>).
+[^terme-regle-metier]: **RÈGLE MÉTIER.** Condition ou calcul imposé par le processus fonctionnel. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/09 ├── NOTIONS FONCTIONNELLES ET ORGANISATIONNELLES.md#regle-metier>).
+
+[^outil-snro]: **SNRO.** Transaction de maintenance des objets de plage de numéros. Voir [le chapitre associé](<01 ├── OBTENIR LE PROCHAIN NUMERO.md>).

@@ -2,7 +2,7 @@
 
 ## 8.A RÉSULTAT ATTENDU
 
-- Afficher le contenu d’une table interne
+- Afficher le contenu d’une table interne[^terme-table-interne]
 - Identifier son type, sa clé et son volume
 - Filtrer, trier et organiser les colonnes
 - Contrôler les références ou structures imbriquées
@@ -10,7 +10,7 @@
 
 ## 8.B TABLE TOOL
 
-Le débogueur ABAP fournit un outil spécialisé pour les tables internes. Il permet notamment de :
+Le débogueur ABAP[^terme-abap] fournit un outil spécialisé pour les tables internes. Il permet notamment de :
 
 - afficher les lignes ;
 - configurer les colonnes ;
@@ -25,7 +25,7 @@ Avant d’examiner les lignes, vérifier :
 
 - type `STANDARD`, `SORTED` ou `HASHED` ;
 - nombre de lignes ;
-- clé primaire ;
+- clé primaire[^terme-cle-primaire] ;
 - clés secondaires ;
 - présence d’une ligne d’en-tête dans un code ancien ;
 - type de ligne.
@@ -55,7 +55,7 @@ Ne pas parcourir manuellement des milliers de lignes si le critère de divergenc
 Le configurateur de colonnes peut permettre d’ajouter :
 
 - un composant d’une structure imbriquée ;
-- un attribut d’un objet référencé ;
+- un attribut[^terme-attribut] d’un objet référencé ;
 - un champ de clé masqué dans l’affichage initial.
 
 Cette vue facilite l’analyse sans modifier le type ou le code source.
@@ -78,7 +78,7 @@ Cette manipulation ne constitue pas une correction. Elle peut changer le résult
 - doublons créés avant un `DELETE ADJACENT DUPLICATES` ;
 - clé incomplète lors d’un `READ TABLE` ;
 - ligne modifiée sur une copie `INTO` mais jamais réécrite ;
-- field-symbol encore lié à la ligne actuelle ;
+- field-symbol[^terme-field-symbol] encore lié à la ligne actuelle ;
 - tri incompatible avec le traitement suivant.
 
 ## 8.H PROCESS
@@ -103,9 +103,9 @@ La cause est prouvée lorsque l’instruction qui ajoute, omet ou altère la lig
 
 ## 8.I VÉRIFICATION
 
-- Le scénario reproduit correspond au même utilisateur, mandant, transaction et jeu de données.
+- Le scénario reproduit correspond au même utilisateur, mandant[^terme-mandant], transaction et jeu de données.
 - L’horodatage et l’identifiant de l’analyse sont conservés.
-- La cause retenue est soutenue par une ligne source, une trace ou une valeur observée.
+- La cause retenue est soutenue par une ligne source, une trace[^terme-trace] ou une valeur observée.
 - Après correction, le même scénario ne reproduit plus le défaut et le résultat métier reste identique.
 
 ## 8.J FICHE DE CONTRÔLE À COPIER
@@ -138,3 +138,11 @@ Ordre de transport  :
 ---
 
 [Chapitre suivant — PILE D’APPELS ET CONTEXTE D’EXÉCUTION](<./09 ├── PILE D APPELS ET CONTEXTE D EXECUTION.md>)
+
+[^terme-table-interne]: **TABLE INTERNE.** Collection dynamique de lignes stockée en mémoire dans le programme ABAP. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#table-interne>).
+[^terme-abap]: **ABAP.** Langage de programmation de la plateforme ABAP, conçu pour développer des applications métier et techniques SAP. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#abap>).
+[^terme-cle-primaire]: **CLÉ PRIMAIRE.** Ensemble minimal de champs identifiant de manière unique une ligne de table. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/05 ├── DONNEES DICTIONNAIRE ET BASE DE DONNEES.md#cle-primaire>).
+[^terme-attribut]: **ATTRIBUT.** Composant de données déclaré dans une classe et appartenant soit à chaque instance, soit à la classe elle-même. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#attribut>).
+[^terme-field-symbol]: **FIELD-SYMBOL.** Alias dynamique vers une zone de mémoire existante. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#field-symbol>).
+[^terme-mandant]: **MANDANT.** Subdivision logique d’un système SAP. Il est identifié par un numéro à trois chiffres et isole une partie des données, du paramétrage et des utilisateurs. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/01 ├── SYSTEMES ENVIRONNEMENTS ET MANDANTS.md#mandant>).
+[^terme-trace]: **TRACE.** Enregistrement détaillé d’événements techniques pour analyser exécution, SQL ou appels. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/08 ├── EXECUTION EXPLOITATION ET ADMINISTRATION.md#trace>).

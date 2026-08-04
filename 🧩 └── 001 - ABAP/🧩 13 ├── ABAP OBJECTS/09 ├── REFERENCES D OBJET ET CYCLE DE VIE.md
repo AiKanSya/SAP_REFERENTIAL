@@ -2,7 +2,7 @@
 
 ## 9.A RÉSULTAT ATTENDU
 
-- Déclarer et vérifier une référence d’objet.
+- Déclarer et vérifier une référence d’objet[^terme-reference].
 - Comprendre `IS BOUND`, `NEW`, affectation et identité.
 - Éviter les références non liées et les casts injustifiés.
 
@@ -28,13 +28,13 @@ ENDIF.
 
 ## 9.D CAS D’USAGE
 
-Une fabrique peut ne retourner aucun objet si une configuration facultative est absente. Le contrat doit définir clairement si elle retourne une référence initiale ou lève une exception. Le consommateur ne doit pas deviner.
+Une fabrique peut ne retourner aucun objet si une configuration facultative est absente. Le contrat doit définir clairement si elle retourne une référence initiale ou lève une exception[^terme-exception]. Le consommateur ne doit pas deviner.
 
 ## 9.E PROCESS
 
 ### 9.E.1 Étape 1 — Arrêter avant le déréférencement
 
-Placer un breakpoint juste avant l’appel `->`. Relever le type statique de la variable et le chemin ayant dû fournir l’objet.
+Placer un breakpoint[^terme-breakpoint] juste avant l’appel `->`. Relever le type statique de la variable et le chemin ayant dû fournir l’objet.
 
 ### 9.E.2 Étape 2 — Vérifier la liaison
 
@@ -42,7 +42,7 @@ Placer un breakpoint juste avant l’appel `->`. Relever le type statique de la 
 
 ### 9.E.3 Étape 3 — Identifier le type dynamique
 
-Ouvrir la référence dans le débogueur et relever la classe concrète. Comparer avec l’implémentation attendue par la factory ou la configuration.
+Ouvrir la référence dans le débogueur et relever la classe[^terme-classe] concrète. Comparer avec l’implémentation attendue par la factory ou la configuration.
 
 ### 9.E.4 Étape 4 — Retrouver le cycle de vie
 
@@ -50,7 +50,7 @@ Remonter jusqu’au constructeur, à `NEW`, à la factory ou à l’injection. R
 
 ### 9.E.5 Étape 5 — Corréler un dump
 
-Si un dump existe, ouvrir `ST22`, vérifier ligne et pile puis comparer avec le chemin observé. Le diagnostic est terminé lorsque création, type concret et instruction ayant perdu la référence sont identifiés.
+Si un dump existe, ouvrir `ST22`[^outil-st22], vérifier ligne et pile puis comparer avec le chemin observé. Le diagnostic est terminé lorsque création, type concret et instruction ayant perdu la référence sont identifiés.
 
 ## 9.F CODE D’AFFECTATION ET D’IDENTITÉ À ADAPTER
 
@@ -75,15 +75,15 @@ Les deux variables désignent ici la même instance.
 
 ## 9.H ERREURS FRÉQUENTES
 
-- Tester uniquement `IS INITIAL` sans comprendre le contrat de la méthode.
+- Tester uniquement `IS INITIAL` sans comprendre le contrat de la méthode[^terme-methode].
 - Créer une nouvelle instance à chaque appel alors qu’un objet devait conserver un état.
 - Conserver des références globales statiques sans raison et prolonger inutilement la durée de vie des objets.
 
 ## 9.I COMPATIBILITÉ S/4HANA
 
-- Statut : compatible avec le développement ABAP classique sur SAP S/4HANA.
-- Vérifier la syntaxe exacte avec l’aide `F1` du système cible lorsque plusieurs versions d’ABAP Platform sont prises en charge.
-- Les objets globaux doivent être créés dans le package et l’ordre de transport du projet.
+- Statut : compatible avec le développement ABAP[^terme-abap] classique sur SAP[^terme-acro-sap] S/4HANA.
+- Vérifier la syntaxe exacte avec l’aide `F1`[^terme-aide-f1] du système cible lorsque plusieurs versions d’ABAP Platform sont prises en charge.
+- Les objets globaux doivent être créés dans le package[^terme-package] et l’ordre de transport[^terme-ordre-transport] du projet.
 
 ## 9.J RÉFÉRENCES OFFICIELLES SAP
 
@@ -93,3 +93,16 @@ Les deux variables désignent ici la même instance.
 ---
 
 [Chapitre suivant — ENCAPSULATION, INVARIANTS ET API PUBLIQUE](<./10 ├── ENCAPSULATION INVARIANTS ET API PUBLIQUE.md>)
+
+[^terme-reference]: **RÉFÉRENCE.** Valeur qui pointe vers un objet de données ou une instance de classe. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#reference>).
+[^terme-exception]: **EXCEPTION.** Objet ou signal représentant une situation anormale qu’un appelant peut traiter. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#exception>).
+[^terme-breakpoint]: **BREAKPOINT.** Point d’arrêt suspendant l’exécution dans le débogueur. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/08 ├── EXECUTION EXPLOITATION ET ADMINISTRATION.md#breakpoint>).
+[^terme-classe]: **CLASSE.** Modèle orienté objet définissant état et comportements. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#classe>).
+[^terme-methode]: **MÉTHODE.** Comportement déclaré dans une classe ou une interface et appelé avec une liste de paramètres définie. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#methode>).
+[^terme-abap]: **ABAP.** Langage de programmation de la plateforme ABAP, conçu pour développer des applications métier et techniques SAP. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#abap>).
+[^terme-acro-sap]: **SAP.** Nom de l’éditeur et de son écosystème logiciel ; l’acronyme historique provient de l’allemand. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/10 └── ACRONYMES SAP.md#acro-sap>).
+[^terme-aide-f1]: **AIDE F1.** Aide contextuelle expliquant un champ, une fonction ou un mot-clé. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/02 ├── SAP GUI NAVIGATION ET TRANSACTIONS.md#aide-f1>).
+[^terme-package]: **PACKAGE.** Conteneur logique qui regroupe les objets de développement et détermine notamment leur transportabilité. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/03 ├── REPOSITORY PACKAGES ET TRANSPORTS.md#package>).
+[^terme-ordre-transport]: **ORDRE DE TRANSPORT.** Conteneur qui regroupe des modifications à exporter puis importer dans d’autres systèmes. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/03 ├── REPOSITORY PACKAGES ET TRANSPORTS.md#ordre-transport>).
+
+[^outil-st22]: **ST22.** Transaction d’analyse des terminaisons anormales et dumps ABAP. Voir [le chapitre associé](<../🧩 11 ├── DEBUG ET ANALYSE/13 ├── ANALYSER LES DUMPS AVEC ST22.md>).

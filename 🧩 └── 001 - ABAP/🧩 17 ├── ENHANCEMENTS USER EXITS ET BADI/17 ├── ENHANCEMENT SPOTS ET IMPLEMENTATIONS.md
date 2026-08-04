@@ -29,21 +29,21 @@ L’enhancement spot regroupe des options d’extension du côté définition. L
 
 Pour implémenter une option existante :
 
-1. ouvrir l’objet standard dans `SE80`, l’éditeur ABAP ou `SE18` ;
+1. ouvrir l’objet standard dans `SE80`[^outil-se80], l’éditeur ABAP[^terme-abap] ou `SE18`[^outil-se18] ;
 2. passer en mode enhancement ;
 3. sélectionner l’option ;
 4. créer ou choisir une enhancement implementation client ;
-5. affecter package et transport ;
+5. affecter package[^terme-package] et transport ;
 6. coder l’élément ;
 7. activer l’élément et l’implémentation.
 
-Le client ne doit pas créer un enhancement spot dans un objet SAP uniquement pour contourner l’absence d’un point prévu ; cela modifierait la définition standard.
+Le client ne doit pas créer un enhancement spot dans un objet SAP[^terme-acro-sap] uniquement pour contourner l’absence d’un point prévu ; cela modifierait la définition standard.
 
 ## 17.E PROCESS
 
 ### 17.E.1 ÉTAPE 1 — IDENTIFIER LE SPOT DEPUIS LE PROCESSUS
 
-Retrouver dans le code standard l’enhancement point, l’enhancement section ou l’appel de BAdI concerné. Relever le nom du spot et le package. Confirmer au débogueur que ce code appartient au scénario et à la version actifs.
+Retrouver dans le code standard l’enhancement point, l’enhancement section ou l’appel de BAdI[^terme-acro-badi] concerné. Relever le nom du spot et le package. Confirmer au débogueur que ce code appartient au scénario et à la version actifs.
 
 ### 17.E.2 ÉTAPE 2 — ANALYSER LE SPOT
 
@@ -59,11 +59,11 @@ Créer une enhancement implementation Z avec une description fonctionnelle, un p
 
 ### 17.E.5 ÉTAPE 5 — IMPLÉMENTER ET ACTIVER
 
-Pour une BAdI, implémenter les méthodes dans une classe Z et maintenir les filtres. Pour un point source, placer un code minimal déléguant à une classe de service. Activer les classes, éléments d’enhancement puis l’implémentation complète.
+Pour une BAdI, implémenter les méthodes dans une classe[^terme-classe] Z et maintenir les filtres. Pour un point source, placer un code minimal déléguant à une classe de service. Activer les classes, éléments d’enhancement puis l’implémentation complète.
 
 ### 17.E.6 ÉTAPE 6 — TESTER ET PRÉPARER L’UPGRADE
 
-Poser un breakpoint dans chaque élément implémenté et reproduire le scénario cible puis un cas hors périmètre. Conserver le spot, l’élément, la position source et les tests. Cette fiche sert à contrôler l’implémentation après une mise à niveau.
+Poser un breakpoint[^terme-breakpoint] dans chaque élément implémenté et reproduire le scénario cible puis un cas hors périmètre. Conserver le spot, l’élément, la position source et les tests. Cette fiche sert à contrôler l’implémentation après une mise à niveau.
 
 ## 17.F VÉRIFICATION
 
@@ -107,3 +107,13 @@ Ordre de transport  :
 ---
 
 [Chapitre suivant — POINTS D’ENHANCEMENT EXPLICITES](<./18 ├── POINTS D ENHANCEMENT EXPLICITES.md>)
+
+[^terme-abap]: **ABAP.** Langage de programmation de la plateforme ABAP, conçu pour développer des applications métier et techniques SAP. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#abap>).
+[^terme-package]: **PACKAGE.** Conteneur logique qui regroupe les objets de développement et détermine notamment leur transportabilité. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/03 ├── REPOSITORY PACKAGES ET TRANSPORTS.md#package>).
+[^terme-acro-sap]: **SAP.** Nom de l’éditeur et de son écosystème logiciel ; l’acronyme historique provient de l’allemand. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/10 └── ACRONYMES SAP.md#acro-sap>).
+[^terme-acro-badi]: **BADI.** Business Add-In, mécanisme d’extension orienté objet du standard SAP. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/10 └── ACRONYMES SAP.md#acro-badi>).
+[^terme-classe]: **CLASSE.** Modèle orienté objet définissant état et comportements. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#classe>).
+[^terme-breakpoint]: **BREAKPOINT.** Point d’arrêt suspendant l’exécution dans le débogueur. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/08 ├── EXECUTION EXPLOITATION ET ADMINISTRATION.md#breakpoint>).
+
+[^outil-se80]: **SE80.** Object Navigator utilisé pour parcourir et maintenir les objets du Repository ABAP. Voir [le chapitre associé](<../🧩 01 ├── FONDAMENTAUX ABAP/04 ├── EDITEURS ABAP SE38 ET SE80.md>).
+[^outil-se18]: **SE18.** BAdI Builder utilisé pour rechercher et analyser les définitions de BAdI. Voir [le chapitre associé](<14 ├── ANALYSER UNE DEFINITION BADI AVEC SE18.md>).

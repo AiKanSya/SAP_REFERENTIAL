@@ -2,16 +2,16 @@
 
 ## 2.A RÉSULTAT ATTENDU
 
-Identifier l’objet d’autorisation, les champs et les valeurs responsables d’un refus d’accès.
+Identifier l’objet d’autorisation[^terme-objet-autorisation], les champs et les valeurs responsables d’un refus d’accès.
 
 ## 2.B CHOISIR L’OUTIL
 
 | Situation                                                                   | Outil                                     |
 | --------------------------------------------------------------------------- | ----------------------------------------- |
-| Le refus vient de se produire pour l’utilisateur courant                    | `SU53`                                    |
-| Le contrôle fautif n’apparaît pas clairement dans `SU53`                    | `STAUTHTRACE`                             |
+| Le refus vient de se produire pour l’utilisateur courant                    | `SU53`[^outil-su53]                                    |
+| Le contrôle fautif n’apparaît pas clairement dans `SU53`                    | `STAUTHTRACE`[^outil-stauthtrace]                             |
 | Le traitement s’exécute avec un autre utilisateur ou sur plusieurs serveurs | `STAUTHTRACE`, selon autorisations        |
-| Une trace technique plus large est requise                                  | Outil décidé avec l’équipe Basis/sécurité |
+| Une trace[^terme-trace] technique plus large est requise                                  | Outil décidé avec l’équipe Basis/sécurité |
 
 ## 2.C PROCESS
 
@@ -21,11 +21,11 @@ Relever avant le test :
 
 - l’utilisateur qui exécute réellement le traitement ;
 - la transaction, le programme ou le service appelé ;
-- le système et le mandant ;
+- le système et le mandant[^terme-mandant] ;
 - la date et l’heure de reproduction ;
 - l’action fonctionnelle attendue.
 
-Pour un traitement RFC, un workflow ou un job, l’utilisateur technique peut différer de l’utilisateur connecté à l’écran.
+Pour un traitement RFC[^terme-rfc], un workflow ou un job[^terme-job], l’utilisateur technique peut différer de l’utilisateur connecté à l’écran.
 
 ### 2.C.2 Étape 2 — Reproduire une seule fois le refus
 
@@ -47,7 +47,7 @@ Si `SU53` montre clairement le contrôle responsable, le diagnostic peut continu
 
 ### 2.C.4 Étape 4 — Préparer une trace ciblée lorsque `SU53` est insuffisant
 
-Ouvrir `STAUTHTRACE` avec les autorisations requises. Limiter le filtre à l’utilisateur, au serveur d’application et à l’intervalle nécessaires au scénario.
+Ouvrir `STAUTHTRACE` avec les autorisations requises. Limiter le filtre à l’utilisateur, au serveur d’application[^terme-fichier-serveur-application] et à l’intervalle nécessaires au scénario.
 
 Ne pas lancer une trace globale sans justification. Elle produit trop de résultats et peut exposer des informations techniques inutiles.
 
@@ -110,10 +110,21 @@ Le diagnostic est complet uniquement s’il contient :
 
 ## 2.G COMPATIBILITÉ S/4HANA
 
-- `SU53` et `STAUTHTRACE` restent des outils de diagnostic des systèmes ABAP S/4HANA.
+- `SU53` et `STAUTHTRACE` restent des outils de diagnostic des systèmes ABAP[^terme-abap] S/4HANA.
 - Leur disponibilité et leur périmètre dépendent des autorisations et de l’administration du système.
 
 ## 2.H RÉFÉRENCES OFFICIELLES SAP
 
 - [How to Check STAUTHTRACE, SU53 and SLG1 in SAP ABAP-Based Systems — SAP Help Portal](https://help.sap.com/docs/SUPPORT_CONTENT/datasphere/4518522125.html)
 - [Authorization Checks — SAP Help Portal](https://help.sap.com/docs/ABAP_PLATFORM_NEW/c6e6d078ab99452db94ed7b3b7bbcccf/4ca0ac7a68243b9ee10000000a42189b.html)
+
+[^terme-objet-autorisation]: **OBJET D’AUTORISATION.** Structure de contrôle contenant des champs vérifiés lors d’une action. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/09 ├── NOTIONS FONCTIONNELLES ET ORGANISATIONNELLES.md#objet-autorisation>).
+[^terme-trace]: **TRACE.** Enregistrement détaillé d’événements techniques pour analyser exécution, SQL ou appels. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/08 ├── EXECUTION EXPLOITATION ET ADMINISTRATION.md#trace>).
+[^terme-mandant]: **MANDANT.** Subdivision logique d’un système SAP. Il est identifié par un numéro à trois chiffres et isole une partie des données, du paramétrage et des utilisateurs. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/01 ├── SYSTEMES ENVIRONNEMENTS ET MANDANTS.md#mandant>).
+[^terme-rfc]: **RFC.** Remote Function Call, mécanisme permettant d’appeler un module fonction compatible dans un autre contexte ou système. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/06 ├── PROGRAMMES CLASSES ET OBJETS TECHNIQUES.md#rfc>).
+[^terme-job]: **JOB.** Traitement planifié en arrière-plan composé d’une ou plusieurs étapes. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/06 ├── PROGRAMMES CLASSES ET OBJETS TECHNIQUES.md#job>).
+[^terme-fichier-serveur-application]: **SERVEUR D’APPLICATION.** Emplacement du backend où un programme ABAP peut lire ou écrire avec `OPEN DATASET`. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/07 ├── INTERFACES ET INTEGRATION.md#fichier-serveur-application>).
+[^terme-abap]: **ABAP.** Langage de programmation de la plateforme ABAP, conçu pour développer des applications métier et techniques SAP. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#abap>).
+
+[^outil-su53]: **SU53.** Transaction affichant les derniers contrôles d’autorisation en échec pour l’utilisateur courant. Voir [le chapitre associé](<02 ├── DIAGNOSTIQUER UN REFUS AVEC SU53 ET STAUTHTRACE.md>).
+[^outil-stauthtrace]: **STAUTHTRACE.** Trace d’autorisations utilisée pour enregistrer et analyser les contrôles exécutés pendant un scénario. Voir [le chapitre associé](<02 ├── DIAGNOSTIQUER UN REFUS AVEC SU53 ET STAUTHTRACE.md>).

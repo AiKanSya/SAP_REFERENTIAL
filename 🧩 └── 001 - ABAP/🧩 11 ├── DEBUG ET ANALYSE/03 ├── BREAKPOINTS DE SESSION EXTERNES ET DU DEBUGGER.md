@@ -2,14 +2,14 @@
 
 ## 3.A RÉSULTAT ATTENDU
 
-- Choisir le bon type de breakpoint
+- Choisir le bon type de breakpoint[^terme-breakpoint]
 - Comprendre sa portée et sa durée de validité
 - Arrêter un traitement dialogué ou externe
 - Éviter les breakpoints placés sur le mauvais utilisateur
 
 ## 3.B PRINCIPE
 
-Un breakpoint demande au processeur ABAP de suspendre l’exécution à un emplacement déterminé.
+Un breakpoint demande au processeur ABAP[^terme-abap] de suspendre l’exécution à un emplacement déterminé.
 
 ```mermaid
 flowchart LR
@@ -20,11 +20,11 @@ flowchart LR
 
 ## 3.C BREAKPOINT DE SESSION
 
-Le breakpoint de session concerne normalement les traitements exécutés par le même utilisateur dans la session SAP GUI correspondante.
+Le breakpoint de session concerne normalement les traitements exécutés par le même utilisateur dans la session SAP GUI[^terme-session-sap-gui] correspondante.
 
 Utilisation typique :
 
-- rapport lancé depuis `SE38` ;
+- rapport lancé depuis `SE38`[^outil-se38] ;
 - transaction dialoguée ;
 - programme appelé dans le même contexte utilisateur.
 
@@ -36,7 +36,7 @@ Le breakpoint externe est destiné aux traitements dont l’appel arrive depuis 
 
 - requête HTTP ;
 - service ICF ;
-- appel RFC ;
+- appel RFC[^terme-rfc] ;
 - application web utilisant le système ABAP ;
 - scénario où la session SAP GUI qui pose le breakpoint n’exécute pas directement le traitement.
 
@@ -89,9 +89,9 @@ Contrôler :
 
 ## 3.I VÉRIFICATION
 
-- Le scénario reproduit correspond au même utilisateur, mandant, transaction et jeu de données.
+- Le scénario reproduit correspond au même utilisateur, mandant[^terme-mandant], transaction et jeu de données.
 - L’horodatage et l’identifiant de l’analyse sont conservés.
-- La cause retenue est soutenue par une ligne source, une trace ou une valeur observée.
+- La cause retenue est soutenue par une ligne source, une trace[^terme-trace] ou une valeur observée.
 - Après correction, le même scénario ne reproduit plus le défaut et le résultat métier reste identique.
 
 ## 3.J ERREURS FRÉQUENTES
@@ -104,7 +104,7 @@ Contrôler :
 ## 3.K SNIPPET À RÉUTILISER
 
 > [!NOTE]
-> Adapter les noms `Z*`, les types DDIC, les données et les autorisations au système cible. Effectuer un contrôle syntaxique avant activation.
+> Adapter les noms `Z*`, les types DDIC[^terme-acro-ddic], les données et les autorisations au système cible. Effectuer un contrôle syntaxique avant activation.
 
 ```abap
 BREAK-POINT.
@@ -128,3 +128,13 @@ BREAK-POINT.
 ---
 
 [Chapitre suivant — BREAKPOINTS CONDITIONNELS ET DYNAMIQUES](<./04 ├── BREAKPOINTS CONDITIONNELS ET DYNAMIQUES.md>)
+
+[^terme-breakpoint]: **BREAKPOINT.** Point d’arrêt suspendant l’exécution dans le débogueur. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/08 ├── EXECUTION EXPLOITATION ET ADMINISTRATION.md#breakpoint>).
+[^terme-abap]: **ABAP.** Langage de programmation de la plateforme ABAP, conçu pour développer des applications métier et techniques SAP. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#abap>).
+[^terme-session-sap-gui]: **SESSION SAP GUI.** Fenêtre de travail indépendante ouverte pour un même utilisateur et un même système. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/02 ├── SAP GUI NAVIGATION ET TRANSACTIONS.md#session-sap-gui>).
+[^terme-rfc]: **RFC.** Remote Function Call, mécanisme permettant d’appeler un module fonction compatible dans un autre contexte ou système. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/06 ├── PROGRAMMES CLASSES ET OBJETS TECHNIQUES.md#rfc>).
+[^terme-mandant]: **MANDANT.** Subdivision logique d’un système SAP. Il est identifié par un numéro à trois chiffres et isole une partie des données, du paramétrage et des utilisateurs. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/01 ├── SYSTEMES ENVIRONNEMENTS ET MANDANTS.md#mandant>).
+[^terme-trace]: **TRACE.** Enregistrement détaillé d’événements techniques pour analyser exécution, SQL ou appels. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/08 ├── EXECUTION EXPLOITATION ET ADMINISTRATION.md#trace>).
+[^terme-acro-ddic]: **DDIC.** Data Dictionary, abréviation courante de l’ABAP Dictionary. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/10 └── ACRONYMES SAP.md#acro-ddic>).
+
+[^outil-se38]: **SE38.** Éditeur ABAP classique utilisé pour créer, modifier, vérifier et exécuter des programmes. Voir [le chapitre associé](<../🧩 01 ├── FONDAMENTAUX ABAP/04 ├── EDITEURS ABAP SE38 ET SE80.md>).

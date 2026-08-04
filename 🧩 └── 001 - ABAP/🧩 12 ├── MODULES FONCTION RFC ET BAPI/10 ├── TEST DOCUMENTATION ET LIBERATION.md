@@ -2,7 +2,7 @@
 
 ## 10.A RÉSULTAT ATTENDU
 
-- Tester un module dans `SE37`
+- Tester un module dans `SE37`[^outil-se37]
 - Constituer des données de test reproductibles
 - Documenter le contrat complet
 - Comprendre la portée d’un statut de libération
@@ -23,7 +23,7 @@ Dans `SE37`, choisir **Tester/Exécuter** et saisir tous les imports obligatoire
 
 ### 10.B.3 Étape 3 — Exécuter et relever toutes les sorties
 
-Noter exports, changing, tables, exception et messages. Comparer avec le résultat attendu avant de modifier une entrée.
+Noter exports, changing, tables, exception[^terme-exception] et messages. Comparer avec le résultat attendu avant de modifier une entrée.
 
 ### 10.B.4 Étape 4 — Vérifier les effets de bord
 
@@ -47,7 +47,7 @@ Certains modules doivent être testés dans une séquence, par exemple :
 
 ### 10.C.1 Étape 1 — Définir l’ordre imposé
 
-Identifier le module d’initialisation, la lecture, la modification et le module ou BAPI de validation. Relever les données transmises entre appels.
+Identifier le module d’initialisation, la lecture, la modification et le module ou BAPI[^terme-bapi] de validation. Relever les données transmises entre appels.
 
 ### 10.C.2 Étape 2 — Construire la séquence
 
@@ -75,11 +75,11 @@ Documenter :
 - exceptions et messages ;
 - gestion du commit ;
 - autorisations requises ;
-- restrictions RFC éventuelles.
+- restrictions RFC[^terme-rfc] éventuelles.
 
 ## 10.E LIBÉRATION
 
-Un indicateur de libération ou une documentation d’API est une information importante pour les consommateurs. Pour un objet SAP standard, ne pas déduire la stabilité publique du simple fait que le module est visible ou testable.
+Un indicateur de libération ou une documentation d’API[^terme-api] est une information importante pour les consommateurs. Pour un objet SAP[^terme-acro-sap] standard, ne pas déduire la stabilité publique du simple fait que le module est visible ou testable.
 
 Pour un module client :
 
@@ -111,7 +111,7 @@ Tester cas nominal, absent, limite, autorisation refusée et erreur technique ap
 
 ### 10.G.3 Étape 3 — Contrôler qualité et dépendances
 
-Exécuter contrôle syntaxique, ATC/SCI prévu et liste d’utilisation. Vérifier que les types DDIC et objets appelés sont actifs et transportés avant le module.
+Exécuter contrôle syntaxique, ATC[^terme-acro-atc]/SCI[^outil-sci] prévu et liste d’utilisation. Vérifier que les types DDIC[^terme-acro-ddic] et objets appelés sont actifs et transportés avant le module.
 
 ### 10.G.4 Étape 4 — Libérer la livraison
 
@@ -125,7 +125,7 @@ Contrôler contenu de la tâche, activer le groupe complet puis libérer selon l
 
 ## 10.I ERREURS FRÉQUENTES
 
-- Appeler un module fonction sans lire sa documentation et ses exceptions.
+- Appeler un module fonction[^terme-module-fonction] sans lire sa documentation et ses exceptions.
 - Supposer qu’une BAPI effectue automatiquement le commit.
 
 ## 10.J FICHE DE CONTRÔLE À COPIER
@@ -162,3 +162,15 @@ Ordre de transport  :
 ---
 
 [Chapitre suivant — MODULES FONCTION DE MISE À JOUR](<./11 ├── MODULES FONCTION DE MISE A JOUR.md>)
+
+[^terme-exception]: **EXCEPTION.** Objet ou signal représentant une situation anormale qu’un appelant peut traiter. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#exception>).
+[^terme-bapi]: **BAPI.** Interface métier publiée autour d’un Business Object SAP, généralement implémentée par un module fonction RFC. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/06 ├── PROGRAMMES CLASSES ET OBJETS TECHNIQUES.md#bapi>).
+[^terme-rfc]: **RFC.** Remote Function Call, mécanisme permettant d’appeler un module fonction compatible dans un autre contexte ou système. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/06 ├── PROGRAMMES CLASSES ET OBJETS TECHNIQUES.md#rfc>).
+[^terme-api]: **API.** Application Programming Interface, contrat exposant des opérations ou données utilisables par d’autres composants. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/10 └── ACRONYMES SAP.md#api>).
+[^terme-acro-sap]: **SAP.** Nom de l’éditeur et de son écosystème logiciel ; l’acronyme historique provient de l’allemand. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/10 └── ACRONYMES SAP.md#acro-sap>).
+[^terme-acro-atc]: **ATC.** ABAP Test Cockpit, infrastructure de contrôles statiques et de gouvernance qualité. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/10 └── ACRONYMES SAP.md#acro-atc>).
+[^terme-acro-ddic]: **DDIC.** Data Dictionary, abréviation courante de l’ABAP Dictionary. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/10 └── ACRONYMES SAP.md#acro-ddic>).
+[^terme-module-fonction]: **MODULE FONCTION.** Procédure globale appelée avec `CALL FUNCTION` et définie dans un groupe de fonctions. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/06 ├── PROGRAMMES CLASSES ET OBJETS TECHNIQUES.md#module-fonction>).
+
+[^outil-se37]: **SE37.** Function Builder utilisé pour rechercher, afficher, tester et maintenir les modules fonction. Voir [le chapitre associé](<03 ├── RECHERCHER ET ANALYSER AVEC SE37.md>).
+[^outil-sci]: **SCI.** Code Inspector utilisé pour exécuter des contrôles statiques sur un ensemble d’objets ABAP. Voir [le chapitre associé](<../🧩 20 ├── PERFORMANCE QUALITE ET TESTS/13 ├── CODE INSPECTOR AVEC SCI.md>).

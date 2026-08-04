@@ -2,11 +2,11 @@
 
 ## 1.A RÉSULTAT ATTENDU
 
-- Distinguer le client SAP GUI du système ABAP auquel il se connecte
-- Identifier le système, le mandant, l’utilisateur et la transaction en cours
-- Naviguer avec SAP Easy Access et le champ de commande
-- Utiliser les aides standard `F1` et `F4`
-- Éviter les erreurs d’intervention sur un mauvais environnement
+- Distinguer le client SAP GUI[^terme-sap-gui] du système ABAP[^terme-abap] auquel il se connecte
+- Identifier le système, le mandant[^terme-mandant], l’utilisateur et la transaction en cours
+- Naviguer avec SAP Easy Access[^terme-sap-easy-access] et le champ de commande[^terme-champ-commande]
+- Utiliser les aides standard `F1`[^terme-aide-f1] et `F4`[^terme-aide-f4]
+- Éviter les erreurs d’intervention sur un mauvais environnement[^terme-environnement]
 
 ## 1.B VUE D’ENSEMBLE
 
@@ -21,13 +21,13 @@ flowchart LR
 
 ## 1.C SAP GUI ET SYSTÈME ABAP
 
-`SAP GUI` est le client graphique utilisé pour accéder à un système SAP reposant sur un serveur d’applications ABAP.
+`SAP GUI` est le client graphique utilisé pour accéder à un système SAP[^terme-systeme-sap] reposant sur un serveur d’applications ABAP[^terme-serveur-applications-abap].
 
 Il faut distinguer :
 
 | Élément         | Rôle                                                               |
 | --------------- | ------------------------------------------------------------------ |
-| SAP Logon       | Répertorie les connexions disponibles                              |
+| SAP Logon[^terme-sap-logon]       | Répertorie les connexions disponibles                              |
 | SAP GUI         | Affiche les écrans et transmet les actions utilisateur             |
 | Système ABAP    | Exécute les transactions, programmes et contrôles d’autorisation   |
 | Mandant         | Sépare une partie des données et du paramétrage au sein du système |
@@ -40,7 +40,7 @@ Il faut distinguer :
 
 Un **mandant** est une subdivision logique d’un système SAP. Il est identifié par un numéro à trois chiffres, par exemple `100`, `200` ou `300`.
 
-Un même système peut contenir plusieurs mandants. Ils partagent le même Repository ABAP actif, mais une partie de leurs données, de leur paramétrage et de leurs utilisateurs peut être séparée.
+Un même système peut contenir plusieurs mandants. Ils partagent le même Repository ABAP[^terme-repository-abap] actif, mais une partie de leurs données, de leur paramétrage et de leurs utilisateurs peut être séparée.
 
 | Élément                          | Exemple                | Portée habituelle                           |
 | -------------------------------- | ---------------------- | ------------------------------------------- |
@@ -48,9 +48,9 @@ Un même système peut contenir plusieurs mandants. Ils partagent le même Repos
 | Mandant                          | `200`                  | Contexte logique dans le système            |
 | Utilisateur                      | `DEV_USER`             | Identité et autorisations dans le mandant   |
 | Programme ABAP                   | `ZDEV_REPORT`          | Généralement commun aux mandants du système |
-| Données d’une table avec `MANDT` | Ligne du mandant `200` | Séparées par mandant                        |
+| Données d’une table avec `MANDT`[^terme-mandt] | Ligne du mandant `200` | Séparées par mandant                        |
 
-Dans une table dépendante du mandant, le premier champ de clé est généralement `MANDT`. ABAP SQL applique normalement automatiquement le mandant courant. Les accès inter-mandants sont des cas particuliers qui exigent une justification et des autorisations adaptées.
+Dans une table dépendante du mandant, le premier champ de clé est généralement `MANDT`. ABAP SQL[^terme-acro-sql] applique normalement automatiquement le mandant courant. Les accès inter-mandants[^terme-inter-mandants] sont des cas particuliers qui exigent une justification et des autorisations adaptées.
 
 ### 1.D.1 COMMENT IDENTIFIER LE MANDANT COURANT
 
@@ -104,7 +104,7 @@ Le champ de commande permet d’appeler directement une transaction.
 
 | Saisie   | Effet                                                                |
 | -------- | -------------------------------------------------------------------- |
-| `SE38`   | Appelle la transaction depuis SAP Easy Access                        |
+| `SE38`[^outil-se38]   | Appelle la transaction depuis SAP Easy Access                        |
 | `/nSE38` | Termine la transaction courante et ouvre `SE38` dans la même session |
 | `/oSE38` | Ouvre `SE38` dans une nouvelle session                               |
 | `/n`     | Revient à SAP Easy Access en quittant la transaction courante        |
@@ -122,9 +122,9 @@ Le champ de commande permet d’appeler directement une transaction.
 Dans de nombreux écrans, l’aide permet aussi d’accéder aux **informations techniques** :
 
 - programme ;
-- dynpro ;
+- dynpro[^terme-dynpro] ;
 - nom technique du champ ;
-- élément de données ;
+- élément de données[^terme-element-donnees] ;
 - table ou structure de référence.
 
 Ces informations sont essentielles pour analyser un écran standard ou préparer une recherche dans le Repository.
@@ -165,7 +165,7 @@ flowchart TD
 
 1. Ouvrir SAP Logon.
 2. Repérer la connexion indiquée dans le ticket ou la documentation du paysage.
-3. Comparer son libellé, son SID et son environnement annoncé : développement, qualité ou production.
+3. Comparer son libellé, son SID[^terme-sid] et son environnement annoncé : développement, qualité ou production.
 4. Ouvrir cette connexion puis saisir le mandant, l’utilisateur, le mot de passe et la langue autorisés.
 
 Le libellé SAP Logon ne constitue pas une preuve suffisante : il peut être personnalisé localement. La vérification doit continuer dans le système connecté.
@@ -173,7 +173,7 @@ Le libellé SAP Logon ne constitue pas une preuve suffisante : il peut être per
 ### 1.J.2 Étape 2 — Identifier le système réellement ouvert
 
 1. Dans SAP GUI, ouvrir **Système → Statut**.
-2. Relever au minimum le SID, le mandant, l’utilisateur, le serveur d’application et la version du composant ABAP lorsque celle-ci est nécessaire au diagnostic.
+2. Relever au minimum le SID, le mandant, l’utilisateur, le serveur d’application[^terme-fichier-serveur-application] et la version du composant ABAP lorsque celle-ci est nécessaire au diagnostic.
 3. Conserver ces valeurs dans le ticket ou les notes de diagnostic.
 
 Le SID identifie le système, le mandant sépare les données dépendantes du client et l’utilisateur détermine le contexte d’autorisation. Un résultat dans un autre mandant ne prouve rien pour le mandant demandé.
@@ -190,7 +190,7 @@ Si une seule valeur diffère, arrêter l’action. Revenir à SAP Logon et séle
 
 1. Utiliser `/n<code>` pour remplacer la transaction de la session courante, par exemple `/nSE80`.
 2. Utiliser `/o<code>` pour ouvrir une nouvelle session, par exemple `/oST22`, lorsque la comparaison avec l’écran courant doit être conservée.
-3. Vérifier le titre et le code de transaction affichés après la navigation.
+3. Vérifier le titre et le code de transaction[^terme-code-transaction] affichés après la navigation.
 
 Si SAP refuse la transaction, relever le message exact. Distinguer un code inexistant, une transaction verrouillée et un refus d’autorisation avant de choisir le chapitre de diagnostic approprié.
 
@@ -246,3 +246,26 @@ Ordre de transport  :
 ---
 
 [Chapitre suivant — OBJETS DU REPOSITORY ABAP](<./02 ├── OBJETS DU REPOSITORY ABAP.md>)
+
+[^terme-sap-gui]: **SAP GUI.** Client graphique permettant d’utiliser les transactions et écrans d’un système SAP. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/02 ├── SAP GUI NAVIGATION ET TRANSACTIONS.md#sap-gui>).
+[^terme-abap]: **ABAP.** Langage de programmation de la plateforme ABAP, conçu pour développer des applications métier et techniques SAP. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#abap>).
+[^terme-mandant]: **MANDANT.** Subdivision logique d’un système SAP. Il est identifié par un numéro à trois chiffres et isole une partie des données, du paramétrage et des utilisateurs. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/01 ├── SYSTEMES ENVIRONNEMENTS ET MANDANTS.md#mandant>).
+[^terme-sap-easy-access]: **SAP EASY ACCESS.** Écran d’accueil classique de SAP GUI contenant menus, favoris et champ de commande. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/02 ├── SAP GUI NAVIGATION ET TRANSACTIONS.md#sap-easy-access>).
+[^terme-champ-commande]: **CHAMP DE COMMANDE.** Zone de SAP GUI utilisée pour saisir des codes de transaction et des commandes système. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/02 ├── SAP GUI NAVIGATION ET TRANSACTIONS.md#champ-commande>).
+[^terme-aide-f1]: **AIDE F1.** Aide contextuelle expliquant un champ, une fonction ou un mot-clé. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/02 ├── SAP GUI NAVIGATION ET TRANSACTIONS.md#aide-f1>).
+[^terme-aide-f4]: **AIDE F4.** Aide à la saisie proposant des valeurs autorisées ou recherchables. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/02 ├── SAP GUI NAVIGATION ET TRANSACTIONS.md#aide-f4>).
+[^terme-environnement]: **ENVIRONNEMENT.** Rôle fonctionnel attribué à un système dans le cycle de vie : développement, test, recette, préproduction ou production. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/01 ├── SYSTEMES ENVIRONNEMENTS ET MANDANTS.md#environnement>).
+[^terme-systeme-sap]: **SYSTÈME SAP.** Ensemble technique cohérent comprenant au minimum une base de données et un ou plusieurs serveurs d’applications. Il est généralement identifié par un SID de trois caractères. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/01 ├── SYSTEMES ENVIRONNEMENTS ET MANDANTS.md#systeme-sap>).
+[^terme-serveur-applications-abap]: **SERVEUR D’APPLICATIONS ABAP.** Composant qui exécute les programmes ABAP au moyen de processus de travail. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/01 ├── SYSTEMES ENVIRONNEMENTS ET MANDANTS.md#serveur-applications-abap>).
+[^terme-sap-logon]: **SAP LOGON.** Application qui répertorie les connexions SAP disponibles sur le poste utilisateur. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/02 ├── SAP GUI NAVIGATION ET TRANSACTIONS.md#sap-logon>).
+[^terme-repository-abap]: **REPOSITORY ABAP.** Ensemble central des objets de développement d’un système ABAP. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/03 ├── REPOSITORY PACKAGES ET TRANSPORTS.md#repository-abap>).
+[^terme-mandt]: **MANDT.** Champ technique de type mandant, généralement placé en première position de clé dans les tables dépendantes du mandant. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/05 ├── DONNEES DICTIONNAIRE ET BASE DE DONNEES.md#mandt>).
+[^terme-acro-sql]: **SQL.** Structured Query Language. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/10 └── ACRONYMES SAP.md#acro-sql>).
+[^terme-inter-mandants]: **INTER-MANDANTS.** Qualifie une donnée ou une action commune à tous les mandants d’un même système. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/01 ├── SYSTEMES ENVIRONNEMENTS ET MANDANTS.md#inter-mandants>).
+[^terme-dynpro]: **DYNPRO.** Écran classique SAP composé d’une définition d’écran et d’une logique PBO/PAI. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/02 ├── SAP GUI NAVIGATION ET TRANSACTIONS.md#dynpro>).
+[^terme-element-donnees]: **ÉLÉMENT DE DONNÉES.** Objet DDIC qui attribue une signification métier, des libellés et une documentation à un type élémentaire ou à un domaine. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/05 ├── DONNEES DICTIONNAIRE ET BASE DE DONNEES.md#element-donnees>).
+[^terme-sid]: **SID.** Identifiant technique d’un système SAP, composé de trois caractères alphanumériques. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/01 ├── SYSTEMES ENVIRONNEMENTS ET MANDANTS.md#sid>).
+[^terme-fichier-serveur-application]: **SERVEUR D’APPLICATION.** Emplacement du backend où un programme ABAP peut lire ou écrire avec `OPEN DATASET`. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/07 ├── INTERFACES ET INTEGRATION.md#fichier-serveur-application>).
+[^terme-code-transaction]: **CODE DE TRANSACTION.** Identifiant court utilisé pour démarrer une transaction SAP. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/02 ├── SAP GUI NAVIGATION ET TRANSACTIONS.md#code-transaction>).
+
+[^outil-se38]: **SE38.** Éditeur ABAP classique utilisé pour créer, modifier, vérifier et exécuter des programmes. Voir [le chapitre associé](<04 ├── EDITEURS ABAP SE38 ET SE80.md>).

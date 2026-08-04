@@ -2,7 +2,7 @@
 
 ## 8.A RÉSULTAT ATTENDU
 
-- Parcourir toutes les lignes d’une table interne
+- Parcourir toutes les lignes d’une table interne[^terme-table-interne]
 - Filtrer les lignes avec `WHERE`
 - Parcourir une plage d’index
 - Utiliser `sy-tabix` avec prudence
@@ -80,7 +80,7 @@ LOOP AT lt_products
 ENDLOOP.
 ```
 
-`USING KEY` permet d’imposer l’utilisation d’une clé primaire ou secondaire appropriée.
+`USING KEY` permet d’imposer l’utilisation d’une clé primaire[^terme-cle-primaire] ou secondaire appropriée.
 
 ## 8.G CHECK ET CONTINUE DANS LOOP
 
@@ -137,7 +137,7 @@ Ce schéma peut devenir coûteux sur des volumes importants. Une clé adaptée s
 ## 8.L SNIPPET À RÉUTILISER
 
 > [!NOTE]
-> Adapter les noms `Z*`, les types DDIC, les données et les autorisations au système cible. Effectuer un contrôle syntaxique avant activation.
+> Adapter les noms `Z*`, les types DDIC[^terme-acro-ddic], les données et les autorisations au système cible. Effectuer un contrôle syntaxique avant activation.
 
 ```abap
 " Traiter la collection sans lecture SQL dans la boucle.
@@ -169,3 +169,7 @@ ENDLOOP.
 ---
 
 [Chapitre suivant — TRAITER LES LIGNES AVEC INTO, ASSIGNING ET REFERENCE INTO](<./09 ├── TRAITER LES LIGNES AVEC INTO ASSIGNING ET REFERENCE INTO.md>)
+
+[^terme-table-interne]: **TABLE INTERNE.** Collection dynamique de lignes stockée en mémoire dans le programme ABAP. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#table-interne>).
+[^terme-cle-primaire]: **CLÉ PRIMAIRE.** Ensemble minimal de champs identifiant de manière unique une ligne de table. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/05 ├── DONNEES DICTIONNAIRE ET BASE DE DONNEES.md#cle-primaire>).
+[^terme-acro-ddic]: **DDIC.** Data Dictionary, abréviation courante de l’ABAP Dictionary. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/10 └── ACRONYMES SAP.md#acro-ddic>).

@@ -2,7 +2,7 @@
 
 ## 5.A RÉSULTAT ATTENDU
 
-- Annuler la SAP LUW courante
+- Annuler la SAP LUW[^terme-sap-luw] courante
 - Comprendre les effets sur les mises à jour enregistrées
 - Différencier annulation technique et compensation métier
 
@@ -19,7 +19,7 @@ IF sy-subrc <> 0.
 ENDIF.
 ```
 
-`ROLLBACK WORK` déclenche un rollback des modifications non validées et supprime les modules de mise à jour enregistrés dans la SAP LUW courante.
+`ROLLBACK WORK`[^terme-rollback-work] déclenche un rollback des modifications non validées et supprime les modules de mise à jour enregistrés dans la SAP LUW courante.
 
 ## 5.C LIMITES
 
@@ -52,7 +52,7 @@ Lister les écritures effectuées depuis la dernière borne transactionnelle. S�
 
 ### 5.E.2 ÉTAPE 2 — DÉTECTER L’ERREUR AVANT UN EFFET IRRÉVERSIBLE
 
-Exécuter les contrôles structurels et métier avant l’envoi d’un fichier, d’un message ou d’un appel externe. Après chaque écriture Open SQL ou appel d’API, traiter le retour au niveau qui connaît l’unité métier complète.
+Exécuter les contrôles structurels et métier avant l’envoi d’un fichier, d’un message ou d’un appel externe. Après chaque écriture Open SQL[^terme-acro-sql] ou appel d’API[^terme-api], traiter le retour au niveau qui connaît l’unité métier complète.
 
 ### 5.E.3 ÉTAPE 3 — EXÉCUTER LE ROLLBACK DEPUIS L’ORCHESTRATEUR
 
@@ -68,7 +68,7 @@ Si une étape a déjà été validée ou exécutée dans un autre système, appe
 
 ### 5.E.6 ÉTAPE 6 — VÉRIFIER L’ÉTAT FINAL
 
-Contrôler les tables, `SM13`, `SM12` et les systèmes externes. Tester une erreur avant écriture, après écriture non validée et après effet externe. Chaque scénario doit aboutir à un état cohérent ou à un statut de reprise explicite.
+Contrôler les tables, `SM13`[^outil-sm13], `SM12`[^outil-sm12] et les systèmes externes. Tester une erreur avant écriture, après écriture non validée et après effet externe. Chaque scénario doit aboutir à un état cohérent ou à un statut de reprise explicite.
 
 ## 5.F VÉRIFICATION
 
@@ -87,7 +87,7 @@ Contrôler les tables, `SM13`, `SM12` et les systèmes externes. Tester une erre
 ## 5.H SNIPPET À RÉUTILISER
 
 > [!NOTE]
-> Adapter les noms `Z*`, les types DDIC, les données et les autorisations au système cible. Effectuer un contrôle syntaxique avant activation.
+> Adapter les noms `Z*`, les types DDIC[^terme-acro-ddic], les données et les autorisations au système cible. Effectuer un contrôle syntaxique avant activation.
 
 ```abap
 UPDATE zdev_order
@@ -117,3 +117,12 @@ ENDIF.
 ---
 
 [Chapitre suivant — CONCEPT DE VERROUILLAGE SAP](<./06 ├── CONCEPT DE VERROUILLAGE SAP.md>)
+
+[^terme-sap-luw]: **SAP LUW.** Unité logique métier SAP pouvant regrouper plusieurs étapes de dialogue et différer les mises à jour jusqu’au commit. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/08 ├── EXECUTION EXPLOITATION ET ADMINISTRATION.md#sap-luw>).
+[^terme-rollback-work]: **ROLLBACK WORK.** Instruction annulant les modifications non validées de la LUW courante et les tâches de mise à jour enregistrées. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/08 ├── EXECUTION EXPLOITATION ET ADMINISTRATION.md#rollback-work>).
+[^terme-acro-sql]: **SQL.** Structured Query Language. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/10 └── ACRONYMES SAP.md#acro-sql>).
+[^terme-api]: **API.** Application Programming Interface, contrat exposant des opérations ou données utilisables par d’autres composants. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/10 └── ACRONYMES SAP.md#api>).
+[^terme-acro-ddic]: **DDIC.** Data Dictionary, abréviation courante de l’ABAP Dictionary. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/10 └── ACRONYMES SAP.md#acro-ddic>).
+
+[^outil-sm13]: **SM13.** Transaction de surveillance et de reprise des enregistrements de mise à jour SAP. Voir [le chapitre associé](<19 ├── ANALYSER ET REPRENDRE LES UPDATES AVEC SM13.md>).
+[^outil-sm12]: **SM12.** Transaction de surveillance et d’administration des entrées de verrouillage SAP. Voir [le chapitre associé](<12 ├── ANALYSER LES VERROUS AVEC SM12.md>).

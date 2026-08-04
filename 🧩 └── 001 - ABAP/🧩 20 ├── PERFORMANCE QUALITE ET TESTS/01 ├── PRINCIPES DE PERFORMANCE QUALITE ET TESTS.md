@@ -2,15 +2,15 @@
 
 ## 1.A RÉSULTAT ATTENDU
 
-Positionner les trois dimensions qui rendent un développement ABAP exploitable dans la durée : **performance mesurée**, **qualité vérifiable** et **tests reproductibles**.
+Positionner les trois dimensions qui rendent un développement ABAP[^terme-abap] exploitable dans la durée : **performance mesurée**, **qualité vérifiable** et **tests reproductibles**.
 
 ## 1.B Trois axes complémentaires
 
 | Axe              | Question principale                                         | Outils typiques                           |
 | ---------------- | ----------------------------------------------------------- | ----------------------------------------- |
-| Performance      | Où le temps et la mémoire sont-ils consommés ?              | `SAT`, `ST05`, `SQLM`, `SWLT`             |
-| Qualité statique | Quels défauts sont détectables sans exécuter le programme ? | contrôle syntaxique, `SLIN`, `SCI`, `ATC` |
-| Tests            | Le comportement attendu reste-t-il correct ?                | ABAP Unit, `SCOV`, tests d’intégration    |
+| Performance      | Où le temps et la mémoire sont-ils consommés ?              | `SAT`[^outil-sat], `ST05`[^outil-st05], `SQLM`[^outil-sqlm], `SWLT`[^outil-swlt]             |
+| Qualité statique | Quels défauts sont détectables sans exécuter le programme ? | contrôle syntaxique, `SLIN`[^outil-slin], `SCI`[^outil-sci], `ATC`[^terme-acro-atc] |
+| Tests            | Le comportement attendu reste-t-il correct ?                | ABAP Unit, `SCOV`[^outil-scov], tests d’intégration    |
 
 ```mermaid
 flowchart LR
@@ -54,19 +54,19 @@ Un développement est prêt lorsque son comportement est démontré, ses finding
 
 ### 1.G.1 ÉTAPE 1 — FIGER LE COMPORTEMENT ATTENDU
 
-Définir entrées, résultat, volume, utilisateur, mandant et contexte d’exécution. Créer des tests couvrant cas nominal, limites et erreurs avant une optimisation ou refonte. Sans oracle fonctionnel, une amélioration de temps peut masquer une régression.
+Définir entrées, résultat, volume, utilisateur, mandant[^terme-mandant] et contexte d’exécution. Créer des tests couvrant cas nominal, limites et erreurs avant une optimisation ou refonte. Sans oracle fonctionnel, une amélioration de temps peut masquer une régression.
 
 ### 1.G.2 ÉTAPE 2 — ÉTABLIR UNE MESURE DE RÉFÉRENCE
 
-Exécuter un scénario représentatif et conserver durée, accès SQL, mémoire, compteurs et horodatage. Choisir `SAT`, `ST05`, `SQLM`, Memory Inspector ou un autre outil selon le coût suspecté. Ne pas cumuler des traces inutiles.
+Exécuter un scénario représentatif et conserver durée, accès SQL[^terme-acro-sql], mémoire, compteurs et horodatage. Choisir `SAT`, `ST05`, `SQLM`, Memory Inspector ou un autre outil selon le coût suspecté. Ne pas cumuler des traces inutiles.
 
 ### 1.G.3 ÉTAPE 3 — LOCALISER LE COÛT DOMINANT
 
-Identifier une méthode, une instruction SQL, une boucle, un volume ou une copie soutenus par la mesure. Distinguer temps propre, temps appelé, attente et nombre d’exécutions. Formuler une cause vérifiable avant de modifier le code.
+Identifier une méthode[^terme-methode], une instruction SQL, une boucle, un volume ou une copie soutenus par la mesure. Distinguer temps propre, temps appelé, attente et nombre d’exécutions. Formuler une cause vérifiable avant de modifier le code.
 
 ### 1.G.4 ÉTAPE 4 — CORRIGER UNE SEULE CAUSE
 
-Réduire le volume lu, le nombre d’allers-retours, la complexité d’accès ou les copies selon la preuve. Conserver un code lisible et une sémantique identique. Ne pas remplacer une API stable par une astuce non mesurée.
+Réduire le volume lu, le nombre d’allers-retours, la complexité d’accès ou les copies selon la preuve. Conserver un code lisible et une sémantique identique. Ne pas remplacer une API[^terme-api] stable par une astuce non mesurée.
 
 ### 1.G.5 ÉTAPE 5 — EXÉCUTER LES CONTRÔLES DE QUALITÉ
 
@@ -101,3 +101,18 @@ Ordre de transport  :
 - [ATC](<../🧩 00 ├── LEXIQUE SAP ET ABAP/10 └── ACRONYMES SAP.md#acro-atc>)
 - [ABAP](<../🧩 00 ├── LEXIQUE SAP ET ABAP/10 └── ACRONYMES SAP.md#acro-abap>)
 - [Trace](<../🧩 00 ├── LEXIQUE SAP ET ABAP/08 ├── EXECUTION EXPLOITATION ET ADMINISTRATION.md#trace>)
+
+[^terme-abap]: **ABAP.** Langage de programmation de la plateforme ABAP, conçu pour développer des applications métier et techniques SAP. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#abap>).
+[^terme-acro-atc]: **ATC.** ABAP Test Cockpit, infrastructure de contrôles statiques et de gouvernance qualité. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/10 └── ACRONYMES SAP.md#acro-atc>).
+[^terme-mandant]: **MANDANT.** Subdivision logique d’un système SAP. Il est identifié par un numéro à trois chiffres et isole une partie des données, du paramétrage et des utilisateurs. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/01 ├── SYSTEMES ENVIRONNEMENTS ET MANDANTS.md#mandant>).
+[^terme-acro-sql]: **SQL.** Structured Query Language. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/10 └── ACRONYMES SAP.md#acro-sql>).
+[^terme-methode]: **MÉTHODE.** Comportement déclaré dans une classe ou une interface et appelé avec une liste de paramètres définie. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#methode>).
+[^terme-api]: **API.** Application Programming Interface, contrat exposant des opérations ou données utilisables par d’autres composants. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/10 └── ACRONYMES SAP.md#api>).
+
+[^outil-sat]: **SAT.** Runtime Analysis utilisée pour mesurer et analyser le temps d’exécution ABAP. Voir [le chapitre associé](<07 ├── MESURER LE TEMPS D EXECUTION AVEC SAT.md>).
+[^outil-st05]: **ST05.** Performance Trace utilisée notamment pour enregistrer et analyser les accès SQL. Voir [le chapitre associé](<08 ├── ANALYSER LES ACCES SQL AVEC ST05.md>).
+[^outil-sqlm]: **SQLM.** SQL Monitor utilisé pour agréger l’usage des instructions SQL pendant une période d’enregistrement. Voir [le chapitre associé](<09 ├── SURVEILLER LES ACCES SQL AVEC SQLM.md>).
+[^outil-swlt]: **SWLT.** SQL Performance Tuning Worklist utilisée pour rapprocher usage productif et résultats de contrôles statiques. Voir [le chapitre associé](<10 ├── PRIORISER AVEC SWLT.md>).
+[^outil-slin]: **SLIN.** Extended Program Check utilisé pour détecter des problèmes statiques au-delà du contrôle syntaxique. Voir [le chapitre associé](<12 ├── EXTENDED PROGRAM CHECK AVEC SLIN.md>).
+[^outil-sci]: **SCI.** Code Inspector utilisé pour exécuter des contrôles statiques sur un ensemble d’objets ABAP. Voir [le chapitre associé](<13 ├── CODE INSPECTOR AVEC SCI.md>).
+[^outil-scov]: **SCOV.** Coverage Analyzer utilisé pour mesurer la couverture d’exécution du code ABAP. Voir [le chapitre associé](<22 ├── MESURER LA COUVERTURE AVEC SCOV.md>).

@@ -2,9 +2,9 @@
 
 ## 19.A RÉSULTAT ATTENDU
 
-- Sérialiser des données ABAP en XML
+- Sérialiser des données ABAP[^terme-abap] en XML[^terme-xml]
 - Distinguer transformation identité et format métier
-- Utiliser `STRANS` dans SAP GUI
+- Utiliser `STRANS`[^outil-strans] dans SAP GUI[^terme-sap-gui]
 
 ## 19.B `CALL TRANSFORMATION`
 
@@ -44,7 +44,7 @@ CALL TRANSFORMATION zdev_product_xml
   RESULT product = ls_product.
 ```
 
-Les erreurs de syntaxe XML, de transformation ou de mapping doivent être capturées avec les classes d’exception appropriées, notamment dans la hiérarchie `CX_TRANSFORMATION_ERROR`.
+Les erreurs de syntaxe XML, de transformation ou de mapping doivent être capturées avec les classes d’exception[^terme-exception] appropriées, notamment dans la hiérarchie `CX_TRANSFORMATION_ERROR`.
 
 ## 19.E BONNES PRATIQUES
 
@@ -58,11 +58,11 @@ Les erreurs de syntaxe XML, de transformation ou de mapping doivent être captur
 
 ### 19.F.1 Étape 1 — Définir le contrat XML
 
-Fixer l’élément racine, les espaces de noms, les éléments obligatoires, les cardinalités, les types et l’encodage. Conserver un exemple valide et des exemples invalides représentatifs.
+Fixer l’élément racine, les espaces de noms, les éléments obligatoires, les cardinalités, les types et l’encodage[^terme-encodage]. Conserver un exemple valide et des exemples invalides représentatifs.
 
 ### 19.F.2 Étape 2 — Créer une transformation simple dans `STRANS`
 
-Nommer la transformation dans l’espace client, définir les nœuds racine et mapper les champs vers des types DDIC ou ABAP stables.
+Nommer la transformation dans l’espace client, définir les nœuds racine et mapper les champs vers des types DDIC[^terme-acro-ddic] ou ABAP stables.
 
 ### 19.F.3 Étape 3 — Sérialiser une structure typée
 
@@ -95,8 +95,8 @@ Tester un document valide, un élément obligatoire absent, un type invalide, un
 
 - Copier un exemple sans adapter les types, noms d’objets et données disponibles dans le système.
 - Tester uniquement le cas nominal et ignorer les valeurs initiales, absentes ou invalides.
-- Mélanger fichiers frontend et serveur dans un même scénario.
-- Parser un CSV par simple séparation alors que les champs peuvent être échappés.
+- Mélanger fichiers frontend[^terme-frontend] et serveur dans un même scénario.
+- Parser un CSV[^terme-csv] par simple séparation alors que les champs peuvent être échappés.
 
 ## 19.I SNIPPET À RÉUTILISER
 
@@ -130,3 +130,14 @@ CALL TRANSFORMATION id
 ---
 
 [Chapitre suivant — JSON AVEC LA BIBLIOTHÈQUE SXML](<./20 ├── JSON AVEC LA BIBLIOTHEQUE SXML.md>)
+
+[^terme-abap]: **ABAP.** Langage de programmation de la plateforme ABAP, conçu pour développer des applications métier et techniques SAP. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#abap>).
+[^terme-xml]: **XML.** Format texte hiérarchique basé sur des balises. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/07 ├── INTERFACES ET INTEGRATION.md#xml>).
+[^terme-sap-gui]: **SAP GUI.** Client graphique permettant d’utiliser les transactions et écrans d’un système SAP. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/02 ├── SAP GUI NAVIGATION ET TRANSACTIONS.md#sap-gui>).
+[^terme-exception]: **EXCEPTION.** Objet ou signal représentant une situation anormale qu’un appelant peut traiter. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#exception>).
+[^terme-encodage]: **ENCODAGE.** Règle transformant les caractères en octets et inversement. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/07 ├── INTERFACES ET INTEGRATION.md#encodage>).
+[^terme-acro-ddic]: **DDIC.** Data Dictionary, abréviation courante de l’ABAP Dictionary. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/10 └── ACRONYMES SAP.md#acro-ddic>).
+[^terme-frontend]: **FRONTEND.** Poste ou couche cliente utilisée par l’utilisateur, par exemple SAP GUI for Windows. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/01 ├── SYSTEMES ENVIRONNEMENTS ET MANDANTS.md#frontend>).
+[^terme-csv]: **CSV.** Format texte tabulaire utilisant un séparateur de champs et des règles d’échappement. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/07 ├── INTERFACES ET INTEGRATION.md#csv>).
+
+[^outil-strans]: **STRANS.** Transaction de création et de test des transformations utilisées pour sérialiser ou désérialiser des données. Voir [le chapitre associé](<19 ├── XML ET SIMPLE TRANSFORMATIONS.md>).

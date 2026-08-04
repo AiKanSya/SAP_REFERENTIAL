@@ -95,7 +95,7 @@ ENDDO.
 ```
 
 > [!WARNING]
-> Une boucle `DO.` doit posséder un chemin de sortie garanti. Sans `EXIT`, `RETURN`, exception ou interruption externe, elle ne se termine pas.
+> Une boucle `DO.` doit posséder un chemin de sortie garanti. Sans `EXIT`, `RETURN`, exception[^terme-exception] ou interruption externe, elle ne se termine pas.
 
 ## 6.F BORNER LE TRAITEMENT
 
@@ -120,7 +120,7 @@ ENDIF.
 
 ## 6.G NE PAS UTILISER DO POUR PARCOURIR UNE TABLE
 
-Le parcours métier d’une table interne doit utiliser les instructions dédiées, principalement `LOOP AT`.
+Le parcours métier d’une table interne[^terme-table-interne] doit utiliser les instructions dédiées, principalement `LOOP AT`.
 
 À éviter :
 
@@ -149,7 +149,7 @@ Le dossier **TABLES INTERNES** détaillera les parcours adaptés aux types de ta
 ## 6.J SNIPPET À RÉUTILISER
 
 > [!NOTE]
-> Adapter les noms `Z*`, les types DDIC, les données et les autorisations au système cible. Effectuer un contrôle syntaxique avant activation.
+> Adapter les noms `Z*`, les types DDIC[^terme-acro-ddic], les données et les autorisations au système cible. Effectuer un contrôle syntaxique avant activation.
 
 ```abap
 PARAMETERS p_count TYPE i DEFAULT 5.
@@ -181,3 +181,7 @@ START-OF-SELECTION.
 ---
 
 [Chapitre suivant — BOUCLES CONDITIONNELLES AVEC WHILE](<./07 ├── BOUCLES CONDITIONNELLES AVEC WHILE.md>)
+
+[^terme-exception]: **EXCEPTION.** Objet ou signal représentant une situation anormale qu’un appelant peut traiter. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#exception>).
+[^terme-table-interne]: **TABLE INTERNE.** Collection dynamique de lignes stockée en mémoire dans le programme ABAP. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#table-interne>).
+[^terme-acro-ddic]: **DDIC.** Data Dictionary, abréviation courante de l’ABAP Dictionary. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/10 └── ACRONYMES SAP.md#acro-ddic>).

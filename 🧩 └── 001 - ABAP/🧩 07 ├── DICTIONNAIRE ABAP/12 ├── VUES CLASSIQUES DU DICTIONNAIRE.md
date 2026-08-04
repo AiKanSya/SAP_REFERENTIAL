@@ -2,7 +2,7 @@
 
 ## 12.A RÉSULTAT ATTENDU
 
-- Identifier les types de vues classiques de SE11
+- Identifier les types de vues classiques de SE11[^outil-se11]
 - Comprendre leur mode d’implémentation
 - Choisir une vue selon le besoin
 - Reconnaître les contraintes de jointure
@@ -44,15 +44,15 @@ Elle ne possède pas d’objet de vue propre dans la base. Elle sert à limiter 
 
 Une vue de maintenance permet de générer un dialogue de maintenance commun à plusieurs tables reliées par des clés étrangères.
 
-Elle est utilisée avec le générateur de maintenance et la transaction `SM30`.
+Elle est utilisée avec le générateur de maintenance et la transaction `SM30`[^outil-sm30].
 
 Les relations entre tables doivent être correctement modélisées dans le Dictionary.
 
 ## 12.F VUE D’AIDE
 
-Une vue d’aide sert principalement de méthode de sélection pour une aide à la recherche.
+Une vue d’aide sert principalement de méthode[^terme-methode] de sélection pour une aide à la recherche.
 
-Elle permet de réunir des données de plusieurs tables en tenant compte des relations DDIC et des besoins de recherche.
+Elle permet de réunir des données de plusieurs tables en tenant compte des relations DDIC[^terme-acro-ddic] et des besoins de recherche.
 
 ## 12.G CHOIX DU TYPE
 
@@ -67,9 +67,9 @@ flowchart TD
 
 ## 12.H POSITIONNEMENT ACTUEL
 
-Les vues classiques restent présentes dans de nombreux systèmes et sont nécessaires pour maintenir des applications SAP GUI existantes, des aides à la recherche et des dialogues de maintenance.
+Les vues classiques restent présentes dans de nombreux systèmes et sont nécessaires pour maintenir des applications SAP GUI[^terme-sap-gui] existantes, des aides à la recherche et des dialogues de maintenance.
 
-Pour de nouveaux modèles de lecture, SAP privilégie les vues CDS. Leur conception nécessite un traitement distinct dans le futur dossier consacré à ADT.
+Pour de nouveaux modèles de lecture, SAP privilégie les vues CDS[^terme-acro-cds]. Leur conception nécessite un traitement distinct dans le futur dossier consacré à ADT[^terme-acro-adt].
 
 ## 12.I POINTS À RETENIR
 
@@ -92,7 +92,7 @@ Définir le besoin : jointure de lecture, projection, aide de recherche ou maint
 3. Ajouter les tables sources.
 4. Définir chaque condition de jointure sur des champs de types compatibles.
 
-Pour une vue dépendante du mandant, contrôler la gestion de `MANDT` et éviter une jointure qui combine des clients différents.
+Pour une vue dépendante du mandant[^terme-mandant], contrôler la gestion de `MANDT`[^terme-mandt] et éviter une jointure qui combine des clients différents.
 
 ### 12.J.3 Étape 3 — Sélectionner les champs
 
@@ -104,12 +104,12 @@ Ajouter les conditions fixes réellement inhérentes à la vue. Ne pas figer un 
 
 ### 12.J.5 Étape 5 — Activer et comparer
 
-Activer, tester le contenu dans `SE11`, puis exécuter une requête ABAP SQL avec des critères précis. Comparer les lignes avec une jointure directe de référence. La vue est validée lorsque jointures, mandant, cardinalité observée et champs retournés correspondent au modèle attendu.
+Activer, tester le contenu dans `SE11`, puis exécuter une requête ABAP[^terme-abap] SQL[^terme-acro-sql] avec des critères précis. Comparer les lignes avec une jointure directe de référence. La vue est validée lorsque jointures, mandant, cardinalité observée et champs retournés correspondent au modèle attendu.
 
 ## 12.K VÉRIFICATION
 
 - Le contrôle de cohérence ne retourne aucune erreur bloquante.
-- L’objet est actif et son entrée de répertoire pointe vers le package attendu.
+- L’objet est actif et son entrée de répertoire pointe vers le package[^terme-package] attendu.
 - La liste d’utilisation et les dépendances correspondent au périmètre prévu.
 - Pour une table Z, la structure active et la structure de base sont cohérentes.
 
@@ -149,3 +149,17 @@ Ordre de transport  :
 ---
 
 [Chapitre suivant — OBJETS DE VERROUILLAGE](<./13 ├── OBJETS DE VERROUILLAGE.md>)
+
+[^terme-methode]: **MÉTHODE.** Comportement déclaré dans une classe ou une interface et appelé avec une liste de paramètres définie. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#methode>).
+[^terme-acro-ddic]: **DDIC.** Data Dictionary, abréviation courante de l’ABAP Dictionary. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/10 └── ACRONYMES SAP.md#acro-ddic>).
+[^terme-sap-gui]: **SAP GUI.** Client graphique permettant d’utiliser les transactions et écrans d’un système SAP. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/02 ├── SAP GUI NAVIGATION ET TRANSACTIONS.md#sap-gui>).
+[^terme-acro-cds]: **CDS.** Core Data Services, langage de modélisation de vues et entités de données. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/10 └── ACRONYMES SAP.md#acro-cds>).
+[^terme-acro-adt]: **ADT.** ABAP Development Tools, environnement de développement ABAP intégré à Eclipse. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/10 └── ACRONYMES SAP.md#acro-adt>).
+[^terme-mandant]: **MANDANT.** Subdivision logique d’un système SAP. Il est identifié par un numéro à trois chiffres et isole une partie des données, du paramétrage et des utilisateurs. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/01 ├── SYSTEMES ENVIRONNEMENTS ET MANDANTS.md#mandant>).
+[^terme-mandt]: **MANDT.** Champ technique de type mandant, généralement placé en première position de clé dans les tables dépendantes du mandant. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/05 ├── DONNEES DICTIONNAIRE ET BASE DE DONNEES.md#mandt>).
+[^terme-abap]: **ABAP.** Langage de programmation de la plateforme ABAP, conçu pour développer des applications métier et techniques SAP. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#abap>).
+[^terme-acro-sql]: **SQL.** Structured Query Language. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/10 └── ACRONYMES SAP.md#acro-sql>).
+[^terme-package]: **PACKAGE.** Conteneur logique qui regroupe les objets de développement et détermine notamment leur transportabilité. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/03 ├── REPOSITORY PACKAGES ET TRANSPORTS.md#package>).
+
+[^outil-se11]: **SE11.** Transaction de l’ABAP Dictionary utilisée pour analyser et maintenir les objets DDIC. Voir [le chapitre associé](<02 ├── NAVIGATION ET ANALYSE AVEC SE11.md>).
+[^outil-sm30]: **SM30.** Transaction d’exécution d’un dialogue de maintenance généré pour une table ou une vue. Voir [le chapitre associé](<14 ├── GENERATEUR DE MAINTENANCE ET SM30.md>).

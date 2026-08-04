@@ -3,8 +3,8 @@
 ## 5.A RÉSULTAT ATTENDU
 
 - Accéder aux objets colonne
-- Modifier textes, visibilité et largeur
-- Exploiter les informations DDIC
+- Modifier textes, visibilité[^terme-visibilite] et largeur
+- Exploiter les informations DDIC[^terme-acro-ddic]
 
 ## 5.B RÉCUPÉRER LES COLONNES
 
@@ -27,7 +27,7 @@ ENDTRY.
 
 ## 5.C PROPRIÉTÉS COURANTES
 
-| Besoin                          | Méthode typique                                      |
+| Besoin                          | Méthode[^terme-methode] typique                                      |
 | ------------------------------- | ---------------------------------------------------- |
 | Ajuster les largeurs            | `SET_OPTIMIZE`                                       |
 | Masquer une colonne             | `SET_VISIBLE`                                        |
@@ -37,7 +37,7 @@ ENDTRY.
 
 ## 5.D DDIC ET SÉMANTIQUE
 
-Lorsque les champs de la table interne sont typés à partir du Dictionary ABAP, SALV peut récupérer davantage d’informations : libellés, type de données, référence de devise ou d’unité. Une structure locale non référencée au DDIC oblige souvent à compléter manuellement ces propriétés.
+Lorsque les champs de la table interne[^terme-table-interne] sont typés à partir du Dictionary ABAP[^terme-abap], SALV[^terme-acro-salv] peut récupérer davantage d’informations : libellés, type de données[^terme-type-donnees], référence de devise ou d’unité. Une structure locale non référencée au DDIC oblige souvent à compléter manuellement ces propriétés.
 
 ## 5.E COLONNES TECHNIQUES
 
@@ -78,7 +78,7 @@ Tester les valeurs courtes, longues, initiales et négatives. Contrôler les uni
 
 - Copier un exemple sans adapter les types, noms d’objets et données disponibles dans le système.
 - Tester uniquement le cas nominal et ignorer les valeurs initiales, absentes ou invalides.
-- Afficher un volume non borné dans l’ALV.
+- Afficher un volume non borné dans l’ALV[^terme-alv].
 - Rendre une cellule éditable sans validation ni sauvegarde transactionnelle.
 
 ## 5.I SNIPPET À RÉUTILISER
@@ -117,3 +117,12 @@ ENDTRY.
 ---
 
 [Chapitre suivant — TRI, FILTRES, TOTAUX ET AGRÉGATIONS SALV](<./06 ├── TRI FILTRES TOTAUX ET AGREGATIONS SALV.md>)
+
+[^terme-visibilite]: **VISIBILITÉ.** Règle déterminant où un composant de classe peut être utilisé : `PUBLIC`, `PROTECTED` ou `PRIVATE`. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#visibilite>).
+[^terme-acro-ddic]: **DDIC.** Data Dictionary, abréviation courante de l’ABAP Dictionary. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/10 └── ACRONYMES SAP.md#acro-ddic>).
+[^terme-methode]: **MÉTHODE.** Comportement déclaré dans une classe ou une interface et appelé avec une liste de paramètres définie. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#methode>).
+[^terme-table-interne]: **TABLE INTERNE.** Collection dynamique de lignes stockée en mémoire dans le programme ABAP. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#table-interne>).
+[^terme-abap]: **ABAP.** Langage de programmation de la plateforme ABAP, conçu pour développer des applications métier et techniques SAP. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#abap>).
+[^terme-acro-salv]: **SALV.** Simple ALV / famille de classes `CL_SALV_*`. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/10 └── ACRONYMES SAP.md#acro-salv>).
+[^terme-type-donnees]: **TYPE DE DONNÉES.** Définition des propriétés d’une valeur : nature, longueur, précision et opérations autorisées. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#type-donnees>).
+[^terme-alv]: **ALV.** ABAP List Viewer, ensemble de technologies d’affichage tabulaire avec tri, filtre, total et variantes. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/06 ├── PROGRAMMES CLASSES ET OBJETS TECHNIQUES.md#alv>).

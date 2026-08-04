@@ -2,17 +2,17 @@
 
 ## 18.A RÉSULTAT ATTENDU
 
-- Implémenter un Singleton uniquement lorsqu’une instance unique par session interne est requise.
+- Implémenter un Singleton[^terme-singleton] uniquement lorsqu’une instance unique par session interne est requise.
 - Garantir une instance unique par session interne.
 - Savoir quand ne pas utiliser ce pattern.
 
 ## 18.B DÉFINITION
 
-Un Singleton contrôle sa propre instanciation et retourne toujours la même instance pendant une session interne ABAP. Il utilise généralement :
+Un Singleton contrôle sa propre instanciation et retourne toujours la même instance pendant une session interne ABAP[^terme-abap]. Il utilise généralement :
 
 - une instanciation privée ;
-- un attribut statique contenant la référence ;
-- une méthode statique `GET_INSTANCE`.
+- un attribut[^terme-attribut] statique contenant la référence ;
+- une méthode statique[^terme-methode-statique] `GET_INSTANCE`.
 
 ```mermaid
 flowchart TD
@@ -35,7 +35,7 @@ Créer `ZCL_DEV_APP_CONTEXT` et définir l’instanciation privée. Vérifier de
 
 ### 18.C.3 Étape 3 — Stocker l’instance
 
-Créer l’attribut de classe privé `GO_INSTANCE TYPE REF TO zcl_dev_app_context`. Créer la méthode de classe publique `GET_INSTANCE` avec une référence de même type en `RETURNING`.
+Créer l’attribut de classe[^terme-classe] privé `GO_INSTANCE TYPE REF TO zcl_dev_app_context`. Créer la méthode de classe publique `GET_INSTANCE` avec une référence de même type en `RETURNING`.
 
 ### 18.C.4 Étape 4 — Implémenter la création paresseuse
 
@@ -111,14 +111,14 @@ Un Singleton est un état global masqué. Il complique les tests, le parallélis
 
 ## 18.G ERREURS FRÉQUENTES
 
-- Considérer le Singleton comme unique dans tout le système SAP.
+- Considérer le Singleton comme unique dans tout le système SAP[^terme-systeme-sap].
 - Stocker des données métier sensibles dans un attribut statique.
-- Utiliser le pattern à la place d’une injection de dépendances.
+- Utiliser le pattern à la place d’une injection de dépendances[^terme-injection-dependances].
 
 ## 18.H COMPATIBILITÉ S/4HANA
 
 - Statut : compatible, mais à usage limité.
-- L’instance est unique dans une session interne ABAP, pas dans le système, le mandant, un cluster ou plusieurs processus de travail.
+- L’instance est unique dans une session interne ABAP, pas dans le système, le mandant[^terme-mandant], un cluster ou plusieurs processus de travail[^terme-processus-travail].
 - Préférer l’injection de dépendances lorsque l’objectif est seulement de partager ou remplacer un service.
 - Ne pas utiliser un Singleton comme cache distribué ni comme stockage persistant.
 
@@ -131,3 +131,13 @@ Un Singleton est un état global masqué. Il complique les tests, le parallélis
 ---
 
 [Chapitre suivant — COMPOSITION ET DÉLÉGATION](<./19 ├── COMPOSITION ET DELEGATION.md>)
+
+[^terme-singleton]: **SINGLETON.** Pattern limitant la création à une seule instance accessible dans une session interne ABAP. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#singleton>).
+[^terme-abap]: **ABAP.** Langage de programmation de la plateforme ABAP, conçu pour développer des applications métier et techniques SAP. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#abap>).
+[^terme-attribut]: **ATTRIBUT.** Composant de données déclaré dans une classe et appartenant soit à chaque instance, soit à la classe elle-même. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#attribut>).
+[^terme-methode-statique]: **MÉTHODE STATIQUE.** Méthode déclarée `CLASS-METHODS`, appelée sur la classe avec `=>` sans créer d’instance. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#methode-statique>).
+[^terme-classe]: **CLASSE.** Modèle orienté objet définissant état et comportements. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#classe>).
+[^terme-systeme-sap]: **SYSTÈME SAP.** Ensemble technique cohérent comprenant au minimum une base de données et un ou plusieurs serveurs d’applications. Il est généralement identifié par un SID de trois caractères. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/01 ├── SYSTEMES ENVIRONNEMENTS ET MANDANTS.md#systeme-sap>).
+[^terme-injection-dependances]: **INJECTION DE DÉPENDANCES.** Fourniture des collaborateurs d’un objet depuis l’extérieur au lieu de les créer directement dans son implémentation. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#injection-dependances>).
+[^terme-mandant]: **MANDANT.** Subdivision logique d’un système SAP. Il est identifié par un numéro à trois chiffres et isole une partie des données, du paramétrage et des utilisateurs. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/01 ├── SYSTEMES ENVIRONNEMENTS ET MANDANTS.md#mandant>).
+[^terme-processus-travail]: **PROCESSUS DE TRAVAIL.** Processus serveur exécutant une catégorie de traitement ABAP. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/08 ├── EXECUTION EXPLOITATION ET ADMINISTRATION.md#processus-travail>).

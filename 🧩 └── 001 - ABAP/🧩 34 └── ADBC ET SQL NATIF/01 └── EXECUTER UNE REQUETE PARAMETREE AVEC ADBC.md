@@ -2,26 +2,26 @@
 
 ## 1.A RÉSULTAT ATTENDU
 
-Lire une donnée avec une instruction SQL native sans concaténer les valeurs dans le texte SQL, en gérant explicitement le mandant et les erreurs de base de données.
+Lire une donnée avec une instruction SQL[^terme-acro-sql] native sans concaténer les valeurs dans le texte SQL, en gérant explicitement le mandant[^terme-mandant] et les erreurs de base de données.
 
 L’exemple compte les sociétés de `T001` correspondant au mandant courant et à une société donnée.
 
 ## 1.B QUAND UTILISER ADBC
 
-Utiliser ADBC uniquement lorsqu’ABAP SQL ne couvre pas le besoin technique, par exemple pour une fonction spécifique à SAP HANA validée par l’architecture.
+Utiliser ADBC uniquement lorsqu’ABAP[^terme-abap] SQL ne couvre pas le besoin technique, par exemple pour une fonction spécifique à SAP[^terme-acro-sap] HANA validée par l’architecture.
 
 Ne pas utiliser ADBC pour une sélection ordinaire. L’équivalent ABAP SQL est plus portable, applique automatiquement les règles ABAP du mandant et s’intègre mieux aux contrôles statiques.
 
 ## 1.C PRÉREQUIS
 
-- Système SAP S/4HANA avec accès à la classe `CL_SQL_STATEMENT`.
+- Système SAP[^terme-systeme-sap] S/4HANA avec accès à la classe[^terme-classe] `CL_SQL_STATEMENT`.
 - Autorisation de lecture de l’objet métier concerné ; ADBC ne remplace aucun `AUTHORITY-CHECK`.
 - Table et colonnes connues sur la base cible.
 - Justification documentée de l’emploi de SQL natif.
 
 ## 1.D RISQUE À CONNAÎTRE
 
-ADBC exécute du SQL natif. Le traitement automatique du mandant d’ABAP SQL ne s’applique pas. Pour une table dépendante du mandant, la colonne `MANDT` doit donc être filtrée explicitement.
+ADBC exécute du SQL natif. Le traitement automatique du mandant d’ABAP SQL ne s’applique pas. Pour une table dépendante du mandant, la colonne `MANDT`[^terme-mandt] doit donc être filtrée explicitement.
 
 Les noms de tables et de colonnes ne peuvent pas être remplacés par les marqueurs `?`. S’ils doivent être dynamiques, ils doivent provenir d’une liste blanche contrôlée.
 
@@ -53,7 +53,7 @@ Appeler `CLOSE` après la dernière ligne et dans le traitement d’erreur lorsq
 
 ### 1.E.7 ÉTAPE 7 — COMPARER AVEC ABAP SQL
 
-Exécuter les deux variantes avec une valeur existante et une valeur absente. Comparer résultat et trace `ST05`; ne conserver ADBC que si le motif natif reste démontré.
+Exécuter les deux variantes avec une valeur existante et une valeur absente. Comparer résultat et trace[^terme-trace] `ST05`[^outil-st05]; ne conserver ADBC que si le motif natif reste démontré.
 
 ### 1.E.8 ÉTAPE 8 — TESTER LES CAS DE SÉCURITÉ
 
@@ -168,7 +168,7 @@ le premier `SET_PARAM` lie `LV_MANDT` et le deuxième lie `LV_BUKRS`. Une invers
 |---|---|---|
 | Données d’un autre mandant | Filtre `MANDT` absent | Ajouter un marqueur et lier `SY-MANDT` avec une variable typée |
 | Résultat vide malgré une donnée existante | Ordre des `SET_PARAM` incorrect | Aligner chaque liaison sur l’ordre des `?` |
-| Erreur de conversion | Type ABAP incompatible avec la colonne SQL | Utiliser un type DDIC correspondant |
+| Erreur de conversion | Type ABAP incompatible avec la colonne SQL | Utiliser un type DDIC[^terme-acro-ddic] correspondant |
 | Injection SQL possible | Valeur concaténée dans le texte SQL | Utiliser un marqueur `?` et `SET_PARAM` |
 | Injection par nom d’objet | Nom de table ou colonne fourni librement | Appliquer une liste blanche fermée |
 | Curseur ou ressource conservée | `CLOSE` non exécuté | Fermer le result set après lecture et dans le traitement d’erreur |
@@ -180,10 +180,23 @@ le premier `SET_PARAM` lie `LV_MANDT` et le deuxième lie `LV_BUKRS`. Une invers
 - Statut : compatible mais spécialisé.
 - ADBC reste dépendant du dialecte de la base de données.
 - Sur SAP S/4HANA, valider la syntaxe avec SAP HANA et les règles du projet.
-- ABAP Cloud et Clean Core sont hors périmètre de ce chapitre et peuvent interdire ou restreindre cette API.
+- ABAP Cloud et Clean Core sont hors périmètre de ce chapitre et peuvent interdire ou restreindre cette API[^terme-api].
 
 ## 1.N RÉFÉRENCES OFFICIELLES SAP
 
 - [ADBC — SAP Help Portal](https://help.sap.com/doc/abapdocu_latest_index_htm/latest/en-US/abenadbc.htm)
 - [CL_SQL_STATEMENT — SAP Help Portal](https://help.sap.com/doc/abapdocu_latest_index_htm/latest/en-US/abencl_sql_statement.htm)
 - [SQL Injections Using ADBC — SAP Help Portal](https://help.sap.com/doc/abapdocu_latest_index_htm/latest/en-US/abensql_inj_adbc_scrty.htm)
+
+[^terme-acro-sql]: **SQL.** Structured Query Language. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/10 └── ACRONYMES SAP.md#acro-sql>).
+[^terme-mandant]: **MANDANT.** Subdivision logique d’un système SAP. Il est identifié par un numéro à trois chiffres et isole une partie des données, du paramétrage et des utilisateurs. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/01 ├── SYSTEMES ENVIRONNEMENTS ET MANDANTS.md#mandant>).
+[^terme-abap]: **ABAP.** Langage de programmation de la plateforme ABAP, conçu pour développer des applications métier et techniques SAP. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#abap>).
+[^terme-acro-sap]: **SAP.** Nom de l’éditeur et de son écosystème logiciel ; l’acronyme historique provient de l’allemand. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/10 └── ACRONYMES SAP.md#acro-sap>).
+[^terme-systeme-sap]: **SYSTÈME SAP.** Ensemble technique cohérent comprenant au minimum une base de données et un ou plusieurs serveurs d’applications. Il est généralement identifié par un SID de trois caractères. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/01 ├── SYSTEMES ENVIRONNEMENTS ET MANDANTS.md#systeme-sap>).
+[^terme-classe]: **CLASSE.** Modèle orienté objet définissant état et comportements. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#classe>).
+[^terme-mandt]: **MANDT.** Champ technique de type mandant, généralement placé en première position de clé dans les tables dépendantes du mandant. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/05 ├── DONNEES DICTIONNAIRE ET BASE DE DONNEES.md#mandt>).
+[^terme-trace]: **TRACE.** Enregistrement détaillé d’événements techniques pour analyser exécution, SQL ou appels. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/08 ├── EXECUTION EXPLOITATION ET ADMINISTRATION.md#trace>).
+[^terme-acro-ddic]: **DDIC.** Data Dictionary, abréviation courante de l’ABAP Dictionary. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/10 └── ACRONYMES SAP.md#acro-ddic>).
+[^terme-api]: **API.** Application Programming Interface, contrat exposant des opérations ou données utilisables par d’autres composants. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/10 └── ACRONYMES SAP.md#api>).
+
+[^outil-st05]: **ST05.** Performance Trace utilisée notamment pour enregistrer et analyser les accès SQL. Voir [le chapitre associé](<../🧩 20 ├── PERFORMANCE QUALITE ET TESTS/08 ├── ANALYSER LES ACCES SQL AVEC ST05.md>).

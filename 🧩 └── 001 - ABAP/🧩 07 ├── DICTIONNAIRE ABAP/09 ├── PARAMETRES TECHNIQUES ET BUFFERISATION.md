@@ -3,16 +3,16 @@
 ## 9.A RÉSULTAT ATTENDU
 
 - Comprendre le rôle des paramètres techniques
-- Choisir une classe de données et une catégorie de taille
+- Choisir une classe[^terme-classe] de données et une catégorie de taille
 - Identifier les types de bufferisation
 - Évaluer les risques de la journalisation
 - Éviter les réglages systématiques sans analyse
 
 ## 9.B ACCÈS AUX PARAMÈTRES TECHNIQUES
 
-Dans `SE11`, ouvrir la table puis accéder aux **Paramètres techniques**.
+Dans `SE11`[^outil-se11], ouvrir la table puis accéder aux **Paramètres techniques**.
 
-Ces paramètres influencent la création physique de la table et certains comportements d’accès depuis les serveurs d’application ABAP.
+Ces paramètres influencent la création physique de la table et certains comportements d’accès depuis les serveurs d’application ABAP[^terme-abap].
 
 ## 9.C PARAMÈTRES PRINCIPAUX
 
@@ -20,7 +20,7 @@ Ces paramètres influencent la création physique de la table et certains compor
 | ----------------------------- | ------------------------------------------------------------------- |
 | Classe de données             | Catégoriser la nature générale des données                          |
 | Catégorie de taille           | Estimer le volume attendu pour l’allocation en base                 |
-| Autorisation de bufferisation | Autoriser ou interdire le buffer de table ABAP                      |
+| Autorisation de bufferisation | Autoriser ou interdire le buffer de table[^terme-buffer-table] ABAP                      |
 | Type de buffer                | Définir la granularité de mise en cache                             |
 | Journalisation                | Enregistrer certaines modifications dans `DBTABLOG` sous conditions |
 
@@ -28,7 +28,7 @@ La portée exacte de certains paramètres dépend du système de base de donnée
 
 ## 9.D BUFFER DE TABLE ABAP
 
-La bufferisation stocke des données de table dans la mémoire du serveur d’application afin d’éviter certains accès répétés à la base.
+La bufferisation stocke des données de table dans la mémoire du serveur d’application[^terme-fichier-serveur-application] afin d’éviter certains accès répétés à la base.
 
 ```mermaid
 flowchart LR
@@ -99,7 +99,7 @@ Identifier la nature des données, le volume initial, la croissance attendue, la
 3. Relever la classe de données, la catégorie de taille et le mode de bufferisation actuel.
 4. Comparer ces valeurs avec le profil défini à l’étape 1.
 
-Si la table est standard, ne modifier aucune valeur sans instruction SAP explicite.
+Si la table est standard, ne modifier aucune valeur sans instruction SAP[^terme-acro-sap] explicite.
 
 ### 9.J.3 Étape 3 — Définir classe de données et taille
 
@@ -115,12 +115,12 @@ Vérifier dans le code qu’aucun accès ne contourne volontairement le buffer s
 
 ### 9.J.5 Étape 5 — Activer et mesurer
 
-Activer les paramètres, contrôler le journal puis exécuter une lecture représentative. Utiliser les outils de trace et de suivi du buffer disponibles pour confirmer les accès. La configuration est validée lorsque le comportement mesuré correspond au mode choisi et qu’aucune mise à jour ne retourne de donnée obsolète au scénario métier.
+Activer les paramètres, contrôler le journal puis exécuter une lecture représentative. Utiliser les outils de trace[^terme-trace] et de suivi du buffer disponibles pour confirmer les accès. La configuration est validée lorsque le comportement mesuré correspond au mode choisi et qu’aucune mise à jour ne retourne de donnée obsolète au scénario métier.
 
 ## 9.K VÉRIFICATION
 
 - Le contrôle de cohérence ne retourne aucune erreur bloquante.
-- L’objet est actif et son entrée de répertoire pointe vers le package attendu.
+- L’objet est actif et son entrée de répertoire pointe vers le package[^terme-package] attendu.
 - La liste d’utilisation et les dépendances correspondent au périmètre prévu.
 - Pour une table Z, la structure active et la structure de base sont cohérentes.
 
@@ -160,3 +160,13 @@ Ordre de transport  :
 ---
 
 [Chapitre suivant — CLÉS ÉTRANGÈRES, TABLES DE CONTRÔLE ET TABLES DE TEXTE](<./10 ├── CLES ETRANGERES TABLES DE CONTROLE ET TABLES DE TEXTE.md>)
+
+[^terme-classe]: **CLASSE.** Modèle orienté objet définissant état et comportements. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#classe>).
+[^terme-abap]: **ABAP.** Langage de programmation de la plateforme ABAP, conçu pour développer des applications métier et techniques SAP. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#abap>).
+[^terme-buffer-table]: **BUFFER DE TABLE.** Mécanisme mettant en mémoire applicative certaines données de table afin de réduire les accès base. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/05 ├── DONNEES DICTIONNAIRE ET BASE DE DONNEES.md#buffer-table>).
+[^terme-fichier-serveur-application]: **SERVEUR D’APPLICATION.** Emplacement du backend où un programme ABAP peut lire ou écrire avec `OPEN DATASET`. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/07 ├── INTERFACES ET INTEGRATION.md#fichier-serveur-application>).
+[^terme-acro-sap]: **SAP.** Nom de l’éditeur et de son écosystème logiciel ; l’acronyme historique provient de l’allemand. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/10 └── ACRONYMES SAP.md#acro-sap>).
+[^terme-trace]: **TRACE.** Enregistrement détaillé d’événements techniques pour analyser exécution, SQL ou appels. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/08 ├── EXECUTION EXPLOITATION ET ADMINISTRATION.md#trace>).
+[^terme-package]: **PACKAGE.** Conteneur logique qui regroupe les objets de développement et détermine notamment leur transportabilité. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/03 ├── REPOSITORY PACKAGES ET TRANSPORTS.md#package>).
+
+[^outil-se11]: **SE11.** Transaction de l’ABAP Dictionary utilisée pour analyser et maintenir les objets DDIC. Voir [le chapitre associé](<02 ├── NAVIGATION ET ANALYSE AVEC SE11.md>).

@@ -147,7 +147,7 @@ Le traitement doit être aligné sur une règle fonctionnelle explicite. Une suc
 | Compter                              | `count( )`                          |
 | Modifier une variable existante      | `REPLACE`                           |
 | Produire une nouvelle chaîne         | `replace( )`                        |
-| Rechercher un format complexe        | `FIND PCRE` ou API regex disponible |
+| Rechercher un format complexe        | `FIND PCRE` ou API[^terme-api] regex disponible |
 
 ## 11.J VÉRIFICATION
 
@@ -161,12 +161,12 @@ Le traitement doit être aligné sur une règle fonctionnelle explicite. Une suc
 - Copier un exemple sans adapter les types, noms d’objets et données disponibles dans le système.
 - Tester uniquement le cas nominal et ignorer les valeurs initiales, absentes ou invalides.
 - S’appuyer sur une conversion implicite pouvant tronquer ou arrondir.
-- Ignorer l’encodage et les formats externes.
+- Ignorer l’encodage[^terme-encodage] et les formats externes.
 
 ## 11.L SNIPPET À RÉUTILISER
 
 > [!NOTE]
-> Adapter les noms `Z*`, les types DDIC, les données et les autorisations au système cible. Effectuer un contrôle syntaxique avant activation.
+> Adapter les noms `Z*`, les types DDIC[^terme-acro-ddic], les données et les autorisations au système cible. Effectuer un contrôle syntaxique avant activation.
 
 ```abap
 FIND FIRST OCCURRENCE OF `ABAP` IN lv_text.
@@ -192,3 +192,7 @@ ENDIF.
 ---
 
 [Chapitre suivant — EXPRESSIONS RÉGULIÈRES](<./12 ├── EXPRESSIONS REGULIERES.md>)
+
+[^terme-api]: **API.** Application Programming Interface, contrat exposant des opérations ou données utilisables par d’autres composants. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/10 └── ACRONYMES SAP.md#api>).
+[^terme-encodage]: **ENCODAGE.** Règle transformant les caractères en octets et inversement. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/07 ├── INTERFACES ET INTEGRATION.md#encodage>).
+[^terme-acro-ddic]: **DDIC.** Data Dictionary, abréviation courante de l’ABAP Dictionary. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/10 └── ACRONYMES SAP.md#acro-ddic>).

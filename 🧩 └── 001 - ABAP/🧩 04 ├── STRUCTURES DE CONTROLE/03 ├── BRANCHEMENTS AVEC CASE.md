@@ -143,7 +143,7 @@ Une branche vide peut masquer un oubli. Un commentaire doit justifier l’absenc
 ## 3.J SNIPPET À RÉUTILISER
 
 > [!NOTE]
-> Adapter les noms `Z*`, les types DDIC, les données et les autorisations au système cible. Effectuer un contrôle syntaxique avant activation.
+> Adapter les noms `Z*`, les types DDIC[^terme-acro-ddic], les données et les autorisations au système cible. Effectuer un contrôle syntaxique avant activation.
 
 ```abap
 IF lv_amount < 0.
@@ -170,3 +170,5 @@ ENDIF.
 ---
 
 [Chapitre suivant — CHOISIR ENTRE IF ET CASE](<./04 ├── CHOISIR ENTRE IF ET CASE.md>)
+
+[^terme-acro-ddic]: **DDIC.** Data Dictionary, abréviation courante de l’ABAP Dictionary. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/10 └── ACRONYMES SAP.md#acro-ddic>).

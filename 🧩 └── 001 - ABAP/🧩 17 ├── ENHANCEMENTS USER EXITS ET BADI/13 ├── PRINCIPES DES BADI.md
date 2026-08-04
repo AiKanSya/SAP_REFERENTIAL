@@ -2,7 +2,7 @@
 
 ## 13.A RÉSULTAT ATTENDU
 
-- Comprendre le contrat orienté objet d’un BAdI
+- Comprendre le contrat orienté objet d’un BAdI[^terme-acro-badi]
 - Distinguer définition et implémentation
 - Identifier single-use, multiple-use et filtres
 
@@ -16,7 +16,7 @@ flowchart LR
     D --> E["Classe d implémentation"]
 ```
 
-La définition appartient au fournisseur de l’application. Elle expose une interface et des propriétés d’appel. Le client crée une implémentation qui référence une classe exécutant les méthodes.
+La définition appartient au fournisseur de l’application. Elle expose une interface et des propriétés d’appel. Le client crée une implémentation qui référence une classe[^terme-classe] exécutant les méthodes.
 
 ## 13.C PROPRIÉTÉS
 
@@ -29,9 +29,9 @@ La définition appartient au fournisseur de l’application. Elle expose une int
 
 ## 13.D CLASSIQUE OU ENHANCEMENT FRAMEWORK
 
-Les BAdI classiques sont antérieurs à AS ABAP 7.0. Les nouvelles définitions sont intégrées au Enhancement Framework et utilisent les éléments de langage `GET BADI` et `CALL BADI` côté fournisseur.
+Les BAdI classiques sont antérieurs à AS ABAP[^terme-abap] 7.0. Les nouvelles définitions sont intégrées au Enhancement Framework et utilisent les éléments de langage `GET BADI` et `CALL BADI` côté fournisseur.
 
-Pour le consultant qui implémente un BAdI standard, le point essentiel est d’identifier son type dans `SE18` et d’utiliser le mode d’implémentation correspondant dans `SE19`.
+Pour le consultant qui implémente un BAdI standard, le point essentiel est d’identifier son type dans `SE18`[^outil-se18] et d’utiliser le mode d’implémentation correspondant dans `SE19`[^outil-se19].
 
 ## 13.E PROCESS
 
@@ -41,11 +41,11 @@ Pour le consultant qui implémente un BAdI standard, le point essentiel est d’
 
 ### 13.E.2 ÉTAPE 2 — LIRE LE CONTRAT DANS `SE18`
 
-Afficher la documentation, l’interface et chaque méthode. Relever les paramètres importés, exportés, changing et returning, ainsi que les exceptions. Identifier les filtres, l’usage multiple et le caractère dépendant du contexte.
+Afficher la documentation, l’interface et chaque méthode[^terme-methode]. Relever les paramètres importés, exportés, changing et returning, ainsi que les exceptions. Identifier les filtres, l’usage multiple et le caractère dépendant du contexte.
 
 ### 13.E.3 ÉTAPE 3 — ANALYSER L’APPEL STANDARD
 
-Retrouver l’instanciation ou l’appel de la BAdI dans le code standard. Examiner les valeurs de filtre calculées, l’ordre relatif aux validations et la manière dont les résultats sont consommés. Confirmer avec un breakpoint si nécessaire.
+Retrouver l’instanciation ou l’appel de la BAdI dans le code standard. Examiner les valeurs de filtre calculées, l’ordre relatif aux validations et la manière dont les résultats sont consommés. Confirmer avec un breakpoint[^terme-breakpoint] si nécessaire.
 
 ### 13.E.4 ÉTAPE 4 — INVENTORIER LES IMPLÉMENTATIONS
 
@@ -64,7 +64,7 @@ Tester une valeur de filtre qui sélectionne l’implémentation, une valeur qui
 - L’implémentation ou le projet est actif et transporté dans le bon ordre.
 - Un breakpoint confirme que le point d’extension est appelé dans le scénario visé.
 - Le comportement standard reste inchangé hors du périmètre fonctionnel prévu.
-- Aucune modification directe d’un objet SAP standard n’a été créée.
+- Aucune modification directe d’un objet SAP[^terme-acro-sap] standard n’a été créée.
 
 ## 13.G ERREURS FRÉQUENTES
 
@@ -101,3 +101,13 @@ Ordre de transport  :
 ---
 
 [Chapitre suivant — ANALYSER UNE DÉFINITION BAdI AVEC `SE18`](<./14 ├── ANALYSER UNE DEFINITION BADI AVEC SE18.md>)
+
+[^terme-acro-badi]: **BADI.** Business Add-In, mécanisme d’extension orienté objet du standard SAP. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/10 └── ACRONYMES SAP.md#acro-badi>).
+[^terme-classe]: **CLASSE.** Modèle orienté objet définissant état et comportements. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#classe>).
+[^terme-abap]: **ABAP.** Langage de programmation de la plateforme ABAP, conçu pour développer des applications métier et techniques SAP. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#abap>).
+[^terme-methode]: **MÉTHODE.** Comportement déclaré dans une classe ou une interface et appelé avec une liste de paramètres définie. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#methode>).
+[^terme-breakpoint]: **BREAKPOINT.** Point d’arrêt suspendant l’exécution dans le débogueur. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/08 ├── EXECUTION EXPLOITATION ET ADMINISTRATION.md#breakpoint>).
+[^terme-acro-sap]: **SAP.** Nom de l’éditeur et de son écosystème logiciel ; l’acronyme historique provient de l’allemand. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/10 └── ACRONYMES SAP.md#acro-sap>).
+
+[^outil-se18]: **SE18.** BAdI Builder utilisé pour rechercher et analyser les définitions de BAdI. Voir [le chapitre associé](<14 ├── ANALYSER UNE DEFINITION BADI AVEC SE18.md>).
+[^outil-se19]: **SE19.** BAdI Builder utilisé pour créer et maintenir les implémentations de BAdI. Voir [le chapitre associé](<15 ├── IMPLEMENTER UNE BADI AVEC SE19.md>).

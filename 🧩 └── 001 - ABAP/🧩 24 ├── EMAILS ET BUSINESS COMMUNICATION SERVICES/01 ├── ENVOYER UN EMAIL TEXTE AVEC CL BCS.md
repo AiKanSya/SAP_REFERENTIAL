@@ -65,10 +65,15 @@ ENDTRY.
 
 ## 1.D POINTS À REMPLACER
 
-- Adresse Internet, sujet, contenu et classe de messages.
-- Politique de `COMMIT WORK` : dans une transaction métier, le commit appartient à l’unité de travail appelante.
+- Adresse Internet, sujet, contenu et classe[^terme-classe] de messages.
+- Politique de `COMMIT WORK`[^terme-commit-work] : dans une transaction métier, le commit appartient à l’unité de travail appelante.
 
 ## 1.E CONTRÔLE
 
-- Vérifier la demande dans `SOST`.
+- Vérifier la demande dans `SOST`[^outil-sost].
 - Distinguer la création de la demande, son transfert par SAPconnect et sa livraison externe.
+
+[^terme-classe]: **CLASSE.** Modèle orienté objet définissant état et comportements. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#classe>).
+[^terme-commit-work]: **COMMIT WORK.** Instruction clôturant la SAP LUW courante, déclenchant notamment les mises à jour enregistrées et validant la base. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/08 ├── EXECUTION EXPLOITATION ET ADMINISTRATION.md#commit-work>).
+
+[^outil-sost]: **SOST.** Transaction de surveillance des demandes d’envoi gérées par SAPconnect. Voir [le chapitre associé](<01 ├── ENVOYER UN EMAIL TEXTE AVEC CL BCS.md>).

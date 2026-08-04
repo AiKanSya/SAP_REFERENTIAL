@@ -147,7 +147,7 @@ Le contrat doit être documenté lorsqu’il n’est pas évident.
 ## 7.L SNIPPET À RÉUTILISER
 
 > [!NOTE]
-> Adapter les noms `Z*`, les types DDIC, les données et les autorisations au système cible. Effectuer un contrôle syntaxique avant activation.
+> Adapter les noms `Z*`, les types DDIC[^terme-acro-ddic], les données et les autorisations au système cible. Effectuer un contrôle syntaxique avant activation.
 
 ```abap
 FORM build_messages
@@ -179,3 +179,5 @@ ENDFORM.
 ---
 
 [Chapitre suivant — ORGANISATION DU CODE AVEC INCLUDE](<./08 ├── ORGANISATION DU CODE AVEC INCLUDE.md>)
+
+[^terme-acro-ddic]: **DDIC.** Data Dictionary, abréviation courante de l’ABAP Dictionary. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/10 └── ACRONYMES SAP.md#acro-ddic>).

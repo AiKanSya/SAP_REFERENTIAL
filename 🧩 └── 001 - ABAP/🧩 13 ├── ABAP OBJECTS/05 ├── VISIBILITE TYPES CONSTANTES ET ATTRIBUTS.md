@@ -2,7 +2,7 @@
 
 ## 5.A RÉSULTAT ATTENDU
 
-- Choisir entre visibilité publique, protégée et privée.
+- Choisir entre visibilité[^terme-visibilite] publique, protégée et privée.
 - Déclarer les types, constantes et attributs au bon niveau.
 - Éviter l’exposition directe d’un état modifiable.
 
@@ -10,17 +10,17 @@
 
 | Visibilité  | Accessible depuis                                     |
 | ----------- | ----------------------------------------------------- |
-| `PUBLIC`    | Tous les consommateurs autorisés à utiliser la classe |
+| `PUBLIC`    | Tous les consommateurs autorisés à utiliser la classe[^terme-classe] |
 | `PROTECTED` | La classe et ses sous-classes                         |
 | `PRIVATE`   | La classe elle-même et, selon le cas, ses amis        |
 
-L’API publique doit rester minimale. Un attribut interne est normalement privé. Une valeur destinée aux consommateurs peut être exposée par une méthode de lecture ou une constante publique.
+L’API publique[^terme-api-publique] doit rester minimale. Un attribut[^terme-attribut] interne est normalement privé. Une valeur destinée aux consommateurs peut être exposée par une méthode[^terme-methode] de lecture ou une constante publique.
 
 ## 5.C PROCESS
 
 ### 5.C.1 Étape 1 — Classer chaque composant
 
-Avant `SE24`, décider si le composant appartient au contrat public, aux sous-classes ou uniquement à l’implémentation. Utiliser public, protected ou private selon ce consommateur réel.
+Avant `SE24`[^terme-class-builder-se24], décider si le composant appartient au contrat public, aux sous-classes ou uniquement à l’implémentation. Utiliser public, protected ou private selon ce consommateur réel.
 
 ### 5.C.2 Étape 2 — Créer un type
 
@@ -90,9 +90,9 @@ Tenter d’accéder à l’attribut privé depuis un report doit produire une er
 
 ## 5.I COMPATIBILITÉ S/4HANA
 
-- Statut : compatible avec le développement ABAP classique sur SAP S/4HANA.
-- Vérifier la syntaxe exacte avec l’aide `F1` du système cible lorsque plusieurs versions d’ABAP Platform sont prises en charge.
-- Les objets globaux doivent être créés dans le package et l’ordre de transport du projet.
+- Statut : compatible avec le développement ABAP[^terme-abap] classique sur SAP[^terme-acro-sap] S/4HANA.
+- Vérifier la syntaxe exacte avec l’aide `F1`[^terme-aide-f1] du système cible lorsque plusieurs versions d’ABAP Platform sont prises en charge.
+- Les objets globaux doivent être créés dans le package[^terme-package] et l’ordre de transport[^terme-ordre-transport] du projet.
 
 ## 5.J RÉFÉRENCES OFFICIELLES SAP
 
@@ -102,3 +102,15 @@ Tenter d’accéder à l’attribut privé depuis un report doit produire une er
 ---
 
 [Chapitre suivant — MÉTHODES D’INSTANCE ET PARAMÈTRES](<./06 ├── METHODES D INSTANCE ET PARAMETRES.md>)
+
+[^terme-visibilite]: **VISIBILITÉ.** Règle déterminant où un composant de classe peut être utilisé : `PUBLIC`, `PROTECTED` ou `PRIVATE`. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#visibilite>).
+[^terme-classe]: **CLASSE.** Modèle orienté objet définissant état et comportements. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#classe>).
+[^terme-api-publique]: **API PUBLIQUE.** Ensemble des composants publics qu’une classe expose à ses consommateurs : méthodes, événements, types, constantes et attributs publics. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#api-publique>).
+[^terme-attribut]: **ATTRIBUT.** Composant de données déclaré dans une classe et appartenant soit à chaque instance, soit à la classe elle-même. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#attribut>).
+[^terme-methode]: **MÉTHODE.** Comportement déclaré dans une classe ou une interface et appelé avec une liste de paramètres définie. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#methode>).
+[^terme-class-builder-se24]: **CLASS BUILDER (SE24).** Outil SAP GUI utilisé pour créer, afficher, modifier, tester et documenter les classes et interfaces globales ABAP. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/06 ├── PROGRAMMES CLASSES ET OBJETS TECHNIQUES.md#class-builder-se24>).
+[^terme-abap]: **ABAP.** Langage de programmation de la plateforme ABAP, conçu pour développer des applications métier et techniques SAP. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#abap>).
+[^terme-acro-sap]: **SAP.** Nom de l’éditeur et de son écosystème logiciel ; l’acronyme historique provient de l’allemand. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/10 └── ACRONYMES SAP.md#acro-sap>).
+[^terme-aide-f1]: **AIDE F1.** Aide contextuelle expliquant un champ, une fonction ou un mot-clé. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/02 ├── SAP GUI NAVIGATION ET TRANSACTIONS.md#aide-f1>).
+[^terme-package]: **PACKAGE.** Conteneur logique qui regroupe les objets de développement et détermine notamment leur transportabilité. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/03 ├── REPOSITORY PACKAGES ET TRANSPORTS.md#package>).
+[^terme-ordre-transport]: **ORDRE DE TRANSPORT.** Conteneur qui regroupe des modifications à exporter puis importer dans d’autres systèmes. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/03 ├── REPOSITORY PACKAGES ET TRANSPORTS.md#ordre-transport>).

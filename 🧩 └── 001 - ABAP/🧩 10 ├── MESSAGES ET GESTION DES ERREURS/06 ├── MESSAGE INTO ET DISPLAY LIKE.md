@@ -6,7 +6,7 @@
 - Utiliser `MESSAGE ... INTO`
 - Modifier uniquement l’apparence avec `DISPLAY LIKE`
 - Éviter de confondre type réel et apparence
-- Préparer des textes pour un log ou une exception
+- Préparer des textes pour un log ou une exception[^terme-exception]
 
 ## 6.B CONSTRUIRE LE TEXTE AVEC INTO
 
@@ -24,7 +24,7 @@ L’ajout `INTO` renvoie le texte formaté dans une variable au lieu de déclenc
 Cette forme est utile pour :
 
 - alimenter un journal ;
-- construire un résultat d’API ;
+- construire un résultat d’API[^terme-api] ;
 - transmettre un texte à une exception ;
 - préparer une liste de messages ;
 - tester le rendu d’un message.
@@ -102,7 +102,7 @@ Ne pas remplacer une exception structurée par une simple chaîne si l’appelan
 ## 6.J SNIPPET À RÉUTILISER
 
 > [!NOTE]
-> Adapter les noms `Z*`, les types DDIC, les données et les autorisations au système cible. Effectuer un contrôle syntaxique avant activation.
+> Adapter les noms `Z*`, les types DDIC[^terme-acro-ddic], les données et les autorisations au système cible. Effectuer un contrôle syntaxique avant activation.
 
 ```abap
 IF lv_error_count = 0.
@@ -128,3 +128,7 @@ ENDIF.
 ---
 
 [Chapitre suivant — CODES RETOUR ET SY-SUBRC](<./07 ├── CODES RETOUR ET SY SUBRC.md>)
+
+[^terme-exception]: **EXCEPTION.** Objet ou signal représentant une situation anormale qu’un appelant peut traiter. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#exception>).
+[^terme-api]: **API.** Application Programming Interface, contrat exposant des opérations ou données utilisables par d’autres composants. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/10 └── ACRONYMES SAP.md#api>).
+[^terme-acro-ddic]: **DDIC.** Data Dictionary, abréviation courante de l’ABAP Dictionary. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/10 └── ACRONYMES SAP.md#acro-ddic>).

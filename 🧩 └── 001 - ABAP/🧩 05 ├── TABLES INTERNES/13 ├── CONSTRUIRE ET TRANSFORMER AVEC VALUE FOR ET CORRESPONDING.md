@@ -6,7 +6,7 @@
 - Transformer une table avec une itération `FOR`
 - Copier les composants homonymes avec `CORRESPONDING`
 - Utiliser `BASE` pour conserver des données existantes
-- Identifier les dépendances à la version ABAP
+- Identifier les dépendances à la version ABAP[^terme-abap]
 
 ## 13.B VALUE
 
@@ -113,7 +113,7 @@ Préférer plusieurs étapes nommées lorsque :
 ## 13.I COMPATIBILITÉ
 
 > [!NOTE]
-> `VALUE`, les itérations `FOR` et les variantes modernes de `CORRESPONDING` dépendent de la version ABAP. Vérifier la documentation accessible depuis le système avant de retenir cette syntaxe dans un développement destiné à plusieurs paysages SAP.
+> `VALUE`, les itérations `FOR` et les variantes modernes de `CORRESPONDING` dépendent de la version ABAP. Vérifier la documentation accessible depuis le système avant de retenir cette syntaxe dans un développement destiné à plusieurs paysages SAP[^terme-acro-sap].
 
 ## 13.J VÉRIFICATION
 
@@ -132,7 +132,7 @@ Préférer plusieurs étapes nommées lorsque :
 ## 13.L SNIPPET À RÉUTILISER
 
 > [!NOTE]
-> Adapter les noms `Z*`, les types DDIC, les données et les autorisations au système cible. Effectuer un contrôle syntaxique avant activation.
+> Adapter les noms `Z*`, les types DDIC[^terme-acro-ddic], les données et les autorisations au système cible. Effectuer un contrôle syntaxique avant activation.
 
 ```abap
 " Traiter la collection sans lecture SQL dans la boucle.
@@ -168,3 +168,7 @@ lt_labels = VALUE #(
 ---
 
 [Chapitre suivant — FILTRER, REGROUPER ET AGRÉGER](<./14 ├── FILTRER REGROUPER ET AGREGER.md>)
+
+[^terme-abap]: **ABAP.** Langage de programmation de la plateforme ABAP, conçu pour développer des applications métier et techniques SAP. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#abap>).
+[^terme-acro-sap]: **SAP.** Nom de l’éditeur et de son écosystème logiciel ; l’acronyme historique provient de l’allemand. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/10 └── ACRONYMES SAP.md#acro-sap>).
+[^terme-acro-ddic]: **DDIC.** Data Dictionary, abréviation courante de l’ABAP Dictionary. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/10 └── ACRONYMES SAP.md#acro-ddic>).

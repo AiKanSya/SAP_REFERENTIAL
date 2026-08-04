@@ -38,7 +38,7 @@ Un nom utile contient des éléments contrôlés :
 PRODUCTS_20260731_141500_000042.csv
 ```
 
-Éviter les caractères dépendants du système d’exploitation. Le nom logique `FILE` doit gérer le répertoire ; le programme construit uniquement la partie variable autorisée.
+Éviter les caractères dépendants du système d’exploitation. Le nom logique `FILE`[^outil-file] doit gérer le répertoire ; le programme construit uniquement la partie variable autorisée.
 
 ## 23.E PUBLICATION
 
@@ -54,7 +54,7 @@ Ne rendre le fichier visible au consommateur qu’après écriture et fermeture 
 - nombre de lignes attendu ;
 - total de contrôle ;
 - taille non nulle ;
-- encodage ;
+- encodage[^terme-encodage] ;
 - en-tête et version ;
 - absence d’erreur d’écriture ;
 - journal avec paramètres de sélection.
@@ -94,8 +94,8 @@ Relancer l’export avec le même périmètre et vérifier la règle attendue : 
 
 ## 23.I ERREURS FRÉQUENTES
 
-- Mélanger fichiers frontend et serveur dans un même scénario.
-- Parser un CSV par simple séparation alors que les champs peuvent être échappés.
+- Mélanger fichiers frontend[^terme-frontend] et serveur dans un même scénario.
+- Parser un CSV[^terme-csv] par simple séparation alors que les champs peuvent être échappés.
 
 ## 23.J TERMES DU LEXIQUE
 
@@ -115,3 +115,9 @@ Relancer l’export avec le même périmètre et vérifier la règle attendue : 
 ---
 
 [Chapitre suivant — EXÉCUTION ARRIÈRE-PLAN, REPRISE ET DIAGNOSTIC](<./24 └── EXECUTION ARRIERE PLAN REPRISE ET DIAGNOSTIC.md>)
+
+[^terme-encodage]: **ENCODAGE.** Règle transformant les caractères en octets et inversement. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/07 ├── INTERFACES ET INTEGRATION.md#encodage>).
+[^terme-frontend]: **FRONTEND.** Poste ou couche cliente utilisée par l’utilisateur, par exemple SAP GUI for Windows. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/01 ├── SYSTEMES ENVIRONNEMENTS ET MANDANTS.md#frontend>).
+[^terme-csv]: **CSV.** Format texte tabulaire utilisant un séparateur de champs et des règles d’échappement. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/07 ├── INTERFACES ET INTEGRATION.md#csv>).
+
+[^outil-file]: **FILE.** Transaction de maintenance des noms et chemins de fichiers logiques. Voir [le chapitre associé](<04 ├── NOMS ET CHEMINS LOGIQUES AVEC FILE.md>).

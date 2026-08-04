@@ -2,9 +2,9 @@
 
 ## 5.A RÉSULTAT ATTENDU
 
-- Créer un programme exécutable dans SAP GUI
-- L’affecter au bon package et au bon ordre de transport
-- Saisir un code ABAP minimal
+- Créer un programme exécutable[^terme-programme-executable] dans SAP GUI[^terme-sap-gui]
+- L’affecter au bon package[^terme-package] et au bon ordre de transport[^terme-ordre-transport]
+- Saisir un code ABAP[^terme-abap] minimal
 - Contrôler, activer et exécuter le programme
 - Identifier les artefacts créés autour du programme
 
@@ -25,7 +25,7 @@ flowchart LR
 
 Avant de créer le programme, disposer de :
 
-- l’environnement de développement correct ;
+- l’environnement[^terme-environnement] de développement correct ;
 - l’autorisation de créer des objets du Repository ;
 - la convention de nommage du projet ;
 - un package cible ;
@@ -52,14 +52,14 @@ Le nom doit être :
 
 ## 5.E CRÉATION AVEC `SE38`
 
-1. ouvrir la transaction `SE38` ;
+1. ouvrir la transaction `SE38`[^outil-se38] ;
 2. saisir le nom du programme ;
 3. choisir **Créer** ;
 4. renseigner une description courte ;
 5. sélectionner le type **Programme exécutable** ;
 6. enregistrer ;
 7. affecter le programme au package prévu ;
-8. sélectionner la tâche de transport ;
+8. sélectionner la tâche de transport[^terme-tache-transport] ;
 9. saisir le code source ;
 10. contrôler, activer et exécuter.
 
@@ -67,7 +67,7 @@ Les libellés exacts peuvent varier selon la version du système et la langue de
 
 ## 5.F CRÉATION AVEC `SE80`
 
-1. ouvrir la transaction `SE80` ;
+1. ouvrir la transaction `SE80`[^outil-se80] ;
 2. sélectionner le Repository Browser ;
 3. afficher le package cible ;
 4. créer un programme depuis le menu contextuel du package ;
@@ -158,7 +158,7 @@ Après création :
 
 | Situation                           | Cause probable                                     |
 | ----------------------------------- | -------------------------------------------------- |
-| Le programme n’est pas transporté   | Affectation à `$TMP`                               |
+| Le programme n’est pas transporté   | Affectation à `$TMP`[^terme-objet-local-tmp]                               |
 | L’ancienne version s’exécute        | Modifications enregistrées mais non activées       |
 | Le programme ne s’exécute pas       | Type de programme incorrect ou erreur d’activation |
 | Le texte du paramètre est technique | Texte de sélection non maintenu                    |
@@ -173,7 +173,7 @@ Après création :
 3. Si le système indique que le nom existe déjà, annuler et choisir un nom client libre ; ne pas écraser un programme existant.
 4. Saisir un titre explicite et sélectionner **Programme exécutable**.
 
-Le type exécutable permet un lancement direct avec `F8`. Un include ou un module pool ne répond pas à ce scénario.
+Le type exécutable permet un lancement direct avec `F8`. Un include ou un module pool[^terme-module-pool] ne répond pas à ce scénario.
 
 ### 5.L.2 Étape 2 — Affecter le package et le transport
 
@@ -223,7 +223,7 @@ Le chapitre est terminé lorsque le programme existe dans le bon package, est ac
 ## 5.N SNIPPET À RÉUTILISER
 
 > [!NOTE]
-> Adapter les noms `Z*`, les types DDIC, les données et les autorisations au système cible. Effectuer un contrôle syntaxique avant activation.
+> Adapter les noms `Z*`, les types DDIC[^terme-acro-ddic], les données et les autorisations au système cible. Effectuer un contrôle syntaxique avant activation.
 
 ```abap
 REPORT zdemo_fondamentaux_abap.
@@ -252,3 +252,17 @@ START-OF-SELECTION.
 ---
 
 [Chapitre suivant — STRUCTURE D’UN PROGRAMME ABAP](<./06 ├── STRUCTURE D UN PROGRAMME ABAP.md>)
+
+[^terme-programme-executable]: **PROGRAMME EXÉCUTABLE.** Programme ABAP de type report pouvant être lancé directement, généralement avec `F8` ou par une transaction. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/06 ├── PROGRAMMES CLASSES ET OBJETS TECHNIQUES.md#programme-executable>).
+[^terme-sap-gui]: **SAP GUI.** Client graphique permettant d’utiliser les transactions et écrans d’un système SAP. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/02 ├── SAP GUI NAVIGATION ET TRANSACTIONS.md#sap-gui>).
+[^terme-package]: **PACKAGE.** Conteneur logique qui regroupe les objets de développement et détermine notamment leur transportabilité. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/03 ├── REPOSITORY PACKAGES ET TRANSPORTS.md#package>).
+[^terme-ordre-transport]: **ORDRE DE TRANSPORT.** Conteneur qui regroupe des modifications à exporter puis importer dans d’autres systèmes. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/03 ├── REPOSITORY PACKAGES ET TRANSPORTS.md#ordre-transport>).
+[^terme-abap]: **ABAP.** Langage de programmation de la plateforme ABAP, conçu pour développer des applications métier et techniques SAP. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#abap>).
+[^terme-environnement]: **ENVIRONNEMENT.** Rôle fonctionnel attribué à un système dans le cycle de vie : développement, test, recette, préproduction ou production. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/01 ├── SYSTEMES ENVIRONNEMENTS ET MANDANTS.md#environnement>).
+[^terme-tache-transport]: **TÂCHE DE TRANSPORT.** Sous-conteneur affecté à un utilisateur dans un ordre de transport. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/03 ├── REPOSITORY PACKAGES ET TRANSPORTS.md#tache-transport>).
+[^terme-objet-local-tmp]: **OBJET LOCAL $TMP.** Objet affecté au package local `$TMP`, non destiné au transport vers un autre système. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/03 ├── REPOSITORY PACKAGES ET TRANSPORTS.md#objet-local-tmp>).
+[^terme-module-pool]: **MODULE POOL.** Programme ABAP classique pilotant des dynpros au moyen de modules PBO et PAI. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/06 ├── PROGRAMMES CLASSES ET OBJETS TECHNIQUES.md#module-pool>).
+[^terme-acro-ddic]: **DDIC.** Data Dictionary, abréviation courante de l’ABAP Dictionary. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/10 └── ACRONYMES SAP.md#acro-ddic>).
+
+[^outil-se38]: **SE38.** Éditeur ABAP classique utilisé pour créer, modifier, vérifier et exécuter des programmes. Voir [le chapitre associé](<04 ├── EDITEURS ABAP SE38 ET SE80.md>).
+[^outil-se80]: **SE80.** Object Navigator utilisé pour parcourir et maintenir les objets du Repository ABAP. Voir [le chapitre associé](<04 ├── EDITEURS ABAP SE38 ET SE80.md>).

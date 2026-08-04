@@ -19,24 +19,24 @@ IF sy-subrc <> 0.
 ENDIF.
 ```
 
-L’appel n’exécute pas immédiatement le module. Il enregistre son nom et ses paramètres pour la SAP LUW courante. L’exécution est déclenchée par `COMMIT WORK`.
+L’appel n’exécute pas immédiatement le module. Il enregistre son nom et ses paramètres pour la SAP LUW[^terme-sap-luw] courante. L’exécution est déclenchée par `COMMIT WORK`[^terme-commit-work].
 
 ## 15.C CONSÉQUENCES
 
 - modifier `ls_order` après l’appel ne modifie pas les valeurs déjà enregistrées ;
 - plusieurs appels peuvent être regroupés dans la même demande ;
-- `ROLLBACK WORK` supprime les appels enregistrés qui ne sont pas encore exécutés ;
+- `ROLLBACK WORK`[^terme-rollback-work] supprime les appels enregistrés qui ne sont pas encore exécutés ;
 - sans commit approprié, la mise à jour ne doit pas être considérée comme réalisée.
 
 ## 15.D GESTION DU COMMIT
 
-Le module ou la méthode qui enregistre l’update ne doit pas forcément exécuter le commit. Dans une API réutilisable, le commit appartient généralement au programme orchestrateur afin de préserver l’unité transactionnelle globale.
+Le module ou la méthode[^terme-methode] qui enregistre l’update ne doit pas forcément exécuter le commit. Dans une API[^terme-api] réutilisable, le commit appartient généralement au programme orchestrateur afin de préserver l’unité transactionnelle globale.
 
 ## 15.E PROCESS
 
 ### 15.E.1 ÉTAPE 1 — VÉRIFIER LE MODULE DE MISE À JOUR
 
-Afficher le module dans `SE37`. Contrôler son attribut V1 ou V2, sa signature active et son implémentation. Vérifier que ses paramètres sont compatibles avec l’update task et qu’il n’exécute aucun commit ou dialogue utilisateur.
+Afficher le module dans `SE37`[^outil-se37]. Contrôler son attribut[^terme-attribut] V1 ou V2, sa signature active et son implémentation. Vérifier que ses paramètres sont compatibles avec l’update task[^terme-update-task] et qu’il n’exécute aucun commit ou dialogue utilisateur.
 
 ### 15.E.2 ÉTAPE 2 — PRÉPARER DES PARAMÈTRES COMPLETS
 
@@ -52,7 +52,7 @@ Ajouter les autres modules nécessaires avant la borne finale. Conserver l’ord
 
 ### 15.E.5 ÉTAPE 5 — DÉCLENCHER DEPUIS L’ORCHESTRATEUR
 
-Exécuter `COMMIT WORK` ou `COMMIT WORK AND WAIT` au niveau qui possède l’unité métier complète. Avec `AND WAIT`, contrôler immédiatement `sy-subrc`. Sans attente, prévoir un suivi dans `SM13` ou le journal applicatif.
+Exécuter `COMMIT WORK` ou `COMMIT WORK AND WAIT` au niveau qui possède l’unité métier complète. Avec `AND WAIT`, contrôler immédiatement `sy-subrc`. Sans attente, prévoir un suivi dans `SM13`[^outil-sm13] ou le journal applicatif.
 
 ### 15.E.6 ÉTAPE 6 — TESTER LES TROIS ÉTATS
 
@@ -75,7 +75,7 @@ Tester un commit réussi, un rollback avant commit et un module en échec. Véri
 ## 15.H SNIPPET À RÉUTILISER
 
 > [!NOTE]
-> Adapter les noms `Z*`, les types DDIC, les données et les autorisations au système cible. Effectuer un contrôle syntaxique avant activation.
+> Adapter les noms `Z*`, les types DDIC[^terme-acro-ddic], les données et les autorisations au système cible. Effectuer un contrôle syntaxique avant activation.
 
 ```abap
 CALL FUNCTION 'ZDEV_ORDER_UPDATE' IN UPDATE TASK
@@ -106,3 +106,15 @@ ENDIF.
 ---
 
 [Chapitre suivant — MISES À JOUR `V1` ET `V2`](<./16 ├── MISES A JOUR V1 ET V2.md>)
+
+[^terme-sap-luw]: **SAP LUW.** Unité logique métier SAP pouvant regrouper plusieurs étapes de dialogue et différer les mises à jour jusqu’au commit. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/08 ├── EXECUTION EXPLOITATION ET ADMINISTRATION.md#sap-luw>).
+[^terme-commit-work]: **COMMIT WORK.** Instruction clôturant la SAP LUW courante, déclenchant notamment les mises à jour enregistrées et validant la base. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/08 ├── EXECUTION EXPLOITATION ET ADMINISTRATION.md#commit-work>).
+[^terme-rollback-work]: **ROLLBACK WORK.** Instruction annulant les modifications non validées de la LUW courante et les tâches de mise à jour enregistrées. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/08 ├── EXECUTION EXPLOITATION ET ADMINISTRATION.md#rollback-work>).
+[^terme-methode]: **MÉTHODE.** Comportement déclaré dans une classe ou une interface et appelé avec une liste de paramètres définie. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#methode>).
+[^terme-api]: **API.** Application Programming Interface, contrat exposant des opérations ou données utilisables par d’autres composants. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/10 └── ACRONYMES SAP.md#api>).
+[^terme-attribut]: **ATTRIBUT.** Composant de données déclaré dans une classe et appartenant soit à chaque instance, soit à la classe elle-même. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#attribut>).
+[^terme-update-task]: **UPDATE TASK.** Mécanisme différant des mises à jour pour les exécuter lors du `COMMIT WORK` dans des processus de mise à jour. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/08 ├── EXECUTION EXPLOITATION ET ADMINISTRATION.md#update-task>).
+[^terme-acro-ddic]: **DDIC.** Data Dictionary, abréviation courante de l’ABAP Dictionary. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/10 └── ACRONYMES SAP.md#acro-ddic>).
+
+[^outil-se37]: **SE37.** Function Builder utilisé pour rechercher, afficher, tester et maintenir les modules fonction. Voir [le chapitre associé](<../🧩 12 ├── MODULES FONCTION RFC ET BAPI/03 ├── RECHERCHER ET ANALYSER AVEC SE37.md>).
+[^outil-sm13]: **SM13.** Transaction de surveillance et de reprise des enregistrements de mise à jour SAP. Voir [le chapitre associé](<19 ├── ANALYSER ET REPRENDRE LES UPDATES AVEC SM13.md>).

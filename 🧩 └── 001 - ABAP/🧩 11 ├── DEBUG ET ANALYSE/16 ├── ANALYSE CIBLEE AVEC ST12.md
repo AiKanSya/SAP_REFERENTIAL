@@ -3,14 +3,14 @@
 ## 16.A RÉSULTAT ATTENDU
 
 - Comprendre le rôle d’une analyse de transaction unique
-- Corréler trace ABAP et trace SQL
+- Corréler trace[^terme-trace] ABAP[^terme-abap] et trace SQL[^terme-acro-sql]
 - Enregistrer un scénario court et reproductible
 - Identifier le chemin d’appel responsable d’un coût
-- Savoir quand préférer `SAT` ou `ST05`
+- Savoir quand préférer `SAT`[^outil-sat] ou `ST05`[^outil-st05]
 
 ## 16.B RÔLE
 
-`ST12` est couramment utilisé pour une analyse ciblée d’une transaction ou d’un traitement en combinant des informations d’exécution ABAP et SQL dans un même scénario.
+`ST12`[^outil-st12] est couramment utilisé pour une analyse ciblée d’une transaction ou d’un traitement en combinant des informations d’exécution ABAP et SQL dans un même scénario.
 
 L’outil peut varier selon la version et les composants installés. Les fonctions disponibles et les autorisations doivent être vérifiées sur le système concerné.
 
@@ -39,7 +39,7 @@ flowchart TD
 | Besoin                         | Outil privilégié |
 | ------------------------------ | ---------------- |
 | Pas-à-pas et valeurs           | Débogueur        |
-| Dump déjà produit              | `ST22`           |
+| Dump déjà produit              | `ST22`[^outil-st22]           |
 | Temps des procédures ABAP      | `SAT`            |
 | Détail des accès SQL           | `ST05`           |
 | Corrélation ciblée ABAP et SQL | `ST12`           |
@@ -82,7 +82,7 @@ Démarrer les traces juste avant l’action, reproduire le scénario une seule f
 
 ### 16.H.4 Étape 4 — Analyser les deux axes
 
-Lire d’abord la distribution globale, puis la trace ABAP pour les unités coûteuses et la trace SQL pour les instructions dominantes. Utiliser les horodatages et appels pour relier une méthode à ses accès.
+Lire d’abord la distribution globale, puis la trace ABAP pour les unités coûteuses et la trace SQL pour les instructions dominantes. Utiliser les horodatages et appels pour relier une méthode[^terme-methode] à ses accès.
 
 ### 16.H.5 Étape 5 — Comparer
 
@@ -90,7 +90,7 @@ Après correction, créer une nouvelle trace avec le même contexte. Comparer le
 
 ## 16.I VÉRIFICATION
 
-- Le scénario reproduit correspond au même utilisateur, mandant, transaction et jeu de données.
+- Le scénario reproduit correspond au même utilisateur, mandant[^terme-mandant], transaction et jeu de données.
 - L’horodatage et l’identifiant de l’analyse sont conservés.
 - La cause retenue est soutenue par une ligne source, une trace ou une valeur observée.
 - Après correction, le même scénario ne reproduit plus le défaut et le résultat métier reste identique.
@@ -132,3 +132,14 @@ Ordre de transport  :
 ---
 
 [Chapitre suivant — ANALYSE MÉMOIRE AVEC MEMORY INSPECTOR](<./17 ├── ANALYSE MEMOIRE AVEC MEMORY INSPECTOR.md>)
+
+[^terme-trace]: **TRACE.** Enregistrement détaillé d’événements techniques pour analyser exécution, SQL ou appels. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/08 ├── EXECUTION EXPLOITATION ET ADMINISTRATION.md#trace>).
+[^terme-abap]: **ABAP.** Langage de programmation de la plateforme ABAP, conçu pour développer des applications métier et techniques SAP. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#abap>).
+[^terme-acro-sql]: **SQL.** Structured Query Language. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/10 └── ACRONYMES SAP.md#acro-sql>).
+[^terme-methode]: **MÉTHODE.** Comportement déclaré dans une classe ou une interface et appelé avec une liste de paramètres définie. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#methode>).
+[^terme-mandant]: **MANDANT.** Subdivision logique d’un système SAP. Il est identifié par un numéro à trois chiffres et isole une partie des données, du paramétrage et des utilisateurs. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/01 ├── SYSTEMES ENVIRONNEMENTS ET MANDANTS.md#mandant>).
+
+[^outil-sat]: **SAT.** Runtime Analysis utilisée pour mesurer et analyser le temps d’exécution ABAP. Voir [le chapitre associé](<../🧩 20 ├── PERFORMANCE QUALITE ET TESTS/07 ├── MESURER LE TEMPS D EXECUTION AVEC SAT.md>).
+[^outil-st05]: **ST05.** Performance Trace utilisée notamment pour enregistrer et analyser les accès SQL. Voir [le chapitre associé](<../🧩 20 ├── PERFORMANCE QUALITE ET TESTS/08 ├── ANALYSER LES ACCES SQL AVEC ST05.md>).
+[^outil-st12]: **ST12.** Outil d’analyse ciblée combinant des traces ABAP et SQL pour un scénario reproduit. Voir [le chapitre associé](<16 ├── ANALYSE CIBLEE AVEC ST12.md>).
+[^outil-st22]: **ST22.** Transaction d’analyse des terminaisons anormales et dumps ABAP. Voir [le chapitre associé](<13 ├── ANALYSER LES DUMPS AVEC ST22.md>).

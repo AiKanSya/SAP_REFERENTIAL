@@ -4,7 +4,7 @@
 
 - Distinguer enregistrement, contrôle syntaxique et activation
 - Comprendre quelle version est exécutée
-- Exécuter correctement un programme exécutable
+- Exécuter correctement un programme exécutable[^terme-programme-executable]
 - Identifier les contrôles minimaux avant livraison
 - Localiser les principales sources d’erreur
 
@@ -74,11 +74,11 @@ Une activation peut échouer si :
 
 ## 9.F EXÉCUTION
 
-Un programme exécutable peut être lancé depuis `SE38` ou `SE80`.
+Un programme exécutable peut être lancé depuis `SE38`[^outil-se38] ou `SE80`[^outil-se80].
 
 Séquence classique :
 
-1. l’environnement d’exécution charge le programme ;
+1. l’environnement[^terme-environnement] d’exécution charge le programme ;
 2. l’écran de sélection est traité s’il existe ;
 3. les événements du programme sont déclenchés ;
 4. le traitement produit un résultat ou un effet ;
@@ -128,10 +128,10 @@ Selon le contexte :
 | ---------------------------- | ---------------------------------------------------------------- |
 | Contrôle étendu du programme | Recherche d’anomalies supplémentaires sur un programme classique |
 | Code Inspector               | Contrôles statiques selon une variante                           |
-| ABAP Test Cockpit            | Contrôles qualité centralisés selon la configuration du système  |
+| ABAP[^terme-abap] Test Cockpit            | Contrôles qualité centralisés selon la configuration du système  |
 | ABAP Unit                    | Tests automatisés de code testable                               |
 | Runtime Analysis             | Analyse du temps d’exécution                                     |
-| SQL Trace                    | Analyse des accès SQL                                            |
+| SQL[^terme-acro-sql] Trace[^terme-trace]                    | Analyse des accès SQL                                            |
 
 Ces outils seront détaillés dans les dossiers consacrés à la qualité et à la performance.
 
@@ -143,14 +143,14 @@ Un message peut signaler une erreur gérée par le programme.
 
 ### 9.J.2 DUMP ABAP
 
-Une erreur d’exécution non gérée peut produire un dump analysable avec `ST22`.
+Une erreur d’exécution non gérée peut produire un dump analysable avec `ST22`[^outil-st22].
 
 Exemples de causes :
 
 - conversion impossible ;
 - accès à une référence non liée ;
 - débordement numérique ;
-- exception non gérée ;
+- exception[^terme-exception] non gérée ;
 - absence d’autorisation selon le traitement ;
 - incohérence technique.
 
@@ -159,8 +159,8 @@ Exemples de causes :
 Selon le programme, analyser également :
 
 - journal applicatif ;
-- spool ;
-- journal de job ;
+- spool[^terme-spool] ;
+- journal de job[^terme-job] ;
 - messages système ;
 - traces techniques adaptées.
 
@@ -208,13 +208,13 @@ Utiliser la gestion des versions pour comparer la version active avec une versio
 
 - Copier un exemple sans adapter les types, noms d’objets et données disponibles dans le système.
 - Tester uniquement le cas nominal et ignorer les valeurs initiales, absentes ou invalides.
-- Intervenir dans le mauvais système ou mandant.
+- Intervenir dans le mauvais système ou mandant[^terme-mandant].
 - Confondre sauvegarde et activation.
 
 ## 9.O SNIPPET À RÉUTILISER
 
 > [!NOTE]
-> Adapter les noms `Z*`, les types DDIC, les données et les autorisations au système cible. Effectuer un contrôle syntaxique avant activation.
+> Adapter les noms `Z*`, les types DDIC[^terme-acro-ddic], les données et les autorisations au système cible. Effectuer un contrôle syntaxique avant activation.
 
 ```abap
 DATA gv_value TYPE i
@@ -240,3 +240,18 @@ gv_value = 'ABC'.
 ---
 
 [Chapitre suivant — ÉVÉNEMENTS D’UN PROGRAMME EXÉCUTABLE](<./10 ├── EVENEMENTS D UN PROGRAMME EXECUTABLE.md>)
+
+[^terme-programme-executable]: **PROGRAMME EXÉCUTABLE.** Programme ABAP de type report pouvant être lancé directement, généralement avec `F8` ou par une transaction. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/06 ├── PROGRAMMES CLASSES ET OBJETS TECHNIQUES.md#programme-executable>).
+[^terme-environnement]: **ENVIRONNEMENT.** Rôle fonctionnel attribué à un système dans le cycle de vie : développement, test, recette, préproduction ou production. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/01 ├── SYSTEMES ENVIRONNEMENTS ET MANDANTS.md#environnement>).
+[^terme-abap]: **ABAP.** Langage de programmation de la plateforme ABAP, conçu pour développer des applications métier et techniques SAP. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#abap>).
+[^terme-acro-sql]: **SQL.** Structured Query Language. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/10 └── ACRONYMES SAP.md#acro-sql>).
+[^terme-trace]: **TRACE.** Enregistrement détaillé d’événements techniques pour analyser exécution, SQL ou appels. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/08 ├── EXECUTION EXPLOITATION ET ADMINISTRATION.md#trace>).
+[^terme-exception]: **EXCEPTION.** Objet ou signal représentant une situation anormale qu’un appelant peut traiter. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#exception>).
+[^terme-spool]: **SPOOL.** Infrastructure stockant et acheminant les sorties imprimables produites par les traitements SAP. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/06 ├── PROGRAMMES CLASSES ET OBJETS TECHNIQUES.md#spool>).
+[^terme-job]: **JOB.** Traitement planifié en arrière-plan composé d’une ou plusieurs étapes. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/06 ├── PROGRAMMES CLASSES ET OBJETS TECHNIQUES.md#job>).
+[^terme-mandant]: **MANDANT.** Subdivision logique d’un système SAP. Il est identifié par un numéro à trois chiffres et isole une partie des données, du paramétrage et des utilisateurs. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/01 ├── SYSTEMES ENVIRONNEMENTS ET MANDANTS.md#mandant>).
+[^terme-acro-ddic]: **DDIC.** Data Dictionary, abréviation courante de l’ABAP Dictionary. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/10 └── ACRONYMES SAP.md#acro-ddic>).
+
+[^outil-se38]: **SE38.** Éditeur ABAP classique utilisé pour créer, modifier, vérifier et exécuter des programmes. Voir [le chapitre associé](<04 ├── EDITEURS ABAP SE38 ET SE80.md>).
+[^outil-se80]: **SE80.** Object Navigator utilisé pour parcourir et maintenir les objets du Repository ABAP. Voir [le chapitre associé](<04 ├── EDITEURS ABAP SE38 ET SE80.md>).
+[^outil-st22]: **ST22.** Transaction d’analyse des terminaisons anormales et dumps ABAP. Voir [le chapitre associé](<../🧩 11 ├── DEBUG ET ANALYSE/13 ├── ANALYSER LES DUMPS AVEC ST22.md>).

@@ -10,7 +10,7 @@
 
 ## 3.B DÉFINITION
 
-Un objet de données contient ou représente une valeur pendant l’exécution d’un programme ABAP. Son type définit les valeurs possibles et les opérations applicables.
+Un objet de données[^terme-objet-donnees] contient ou représente une valeur pendant l’exécution d’un programme ABAP[^terme-abap]. Son type définit les valeurs possibles et les opérations applicables.
 
 ```mermaid
 flowchart TD
@@ -56,7 +56,7 @@ Les littéraux ne doivent pas remplacer les constantes lorsque la valeur porte u
 
 ## 3.E OBJETS ANONYMES
 
-Un objet anonyme est créé dynamiquement et n’est pas identifié directement par un nom de variable métier. Il est accessible par une référence de données.
+Un objet anonyme est créé dynamiquement et n’est pas identifié directement par un nom de variable métier. Il est accessible par une référence de données[^terme-reference].
 
 ```abap
 DATA lr_value TYPE REF TO i.
@@ -194,12 +194,12 @@ La forme chaînée de `CLEAR` est valide. Dans du code professionnel, des instru
 - Copier un exemple sans adapter les types, noms d’objets et données disponibles dans le système.
 - Tester uniquement le cas nominal et ignorer les valeurs initiales, absentes ou invalides.
 - Choisir un type trop générique ou dépendant d’une variable existante sans justification.
-- Utiliser une référence ou un field-symbol non lié.
+- Utiliser une référence ou un field-symbol[^terme-field-symbol] non lié.
 
 ## 3.N SNIPPET À RÉUTILISER
 
 > [!NOTE]
-> Adapter les noms `Z*`, les types DDIC, les données et les autorisations au système cible. Effectuer un contrôle syntaxique avant activation.
+> Adapter les noms `Z*`, les types DDIC[^terme-acro-ddic], les données et les autorisations au système cible. Effectuer un contrôle syntaxique avant activation.
 
 ```abap
 REPORT zdemo_data_objects.
@@ -239,3 +239,9 @@ CLEAR: lv_retry_count, lv_message.
 ---
 
 [Chapitre suivant — VARIABLES AVEC `DATA`](<./04 ├── VARIABLES AVEC DATA.md>)
+
+[^terme-objet-donnees]: **OBJET DE DONNÉES.** Zone de mémoire typée contenant une valeur pendant l’exécution. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#objet-donnees>).
+[^terme-abap]: **ABAP.** Langage de programmation de la plateforme ABAP, conçu pour développer des applications métier et techniques SAP. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#abap>).
+[^terme-reference]: **RÉFÉRENCE.** Valeur qui pointe vers un objet de données ou une instance de classe. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#reference>).
+[^terme-field-symbol]: **FIELD-SYMBOL.** Alias dynamique vers une zone de mémoire existante. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#field-symbol>).
+[^terme-acro-ddic]: **DDIC.** Data Dictionary, abréviation courante de l’ABAP Dictionary. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/10 └── ACRONYMES SAP.md#acro-ddic>).

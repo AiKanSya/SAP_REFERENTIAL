@@ -8,15 +8,15 @@ Déterminer comment un objet d’archivage sélectionne, écrit, vérifie puis s
 
 - Nom exact de l’objet d’archivage.
 - Règles métier de résidence et de conservation validées.
-- Accès à `SARA` et aux journaux de jobs/spool.
-- Environnement de test contenant des données vérifiables.
+- Accès à `SARA`[^outil-sara] et aux journaux de jobs/spool[^terme-spool].
+- Environnement[^terme-environnement] de test contenant des données vérifiables.
 
 ## 1.C ÉLÉMENTS À RELEVER DANS SARA
 
 | Élément | Question à résoudre |
 |---|---|
 | Documentation | Quelles données et dépendances sont couvertes ? |
-| Customizing | Quelles règles de résidence et variantes s’appliquent ? |
+| Customizing[^terme-customizing] | Quelles règles de résidence et variantes s’appliquent ? |
 | Prétraitement | Un statut doit-il être préparé avant écriture ? |
 | Programme d’écriture | Quelles données sont placées dans le fichier archive ? |
 | Programme de suppression | Quand les données en base sont-elles supprimées ? |
@@ -36,7 +36,7 @@ Contrôler les paramètres, les variantes, le stockage, les structures d’infor
 
 ### 1.D.3 ÉTAPE 3 — ANALYSER LES SESSIONS ANTÉRIEURES
 
-Relever pour les dernières sessions le statut, le fichier d’archive, le job, le spool, les journaux et l’état de suppression. Une écriture terminée ne signifie pas que les données ont déjà été supprimées.
+Relever pour les dernières sessions le statut, le fichier d’archive, le job[^terme-job], le spool, les journaux et l’état de suppression. Une écriture terminée ne signifie pas que les données ont déjà été supprimées.
 
 ### 1.D.4 ÉTAPE 4 — DÉFINIR UN ÉCHANTILLON TRAÇABLE
 
@@ -88,3 +88,10 @@ Ne jamais supprimer directement les tables métier pour reproduire le programme 
 ## 1.H COMPATIBILITÉ S/4HANA
 
 Statut : compatible pour les objets d’archivage disponibles dans la version S/4HANA cible. Vérifier la documentation spécifique de chaque objet et les éventuels changements de modèle de données.
+
+[^terme-spool]: **SPOOL.** Infrastructure stockant et acheminant les sorties imprimables produites par les traitements SAP. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/06 ├── PROGRAMMES CLASSES ET OBJETS TECHNIQUES.md#spool>).
+[^terme-environnement]: **ENVIRONNEMENT.** Rôle fonctionnel attribué à un système dans le cycle de vie : développement, test, recette, préproduction ou production. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/01 ├── SYSTEMES ENVIRONNEMENTS ET MANDANTS.md#environnement>).
+[^terme-customizing]: **CUSTOMIZING.** Paramétrage permettant d’adapter le comportement standard SAP à l’organisation. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/09 ├── NOTIONS FONCTIONNELLES ET ORGANISATIONNELLES.md#customizing>).
+[^terme-job]: **JOB.** Traitement planifié en arrière-plan composé d’une ou plusieurs étapes. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/06 ├── PROGRAMMES CLASSES ET OBJETS TECHNIQUES.md#job>).
+
+[^outil-sara]: **SARA.** Transaction centrale d’administration des objets et sessions d’archivage ADK. Voir [le chapitre associé](<01 └── ANALYSER UN OBJET D ARCHIVAGE AVEC SARA.md>).

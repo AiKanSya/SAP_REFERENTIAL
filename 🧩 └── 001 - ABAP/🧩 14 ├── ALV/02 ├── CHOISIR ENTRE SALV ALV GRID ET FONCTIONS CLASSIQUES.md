@@ -2,7 +2,7 @@
 
 ## 2.A RÉSULTAT ATTENDU
 
-- Choisir l’API ALV selon les exigences
+- Choisir l’API[^terme-api] ALV[^terme-alv] selon les exigences
 - Éviter d’utiliser une technologie trop complexe
 - Identifier les contraintes de maintenance
 
@@ -21,7 +21,7 @@ flowchart TD
 
 ## 2.C UTILISER CL_SALV_TABLE
 
-Choisir SALV lorsque le besoin consiste principalement à afficher une table interne :
+Choisir SALV[^terme-acro-salv] lorsque le besoin consiste principalement à afficher une table interne[^terme-table-interne] :
 
 - rapport en lecture seule ;
 - fonctions standard suffisantes ;
@@ -38,7 +38,7 @@ Choisir le Grid Control lorsque le programme nécessite :
 - validation avec `DATA_CHANGED` ;
 - barre d’outils personnalisée ;
 - styles ou propriétés au niveau cellule ;
-- intégration dans un Dynpro existant ;
+- intégration dans un Dynpro[^terme-dynpro] existant ;
 - actualisations répétées avec conservation du contexte utilisateur.
 
 ## 2.E FONCTIONS CLASSIQUES
@@ -83,3 +83,9 @@ Les fonctions `REUSE_ALV_*` sont fréquentes dans les développements anciens. E
 ---
 
 [Chapitre suivant — PREMIER ALV AVEC CL_SALV_TABLE](<./03 ├── PREMIER ALV AVEC CL_SALV_TABLE.md>)
+
+[^terme-api]: **API.** Application Programming Interface, contrat exposant des opérations ou données utilisables par d’autres composants. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/10 └── ACRONYMES SAP.md#api>).
+[^terme-alv]: **ALV.** ABAP List Viewer, ensemble de technologies d’affichage tabulaire avec tri, filtre, total et variantes. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/06 ├── PROGRAMMES CLASSES ET OBJETS TECHNIQUES.md#alv>).
+[^terme-acro-salv]: **SALV.** Simple ALV / famille de classes `CL_SALV_*`. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/10 └── ACRONYMES SAP.md#acro-salv>).
+[^terme-table-interne]: **TABLE INTERNE.** Collection dynamique de lignes stockée en mémoire dans le programme ABAP. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#table-interne>).
+[^terme-dynpro]: **DYNPRO.** Écran classique SAP composé d’une définition d’écran et d’une logique PBO/PAI. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/02 ├── SAP GUI NAVIGATION ET TRANSACTIONS.md#dynpro>).

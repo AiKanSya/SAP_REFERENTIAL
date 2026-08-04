@@ -2,7 +2,7 @@
 
 ## 12.A RÉSULTAT ATTENDU
 
-- Associer une exception à une classe de messages
+- Associer une exception[^terme-exception] à une classe[^terme-classe] de messages
 - Comprendre `IF_T100_MESSAGE`
 - Comprendre `IF_T100_DYN_MSG`
 - Récupérer un texte traduit
@@ -23,7 +23,7 @@ flowchart LR
 
 L’interface `IF_T100_MESSAGE` permet d’associer des identifiants de texte définis dans la classe d’exception à des messages T100.
 
-Lors de la création de la classe d’exception dans le Workbench, les outils SAP peuvent générer les éléments nécessaires selon les options choisies.
+Lors de la création de la classe d’exception dans le Workbench, les outils SAP[^terme-acro-sap] peuvent générer les éléments nécessaires selon les options choisies.
 
 L’appelant peut ensuite récupérer le texte :
 
@@ -48,11 +48,11 @@ RAISE EXCEPTION TYPE zcx_dev_error
           WITH iv_matnr.
 ```
 
-La disponibilité exacte de certaines formes syntaxiques dépend de la version ABAP. Vérifier la documentation du système cible.
+La disponibilité exacte de certaines formes syntaxiques dépend de la version ABAP[^terme-abap]. Vérifier la documentation du système cible.
 
 ## 12.E RÉUTILISER UN MESSAGE EXISTANT
 
-Une couche peut intercepter un message ou une erreur provenant d’une API, puis la représenter sous forme d’exception sans perdre :
+Une couche peut intercepter un message ou une erreur provenant d’une API[^terme-api], puis la représenter sous forme d’exception sans perdre :
 
 - la classe ;
 - le numéro ;
@@ -107,7 +107,7 @@ Correct : intercepter une classe ou analyser un identifiant stable.
 ## 12.J SNIPPET À RÉUTILISER
 
 > [!NOTE]
-> Adapter les noms `Z*`, les types DDIC, les données et les autorisations au système cible. Effectuer un contrôle syntaxique avant activation.
+> Adapter les noms `Z*`, les types DDIC[^terme-acro-ddic], les données et les autorisations au système cible. Effectuer un contrôle syntaxique avant activation.
 
 ```abap
 " Propager ou traiter l’erreur au niveau qui sait prendre une décision.
@@ -131,3 +131,10 @@ CATCH zcx_dev_product_not_found INTO DATA(lx_not_found).
 ---
 
 [Chapitre suivant — EXCEPTIONS SYSTÈME CX_SY](<./13 ├── EXCEPTIONS SYSTEME CX SY.md>)
+
+[^terme-exception]: **EXCEPTION.** Objet ou signal représentant une situation anormale qu’un appelant peut traiter. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#exception>).
+[^terme-classe]: **CLASSE.** Modèle orienté objet définissant état et comportements. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#classe>).
+[^terme-acro-sap]: **SAP.** Nom de l’éditeur et de son écosystème logiciel ; l’acronyme historique provient de l’allemand. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/10 └── ACRONYMES SAP.md#acro-sap>).
+[^terme-abap]: **ABAP.** Langage de programmation de la plateforme ABAP, conçu pour développer des applications métier et techniques SAP. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#abap>).
+[^terme-api]: **API.** Application Programming Interface, contrat exposant des opérations ou données utilisables par d’autres composants. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/10 └── ACRONYMES SAP.md#api>).
+[^terme-acro-ddic]: **DDIC.** Data Dictionary, abréviation courante de l’ABAP Dictionary. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/10 └── ACRONYMES SAP.md#acro-ddic>).

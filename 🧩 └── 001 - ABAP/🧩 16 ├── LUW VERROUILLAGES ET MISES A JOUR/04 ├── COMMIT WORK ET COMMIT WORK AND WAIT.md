@@ -2,7 +2,7 @@
 
 ## 4.A RÉSULTAT ATTENDU
 
-- Terminer correctement une SAP LUW
+- Terminer correctement une SAP LUW[^terme-sap-luw]
 - Distinguer mise à jour asynchrone et synchrone
 - Interpréter `sy-subrc`
 
@@ -12,7 +12,7 @@
 COMMIT WORK.
 ```
 
-`COMMIT WORK` termine la SAP LUW courante, déclenche les procédures enregistrées et lance les modules de mise à jour. Sans `AND WAIT`, le programme reprend normalement sans attendre la fin de la mise à jour V1.
+`COMMIT WORK`[^terme-commit-work] termine la SAP LUW courante, déclenche les procédures enregistrées et lance les modules de mise à jour. Sans `AND WAIT`, le programme reprend normalement sans attendre la fin de la mise à jour V1.
 
 ```abap
 COMMIT WORK AND WAIT.
@@ -36,7 +36,7 @@ Avec `AND WAIT`, le programme attend la fin des modules de mise à jour priorita
 `COMMIT WORK` :
 
 - exécute les routines `PERFORM ... ON COMMIT` ;
-- déclenche l’update task ;
+- déclenche l’update task[^terme-update-task] ;
 - traite les verrous selon `_SCOPE` ;
 - effectue un commit sur les connexions ouvertes ;
 - ferme les curseurs de base de données.
@@ -47,7 +47,7 @@ Ne pas l’exécuter dans un module de mise à jour ni dans une routine `ON COMM
 
 ### 4.E.1 ÉTAPE 1 — IDENTIFIER LE PROPRIÉTAIRE DE LA VALIDATION
 
-Placer la décision de commit dans le programme qui orchestre toute l’unité métier. Vérifier que les méthodes et modules appelés ne valident pas eux-mêmes une partie du traitement. Documenter dans l’interface des API réutilisables si elles enregistrent une update task.
+Placer la décision de commit dans le programme qui orchestre toute l’unité métier. Vérifier que les méthodes et modules appelés ne valident pas eux-mêmes une partie du traitement. Documenter dans l’interface des API[^terme-api] réutilisables si elles enregistrent une update task.
 
 ### 4.E.2 ÉTAPE 2 — TERMINER TOUS LES CONTRÔLES AVANT LE COMMIT
 
@@ -63,7 +63,7 @@ Après `COMMIT WORK AND WAIT`, lire immédiatement `sy-subrc` et traiter une val
 
 ### 4.E.5 ÉTAPE 5 — VÉRIFIER LES EFFETS DE FIN DE LUW
 
-Contrôler les données persistées, l’exécution des routines `ON COMMIT`, l’update task dans `SM13` et la libération des verrous dans `SM12`. Vérifier également les curseurs ou connexions utilisés par le traitement si celui-ci poursuit après le commit.
+Contrôler les données persistées, l’exécution des routines `ON COMMIT`, l’update task dans `SM13`[^outil-sm13] et la libération des verrous dans `SM12`[^outil-sm12]. Vérifier également les curseurs ou connexions utilisés par le traitement si celui-ci poursuit après le commit.
 
 ### 4.E.6 ÉTAPE 6 — TESTER LE SUCCÈS ET L’ÉCHEC
 
@@ -86,7 +86,7 @@ Exécuter un cas nominal puis provoquer une erreur contrôlée dans une update Z
 ## 4.H SNIPPET À RÉUTILISER
 
 > [!NOTE]
-> Adapter les noms `Z*`, les types DDIC, les données et les autorisations au système cible. Effectuer un contrôle syntaxique avant activation.
+> Adapter les noms `Z*`, les types DDIC[^terme-acro-ddic], les données et les autorisations au système cible. Effectuer un contrôle syntaxique avant activation.
 
 ```abap
 COMMIT WORK AND WAIT.
@@ -112,4 +112,14 @@ ENDIF.
 
 ---
 
-[Chapitre suivant — `ROLLBACK WORK` ET ANNULATION](<./05 ├── ROLLBACK WORK ET ANNULATION.md>)
+[Chapitre suivant — `ROLLBACK WORK`[^terme-rollback-work] ET ANNULATION](<./05 ├── ROLLBACK WORK ET ANNULATION.md>)
+
+[^terme-sap-luw]: **SAP LUW.** Unité logique métier SAP pouvant regrouper plusieurs étapes de dialogue et différer les mises à jour jusqu’au commit. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/08 ├── EXECUTION EXPLOITATION ET ADMINISTRATION.md#sap-luw>).
+[^terme-commit-work]: **COMMIT WORK.** Instruction clôturant la SAP LUW courante, déclenchant notamment les mises à jour enregistrées et validant la base. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/08 ├── EXECUTION EXPLOITATION ET ADMINISTRATION.md#commit-work>).
+[^terme-update-task]: **UPDATE TASK.** Mécanisme différant des mises à jour pour les exécuter lors du `COMMIT WORK` dans des processus de mise à jour. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/08 ├── EXECUTION EXPLOITATION ET ADMINISTRATION.md#update-task>).
+[^terme-api]: **API.** Application Programming Interface, contrat exposant des opérations ou données utilisables par d’autres composants. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/10 └── ACRONYMES SAP.md#api>).
+[^terme-acro-ddic]: **DDIC.** Data Dictionary, abréviation courante de l’ABAP Dictionary. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/10 └── ACRONYMES SAP.md#acro-ddic>).
+[^terme-rollback-work]: **ROLLBACK WORK.** Instruction annulant les modifications non validées de la LUW courante et les tâches de mise à jour enregistrées. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/08 ├── EXECUTION EXPLOITATION ET ADMINISTRATION.md#rollback-work>).
+
+[^outil-sm13]: **SM13.** Transaction de surveillance et de reprise des enregistrements de mise à jour SAP. Voir [le chapitre associé](<19 ├── ANALYSER ET REPRENDRE LES UPDATES AVEC SM13.md>).
+[^outil-sm12]: **SM12.** Transaction de surveillance et d’administration des entrées de verrouillage SAP. Voir [le chapitre associé](<12 ├── ANALYSER LES VERROUS AVEC SM12.md>).

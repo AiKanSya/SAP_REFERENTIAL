@@ -2,7 +2,7 @@
 
 ## 20.A RÉSULTAT ATTENDU
 
-- Fournir les collaborateurs depuis l’extérieur de la classe.
+- Fournir les collaborateurs depuis l’extérieur de la classe[^terme-classe].
 - Rendre les dépendances visibles.
 - Faciliter les tests et le remplacement d’implémentations.
 
@@ -16,7 +16,7 @@ Une classe doit lire la date courante. Un appel direct à `SY-DATUM` rend le tes
 
 ## 20.D INTERFACE ET IMPLÉMENTATION RÉELLE
 
-Les blocs suivants sont des fragments de définition et d’implémentation. Créer les objets globaux `ZIF_DEV_CLOCK`, `ZCL_DEV_SYSTEM_CLOCK` et `ZCL_DEV_VALIDITY_SERVICE` dans `SE24` avant de les utiliser.
+Les blocs suivants sont des fragments de définition et d’implémentation. Créer les objets globaux `ZIF_DEV_CLOCK`, `ZCL_DEV_SYSTEM_CLOCK` et `ZCL_DEV_VALIDITY_SERVICE` dans `SE24`[^terme-class-builder-se24] avant de les utiliser.
 
 ```abap
 " Définir le contrat et limiter l’API publique au besoin réel.
@@ -31,7 +31,7 @@ ENDMETHOD.
 
 ## 20.E CLASSE CONSOMMATRICE
 
-Signatures et attribut de `ZCL_DEV_VALIDITY_SERVICE` :
+Signatures et attribut[^terme-attribut] de `ZCL_DEV_VALIDITY_SERVICE` :
 
 ```abap
 PUBLIC SECTION.
@@ -77,7 +77,7 @@ Dans la partie locale du test, créer `LCL_FIXED_CLOCK` et implémenter `ZIF_DEV
 
 ### 20.G.2 Étape 2 — Rendre le résultat déterministe
 
-Implémenter la méthode de l’interface pour retourner uniquement `MV_DATE`. Tester le double seul afin de vérifier que la date système n’est jamais lue.
+Implémenter la méthode[^terme-methode] de l’interface pour retourner uniquement `MV_DATE`. Tester le double seul afin de vérifier que la date système n’est jamais lue.
 
 ### 20.G.3 Étape 3 — Injecter dans le service
 
@@ -91,7 +91,7 @@ Créer une horloge avec date avant expiration puis une autre avec date encore va
 
 Relancer avec les mêmes dates un autre jour ou sans utiliser `SY-DATUM`. Le test est validé lorsqu’il dépend uniquement des valeurs injectées.
 
-Classe locale de remplacement à placer dans le programme de test ou dans la partie locale de la classe testée :
+Classe locale[^terme-classe-locale] de remplacement à placer dans le programme de test ou dans la partie locale de la classe testée :
 
 ```abap
 " Définir le contrat et limiter l’API publique au besoin réel.
@@ -130,7 +130,7 @@ ENDCLASS.
 
 - Statut : recommandé pour rendre les classes testables et limiter les dépendances cachées.
 - Utiliser l’injection par constructeur pour les dépendances obligatoires.
-- Construire le graphe d’objets dans le programme appelant, une factory ou une couche de composition dédiée.
+- Construire le graphe d’objets dans le programme appelant, une factory ou une couche de composition[^terme-composition] dédiée.
 
 ## 20.K RÉFÉRENCES OFFICIELLES SAP
 
@@ -140,3 +140,10 @@ ENDCLASS.
 ---
 
 [Chapitre suivant — PATTERNS STRATEGY, ADAPTER ET FAÇADE](<./21 ├── PATTERNS STRATEGY ADAPTER ET FACADE.md>)
+
+[^terme-classe]: **CLASSE.** Modèle orienté objet définissant état et comportements. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#classe>).
+[^terme-class-builder-se24]: **CLASS BUILDER (SE24).** Outil SAP GUI utilisé pour créer, afficher, modifier, tester et documenter les classes et interfaces globales ABAP. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/06 ├── PROGRAMMES CLASSES ET OBJETS TECHNIQUES.md#class-builder-se24>).
+[^terme-attribut]: **ATTRIBUT.** Composant de données déclaré dans une classe et appartenant soit à chaque instance, soit à la classe elle-même. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#attribut>).
+[^terme-methode]: **MÉTHODE.** Comportement déclaré dans une classe ou une interface et appelé avec une liste de paramètres définie. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#methode>).
+[^terme-classe-locale]: **CLASSE LOCALE.** Classe définie dans le code source d’un programme, d’un include ou d’un Class Pool et visible uniquement dans ce contexte de compilation. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/06 ├── PROGRAMMES CLASSES ET OBJETS TECHNIQUES.md#classe-locale>).
+[^terme-composition]: **COMPOSITION.** Relation dans laquelle une classe réalise son comportement en contenant ou en utilisant d’autres objets spécialisés. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#composition>).

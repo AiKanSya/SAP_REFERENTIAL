@@ -8,20 +8,20 @@
 
 ## 24.B CHECKLIST DE CONCEPTION
 
-- [ ] L’objet et le sous-objet existent dans `SLG0`.
+- [ ] L’objet et le sous-objet existent dans `SLG0`[^outil-slg0].
 - [ ] Leur découpage correspond aux autorisations attendues.
 - [ ] L’identifiant externe permet de retrouver l’exécution.
-- [ ] Une classe de messages `SE91` contient les messages stables.
+- [ ] Une classe[^terme-classe] de messages `SE91`[^outil-se91] contient les messages stables.
 - [ ] Les messages indiquent l’action, l’objet concerné et la cause.
 - [ ] Le traitement produit un résumé final.
 - [ ] Le volume maximal de messages est maîtrisé.
 - [ ] La date d’expiration est définie selon la politique de rétention.
 - [ ] Aucune donnée sensible inutile n’est journalisée.
 - [ ] Tous les `sy-subrc` critiques sont contrôlés.
-- [ ] La stratégie de sauvegarde respecte la SAP LUW.
-- [ ] Le programme batch écrit la référence `SLG1` dans son journal de job.
+- [ ] La stratégie de sauvegarde respecte la SAP LUW[^terme-sap-luw].
+- [ ] Le programme batch écrit la référence `SLG1`[^outil-slg1] dans son journal de job[^terme-job].
 - [ ] Les rôles `S_APPL_LOG` ont été testés.
-- [ ] Une procédure `SLG2` ou d’archivage est prévue.
+- [ ] Une procédure `SLG2`[^outil-slg2] ou d’archivage est prévue.
 
 ## 24.C PRINCIPES DE QUALITÉ
 
@@ -34,7 +34,7 @@
 | Sobriété       | Pas de succès unitaire inutile en masse                                 |
 | Sécurité       | Masquage des données sensibles                                          |
 | Exploitabilité | Recherche rapide dans `SLG1`                                            |
-| Maintenance    | Encapsulation dans une classe dédiée                                    |
+| Maintenance    | Encapsulation[^terme-encapsulation] dans une classe dédiée                                    |
 
 ## 24.D ARCHITECTURE RECOMMANDÉE
 
@@ -52,11 +52,11 @@ La classe de journalisation doit rester un adaptateur. Elle ne doit pas décider
 
 ### 24.E.1 ÉTAPE 1 — VALIDER LA CONFIGURATION ET LA NOMENCLATURE
 
-Contrôler objet et sous-objets dans `SLG0`, descriptions, package, transports et séparation des autorisations. Vérifier que l’identifiant externe relie le log au document, fichier, job ou message d’origine.
+Contrôler objet et sous-objets dans `SLG0`, descriptions, package[^terme-package], transports et séparation des autorisations. Vérifier que l’identifiant externe relie le log au document, fichier, job ou message d’origine.
 
 ### 24.E.2 ÉTAPE 2 — CONTRÔLER L’ADAPTATEUR DE JOURNALISATION
 
-Vérifier que le code métier passe par une classe Z, que les handles restent internes et que toutes les erreurs BAL sont traitées. Confirmer que la classe de log ne décide pas du commit ou du statut métier à la place de l’orchestrateur.
+Vérifier que le code métier passe par une classe Z, que les handles restent internes et que toutes les erreurs BAL[^terme-acro-bal] sont traitées. Confirmer que la classe de log ne décide pas du commit ou du statut métier à la place de l’orchestrateur.
 
 ### 24.E.3 ÉTAPE 3 — CONTRÔLER LA QUALITÉ DES MESSAGES
 
@@ -64,7 +64,7 @@ Examiner gravité, T100, variables, classe de problème, détail, tri et context
 
 ### 24.E.4 ÉTAPE 4 — CONTRÔLER LUW, BATCH ET REPRISE
 
-Tester sauvegarde sur succès, erreur gérée et rollback. Pour un job, vérifier le résumé dans `SM37` et la référence `SLG1`. Rejouer le même lot et confirmer l’idempotence ainsi que la création d’un log distinct corrélé.
+Tester sauvegarde sur succès, erreur gérée et rollback. Pour un job, vérifier le résumé dans `SM37`[^outil-sm37] et la référence `SLG1`. Rejouer le même lot et confirmer l’idempotence ainsi que la création d’un log distinct corrélé.
 
 ### 24.E.5 ÉTAPE 5 — CONTRÔLER SÉCURITÉ ET VOLUMÉTRIE
 
@@ -112,3 +112,16 @@ Ordre de transport  :
 - [Application Log – Guidelines for Developers — SAP Help Portal](https://help.sap.com/docs/SAP_NETWEAVER_AS_ABAP_FOR_SOH_740/addb96cd90c945dfb3182865363bbc47/4e21000f35d44180e10000000a15822b.html)
 - [Application Log – User Guidelines — SAP Help Portal](https://help.sap.com/docs/SAP_S4HANA_ON-PREMISE/f63dd39a28bb4b90adbf9e608aff58ea/4e23ac220771417fe10000000a15822b.html)
 - [Application Logging — SAP Help Portal](https://help.sap.com/docs/ABAP_PLATFORM_NEW/864321b9b3dd487d94c70f6a007b0397/c769bcc9f36611d3a6510000e835363f.html)
+
+[^terme-classe]: **CLASSE.** Modèle orienté objet définissant état et comportements. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#classe>).
+[^terme-sap-luw]: **SAP LUW.** Unité logique métier SAP pouvant regrouper plusieurs étapes de dialogue et différer les mises à jour jusqu’au commit. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/08 ├── EXECUTION EXPLOITATION ET ADMINISTRATION.md#sap-luw>).
+[^terme-job]: **JOB.** Traitement planifié en arrière-plan composé d’une ou plusieurs étapes. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/06 ├── PROGRAMMES CLASSES ET OBJETS TECHNIQUES.md#job>).
+[^terme-encapsulation]: **ENCAPSULATION.** Principe consistant à protéger l’état interne d’un objet et à imposer son utilisation par une API contrôlée. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#encapsulation>).
+[^terme-package]: **PACKAGE.** Conteneur logique qui regroupe les objets de développement et détermine notamment leur transportabilité. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/03 ├── REPOSITORY PACKAGES ET TRANSPORTS.md#package>).
+[^terme-acro-bal]: **BAL.** Business Application Log, API technique du journal applicatif. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/10 └── ACRONYMES SAP.md#acro-bal>).
+
+[^outil-slg0]: **SLG0.** Transaction de définition des objets et sous-objets de journal applicatif. Voir [le chapitre associé](<04 ├── CREER UN OBJET AVEC SLG0.md>).
+[^outil-se91]: **SE91.** Transaction de création et de maintenance des classes de messages SAP. Voir [le chapitre associé](<../🧩 10 ├── MESSAGES ET GESTION DES ERREURS/02 ├── CLASSES DE MESSAGES ET TRANSACTION SE91.md>).
+[^outil-slg1]: **SLG1.** Transaction de recherche et d’affichage des journaux applicatifs persistés. Voir [le chapitre associé](<05 ├── ANALYSER LES JOURNAUX AVEC SLG1.md>).
+[^outil-slg2]: **SLG2.** Transaction de suppression planifiée ou contrôlée des journaux applicatifs persistés. Voir [le chapitre associé](<20 ├── RETENTION SUPPRESSION ET ARCHIVAGE.md>).
+[^outil-sm37]: **SM37.** Transaction de recherche, surveillance et administration des jobs d’arrière-plan. Voir [le chapitre associé](<../🧩 18 ├── TRAITEMENTS EN ARRIERE PLAN/15 ├── SURVEILLER LES JOBS AVEC SM37.md>).

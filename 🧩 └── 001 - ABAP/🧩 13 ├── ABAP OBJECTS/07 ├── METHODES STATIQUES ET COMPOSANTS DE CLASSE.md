@@ -3,12 +3,12 @@
 ## 7.A RÉSULTAT ATTENDU
 
 - Comprendre la différence entre composant d’instance et composant statique.
-- Créer une méthode statique dans `SE24`.
+- Créer une méthode statique[^terme-methode-statique] dans `SE24`[^terme-class-builder-se24].
 - Éviter les classes utilitaires statiques devenues difficiles à tester.
 
 ## 7.B DIFFÉRENCE
 
-Une méthode d’instance s’exécute sur un objet et peut accéder à son état. Une méthode statique appartient à la classe et s’appelle avec `=>` sans créer d’instance.
+Une méthode d’instance[^terme-methode-instance] s’exécute sur un objet et peut accéder à son état. Une méthode statique appartient à la classe[^terme-classe] et s’appelle avec `=>` sans créer d’instance.
 
 ```abap
 " Exemple à éviter : identifier le défaut avant de choisir la correction.
@@ -22,7 +22,7 @@ DATA(lv_normalized) = zcl_dev_string_tools=>normalize( iv_text ).
 - conversion déterministe et stable ;
 - point d’entrée technique imposé par un framework.
 
-Elle est moins adaptée si la méthode dépend de la base, de l’heure, de l’utilisateur, d’un customizing ou d’un autre service : ces dépendances deviennent cachées et difficiles à remplacer en test.
+Elle est moins adaptée si la méthode dépend de la base, de l’heure, de l’utilisateur, d’un customizing[^terme-customizing] ou d’un autre service : ces dépendances deviennent cachées et difficiles à remplacer en test.
 
 ## 7.D PROCESS
 
@@ -32,11 +32,11 @@ Confirmer que le traitement ne dépend d’aucun état propre à un objet et qu�
 
 ### 7.D.2 Étape 2 — Créer la méthode de classe
 
-Dans `SE24`, créer la méthode puis activer **Méthode de classe**. Définir visibilité et signature complète comme pour une méthode d’instance.
+Dans `SE24`, créer la méthode puis activer **Méthode de classe**. Définir visibilité[^terme-visibilite] et signature complète comme pour une méthode d’instance.
 
 ### 7.D.3 Étape 3 — Contrôler les dépendances
 
-Implémenter en utilisant paramètres, constantes et attributs de classe autorisés. Toute tentative d’accès direct à un attribut d’instance doit être supprimée ou remplacée par une instance explicitement fournie.
+Implémenter en utilisant paramètres, constantes et attributs de classe autorisés. Toute tentative d’accès direct à un attribut[^terme-attribut] d’instance doit être supprimée ou remplacée par une instance explicitement fournie.
 
 ### 7.D.4 Étape 4 — Appeler sans instance
 
@@ -64,7 +64,7 @@ ENDMETHOD.
 
 Un attribut statique est partagé par tous les objets de la classe dans une session interne. Il est utile pour :
 
-- une instance Singleton ;
+- une instance Singleton[^terme-singleton] ;
 - un cache local à la session, correctement invalidé ;
 - une constante calculée une seule fois.
 
@@ -77,14 +77,14 @@ Créer deux instances de la classe et vérifier qu’un attribut d’instance re
 ## 7.H ERREURS FRÉQUENTES
 
 - Transformer toute la classe en catalogue de méthodes statiques.
-- Masquer un accès base ou un `COMMIT WORK` dans une méthode utilitaire.
+- Masquer un accès base ou un `COMMIT WORK`[^terme-commit-work] dans une méthode utilitaire.
 - Utiliser un cache statique sans mécanisme d’invalidation.
 
 ## 7.I COMPATIBILITÉ S/4HANA
 
-- Statut : compatible avec le développement ABAP classique sur SAP S/4HANA.
-- Vérifier la syntaxe exacte avec l’aide `F1` du système cible lorsque plusieurs versions d’ABAP Platform sont prises en charge.
-- Les objets globaux doivent être créés dans le package et l’ordre de transport du projet.
+- Statut : compatible avec le développement ABAP[^terme-abap] classique sur SAP[^terme-acro-sap] S/4HANA.
+- Vérifier la syntaxe exacte avec l’aide `F1`[^terme-aide-f1] du système cible lorsque plusieurs versions d’ABAP Platform sont prises en charge.
+- Les objets globaux doivent être créés dans le package[^terme-package] et l’ordre de transport[^terme-ordre-transport] du projet.
 
 ## 7.J RÉFÉRENCES OFFICIELLES SAP
 
@@ -94,3 +94,18 @@ Créer deux instances de la classe et vérifier qu’un attribut d’instance re
 ---
 
 [Chapitre suivant — CONSTRUCTEURS ET INITIALISATION](<./08 ├── CONSTRUCTEURS ET INITIALISATION.md>)
+
+[^terme-methode-statique]: **MÉTHODE STATIQUE.** Méthode déclarée `CLASS-METHODS`, appelée sur la classe avec `=>` sans créer d’instance. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#methode-statique>).
+[^terme-class-builder-se24]: **CLASS BUILDER (SE24).** Outil SAP GUI utilisé pour créer, afficher, modifier, tester et documenter les classes et interfaces globales ABAP. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/06 ├── PROGRAMMES CLASSES ET OBJETS TECHNIQUES.md#class-builder-se24>).
+[^terme-methode-instance]: **MÉTHODE D’INSTANCE.** Méthode appelée sur une instance avec l’opérateur `->` et pouvant accéder à son état. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#methode-instance>).
+[^terme-classe]: **CLASSE.** Modèle orienté objet définissant état et comportements. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#classe>).
+[^terme-customizing]: **CUSTOMIZING.** Paramétrage permettant d’adapter le comportement standard SAP à l’organisation. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/09 ├── NOTIONS FONCTIONNELLES ET ORGANISATIONNELLES.md#customizing>).
+[^terme-visibilite]: **VISIBILITÉ.** Règle déterminant où un composant de classe peut être utilisé : `PUBLIC`, `PROTECTED` ou `PRIVATE`. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#visibilite>).
+[^terme-attribut]: **ATTRIBUT.** Composant de données déclaré dans une classe et appartenant soit à chaque instance, soit à la classe elle-même. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#attribut>).
+[^terme-singleton]: **SINGLETON.** Pattern limitant la création à une seule instance accessible dans une session interne ABAP. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#singleton>).
+[^terme-commit-work]: **COMMIT WORK.** Instruction clôturant la SAP LUW courante, déclenchant notamment les mises à jour enregistrées et validant la base. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/08 ├── EXECUTION EXPLOITATION ET ADMINISTRATION.md#commit-work>).
+[^terme-abap]: **ABAP.** Langage de programmation de la plateforme ABAP, conçu pour développer des applications métier et techniques SAP. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#abap>).
+[^terme-acro-sap]: **SAP.** Nom de l’éditeur et de son écosystème logiciel ; l’acronyme historique provient de l’allemand. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/10 └── ACRONYMES SAP.md#acro-sap>).
+[^terme-aide-f1]: **AIDE F1.** Aide contextuelle expliquant un champ, une fonction ou un mot-clé. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/02 ├── SAP GUI NAVIGATION ET TRANSACTIONS.md#aide-f1>).
+[^terme-package]: **PACKAGE.** Conteneur logique qui regroupe les objets de développement et détermine notamment leur transportabilité. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/03 ├── REPOSITORY PACKAGES ET TRANSPORTS.md#package>).
+[^terme-ordre-transport]: **ORDRE DE TRANSPORT.** Conteneur qui regroupe des modifications à exporter puis importer dans d’autres systèmes. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/03 ├── REPOSITORY PACKAGES ET TRANSPORTS.md#ordre-transport>).

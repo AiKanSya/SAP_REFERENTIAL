@@ -2,7 +2,7 @@
 
 ## 15.A RÉSULTAT ATTENDU
 
-- Rechercher un job de manière fiable
+- Rechercher un job[^terme-job] de manière fiable
 - Lire ses propriétés et ses étapes
 - Accéder aux éléments de diagnostic
 
@@ -30,12 +30,12 @@ Les filtres principaux sont :
 - étapes, programmes et variantes ;
 - utilisateur d’exécution ;
 - journal ;
-- spool ;
+- spool[^terme-spool] ;
 - éventuelle périodicité.
 
 ## 15.D ACTIONS
 
-Selon le statut et les autorisations, `SM37` permet notamment de :
+Selon le statut et les autorisations, `SM37`[^outil-sm37] permet notamment de :
 
 - afficher ;
 - libérer ou retirer la libération ;
@@ -54,11 +54,11 @@ Avant toute action destructive, capturer le nom, le numéro, les étapes, le jou
 
 ### 15.F.1 ÉTAPE 1 — DÉLIMITER LA RECHERCHE
 
-Relever le nom ou son motif, l’utilisateur, le mandant et la période. Saisir `/nSM37` et sélectionner uniquement les statuts utiles. Une plage trop large augmente le risque d’ouvrir une occurrence homonyme.
+Relever le nom ou son motif, l’utilisateur, le mandant[^terme-mandant] et la période. Saisir `/nSM37` et sélectionner uniquement les statuts utiles. Une plage trop large augmente le risque d’ouvrir une occurrence homonyme.
 
 ### 15.F.2 ÉTAPE 2 — IDENTIFIER L’OCCURRENCE EXACTE
 
-Comparer heure prévue, début, fin, statut et numéro de job. Ouvrir les détails pour relever classe, serveur, créateur et condition de démarrage. Conserver ces informations avant toute action.
+Comparer heure prévue, début, fin, statut et numéro de job. Ouvrir les détails pour relever classe[^terme-classe], serveur, créateur et condition de démarrage. Conserver ces informations avant toute action.
 
 ### 15.F.3 ÉTAPE 3 — ANALYSER LES ÉTAPES
 
@@ -66,7 +66,7 @@ Afficher la liste des étapes et identifier programme, variante, utilisateur et 
 
 ### 15.F.4 ÉTAPE 4 — LIRE JOURNAL ET SPOOL
 
-Ouvrir le journal de job, puis chaque spool utile. Relever les messages dans l’ordre chronologique, les compteurs et les identifiants métier. Corréler l’heure avec `ST22`, le journal applicatif ou les traces seulement si le message le justifie.
+Ouvrir le journal de job, puis chaque spool utile. Relever les messages dans l’ordre chronologique, les compteurs et les identifiants métier. Corréler l’heure avec `ST22`[^outil-st22], le journal applicatif ou les traces seulement si le message le justifie.
 
 ### 15.F.5 ÉTAPE 5 — VÉRIFIER LE RÉSULTAT MÉTIER
 
@@ -118,3 +118,11 @@ Ordre de transport  :
 ---
 
 [Chapitre suivant — STATUTS D’UN JOB](<./16 ├── STATUTS D UN JOB.md>)
+
+[^terme-job]: **JOB.** Traitement planifié en arrière-plan composé d’une ou plusieurs étapes. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/06 ├── PROGRAMMES CLASSES ET OBJETS TECHNIQUES.md#job>).
+[^terme-spool]: **SPOOL.** Infrastructure stockant et acheminant les sorties imprimables produites par les traitements SAP. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/06 ├── PROGRAMMES CLASSES ET OBJETS TECHNIQUES.md#spool>).
+[^terme-mandant]: **MANDANT.** Subdivision logique d’un système SAP. Il est identifié par un numéro à trois chiffres et isole une partie des données, du paramétrage et des utilisateurs. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/01 ├── SYSTEMES ENVIRONNEMENTS ET MANDANTS.md#mandant>).
+[^terme-classe]: **CLASSE.** Modèle orienté objet définissant état et comportements. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#classe>).
+
+[^outil-sm37]: **SM37.** Transaction de recherche, surveillance et administration des jobs d’arrière-plan. Voir [le chapitre associé](<15 ├── SURVEILLER LES JOBS AVEC SM37.md>).
+[^outil-st22]: **ST22.** Transaction d’analyse des terminaisons anormales et dumps ABAP. Voir [le chapitre associé](<../🧩 11 ├── DEBUG ET ANALYSE/13 ├── ANALYSER LES DUMPS AVEC ST22.md>).

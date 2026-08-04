@@ -2,7 +2,7 @@
 
 ## 2.A RÉSULTAT ATTENDU
 
-Créer une copie de test d’un IDoc représentatif, modifier les données du scénario puis exécuter le traitement entrant ou sortant en conservant la preuve du nouvel IDoc.
+Créer une copie de test d’un IDoc[^terme-idoc] représentatif, modifier les données du scénario puis exécuter le traitement entrant ou sortant en conservant la preuve du nouvel IDoc.
 
 ## 2.B PRÉREQUIS
 
@@ -13,7 +13,7 @@ Créer une copie de test d’un IDoc représentatif, modifier les données du sc
 
 ## 2.C RISQUE
 
-`WE19` peut appeler le traitement applicatif réel. Un test entrant peut créer ou modifier un document ; un test sortant peut transmettre un message à un système connecté. Ne pas l’utiliser en production pour une expérimentation.
+`WE19`[^outil-we19] peut appeler le traitement applicatif réel. Un test entrant peut créer ou modifier un document ; un test sortant peut transmettre un message à un système connecté. Ne pas l’utiliser en production pour une expérimentation.
 
 ## 2.D PROCESS
 
@@ -23,7 +23,7 @@ Vérifier que les partenaires, ports et destinations ne peuvent pas atteindre un
 
 ### 2.D.2 ÉTAPE 2 — CHOISIR UN IDOC MODÈLE
 
-Dans `WE02`, relever le numéro d’un IDoc techniquement proche, son basic type, son extension, son message type, ses partenaires et son document métier. Ne pas modifier l’IDoc original.
+Dans `WE02`[^outil-we02], relever le numéro d’un IDoc techniquement proche, son basic type, son extension, son message type, ses partenaires et son document métier. Ne pas modifier l’IDoc original.
 
 ### 2.D.3 ÉTAPE 3 — CRÉER LA COPIE DANS WE19
 
@@ -84,8 +84,8 @@ Si l’appel direct réussit alors que le traitement standard échoue, concentre
 | Symptôme | Cause probable | Correction |
 |---|---|---|
 | Doublon refusé | Clé du modèle réutilisée | Remplacer la clé métier dans les segments concernés |
-| Segment ignoré | Hiérarchie ou extension incorrecte | Comparer avec `WE30` et `WE60` |
-| Test direct réussi, standard en échec | Configuration partenaire/process code | Vérifier `WE20` et le process code |
+| Segment ignoré | Hiérarchie ou extension incorrecte | Comparer avec `WE30`[^outil-we30] et `WE60`[^outil-we60] |
+| Test direct réussi, standard en échec | Configuration partenaire/process code | Vérifier `WE20`[^outil-we20] et le process code |
 | Message envoyé hors du système | Port réel conservé pour un outbound | Isoler la destination avant le test |
 | Résultat différent du flux réel | Option `WE19` contournant la détermination | Répéter avec le traitement standard |
 
@@ -96,3 +96,11 @@ Statut : outil classique compatible pour tester les IDocs encore supportés par 
 ## 2.J RÉFÉRENCE OFFICIELLE SAP
 
 - [ALE Business Process — SAP Help Portal](https://help.sap.com/docs/en/home/3361892122.html)
+
+[^terme-idoc]: **IDOC.** Document intermédiaire SAP structuré en segments pour l’échange de messages métier. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/07 ├── INTERFACES ET INTEGRATION.md#idoc>).
+
+[^outil-we19]: **WE19.** Outil de test permettant de créer ou copier un IDoc pour exécuter un scénario contrôlé. Voir [le chapitre associé](<02 └── TESTER UN IDOC AVEC WE19.md>).
+[^outil-we02]: **WE02.** Transaction de recherche et d’affichage des IDoc et de leurs statuts. Voir [le chapitre associé](<01 ├── ANALYSER UN IDOC EN ERREUR.md>).
+[^outil-we30]: **WE30.** Transaction de maintenance des types de base et extensions IDoc. Voir [le chapitre associé](<01 ├── ANALYSER UN IDOC EN ERREUR.md>).
+[^outil-we60]: **WE60.** Transaction de génération et d’affichage de la documentation des types IDoc. Voir [le chapitre associé](<01 ├── ANALYSER UN IDOC EN ERREUR.md>).
+[^outil-we20]: **WE20.** Transaction de maintenance des profils partenaires utilisés par les échanges IDoc. Voir [le chapitre associé](<01 ├── ANALYSER UN IDOC EN ERREUR.md>).

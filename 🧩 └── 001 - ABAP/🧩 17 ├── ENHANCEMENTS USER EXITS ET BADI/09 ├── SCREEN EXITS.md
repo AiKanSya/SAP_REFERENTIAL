@@ -2,9 +2,9 @@
 
 ## 9.A RÉSULTAT ATTENDU
 
-- Ajouter un sous-écran client à un écran standard prévu par SAP
+- Ajouter un sous-écran client à un écran standard prévu par SAP[^terme-acro-sap]
 - Comprendre le flux de données entre programme standard et sous-écran
-- Coordonner Dynpro, DDIC et function exits
+- Coordonner Dynpro[^terme-dynpro], DDIC[^terme-acro-ddic] et function exits
 
 ## 9.B ARCHITECTURE
 
@@ -20,11 +20,11 @@ SAP place une zone de sous-écran dans le Dynpro standard. Le client crée le so
 
 ## 9.C COMPOSANTS À COORDONNER
 
-Un screen exit opérationnel associe le sous-écran déclaré dans `SMOD`, le projet `CMOD`, les champs DDIC, les modules PBO/PAI et les function exits qui échangent les données avec le programme standard. L’écran seul n’assure ni l’initialisation ni la sauvegarde.
+Un screen exit opérationnel associe le sous-écran déclaré dans `SMOD`[^outil-smod], le projet `CMOD`[^outil-cmod], les champs DDIC, les modules PBO/PAI et les function exits qui échangent les données avec le programme standard. L’écran seul n’assure ni l’initialisation ni la sauvegarde.
 
 ## 9.D POINTS DE VIGILANCE
 
-- le sous-écran ne possède pas de GUI status autonome ;
+- le sous-écran ne possède pas de GUI[^terme-acro-gui] status autonome ;
 - la navigation doit respecter le flux du Dynpro principal ;
 - les champs doivent être initialisés à chaque affichage pertinent ;
 - le PAI ne doit pas persister les données indépendamment du standard ;
@@ -59,7 +59,7 @@ Activer les objets DDIC, le sous-écran, les includes et le projet CMOD. Tester 
 ## 9.F VÉRIFICATION
 
 - L’implémentation ou le projet est actif et transporté dans le bon ordre.
-- Un breakpoint confirme que le point d’extension est appelé dans le scénario visé.
+- Un breakpoint[^terme-breakpoint] confirme que le point d’extension est appelé dans le scénario visé.
 - Le comportement standard reste inchangé hors du périmètre fonctionnel prévu.
 - Aucune modification directe d’un objet SAP standard n’a été créée.
 
@@ -98,3 +98,12 @@ Ordre de transport  :
 ---
 
 [Chapitre suivant — MENU EXITS](<./10 ├── MENU EXITS.md>)
+
+[^terme-acro-sap]: **SAP.** Nom de l’éditeur et de son écosystème logiciel ; l’acronyme historique provient de l’allemand. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/10 └── ACRONYMES SAP.md#acro-sap>).
+[^terme-dynpro]: **DYNPRO.** Écran classique SAP composé d’une définition d’écran et d’une logique PBO/PAI. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/02 ├── SAP GUI NAVIGATION ET TRANSACTIONS.md#dynpro>).
+[^terme-acro-ddic]: **DDIC.** Data Dictionary, abréviation courante de l’ABAP Dictionary. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/10 └── ACRONYMES SAP.md#acro-ddic>).
+[^terme-acro-gui]: **GUI.** Graphical User Interface. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/10 └── ACRONYMES SAP.md#acro-gui>).
+[^terme-breakpoint]: **BREAKPOINT.** Point d’arrêt suspendant l’exécution dans le débogueur. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/08 ├── EXECUTION EXPLOITATION ET ADMINISTRATION.md#breakpoint>).
+
+[^outil-smod]: **SMOD.** Transaction de recherche et d’analyse des enhancements SAP classiques. Voir [le chapitre associé](<06 ├── ANALYSER UN ENHANCEMENT AVEC SMOD.md>).
+[^outil-cmod]: **CMOD.** Transaction de gestion des projets d’extensions client classiques. Voir [le chapitre associé](<07 ├── CREER ET ACTIVER UN PROJET CMOD.md>).

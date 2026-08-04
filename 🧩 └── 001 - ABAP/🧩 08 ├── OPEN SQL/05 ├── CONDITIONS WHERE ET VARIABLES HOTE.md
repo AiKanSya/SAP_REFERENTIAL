@@ -70,14 +70,14 @@ SELECT carrid, carrname
   INTO TABLE @DATA(lt_carriers).
 ```
 
-Dans un motif SQL :
+Dans un motif SQL[^terme-acro-sql] :
 
 - `%` représente une suite de caractères ;
 - `_` représente un caractère.
 
 ## 5.F CONDITION DYNAMIQUE
 
-ABAP SQL propose des variantes dynamiques, mais elles augmentent les risques de syntaxe invalide, d’erreur de sécurité et de perte de contrôle sur les performances.
+ABAP[^terme-abap] SQL propose des variantes dynamiques, mais elles augmentent les risques de syntaxe invalide, d’erreur de sécurité et de perte de contrôle sur les performances.
 
 Préférer des conditions statiques et des paramètres liés. Ne jamais concaténer directement une saisie utilisateur dans une condition SQL dynamique sans validation stricte.
 
@@ -93,12 +93,12 @@ Préférer des conditions statiques et des paramètres liés. Ne jamais concaté
 - Copier un exemple sans adapter les types, noms d’objets et données disponibles dans le système.
 - Tester uniquement le cas nominal et ignorer les valeurs initiales, absentes ou invalides.
 - Lire toutes les colonnes ou toutes les lignes par défaut.
-- Effectuer des commits dans une méthode réutilisable sans contrat explicite.
+- Effectuer des commits dans une méthode[^terme-methode] réutilisable sans contrat explicite.
 
 ## 5.I SNIPPET À RÉUTILISER
 
 > [!NOTE]
-> Adapter les noms `Z*`, les types DDIC, les données et les autorisations au système cible. Effectuer un contrôle syntaxique avant activation.
+> Adapter les noms `Z*`, les types DDIC[^terme-acro-ddic], les données et les autorisations au système cible. Effectuer un contrôle syntaxique avant activation.
 
 ```abap
 " Lire uniquement les colonnes et les lignes nécessaires.
@@ -120,7 +120,7 @@ SELECT carrid, carrname
 ## 5.K MODÈLE DE DÉMONSTRATION SFLIGHT
 
 > [!NOTE]
-> Les tables `SCARR`, `SPFLI` et `SFLIGHT` appartiennent au modèle de démonstration SAP et peuvent être absentes ou non alimentées dans certains systèmes. Dans ce cas, remplacer les exemples par une table Z de démonstration ou par une source en lecture seule autorisée, sans modifier une table applicative standard.
+> Les tables `SCARR`, `SPFLI` et `SFLIGHT` appartiennent au modèle de démonstration SAP[^terme-acro-sap] et peuvent être absentes ou non alimentées dans certains systèmes. Dans ce cas, remplacer les exemples par une table Z de démonstration ou par une source en lecture seule autorisée, sans modifier une table applicative standard.
 
 ## 5.L RÉFÉRENCES OFFICIELLES SAP
 
@@ -132,3 +132,9 @@ SELECT carrid, carrname
 ---
 
 [Chapitre suivant — SELECT SINGLE, UP TO N ROWS ET ORDER BY](<./06 ├── SELECT SINGLE UP TO N ROWS ET ORDER BY.md>)
+
+[^terme-acro-sql]: **SQL.** Structured Query Language. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/10 └── ACRONYMES SAP.md#acro-sql>).
+[^terme-abap]: **ABAP.** Langage de programmation de la plateforme ABAP, conçu pour développer des applications métier et techniques SAP. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#abap>).
+[^terme-methode]: **MÉTHODE.** Comportement déclaré dans une classe ou une interface et appelé avec une liste de paramètres définie. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#methode>).
+[^terme-acro-ddic]: **DDIC.** Data Dictionary, abréviation courante de l’ABAP Dictionary. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/10 └── ACRONYMES SAP.md#acro-ddic>).
+[^terme-acro-sap]: **SAP.** Nom de l’éditeur et de son écosystème logiciel ; l’acronyme historique provient de l’allemand. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/10 └── ACRONYMES SAP.md#acro-sap>).

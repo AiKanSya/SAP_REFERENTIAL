@@ -3,7 +3,7 @@
 ## 5.A RÉSULTAT ATTENDU
 
 - Déclarer une valeur unique sur l’écran de sélection
-- Utiliser un type ABAP ou DDIC adapté
+- Utiliser un type ABAP[^terme-abap] ou DDIC[^terme-acro-ddic] adapté
 - Définir une valeur par défaut
 - Créer une case à cocher ou des boutons radio
 - Comprendre la variable globale générée
@@ -16,7 +16,7 @@ PARAMETERS p_carr TYPE scarr-carrid.
 
 Cette instruction crée :
 
-- un objet de données global `p_carr` ;
+- un objet de données[^terme-objet-donnees] global `p_carr` ;
 - un champ de saisie sur l’écran de sélection ;
 - les contrôles techniques associés au type.
 
@@ -123,7 +123,7 @@ PARAMETERS:
 ## 5.M MODÈLE DE DÉMONSTRATION SFLIGHT
 
 > [!NOTE]
-> Les tables `SCARR`, `SPFLI` et `SFLIGHT` appartiennent au modèle de démonstration SAP et peuvent être absentes ou non alimentées dans certains systèmes. Dans ce cas, remplacer les exemples par une table Z de démonstration ou par une source en lecture seule autorisée, sans modifier une table applicative standard.
+> Les tables `SCARR`, `SPFLI` et `SFLIGHT` appartiennent au modèle de démonstration SAP[^terme-acro-sap] et peuvent être absentes ou non alimentées dans certains systèmes. Dans ce cas, remplacer les exemples par une table Z de démonstration ou par une source en lecture seule autorisée, sans modifier une table applicative standard.
 
 ## 5.N RÉFÉRENCES OFFICIELLES SAP
 
@@ -134,3 +134,8 @@ PARAMETERS:
 ---
 
 [Chapitre suivant — CRITÈRES AVEC SELECT-OPTIONS](<./06 ├── CRITERES AVEC SELECT OPTIONS.md>)
+
+[^terme-abap]: **ABAP.** Langage de programmation de la plateforme ABAP, conçu pour développer des applications métier et techniques SAP. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#abap>).
+[^terme-acro-ddic]: **DDIC.** Data Dictionary, abréviation courante de l’ABAP Dictionary. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/10 └── ACRONYMES SAP.md#acro-ddic>).
+[^terme-objet-donnees]: **OBJET DE DONNÉES.** Zone de mémoire typée contenant une valeur pendant l’exécution. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#objet-donnees>).
+[^terme-acro-sap]: **SAP.** Nom de l’éditeur et de son écosystème logiciel ; l’acronyme historique provient de l’allemand. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/10 └── ACRONYMES SAP.md#acro-sap>).

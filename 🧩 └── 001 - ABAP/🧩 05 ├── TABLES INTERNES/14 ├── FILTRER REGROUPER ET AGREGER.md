@@ -76,7 +76,7 @@ DATA(lv_total_stock) = REDUCE i(
 
 ## 14.F COLLECT
 
-`COLLECT` recherche une ligne selon la clé primaire. Si elle existe, les composants numériques non-clés sont additionnés. Sinon, la ligne est insérée.
+`COLLECT` recherche une ligne selon la clé primaire[^terme-cle-primaire]. Si elle existe, les composants numériques non-clés sont additionnés. Sinon, la ligne est insérée.
 
 ```abap
 " Traiter la collection sans lecture SQL dans la boucle.
@@ -111,7 +111,7 @@ ENDLOOP.
 
 ## 14.H COMPATIBILITÉ
 
-Les expressions `FILTER`, `REDUCE` et les groupements modernes ne sont pas disponibles sur toutes les versions ABAP. Prévoir une alternative avec `LOOP AT`, `READ TABLE` et `INSERT` lorsque le code doit fonctionner sur des systèmes anciens.
+Les expressions `FILTER`, `REDUCE` et les groupements modernes ne sont pas disponibles sur toutes les versions ABAP[^terme-abap]. Prévoir une alternative avec `LOOP AT`, `READ TABLE` et `INSERT` lorsque le code doit fonctionner sur des systèmes anciens.
 
 ## 14.I VÉRIFICATION
 
@@ -130,7 +130,7 @@ Les expressions `FILTER`, `REDUCE` et les groupements modernes ne sont pas dispo
 ## 14.K SNIPPET À RÉUTILISER
 
 > [!NOTE]
-> Adapter les noms `Z*`, les types DDIC, les données et les autorisations au système cible. Effectuer un contrôle syntaxique avant activation.
+> Adapter les noms `Z*`, les types DDIC[^terme-acro-ddic], les données et les autorisations au système cible. Effectuer un contrôle syntaxique avant activation.
 
 ```abap
 " Traiter la collection sans lecture SQL dans la boucle.
@@ -169,3 +169,7 @@ ENDLOOP.
 ---
 
 [Chapitre suivant — CLÉS SECONDAIRES](<./15 ├── CLES SECONDAIRES.md>)
+
+[^terme-cle-primaire]: **CLÉ PRIMAIRE.** Ensemble minimal de champs identifiant de manière unique une ligne de table. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/05 ├── DONNEES DICTIONNAIRE ET BASE DE DONNEES.md#cle-primaire>).
+[^terme-abap]: **ABAP.** Langage de programmation de la plateforme ABAP, conçu pour développer des applications métier et techniques SAP. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#abap>).
+[^terme-acro-ddic]: **DDIC.** Data Dictionary, abréviation courante de l’ABAP Dictionary. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/10 └── ACRONYMES SAP.md#acro-ddic>).

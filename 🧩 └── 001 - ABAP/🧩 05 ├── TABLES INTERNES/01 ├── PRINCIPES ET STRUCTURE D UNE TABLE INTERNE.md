@@ -2,7 +2,7 @@
 
 ## 1.A RÉSULTAT ATTENDU
 
-- Comprendre le rôle d’une table interne en ABAP
+- Comprendre le rôle d’une table interne[^terme-table-interne] en ABAP[^terme-abap]
 - Distinguer table interne, structure et table de base de données
 - Identifier le type de ligne, la catégorie et la clé d’une table
 - Comprendre le caractère dynamique de son nombre de lignes
@@ -10,7 +10,7 @@
 
 ## 1.B DÉFINITION
 
-Une table interne est un objet de données ABAP qui contient zéro, une ou plusieurs lignes de même type.
+Une table interne est un objet de données[^terme-objet-donnees] ABAP qui contient zéro, une ou plusieurs lignes de même type.
 
 Elle est créée dans la mémoire de la session ABAP. Son contenu n’est pas automatiquement enregistré dans la base de données.
 
@@ -65,7 +65,7 @@ Ces préfixes sont des conventions de nommage, pas des mots-clés ABAP.
 | ---------------------------------------------------------------- | ------------------------------------- |
 | Objet de données en mémoire                                      | Objet persistant du Dictionnaire ABAP |
 | Existe pendant l’exécution ou selon la portée de l’objet         | Existe indépendamment du programme    |
-| Manipulée avec `APPEND`, `INSERT`, `READ TABLE`, `LOOP AT`, etc. | Lue ou modifiée avec ABAP SQL         |
+| Manipulée avec `APPEND`, `INSERT`, `READ TABLE`, `LOOP AT`, etc. | Lue ou modifiée avec ABAP SQL[^terme-acro-sql]         |
 | Nombre de lignes dynamique                                       | Données persistées en base            |
 
 > [!IMPORTANT]
@@ -129,7 +129,7 @@ ENDLOOP.
 ## 1.J SNIPPET À RÉUTILISER
 
 > [!NOTE]
-> Adapter les noms `Z*`, les types DDIC, les données et les autorisations au système cible. Effectuer un contrôle syntaxique avant activation.
+> Adapter les noms `Z*`, les types DDIC[^terme-acro-ddic], les données et les autorisations au système cible. Effectuer un contrôle syntaxique avant activation.
 
 ```abap
 " Traiter la collection sans lecture SQL dans la boucle.
@@ -169,3 +169,9 @@ ENDLOOP.
 ---
 
 [Chapitre suivant — DÉCLARATION DES TYPES ET TABLES INTERNES](<./02 ├── DECLARATION DES TYPES ET TABLES INTERNES.md>)
+
+[^terme-table-interne]: **TABLE INTERNE.** Collection dynamique de lignes stockée en mémoire dans le programme ABAP. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#table-interne>).
+[^terme-abap]: **ABAP.** Langage de programmation de la plateforme ABAP, conçu pour développer des applications métier et techniques SAP. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#abap>).
+[^terme-objet-donnees]: **OBJET DE DONNÉES.** Zone de mémoire typée contenant une valeur pendant l’exécution. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#objet-donnees>).
+[^terme-acro-sql]: **SQL.** Structured Query Language. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/10 └── ACRONYMES SAP.md#acro-sql>).
+[^terme-acro-ddic]: **DDIC.** Data Dictionary, abréviation courante de l’ABAP Dictionary. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/10 └── ACRONYMES SAP.md#acro-ddic>).

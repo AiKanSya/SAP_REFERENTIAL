@@ -6,11 +6,11 @@
 - Contrôler un code retour immédiatement
 - Lire la documentation propre à chaque instruction
 - Éviter les tests génériques incorrects
-- Choisir entre code retour et exception
+- Choisir entre code retour et exception[^terme-exception]
 
 ## 7.B PRINCIPE
 
-Certaines instructions ABAP renseignent le champ système `sy-subrc` afin d’indiquer leur résultat.
+Certaines instructions ABAP[^terme-abap] renseignent le champ système `sy-subrc` afin d’indiquer leur résultat.
 
 ```abap
 " Exemple à éviter : comparer avec la correction décrite après le bloc.
@@ -88,7 +88,7 @@ La copie permet de différer le traitement sans dépendre de la valeur volatile 
 | Plusieurs états simples d’une instruction         | Code retour documenté                           |
 | Erreur nécessitant une propagation entre méthodes | Exception                                       |
 | Échec technique avec contexte et cause            | Exception                                       |
-| API classique imposant `sy-subrc`                 | Contrôle immédiat puis conversion si nécessaire |
+| API[^terme-api] classique imposant `sy-subrc`                 | Contrôle immédiat puis conversion si nécessaire |
 
 Une interface moderne réutilisable ne doit pas obliger l’appelant à deviner un code numérique non documenté.
 
@@ -119,7 +119,7 @@ Sans instruction immédiatement identifiable avant ce test, le code est ambigu e
 ## 7.J SNIPPET À RÉUTILISER
 
 > [!NOTE]
-> Adapter les noms `Z*`, les types DDIC, les données et les autorisations au système cible. Effectuer un contrôle syntaxique avant activation.
+> Adapter les noms `Z*`, les types DDIC[^terme-acro-ddic], les données et les autorisations au système cible. Effectuer un contrôle syntaxique avant activation.
 
 ```abap
 CASE sy-subrc.
@@ -148,3 +148,8 @@ ENDCASE.
 ---
 
 [Chapitre suivant — CLASSES D’EXCEPTION ET CATÉGORIES](<./08 ├── CLASSES D EXCEPTION ET CATEGORIES.md>)
+
+[^terme-exception]: **EXCEPTION.** Objet ou signal représentant une situation anormale qu’un appelant peut traiter. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#exception>).
+[^terme-abap]: **ABAP.** Langage de programmation de la plateforme ABAP, conçu pour développer des applications métier et techniques SAP. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#abap>).
+[^terme-api]: **API.** Application Programming Interface, contrat exposant des opérations ou données utilisables par d’autres composants. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/10 └── ACRONYMES SAP.md#api>).
+[^terme-acro-ddic]: **DDIC.** Data Dictionary, abréviation courante de l’ABAP Dictionary. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/10 └── ACRONYMES SAP.md#acro-ddic>).

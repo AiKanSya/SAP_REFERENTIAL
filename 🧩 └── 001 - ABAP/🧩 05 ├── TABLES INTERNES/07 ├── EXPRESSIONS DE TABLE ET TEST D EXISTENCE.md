@@ -2,8 +2,8 @@
 
 ## 7.A RÉSULTAT ATTENDU
 
-- Lire une ligne avec une expression de table
-- Comprendre le risque d’exception en cas de ligne absente
+- Lire une ligne avec une expression de table[^terme-expression]
+- Comprendre le risque d’exception[^terme-exception] en cas de ligne absente
 - Utiliser `line_exists` et `line_index`
 - Fournir une valeur de remplacement avec `OPTIONAL` ou `DEFAULT`
 - Choisir entre expression de table et `READ TABLE`
@@ -35,7 +35,7 @@ DATA(ls_product) = lt_products[
 
 ## 7.C LIGNE ABSENTE
 
-Une expression de table utilisée seule lève normalement l’exception de classe `CX_SY_ITAB_LINE_NOT_FOUND` lorsque la ligne n’existe pas.
+Une expression de table utilisée seule lève normalement l’exception de classe[^terme-classe] `CX_SY_ITAB_LINE_NOT_FOUND` lorsque la ligne n’existe pas.
 
 ```abap
 " Propager ou traiter l’erreur au niveau qui sait prendre une décision.
@@ -114,7 +114,7 @@ Cette instruction lève également une exception si la ligne n’existe pas.
 | Fournir une valeur initiale ou par défaut          | `VALUE ... OPTIONAL/DEFAULT`                    |
 
 > [!NOTE]
-> La disponibilité des expressions de table et de certaines additions dépend de la version ABAP du système. Utiliser l’aide syntaxique intégrée du système pour confirmer la syntaxe disponible.
+> La disponibilité des expressions de table et de certaines additions dépend de la version ABAP[^terme-abap] du système. Utiliser l’aide syntaxique intégrée du système pour confirmer la syntaxe disponible.
 
 ## 7.J VÉRIFICATION
 
@@ -133,7 +133,7 @@ Cette instruction lève également une exception si la ligne n’existe pas.
 ## 7.L SNIPPET À RÉUTILISER
 
 > [!NOTE]
-> Adapter les noms `Z*`, les types DDIC, les données et les autorisations au système cible. Effectuer un contrôle syntaxique avant activation.
+> Adapter les noms `Z*`, les types DDIC[^terme-acro-ddic], les données et les autorisations au système cible. Effectuer un contrôle syntaxique avant activation.
 
 ```abap
 " Propager ou traiter l’erreur au niveau qui sait prendre une décision.
@@ -162,3 +162,9 @@ ENDTRY.
 ---
 
 [Chapitre suivant — PARCOURIR UNE TABLE AVEC LOOP AT](<./08 ├── PARCOURIR UNE TABLE AVEC LOOP AT.md>)
+
+[^terme-expression]: **EXPRESSION.** Construction qui produit une valeur à partir d’opérandes et d’opérateurs. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#expression>).
+[^terme-exception]: **EXCEPTION.** Objet ou signal représentant une situation anormale qu’un appelant peut traiter. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#exception>).
+[^terme-classe]: **CLASSE.** Modèle orienté objet définissant état et comportements. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#classe>).
+[^terme-abap]: **ABAP.** Langage de programmation de la plateforme ABAP, conçu pour développer des applications métier et techniques SAP. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#abap>).
+[^terme-acro-ddic]: **DDIC.** Data Dictionary, abréviation courante de l’ABAP Dictionary. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/10 └── ACRONYMES SAP.md#acro-ddic>).

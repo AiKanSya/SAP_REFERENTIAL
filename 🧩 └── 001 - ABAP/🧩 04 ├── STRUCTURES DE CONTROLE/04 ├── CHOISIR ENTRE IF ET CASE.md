@@ -164,7 +164,7 @@ La couverture de toutes les branches réduit les anomalies liées aux cas limite
 ## 4.J SNIPPET À RÉUTILISER
 
 > [!NOTE]
-> Adapter les noms `Z*`, les types DDIC, les données et les autorisations au système cible. Effectuer un contrôle syntaxique avant activation.
+> Adapter les noms `Z*`, les types DDIC[^terme-acro-ddic], les données et les autorisations au système cible. Effectuer un contrôle syntaxique avant activation.
 
 ```abap
 IF lv_status = 'N'.
@@ -193,3 +193,5 @@ ENDIF.
 ---
 
 [Chapitre suivant — EXPRESSIONS CONDITIONNELLES COND ET SWITCH](<./05 ├── EXPRESSIONS CONDITIONNELLES COND ET SWITCH.md>)
+
+[^terme-acro-ddic]: **DDIC.** Data Dictionary, abréviation courante de l’ABAP Dictionary. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/10 └── ACRONYMES SAP.md#acro-ddic>).

@@ -18,7 +18,7 @@ TEST-SEAM read_configuration.
 END-TEST-SEAM.
 ```
 
-Dans une méthode de la classe de test, une injection associée remplace temporairement cette zone :
+Dans une méthode[^terme-methode] de la classe de test[^terme-classe-test], une injection associée remplace temporairement cette zone :
 
 ```abap
 " Vérifier un seul comportement observable avec une attente explicite.
@@ -33,7 +33,7 @@ METHOD returns_injected_configuration.
 ENDMETHOD.
 ```
 
-Pendant l’exécution de cette méthode de test, l’injection remplace le contenu de la couture. Les instructions `TEST-SEAM` et `TEST-INJECTION` sont disponibles à partir d’ABAP 7.50 ; vérifier la release du système avant de retenir cette technique.
+Pendant l’exécution de cette méthode de test, l’injection remplace le contenu de la couture. Les instructions `TEST-SEAM` et `TEST-INJECTION` sont disponibles à partir d’ABAP[^terme-abap] 7.50 ; vérifier la release du système avant de retenir cette technique.
 
 ## 21.C Cas d’usage
 
@@ -47,7 +47,7 @@ Pendant l’exécution de cette méthode de test, l’injection remplace le cont
 - disponibilité dépendante de la release ABAP ;
 - couture visible dans le code productif ;
 - risque de multiplier des points artificiels ;
-- ne remplace pas une architecture fondée sur des interfaces et l’injection de dépendances.
+- ne remplace pas une architecture fondée sur des interfaces et l’injection de dépendances[^terme-injection-dependances].
 
 ## 21.E Priorité de conception
 
@@ -101,7 +101,7 @@ Documenter la dépendance masquée par le seam. Lorsqu’une évolution le perme
 ## 21.J SNIPPET À RÉUTILISER
 
 > [!NOTE]
-> Adapter les noms `Z*`, les types DDIC, les données et les autorisations au système cible. Effectuer un contrôle syntaxique avant activation.
+> Adapter les noms `Z*`, les types DDIC[^terme-acro-ddic], les données et les autorisations au système cible. Effectuer un contrôle syntaxique avant activation.
 
 ```abap
 " Isoler cet accès direct uniquement pour tester le code existant.
@@ -118,3 +118,9 @@ END-TEST-SEAM.
 - [ATC](<../🧩 00 ├── LEXIQUE SAP ET ABAP/10 └── ACRONYMES SAP.md#acro-atc>)
 - [ABAP](<../🧩 00 ├── LEXIQUE SAP ET ABAP/10 └── ACRONYMES SAP.md#acro-abap>)
 - [Trace](<../🧩 00 ├── LEXIQUE SAP ET ABAP/08 ├── EXECUTION EXPLOITATION ET ADMINISTRATION.md#trace>)
+
+[^terme-methode]: **MÉTHODE.** Comportement déclaré dans une classe ou une interface et appelé avec une liste de paramètres définie. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#methode>).
+[^terme-classe-test]: **CLASSE DE TEST.** Classe locale déclarée `FOR TESTING` contenant des méthodes exécutées par ABAP Unit. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/06 ├── PROGRAMMES CLASSES ET OBJETS TECHNIQUES.md#classe-test>).
+[^terme-abap]: **ABAP.** Langage de programmation de la plateforme ABAP, conçu pour développer des applications métier et techniques SAP. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#abap>).
+[^terme-injection-dependances]: **INJECTION DE DÉPENDANCES.** Fourniture des collaborateurs d’un objet depuis l’extérieur au lieu de les créer directement dans son implémentation. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#injection-dependances>).
+[^terme-acro-ddic]: **DDIC.** Data Dictionary, abréviation courante de l’ABAP Dictionary. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/10 └── ACRONYMES SAP.md#acro-ddic>).

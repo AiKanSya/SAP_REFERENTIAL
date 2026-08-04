@@ -8,7 +8,7 @@
 
 ## 10.B CONDITION « APRÈS JOB »
 
-Un job peut attendre la fin d’un prédécesseur. Cette relation est préférable à un décalage horaire arbitraire lorsque le second traitement dépend réellement du premier.
+Un job[^terme-job] peut attendre la fin d’un prédécesseur. Cette relation est préférable à un décalage horaire arbitraire lorsque le second traitement dépend réellement du premier.
 
 ```mermaid
 flowchart LR
@@ -39,7 +39,7 @@ Documenter pour chaque étape :
 
 ## 10.E LIMITE
 
-Les dépendances classiques de `SM36` ne constituent pas un moteur complet de workflow. Une chaîne avec nombreuses branches, compensations et dépendances externes doit être gérée par un ordonnanceur ou une orchestration adaptée.
+Les dépendances classiques de `SM36`[^outil-sm36] ne constituent pas un moteur complet de workflow. Une chaîne avec nombreuses branches, compensations et dépendances externes doit être gérée par un ordonnanceur ou une orchestration adaptée.
 
 ## 10.F PROCESS
 
@@ -53,7 +53,7 @@ Utiliser une condition « après job » pour une séquence batch simple et stabl
 
 ### 10.F.3 ÉTAPE 3 — CONFIGURER LE CONSOMMATEUR
 
-Dans `SM36`, définir l’étape et sa condition après le job ou l’événement exact. Renseigner les paramètres nécessaires et vérifier le comportement prévu si le producteur se termine en erreur. Enregistrer puis contrôler le statut libéré dans `SM37`.
+Dans `SM36`, définir l’étape et sa condition après le job ou l’événement exact. Renseigner les paramètres nécessaires et vérifier le comportement prévu si le producteur se termine en erreur. Enregistrer puis contrôler le statut libéré dans `SM37`[^outil-sm37].
 
 ### 10.F.4 ÉTAPE 4 — AJOUTER UNE VALIDATION À L’ENTRÉE
 
@@ -71,7 +71,7 @@ Documenter si la reprise relance le producteur, le consommateur ou une unité pr
 
 - Le job apparaît dans `SM37` avec le statut attendu.
 - Le journal ne contient pas de message d’erreur non traité.
-- Le spool, le fichier ou le journal applicatif contient le résultat attendu.
+- Le spool[^terme-spool], le fichier ou le journal applicatif contient le résultat attendu.
 - Une relance contrôlée ne crée pas de doublon métier.
 
 ## 10.H ERREURS FRÉQUENTES
@@ -108,4 +108,12 @@ Ordre de transport  :
 
 ---
 
-[Chapitre suivant — ÉVÉNEMENTS DE FOND, `SM62` ET `SM64`](<./11 ├── EVENEMENTS DE FOND SM62 ET SM64.md>)
+[Chapitre suivant — ÉVÉNEMENTS DE FOND, `SM62`[^outil-sm62] ET `SM64`[^outil-sm64]](<./11 ├── EVENEMENTS DE FOND SM62 ET SM64.md>)
+
+[^terme-job]: **JOB.** Traitement planifié en arrière-plan composé d’une ou plusieurs étapes. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/06 ├── PROGRAMMES CLASSES ET OBJETS TECHNIQUES.md#job>).
+[^terme-spool]: **SPOOL.** Infrastructure stockant et acheminant les sorties imprimables produites par les traitements SAP. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/06 ├── PROGRAMMES CLASSES ET OBJETS TECHNIQUES.md#spool>).
+
+[^outil-sm36]: **SM36.** Transaction de définition et de planification des jobs d’arrière-plan. Voir [le chapitre associé](<06 ├── PLANIFIER UN JOB AVEC SM36.md>).
+[^outil-sm37]: **SM37.** Transaction de recherche, surveillance et administration des jobs d’arrière-plan. Voir [le chapitre associé](<15 ├── SURVEILLER LES JOBS AVEC SM37.md>).
+[^outil-sm62]: **SM62.** Transaction de définition des événements utilisables par les traitements d’arrière-plan. Voir [le chapitre associé](<11 ├── EVENEMENTS DE FOND SM62 ET SM64.md>).
+[^outil-sm64]: **SM64.** Transaction de déclenchement manuel d’un événement d’arrière-plan. Voir [le chapitre associé](<11 ├── EVENEMENTS DE FOND SM62 ET SM64.md>).

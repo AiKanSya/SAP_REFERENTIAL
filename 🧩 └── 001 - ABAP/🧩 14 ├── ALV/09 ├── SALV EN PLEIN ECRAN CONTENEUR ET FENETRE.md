@@ -2,7 +2,7 @@
 
 ## 9.A RÉSULTAT ATTENDU
 
-- Distinguer les modes d’affichage SALV
+- Distinguer les modes d’affichage SALV[^terme-acro-salv]
 - Afficher un SALV dans un conteneur
 - Créer une fenêtre de dialogue simple
 
@@ -31,7 +31,7 @@ cl_salv_table=>factory(
 go_salv->display( ).
 ```
 
-Le Dynpro doit contenir un Custom Control nommé `CC_ALV`. Les références doivent rester vivantes pendant toute la durée d’affichage de l’écran.
+Le Dynpro[^terme-dynpro] doit contenir un Custom Control nommé `CC_ALV`. Les références doivent rester vivantes pendant toute la durée d’affichage de l’écran.
 
 ## 9.D FENÊTRE DE DIALOGUE
 
@@ -50,7 +50,7 @@ La fenêtre convient à une consultation courte. Elle ne doit pas être utilisé
 | Mode        | Usage                          |
 | ----------- | ------------------------------ |
 | Plein écran | Rapport autonome               |
-| Conteneur   | Zone ALV intégrée à un Dynpro  |
+| Conteneur   | Zone ALV[^terme-alv] intégrée à un Dynpro  |
 | Fenêtre     | Consultation secondaire courte |
 
 ## 9.F PROCESS
@@ -61,7 +61,7 @@ Utiliser le plein écran pour un rapport autonome, un conteneur pour intégrer l
 
 ### 9.F.2 Étape 2 — Préparer l’écran lorsque le mode utilise un conteneur
 
-Créer le dynpro, le Custom Control et la logique PBO/PAI avant l’instance SALV. Le nom du conteneur ABAP doit correspondre exactement au contrôle défini dans Screen Painter.
+Créer le dynpro, le Custom Control et la logique PBO/PAI avant l’instance SALV. Le nom du conteneur ABAP[^terme-abap] doit correspondre exactement au contrôle défini dans Screen Painter.
 
 ### 9.F.3 Étape 3 — Créer le conteneur avec une durée de vie suffisante
 
@@ -96,7 +96,7 @@ Vérifier le premier affichage, le retour PBO, la navigation arrière, la fermet
 ## 9.I SNIPPET À RÉUTILISER
 
 > [!NOTE]
-> Adapter les noms `Z*`, les types DDIC, les données et les autorisations au système cible. Effectuer un contrôle syntaxique avant activation.
+> Adapter les noms `Z*`, les types DDIC[^terme-acro-ddic], les données et les autorisations au système cible. Effectuer un contrôle syntaxique avant activation.
 
 ```abap
 DATA:
@@ -131,3 +131,9 @@ go_salv->display( ).
 ---
 
 [Chapitre suivant — PRINCIPES DE CL_GUI_ALV_GRID](<./10 ├── PRINCIPES DE CL_GUI_ALV_GRID.md>)
+
+[^terme-acro-salv]: **SALV.** Simple ALV / famille de classes `CL_SALV_*`. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/10 └── ACRONYMES SAP.md#acro-salv>).
+[^terme-dynpro]: **DYNPRO.** Écran classique SAP composé d’une définition d’écran et d’une logique PBO/PAI. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/02 ├── SAP GUI NAVIGATION ET TRANSACTIONS.md#dynpro>).
+[^terme-alv]: **ALV.** ABAP List Viewer, ensemble de technologies d’affichage tabulaire avec tri, filtre, total et variantes. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/06 ├── PROGRAMMES CLASSES ET OBJETS TECHNIQUES.md#alv>).
+[^terme-abap]: **ABAP.** Langage de programmation de la plateforme ABAP, conçu pour développer des applications métier et techniques SAP. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#abap>).
+[^terme-acro-ddic]: **DDIC.** Data Dictionary, abréviation courante de l’ABAP Dictionary. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/10 └── ACRONYMES SAP.md#acro-ddic>).

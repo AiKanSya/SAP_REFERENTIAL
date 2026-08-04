@@ -4,7 +4,7 @@
 
 - Valider les entrées avant le traitement principal
 - Cibler un paramètre, un critère ou un bloc
-- Distinguer contrôle technique et règle métier
+- Distinguer contrôle technique et règle métier[^terme-regle-metier]
 - Maintenir l’utilisateur sur l’écran en cas d’erreur
 - Éviter les traitements lourds pendant la validation
 
@@ -101,7 +101,7 @@ La validation doit rester réactive et sans effet métier durable.
 ## 11.J SNIPPET À RÉUTILISER
 
 > [!NOTE]
-> Adapter les noms `Z*`, les types DDIC, les données et les autorisations au système cible. Effectuer un contrôle syntaxique avant activation.
+> Adapter les noms `Z*`, les types DDIC[^terme-acro-ddic], les données et les autorisations au système cible. Effectuer un contrôle syntaxique avant activation.
 
 ```abap
 SELECTION-SCREEN BEGIN OF BLOCK b_period WITH FRAME TITLE text-t01.
@@ -135,3 +135,6 @@ AT SELECTION-SCREEN ON BLOCK b_period.
 ---
 
 [Chapitre suivant — AIDES F1 ET F4](<./12 ├── AIDES F1 ET F4.md>)
+
+[^terme-regle-metier]: **RÈGLE MÉTIER.** Condition ou calcul imposé par le processus fonctionnel. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/09 ├── NOTIONS FONCTIONNELLES ET ORGANISATIONNELLES.md#regle-metier>).
+[^terme-acro-ddic]: **DDIC.** Data Dictionary, abréviation courante de l’ABAP Dictionary. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/10 └── ACRONYMES SAP.md#acro-ddic>).

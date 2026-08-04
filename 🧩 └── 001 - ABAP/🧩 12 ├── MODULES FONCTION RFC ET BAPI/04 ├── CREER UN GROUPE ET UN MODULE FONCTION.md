@@ -2,9 +2,9 @@
 
 ## 4.A RÉSULTAT ATTENDU
 
-- Créer un groupe de fonctions dans le namespace client
-- Créer un module fonction dans `SE37`
-- Affecter les objets au package et à l’ordre de transport
+- Créer un groupe de fonctions dans le namespace client[^terme-namespace-client]
+- Créer un module fonction[^terme-module-fonction] dans `SE37`[^outil-se37]
+- Affecter les objets au package[^terme-package] et à l’ordre de transport[^terme-ordre-transport]
 - Respecter les étapes d’activation
 
 ## 4.B PRÉREQUIS
@@ -21,7 +21,7 @@ Définir avant la création :
 
 ## 4.C CRÉATION DU GROUPE
 
-Le groupe peut être créé depuis `SE80` ou lors de la création du module selon le système.
+Le groupe peut être créé depuis `SE80`[^outil-se80] ou lors de la création du module selon le système.
 
 Exemple :
 
@@ -73,9 +73,9 @@ Le nom doit exprimer une action et un périmètre. Exemples :
 
 Le groupe de fonctions et les modules sont des objets Repository. Vérifier que :
 
-- le package n’est pas `$TMP` pour un développement transportable ;
+- le package n’est pas `$TMP`[^terme-objet-local-tmp] pour un développement transportable ;
 - tous les sous-objets sont enregistrés dans l’ordre correct ;
-- les types DDIC requis sont transportés avant ou avec le module ;
+- les types DDIC[^terme-acro-ddic] requis sont transportés avant ou avec le module ;
 - l’activation est complète dans le système source.
 
 ## 4.G PROCESS
@@ -86,11 +86,11 @@ Regrouper uniquement des modules partageant un même domaine et, si nécessaire,
 
 ### 4.G.2 Étape 2 — Créer le groupe dans SE80
 
-Ouvrir `SE80`, sélectionner **Groupe de fonctions**, saisir le nom client et choisir **Créer**. Renseigner description, package et tâche de transport.
+Ouvrir `SE80`, sélectionner **Groupe de fonctions**, saisir le nom client et choisir **Créer**. Renseigner description, package et tâche de transport[^terme-tache-transport].
 
 ### 4.G.3 Étape 3 — Créer le module
 
-Depuis le groupe, créer le module `Z...`, renseigner texte court et type de traitement. Ne cocher RFC ou update que si le scénario impose réellement ces contraintes.
+Depuis le groupe, créer le module `Z...`, renseigner texte court et type de traitement. Ne cocher RFC[^terme-rfc] ou update que si le scénario impose réellement ces contraintes.
 
 ### 4.G.4 Étape 4 — Définir signature et code minimal
 
@@ -109,7 +109,7 @@ Activer le groupe et le module, tester cas nominal et erreur dans `SE37`, puis v
 ## 4.I ERREURS FRÉQUENTES
 
 - Appeler un module fonction sans lire sa documentation et ses exceptions.
-- Supposer qu’une BAPI effectue automatiquement le commit.
+- Supposer qu’une BAPI[^terme-bapi] effectue automatiquement le commit.
 
 ## 4.J FICHE DE CONTRÔLE À COPIER
 
@@ -142,3 +142,16 @@ Ordre de transport  :
 ---
 
 [Chapitre suivant — DÉFINIR L INTERFACE DU MODULE FONCTION](<./05 ├── DEFINIR L INTERFACE DU MODULE FONCTION.md>)
+
+[^terme-namespace-client]: **NAMESPACE CLIENT.** Espace de noms réservé aux développements spécifiques, souvent préfixés par `Z` ou `Y`. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/03 ├── REPOSITORY PACKAGES ET TRANSPORTS.md#namespace-client>).
+[^terme-module-fonction]: **MODULE FONCTION.** Procédure globale appelée avec `CALL FUNCTION` et définie dans un groupe de fonctions. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/06 ├── PROGRAMMES CLASSES ET OBJETS TECHNIQUES.md#module-fonction>).
+[^terme-package]: **PACKAGE.** Conteneur logique qui regroupe les objets de développement et détermine notamment leur transportabilité. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/03 ├── REPOSITORY PACKAGES ET TRANSPORTS.md#package>).
+[^terme-ordre-transport]: **ORDRE DE TRANSPORT.** Conteneur qui regroupe des modifications à exporter puis importer dans d’autres systèmes. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/03 ├── REPOSITORY PACKAGES ET TRANSPORTS.md#ordre-transport>).
+[^terme-objet-local-tmp]: **OBJET LOCAL $TMP.** Objet affecté au package local `$TMP`, non destiné au transport vers un autre système. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/03 ├── REPOSITORY PACKAGES ET TRANSPORTS.md#objet-local-tmp>).
+[^terme-acro-ddic]: **DDIC.** Data Dictionary, abréviation courante de l’ABAP Dictionary. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/10 └── ACRONYMES SAP.md#acro-ddic>).
+[^terme-tache-transport]: **TÂCHE DE TRANSPORT.** Sous-conteneur affecté à un utilisateur dans un ordre de transport. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/03 ├── REPOSITORY PACKAGES ET TRANSPORTS.md#tache-transport>).
+[^terme-rfc]: **RFC.** Remote Function Call, mécanisme permettant d’appeler un module fonction compatible dans un autre contexte ou système. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/06 ├── PROGRAMMES CLASSES ET OBJETS TECHNIQUES.md#rfc>).
+[^terme-bapi]: **BAPI.** Interface métier publiée autour d’un Business Object SAP, généralement implémentée par un module fonction RFC. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/06 ├── PROGRAMMES CLASSES ET OBJETS TECHNIQUES.md#bapi>).
+
+[^outil-se37]: **SE37.** Function Builder utilisé pour rechercher, afficher, tester et maintenir les modules fonction. Voir [le chapitre associé](<03 ├── RECHERCHER ET ANALYSER AVEC SE37.md>).
+[^outil-se80]: **SE80.** Object Navigator utilisé pour parcourir et maintenir les objets du Repository ABAP. Voir [le chapitre associé](<../🧩 01 ├── FONDAMENTAUX ABAP/04 ├── EDITEURS ABAP SE38 ET SE80.md>).

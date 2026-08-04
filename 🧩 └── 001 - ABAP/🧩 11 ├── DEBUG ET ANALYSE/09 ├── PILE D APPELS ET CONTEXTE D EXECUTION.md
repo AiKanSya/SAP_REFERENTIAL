@@ -5,7 +5,7 @@
 - Comprendre comment le traitement a atteint la ligne courante
 - Naviguer entre appelants et appelés
 - Retrouver les paramètres et variables locales d’un niveau
-- Distinguer pile ABAP et pile Dynpro
+- Distinguer pile ABAP[^terme-abap] et pile Dynpro[^terme-dynpro]
 - Identifier le premier appel métier pertinent
 
 ## 9.B PRINCIPE
@@ -27,7 +27,7 @@ Selon la version, une entrée de pile peut indiquer :
 - profondeur ;
 - type ABAP ou Dynpro ;
 - type d’événement ;
-- nom de méthode, module ou routine ;
+- nom de méthode[^terme-methode], module ou routine ;
 - programme ;
 - include ;
 - numéro de ligne.
@@ -50,7 +50,7 @@ Lorsqu’une erreur apparaît dans une routine générique standard, remonter la
 - appartient au développement client ;
 - construit les données incorrectes ;
 - choisit un paramètre erroné ;
-- appelle l’API standard avec un contrat non respecté.
+- appelle l’API[^terme-api] standard avec un contrat non respecté.
 
 La ligne qui déclenche l’erreur n’est pas toujours la ligne qui crée sa cause.
 
@@ -75,7 +75,7 @@ Activer ce mode uniquement lorsque le problème se situe réellement dans une co
 
 ### 9.H.1 Étape 1 — Arrêter au point fautif
 
-Placer un breakpoint où la donnée incorrecte est observée et reproduire avec le même utilisateur et le même mode d’exécution.
+Placer un breakpoint[^terme-breakpoint] où la donnée incorrecte est observée et reproduire avec le même utilisateur et le même mode d’exécution.
 
 ### 9.H.2 Étape 2 — Lire la pile du bas vers le haut
 
@@ -91,13 +91,13 @@ Descendre d’un appel depuis ce dernier état correct. Cette frontière identif
 
 ### 9.H.5 Étape 5 — Confirmer le contexte
 
-Relever utilisateur, transaction, programme principal, unité RFC ou job. Le diagnostic est terminé lorsque l’appelant, l’appelé et le paramètre divergent sont identifiés.
+Relever utilisateur, transaction, programme principal, unité RFC[^terme-rfc] ou job[^terme-job]. Le diagnostic est terminé lorsque l’appelant, l’appelé et le paramètre divergent sont identifiés.
 
 ## 9.I VÉRIFICATION
 
-- Le scénario reproduit correspond au même utilisateur, mandant, transaction et jeu de données.
+- Le scénario reproduit correspond au même utilisateur, mandant[^terme-mandant], transaction et jeu de données.
 - L’horodatage et l’identifiant de l’analyse sont conservés.
-- La cause retenue est soutenue par une ligne source, une trace ou une valeur observée.
+- La cause retenue est soutenue par une ligne source, une trace[^terme-trace] ou une valeur observée.
 - Après correction, le même scénario ne reproduit plus le défaut et le résultat métier reste identique.
 
 ## 9.J ERREURS FRÉQUENTES
@@ -135,3 +135,13 @@ Ordre de transport  :
 ---
 
 [Chapitre suivant — MODIFIER LES DONNÉES ET LE FLUX D’EXÉCUTION](<./10 ├── MODIFIER LES DONNEES ET LE FLUX D EXECUTION.md>)
+
+[^terme-abap]: **ABAP.** Langage de programmation de la plateforme ABAP, conçu pour développer des applications métier et techniques SAP. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#abap>).
+[^terme-dynpro]: **DYNPRO.** Écran classique SAP composé d’une définition d’écran et d’une logique PBO/PAI. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/02 ├── SAP GUI NAVIGATION ET TRANSACTIONS.md#dynpro>).
+[^terme-methode]: **MÉTHODE.** Comportement déclaré dans une classe ou une interface et appelé avec une liste de paramètres définie. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#methode>).
+[^terme-api]: **API.** Application Programming Interface, contrat exposant des opérations ou données utilisables par d’autres composants. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/10 └── ACRONYMES SAP.md#api>).
+[^terme-breakpoint]: **BREAKPOINT.** Point d’arrêt suspendant l’exécution dans le débogueur. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/08 ├── EXECUTION EXPLOITATION ET ADMINISTRATION.md#breakpoint>).
+[^terme-rfc]: **RFC.** Remote Function Call, mécanisme permettant d’appeler un module fonction compatible dans un autre contexte ou système. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/06 ├── PROGRAMMES CLASSES ET OBJETS TECHNIQUES.md#rfc>).
+[^terme-job]: **JOB.** Traitement planifié en arrière-plan composé d’une ou plusieurs étapes. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/06 ├── PROGRAMMES CLASSES ET OBJETS TECHNIQUES.md#job>).
+[^terme-mandant]: **MANDANT.** Subdivision logique d’un système SAP. Il est identifié par un numéro à trois chiffres et isole une partie des données, du paramétrage et des utilisateurs. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/01 ├── SYSTEMES ENVIRONNEMENTS ET MANDANTS.md#mandant>).
+[^terme-trace]: **TRACE.** Enregistrement détaillé d’événements techniques pour analyser exécution, SQL ou appels. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/08 ├── EXECUTION EXPLOITATION ET ADMINISTRATION.md#trace>).

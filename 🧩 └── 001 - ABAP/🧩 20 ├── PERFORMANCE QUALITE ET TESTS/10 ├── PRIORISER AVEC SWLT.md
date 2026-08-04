@@ -2,13 +2,13 @@
 
 ## 10.A RÉSULTAT ATTENDU
 
-Combiner les données d’exécution SQL avec les findings statiques afin de concentrer l’effort sur le code réellement coûteux.
+Combiner les données d’exécution SQL[^terme-acro-sql] avec les findings statiques afin de concentrer l’effort sur le code réellement coûteux.
 
 ## 10.B Principe
 
-`SWLT` rapproche notamment :
+`SWLT`[^outil-swlt] rapproche notamment :
 
-- données de runtime issues de `SQLM` ou d’un snapshot ;
+- données de runtime issues de `SQLM`[^outil-sqlm] ou d’un snapshot ;
 - contrôles statiques du Code Inspector ;
 - informations sur les objets et tables concernés.
 
@@ -60,7 +60,7 @@ Collecter avec SQLM une période représentative et correctement bornée. Vérif
 
 ### 10.H.2 ÉTAPE 2 — CHOISIR LES CONTRÔLES STATIQUES
 
-Sélectionner la variante SCI ou ATC adaptée aux problèmes SQL et performance recherchés. Vérifier sa portée, ses priorités et la release. Ne pas modifier la variante centrale pour un besoin ponctuel sans gouvernance.
+Sélectionner la variante SCI[^outil-sci] ou ATC[^terme-acro-atc] adaptée aux problèmes SQL et performance recherchés. Vérifier sa portée, ses priorités et la release. Ne pas modifier la variante centrale pour un besoin ponctuel sans gouvernance.
 
 ### 10.H.3 ÉTAPE 3 — LANCER L’ANALYSE DANS `SWLT`
 
@@ -72,7 +72,7 @@ Examiner les findings qui correspondent à du code réellement exécuté et coû
 
 ### 10.H.5 ÉTAPE 5 — CONFIRMER CHAQUE CANDIDAT
 
-Ouvrir le code, comprendre la sémantique puis utiliser `ST05` ou `SAT` si un détail runtime manque. Corriger une cause à la fois et exécuter les tests. Ne pas appliquer mécaniquement une proposition statique à un contexte non compris.
+Ouvrir le code, comprendre la sémantique puis utiliser `ST05`[^outil-st05] ou `SAT`[^outil-sat] si un détail runtime manque. Corriger une cause à la fois et exécuter les tests. Ne pas appliquer mécaniquement une proposition statique à un contexte non compris.
 
 ### 10.H.6 ÉTAPE 6 — RECOLLECTER ET RECLASSER
 
@@ -110,3 +110,12 @@ Ordre de transport  :
 - [ATC](<../🧩 00 ├── LEXIQUE SAP ET ABAP/10 └── ACRONYMES SAP.md#acro-atc>)
 - [ABAP](<../🧩 00 ├── LEXIQUE SAP ET ABAP/10 └── ACRONYMES SAP.md#acro-abap>)
 - [Trace](<../🧩 00 ├── LEXIQUE SAP ET ABAP/08 ├── EXECUTION EXPLOITATION ET ADMINISTRATION.md#trace>)
+
+[^terme-acro-sql]: **SQL.** Structured Query Language. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/10 └── ACRONYMES SAP.md#acro-sql>).
+[^terme-acro-atc]: **ATC.** ABAP Test Cockpit, infrastructure de contrôles statiques et de gouvernance qualité. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/10 └── ACRONYMES SAP.md#acro-atc>).
+
+[^outil-swlt]: **SWLT.** SQL Performance Tuning Worklist utilisée pour rapprocher usage productif et résultats de contrôles statiques. Voir [le chapitre associé](<10 ├── PRIORISER AVEC SWLT.md>).
+[^outil-sqlm]: **SQLM.** SQL Monitor utilisé pour agréger l’usage des instructions SQL pendant une période d’enregistrement. Voir [le chapitre associé](<09 ├── SURVEILLER LES ACCES SQL AVEC SQLM.md>).
+[^outil-sci]: **SCI.** Code Inspector utilisé pour exécuter des contrôles statiques sur un ensemble d’objets ABAP. Voir [le chapitre associé](<13 ├── CODE INSPECTOR AVEC SCI.md>).
+[^outil-st05]: **ST05.** Performance Trace utilisée notamment pour enregistrer et analyser les accès SQL. Voir [le chapitre associé](<08 ├── ANALYSER LES ACCES SQL AVEC ST05.md>).
+[^outil-sat]: **SAT.** Runtime Analysis utilisée pour mesurer et analyser le temps d’exécution ABAP. Voir [le chapitre associé](<07 ├── MESURER LE TEMPS D EXECUTION AVEC SAT.md>).

@@ -8,12 +8,12 @@
 
 ## 2.B DEUX SYSTÈMES DE FICHIERS
 
-Un programme ABAP peut principalement manipuler :
+Un programme ABAP[^terme-abap] peut principalement manipuler :
 
-| Emplacement           | Exécution du code         | API principale                                          |
+| Emplacement           | Exécution du code         | API[^terme-api] principale                                          |
 | --------------------- | ------------------------- | ------------------------------------------------------- |
-| Serveur d’application | Instance AS ABAP          | Instructions `OPEN DATASET`, `READ DATASET`, `TRANSFER` |
-| Poste utilisateur     | Machine exécutant SAP GUI | `CL_GUI_FRONTEND_SERVICES`                              |
+| Serveur d’application[^terme-fichier-serveur-application] | Instance AS ABAP          | Instructions `OPEN DATASET`, `READ DATASET`, `TRANSFER` |
+| Poste utilisateur     | Machine exécutant SAP GUI[^terme-sap-gui] | `CL_GUI_FRONTEND_SERVICES`                              |
 
 ```mermaid
 flowchart TD
@@ -43,7 +43,7 @@ Dans un système réparti, chaque instance peut disposer de son propre système 
 - export demandé par l’utilisateur ;
 - sélection d’un fichier au moyen d’une boîte de dialogue.
 
-Ces opérations dépendent de SAP GUI et ne doivent pas être utilisées dans un job de fond.
+Ces opérations dépendent de SAP GUI et ne doivent pas être utilisées dans un job[^terme-job] de fond.
 
 ## 2.E DÉCISION
 
@@ -59,7 +59,7 @@ Ces opérations dépendent de SAP GUI et ne doivent pas être utilisées dans un
 
 ### 2.F.1 Étape 1 — Identifier le mode d’exécution
 
-Déterminer si le programme fonctionne en dialogue uniquement ou aussi en job, RFC ou traitement sans frontend. Un job ne peut pas utiliser les services du poste utilisateur.
+Déterminer si le programme fonctionne en dialogue uniquement ou aussi en job, RFC[^terme-rfc] ou traitement sans frontend[^terme-frontend]. Un job ne peut pas utiliser les services du poste utilisateur.
 
 ### 2.F.2 Étape 2 — Choisir l’emplacement
 
@@ -79,15 +79,15 @@ Contrôler autorisations, chemins et récupération. Le choix est validé lorsqu
 
 ## 2.G VÉRIFICATION
 
-- Le scénario reproduit correspond au même utilisateur, mandant, transaction et jeu de données.
+- Le scénario reproduit correspond au même utilisateur, mandant[^terme-mandant], transaction et jeu de données.
 - L’horodatage et l’identifiant de l’analyse sont conservés.
-- La cause retenue est soutenue par une ligne source, une trace ou une valeur observée.
+- La cause retenue est soutenue par une ligne source, une trace[^terme-trace] ou une valeur observée.
 - Après correction, le même scénario ne reproduit plus le défaut et le résultat métier reste identique.
 
 ## 2.H ERREURS FRÉQUENTES
 
 - Mélanger fichiers frontend et serveur dans un même scénario.
-- Parser un CSV par simple séparation alors que les champs peuvent être échappés.
+- Parser un CSV[^terme-csv] par simple séparation alors que les champs peuvent être échappés.
 
 ## 2.I FICHE DE CONTRÔLE À COPIER
 
@@ -122,3 +122,14 @@ Ordre de transport  :
 ---
 
 [Chapitre suivant — RÉPERTOIRES SERVEUR ET TRANSACTION AL11](<./03 ├── REPERTOIRES SERVEUR ET TRANSACTION AL11.md>)
+
+[^terme-abap]: **ABAP.** Langage de programmation de la plateforme ABAP, conçu pour développer des applications métier et techniques SAP. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#abap>).
+[^terme-api]: **API.** Application Programming Interface, contrat exposant des opérations ou données utilisables par d’autres composants. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/10 └── ACRONYMES SAP.md#api>).
+[^terme-fichier-serveur-application]: **SERVEUR D’APPLICATION.** Emplacement du backend où un programme ABAP peut lire ou écrire avec `OPEN DATASET`. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/07 ├── INTERFACES ET INTEGRATION.md#fichier-serveur-application>).
+[^terme-sap-gui]: **SAP GUI.** Client graphique permettant d’utiliser les transactions et écrans d’un système SAP. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/02 ├── SAP GUI NAVIGATION ET TRANSACTIONS.md#sap-gui>).
+[^terme-job]: **JOB.** Traitement planifié en arrière-plan composé d’une ou plusieurs étapes. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/06 ├── PROGRAMMES CLASSES ET OBJETS TECHNIQUES.md#job>).
+[^terme-rfc]: **RFC.** Remote Function Call, mécanisme permettant d’appeler un module fonction compatible dans un autre contexte ou système. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/06 ├── PROGRAMMES CLASSES ET OBJETS TECHNIQUES.md#rfc>).
+[^terme-frontend]: **FRONTEND.** Poste ou couche cliente utilisée par l’utilisateur, par exemple SAP GUI for Windows. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/01 ├── SYSTEMES ENVIRONNEMENTS ET MANDANTS.md#frontend>).
+[^terme-mandant]: **MANDANT.** Subdivision logique d’un système SAP. Il est identifié par un numéro à trois chiffres et isole une partie des données, du paramétrage et des utilisateurs. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/01 ├── SYSTEMES ENVIRONNEMENTS ET MANDANTS.md#mandant>).
+[^terme-trace]: **TRACE.** Enregistrement détaillé d’événements techniques pour analyser exécution, SQL ou appels. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/08 ├── EXECUTION EXPLOITATION ET ADMINISTRATION.md#trace>).
+[^terme-csv]: **CSV.** Format texte tabulaire utilisant un séparateur de champs et des règles d’échappement. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/07 ├── INTERFACES ET INTEGRATION.md#csv>).

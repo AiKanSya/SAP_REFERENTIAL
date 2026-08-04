@@ -2,26 +2,26 @@
 
 ## 12.A RÉSULTAT ATTENDU
 
-- Exploiter les aides issues du Dictionary ABAP
+- Exploiter les aides issues du Dictionary ABAP[^terme-abap]
 - Comprendre les événements d’aide personnalisée
-- Fournir une aide F4 cohérente avec le type
-- Fournir une aide F1 utile
+- Fournir une aide F4[^terme-aide-f4] cohérente avec le type
+- Fournir une aide F1[^terme-aide-f1] utile
 - Éviter les listes de valeurs codées en dur
 
 ## 12.B AIDE AUTOMATIQUE DU DDIC
 
-Un paramètre typé avec un élément de données peut hériter :
+Un paramètre typé avec un élément de données[^terme-element-donnees] peut hériter :
 
 - d’une documentation F1 ;
 - d’une aide à la recherche F4 ;
 - de valeurs fixes de domaine ;
-- d’une routine de conversion.
+- d’une routine de conversion[^terme-routine-conversion].
 
 ```abap
 PARAMETERS p_carr TYPE scarr-carrid.
 ```
 
-La première solution doit être de modéliser correctement l’objet DDIC.
+La première solution doit être de modéliser correctement l’objet DDIC[^terme-acro-ddic].
 
 ## 12.C AIDE F4 PERSONNALISÉE
 
@@ -32,9 +32,9 @@ AT SELECTION-SCREEN ON VALUE-REQUEST FOR p_file.
 
 L’événement est déclenché lorsque l’utilisateur demande l’aide à la saisie du champ.
 
-La procédure peut appeler une API standard adaptée au contexte. Vérifier sa compatibilité avec :
+La procédure peut appeler une API[^terme-api] standard adaptée au contexte. Vérifier sa compatibilité avec :
 
-- SAP GUI utilisé ;
+- SAP GUI[^terme-sap-gui] utilisé ;
 - exécution en arrière-plan ;
 - type du champ ;
 - sécurité du poste utilisateur.
@@ -65,7 +65,7 @@ flowchart TD
 - charger des milliers de valeurs sans filtre ;
 - exécuter une sélection complète avant d’ouvrir l’aide ;
 - dupliquer une aide déjà portée par le DDIC ;
-- appeler une fonction frontend dans un traitement destiné au background ;
+- appeler une fonction frontend[^terme-frontend] dans un traitement destiné au background ;
 - afficher des données sans contrôle d’autorisation.
 
 ## 12.G VÉRIFICATION
@@ -114,3 +114,13 @@ AT SELECTION-SCREEN ON VALUE-REQUEST FOR p_file.
 ---
 
 [Chapitre suivant — MODIFICATION DYNAMIQUE DE L’ÉCRAN](<./13 ├── MODIFICATION DYNAMIQUE DE L ECRAN.md>)
+
+[^terme-abap]: **ABAP.** Langage de programmation de la plateforme ABAP, conçu pour développer des applications métier et techniques SAP. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#abap>).
+[^terme-aide-f4]: **AIDE F4.** Aide à la saisie proposant des valeurs autorisées ou recherchables. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/02 ├── SAP GUI NAVIGATION ET TRANSACTIONS.md#aide-f4>).
+[^terme-aide-f1]: **AIDE F1.** Aide contextuelle expliquant un champ, une fonction ou un mot-clé. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/02 ├── SAP GUI NAVIGATION ET TRANSACTIONS.md#aide-f1>).
+[^terme-element-donnees]: **ÉLÉMENT DE DONNÉES.** Objet DDIC qui attribue une signification métier, des libellés et une documentation à un type élémentaire ou à un domaine. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/05 ├── DONNEES DICTIONNAIRE ET BASE DE DONNEES.md#element-donnees>).
+[^terme-routine-conversion]: **ROUTINE DE CONVERSION.** Mécanisme DDIC convertissant une valeur entre représentation interne et affichage externe. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/05 ├── DONNEES DICTIONNAIRE ET BASE DE DONNEES.md#routine-conversion>).
+[^terme-acro-ddic]: **DDIC.** Data Dictionary, abréviation courante de l’ABAP Dictionary. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/10 └── ACRONYMES SAP.md#acro-ddic>).
+[^terme-api]: **API.** Application Programming Interface, contrat exposant des opérations ou données utilisables par d’autres composants. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/10 └── ACRONYMES SAP.md#api>).
+[^terme-sap-gui]: **SAP GUI.** Client graphique permettant d’utiliser les transactions et écrans d’un système SAP. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/02 ├── SAP GUI NAVIGATION ET TRANSACTIONS.md#sap-gui>).
+[^terme-frontend]: **FRONTEND.** Poste ou couche cliente utilisée par l’utilisateur, par exemple SAP GUI for Windows. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/01 ├── SYSTEMES ENVIRONNEMENTS ET MANDANTS.md#frontend>).

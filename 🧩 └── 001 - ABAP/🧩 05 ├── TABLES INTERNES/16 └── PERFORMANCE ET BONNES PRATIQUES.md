@@ -2,7 +2,7 @@
 
 ## 16.A RÉSULTAT ATTENDU
 
-- Choisir une table interne selon les accès réels
+- Choisir une table interne[^terme-table-interne] selon les accès réels
 - Réduire les copies et recherches inutiles
 - Identifier les erreurs de performance courantes
 - Concevoir des clés adaptées
@@ -37,7 +37,7 @@ flowchart TD
 | Ajout séquentiel puis parcours complet                  | Table standard à clé vide                      |
 | Accès répété par clé complète unique                    | Table hachée                                   |
 | Accès par clé partielle ou parcours dans l’ordre de clé | Table triée                                    |
-| Plusieurs chemins d’accès répétés                       | Clé primaire adaptée et clé secondaire mesurée |
+| Plusieurs chemins d’accès répétés                       | Clé primaire[^terme-cle-primaire] adaptée et clé secondaire mesurée |
 
 ## 16.D ÉVITER LES RECHERCHES LINÉAIRES RÉPÉTÉES
 
@@ -126,10 +126,10 @@ Pour une petite table parcourue une fois, une table standard peut être suffisan
 
 ## 16.I MESURER
 
-Utiliser les outils disponibles dans SAP GUI pour confirmer un problème :
+Utiliser les outils disponibles dans SAP GUI[^terme-sap-gui] pour confirmer un problème :
 
-- analyse du temps d’exécution avec la transaction `SAT` ;
-- analyse ABAP classique avec `SE30` sur les systèmes qui l’utilisent encore ;
+- analyse du temps d’exécution avec la transaction `SAT`[^outil-sat] ;
+- analyse ABAP[^terme-abap] classique avec `SE30`[^outil-se30] sur les systèmes qui l’utilisent encore ;
 - débogueur pour vérifier les volumes et les accès ;
 - ABAP Test Cockpit ou Code Inspector pour les contrôles statiques selon le système.
 
@@ -161,7 +161,7 @@ Utiliser les outils disponibles dans SAP GUI pour confirmer un problème :
 ## 16.M SNIPPET À RÉUTILISER
 
 > [!NOTE]
-> Adapter les noms `Z*`, les types DDIC, les données et les autorisations au système cible. Effectuer un contrôle syntaxique avant activation.
+> Adapter les noms `Z*`, les types DDIC[^terme-acro-ddic], les données et les autorisations au système cible. Effectuer un contrôle syntaxique avant activation.
 
 ```abap
 IF line_exists( lt_products[ matnr = p_matnr ] ).
@@ -182,3 +182,12 @@ ENDIF.
 - [Improving Internal Table Performance Using Secondary Keys — SAP Learning](https://learning.sap.com/courses/deepening-your-abap-programming-knowledge/improving-internal-table-performance-using-secondary-keys_b426a7ff-a881-4270-95d9-9933e03a37f1)
 - [Technical Properties of Internal Tables — SAP Help Portal](https://help.sap.com/docs/abap-cloud/abap-concepts/internal-table-setup)
 - [Internal Tables, Performance Notes — ABAP Keyword Documentation](https://help.sap.com/doc/abapdocu_latest_index_htm/latest/en-US/ABENITAB_PERFO.html)
+
+[^terme-table-interne]: **TABLE INTERNE.** Collection dynamique de lignes stockée en mémoire dans le programme ABAP. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#table-interne>).
+[^terme-cle-primaire]: **CLÉ PRIMAIRE.** Ensemble minimal de champs identifiant de manière unique une ligne de table. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/05 ├── DONNEES DICTIONNAIRE ET BASE DE DONNEES.md#cle-primaire>).
+[^terme-sap-gui]: **SAP GUI.** Client graphique permettant d’utiliser les transactions et écrans d’un système SAP. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/02 ├── SAP GUI NAVIGATION ET TRANSACTIONS.md#sap-gui>).
+[^terme-abap]: **ABAP.** Langage de programmation de la plateforme ABAP, conçu pour développer des applications métier et techniques SAP. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#abap>).
+[^terme-acro-ddic]: **DDIC.** Data Dictionary, abréviation courante de l’ABAP Dictionary. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/10 └── ACRONYMES SAP.md#acro-ddic>).
+
+[^outil-sat]: **SAT.** Runtime Analysis utilisée pour mesurer et analyser le temps d’exécution ABAP. Voir [le chapitre associé](<../🧩 20 ├── PERFORMANCE QUALITE ET TESTS/07 ├── MESURER LE TEMPS D EXECUTION AVEC SAT.md>).
+[^outil-se30]: **SE30.** Ancien outil d’analyse du temps d’exécution, généralement remplacé par SAT sur les systèmes récents. Voir [le chapitre associé](<../🧩 20 ├── PERFORMANCE QUALITE ET TESTS/07 ├── MESURER LE TEMPS D EXECUTION AVEC SAT.md>).

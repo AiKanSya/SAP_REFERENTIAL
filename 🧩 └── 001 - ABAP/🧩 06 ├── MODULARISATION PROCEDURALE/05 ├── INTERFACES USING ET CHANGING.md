@@ -133,14 +133,14 @@ Une convention fréquente distingue l’intention des paramètres :
 | `cs_`   | structure modifiable |
 | `ct_`   | table modifiable     |
 
-Ces préfixes ne font pas partie du langage ABAP. Ils doivent rester cohérents avec les règles du projet.
+Ces préfixes ne font pas partie du langage ABAP[^terme-abap]. Ils doivent rester cohérents avec les règles du projet.
 
 ## 5.I POINTS À RETENIR
 
 - `USING` documente les entrées.
 - `CHANGING` documente les données modifiées par la procédure.
 - Les paramètres sont associés selon leur position.
-- Une table interne doit être typée explicitement avec `USING` ou `CHANGING`.
+- Une table interne[^terme-table-interne] doit être typée explicitement avec `USING` ou `CHANGING`.
 - L’addition `TABLES` est obsolète et doit être évitée dans le nouveau code.
 
 ## 5.J VÉRIFICATION
@@ -160,7 +160,7 @@ Ces préfixes ne font pas partie du langage ABAP. Ils doivent rester cohérents 
 ## 5.L SNIPPET À RÉUTILISER
 
 > [!NOTE]
-> Adapter les noms `Z*`, les types DDIC, les données et les autorisations au système cible. Effectuer un contrôle syntaxique avant activation.
+> Adapter les noms `Z*`, les types DDIC[^terme-acro-ddic], les données et les autorisations au système cible. Effectuer un contrôle syntaxique avant activation.
 
 ```abap
 FORM calculate_amounts
@@ -193,3 +193,7 @@ ENDFORM.
 ---
 
 [Chapitre suivant — TYPAGE ET PASSAGE DES PARAMÈTRES](<./06 ├── TYPAGE ET PASSAGE DES PARAMETRES.md>)
+
+[^terme-abap]: **ABAP.** Langage de programmation de la plateforme ABAP, conçu pour développer des applications métier et techniques SAP. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#abap>).
+[^terme-table-interne]: **TABLE INTERNE.** Collection dynamique de lignes stockée en mémoire dans le programme ABAP. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#table-interne>).
+[^terme-acro-ddic]: **DDIC.** Data Dictionary, abréviation courante de l’ABAP Dictionary. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/10 └── ACRONYMES SAP.md#acro-ddic>).

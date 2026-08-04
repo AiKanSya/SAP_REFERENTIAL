@@ -2,17 +2,17 @@
 
 ## 19.A RÉSULTAT ATTENDU
 
-- Afficher les options implicites dans l’éditeur SAP GUI
+- Afficher les options implicites dans l’éditeur SAP GUI[^terme-sap-gui]
 - Choisir un emplacement stable
 - Limiter le couplage au code standard
 
 ## 19.B PRINCIPE
 
-Le runtime fournit automatiquement des options implicites à certains emplacements, sans instruction `ENHANCEMENT-POINT` écrite dans le code. Elles peuvent être affichées dans l’éditeur ABAP via les opérations d’enhancement.
+Le runtime fournit automatiquement des options implicites à certains emplacements, sans instruction `ENHANCEMENT-POINT` écrite dans le code. Elles peuvent être affichées dans l’éditeur ABAP[^terme-abap] via les opérations d’enhancement.
 
 Emplacements courants :
 
-- début et fin de `FORM`, module fonction ou méthode ;
+- début et fin de `FORM`, module fonction[^terme-module-fonction] ou méthode[^terme-methode] ;
 - fin d’un programme ou include ;
 - fin de certaines sections de classes ou interfaces ;
 - listes de paramètres extensibles selon le type d’objet.
@@ -26,16 +26,16 @@ flowchart TD
     C --> D["Contrôle manuel nécessaire"]
 ```
 
-Une option implicite est moins explicite qu’un BAdI ou un point publié. Son emplacement peut devenir inadapté après une évolution du standard, même si l’objet d’implémentation reste actif.
+Une option implicite est moins explicite qu’un BAdI[^terme-acro-badi] ou un point publié. Son emplacement peut devenir inadapté après une évolution du standard, même si l’objet d’implémentation reste actif.
 
 ## 19.D RÈGLES
 
 - utiliser l’option la plus locale possible ;
 - ne pas copier un bloc standard complet ;
-- déléguer immédiatement à une classe client ;
+- déléguer immédiatement à une classe[^terme-classe] client ;
 - éviter la dépendance à des variables locales instables ;
 - documenter la justification de l’absence d’autre extension ;
-- prévoir un contrôle dans `SPAU_ENH` après upgrade ;
+- prévoir un contrôle dans `SPAU_ENH`[^outil-spau-enh] après upgrade ;
 - limiter les traitements coûteux en début ou fin de méthode appelée fréquemment.
 
 ## 19.E PROCESS
@@ -67,7 +67,7 @@ Tester le scénario cible et les chemins voisins de la source standard. Conserve
 ## 19.F VÉRIFICATION
 
 - L’implémentation ou le projet est actif et transporté dans le bon ordre.
-- Un breakpoint confirme que le point d’extension est appelé dans le scénario visé.
+- Un breakpoint[^terme-breakpoint] confirme que le point d’extension est appelé dans le scénario visé.
 - Le comportement standard reste inchangé hors du périmètre fonctionnel prévu.
 - Aucune modification directe d’un objet SAP standard n’a été créée.
 
@@ -106,3 +106,13 @@ Ordre de transport  :
 ---
 
 [Chapitre suivant — ENHANCEMENTS DE CLASSES : PRE, POST ET OVERWRITE](<./20 ├── ENHANCEMENTS DE CLASSES PRE POST ET OVERWRITE.md>)
+
+[^terme-sap-gui]: **SAP GUI.** Client graphique permettant d’utiliser les transactions et écrans d’un système SAP. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/02 ├── SAP GUI NAVIGATION ET TRANSACTIONS.md#sap-gui>).
+[^terme-abap]: **ABAP.** Langage de programmation de la plateforme ABAP, conçu pour développer des applications métier et techniques SAP. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#abap>).
+[^terme-module-fonction]: **MODULE FONCTION.** Procédure globale appelée avec `CALL FUNCTION` et définie dans un groupe de fonctions. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/06 ├── PROGRAMMES CLASSES ET OBJETS TECHNIQUES.md#module-fonction>).
+[^terme-methode]: **MÉTHODE.** Comportement déclaré dans une classe ou une interface et appelé avec une liste de paramètres définie. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#methode>).
+[^terme-acro-badi]: **BADI.** Business Add-In, mécanisme d’extension orienté objet du standard SAP. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/10 └── ACRONYMES SAP.md#acro-badi>).
+[^terme-classe]: **CLASSE.** Modèle orienté objet définissant état et comportements. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#classe>).
+[^terme-breakpoint]: **BREAKPOINT.** Point d’arrêt suspendant l’exécution dans le débogueur. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/08 ├── EXECUTION EXPLOITATION ET ADMINISTRATION.md#breakpoint>).
+
+[^outil-spau-enh]: **SPAU_ENH.** Outil d’ajustement des enhancements après une mise à niveau du système. Voir [le chapitre associé](<23 └── TRANSPORT DEBUG UPGRADE ET BONNES PRATIQUES.md>).

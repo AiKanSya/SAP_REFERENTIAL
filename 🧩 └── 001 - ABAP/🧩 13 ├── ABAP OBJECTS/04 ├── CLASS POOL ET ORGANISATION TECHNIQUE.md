@@ -2,9 +2,9 @@
 
 ## 4.A RÉSULTAT ATTENDU
 
-- Comprendre où le système stocke une classe globale.
-- Identifier les includes gérés par le Class Builder.
-- Savoir où placer les classes locales et les déclarations privées au Class Pool.
+- Comprendre où le système stocke une classe globale[^terme-classe-globale].
+- Identifier les includes gérés par le Class Builder[^terme-class-builder-se24].
+- Savoir où placer les classes locales et les déclarations privées au Class Pool[^terme-class-pool].
 - Éviter les modifications techniques qui rendent l’objet incohérent.
 
 ## 4.B FONCTIONNEMENT
@@ -29,7 +29,7 @@ Le Class Builder fournit généralement des emplacements pour :
 - définitions locales visibles de la classe globale ;
 - implémentations locales ;
 - macros historiques ;
-- classes de test ABAP Unit.
+- classes de test ABAP[^terme-abap] Unit.
 
 Les classes locales sont utiles pour des collaborateurs strictement internes ou des doubles de test. Elles ne remplacent pas les classes globales devant être appelées depuis d’autres objets.
 
@@ -37,7 +37,7 @@ Les classes locales sont utiles pour des collaborateurs strictement internes ou 
 
 ### 4.D.1 Étape 1 — Ouvrir le class pool
 
-Afficher la classe dans `SE24` ou `SE80`, puis naviguer vers son programme de classe et ses includes. Relever le nom technique généré et le package.
+Afficher la classe dans `SE24` ou `SE80`[^outil-se80], puis naviguer vers son programme de classe et ses includes. Relever le nom technique généré et le package[^terme-package].
 
 ### 4.D.2 Étape 2 — Identifier les parties générées
 
@@ -45,7 +45,7 @@ Distinguer définition publique/protected/private, implémentations de méthodes
 
 ### 4.D.3 Étape 3 — Localiser le bon point de maintenance
 
-Pour une signature, revenir aux onglets du Class Builder. Pour le corps d’une méthode, ouvrir son implémentation. Pour une classe locale prévue, utiliser l’include local dédié.
+Pour une signature, revenir aux onglets du Class Builder. Pour le corps d’une méthode[^terme-methode], ouvrir son implémentation. Pour une classe locale[^terme-classe-locale] prévue, utiliser l’include local dédié.
 
 ### 4.D.4 Étape 4 — Contrôler la cohérence globale
 
@@ -89,13 +89,13 @@ ENDCLASS.
 
 - Développer toute la logique dans les includes au lieu des méthodes de la classe globale.
 - Déclarer globalement une classe qui ne sert qu’à une seule implémentation privée.
-- Dépendre d’une classe locale depuis un autre objet Repository.
+- Dépendre d’une classe locale depuis un autre objet Repository[^terme-objet-repository].
 
 ## 4.I COMPATIBILITÉ S/4HANA
 
-- Statut : compatible avec le développement ABAP classique sur SAP S/4HANA.
-- Vérifier la syntaxe exacte avec l’aide `F1` du système cible lorsque plusieurs versions d’ABAP Platform sont prises en charge.
-- Les objets globaux doivent être créés dans le package et l’ordre de transport du projet.
+- Statut : compatible avec le développement ABAP classique sur SAP[^terme-acro-sap] S/4HANA.
+- Vérifier la syntaxe exacte avec l’aide `F1`[^terme-aide-f1] du système cible lorsque plusieurs versions d’ABAP Platform sont prises en charge.
+- Les objets globaux doivent être créés dans le package et l’ordre de transport[^terme-ordre-transport] du projet.
 
 ## 4.J RÉFÉRENCES OFFICIELLES SAP
 
@@ -105,3 +105,17 @@ ENDCLASS.
 ---
 
 [Chapitre suivant — VISIBILITÉ, TYPES, CONSTANTES ET ATTRIBUTS](<./05 ├── VISIBILITE TYPES CONSTANTES ET ATTRIBUTS.md>)
+
+[^terme-classe-globale]: **CLASSE GLOBALE.** Classe Repository réutilisable dans le système ABAP. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/06 ├── PROGRAMMES CLASSES ET OBJETS TECHNIQUES.md#classe-globale>).
+[^terme-class-builder-se24]: **CLASS BUILDER (SE24).** Outil SAP GUI utilisé pour créer, afficher, modifier, tester et documenter les classes et interfaces globales ABAP. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/06 ├── PROGRAMMES CLASSES ET OBJETS TECHNIQUES.md#class-builder-se24>).
+[^terme-class-pool]: **CLASS POOL.** Programme technique généré qui contient la définition et l’implémentation d’une classe globale ABAP. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/06 ├── PROGRAMMES CLASSES ET OBJETS TECHNIQUES.md#class-pool>).
+[^terme-abap]: **ABAP.** Langage de programmation de la plateforme ABAP, conçu pour développer des applications métier et techniques SAP. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#abap>).
+[^terme-package]: **PACKAGE.** Conteneur logique qui regroupe les objets de développement et détermine notamment leur transportabilité. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/03 ├── REPOSITORY PACKAGES ET TRANSPORTS.md#package>).
+[^terme-methode]: **MÉTHODE.** Comportement déclaré dans une classe ou une interface et appelé avec une liste de paramètres définie. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#methode>).
+[^terme-classe-locale]: **CLASSE LOCALE.** Classe définie dans le code source d’un programme, d’un include ou d’un Class Pool et visible uniquement dans ce contexte de compilation. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/06 ├── PROGRAMMES CLASSES ET OBJETS TECHNIQUES.md#classe-locale>).
+[^terme-objet-repository]: **OBJET REPOSITORY.** Unité de développement gérée par le Repository et le système de transport. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/03 ├── REPOSITORY PACKAGES ET TRANSPORTS.md#objet-repository>).
+[^terme-acro-sap]: **SAP.** Nom de l’éditeur et de son écosystème logiciel ; l’acronyme historique provient de l’allemand. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/10 └── ACRONYMES SAP.md#acro-sap>).
+[^terme-aide-f1]: **AIDE F1.** Aide contextuelle expliquant un champ, une fonction ou un mot-clé. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/02 ├── SAP GUI NAVIGATION ET TRANSACTIONS.md#aide-f1>).
+[^terme-ordre-transport]: **ORDRE DE TRANSPORT.** Conteneur qui regroupe des modifications à exporter puis importer dans d’autres systèmes. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/03 ├── REPOSITORY PACKAGES ET TRANSPORTS.md#ordre-transport>).
+
+[^outil-se80]: **SE80.** Object Navigator utilisé pour parcourir et maintenir les objets du Repository ABAP. Voir [le chapitre associé](<../🧩 01 ├── FONDAMENTAUX ABAP/04 ├── EDITEURS ABAP SE38 ET SE80.md>).

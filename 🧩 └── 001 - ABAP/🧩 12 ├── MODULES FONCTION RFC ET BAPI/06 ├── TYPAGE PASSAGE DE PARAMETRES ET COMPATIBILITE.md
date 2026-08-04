@@ -4,17 +4,17 @@
 
 - Typage correctement les paramètres
 - Comprendre passage par référence et passage par valeur
-- Identifier les contraintes supplémentaires du RFC
+- Identifier les contraintes supplémentaires du RFC[^terme-rfc]
 - Éviter les incompatibilités silencieuses
 
 ## 6.B TYPAGE
 
-Associer chaque paramètre à un type ABAP ou DDIC cohérent avec sa sémantique.
+Associer chaque paramètre à un type ABAP[^terme-abap] ou DDIC[^terme-acro-ddic] cohérent avec sa sémantique.
 
 Préférer :
 
-- un élément de données métier pour une valeur métier ;
-- une structure DDIC stable pour une interface partagée ;
+- un élément de données[^terme-element-donnees] métier pour une valeur métier ;
+- une structure DDIC[^terme-structure-abap] stable pour une interface partagée ;
 - un type de table nommé pour une collection ;
 - une longueur et des décimales adaptées.
 
@@ -22,7 +22,7 @@ Préférer :
 
 ## 6.C PASSAGE PAR RÉFÉRENCE
 
-Par défaut, certains paramètres d’un module normal peuvent être transmis par référence. Le module travaille alors sur la même zone mémoire logique que le paramètre réel, sous réserve des conversions techniques réalisées par l’environnement ABAP.
+Par défaut, certains paramètres d’un module normal peuvent être transmis par référence. Le module travaille alors sur la même zone mémoire logique que le paramètre réel, sous réserve des conversions techniques réalisées par l’environnement[^terme-environnement] ABAP.
 
 ## 6.D PASSAGE PAR VALEUR
 
@@ -56,7 +56,7 @@ Une modification de type peut casser les appelants même si le nom du paramètre
 2. identifier les consommateurs externes ;
 3. vérifier les conversions ;
 4. préserver les paramètres obligatoires existants ;
-5. versionner l’API lorsque la compatibilité ne peut pas être conservée.
+5. versionner l’API[^terme-api] lorsque la compatibilité ne peut pas être conservée.
 
 ## 6.H PROCESS
 
@@ -66,7 +66,7 @@ Déterminer si le module reste local, traverse RFC ou constitue une API stable. 
 
 ### 6.H.2 Étape 2 — Vérifier chaque type
 
-Dans `SE37`, ouvrir le type référencé de chaque paramètre. Contrôler longueur, décimales, structures imbriquées et types non compatibles RFC lorsque l’appel peut être distant.
+Dans `SE37`[^outil-se37], ouvrir le type référencé de chaque paramètre. Contrôler longueur, décimales, structures imbriquées et types non compatibles RFC lorsque l’appel peut être distant.
 
 ### 6.H.3 Étape 3 — Vérifier la sémantique du passage
 
@@ -88,8 +88,8 @@ Avant toute évolution, analyser les appelants. Ajouter un paramètre facultatif
 
 ## 6.J ERREURS FRÉQUENTES
 
-- Appeler un module fonction sans lire sa documentation et ses exceptions.
-- Supposer qu’une BAPI effectue automatiquement le commit.
+- Appeler un module fonction[^terme-module-fonction] sans lire sa documentation et ses exceptions.
+- Supposer qu’une BAPI[^terme-bapi] effectue automatiquement le commit.
 
 ## 6.K TERMES DU LEXIQUE
 
@@ -108,3 +108,15 @@ Avant toute évolution, analyser les appelants. Ajouter un paramètre facultatif
 ---
 
 [Chapitre suivant — IMPLÉMENTATION, DONNÉES GLOBALES ET INCLUDES](<./07 ├── IMPLEMENTATION DONNEES GLOBALES ET INCLUDES.md>)
+
+[^terme-rfc]: **RFC.** Remote Function Call, mécanisme permettant d’appeler un module fonction compatible dans un autre contexte ou système. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/06 ├── PROGRAMMES CLASSES ET OBJETS TECHNIQUES.md#rfc>).
+[^terme-abap]: **ABAP.** Langage de programmation de la plateforme ABAP, conçu pour développer des applications métier et techniques SAP. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#abap>).
+[^terme-acro-ddic]: **DDIC.** Data Dictionary, abréviation courante de l’ABAP Dictionary. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/10 └── ACRONYMES SAP.md#acro-ddic>).
+[^terme-element-donnees]: **ÉLÉMENT DE DONNÉES.** Objet DDIC qui attribue une signification métier, des libellés et une documentation à un type élémentaire ou à un domaine. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/05 ├── DONNEES DICTIONNAIRE ET BASE DE DONNEES.md#element-donnees>).
+[^terme-structure-abap]: **STRUCTURE.** Objet ou type composé de plusieurs composants nommés. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#structure-abap>).
+[^terme-environnement]: **ENVIRONNEMENT.** Rôle fonctionnel attribué à un système dans le cycle de vie : développement, test, recette, préproduction ou production. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/01 ├── SYSTEMES ENVIRONNEMENTS ET MANDANTS.md#environnement>).
+[^terme-api]: **API.** Application Programming Interface, contrat exposant des opérations ou données utilisables par d’autres composants. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/10 └── ACRONYMES SAP.md#api>).
+[^terme-module-fonction]: **MODULE FONCTION.** Procédure globale appelée avec `CALL FUNCTION` et définie dans un groupe de fonctions. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/06 ├── PROGRAMMES CLASSES ET OBJETS TECHNIQUES.md#module-fonction>).
+[^terme-bapi]: **BAPI.** Interface métier publiée autour d’un Business Object SAP, généralement implémentée par un module fonction RFC. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/06 ├── PROGRAMMES CLASSES ET OBJETS TECHNIQUES.md#bapi>).
+
+[^outil-se37]: **SE37.** Function Builder utilisé pour rechercher, afficher, tester et maintenir les modules fonction. Voir [le chapitre associé](<03 ├── RECHERCHER ET ANALYSER AVEC SE37.md>).

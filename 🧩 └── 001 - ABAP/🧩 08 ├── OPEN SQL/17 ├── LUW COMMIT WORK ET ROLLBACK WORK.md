@@ -2,9 +2,9 @@
 
 ## 17.A RÉSULTAT ATTENDU
 
-- Comprendre la différence entre SAP LUW et database LUW
+- Comprendre la différence entre SAP LUW[^terme-sap-luw] et database LUW
 - Savoir quand une modification devient persistante
-- Utiliser `COMMIT WORK` et `ROLLBACK WORK` avec prudence
+- Utiliser `COMMIT WORK`[^terme-commit-work] et `ROLLBACK WORK`[^terme-rollback-work] avec prudence
 - Éviter les validations techniques placées au mauvais niveau
 - Préparer le futur dossier transactionnel
 
@@ -24,7 +24,7 @@ flowchart LR
 
 ## 17.C COMMIT WORK
 
-`COMMIT WORK` termine la SAP LUW courante et déclenche notamment les traitements enregistrés en update task.
+`COMMIT WORK` termine la SAP LUW courante et déclenche notamment les traitements enregistrés en update task[^terme-update-task].
 
 ```abap
 " Modifier uniquement les données de la table cible maîtrisée.
@@ -38,7 +38,7 @@ ENDIF.
 `AND WAIT` attend la fin des mises à jour synchrones concernées et fournit un retour exploitable selon le contexte.
 
 > [!WARNING]
-> Ne pas placer un `COMMIT WORK` dans une méthode technique réutilisable, un exit, une BAdI ou une fonction appelée au milieu d’un processus sans contrat explicite. Le niveau appelant doit généralement contrôler la transaction.
+> Ne pas placer un `COMMIT WORK` dans une méthode[^terme-methode] technique réutilisable, un exit, une BAdI[^terme-acro-badi] ou une fonction appelée au milieu d’un processus sans contrat explicite. Le niveau appelant doit généralement contrôler la transaction.
 
 ## 17.D ROLLBACK WORK
 
@@ -53,13 +53,13 @@ ENDIF.
 
 ## 17.E VALIDATION IMPLICITE
 
-Plusieurs événements du runtime SAP peuvent provoquer une fin de LUW ou un commit implicite selon le contexte. Il est donc incorrect de considérer qu’une transaction ABAP correspond toujours à une seule transaction de base de données du début à la fin de l’écran.
+Plusieurs événements du runtime SAP peuvent provoquer une fin de LUW ou un commit implicite selon le contexte. Il est donc incorrect de considérer qu’une transaction ABAP[^terme-abap] correspond toujours à une seule transaction de base de données du début à la fin de l’écran.
 
 ## 17.F BAPI ET COMMIT
 
-De nombreuses BAPI de modification ne réalisent pas elles-mêmes le commit. L’appelant utilise généralement les mécanismes BAPI prévus pour valider ou annuler après analyse des messages retournés.
+De nombreuses BAPI[^terme-bapi] de modification ne réalisent pas elles-mêmes le commit. L’appelant utilise généralement les mécanismes BAPI prévus pour valider ou annuler après analyse des messages retournés.
 
-Le sujet sera détaillé dans le dossier consacré aux modules fonction, RFC et BAPI.
+Le sujet sera détaillé dans le dossier consacré aux modules fonction, RFC[^terme-rfc] et BAPI.
 
 ## 17.G VÉRIFICATION
 
@@ -78,7 +78,7 @@ Le sujet sera détaillé dans le dossier consacré aux modules fonction, RFC et 
 ## 17.I SNIPPET À RÉUTILISER
 
 > [!NOTE]
-> Adapter les noms `Z*`, les types DDIC, les données et les autorisations au système cible. Effectuer un contrôle syntaxique avant activation.
+> Adapter les noms `Z*`, les types DDIC[^terme-acro-ddic], les données et les autorisations au système cible. Effectuer un contrôle syntaxique avant activation.
 
 ```abap
 " Modifier uniquement les données de la table cible maîtrisée.
@@ -108,3 +108,14 @@ ENDIF.
 ---
 
 [Chapitre suivant — PERFORMANCE, ANALYSE ET BONNES PRATIQUES](<./18 ├── PERFORMANCE ANALYSE ET BONNES PRATIQUES.md>)
+
+[^terme-sap-luw]: **SAP LUW.** Unité logique métier SAP pouvant regrouper plusieurs étapes de dialogue et différer les mises à jour jusqu’au commit. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/08 ├── EXECUTION EXPLOITATION ET ADMINISTRATION.md#sap-luw>).
+[^terme-commit-work]: **COMMIT WORK.** Instruction clôturant la SAP LUW courante, déclenchant notamment les mises à jour enregistrées et validant la base. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/08 ├── EXECUTION EXPLOITATION ET ADMINISTRATION.md#commit-work>).
+[^terme-rollback-work]: **ROLLBACK WORK.** Instruction annulant les modifications non validées de la LUW courante et les tâches de mise à jour enregistrées. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/08 ├── EXECUTION EXPLOITATION ET ADMINISTRATION.md#rollback-work>).
+[^terme-update-task]: **UPDATE TASK.** Mécanisme différant des mises à jour pour les exécuter lors du `COMMIT WORK` dans des processus de mise à jour. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/08 ├── EXECUTION EXPLOITATION ET ADMINISTRATION.md#update-task>).
+[^terme-methode]: **MÉTHODE.** Comportement déclaré dans une classe ou une interface et appelé avec une liste de paramètres définie. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#methode>).
+[^terme-acro-badi]: **BADI.** Business Add-In, mécanisme d’extension orienté objet du standard SAP. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/10 └── ACRONYMES SAP.md#acro-badi>).
+[^terme-abap]: **ABAP.** Langage de programmation de la plateforme ABAP, conçu pour développer des applications métier et techniques SAP. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#abap>).
+[^terme-bapi]: **BAPI.** Interface métier publiée autour d’un Business Object SAP, généralement implémentée par un module fonction RFC. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/06 ├── PROGRAMMES CLASSES ET OBJETS TECHNIQUES.md#bapi>).
+[^terme-rfc]: **RFC.** Remote Function Call, mécanisme permettant d’appeler un module fonction compatible dans un autre contexte ou système. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/06 ├── PROGRAMMES CLASSES ET OBJETS TECHNIQUES.md#rfc>).
+[^terme-acro-ddic]: **DDIC.** Data Dictionary, abréviation courante de l’ABAP Dictionary. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/10 └── ACRONYMES SAP.md#acro-ddic>).

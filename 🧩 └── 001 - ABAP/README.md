@@ -102,6 +102,28 @@ Règles :
 - Les marqueurs d’arborescence sont placés après le numéro : `🧩 08 ├── OPEN SQL` et `🧩 34 └── ADBC ET SQL NATIF`.
 - Les titres décrivent une action ou un résultat concret.
 
+## CONVENTION DES NOTES DE BAS DE PAGE
+
+Les termes SAP et ABAP spécifiques sont expliqués à leur première occurrence utile dans chaque chapitre avec la syntaxe de note de bas de page prise en charge par GitHub.
+
+```markdown
+Le programme s’exécute dans le backend ABAP[^terme-backend].
+
+[^terme-backend]: **BACKEND.** Système serveur qui exécute la logique ABAP et accède aux données. Voir l’entrée correspondante du lexique.
+```
+
+Règles :
+
+- Une notion ne reçoit qu’une note par chapitre.
+- La définition reste courte et compréhensible sans connaissance préalable du terme.
+- La note pointe vers l’entrée stable du lexique lorsqu’elle existe.
+- Un code de transaction, un moniteur ou un outil SAP pointe vers le chapitre qui détaille son usage.
+- Une source SAP officielle est utilisée directement pour une notion absente du lexique.
+- Les titres, les blocs de code et les liens existants ne reçoivent pas de marqueur de note.
+- Un identifiant propre à l’exemple, comme `ZCL_...` ou `LV_...`, est expliqué par un commentaire ou par le texte du chapitre, pas par une note de vocabulaire.
+- Un terme ambigu n’est annoté que dans un contexte technique explicite.
+- Les pages du lexique ne reçoivent pas de notes circulaires : leurs sections constituent les définitions de référence.
+
 ## MODÈLE D’UN TUTORIEL PRATIQUE
 
 ```markdown

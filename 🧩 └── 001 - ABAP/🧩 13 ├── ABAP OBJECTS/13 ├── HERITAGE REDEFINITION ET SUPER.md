@@ -2,14 +2,14 @@
 
 ## 13.A RÉSULTAT ATTENDU
 
-- Créer une sous-classe globale.
-- Redéfinir une méthode héritée.
-- Appeler l’implémentation de la superclasse avec `SUPER`.
-- Savoir quand préférer la composition.
+- Créer une sous-classe globale[^terme-classe-globale].
+- Redéfinir une méthode[^terme-methode] héritée.
+- Appeler l’implémentation de la superclasse avec `SUPER`[^terme-super-reference].
+- Savoir quand préférer la composition[^terme-composition].
 
 ## 13.B PRINCIPE
 
-ABAP Objects utilise l’héritage simple : une classe ne possède qu’une superclasse directe. Une sous-classe hérite des composants visibles et peut redéfinir certaines méthodes d’instance.
+ABAP Objects[^terme-abap-objects] utilise l’héritage[^terme-heritage] simple : une classe ne possède qu’une superclasse directe. Une sous-classe hérite des composants visibles et peut redéfinir certaines méthodes d’instance.
 
 ## 13.C CAS D’USAGE
 
@@ -27,7 +27,7 @@ Définir ses méthodes publiques/protected, leurs signatures et les points redé
 
 ### 13.D.3 Étape 3 — Créer la sous-classe
 
-Dans `SE24`, renseigner la superclasse dans les propriétés. Examiner les composants hérités puis sélectionner la méthode et choisir **Redéfinir**.
+Dans `SE24`[^terme-class-builder-se24], renseigner la superclasse dans les propriétés. Examiner les composants hérités puis sélectionner la méthode et choisir **Redéfinir**.
 
 ### 13.D.4 Étape 4 — Implémenter avec ou sans SUPER
 
@@ -35,7 +35,7 @@ Conserver préconditions et résultats compatibles. Utiliser `super->methode( )`
 
 ### 13.D.5 Étape 5 — Tester la substitution
 
-Affecter l’instance fille à une référence de superclasse et appeler la méthode. Le test est validé lorsque la redéfinition s’exécute sans connaissance de la sous-classe.
+Affecter l’instance fille à une référence de superclasse et appeler la méthode. Le test est validé lorsque la redéfinition[^terme-redefinition] s’exécute sans connaissance de la sous-classe.
 
 ## 13.E CODE À ADAPTER
 
@@ -85,7 +85,7 @@ L’héritage est adapté si la sous-classe est réellement substituable à la s
 
 ## 13.I COMPATIBILITÉ S/4HANA
 
-- Statut : compatible avec le développement ABAP classique sur SAP S/4HANA.
+- Statut : compatible avec le développement ABAP classique sur SAP[^terme-acro-sap] S/4HANA.
 - Utiliser l’héritage uniquement pour une relation de substitution stable entre la sous-classe et la superclasse.
 - Préférer une interface et la composition lorsque le besoin consiste à remplacer un comportement ou à réutiliser un service.
 
@@ -97,3 +97,13 @@ L’héritage est adapté si la sous-classe est réellement substituable à la s
 ---
 
 [Chapitre suivant — CLASSES ABSTRAITES, MÉTHODES ABSTRAITES ET FINAL](<./14 ├── CLASSES ABSTRAITES METHODES ABSTRAITES ET FINAL.md>)
+
+[^terme-classe-globale]: **CLASSE GLOBALE.** Classe Repository réutilisable dans le système ABAP. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/06 ├── PROGRAMMES CLASSES ET OBJETS TECHNIQUES.md#classe-globale>).
+[^terme-methode]: **MÉTHODE.** Comportement déclaré dans une classe ou une interface et appelé avec une liste de paramètres définie. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#methode>).
+[^terme-super-reference]: **SUPER.** Pseudo-référence permettant à une sous-classe d’accéder à l’implémentation héritée de sa super-classe. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#super-reference>).
+[^terme-composition]: **COMPOSITION.** Relation dans laquelle une classe réalise son comportement en contenant ou en utilisant d’autres objets spécialisés. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#composition>).
+[^terme-abap-objects]: **ABAP OBJECTS.** Extension orientée objet du langage ABAP fournissant classes, interfaces, héritage, événements et exceptions de classe. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#abap-objects>).
+[^terme-heritage]: **HÉRITAGE.** Relation permettant à une sous-classe de reprendre les composants accessibles d’une super-classe et de spécialiser son comportement. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#heritage>).
+[^terme-class-builder-se24]: **CLASS BUILDER (SE24).** Outil SAP GUI utilisé pour créer, afficher, modifier, tester et documenter les classes et interfaces globales ABAP. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/06 ├── PROGRAMMES CLASSES ET OBJETS TECHNIQUES.md#class-builder-se24>).
+[^terme-redefinition]: **REDÉFINITION.** Nouvelle implémentation, dans une sous-classe, d’une méthode héritée déclarée redéfinissable. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#redefinition>).
+[^terme-acro-sap]: **SAP.** Nom de l’éditeur et de son écosystème logiciel ; l’acronyme historique provient de l’allemand. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/10 └── ACRONYMES SAP.md#acro-sap>).

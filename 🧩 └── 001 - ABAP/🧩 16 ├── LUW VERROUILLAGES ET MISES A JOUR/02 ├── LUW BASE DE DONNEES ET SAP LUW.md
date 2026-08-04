@@ -2,13 +2,13 @@
 
 ## 2.A RÉSULTAT ATTENDU
 
-- Distinguer une LUW de base de données d’une SAP LUW
-- Comprendre pourquoi une transaction SAP peut couvrir plusieurs étapes de dialogue
+- Distinguer une LUW[^terme-acro-luw] de base de données d’une SAP LUW[^terme-sap-luw]
+- Comprendre pourquoi une transaction SAP[^terme-transaction] peut couvrir plusieurs étapes de dialogue
 - Identifier les responsabilités de chaque niveau
 
 ## 2.B LUW DE BASE DE DONNÉES
 
-Une **database LUW** est une séquence indivisible d’opérations sur la base, terminée par un commit ou un rollback de base de données. Elle est liée à une connexion et à un processus de travail.
+Une **database LUW** est une séquence indivisible d’opérations sur la base, terminée par un commit ou un rollback de base de données. Elle est liée à une connexion et à un processus de travail[^terme-processus-travail].
 
 ## 2.C SAP LUW
 
@@ -30,10 +30,10 @@ flowchart TD
 | Question                 | Database LUW                 | SAP LUW                          |
 | ------------------------ | ---------------------------- | -------------------------------- |
 | Portée                   | Connexion et étape technique | Opération métier                 |
-| Fin                      | Commit ou rollback DB        | `COMMIT WORK` ou `ROLLBACK WORK` |
+| Fin                      | Commit ou rollback DB        | `COMMIT WORK`[^terme-commit-work] ou `ROLLBACK WORK`[^terme-rollback-work] |
 | Plusieurs écrans         | Non                          | Oui                              |
 | Verrous SAP longue durée | Non                          | Oui                              |
-| Update task              | Non                          | Oui                              |
+| Update task[^terme-update-task]              | Non                          | Oui                              |
 
 Le mécanisme SAP est nécessaire parce qu’un verrou de base de données ne doit pas rester actif pendant qu’un utilisateur réfléchit sur un écran.
 
@@ -45,7 +45,7 @@ Décrire depuis la première lecture jusqu’au résultat visible par l’utilis
 
 ### 2.E.2 ÉTAPE 2 — MARQUER CHAQUE FIN DE LUW BASE
 
-Identifier les `COMMIT WORK`, `ROLLBACK WORK` et changements de contexte qui terminent une LUW de base de données. Examiner la documentation des API appelées pour détecter leur propre gestion transactionnelle. Ne pas supposer qu’une méthode conserve la même transaction uniquement parce qu’elle est appelée dans la même pile ABAP.
+Identifier les `COMMIT WORK`, `ROLLBACK WORK` et changements de contexte qui terminent une LUW de base de données. Examiner la documentation des API[^terme-api] appelées pour détecter leur propre gestion transactionnelle. Ne pas supposer qu’une méthode[^terme-methode] conserve la même transaction uniquement parce qu’elle est appelée dans la même pile ABAP[^terme-abap].
 
 ### 2.E.3 ÉTAPE 3 — PLACER L’UPDATE TASK
 
@@ -57,7 +57,7 @@ Désigner un seul orchestrateur pour valider ou annuler l’unité métier. Les 
 
 ### 2.E.5 ÉTAPE 5 — OBSERVER LES DEUX NIVEAUX
 
-Exécuter un scénario de test avec un identifiant unique. Avant le commit, vérifier que les mises à jour différées ne sont pas encore visibles comme résultat final. Après `COMMIT WORK AND WAIT`, contrôler les données et `SM13`; après `ROLLBACK WORK`, vérifier que les appels enregistrés n’ont pas été exécutés.
+Exécuter un scénario de test avec un identifiant unique. Avant le commit, vérifier que les mises à jour différées ne sont pas encore visibles comme résultat final. Après `COMMIT WORK AND WAIT`, contrôler les données et `SM13`[^outil-sm13]; après `ROLLBACK WORK`, vérifier que les appels enregistrés n’ont pas été exécutés.
 
 ### 2.E.6 ÉTAPE 6 — TESTER UNE INTERRUPTION ENTRE DEUX ÉTAPES
 
@@ -92,3 +92,16 @@ Provoquer une erreur contrôlée avant la décision finale. Vérifier que les LU
 ---
 
 [Chapitre suivant — BORNES DE TRANSACTION ET COMMITS IMPLICITES](<./03 ├── BORNES DE TRANSACTION ET COMMITS IMPLICITES.md>)
+
+[^terme-acro-luw]: **LUW.** Logical Unit of Work. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/10 └── ACRONYMES SAP.md#acro-luw>).
+[^terme-sap-luw]: **SAP LUW.** Unité logique métier SAP pouvant regrouper plusieurs étapes de dialogue et différer les mises à jour jusqu’au commit. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/08 ├── EXECUTION EXPLOITATION ET ADMINISTRATION.md#sap-luw>).
+[^terme-transaction]: **TRANSACTION.** Point d’entrée SAP associé à un code et à un objet de démarrage : programme, dynpro, méthode ou autre type pris en charge. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/02 ├── SAP GUI NAVIGATION ET TRANSACTIONS.md#transaction>).
+[^terme-processus-travail]: **PROCESSUS DE TRAVAIL.** Processus serveur exécutant une catégorie de traitement ABAP. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/08 ├── EXECUTION EXPLOITATION ET ADMINISTRATION.md#processus-travail>).
+[^terme-commit-work]: **COMMIT WORK.** Instruction clôturant la SAP LUW courante, déclenchant notamment les mises à jour enregistrées et validant la base. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/08 ├── EXECUTION EXPLOITATION ET ADMINISTRATION.md#commit-work>).
+[^terme-rollback-work]: **ROLLBACK WORK.** Instruction annulant les modifications non validées de la LUW courante et les tâches de mise à jour enregistrées. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/08 ├── EXECUTION EXPLOITATION ET ADMINISTRATION.md#rollback-work>).
+[^terme-update-task]: **UPDATE TASK.** Mécanisme différant des mises à jour pour les exécuter lors du `COMMIT WORK` dans des processus de mise à jour. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/08 ├── EXECUTION EXPLOITATION ET ADMINISTRATION.md#update-task>).
+[^terme-api]: **API.** Application Programming Interface, contrat exposant des opérations ou données utilisables par d’autres composants. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/10 └── ACRONYMES SAP.md#api>).
+[^terme-methode]: **MÉTHODE.** Comportement déclaré dans une classe ou une interface et appelé avec une liste de paramètres définie. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#methode>).
+[^terme-abap]: **ABAP.** Langage de programmation de la plateforme ABAP, conçu pour développer des applications métier et techniques SAP. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#abap>).
+
+[^outil-sm13]: **SM13.** Transaction de surveillance et de reprise des enregistrements de mise à jour SAP. Voir [le chapitre associé](<19 ├── ANALYSER ET REPRENDRE LES UPDATES AVEC SM13.md>).

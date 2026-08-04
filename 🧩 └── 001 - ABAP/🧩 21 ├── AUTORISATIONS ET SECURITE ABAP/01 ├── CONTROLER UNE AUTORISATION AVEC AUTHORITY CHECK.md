@@ -2,7 +2,7 @@
 
 ## 1.A RÉSULTAT ATTENDU
 
-Interrompre une action lorsque l’utilisateur ne possède pas l’activité requise pour l’objet d’autorisation contrôlé.
+Interrompre une action lorsque l’utilisateur ne possède pas l’activité requise pour l’objet d’autorisation[^terme-objet-autorisation] contrôlé.
 
 ## 1.B PRÉREQUIS
 
@@ -39,13 +39,13 @@ ENDIF.
 | `ZBUKRS`        | Champ défini dans cet objet    |
 | `P_BUKRS`       | Valeur fonctionnelle contrôlée |
 | `'03'`          | Activité requise               |
-| `ZDEV_SECURITY` | Classe de messages du projet   |
+| `ZDEV_SECURITY` | Classe[^terme-classe] de messages du projet   |
 
 ## 1.E PROCESS
 
 ### 1.E.1 Étape 1 — Définir précisément l’action protégée
 
-Identifier l’opération à autoriser : affichage, modification, suppression, validation ou exécution. Déterminer aussi les dimensions métier qui restreignent cette opération, par exemple la société, l’organisation commerciale ou le type de document.
+Identifier l’opération à autoriser : affichage, modification, suppression, validation ou exécution. Déterminer aussi les dimensions métier qui restreignent cette opération, par exemple la société, l’organisation commerciale[^terme-organisation-commerciale] ou le type de document.
 
 Le contrôle doit répondre à une décision explicite : « cet utilisateur peut-il exécuter cette activité sur cette valeur métier ? »
 
@@ -90,7 +90,7 @@ Exécuter au minimum les scénarios suivants avec des utilisateurs représentati
 3. valeur organisationnelle refusée ;
 4. autorisation partielle couvrant une autre valeur.
 
-Après chaque refus, utiliser immédiatement `SU53` ou une trace ciblée `STAUTHTRACE` pour confirmer l’objet, les champs et les valeurs réellement contrôlés.
+Après chaque refus, utiliser immédiatement `SU53`[^outil-su53] ou une trace[^terme-trace] ciblée `STAUTHTRACE`[^outil-stauthtrace] pour confirmer l’objet, les champs et les valeurs réellement contrôlés.
 
 ## 1.F CONTRÔLE
 
@@ -106,12 +106,12 @@ Après chaque refus, utiliser immédiatement `SU53` ou une trace ciblée `STAUTH
 | Le contrôle ne protège rien                         | `SY-SUBRC` n’est pas traité                       | Tester le résultat immédiatement                                  |
 | Un utilisateur trop large passe le test             | Valeur `DUMMY` ou `*` utilisée sans justification | Contrôler les champs fonctionnels nécessaires                     |
 | Refus inattendu                                     | Valeur ou activité incorrecte                     | Comparer le contrôle avec le rôle et la trace                     |
-| Autorisation codée en dur dans plusieurs programmes | Contrôles dupliqués                               | Centraliser la politique dans une API du projet lorsque pertinent |
+| Autorisation codée en dur dans plusieurs programmes | Contrôles dupliqués                               | Centraliser la politique dans une API[^terme-api] du projet lorsque pertinent |
 | Données sensibles lues avant le contrôle            | Contrôle placé trop tard                          | Contrôler avant la lecture ou l’action protégée                   |
 
 ## 1.H COMPATIBILITÉ S/4HANA
 
-- Statut : mécanisme standard du développement ABAP classique.
+- Statut : mécanisme standard du développement ABAP[^terme-abap] classique.
 - Le contrôle technique doit correspondre au concept d’autorisation fonctionnel de l’application.
 - Ne pas remplacer un contrôle fin par la seule autorisation de lancer une transaction.
 
@@ -123,3 +123,13 @@ Après chaque refus, utiliser immédiatement `SU53` ou une trace ciblée `STAUTH
 ---
 
 [Chapitre suivant — DIAGNOSTIQUER UN REFUS AVEC SU53 ET STAUTHTRACE](<./02 ├── DIAGNOSTIQUER UN REFUS AVEC SU53 ET STAUTHTRACE.md>)
+
+[^terme-objet-autorisation]: **OBJET D’AUTORISATION.** Structure de contrôle contenant des champs vérifiés lors d’une action. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/09 ├── NOTIONS FONCTIONNELLES ET ORGANISATIONNELLES.md#objet-autorisation>).
+[^terme-classe]: **CLASSE.** Modèle orienté objet définissant état et comportements. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#classe>).
+[^terme-organisation-commerciale]: **ORGANISATION COMMERCIALE.** Unité responsable de la vente et de la distribution dans le modèle SD. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/09 ├── NOTIONS FONCTIONNELLES ET ORGANISATIONNELLES.md#organisation-commerciale>).
+[^terme-trace]: **TRACE.** Enregistrement détaillé d’événements techniques pour analyser exécution, SQL ou appels. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/08 ├── EXECUTION EXPLOITATION ET ADMINISTRATION.md#trace>).
+[^terme-api]: **API.** Application Programming Interface, contrat exposant des opérations ou données utilisables par d’autres composants. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/10 └── ACRONYMES SAP.md#api>).
+[^terme-abap]: **ABAP.** Langage de programmation de la plateforme ABAP, conçu pour développer des applications métier et techniques SAP. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#abap>).
+
+[^outil-su53]: **SU53.** Transaction affichant les derniers contrôles d’autorisation en échec pour l’utilisateur courant. Voir [le chapitre associé](<02 ├── DIAGNOSTIQUER UN REFUS AVEC SU53 ET STAUTHTRACE.md>).
+[^outil-stauthtrace]: **STAUTHTRACE.** Trace d’autorisations utilisée pour enregistrer et analyser les contrôles exécutés pendant un scénario. Voir [le chapitre associé](<02 ├── DIAGNOSTIQUER UN REFUS AVEC SU53 ET STAUTHTRACE.md>).

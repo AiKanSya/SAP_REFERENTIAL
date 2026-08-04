@@ -10,7 +10,7 @@
 
 ## 15.B POURQUOI UNE CLÉ SECONDAIRE
 
-Une table possède une clé primaire, mais un traitement peut nécessiter plusieurs chemins d’accès.
+Une table possède une clé primaire[^terme-cle-primaire], mais un traitement peut nécessiter plusieurs chemins d’accès.
 
 Exemple :
 
@@ -125,7 +125,7 @@ Ne pas ajouter une clé secondaire :
 ## 15.L SNIPPET À RÉUTILISER
 
 > [!NOTE]
-> Adapter les noms `Z*`, les types DDIC, les données et les autorisations au système cible. Effectuer un contrôle syntaxique avant activation.
+> Adapter les noms `Z*`, les types DDIC[^terme-acro-ddic], les données et les autorisations au système cible. Effectuer un contrôle syntaxique avant activation.
 
 ```abap
 " Traiter la collection sans lecture SQL dans la boucle.
@@ -154,3 +154,6 @@ ENDLOOP.
 ---
 
 [Chapitre suivant — PERFORMANCE ET BONNES PRATIQUES](<./16 └── PERFORMANCE ET BONNES PRATIQUES.md>)
+
+[^terme-cle-primaire]: **CLÉ PRIMAIRE.** Ensemble minimal de champs identifiant de manière unique une ligne de table. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/05 ├── DONNEES DICTIONNAIRE ET BASE DE DONNEES.md#cle-primaire>).
+[^terme-acro-ddic]: **DDIC.** Data Dictionary, abréviation courante de l’ABAP Dictionary. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/10 └── ACRONYMES SAP.md#acro-ddic>).

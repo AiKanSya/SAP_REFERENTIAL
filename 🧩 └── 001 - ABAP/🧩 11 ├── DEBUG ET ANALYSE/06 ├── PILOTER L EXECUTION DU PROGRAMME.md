@@ -5,7 +5,7 @@
 - Distinguer pas simple, exécution, retour et continuation
 - Entrer dans une procédure uniquement lorsque nécessaire
 - Revenir au programme appelant
-- Continuer jusqu’à un breakpoint ou une ligne ciblée
+- Continuer jusqu’à un breakpoint[^terme-breakpoint] ou une ligne ciblée
 
 ## 6.B COMMANDES PRINCIPALES
 
@@ -17,7 +17,7 @@
 | Continuer                  | Exécute jusqu’au prochain breakpoint ou à la fin        |
 | Continuer jusqu’au curseur | Exécute jusqu’à la ligne ciblée                         |
 
-Les touches de fonction dépendent de la configuration SAP GUI, mais les associations courantes sont `F5`, `F6`, `F7` et `F8`. Se fier au libellé affiché dans le débogueur.
+Les touches de fonction dépendent de la configuration SAP GUI[^terme-sap-gui], mais les associations courantes sont `F5`, `F6`, `F7` et `F8`. Se fier au libellé affiché dans le débogueur.
 
 ## 6.C PAS SIMPLE
 
@@ -27,7 +27,7 @@ Utiliser le pas simple lorsque le contenu de la procédure appelée est potentie
 lo_service->calculate( ).
 ```
 
-Le pas simple peut entrer dans la méthode `calculate`.
+Le pas simple peut entrer dans la méthode[^terme-methode] `calculate`.
 
 ## 6.D EXÉCUTER SANS ENTRER
 
@@ -42,13 +42,13 @@ Cette commande n’empêche pas l’arrêt sur un breakpoint actif dans la proc�
 Elle est utile après être entré trop profondément dans :
 
 - une méthode standard ;
-- un module fonction ;
-- une routine de conversion ;
+- un module fonction[^terme-module-fonction] ;
+- une routine de conversion[^terme-routine-conversion] ;
 - une infrastructure technique.
 
 ## 6.F CONTINUER
 
-**Continuer** est préférable au pas-à-pas lorsqu’un breakpoint ou watchpoint plus sélectif est déjà préparé.
+**Continuer** est préférable au pas-à-pas lorsqu’un breakpoint ou watchpoint[^terme-watchpoint] plus sélectif est déjà préparé.
 
 ```mermaid
 flowchart TD
@@ -86,9 +86,9 @@ La procédure est validée lorsque chaque commande produit l’effet attendu sur
 
 ## 6.I VÉRIFICATION
 
-- Le scénario reproduit correspond au même utilisateur, mandant, transaction et jeu de données.
+- Le scénario reproduit correspond au même utilisateur, mandant[^terme-mandant], transaction et jeu de données.
 - L’horodatage et l’identifiant de l’analyse sont conservés.
-- La cause retenue est soutenue par une ligne source, une trace ou une valeur observée.
+- La cause retenue est soutenue par une ligne source, une trace[^terme-trace] ou une valeur observée.
 - Après correction, le même scénario ne reproduit plus le défaut et le résultat métier reste identique.
 
 ## 6.J ERREURS FRÉQUENTES
@@ -101,7 +101,7 @@ La procédure est validée lorsque chaque commande produit l’effet attendu sur
 ## 6.K SNIPPET À RÉUTILISER
 
 > [!NOTE]
-> Adapter les noms `Z*`, les types DDIC, les données et les autorisations au système cible. Effectuer un contrôle syntaxique avant activation.
+> Adapter les noms `Z*`, les types DDIC[^terme-acro-ddic], les données et les autorisations au système cible. Effectuer un contrôle syntaxique avant activation.
 
 ```abap
 lo_service->calculate( ).
@@ -122,3 +122,13 @@ lo_service->calculate( ).
 ---
 
 [Chapitre suivant — ANALYSER VARIABLES, STRUCTURES, RÉFÉRENCES ET OBJETS](<./07 ├── ANALYSER VARIABLES STRUCTURES REFERENCES ET OBJETS.md>)
+
+[^terme-breakpoint]: **BREAKPOINT.** Point d’arrêt suspendant l’exécution dans le débogueur. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/08 ├── EXECUTION EXPLOITATION ET ADMINISTRATION.md#breakpoint>).
+[^terme-sap-gui]: **SAP GUI.** Client graphique permettant d’utiliser les transactions et écrans d’un système SAP. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/02 ├── SAP GUI NAVIGATION ET TRANSACTIONS.md#sap-gui>).
+[^terme-methode]: **MÉTHODE.** Comportement déclaré dans une classe ou une interface et appelé avec une liste de paramètres définie. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#methode>).
+[^terme-module-fonction]: **MODULE FONCTION.** Procédure globale appelée avec `CALL FUNCTION` et définie dans un groupe de fonctions. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/06 ├── PROGRAMMES CLASSES ET OBJETS TECHNIQUES.md#module-fonction>).
+[^terme-routine-conversion]: **ROUTINE DE CONVERSION.** Mécanisme DDIC convertissant une valeur entre représentation interne et affichage externe. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/05 ├── DONNEES DICTIONNAIRE ET BASE DE DONNEES.md#routine-conversion>).
+[^terme-watchpoint]: **WATCHPOINT.** Arrêt conditionné par la modification ou la valeur d’une donnée observée. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/08 ├── EXECUTION EXPLOITATION ET ADMINISTRATION.md#watchpoint>).
+[^terme-mandant]: **MANDANT.** Subdivision logique d’un système SAP. Il est identifié par un numéro à trois chiffres et isole une partie des données, du paramétrage et des utilisateurs. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/01 ├── SYSTEMES ENVIRONNEMENTS ET MANDANTS.md#mandant>).
+[^terme-trace]: **TRACE.** Enregistrement détaillé d’événements techniques pour analyser exécution, SQL ou appels. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/08 ├── EXECUTION EXPLOITATION ET ADMINISTRATION.md#trace>).
+[^terme-acro-ddic]: **DDIC.** Data Dictionary, abréviation courante de l’ABAP Dictionary. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/10 └── ACRONYMES SAP.md#acro-ddic>).

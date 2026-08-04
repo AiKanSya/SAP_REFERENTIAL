@@ -8,11 +8,11 @@
 
 ## 17.B CAS D’USAGE
 
-Un export doit sélectionner une implémentation CSV ou JSON. Les reports ne doivent pas connaître les constructeurs ni les dépendances de chaque classe.
+Un export doit sélectionner une implémentation CSV[^terme-csv] ou JSON[^terme-json]. Les reports ne doivent pas connaître les constructeurs ni les dépendances de chaque classe[^terme-classe].
 
 ## 17.C FACTORY METHOD
 
-Une méthode de classe retourne une instance. Elle peut valider les paramètres, sélectionner une sous-classe ou gérer un cache.
+Une méthode[^terme-methode] de classe retourne une instance. Elle peut valider les paramètres, sélectionner une sous-classe ou gérer un cache.
 
 ## 17.D PROCESS
 
@@ -26,7 +26,7 @@ Identifier la donnée qui choisit l’implémentation : type métier, configurat
 
 ### 17.D.3 Étape 3 — Créer la factory
 
-Créer une classe fabrique ou une méthode de classe `CREATE`. Ajouter le sélecteur en `IMPORTING`, une référence d’interface en `RETURNING` et une exception en `RAISING`.
+Créer une classe fabrique ou une méthode de classe `CREATE`. Ajouter le sélecteur en `IMPORTING`, une référence d’interface en `RETURNING` et une exception[^terme-exception] en `RAISING`.
 
 ### 17.D.4 Étape 4 — Instancier sans exposer le concret
 
@@ -66,7 +66,7 @@ DATA(lv_payload) = lo_exporter->serialize( lt_data ).
 
 ## 17.F CREATE PRIVATE
 
-Si aucune création directe ne doit être possible, configurer l’instanciation privée dans les propriétés `SE24`. La méthode de fabrique reste alors le seul point de création externe.
+Si aucune création directe ne doit être possible, configurer l’instanciation privée dans les propriétés `SE24`[^terme-class-builder-se24]. La méthode de fabrique reste alors le seul point de création externe.
 
 ## 17.G CONTRÔLE
 
@@ -82,9 +82,9 @@ Si aucune création directe ne doit être possible, configurer l’instanciation
 
 ## 17.I COMPATIBILITÉ S/4HANA
 
-- Statut : compatible avec le développement ABAP classique sur SAP S/4HANA.
-- Vérifier la syntaxe exacte avec l’aide `F1` du système cible lorsque plusieurs versions d’ABAP Platform sont prises en charge.
-- Les objets globaux doivent être créés dans le package et l’ordre de transport du projet.
+- Statut : compatible avec le développement ABAP[^terme-abap] classique sur SAP[^terme-acro-sap] S/4HANA.
+- Vérifier la syntaxe exacte avec l’aide `F1`[^terme-aide-f1] du système cible lorsque plusieurs versions d’ABAP Platform sont prises en charge.
+- Les objets globaux doivent être créés dans le package[^terme-package] et l’ordre de transport[^terme-ordre-transport] du projet.
 
 ## 17.J RÉFÉRENCES OFFICIELLES SAP
 
@@ -94,3 +94,15 @@ Si aucune création directe ne doit être possible, configurer l’instanciation
 ---
 
 [Chapitre suivant — SINGLETON](<./18 ├── SINGLETON.md>)
+
+[^terme-csv]: **CSV.** Format texte tabulaire utilisant un séparateur de champs et des règles d’échappement. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/07 ├── INTERFACES ET INTEGRATION.md#csv>).
+[^terme-json]: **JSON.** Format texte structuré utilisant objets, tableaux, chaînes, nombres, booléens et valeur null. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/07 ├── INTERFACES ET INTEGRATION.md#json>).
+[^terme-classe]: **CLASSE.** Modèle orienté objet définissant état et comportements. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#classe>).
+[^terme-methode]: **MÉTHODE.** Comportement déclaré dans une classe ou une interface et appelé avec une liste de paramètres définie. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#methode>).
+[^terme-exception]: **EXCEPTION.** Objet ou signal représentant une situation anormale qu’un appelant peut traiter. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#exception>).
+[^terme-class-builder-se24]: **CLASS BUILDER (SE24).** Outil SAP GUI utilisé pour créer, afficher, modifier, tester et documenter les classes et interfaces globales ABAP. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/06 ├── PROGRAMMES CLASSES ET OBJETS TECHNIQUES.md#class-builder-se24>).
+[^terme-abap]: **ABAP.** Langage de programmation de la plateforme ABAP, conçu pour développer des applications métier et techniques SAP. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#abap>).
+[^terme-acro-sap]: **SAP.** Nom de l’éditeur et de son écosystème logiciel ; l’acronyme historique provient de l’allemand. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/10 └── ACRONYMES SAP.md#acro-sap>).
+[^terme-aide-f1]: **AIDE F1.** Aide contextuelle expliquant un champ, une fonction ou un mot-clé. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/02 ├── SAP GUI NAVIGATION ET TRANSACTIONS.md#aide-f1>).
+[^terme-package]: **PACKAGE.** Conteneur logique qui regroupe les objets de développement et détermine notamment leur transportabilité. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/03 ├── REPOSITORY PACKAGES ET TRANSPORTS.md#package>).
+[^terme-ordre-transport]: **ORDRE DE TRANSPORT.** Conteneur qui regroupe des modifications à exporter puis importer dans d’autres systèmes. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/03 ├── REPOSITORY PACKAGES ET TRANSPORTS.md#ordre-transport>).

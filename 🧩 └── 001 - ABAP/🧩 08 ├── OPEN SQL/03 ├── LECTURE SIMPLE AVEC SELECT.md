@@ -6,7 +6,7 @@ Créer et exécuter un programme qui lit les compagnies aériennes d’une devis
 
 ## 3.B PRÉREQUIS
 
-- Accès à `SE38` ou `SE80` dans un système de développement S/4HANA.
+- Accès à `SE38`[^outil-se38] ou `SE80`[^outil-se80] dans un système de développement S/4HANA.
 - Autorisation de créer ou modifier un programme `Z`.
 - Tables de démonstration `SCARR` disponibles et alimentées.
 
@@ -17,11 +17,11 @@ Créer et exécuter un programme qui lit les compagnies aériennes d’une devis
 
 ### 3.C.1 Étape 1 — Vérifier les données de test
 
-Afficher `SCARR` dans `SE11` ou un outil de consultation autorisé. Relever une devise réellement présente et au moins un transporteur associé. Ne retenir `EUR` que si cette valeur existe dans le système courant.
+Afficher `SCARR` dans `SE11`[^outil-se11] ou un outil de consultation autorisé. Relever une devise réellement présente et au moins un transporteur associé. Ne retenir `EUR` que si cette valeur existe dans le système courant.
 
 ### 3.C.2 Étape 2 — Créer le programme
 
-Ouvrir `SE38`, saisir `ZDEMO_SELECT_CARRIERS` et choisir **Créer**. Utiliser `$TMP` pour un exercice local ou le package et la tâche imposés par le projet. Si le nom existe, ne pas écraser le programme : choisir un nom libre.
+Ouvrir `SE38`, saisir `ZDEMO_SELECT_CARRIERS` et choisir **Créer**. Utiliser `$TMP`[^terme-objet-local-tmp] pour un exercice local ou le package[^terme-package] et la tâche imposés par le projet. Si le nom existe, ne pas écraser le programme : choisir un nom libre.
 
 ### 3.C.3 Étape 3 — Insérer et vérifier le code
 
@@ -70,16 +70,16 @@ START-OF-SELECTION.
   ENDLOOP.
 ```
 
-La variable ABAP `p_curr` est préfixée par `@` parce qu’elle est utilisée comme variable hôte dans l’instruction ABAP SQL.
+La variable ABAP[^terme-abap] `p_curr` est préfixée par `@` parce qu’elle est utilisée comme variable hôte dans l’instruction ABAP[^terme-instruction-abap] SQL[^terme-acro-sql].
 
-`INTO TABLE` remplace le contenu de la table interne cible. `APPENDING TABLE` ajoute les lignes au contenu existant et ne doit être utilisé que si cette accumulation est voulue.
+`INTO TABLE` remplace le contenu de la table interne[^terme-table-interne] cible. `APPENDING TABLE` ajoute les lignes au contenu existant et ne doit être utilisé que si cette accumulation est voulue.
 
 ## 3.E POINTS À REMPLACER
 
 | Élément                          | Remplacement attendu                      |
 | -------------------------------- | ----------------------------------------- |
 | `ZDEMO_SELECT_CARRIERS`          | Nom du programme client                   |
-| `SCARR`                          | Source DDIC autorisée                     |
+| `SCARR`                          | Source DDIC[^terme-acro-ddic] autorisée                     |
 | `CARRID`, `CARRNAME`, `CURRCODE` | Colonnes strictement nécessaires          |
 | `P_CURR`                         | Critère de sélection adapté au besoin     |
 | `ORDER BY CARRID`                | Ordre déterministe requis par l’affichage |
@@ -135,7 +135,7 @@ Contrôler les doublons avant d’employer `APPENDING TABLE` dans plusieurs lect
 | Symptôme                        | Cause probable                                    | Correction                                                      |
 | ------------------------------- | ------------------------------------------------- | --------------------------------------------------------------- |
 | Erreur de syntaxe sur `P_CURR`  | Marqueur de variable hôte absent                  | Utiliser `@p_curr` dans ABAP SQL                                |
-| Aucun résultat                  | Valeur absente de la table ou espace significatif | Contrôler les données avec `SE16H` et la valeur saisie          |
+| Aucun résultat                  | Valeur absente de la table ou espace significatif | Contrôler les données avec `SE16H`[^outil-se16h] et la valeur saisie          |
 | Résultat dans un ordre variable | Aucun ordre SQL demandé                           | Ajouter `ORDER BY` lorsque l’ordre est fonctionnellement requis |
 | Trop de données transférées     | Restriction `WHERE` insuffisante                  | Ajouter les critères disponibles avant la lecture               |
 | Structure cible incompatible    | Colonnes et cible ne correspondent pas            | Utiliser une cible inline ou adapter explicitement le type      |
@@ -146,7 +146,7 @@ Contrôler les doublons avant d’employer `APPENDING TABLE` dans plusieurs lect
 - Statut : recommandé pour le développement ABAP classique.
 - Employer la syntaxe ABAP SQL avec variables hôte `@`.
 - Préférer une lecture ensembliste dans une table interne à une succession de lectures SQL dans une boucle ABAP.
-- La disponibilité de la syntaxe exacte dépend de la version d’ABAP Platform ; la documentation `F1` du système reste la référence exécutable.
+- La disponibilité de la syntaxe exacte dépend de la version d’ABAP Platform ; la documentation `F1`[^terme-aide-f1] du système reste la référence exécutable.
 
 ## 3.J TERMES DU LEXIQUE
 
@@ -163,3 +163,17 @@ Contrôler les doublons avant d’employer `APPENDING TABLE` dans plusieurs lect
 ---
 
 [Chapitre suivant — CHAMPS, ALIAS ET EXPRESSIONS SQL](<./04 ├── CHAMPS ALIAS ET EXPRESSIONS SQL.md>)
+
+[^terme-objet-local-tmp]: **OBJET LOCAL $TMP.** Objet affecté au package local `$TMP`, non destiné au transport vers un autre système. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/03 ├── REPOSITORY PACKAGES ET TRANSPORTS.md#objet-local-tmp>).
+[^terme-package]: **PACKAGE.** Conteneur logique qui regroupe les objets de développement et détermine notamment leur transportabilité. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/03 ├── REPOSITORY PACKAGES ET TRANSPORTS.md#package>).
+[^terme-abap]: **ABAP.** Langage de programmation de la plateforme ABAP, conçu pour développer des applications métier et techniques SAP. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#abap>).
+[^terme-instruction-abap]: **INSTRUCTION ABAP.** Unité syntaxique terminée par un point. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#instruction-abap>).
+[^terme-acro-sql]: **SQL.** Structured Query Language. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/10 └── ACRONYMES SAP.md#acro-sql>).
+[^terme-table-interne]: **TABLE INTERNE.** Collection dynamique de lignes stockée en mémoire dans le programme ABAP. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#table-interne>).
+[^terme-acro-ddic]: **DDIC.** Data Dictionary, abréviation courante de l’ABAP Dictionary. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/10 └── ACRONYMES SAP.md#acro-ddic>).
+[^terme-aide-f1]: **AIDE F1.** Aide contextuelle expliquant un champ, une fonction ou un mot-clé. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/02 ├── SAP GUI NAVIGATION ET TRANSACTIONS.md#aide-f1>).
+
+[^outil-se38]: **SE38.** Éditeur ABAP classique utilisé pour créer, modifier, vérifier et exécuter des programmes. Voir [le chapitre associé](<../🧩 01 ├── FONDAMENTAUX ABAP/04 ├── EDITEURS ABAP SE38 ET SE80.md>).
+[^outil-se80]: **SE80.** Object Navigator utilisé pour parcourir et maintenir les objets du Repository ABAP. Voir [le chapitre associé](<../🧩 01 ├── FONDAMENTAUX ABAP/04 ├── EDITEURS ABAP SE38 ET SE80.md>).
+[^outil-se11]: **SE11.** Transaction de l’ABAP Dictionary utilisée pour analyser et maintenir les objets DDIC. Voir [le chapitre associé](<../🧩 07 ├── DICTIONNAIRE ABAP/02 ├── NAVIGATION ET ANALYSE AVEC SE11.md>).
+[^outil-se16h]: **SE16H.** Navigateur de données enrichi proposant notamment des jointures et agrégations selon la version du système. Voir [le chapitre associé](<../🧩 07 ├── DICTIONNAIRE ABAP/02 ├── NAVIGATION ET ANALYSE AVEC SE11.md>).

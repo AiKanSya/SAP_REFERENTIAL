@@ -2,15 +2,15 @@
 
 ## 1.A RÉSULTAT ATTENDU
 
-- Comprendre le rôle d’un programme exécutable ABAP
+- Comprendre le rôle d’un programme exécutable[^terme-programme-executable] ABAP[^terme-abap]
 - Identifier son point d’entrée et son cycle général
 - Distinguer sélection, traitement et restitution
-- Délimiter son usage dans une architecture SAP
-- Préparer un programme compatible avec SAP GUI
+- Délimiter son usage dans une architecture SAP[^terme-acro-sap]
+- Préparer un programme compatible avec SAP GUI[^terme-sap-gui]
 
 ## 1.B DÉFINITION
 
-Un **programme exécutable** est un objet du Repository ABAP pouvant être lancé directement. Il est généralement introduit par l’instruction `REPORT`.
+Un **programme exécutable** est un objet du Repository ABAP[^terme-repository-abap] pouvant être lancé directement. Il est généralement introduit par l’instruction `REPORT`.
 
 ```abap
 REPORT zdev_flight_report.
@@ -30,9 +30,9 @@ flowchart LR
 Un programme exécutable peut notamment :
 
 - lire et analyser des données ;
-- produire une liste ou un ALV ;
+- produire une liste ou un ALV[^terme-alv] ;
 - lancer un traitement de masse ;
-- appeler une API métier ;
+- appeler une API[^terme-api] métier ;
 - préparer des données pour une interface ;
 - être exécuté en dialogue ou en arrière-plan.
 
@@ -55,11 +55,11 @@ Le bloc événementiel orchestre le traitement. Il ne doit pas contenir toute l�
 
 Un programme peut être lancé :
 
-- depuis `SE38` ou `SA38` ;
-- depuis `SE80` ;
+- depuis `SE38`[^outil-se38] ou `SA38`[^outil-sa38] ;
+- depuis `SE80`[^outil-se80] ;
 - depuis une transaction de type programme et écran de sélection ;
 - depuis un autre programme avec `SUBMIT` ;
-- depuis un job d’arrière-plan.
+- depuis un job[^terme-job] d’arrière-plan.
 
 Le mode de lancement ne remplace pas les contrôles d’autorisation métier dans le code.
 
@@ -94,7 +94,7 @@ Les ALV, dynpros, jobs d’arrière-plan et messages avancés seront détaillés
 ## 1.I SNIPPET À RÉUTILISER
 
 > [!NOTE]
-> Adapter les noms `Z*`, les types DDIC, les données et les autorisations au système cible. Effectuer un contrôle syntaxique avant activation.
+> Adapter les noms `Z*`, les types DDIC[^terme-acro-ddic], les données et les autorisations au système cible. Effectuer un contrôle syntaxique avant activation.
 
 ```abap
 REPORT zdev_flight_report.
@@ -127,3 +127,17 @@ START-OF-SELECTION.
 ---
 
 [Chapitre suivant — ATTRIBUTS, EXÉCUTION ET DOCUMENTATION](<./02 ├── ATTRIBUTS EXECUTION ET DOCUMENTATION.md>)
+
+[^terme-programme-executable]: **PROGRAMME EXÉCUTABLE.** Programme ABAP de type report pouvant être lancé directement, généralement avec `F8` ou par une transaction. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/06 ├── PROGRAMMES CLASSES ET OBJETS TECHNIQUES.md#programme-executable>).
+[^terme-abap]: **ABAP.** Langage de programmation de la plateforme ABAP, conçu pour développer des applications métier et techniques SAP. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#abap>).
+[^terme-acro-sap]: **SAP.** Nom de l’éditeur et de son écosystème logiciel ; l’acronyme historique provient de l’allemand. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/10 └── ACRONYMES SAP.md#acro-sap>).
+[^terme-sap-gui]: **SAP GUI.** Client graphique permettant d’utiliser les transactions et écrans d’un système SAP. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/02 ├── SAP GUI NAVIGATION ET TRANSACTIONS.md#sap-gui>).
+[^terme-repository-abap]: **REPOSITORY ABAP.** Ensemble central des objets de développement d’un système ABAP. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/03 ├── REPOSITORY PACKAGES ET TRANSPORTS.md#repository-abap>).
+[^terme-alv]: **ALV.** ABAP List Viewer, ensemble de technologies d’affichage tabulaire avec tri, filtre, total et variantes. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/06 ├── PROGRAMMES CLASSES ET OBJETS TECHNIQUES.md#alv>).
+[^terme-api]: **API.** Application Programming Interface, contrat exposant des opérations ou données utilisables par d’autres composants. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/10 └── ACRONYMES SAP.md#api>).
+[^terme-job]: **JOB.** Traitement planifié en arrière-plan composé d’une ou plusieurs étapes. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/06 ├── PROGRAMMES CLASSES ET OBJETS TECHNIQUES.md#job>).
+[^terme-acro-ddic]: **DDIC.** Data Dictionary, abréviation courante de l’ABAP Dictionary. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/10 └── ACRONYMES SAP.md#acro-ddic>).
+
+[^outil-se38]: **SE38.** Éditeur ABAP classique utilisé pour créer, modifier, vérifier et exécuter des programmes. Voir [le chapitre associé](<../🧩 01 ├── FONDAMENTAUX ABAP/04 ├── EDITEURS ABAP SE38 ET SE80.md>).
+[^outil-sa38]: **SA38.** Transaction d’exécution d’un programme ABAP sans accès direct à son édition. Voir [le chapitre associé](<../🧩 01 ├── FONDAMENTAUX ABAP/04 ├── EDITEURS ABAP SE38 ET SE80.md>).
+[^outil-se80]: **SE80.** Object Navigator utilisé pour parcourir et maintenir les objets du Repository ABAP. Voir [le chapitre associé](<../🧩 01 ├── FONDAMENTAUX ABAP/04 ├── EDITEURS ABAP SE38 ET SE80.md>).

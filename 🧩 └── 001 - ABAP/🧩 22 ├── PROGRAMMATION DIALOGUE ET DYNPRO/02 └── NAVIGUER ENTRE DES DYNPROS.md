@@ -8,7 +8,7 @@ Choisir entre appel empilé, remplacement de l’écran suivant et retour à l�
 
 - Dynpros `0100` et `0200` créés dans le même programme.
 - Champ OK_CODE déclaré et affecté à chaque écran.
-- Fonctions `DETAIL`, `NEXT` et `BACK` présentes dans le statut GUI.
+- Fonctions `DETAIL`, `NEXT` et `BACK` présentes dans le statut GUI[^terme-acro-gui].
 
 ## 2.C PROCESS
 
@@ -18,7 +18,7 @@ Lister pour chaque commande l’écran source, l’écran cible et le retour att
 
 ### 2.C.2 ÉTAPE 2 — PRÉPARER LES STATUTS GUI
 
-Créer les fonctions `DETAIL`, `NEXT`, `BACK`, `CANCEL` et `EXIT` dans les statuts concernés. Vérifier que le champ OK_CODE de chaque dynpro alimente la variable traitée dans son module PAI.
+Créer les fonctions `DETAIL`, `NEXT`, `BACK`, `CANCEL` et `EXIT` dans les statuts concernés. Vérifier que le champ OK_CODE de chaque dynpro[^terme-dynpro] alimente la variable traitée dans son module PAI.
 
 ### 2.C.3 ÉTAPE 3 — IMPLÉMENTER L’APPEL EMPILÉ
 
@@ -83,7 +83,7 @@ ENDMODULE.
 
 ## 2.F CONTRÔLE
 
-1. Poser un breakpoint dans chaque module PBO et PAI.
+1. Poser un breakpoint[^terme-breakpoint] dans chaque module PBO et PAI.
 2. Tester `DETAIL` : après `BACK` sur `0200`, l’exécution reprend après `CALL SCREEN`.
 3. Tester `NEXT` : `0100` n’est pas ajouté comme nouvel appel.
 4. Tester plusieurs allers-retours et vérifier l’absence de boucle.
@@ -100,4 +100,9 @@ ENDMODULE.
 
 ## 2.H COMPATIBILITÉ S/4HANA
 
-Statut : compatible pour les transactions SAP GUI classiques.
+Statut : compatible pour les transactions SAP GUI[^terme-sap-gui] classiques.
+
+[^terme-acro-gui]: **GUI.** Graphical User Interface. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/10 └── ACRONYMES SAP.md#acro-gui>).
+[^terme-dynpro]: **DYNPRO.** Écran classique SAP composé d’une définition d’écran et d’une logique PBO/PAI. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/02 ├── SAP GUI NAVIGATION ET TRANSACTIONS.md#dynpro>).
+[^terme-breakpoint]: **BREAKPOINT.** Point d’arrêt suspendant l’exécution dans le débogueur. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/08 ├── EXECUTION EXPLOITATION ET ADMINISTRATION.md#breakpoint>).
+[^terme-sap-gui]: **SAP GUI.** Client graphique permettant d’utiliser les transactions et écrans d’un système SAP. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/02 ├── SAP GUI NAVIGATION ET TRANSACTIONS.md#sap-gui>).

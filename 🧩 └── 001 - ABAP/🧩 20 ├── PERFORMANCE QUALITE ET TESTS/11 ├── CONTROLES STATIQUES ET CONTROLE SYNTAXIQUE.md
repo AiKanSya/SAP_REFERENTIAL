@@ -11,8 +11,8 @@ Distinguer les vérifications immédiates de l’éditeur des analyses statiques
 | Contrôle syntaxique    | grammaire, typage et incohérences immédiates    |
 | Activation             | génération de la version active et dépendances  |
 | Extended Program Check | erreurs statiquement détectables plus coûteuses |
-| Code Inspector / ATC   | règles regroupées dans une variante de contrôle |
-| ABAP Unit              | comportement exécuté                            |
+| Code Inspector / ATC[^terme-acro-atc]   | règles regroupées dans une variante de contrôle |
+| ABAP[^terme-abap] Unit              | comportement exécuté                            |
 
 Le contrôle syntaxique doit être exécuté avant l’activation. Une activation réussie ne signifie pas que le programme respecte les règles de sécurité, de performance ou de maintenabilité.
 
@@ -22,9 +22,9 @@ Le contrôle syntaxique doit être exécuté avant l’activation. Une activatio
 - conversion dangereuse ;
 - accès non sécurisé ;
 - code inaccessible ;
-- exception ignorée ;
+- exception[^terme-exception] ignorée ;
 - instruction obsolète ;
-- problème de package ou d’API selon la variante.
+- problème de package[^terme-package] ou d’API[^terme-api] selon la variante.
 
 ## 11.D Pseudo-commentaires et pragmas
 
@@ -34,7 +34,7 @@ Ils peuvent supprimer certains messages, mais ne corrigent pas la cause. Leur us
 
 1. Contrôle syntaxique après chaque unité cohérente.
 2. Activation de tous les objets dépendants.
-3. Contrôle local `ATC` ou `SCI`.
+3. Contrôle local `ATC` ou `SCI`[^outil-sci].
 4. Exécution des tests.
 5. Contrôle officiel avant libération du transport.
 
@@ -52,11 +52,11 @@ Depuis l’éditeur, lancer le contrôle syntaxique sur la version active et les
 
 ### 11.G.2 ÉTAPE 2 — ACTIVER DANS L’ORDRE DES DÉPENDANCES
 
-Activer types DDIC, interfaces, classes et programmes selon leur dépendance. Contrôler les messages d’activation. Ne pas utiliser une version inactive différente de celle exécutée pour valider un test.
+Activer types DDIC[^terme-acro-ddic], interfaces, classes et programmes selon leur dépendance. Contrôler les messages d’activation. Ne pas utiliser une version inactive différente de celle exécutée pour valider un test.
 
 ### 11.G.3 ÉTAPE 3 — LANCER LE CONTRÔLE ÉTENDU
 
-Exécuter SLIN sur le programme ou l’objet lorsque l’outil le supporte. Analyser les avertissements sur flux de données, exceptions, conversions et code inaccessible. Distinguer un faux positif prouvé d’un message seulement gênant.
+Exécuter SLIN[^outil-slin] sur le programme ou l’objet lorsque l’outil le supporte. Analyser les avertissements sur flux de données, exceptions, conversions et code inaccessible. Distinguer un faux positif prouvé d’un message seulement gênant.
 
 ### 11.G.4 ÉTAPE 4 — EXÉCUTER SCI OU ATC
 
@@ -102,3 +102,13 @@ Ordre de transport  :
 - [ATC](<../🧩 00 ├── LEXIQUE SAP ET ABAP/10 └── ACRONYMES SAP.md#acro-atc>)
 - [ABAP](<../🧩 00 ├── LEXIQUE SAP ET ABAP/10 └── ACRONYMES SAP.md#acro-abap>)
 - [Trace](<../🧩 00 ├── LEXIQUE SAP ET ABAP/08 ├── EXECUTION EXPLOITATION ET ADMINISTRATION.md#trace>)
+
+[^terme-acro-atc]: **ATC.** ABAP Test Cockpit, infrastructure de contrôles statiques et de gouvernance qualité. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/10 └── ACRONYMES SAP.md#acro-atc>).
+[^terme-abap]: **ABAP.** Langage de programmation de la plateforme ABAP, conçu pour développer des applications métier et techniques SAP. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#abap>).
+[^terme-exception]: **EXCEPTION.** Objet ou signal représentant une situation anormale qu’un appelant peut traiter. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#exception>).
+[^terme-package]: **PACKAGE.** Conteneur logique qui regroupe les objets de développement et détermine notamment leur transportabilité. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/03 ├── REPOSITORY PACKAGES ET TRANSPORTS.md#package>).
+[^terme-api]: **API.** Application Programming Interface, contrat exposant des opérations ou données utilisables par d’autres composants. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/10 └── ACRONYMES SAP.md#api>).
+[^terme-acro-ddic]: **DDIC.** Data Dictionary, abréviation courante de l’ABAP Dictionary. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/10 └── ACRONYMES SAP.md#acro-ddic>).
+
+[^outil-sci]: **SCI.** Code Inspector utilisé pour exécuter des contrôles statiques sur un ensemble d’objets ABAP. Voir [le chapitre associé](<13 ├── CODE INSPECTOR AVEC SCI.md>).
+[^outil-slin]: **SLIN.** Extended Program Check utilisé pour détecter des problèmes statiques au-delà du contrôle syntaxique. Voir [le chapitre associé](<12 ├── EXTENDED PROGRAM CHECK AVEC SLIN.md>).

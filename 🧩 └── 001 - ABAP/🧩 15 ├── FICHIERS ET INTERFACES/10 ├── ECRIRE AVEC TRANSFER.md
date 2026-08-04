@@ -27,7 +27,7 @@ TRANSFER lv_line TO lv_file.
 CLOSE DATASET lv_file.
 ```
 
-En mode texte, `TRANSFER` ajoute normalement une fin de ligne après chaque objet transféré. L’addition `NO END OF LINE` existe pour des formats particuliers, mais elle ne doit pas être utilisée dans un CSV standard sans justification.
+En mode texte, `TRANSFER` ajoute normalement une fin de ligne après chaque objet transféré. L’addition `NO END OF LINE` existe pour des formats particuliers, mais elle ne doit pas être utilisée dans un CSV[^terme-csv] standard sans justification.
 
 ## 10.C `FOR OUTPUT` OU `FOR APPENDING`
 
@@ -47,7 +47,7 @@ Lorsque l’architecture le permet :
 3. vérifier les compteurs et la taille ;
 4. publier ou déplacer le fichier terminé.
 
-ABAP ne fournit pas une opération de renommage portable équivalente pour tous les contextes. La publication doit être conçue avec l’équipe Basis ou le middleware.
+ABAP[^terme-abap] ne fournit pas une opération de renommage portable équivalente pour tous les contextes. La publication doit être conçue avec l’équipe Basis ou le middleware.
 
 ## 10.E PROCESS
 
@@ -61,7 +61,7 @@ Résoudre le nom logique et appeler `OPEN DATASET` dans le mode texte ou binaire
 
 ### 10.E.3 Étape 3 — Sérialiser la ligne ou le bloc
 
-Construire le contenu complet dans une variable typée. Valider longueur, séparateurs, échappement et encodage avant l’écriture.
+Construire le contenu complet dans une variable typée. Valider longueur, séparateurs, échappement et encodage[^terme-encodage] avant l’écriture.
 
 ### 10.E.4 Étape 4 — Exécuter `TRANSFER`
 
@@ -73,7 +73,7 @@ Fermer le dataset avant de signaler le succès. Retourner le nombre de lignes ou
 
 ### 10.E.6 Étape 6 — Tester les échecs partiels
 
-Tester un répertoire indisponible, un espace insuffisant selon les possibilités de l’environnement, une donnée invalide et une interruption au milieu du flux. Vérifier la règle de reprise ou de remplacement du fichier partiel.
+Tester un répertoire indisponible, un espace insuffisant selon les possibilités de l’environnement[^terme-environnement], une donnée invalide et une interruption au milieu du flux. Vérifier la règle de reprise ou de remplacement du fichier partiel.
 
 ## 10.F VÉRIFICATION
 
@@ -86,13 +86,13 @@ Tester un répertoire indisponible, un espace insuffisant selon les possibilité
 
 - Copier un exemple sans adapter les types, noms d’objets et données disponibles dans le système.
 - Tester uniquement le cas nominal et ignorer les valeurs initiales, absentes ou invalides.
-- Mélanger fichiers frontend et serveur dans un même scénario.
+- Mélanger fichiers frontend[^terme-frontend] et serveur dans un même scénario.
 - Parser un CSV par simple séparation alors que les champs peuvent être échappés.
 
 ## 10.H SNIPPET À RÉUTILISER
 
 > [!NOTE]
-> Adapter les noms `Z*`, les types DDIC, les données et les autorisations au système cible. Effectuer un contrôle syntaxique avant activation.
+> Adapter les noms `Z*`, les types DDIC[^terme-acro-ddic], les données et les autorisations au système cible. Effectuer un contrôle syntaxique avant activation.
 
 ```abap
 " Ouvrir le fichier avec le mode et l’encodage attendus.
@@ -131,3 +131,10 @@ CLOSE DATASET lv_file.
 ---
 
 [Chapitre suivant — POSITION, TAILLE, TRONCATURE ET SUPPRESSION](<./11 ├── POSITION TAILLE TRONCATURE ET SUPPRESSION.md>)
+
+[^terme-csv]: **CSV.** Format texte tabulaire utilisant un séparateur de champs et des règles d’échappement. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/07 ├── INTERFACES ET INTEGRATION.md#csv>).
+[^terme-abap]: **ABAP.** Langage de programmation de la plateforme ABAP, conçu pour développer des applications métier et techniques SAP. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#abap>).
+[^terme-encodage]: **ENCODAGE.** Règle transformant les caractères en octets et inversement. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/07 ├── INTERFACES ET INTEGRATION.md#encodage>).
+[^terme-environnement]: **ENVIRONNEMENT.** Rôle fonctionnel attribué à un système dans le cycle de vie : développement, test, recette, préproduction ou production. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/01 ├── SYSTEMES ENVIRONNEMENTS ET MANDANTS.md#environnement>).
+[^terme-frontend]: **FRONTEND.** Poste ou couche cliente utilisée par l’utilisateur, par exemple SAP GUI for Windows. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/01 ├── SYSTEMES ENVIRONNEMENTS ET MANDANTS.md#frontend>).
+[^terme-acro-ddic]: **DDIC.** Data Dictionary, abréviation courante de l’ABAP Dictionary. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/10 └── ACRONYMES SAP.md#acro-ddic>).

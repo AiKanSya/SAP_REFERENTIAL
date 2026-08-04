@@ -11,7 +11,7 @@ Réduire le nombre d’accès, le volume transféré et le travail inutile deman
 - Éviter les `SELECT` unitaires répétés dans une boucle.
 - Utiliser les jointures et agrégations lorsque la base peut effectuer le travail.
 - Définir un ordre explicite uniquement lorsqu’il est fonctionnellement requis.
-- Vérifier les résultats avec `ST05` ou `SQLM`.
+- Vérifier les résultats avec `ST05`[^outil-st05] ou `SQLM`[^outil-sqlm].
 
 ```abap
 " Exemple à éviter : comparer avec la correction décrite après le bloc.
@@ -37,7 +37,7 @@ LOOP AT lt_keys INTO DATA(ls_key).
 ENDLOOP.
 ```
 
-Une alternative consiste à lire l’ensemble nécessaire en une fois, puis à utiliser une table interne avec une clé adaptée.
+Une alternative consiste à lire l’ensemble nécessaire en une fois, puis à utiliser une table interne[^terme-table-interne] avec une clé adaptée.
 
 ## 4.D Volume et sémantique
 
@@ -45,7 +45,7 @@ Une alternative consiste à lire l’ensemble nécessaire en une fois, puis à u
 
 ## 4.E Optimisations dépendantes du contexte
 
-Les index, buffers et plans d’accès dépendent des tables, de la base et de la distribution des données. Ne pas proposer un nouvel index sans trace, volumétrie et validation avec l’équipe responsable de la base.
+Les index, buffers et plans d’accès dépendent des tables, de la base et de la distribution des données. Ne pas proposer un nouvel index sans trace[^terme-trace], volumétrie et validation avec l’équipe responsable de la base.
 
 ## 4.F Validation
 
@@ -61,7 +61,7 @@ Après modification, comparer : nombre d’exécutions, temps cumulé, lignes ex
 
 ### 4.H.1 ÉTAPE 1 — CAPTURER LE SQL RÉEL
 
-Dans `ST05`, tracer un utilisateur et un scénario courts. Désactiver immédiatement puis regrouper les instructions identiques. Relever le SQL dominant, sa source ABAP, son nombre d’exécutions, ses lignes et son temps cumulé.
+Dans `ST05`, tracer un utilisateur et un scénario courts. Désactiver immédiatement puis regrouper les instructions identiques. Relever le SQL[^terme-acro-sql] dominant, sa source ABAP[^terme-abap], son nombre d’exécutions, ses lignes et son temps cumulé.
 
 ### 4.H.2 ÉTAPE 2 — VÉRIFIER LA SÉLECTION
 
@@ -73,7 +73,7 @@ Rechercher les `SELECT` dans des boucles et les lectures unitaires répétées. 
 
 ### 4.H.4 ÉTAPE 4 — ALIGNER ACCÈS ET CLÉS
 
-Vérifier dans le DDIC et le plan d’accès les champs exploitables par la clé ou les index existants. Ajuster les prédicats avant d’envisager un nouvel index, décision qui doit être analysée avec l’administration base et les impacts d’écriture.
+Vérifier dans le DDIC[^terme-acro-ddic] et le plan d’accès les champs exploitables par la clé ou les index existants. Ajuster les prédicats avant d’envisager un nouvel index, décision qui doit être analysée avec l’administration base et les impacts d’écriture.
 
 ### 4.H.5 ÉTAPE 5 — TESTER LES VOLUMES ET CAS LIMITES
 
@@ -81,11 +81,11 @@ Exécuter données absentes, une ligne, nombreuses lignes, plages initiales et v
 
 ### 4.H.6 ÉTAPE 6 — REJOUER `ST05`
 
-Tracer exactement le même scénario et comparer exécutions, lignes, temps cumulé et résultat fonctionnel. Valider le gain sur un volume représentatif et exécuter ATC/tests avant livraison.
+Tracer exactement le même scénario et comparer exécutions, lignes, temps cumulé et résultat fonctionnel. Valider le gain sur un volume représentatif et exécuter ATC[^terme-acro-atc]/tests avant livraison.
 
 ## 4.I VÉRIFICATION
 
-- Le scénario reproduit correspond au même utilisateur, mandant, transaction et jeu de données.
+- Le scénario reproduit correspond au même utilisateur, mandant[^terme-mandant], transaction et jeu de données.
 - L’horodatage et l’identifiant de l’analyse sont conservés.
 - La cause retenue est soutenue par une ligne source, une trace ou une valeur observée.
 - Après correction, le même scénario ne reproduit plus le défaut et le résultat métier reste identique.
@@ -123,4 +123,16 @@ SELECT carrid,
 ## 4.M MODÈLE DE DÉMONSTRATION SFLIGHT
 
 > [!NOTE]
-> Les tables `SCARR`, `SPFLI` et `SFLIGHT` appartiennent au modèle de démonstration SAP et peuvent être absentes ou non alimentées dans certains systèmes. Dans ce cas, remplacer les exemples par une table Z de démonstration ou par une source en lecture seule autorisée, sans modifier une table applicative standard.
+> Les tables `SCARR`, `SPFLI` et `SFLIGHT` appartiennent au modèle de démonstration SAP[^terme-acro-sap] et peuvent être absentes ou non alimentées dans certains systèmes. Dans ce cas, remplacer les exemples par une table Z de démonstration ou par une source en lecture seule autorisée, sans modifier une table applicative standard.
+
+[^terme-table-interne]: **TABLE INTERNE.** Collection dynamique de lignes stockée en mémoire dans le programme ABAP. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#table-interne>).
+[^terme-trace]: **TRACE.** Enregistrement détaillé d’événements techniques pour analyser exécution, SQL ou appels. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/08 ├── EXECUTION EXPLOITATION ET ADMINISTRATION.md#trace>).
+[^terme-acro-sql]: **SQL.** Structured Query Language. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/10 └── ACRONYMES SAP.md#acro-sql>).
+[^terme-abap]: **ABAP.** Langage de programmation de la plateforme ABAP, conçu pour développer des applications métier et techniques SAP. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#abap>).
+[^terme-acro-ddic]: **DDIC.** Data Dictionary, abréviation courante de l’ABAP Dictionary. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/10 └── ACRONYMES SAP.md#acro-ddic>).
+[^terme-acro-atc]: **ATC.** ABAP Test Cockpit, infrastructure de contrôles statiques et de gouvernance qualité. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/10 └── ACRONYMES SAP.md#acro-atc>).
+[^terme-mandant]: **MANDANT.** Subdivision logique d’un système SAP. Il est identifié par un numéro à trois chiffres et isole une partie des données, du paramétrage et des utilisateurs. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/01 ├── SYSTEMES ENVIRONNEMENTS ET MANDANTS.md#mandant>).
+[^terme-acro-sap]: **SAP.** Nom de l’éditeur et de son écosystème logiciel ; l’acronyme historique provient de l’allemand. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/10 └── ACRONYMES SAP.md#acro-sap>).
+
+[^outil-st05]: **ST05.** Performance Trace utilisée notamment pour enregistrer et analyser les accès SQL. Voir [le chapitre associé](<08 ├── ANALYSER LES ACCES SQL AVEC ST05.md>).
+[^outil-sqlm]: **SQLM.** SQL Monitor utilisé pour agréger l’usage des instructions SQL pendant une période d’enregistrement. Voir [le chapitre associé](<09 ├── SURVEILLER LES ACCES SQL AVEC SQLM.md>).

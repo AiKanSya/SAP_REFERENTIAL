@@ -8,7 +8,7 @@
 
 ## 21.B CÔTÉ FOURNISSEUR
 
-Une application qui définit et appelle son propre BAdI du Enhancement Framework peut utiliser :
+Une application qui définit et appelle son propre BAdI[^terme-acro-badi] du Enhancement Framework peut utiliser :
 
 ```abap
 DATA lo_badi TYPE REF TO zbadi_demo.
@@ -47,11 +47,11 @@ Le comportement en l’absence d’implémentation dépend des propriétés de l
 
 ### 21.E.1 ÉTAPE 1 — ANALYSER LA DÉFINITION ET SON SPOT
 
-Dans `SE18`, ouvrir l’enhancement spot puis la définition BAdI. Relever l’interface, les filtres, le mode d’usage et les implémentations. Vérifier les types exacts nécessaires aux valeurs de filtre et aux paramètres des méthodes.
+Dans `SE18`[^outil-se18], ouvrir l’enhancement spot puis la définition BAdI. Relever l’interface, les filtres, le mode d’usage et les implémentations. Vérifier les types exacts nécessaires aux valeurs de filtre et aux paramètres des méthodes.
 
 ### 21.E.2 ÉTAPE 2 — RETROUVER L’ACQUISITION DE L’INSTANCE
 
-Rechercher `GET BADI` dans le code appelant. Examiner les valeurs de filtre transmises et le traitement des exceptions ou de l’absence d’implémentation selon le contrat. Poser un breakpoint après l’acquisition pour confirmer la sélection runtime.
+Rechercher `GET BADI` dans le code appelant. Examiner les valeurs de filtre transmises et le traitement des exceptions ou de l’absence d’implémentation selon le contrat. Poser un breakpoint[^terme-breakpoint] après l’acquisition pour confirmer la sélection runtime.
 
 ### 21.E.3 ÉTAPE 3 — RETROUVER L’APPEL DE MÉTHODE
 
@@ -59,11 +59,11 @@ Rechercher `CALL BADI` sur la référence obtenue. Comparer les paramètres pass
 
 ### 21.E.4 ÉTAPE 4 — TESTER LA SÉLECTION DES IMPLÉMENTATIONS
 
-Placer des breakpoints dans chaque classe candidate. Exécuter le scénario avec une valeur de filtre incluse, exclue et initiale. Pour une BAdI à usage multiple, relever toutes les implémentations appelées sans supposer un ordre non documenté.
+Placer des breakpoints dans chaque classe[^terme-classe] candidate. Exécuter le scénario avec une valeur de filtre incluse, exclue et initiale. Pour une BAdI à usage multiple, relever toutes les implémentations appelées sans supposer un ordre non documenté.
 
 ### 21.E.5 ÉTAPE 5 — IMPLÉMENTER LE CONTRAT CLIENT
 
-Créer l’implémentation dans `SE19`, maintenir des filtres non ambigus et coder les méthodes de l’interface. Déléguer la logique à une classe Z et respecter les paramètres modifiables. Activer classe, implémentation et objets dépendants.
+Créer l’implémentation dans `SE19`[^outil-se19], maintenir des filtres non ambigus et coder les méthodes de l’interface. Déléguer la logique à une classe Z et respecter les paramètres modifiables. Activer classe, implémentation et objets dépendants.
 
 ### 21.E.6 ÉTAPE 6 — VALIDER AU POINT D’APPEL
 
@@ -74,7 +74,7 @@ Rejouer le processus depuis l’application standard. Contrôler les valeurs ava
 - L’implémentation ou le projet est actif et transporté dans le bon ordre.
 - Un breakpoint confirme que le point d’extension est appelé dans le scénario visé.
 - Le comportement standard reste inchangé hors du périmètre fonctionnel prévu.
-- Aucune modification directe d’un objet SAP standard n’a été créée.
+- Aucune modification directe d’un objet SAP[^terme-acro-sap] standard n’a été créée.
 
 ## 21.G ERREURS FRÉQUENTES
 
@@ -86,7 +86,7 @@ Rejouer le processus depuis l’application standard. Contrôler les valeurs ava
 ## 21.H SNIPPET À RÉUTILISER
 
 > [!NOTE]
-> Adapter les noms `Z*`, les types DDIC, les données et les autorisations au système cible. Effectuer un contrôle syntaxique avant activation.
+> Adapter les noms `Z*`, les types DDIC[^terme-acro-ddic], les données et les autorisations au système cible. Effectuer un contrôle syntaxique avant activation.
 
 ```abap
 DATA lo_badi TYPE REF TO zbadi_demo.
@@ -115,4 +115,14 @@ CALL BADI lo_badi->change_data
 
 ---
 
-[Chapitre suivant — BUSINESS TRANSACTION EVENTS AVEC `FIBF`](<./22 ├── BUSINESS TRANSACTION EVENTS AVEC FIBF.md>)
+[Chapitre suivant — BUSINESS TRANSACTION EVENTS AVEC `FIBF`[^outil-fibf]](<./22 ├── BUSINESS TRANSACTION EVENTS AVEC FIBF.md>)
+
+[^terme-acro-badi]: **BADI.** Business Add-In, mécanisme d’extension orienté objet du standard SAP. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/10 └── ACRONYMES SAP.md#acro-badi>).
+[^terme-breakpoint]: **BREAKPOINT.** Point d’arrêt suspendant l’exécution dans le débogueur. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/08 ├── EXECUTION EXPLOITATION ET ADMINISTRATION.md#breakpoint>).
+[^terme-classe]: **CLASSE.** Modèle orienté objet définissant état et comportements. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#classe>).
+[^terme-acro-sap]: **SAP.** Nom de l’éditeur et de son écosystème logiciel ; l’acronyme historique provient de l’allemand. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/10 └── ACRONYMES SAP.md#acro-sap>).
+[^terme-acro-ddic]: **DDIC.** Data Dictionary, abréviation courante de l’ABAP Dictionary. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/10 └── ACRONYMES SAP.md#acro-ddic>).
+
+[^outil-se18]: **SE18.** BAdI Builder utilisé pour rechercher et analyser les définitions de BAdI. Voir [le chapitre associé](<14 ├── ANALYSER UNE DEFINITION BADI AVEC SE18.md>).
+[^outil-se19]: **SE19.** BAdI Builder utilisé pour créer et maintenir les implémentations de BAdI. Voir [le chapitre associé](<15 ├── IMPLEMENTER UNE BADI AVEC SE19.md>).
+[^outil-fibf]: **FIBF.** Transaction d’accès au framework Business Transaction Events et à ses produits/processus. Voir [le chapitre associé](<22 ├── BUSINESS TRANSACTION EVENTS AVEC FIBF.md>).

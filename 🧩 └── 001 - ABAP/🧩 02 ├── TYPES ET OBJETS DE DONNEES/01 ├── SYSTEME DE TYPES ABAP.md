@@ -2,8 +2,8 @@
 
 ## 1.A RÉSULTAT ATTENDU
 
-- Distinguer un type de données d’un objet de données
-- Comprendre le rôle du typage dans l’exécution d’un programme ABAP
+- Distinguer un type de données[^terme-type-donnees] d’un objet de données[^terme-objet-donnees]
+- Comprendre le rôle du typage dans l’exécution d’un programme ABAP[^terme-abap]
 - Identifier les principales catégories de types et d’objets
 - Distinguer les définitions locales des types globaux du Dictionnaire ABAP
 - Choisir un type adapté à la donnée métier manipulée
@@ -74,7 +74,7 @@ Un objet de données peut être typé à partir de plusieurs sources.
 | Type ABAP intégré                     | `TYPE i`                   | Disponible dans le langage                  |
 | Type local                            | `TYPE ty_amount`           | Programme ou procédure selon la déclaration |
 | Objet du Dictionnaire ABAP            | `TYPE bukrs`               | Global au système ABAP                      |
-| Type public d’une classe ou interface | `TYPE zcl_demo=>ty_result` | Global si la visibilité l’autorise          |
+| Type public d’une classe[^terme-classe] ou interface | `TYPE zcl_demo=>ty_result` | Global si la visibilité[^terme-visibilite] l’autorise          |
 | Type d’un objet visible               | `LIKE lv_source`           | Dépend de l’objet référencé                 |
 
 > [!NOTE]
@@ -122,10 +122,10 @@ Le type doit refléter la **sémantique** de la donnée, pas uniquement son appa
 | Donnée                            | Choix cohérent                            | Choix risqué                                 |
 | --------------------------------- | ----------------------------------------- | -------------------------------------------- |
 | Quantité entière de tentatives    | `i`                                       | `c LENGTH 10`                                |
-| Montant décimal                   | `p` avec décimales ou type métier du DDIC | `f` sans justification                       |
+| Montant décimal                   | `p` avec décimales ou type métier du DDIC[^terme-acro-ddic] | `f` sans justification                       |
 | Texte de longueur variable        | `string`                                  | `c` surdimensionné systématiquement          |
 | Identifiant numérique non calculé | `n` ou type métier du DDIC                | `i` si les zéros initiaux sont significatifs |
-| Date SAP classique                | `d` ou type métier du DDIC                | chaîne libre                                 |
+| Date SAP[^terme-acro-sap] classique                | `d` ou type métier du DDIC                | chaîne libre                                 |
 
 > [!IMPORTANT]
 > Deux champs techniquement compatibles ne sont pas nécessairement sémantiquement interchangeables. Une société, une division et un numéro de document peuvent avoir la même longueur sans représenter la même donnée métier.
@@ -164,7 +164,7 @@ Dans cet exemple :
 - Copier un exemple sans adapter les types, noms d’objets et données disponibles dans le système.
 - Tester uniquement le cas nominal et ignorer les valeurs initiales, absentes ou invalides.
 - Choisir un type trop générique ou dépendant d’une variable existante sans justification.
-- Utiliser une référence ou un field-symbol non lié.
+- Utiliser une référence ou un field-symbol[^terme-field-symbol] non lié.
 
 ## 1.K SNIPPET À RÉUTILISER
 
@@ -203,3 +203,12 @@ WRITE: / lv_label, lv_rate.
 ---
 
 [Chapitre suivant — TYPES ÉLÉMENTAIRES INTÉGRÉS](<./02 ├── TYPES ELEMENTAIRES INTEGRES.md>)
+
+[^terme-type-donnees]: **TYPE DE DONNÉES.** Définition des propriétés d’une valeur : nature, longueur, précision et opérations autorisées. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#type-donnees>).
+[^terme-objet-donnees]: **OBJET DE DONNÉES.** Zone de mémoire typée contenant une valeur pendant l’exécution. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#objet-donnees>).
+[^terme-abap]: **ABAP.** Langage de programmation de la plateforme ABAP, conçu pour développer des applications métier et techniques SAP. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#abap>).
+[^terme-classe]: **CLASSE.** Modèle orienté objet définissant état et comportements. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#classe>).
+[^terme-visibilite]: **VISIBILITÉ.** Règle déterminant où un composant de classe peut être utilisé : `PUBLIC`, `PROTECTED` ou `PRIVATE`. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#visibilite>).
+[^terme-acro-ddic]: **DDIC.** Data Dictionary, abréviation courante de l’ABAP Dictionary. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/10 └── ACRONYMES SAP.md#acro-ddic>).
+[^terme-acro-sap]: **SAP.** Nom de l’éditeur et de son écosystème logiciel ; l’acronyme historique provient de l’allemand. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/10 └── ACRONYMES SAP.md#acro-sap>).
+[^terme-field-symbol]: **FIELD-SYMBOL.** Alias dynamique vers une zone de mémoire existante. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#field-symbol>).

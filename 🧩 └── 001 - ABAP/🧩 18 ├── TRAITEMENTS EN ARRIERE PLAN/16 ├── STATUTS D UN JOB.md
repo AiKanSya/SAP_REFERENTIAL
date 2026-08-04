@@ -2,7 +2,7 @@
 
 ## 16.A RÉSULTAT ATTENDU
 
-- Interpréter le cycle de vie d’un job
+- Interpréter le cycle de vie d’un job[^terme-job]
 - Distinguer attente normale et anomalie
 - Choisir l’action compatible avec le statut
 
@@ -43,13 +43,13 @@ Un programme peut finir techniquement sans erreur tout en ayant rejeté toutes l
 
 ## 16.E JOB PRÊT TROP LONGTEMPS
 
-Contrôler les processus batch, la classe, le serveur cible, les modes d’exploitation et la charge système.
+Contrôler les processus batch, la classe[^terme-classe], le serveur cible, les modes d’exploitation et la charge système.
 
 ## 16.F PROCESS
 
 ### 16.F.1 ÉTAPE 1 — IDENTIFIER LE STATUT ET L’HORODATAGE
 
-Dans `SM37`, sélectionner l’occurrence exacte et relever statut, heure prévue, début et fin. Comparer ces valeurs avant d’interpréter l’état. Un job libéré en attente et un job actif depuis longtemps nécessitent des diagnostics différents.
+Dans `SM37`[^outil-sm37], sélectionner l’occurrence exacte et relever statut, heure prévue, début et fin. Comparer ces valeurs avant d’interpréter l’état. Un job libéré en attente et un job actif depuis longtemps nécessitent des diagnostics différents.
 
 ### 16.F.2 ÉTAPE 2 — INTERPRÉTER « PLANIFIÉ » OU « LIBÉRÉ »
 
@@ -61,11 +61,11 @@ Pour un job prêt, vérifier la capacité et le ciblage serveur. Pour un job act
 
 ### 16.F.4 ÉTAPE 4 — INTERPRÉTER « TERMINÉ »
 
-Lire le journal, le spool et les compteurs métier. Vérifier le résultat persistant. Un programme peut se terminer sans erreur système tout en journalisant des rejets ou en ne sélectionnant aucune donnée.
+Lire le journal, le spool[^terme-spool] et les compteurs métier. Vérifier le résultat persistant. Un programme peut se terminer sans erreur système tout en journalisant des rejets ou en ne sélectionnant aucune donnée.
 
 ### 16.F.5 ÉTAPE 5 — INTERPRÉTER « ANNULÉ »
 
-Relever le premier message d’erreur, l’étape, le programme et l’heure. Rechercher un dump `ST22`, une erreur d’autorisation, une annulation opérateur ou un défaut externe correspondant. Distinguer la cause initiale des messages secondaires de fin.
+Relever le premier message d’erreur, l’étape, le programme et l’heure. Rechercher un dump `ST22`[^outil-st22], une erreur d’autorisation, une annulation opérateur ou un défaut externe correspondant. Distinguer la cause initiale des messages secondaires de fin.
 
 ### 16.F.6 ÉTAPE 6 — AGIR SELON L’ÉTAT MÉTIER
 
@@ -113,3 +113,10 @@ Ordre de transport  :
 ---
 
 [Chapitre suivant — JOURNAL DE JOB ET MESSAGES](<./17 ├── JOURNAL DE JOB ET MESSAGES.md>)
+
+[^terme-job]: **JOB.** Traitement planifié en arrière-plan composé d’une ou plusieurs étapes. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/06 ├── PROGRAMMES CLASSES ET OBJETS TECHNIQUES.md#job>).
+[^terme-classe]: **CLASSE.** Modèle orienté objet définissant état et comportements. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#classe>).
+[^terme-spool]: **SPOOL.** Infrastructure stockant et acheminant les sorties imprimables produites par les traitements SAP. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/06 ├── PROGRAMMES CLASSES ET OBJETS TECHNIQUES.md#spool>).
+
+[^outil-sm37]: **SM37.** Transaction de recherche, surveillance et administration des jobs d’arrière-plan. Voir [le chapitre associé](<15 ├── SURVEILLER LES JOBS AVEC SM37.md>).
+[^outil-st22]: **ST22.** Transaction d’analyse des terminaisons anormales et dumps ABAP. Voir [le chapitre associé](<../🧩 11 ├── DEBUG ET ANALYSE/13 ├── ANALYSER LES DUMPS AVEC ST22.md>).

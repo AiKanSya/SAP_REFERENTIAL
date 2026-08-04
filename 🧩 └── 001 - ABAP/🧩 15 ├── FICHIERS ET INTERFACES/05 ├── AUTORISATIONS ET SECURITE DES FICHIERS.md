@@ -20,7 +20,7 @@ flowchart TD
 
 - `S_DATASET` contrôle l’accès selon le programme, le fichier et l’activité.
 - `S_PATH` permet un contrôle indépendant du programme sur les chemins enregistrés.
-- Le système d’exploitation doit également autoriser le compte de l’instance AS ABAP.
+- Le système d’exploitation doit également autoriser le compte de l’instance AS ABAP[^terme-abap].
 
 ## 5.C RISQUES
 
@@ -34,7 +34,7 @@ Un nom de fichier fourni depuis l’extérieur et utilisé directement dans `OPE
 
 ## 5.D MESURES
 
-- Résoudre les noms par `FILE`.
+- Résoudre les noms par `FILE`[^outil-file].
 - Utiliser une liste blanche d’identifiants, pas une liste noire de caractères.
 - Refuser les chemins relatifs et séquences de remontée.
 - Limiter les droits en lecture, écriture et suppression.
@@ -58,7 +58,7 @@ Exécuter les contrôles métier avant lecture ou écriture. Vérifier avec la s
 
 ### 5.F.3 Étape 3 — Ouvrir dans le mode minimal
 
-Choisir lecture, écriture ou ajout selon le besoin, avec encodage explicite. Tester immédiatement `SY-SUBRC`.
+Choisir lecture, écriture ou ajout selon le besoin, avec encodage[^terme-encodage] explicite. Tester immédiatement `SY-SUBRC`.
 
 ### 5.F.4 Étape 4 — Protéger le diagnostic
 
@@ -70,15 +70,15 @@ Exécuter avec utilisateur autorisé, chemin interdit et fichier inaccessible. L
 
 ## 5.G VÉRIFICATION
 
-- Le scénario reproduit correspond au même utilisateur, mandant, transaction et jeu de données.
+- Le scénario reproduit correspond au même utilisateur, mandant[^terme-mandant], transaction et jeu de données.
 - L’horodatage et l’identifiant de l’analyse sont conservés.
-- La cause retenue est soutenue par une ligne source, une trace ou une valeur observée.
+- La cause retenue est soutenue par une ligne source, une trace[^terme-trace] ou une valeur observée.
 - Après correction, le même scénario ne reproduit plus le défaut et le résultat métier reste identique.
 
 ## 5.H ERREURS FRÉQUENTES
 
-- Mélanger fichiers frontend et serveur dans un même scénario.
-- Parser un CSV par simple séparation alors que les champs peuvent être échappés.
+- Mélanger fichiers frontend[^terme-frontend] et serveur dans un même scénario.
+- Parser un CSV[^terme-csv] par simple séparation alors que les champs peuvent être échappés.
 
 ## 5.I FICHE DE CONTRÔLE À COPIER
 
@@ -113,3 +113,12 @@ Ordre de transport  :
 ---
 
 [Chapitre suivant — CYCLE `OPEN DATASET` ET `CLOSE DATASET`](<./06 ├── CYCLE OPEN DATASET ET CLOSE DATASET.md>)
+
+[^terme-abap]: **ABAP.** Langage de programmation de la plateforme ABAP, conçu pour développer des applications métier et techniques SAP. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#abap>).
+[^terme-encodage]: **ENCODAGE.** Règle transformant les caractères en octets et inversement. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/07 ├── INTERFACES ET INTEGRATION.md#encodage>).
+[^terme-mandant]: **MANDANT.** Subdivision logique d’un système SAP. Il est identifié par un numéro à trois chiffres et isole une partie des données, du paramétrage et des utilisateurs. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/01 ├── SYSTEMES ENVIRONNEMENTS ET MANDANTS.md#mandant>).
+[^terme-trace]: **TRACE.** Enregistrement détaillé d’événements techniques pour analyser exécution, SQL ou appels. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/08 ├── EXECUTION EXPLOITATION ET ADMINISTRATION.md#trace>).
+[^terme-frontend]: **FRONTEND.** Poste ou couche cliente utilisée par l’utilisateur, par exemple SAP GUI for Windows. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/01 ├── SYSTEMES ENVIRONNEMENTS ET MANDANTS.md#frontend>).
+[^terme-csv]: **CSV.** Format texte tabulaire utilisant un séparateur de champs et des règles d’échappement. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/07 ├── INTERFACES ET INTEGRATION.md#csv>).
+
+[^outil-file]: **FILE.** Transaction de maintenance des noms et chemins de fichiers logiques. Voir [le chapitre associé](<04 ├── NOMS ET CHEMINS LOGIQUES AVEC FILE.md>).

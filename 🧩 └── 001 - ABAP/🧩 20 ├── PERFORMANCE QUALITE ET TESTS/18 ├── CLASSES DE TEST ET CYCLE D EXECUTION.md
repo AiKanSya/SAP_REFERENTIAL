@@ -2,13 +2,13 @@
 
 ## 18.A RÉSULTAT ATTENDU
 
-Utiliser les fixtures ABAP Unit pour préparer et nettoyer un contexte de test cohérent.
+Utiliser les fixtures ABAP[^terme-abap] Unit pour préparer et nettoyer un contexte de test cohérent.
 
 ## 18.B Méthodes prédéfinies
 
-| Méthode               | Fréquence                             |
+| Méthode[^terme-methode]               | Fréquence                             |
 | --------------------- | ------------------------------------- |
-| `class_setup`         | une fois avant les tests de la classe |
+| `class_setup`         | une fois avant les tests de la classe[^terme-classe] |
 | `setup`               | avant chaque méthode de test          |
 | méthode `FOR TESTING` | exécution du scénario                 |
 | `teardown`            | après chaque méthode de test          |
@@ -102,7 +102,7 @@ Lancer chaque méthode seule, puis toute la classe dans un ordre différent si l
 ## 18.I SNIPPET À RÉUTILISER
 
 > [!NOTE]
-> Adapter les noms `Z*`, les types DDIC, les données et les autorisations au système cible. Effectuer un contrôle syntaxique avant activation.
+> Adapter les noms `Z*`, les types DDIC[^terme-acro-ddic], les données et les autorisations au système cible. Effectuer un contrôle syntaxique avant activation.
 
 ```abap
 " Vérifier un seul comportement observable avec une attente explicite.
@@ -133,3 +133,8 @@ ENDCLASS.
 - [ATC](<../🧩 00 ├── LEXIQUE SAP ET ABAP/10 └── ACRONYMES SAP.md#acro-atc>)
 - [ABAP](<../🧩 00 ├── LEXIQUE SAP ET ABAP/10 └── ACRONYMES SAP.md#acro-abap>)
 - [Trace](<../🧩 00 ├── LEXIQUE SAP ET ABAP/08 ├── EXECUTION EXPLOITATION ET ADMINISTRATION.md#trace>)
+
+[^terme-abap]: **ABAP.** Langage de programmation de la plateforme ABAP, conçu pour développer des applications métier et techniques SAP. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#abap>).
+[^terme-methode]: **MÉTHODE.** Comportement déclaré dans une classe ou une interface et appelé avec une liste de paramètres définie. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#methode>).
+[^terme-classe]: **CLASSE.** Modèle orienté objet définissant état et comportements. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#classe>).
+[^terme-acro-ddic]: **DDIC.** Data Dictionary, abréviation courante de l’ABAP Dictionary. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/10 └── ACRONYMES SAP.md#acro-ddic>).

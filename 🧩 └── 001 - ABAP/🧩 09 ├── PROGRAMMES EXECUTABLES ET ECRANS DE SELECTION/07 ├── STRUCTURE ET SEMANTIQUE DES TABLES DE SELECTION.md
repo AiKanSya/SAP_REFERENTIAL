@@ -75,7 +75,7 @@ Un ensemble ne contenant que des exclusions est traité selon la sémantique des
 
 - `HIGH` doit être renseigné pour `BT` et `NB` ;
 - les motifs `CP` et `NP` doivent être compatibles avec le type ;
-- les valeurs doivent utiliser le format interne ABAP ;
+- les valeurs doivent utiliser le format interne ABAP[^terme-abap] ;
 - les lignes vides ou invalides doivent être éliminées avant un appel externe ;
 - le volume d’une table de sélection doit rester raisonnable.
 
@@ -96,7 +96,7 @@ Un ensemble ne contenant que des exclusions est traité selon la sémantique des
 ## 7.J SNIPPET À RÉUTILISER
 
 > [!NOTE]
-> Adapter les noms `Z*`, les types DDIC, les données et les autorisations au système cible. Effectuer un contrôle syntaxique avant activation.
+> Adapter les noms `Z*`, les types DDIC[^terme-acro-ddic], les données et les autorisations au système cible. Effectuer un contrôle syntaxique avant activation.
 
 ```abap
 DATA lr_carr TYPE RANGE OF scarr-carrid.
@@ -119,7 +119,7 @@ lr_carr = VALUE #(
 ## 7.L MODÈLE DE DÉMONSTRATION SFLIGHT
 
 > [!NOTE]
-> Les tables `SCARR`, `SPFLI` et `SFLIGHT` appartiennent au modèle de démonstration SAP et peuvent être absentes ou non alimentées dans certains systèmes. Dans ce cas, remplacer les exemples par une table Z de démonstration ou par une source en lecture seule autorisée, sans modifier une table applicative standard.
+> Les tables `SCARR`, `SPFLI` et `SFLIGHT` appartiennent au modèle de démonstration SAP[^terme-acro-sap] et peuvent être absentes ou non alimentées dans certains systèmes. Dans ce cas, remplacer les exemples par une table Z de démonstration ou par une source en lecture seule autorisée, sans modifier une table applicative standard.
 
 ## 7.M RÉFÉRENCES OFFICIELLES SAP
 
@@ -131,3 +131,7 @@ lr_carr = VALUE #(
 ---
 
 [Chapitre suivant — OPTIONS D’AFFICHAGE ET DE SAISIE](<./08 ├── OPTIONS D AFFICHAGE ET DE SAISIE.md>)
+
+[^terme-abap]: **ABAP.** Langage de programmation de la plateforme ABAP, conçu pour développer des applications métier et techniques SAP. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#abap>).
+[^terme-acro-ddic]: **DDIC.** Data Dictionary, abréviation courante de l’ABAP Dictionary. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/10 └── ACRONYMES SAP.md#acro-ddic>).
+[^terme-acro-sap]: **SAP.** Nom de l’éditeur et de son écosystème logiciel ; l’acronyme historique provient de l’allemand. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/10 └── ACRONYMES SAP.md#acro-sap>).

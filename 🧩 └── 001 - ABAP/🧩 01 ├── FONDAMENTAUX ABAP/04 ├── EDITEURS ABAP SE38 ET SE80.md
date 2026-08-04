@@ -2,10 +2,10 @@
 
 ## 4.A RÉSULTAT ATTENDU
 
-- Distinguer les rôles de `SE38` et `SE80`
+- Distinguer les rôles de `SE38`[^outil-se38] et `SE80`[^outil-se80]
 - Ouvrir, modifier, contrôler et activer un programme
 - Naviguer dans les sous-objets d’un programme
-- Utiliser les principales fonctions de l’éditeur ABAP dans SAP GUI
+- Utiliser les principales fonctions de l’éditeur ABAP[^terme-abap] dans SAP GUI[^terme-sap-gui]
 - Choisir l’outil adapté au contexte
 
 ## 4.B VUE D’ENSEMBLE
@@ -27,7 +27,7 @@ Utilisations courantes :
 
 - créer un programme ;
 - afficher ou modifier son code source ;
-- exécuter un programme exécutable ;
+- exécuter un programme exécutable[^terme-programme-executable] ;
 - maintenir ses variantes ;
 - accéder aux textes ;
 - lancer des contrôles liés au programme.
@@ -40,7 +40,7 @@ Utilisations courantes :
 
 Utilisations courantes :
 
-- naviguer dans un package ;
+- naviguer dans un package[^terme-package] ;
 - afficher les objets liés à un programme ;
 - ouvrir des includes, écrans, statuts GUI ou classes locales ;
 - créer différents types d’objets ;
@@ -62,7 +62,7 @@ Utilisations courantes :
 
 ## 4.F ÉDITEUR DE CODE SOURCE
 
-L’éditeur de code source ABAP est intégré à plusieurs outils du Workbench, notamment `SE38`, `SE80`, `SE24` et `SE37`.
+L’éditeur de code source ABAP est intégré à plusieurs outils du Workbench, notamment `SE38`, `SE80`, `SE24`[^terme-class-builder-se24] et `SE37`[^outil-se37].
 
 Fonctions principales :
 
@@ -95,7 +95,7 @@ Fonctions principales :
 | `Ctrl` + `F3` | Activer                          |
 | `F8`          | Exécuter un programme exécutable |
 
-Les raccourcis peuvent dépendre du contexte de l’écran et des paramètres du frontend.
+Les raccourcis peuvent dépendre du contexte de l’écran et des paramètres du frontend[^terme-frontend].
 
 ## 4.H AIDE SUR LE CODE
 
@@ -157,7 +157,7 @@ flowchart TD
 2. Entrer le nom technique exact du programme.
 3. Choisir **Afficher** pour l’analyse ou **Modifier** uniquement si une correction est autorisée.
 
-Si le programme est introuvable, vérifier son nom et son type. Une classe, un groupe de fonctions ou un include ne doit pas être créé comme report pour contourner une recherche incorrecte.
+Si le programme est introuvable, vérifier son nom et son type. Une classe[^terme-classe], un groupe de fonctions ou un include ne doit pas être créé comme report pour contourner une recherche incorrecte.
 
 ### 4.K.2 Étape 2 — Déterminer si SE38 suffit
 
@@ -185,7 +185,7 @@ Un contrôle syntaxique réussi ne remplace pas l’activation. Une version enre
 
 ### 4.K.5 Étape 5 — Consulter l’aide de la release
 
-Positionner le curseur sur une instruction ou une addition ABAP puis appuyer sur `F1`. Vérifier la syntaxe, les prérequis de release, les exceptions et les exemples applicables au système connecté.
+Positionner le curseur sur une instruction ou une addition ABAP puis appuyer sur `F1`[^terme-aide-f1]. Vérifier la syntaxe, les prérequis de release, les exceptions et les exemples applicables au système connecté.
 
 Le chapitre est validé lorsque le lecteur sait choisir SE38 pour l’accès direct et SE80 pour la navigation structurée, puis contrôler et activer le même objet sans ambiguïté.
 
@@ -197,7 +197,7 @@ Le chapitre est validé lorsque le lecteur sait choisir SE38 pour l’accès dir
 
 ## 4.M ERREURS FRÉQUENTES
 
-- Intervenir dans le mauvais système ou mandant.
+- Intervenir dans le mauvais système ou mandant[^terme-mandant].
 - Confondre sauvegarde et activation.
 
 ## 4.N FICHE DE CONTRÔLE À COPIER
@@ -234,3 +234,17 @@ Ordre de transport  :
 ---
 
 [Chapitre suivant — CRÉATION D’UN PREMIER PROGRAMME](<./05 ├── CREATION D UN PREMIER PROGRAMME.md>)
+
+[^terme-abap]: **ABAP.** Langage de programmation de la plateforme ABAP, conçu pour développer des applications métier et techniques SAP. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#abap>).
+[^terme-sap-gui]: **SAP GUI.** Client graphique permettant d’utiliser les transactions et écrans d’un système SAP. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/02 ├── SAP GUI NAVIGATION ET TRANSACTIONS.md#sap-gui>).
+[^terme-programme-executable]: **PROGRAMME EXÉCUTABLE.** Programme ABAP de type report pouvant être lancé directement, généralement avec `F8` ou par une transaction. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/06 ├── PROGRAMMES CLASSES ET OBJETS TECHNIQUES.md#programme-executable>).
+[^terme-package]: **PACKAGE.** Conteneur logique qui regroupe les objets de développement et détermine notamment leur transportabilité. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/03 ├── REPOSITORY PACKAGES ET TRANSPORTS.md#package>).
+[^terme-class-builder-se24]: **CLASS BUILDER (SE24).** Outil SAP GUI utilisé pour créer, afficher, modifier, tester et documenter les classes et interfaces globales ABAP. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/06 ├── PROGRAMMES CLASSES ET OBJETS TECHNIQUES.md#class-builder-se24>).
+[^terme-frontend]: **FRONTEND.** Poste ou couche cliente utilisée par l’utilisateur, par exemple SAP GUI for Windows. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/01 ├── SYSTEMES ENVIRONNEMENTS ET MANDANTS.md#frontend>).
+[^terme-classe]: **CLASSE.** Modèle orienté objet définissant état et comportements. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#classe>).
+[^terme-aide-f1]: **AIDE F1.** Aide contextuelle expliquant un champ, une fonction ou un mot-clé. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/02 ├── SAP GUI NAVIGATION ET TRANSACTIONS.md#aide-f1>).
+[^terme-mandant]: **MANDANT.** Subdivision logique d’un système SAP. Il est identifié par un numéro à trois chiffres et isole une partie des données, du paramétrage et des utilisateurs. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/01 ├── SYSTEMES ENVIRONNEMENTS ET MANDANTS.md#mandant>).
+
+[^outil-se38]: **SE38.** Éditeur ABAP classique utilisé pour créer, modifier, vérifier et exécuter des programmes. Voir [le chapitre associé](<04 ├── EDITEURS ABAP SE38 ET SE80.md>).
+[^outil-se80]: **SE80.** Object Navigator utilisé pour parcourir et maintenir les objets du Repository ABAP. Voir [le chapitre associé](<04 ├── EDITEURS ABAP SE38 ET SE80.md>).
+[^outil-se37]: **SE37.** Function Builder utilisé pour rechercher, afficher, tester et maintenir les modules fonction. Voir [le chapitre associé](<../🧩 12 ├── MODULES FONCTION RFC ET BAPI/03 ├── RECHERCHER ET ANALYSER AVEC SE37.md>).

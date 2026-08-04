@@ -3,7 +3,7 @@
 ## 3.A RÉSULTAT ATTENDU
 
 - Utiliser la syntaxe statique de `MESSAGE`
-- Appeler une classe explicitement ou avec `MESSAGE-ID`
+- Appeler une classe[^terme-classe] explicitement ou avec `MESSAGE-ID`
 - Utiliser une syntaxe dynamique lorsque le besoin l’exige
 - Passer des variables au texte
 - Comprendre les champs système renseignés
@@ -56,7 +56,7 @@ MESSAGE ID lv_msgid
         WITH lv_msgv1 lv_msgv2 lv_msgv3 lv_msgv4.
 ```
 
-Cette forme est utile lorsque les composantes du message proviennent d’une API ou d’une structure comme `BAPIRET2`.
+Cette forme est utile lorsque les composantes du message proviennent d’une API[^terme-api] ou d’une structure comme `BAPIRET2`.
 
 Elle ne doit pas être utilisée lorsque la classe, le numéro et le type sont connus à la conception. La syntaxe statique est alors plus lisible et mieux contrôlée.
 
@@ -101,12 +101,12 @@ Cette forme existe, mais elle ne fournit pas la gestion centralisée et multilin
 - Copier un exemple sans adapter les types, noms d’objets et données disponibles dans le système.
 - Tester uniquement le cas nominal et ignorer les valeurs initiales, absentes ou invalides.
 - Afficher un message technique incompréhensible à l’utilisateur.
-- Attraper une exception sans action ni propagation.
+- Attraper une exception[^terme-exception] sans action ni propagation.
 
 ## 3.K SNIPPET À RÉUTILISER
 
 > [!NOTE]
-> Adapter les noms `Z*`, les types DDIC, les données et les autorisations au système cible. Effectuer un contrôle syntaxique avant activation.
+> Adapter les noms `Z*`, les types DDIC[^terme-acro-ddic], les données et les autorisations au système cible. Effectuer un contrôle syntaxique avant activation.
 
 ```abap
 REPORT zdev_product_check MESSAGE-ID zdev_msg.
@@ -133,3 +133,8 @@ START-OF-SELECTION.
 ---
 
 [Chapitre suivant — TYPES DE MESSAGES ET COMPORTEMENT](<./04 ├── TYPES DE MESSAGES ET COMPORTEMENT.md>)
+
+[^terme-classe]: **CLASSE.** Modèle orienté objet définissant état et comportements. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#classe>).
+[^terme-api]: **API.** Application Programming Interface, contrat exposant des opérations ou données utilisables par d’autres composants. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/10 └── ACRONYMES SAP.md#api>).
+[^terme-exception]: **EXCEPTION.** Objet ou signal représentant une situation anormale qu’un appelant peut traiter. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#exception>).
+[^terme-acro-ddic]: **DDIC.** Data Dictionary, abréviation courante de l’ABAP Dictionary. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/10 └── ACRONYMES SAP.md#acro-ddic>).

@@ -2,7 +2,7 @@
 
 ## 3.A RÉSULTAT ATTENDU
 
-- Distinguer le job de ses étapes
+- Distinguer le job[^terme-job] de ses étapes
 - Comprendre l’ordre d’exécution
 - Identifier les paramètres propres à chaque étape
 
@@ -19,8 +19,8 @@ flowchart LR
 
 Une étape peut exécuter :
 
-- un programme ABAP ;
-- une commande externe définie dans SAP ;
+- un programme ABAP[^terme-abap] ;
+- une commande externe définie dans SAP[^terme-acro-sap] ;
 - un programme externe, sous réserve des autorisations nécessaires.
 
 ## 3.C PROPRIÉTÉS D’UNE ÉTAPE ABAP
@@ -29,9 +29,9 @@ Une étape peut exécuter :
 - variante ;
 - utilisateur d’exécution ;
 - langue ;
-- paramètres de spool et d’archivage.
+- paramètres de spool[^terme-spool] et d’archivage.
 
-Le job possède ses propres propriétés : nom, numéro interne, classe, condition de démarrage, périodicité et éventuellement serveur cible.
+Le job possède ses propres propriétés : nom, numéro interne, classe[^terme-classe], condition de démarrage, périodicité et éventuellement serveur cible.
 
 ## 3.D ÉCHEC D’UNE ÉTAPE
 
@@ -57,7 +57,7 @@ Une étape ne doit pas dépendre implicitement de la mémoire de la précédente
 
 ### 3.F.4 ÉTAPE 4 — LIBÉRER LE JOB
 
-Définir la condition de démarrage puis enregistrer. Dans `SM37`, vérifier que le job est libéré, que toutes les étapes sont présentes et que les variantes actives sont celles attendues. Conserver le numéro de job et l’horodatage de la vérification.
+Définir la condition de démarrage puis enregistrer. Dans `SM37`[^outil-sm37], vérifier que le job est libéré, que toutes les étapes sont présentes et que les variantes actives sont celles attendues. Conserver le numéro de job et l’horodatage de la vérification.
 
 ### 3.F.5 ÉTAPE 5 — SUIVRE L’EXÉCUTION PAR ÉTAPE
 
@@ -65,7 +65,7 @@ Après démarrage, ouvrir le journal et les spools. Identifier l’étape en cou
 
 ### 3.F.6 ÉTAPE 6 — TESTER UNE ÉTAPE INTERMÉDIAIRE EN ÉCHEC
 
-Provoquer un échec contrôlé dans un environnement de test et vérifier que les étapes suivantes ne produisent pas un résultat invalide. Documenter la procédure de reprise : job complet, copie à partir d’une étape ou nouveau job dédié avec état persistant contrôlé.
+Provoquer un échec contrôlé dans un environnement[^terme-environnement] de test et vérifier que les étapes suivantes ne produisent pas un résultat invalide. Documenter la procédure de reprise : job complet, copie à partir d’une étape ou nouveau job dédié avec état persistant contrôlé.
 
 ## 3.G VÉRIFICATION
 
@@ -109,3 +109,12 @@ Ordre de transport  :
 ---
 
 [Chapitre suivant — PRÉPARER UN PROGRAMME ABAP POUR LE BATCH](<./04 ├── PREPARER UN PROGRAMME ABAP POUR LE BATCH.md>)
+
+[^terme-job]: **JOB.** Traitement planifié en arrière-plan composé d’une ou plusieurs étapes. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/06 ├── PROGRAMMES CLASSES ET OBJETS TECHNIQUES.md#job>).
+[^terme-abap]: **ABAP.** Langage de programmation de la plateforme ABAP, conçu pour développer des applications métier et techniques SAP. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#abap>).
+[^terme-acro-sap]: **SAP.** Nom de l’éditeur et de son écosystème logiciel ; l’acronyme historique provient de l’allemand. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/10 └── ACRONYMES SAP.md#acro-sap>).
+[^terme-spool]: **SPOOL.** Infrastructure stockant et acheminant les sorties imprimables produites par les traitements SAP. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/06 ├── PROGRAMMES CLASSES ET OBJETS TECHNIQUES.md#spool>).
+[^terme-classe]: **CLASSE.** Modèle orienté objet définissant état et comportements. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#classe>).
+[^terme-environnement]: **ENVIRONNEMENT.** Rôle fonctionnel attribué à un système dans le cycle de vie : développement, test, recette, préproduction ou production. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/01 ├── SYSTEMES ENVIRONNEMENTS ET MANDANTS.md#environnement>).
+
+[^outil-sm37]: **SM37.** Transaction de recherche, surveillance et administration des jobs d’arrière-plan. Voir [le chapitre associé](<15 ├── SURVEILLER LES JOBS AVEC SM37.md>).

@@ -4,13 +4,13 @@
 
 - Comprendre la génération automatique de l’écran 1000
 - Identifier les instructions de définition
-- Distinguer écran de sélection et dynpro classique
+- Distinguer écran de sélection et dynpro[^terme-dynpro] classique
 - Structurer les déclarations dans la partie globale
 - Comprendre le transfert des valeurs vers le programme
 
 ## 4.B GÉNÉRATION AUTOMATIQUE
 
-Dans un programme exécutable, les instructions suivantes définissent automatiquement l’écran de sélection standard :
+Dans un programme exécutable[^terme-programme-executable], les instructions suivantes définissent automatiquement l’écran de sélection standard :
 
 - `PARAMETERS` ;
 - `SELECT-OPTIONS` ;
@@ -36,7 +36,7 @@ flowchart LR
 
 | Écran de sélection                        | Dynpro classique                   |
 | ----------------------------------------- | ---------------------------------- |
-| Défini par instructions ABAP              | Conçu avec le Screen Painter       |
+| Défini par instructions ABAP[^terme-abap]              | Conçu avec le Screen Painter       |
 | Gestion standard des sélections multiples | Flux PBO et PAI explicite          |
 | Adapté aux programmes exécutables         | Adapté aux applications dialoguées |
 | Mise en page volontairement limitée       | Mise en page plus libre            |
@@ -58,7 +58,7 @@ START-OF-SELECTION.
   " Traitement
 ```
 
-`TABLES` peut encore être rencontré dans les programmes historiques. Pour un typage simple, préférer une référence directe aux composants DDIC lorsque cela suffit.
+`TABLES` peut encore être rencontré dans les programmes historiques. Pour un typage simple, préférer une référence directe aux composants DDIC[^terme-acro-ddic] lorsque cela suffit.
 
 ## 4.E TRANSFERT DES VALEURS
 
@@ -117,7 +117,7 @@ START-OF-SELECTION.
 ## 4.K MODÈLE DE DÉMONSTRATION SFLIGHT
 
 > [!NOTE]
-> Les tables `SCARR`, `SPFLI` et `SFLIGHT` appartiennent au modèle de démonstration SAP et peuvent être absentes ou non alimentées dans certains systèmes. Dans ce cas, remplacer les exemples par une table Z de démonstration ou par une source en lecture seule autorisée, sans modifier une table applicative standard.
+> Les tables `SCARR`, `SPFLI` et `SFLIGHT` appartiennent au modèle de démonstration SAP[^terme-acro-sap] et peuvent être absentes ou non alimentées dans certains systèmes. Dans ce cas, remplacer les exemples par une table Z de démonstration ou par une source en lecture seule autorisée, sans modifier une table applicative standard.
 
 ## 4.L RÉFÉRENCES OFFICIELLES SAP
 
@@ -129,3 +129,9 @@ START-OF-SELECTION.
 ---
 
 [Chapitre suivant — PARAMÈTRES AVEC PARAMETERS](<./05 ├── PARAMETRES AVEC PARAMETERS.md>)
+
+[^terme-dynpro]: **DYNPRO.** Écran classique SAP composé d’une définition d’écran et d’une logique PBO/PAI. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/02 ├── SAP GUI NAVIGATION ET TRANSACTIONS.md#dynpro>).
+[^terme-programme-executable]: **PROGRAMME EXÉCUTABLE.** Programme ABAP de type report pouvant être lancé directement, généralement avec `F8` ou par une transaction. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/06 ├── PROGRAMMES CLASSES ET OBJETS TECHNIQUES.md#programme-executable>).
+[^terme-abap]: **ABAP.** Langage de programmation de la plateforme ABAP, conçu pour développer des applications métier et techniques SAP. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#abap>).
+[^terme-acro-ddic]: **DDIC.** Data Dictionary, abréviation courante de l’ABAP Dictionary. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/10 └── ACRONYMES SAP.md#acro-ddic>).
+[^terme-acro-sap]: **SAP.** Nom de l’éditeur et de son écosystème logiciel ; l’acronyme historique provient de l’allemand. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/10 └── ACRONYMES SAP.md#acro-sap>).

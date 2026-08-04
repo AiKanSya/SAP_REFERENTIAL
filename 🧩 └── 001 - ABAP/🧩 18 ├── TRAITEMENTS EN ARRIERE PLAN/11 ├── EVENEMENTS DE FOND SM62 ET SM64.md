@@ -19,8 +19,8 @@ flowchart LR
 
 ## 11.C TRANSACTIONS
 
-- `SM62` : définition et historique des événements selon la version et l’écran utilisé ;
-- `SM64` : déclenchement manuel et maintenance des événements de fond selon les autorisations disponibles.
+- `SM62`[^outil-sm62] : définition et historique des événements selon la version et l’écran utilisé ;
+- `SM64`[^outil-sm64] : déclenchement manuel et maintenance des événements de fond selon les autorisations disponibles.
 
 Toujours vérifier le comportement exact dans le système cible, car les menus et libellés peuvent varier selon la version.
 
@@ -51,15 +51,15 @@ Créer ou afficher l’identifiant avec un préfixe Z et une description explici
 
 ### 11.F.2 ÉTAPE 2 — NORMALISER L’ARGUMENT
 
-Définir le format exact : identifiant de lot, fichier ou domaine fonctionnel. Limiter sa longueur et exclure les données sensibles. Le producteur et le job en attente doivent utiliser la même casse et la même convention.
+Définir le format exact : identifiant de lot, fichier ou domaine fonctionnel. Limiter sa longueur et exclure les données sensibles. Le producteur et le job[^terme-job] en attente doivent utiliser la même casse et la même convention.
 
 ### 11.F.3 ÉTAPE 3 — PLANIFIER LE JOB CONSOMMATEUR
 
-Dans `SM36`, créer l’étape puis choisir une condition de démarrage par événement. Renseigner l’identifiant et l’argument attendus, enregistrer et libérer. Dans `SM37`, vérifier que le job attend le bon événement.
+Dans `SM36`[^outil-sm36], créer l’étape puis choisir une condition de démarrage par événement. Renseigner l’identifiant et l’argument attendus, enregistrer et libérer. Dans `SM37`[^outil-sm37], vérifier que le job attend le bon événement.
 
 ### 11.F.4 ÉTAPE 4 — DÉCLENCHER MANUELLEMENT EN TEST
 
-Dans `SM64`, sélectionner l’événement défini et saisir l’argument exact. Déclencher une seule occurrence en environnement de test. Relever l’heure et contrôler dans `SM37` quel job devient éligible.
+Dans `SM64`, sélectionner l’événement défini et saisir l’argument exact. Déclencher une seule occurrence en environnement[^terme-environnement] de test. Relever l’heure et contrôler dans `SM37` quel job devient éligible.
 
 ### 11.F.5 ÉTAPE 5 — VÉRIFIER LA CORRESPONDANCE
 
@@ -73,7 +73,7 @@ Déclencher deux fois la même combinaison. Vérifier la règle de périodicité
 
 - Le job apparaît dans `SM37` avec le statut attendu.
 - Le journal ne contient pas de message d’erreur non traité.
-- Le spool, le fichier ou le journal applicatif contient le résultat attendu.
+- Le spool[^terme-spool], le fichier ou le journal applicatif contient le résultat attendu.
 - Une relance contrôlée ne crée pas de doublon métier.
 
 ## 11.H ERREURS FRÉQUENTES
@@ -112,3 +112,12 @@ Ordre de transport  :
 ---
 
 [Chapitre suivant — DÉCLENCHER UN ÉVÉNEMENT EN ABAP](<./12 ├── DECLENCHER UN EVENEMENT EN ABAP.md>)
+
+[^terme-job]: **JOB.** Traitement planifié en arrière-plan composé d’une ou plusieurs étapes. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/06 ├── PROGRAMMES CLASSES ET OBJETS TECHNIQUES.md#job>).
+[^terme-environnement]: **ENVIRONNEMENT.** Rôle fonctionnel attribué à un système dans le cycle de vie : développement, test, recette, préproduction ou production. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/01 ├── SYSTEMES ENVIRONNEMENTS ET MANDANTS.md#environnement>).
+[^terme-spool]: **SPOOL.** Infrastructure stockant et acheminant les sorties imprimables produites par les traitements SAP. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/06 ├── PROGRAMMES CLASSES ET OBJETS TECHNIQUES.md#spool>).
+
+[^outil-sm62]: **SM62.** Transaction de définition des événements utilisables par les traitements d’arrière-plan. Voir [le chapitre associé](<11 ├── EVENEMENTS DE FOND SM62 ET SM64.md>).
+[^outil-sm64]: **SM64.** Transaction de déclenchement manuel d’un événement d’arrière-plan. Voir [le chapitre associé](<11 ├── EVENEMENTS DE FOND SM62 ET SM64.md>).
+[^outil-sm36]: **SM36.** Transaction de définition et de planification des jobs d’arrière-plan. Voir [le chapitre associé](<06 ├── PLANIFIER UN JOB AVEC SM36.md>).
+[^outil-sm37]: **SM37.** Transaction de recherche, surveillance et administration des jobs d’arrière-plan. Voir [le chapitre associé](<15 ├── SURVEILLER LES JOBS AVEC SM37.md>).

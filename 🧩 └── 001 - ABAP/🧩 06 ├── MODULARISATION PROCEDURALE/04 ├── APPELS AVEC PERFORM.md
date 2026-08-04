@@ -139,7 +139,7 @@ Pour les traitements métier classiques, une boucle explicite est souvent plus s
 ## 4.L SNIPPET À RÉUTILISER
 
 > [!NOTE]
-> Adapter les noms `Z*`, les types DDIC, les données et les autorisations au système cible. Effectuer un contrôle syntaxique avant activation.
+> Adapter les noms `Z*`, les types DDIC[^terme-acro-ddic], les données et les autorisations au système cible. Effectuer un contrôle syntaxique avant activation.
 
 ```abap
 REPORT z_demo_perform_01.
@@ -170,3 +170,5 @@ ENDFORM.
 ---
 
 [Chapitre suivant — INTERFACES USING ET CHANGING](<./05 ├── INTERFACES USING ET CHANGING.md>)
+
+[^terme-acro-ddic]: **DDIC.** Data Dictionary, abréviation courante de l’ABAP Dictionary. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/10 └── ACRONYMES SAP.md#acro-ddic>).

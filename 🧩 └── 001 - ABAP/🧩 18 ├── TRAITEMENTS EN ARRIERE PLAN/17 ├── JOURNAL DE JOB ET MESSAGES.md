@@ -8,12 +8,12 @@
 
 ## 17.B CONTENU
 
-Le journal de job contient notamment :
+Le journal de job[^terme-job] contient notamment :
 
 - démarrage et fin des étapes ;
 - programme et variante ;
 - messages du système de traitement de fond ;
-- erreurs émises par les programmes ABAP ;
+- erreurs émises par les programmes ABAP[^terme-abap] ;
 - sorties ou erreurs de certains programmes externes ;
 - informations de terminaison.
 
@@ -40,7 +40,7 @@ Pour un traitement professionnel, enregistrer au minimum :
 - durée des phases ;
 - statut final métier.
 
-Le Business Application Log, consultable avec `SLG1`, est souvent plus adapté qu’une longue série de `WRITE` ou de messages génériques.
+Le Business Application Log[^terme-application-log], consultable avec `SLG1`[^outil-slg1], est souvent plus adapté qu’une longue série de `WRITE` ou de messages génériques.
 
 ## 17.E MESSAGES DANGEREUX
 
@@ -50,7 +50,7 @@ Des messages de type `A`, `E` ou certaines exceptions non traitées peuvent prov
 
 ### 17.F.1 ÉTAPE 1 — OUVRIR L’OCCURRENCE EXACTE
 
-Dans `SM37`, rechercher le job avec nom, utilisateur et période, puis vérifier l’heure et le numéro. Sélectionner l’occurrence et ouvrir son journal. Ne pas utiliser le journal d’une exécution homonyme comme preuve.
+Dans `SM37`[^outil-sm37], rechercher le job avec nom, utilisateur et période, puis vérifier l’heure et le numéro. Sélectionner l’occurrence et ouvrir son journal. Ne pas utiliser le journal d’une exécution homonyme comme preuve.
 
 ### 17.F.2 ÉTAPE 2 — LIRE LES MESSAGES DANS L’ORDRE
 
@@ -58,11 +58,11 @@ Relever l’heure, le type de message, l’étape et le texte complet. Identifie
 
 ### 17.F.3 ÉTAPE 3 — RETROUVER LA SOURCE DU MESSAGE
 
-Pour un message de classe, relever l’identifiant et le numéro puis l’analyser dans `SE91`. Pour un texte écrit par le report, localiser l’instruction correspondante. Relier le message au programme et à la variante de l’étape.
+Pour un message de classe[^terme-classe], relever l’identifiant et le numéro puis l’analyser dans `SE91`[^outil-se91]. Pour un texte écrit par le report, localiser l’instruction correspondante. Relier le message au programme et à la variante de l’étape.
 
 ### 17.F.4 ÉTAPE 4 — CORRÉLER AVEC LES AUTRES PREUVES
 
-À la même heure et sous le même utilisateur, rechercher un dump dans `ST22`, une erreur d’update dans `SM13`, un log applicatif dans `SLG1` ou un problème de spool. N’ouvrir que les outils justifiés par le type d’échec observé.
+À la même heure et sous le même utilisateur, rechercher un dump dans `ST22`[^outil-st22], une erreur d’update dans `SM13`[^outil-sm13], un log applicatif dans `SLG1` ou un problème de spool[^terme-spool]. N’ouvrir que les outils justifiés par le type d’échec observé.
 
 ### 17.F.5 ÉTAPE 5 — AMÉLIORER LA JOURNALISATION DU PROGRAMME
 
@@ -74,9 +74,9 @@ Rejouer avec la même variante après correction. Vérifier que la progression a
 
 ## 17.G VÉRIFICATION
 
-- Le scénario reproduit correspond au même utilisateur, mandant, transaction et jeu de données.
+- Le scénario reproduit correspond au même utilisateur, mandant[^terme-mandant], transaction et jeu de données.
 - L’horodatage et l’identifiant de l’analyse sont conservés.
-- La cause retenue est soutenue par une ligne source, une trace ou une valeur observée.
+- La cause retenue est soutenue par une ligne source, une trace[^terme-trace] ou une valeur observée.
 - Après correction, le même scénario ne reproduit plus le défaut et le résultat métier reste identique.
 
 ## 17.H ERREURS FRÉQUENTES
@@ -114,3 +114,17 @@ Ordre de transport  :
 ---
 
 [Chapitre suivant — SPOOL, SORTIES ET DESTINATAIRES](<./18 ├── SPOOL SORTIES ET DESTINATAIRES.md>)
+
+[^terme-job]: **JOB.** Traitement planifié en arrière-plan composé d’une ou plusieurs étapes. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/06 ├── PROGRAMMES CLASSES ET OBJETS TECHNIQUES.md#job>).
+[^terme-abap]: **ABAP.** Langage de programmation de la plateforme ABAP, conçu pour développer des applications métier et techniques SAP. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#abap>).
+[^terme-application-log]: **APPLICATION LOG.** Infrastructure BAL permettant de stocker des journaux applicatifs consultables avec `SLG1`. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/08 ├── EXECUTION EXPLOITATION ET ADMINISTRATION.md#application-log>).
+[^terme-classe]: **CLASSE.** Modèle orienté objet définissant état et comportements. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#classe>).
+[^terme-spool]: **SPOOL.** Infrastructure stockant et acheminant les sorties imprimables produites par les traitements SAP. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/06 ├── PROGRAMMES CLASSES ET OBJETS TECHNIQUES.md#spool>).
+[^terme-mandant]: **MANDANT.** Subdivision logique d’un système SAP. Il est identifié par un numéro à trois chiffres et isole une partie des données, du paramétrage et des utilisateurs. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/01 ├── SYSTEMES ENVIRONNEMENTS ET MANDANTS.md#mandant>).
+[^terme-trace]: **TRACE.** Enregistrement détaillé d’événements techniques pour analyser exécution, SQL ou appels. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/08 ├── EXECUTION EXPLOITATION ET ADMINISTRATION.md#trace>).
+
+[^outil-slg1]: **SLG1.** Transaction de recherche et d’affichage des journaux applicatifs persistés. Voir [le chapitre associé](<../🧩 19 ├── JOURNAUX APPLICATIFS/05 ├── ANALYSER LES JOURNAUX AVEC SLG1.md>).
+[^outil-sm37]: **SM37.** Transaction de recherche, surveillance et administration des jobs d’arrière-plan. Voir [le chapitre associé](<15 ├── SURVEILLER LES JOBS AVEC SM37.md>).
+[^outil-se91]: **SE91.** Transaction de création et de maintenance des classes de messages SAP. Voir [le chapitre associé](<../🧩 10 ├── MESSAGES ET GESTION DES ERREURS/02 ├── CLASSES DE MESSAGES ET TRANSACTION SE91.md>).
+[^outil-st22]: **ST22.** Transaction d’analyse des terminaisons anormales et dumps ABAP. Voir [le chapitre associé](<../🧩 11 ├── DEBUG ET ANALYSE/13 ├── ANALYSER LES DUMPS AVEC ST22.md>).
+[^outil-sm13]: **SM13.** Transaction de surveillance et de reprise des enregistrements de mise à jour SAP. Voir [le chapitre associé](<../🧩 16 ├── LUW VERROUILLAGES ET MISES A JOUR/19 ├── ANALYSER ET REPRENDRE LES UPDATES AVEC SM13.md>).

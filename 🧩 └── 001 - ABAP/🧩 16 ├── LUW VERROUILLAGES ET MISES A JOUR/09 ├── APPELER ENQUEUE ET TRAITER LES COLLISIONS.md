@@ -34,7 +34,7 @@ Les noms exacts des paramètres dépendent de l’objet de verrouillage génér�
 
 ## 9.C TRAITEMENT DES ERREURS
 
-| Exception        | Signification                                                   |
+| Exception[^terme-exception]        | Signification                                                   |
 | ---------------- | --------------------------------------------------------------- |
 | `foreign_lock`   | Une entrée incompatible appartient déjà à un autre propriétaire |
 | `system_failure` | Le service de verrouillage n’a pas pu traiter la demande        |
@@ -54,11 +54,11 @@ Ne pas poursuivre silencieusement après une collision. Relire les données apr�
 
 ### 9.E.1 ÉTAPE 1 — CONSTRUIRE LA CLÉ COMPLÈTE
 
-Déterminer la clé métier à protéger et convertir ses composants dans les types attendus par le module généré. Renseigner explicitement le mandant si la signature le prévoit. Éviter les valeurs initiales non intentionnelles, qui peuvent élargir l’argument de verrouillage.
+Déterminer la clé métier à protéger et convertir ses composants dans les types attendus par le module généré. Renseigner explicitement le mandant[^terme-mandant] si la signature le prévoit. Éviter les valeurs initiales non intentionnelles, qui peuvent élargir l’argument de verrouillage.
 
 ### 9.E.2 ÉTAPE 2 — CONTRÔLER LA SIGNATURE GÉNÉRÉE
 
-Afficher `ENQUEUE_<objet>` dans `SE37`. Relever les paramètres de table, de mode, `_SCOPE`, `_WAIT` et les exceptions exactes. Adapter le code à cette signature ; les noms de paramètres d’un autre objet ne sont pas transposables.
+Afficher `ENQUEUE_<objet>` dans `SE37`[^outil-se37]. Relever les paramètres de table, de mode, `_SCOPE`, `_WAIT` et les exceptions exactes. Adapter le code à cette signature ; les noms de paramètres d’un autre objet ne sont pas transposables.
 
 ### 9.E.3 ÉTAPE 3 — DEMANDER LE VERROU
 
@@ -74,13 +74,13 @@ Relire depuis la base l’état utilisé pour la décision métier. Comparer ave
 
 ### 9.E.6 ÉTAPE 6 — TESTER LA COLLISION
 
-Maintenir le verrou dans une première session. Dans une seconde, appeler le même scénario avec la même clé, puis avec une clé différente. Vérifier le message contrôlé, l’absence d’écriture concurrente et les entrées attendues dans `SM12`.
+Maintenir le verrou dans une première session. Dans une seconde, appeler le même scénario avec la même clé, puis avec une clé différente. Vérifier le message contrôlé, l’absence d’écriture concurrente et les entrées attendues dans `SM12`[^outil-sm12].
 
 ## 9.F VÉRIFICATION
 
 - Les données sont toutes validées ou toutes annulées selon le cas testé.
 - Les verrous sont libérés à la fin du traitement normal et après erreur.
-- Aucune update en erreur inattendue ne reste dans `SM13`.
+- Aucune update en erreur inattendue ne reste dans `SM13`[^outil-sm13].
 - Les collisions concurrentes produisent un message contrôlé, pas une incohérence.
 
 ## 9.G ERREURS FRÉQUENTES
@@ -93,7 +93,7 @@ Maintenir le verrou dans une première session. Dans une seconde, appeler le mê
 ## 9.H SNIPPET À RÉUTILISER
 
 > [!NOTE]
-> Adapter les noms `Z*`, les types DDIC, les données et les autorisations au système cible. Effectuer un contrôle syntaxique avant activation.
+> Adapter les noms `Z*`, les types DDIC[^terme-acro-ddic], les données et les autorisations au système cible. Effectuer un contrôle syntaxique avant activation.
 
 ```abap
 CALL FUNCTION 'ENQUEUE_EZDEV_ORDER'
@@ -134,3 +134,11 @@ ENDCASE.
 ---
 
 [Chapitre suivant — `DEQUEUE`, PROPRIÉTAIRE ET DURÉE DU VERROU](<./10 ├── DEQUEUE PROPRIETAIRE ET DUREE DU VERROU.md>)
+
+[^terme-exception]: **EXCEPTION.** Objet ou signal représentant une situation anormale qu’un appelant peut traiter. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#exception>).
+[^terme-mandant]: **MANDANT.** Subdivision logique d’un système SAP. Il est identifié par un numéro à trois chiffres et isole une partie des données, du paramétrage et des utilisateurs. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/01 ├── SYSTEMES ENVIRONNEMENTS ET MANDANTS.md#mandant>).
+[^terme-acro-ddic]: **DDIC.** Data Dictionary, abréviation courante de l’ABAP Dictionary. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/10 └── ACRONYMES SAP.md#acro-ddic>).
+
+[^outil-se37]: **SE37.** Function Builder utilisé pour rechercher, afficher, tester et maintenir les modules fonction. Voir [le chapitre associé](<../🧩 12 ├── MODULES FONCTION RFC ET BAPI/03 ├── RECHERCHER ET ANALYSER AVEC SE37.md>).
+[^outil-sm12]: **SM12.** Transaction de surveillance et d’administration des entrées de verrouillage SAP. Voir [le chapitre associé](<12 ├── ANALYSER LES VERROUS AVEC SM12.md>).
+[^outil-sm13]: **SM13.** Transaction de surveillance et de reprise des enregistrements de mise à jour SAP. Voir [le chapitre associé](<19 ├── ANALYSER ET REPRENDRE LES UPDATES AVEC SM13.md>).

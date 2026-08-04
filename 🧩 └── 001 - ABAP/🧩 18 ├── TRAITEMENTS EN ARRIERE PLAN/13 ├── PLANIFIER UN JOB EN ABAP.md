@@ -2,8 +2,8 @@
 
 ## 13.A RÉSULTAT ATTENDU
 
-- Créer un job depuis un programme
-- Ajouter une étape ABAP
+- Créer un job[^terme-job] depuis un programme
+- Ajouter une étape ABAP[^terme-abap]
 - Libérer le job avec une condition de démarrage
 
 ## 13.B CYCLE COMPLET
@@ -65,7 +65,7 @@ ENDIF.
 
 ## 13.D `JOB_SUBMIT`
 
-`JOB_SUBMIT` permet également d’ajouter une étape. `SUBMIT ... VIA JOB` est une alternative ABAP documentée. Le choix dépend du besoin de contrôle sur la variante, le spool, la langue et l’utilisateur d’exécution.
+`JOB_SUBMIT` permet également d’ajouter une étape. `SUBMIT ... VIA JOB` est une alternative ABAP documentée. Le choix dépend du besoin de contrôle sur la variante, le spool[^terme-spool], la langue et l’utilisateur d’exécution.
 
 ## 13.E ROBUSTESSE
 
@@ -74,7 +74,7 @@ ENDIF.
 - vérifier chaque code retour ;
 - éviter de créer plusieurs jobs identiques lors d’une relance ;
 - journaliser le job créé ;
-- ne pas exécuter de `COMMIT WORK` caché dans une API appelante sans contrat clair.
+- ne pas exécuter de `COMMIT WORK`[^terme-commit-work] caché dans une API[^terme-api] appelante sans contrat clair.
 
 ## 13.F PROCESS
 
@@ -104,7 +104,7 @@ Rechercher le couple créé, vérifier le statut libéré, le programme, la vari
 
 ## 13.G VÉRIFICATION
 
-- Le job apparaît dans `SM37` avec le statut attendu.
+- Le job apparaît dans `SM37`[^outil-sm37] avec le statut attendu.
 - Le journal ne contient pas de message d’erreur non traité.
 - Le spool, le fichier ou le journal applicatif contient le résultat attendu.
 - Une relance contrôlée ne crée pas de doublon métier.
@@ -119,7 +119,7 @@ Rechercher le couple créé, vérifier le statut libéré, le programme, la vari
 ## 13.I SNIPPET À RÉUTILISER
 
 > [!NOTE]
-> Adapter les noms `Z*`, les types DDIC, les données et les autorisations au système cible. Effectuer un contrôle syntaxique avant activation.
+> Adapter les noms `Z*`, les types DDIC[^terme-acro-ddic], les données et les autorisations au système cible. Effectuer un contrôle syntaxique avant activation.
 
 ```abap
 DATA lv_jobname  TYPE btcjob VALUE 'Z_DEV_DEMO_JOB'.
@@ -185,3 +185,12 @@ ENDIF.
 ---
 
 [Chapitre suivant — UTILISATEUR D’EXÉCUTION ET AUTORISATIONS](<./14 ├── UTILISATEUR D EXECUTION ET AUTORISATIONS.md>)
+
+[^terme-job]: **JOB.** Traitement planifié en arrière-plan composé d’une ou plusieurs étapes. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/06 ├── PROGRAMMES CLASSES ET OBJETS TECHNIQUES.md#job>).
+[^terme-abap]: **ABAP.** Langage de programmation de la plateforme ABAP, conçu pour développer des applications métier et techniques SAP. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#abap>).
+[^terme-spool]: **SPOOL.** Infrastructure stockant et acheminant les sorties imprimables produites par les traitements SAP. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/06 ├── PROGRAMMES CLASSES ET OBJETS TECHNIQUES.md#spool>).
+[^terme-commit-work]: **COMMIT WORK.** Instruction clôturant la SAP LUW courante, déclenchant notamment les mises à jour enregistrées et validant la base. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/08 ├── EXECUTION EXPLOITATION ET ADMINISTRATION.md#commit-work>).
+[^terme-api]: **API.** Application Programming Interface, contrat exposant des opérations ou données utilisables par d’autres composants. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/10 └── ACRONYMES SAP.md#api>).
+[^terme-acro-ddic]: **DDIC.** Data Dictionary, abréviation courante de l’ABAP Dictionary. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/10 └── ACRONYMES SAP.md#acro-ddic>).
+
+[^outil-sm37]: **SM37.** Transaction de recherche, surveillance et administration des jobs d’arrière-plan. Voir [le chapitre associé](<15 ├── SURVEILLER LES JOBS AVEC SM37.md>).

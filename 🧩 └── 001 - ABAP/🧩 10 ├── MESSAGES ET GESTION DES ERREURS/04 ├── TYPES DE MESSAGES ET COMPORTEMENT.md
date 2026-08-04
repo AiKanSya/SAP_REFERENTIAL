@@ -27,7 +27,7 @@ Le type ne représente pas uniquement une icône. Il influence le flux du progra
 MESSAGE s003(zdev_msg) WITH lv_count.
 ```
 
-Le traitement continue normalement. Le message est généralement présenté dans la barre de statut du prochain écran pertinent.
+Le traitement continue normalement. Le message est généralement présenté dans la barre de statut[^terme-barre-statut] du prochain écran pertinent.
 
 ## 4.D TYPE I
 
@@ -37,14 +37,14 @@ MESSAGE i004(zdev_msg).
 
 Le message est présenté comme une information. Après validation par l’utilisateur, le traitement continue après l’instruction `MESSAGE`.
 
-Un message modal rend un traitement dépendant de l’interaction SAP GUI. Il est donc inadapté à un programme destiné à l’arrière-plan.
+Un message modal rend un traitement dépendant de l’interaction SAP GUI[^terme-sap-gui]. Il est donc inadapté à un programme destiné à l’arrière-plan.
 
 ## 4.E TYPES W ET E
 
 Le comportement exact dépend du contexte :
 
 - écran de sélection ;
-- dynpro classique ;
+- dynpro[^terme-dynpro] classique ;
 - traitement de liste ;
 - bloc événementiel ;
 - procédure appelée.
@@ -55,7 +55,7 @@ Il faut toujours vérifier la documentation du contexte d’exécution.
 
 ## 4.F TYPE A
 
-Le type `A` signale qu’un traitement ne peut pas continuer. Il provoque une interruption contrôlée par le runtime ABAP.
+Le type `A` signale qu’un traitement ne peut pas continuer. Il provoque une interruption contrôlée par le runtime ABAP[^terme-abap].
 
 Il ne doit pas être utilisé pour une validation fonctionnelle ordinaire. Une erreur de saisie doit permettre une correction.
 
@@ -65,9 +65,9 @@ Il ne doit pas être utilisé pour une validation fonctionnelle ordinaire. Une e
 MESSAGE x005(zdev_msg).
 ```
 
-Le type `X` force une erreur d’exécution, généralement visible dans `ST22` avec le contexte du programme.
+Le type `X` force une erreur d’exécution, généralement visible dans `ST22`[^outil-st22] avec le contexte du programme.
 
-Son usage doit rester exceptionnel. Il ne remplace ni une exception de classe ni un message fonctionnel.
+Son usage doit rester exceptionnel. Il ne remplace ni une exception[^terme-exception] de classe[^terme-classe] ni un message fonctionnel.
 
 ## 4.H COMPORTEMENT DÉPENDANT DU CONTEXTE
 
@@ -106,7 +106,7 @@ Le même type peut être traité différemment dans un écran, une liste ou un t
 ## 4.L SNIPPET À RÉUTILISER
 
 > [!NOTE]
-> Adapter les noms `Z*`, les types DDIC, les données et les autorisations au système cible. Effectuer un contrôle syntaxique avant activation.
+> Adapter les noms `Z*`, les types DDIC[^terme-acro-ddic], les données et les autorisations au système cible. Effectuer un contrôle syntaxique avant activation.
 
 ```abap
 MESSAGE s003(zdev_msg) WITH lv_count.
@@ -127,3 +127,13 @@ MESSAGE s003(zdev_msg) WITH lv_count.
 ---
 
 [Chapitre suivant — VARIABLES ET CHAMPS SYSTÈME DE MESSAGE](<./05 ├── VARIABLES ET CHAMPS SYSTEME DE MESSAGE.md>)
+
+[^terme-barre-statut]: **BARRE DE STATUT.** Zone inférieure de SAP GUI affichant messages et informations de session. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/02 ├── SAP GUI NAVIGATION ET TRANSACTIONS.md#barre-statut>).
+[^terme-sap-gui]: **SAP GUI.** Client graphique permettant d’utiliser les transactions et écrans d’un système SAP. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/02 ├── SAP GUI NAVIGATION ET TRANSACTIONS.md#sap-gui>).
+[^terme-dynpro]: **DYNPRO.** Écran classique SAP composé d’une définition d’écran et d’une logique PBO/PAI. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/02 ├── SAP GUI NAVIGATION ET TRANSACTIONS.md#dynpro>).
+[^terme-abap]: **ABAP.** Langage de programmation de la plateforme ABAP, conçu pour développer des applications métier et techniques SAP. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#abap>).
+[^terme-exception]: **EXCEPTION.** Objet ou signal représentant une situation anormale qu’un appelant peut traiter. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#exception>).
+[^terme-classe]: **CLASSE.** Modèle orienté objet définissant état et comportements. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#classe>).
+[^terme-acro-ddic]: **DDIC.** Data Dictionary, abréviation courante de l’ABAP Dictionary. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/10 └── ACRONYMES SAP.md#acro-ddic>).
+
+[^outil-st22]: **ST22.** Transaction d’analyse des terminaisons anormales et dumps ABAP. Voir [le chapitre associé](<../🧩 11 ├── DEBUG ET ANALYSE/13 ├── ANALYSER LES DUMPS AVEC ST22.md>).

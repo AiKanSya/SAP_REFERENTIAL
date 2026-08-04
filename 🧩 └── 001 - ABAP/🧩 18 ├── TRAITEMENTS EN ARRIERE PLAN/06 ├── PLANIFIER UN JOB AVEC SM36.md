@@ -2,7 +2,7 @@
 
 ## 6.A RÉSULTAT ATTENDU
 
-- Créer un job classique dans SAP GUI
+- Créer un job[^terme-job] classique dans SAP GUI[^terme-sap-gui]
 - Définir ses étapes et sa condition de démarrage
 - Vérifier qu’il est effectivement libéré
 
@@ -10,7 +10,7 @@
 
 ### 6.B.1 ÉTAPE 1 — PRÉPARER LES OBJETS D’EXÉCUTION
 
-Vérifier que le programme est actif, que la variante existe dans le système et que l’utilisateur technique possède les autorisations métier et techniques requises. Définir la fréquence, la classe et l’éventuel groupe de serveurs avec l’exploitation.
+Vérifier que le programme est actif, que la variante existe dans le système et que l’utilisateur technique possède les autorisations métier et techniques requises. Définir la fréquence, la classe[^terme-classe] et l’éventuel groupe de serveurs avec l’exploitation.
 
 ### 6.B.2 ÉTAPE 2 — CRÉER LE JOB
 
@@ -18,7 +18,7 @@ Saisir `/nSM36`, entrer un nom explicite et choisir la classe autorisée. Rensei
 
 ### 6.B.3 ÉTAPE 3 — AJOUTER L’ÉTAPE ABAP
 
-Ouvrir **Étapes**, choisir un programme ABAP, puis saisir le report, sa variante et l’utilisateur d’exécution. Enregistrer l’étape et vérifier le récapitulatif. Ajouter d’autres étapes seulement si leur séquence appartient au même cycle de reprise.
+Ouvrir **Étapes**, choisir un programme ABAP[^terme-abap], puis saisir le report, sa variante et l’utilisateur d’exécution. Enregistrer l’étape et vérifier le récapitulatif. Ajouter d’autres étapes seulement si leur séquence appartient au même cycle de reprise.
 
 ### 6.B.4 ÉTAPE 4 — DÉFINIR LA CONDITION DE DÉMARRAGE
 
@@ -26,11 +26,11 @@ Choisir un démarrage immédiat, une date/heure, une dépendance à un job ou un
 
 ### 6.B.5 ÉTAPE 5 — ENREGISTRER ET LIBÉRER
 
-Enregistrer le job et vérifier le message de planification. Ouvrir `SM37`, rechercher le nom et contrôler le statut, l’heure prévue, les étapes, les variantes et l’utilisateur. Un job seulement créé mais non libéré ne démarrera pas.
+Enregistrer le job et vérifier le message de planification. Ouvrir `SM37`[^outil-sm37], rechercher le nom et contrôler le statut, l’heure prévue, les étapes, les variantes et l’utilisateur. Un job seulement créé mais non libéré ne démarrera pas.
 
 ### 6.B.6 ÉTAPE 6 — VALIDER LA PREMIÈRE EXÉCUTION
 
-Surveiller le passage aux statuts actif puis terminé. Lire le journal et le spool, contrôler le résultat métier et relever la durée. En cas d’erreur, conserver les preuves avant toute copie ou replanification.
+Surveiller le passage aux statuts actif puis terminé. Lire le journal et le spool[^terme-spool], contrôler le résultat métier et relever la durée. En cas d’erreur, conserver les preuves avant toute copie ou replanification.
 
 ```mermaid
 flowchart LR
@@ -53,7 +53,7 @@ Le nom doit permettre de retrouver rapidement :
 
 ## 6.D ASSISTANT DE PLANIFICATION
 
-`SM36` propose également un assistant guidé. Il simplifie la saisie, mais ne remplace pas la compréhension des étapes, des variantes, des utilisateurs d’exécution et des conditions de démarrage.
+`SM36`[^outil-sm36] propose également un assistant guidé. Il simplifie la saisie, mais ne remplace pas la compréhension des étapes, des variantes, des utilisateurs d’exécution et des conditions de démarrage.
 
 ## 6.E CONTRÔLE FINAL
 
@@ -101,3 +101,12 @@ Ordre de transport  :
 ---
 
 [Chapitre suivant — CONDITIONS DE DÉMARRAGE](<./07 ├── CONDITIONS DE DEMARRAGE.md>)
+
+[^terme-job]: **JOB.** Traitement planifié en arrière-plan composé d’une ou plusieurs étapes. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/06 ├── PROGRAMMES CLASSES ET OBJETS TECHNIQUES.md#job>).
+[^terme-sap-gui]: **SAP GUI.** Client graphique permettant d’utiliser les transactions et écrans d’un système SAP. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/02 ├── SAP GUI NAVIGATION ET TRANSACTIONS.md#sap-gui>).
+[^terme-classe]: **CLASSE.** Modèle orienté objet définissant état et comportements. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#classe>).
+[^terme-abap]: **ABAP.** Langage de programmation de la plateforme ABAP, conçu pour développer des applications métier et techniques SAP. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#abap>).
+[^terme-spool]: **SPOOL.** Infrastructure stockant et acheminant les sorties imprimables produites par les traitements SAP. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/06 ├── PROGRAMMES CLASSES ET OBJETS TECHNIQUES.md#spool>).
+
+[^outil-sm37]: **SM37.** Transaction de recherche, surveillance et administration des jobs d’arrière-plan. Voir [le chapitre associé](<15 ├── SURVEILLER LES JOBS AVEC SM37.md>).
+[^outil-sm36]: **SM36.** Transaction de définition et de planification des jobs d’arrière-plan. Voir [le chapitre associé](<06 ├── PLANIFIER UN JOB AVEC SM36.md>).

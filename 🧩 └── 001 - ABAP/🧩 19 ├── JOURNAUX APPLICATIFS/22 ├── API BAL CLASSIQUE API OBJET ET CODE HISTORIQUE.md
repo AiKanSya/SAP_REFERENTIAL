@@ -2,13 +2,13 @@
 
 ## 22.A RÉSULTAT ATTENDU
 
-- Distinguer les familles d’API
+- Distinguer les familles d’API[^terme-api]
 - Choisir selon la version et le contexte du système
 - Reconnaître le code historique
 
 ## 22.B API CLASSIQUE BAL
 
-Les modules fonction `BAL_*` sont largement disponibles dans les systèmes ABAP classiques :
+Les modules fonction `BAL_*` sont largement disponibles dans les systèmes ABAP[^terme-abap] classiques :
 
 - `BAL_LOG_CREATE` ;
 - `BAL_LOG_MSG_ADD` ;
@@ -18,13 +18,13 @@ Les modules fonction `BAL_*` sont largement disponibles dans les systèmes ABAP 
 - `BAL_DB_SEARCH` ;
 - `BAL_DB_LOAD`.
 
-Ils constituent la base de ce dossier car ils sont accessibles et vérifiables dans `SE37` depuis SAP GUI.
+Ils constituent la base de ce dossier car ils sont accessibles et vérifiables dans `SE37`[^outil-se37] depuis SAP GUI[^terme-sap-gui].
 
 ## 22.C API ORIENTÉE OBJET
 
 Les versions récentes de l’ABAP Platform proposent des classes et interfaces `CL_BALI_*` / `IF_BALI_*`. Elles encapsulent la création, les éléments du journal et la persistance.
 
-Leur disponibilité dépend de la version du système et du modèle de développement. Vérifier dans `SE24` et dans la documentation correspondant exactement à la release.
+Leur disponibilité dépend de la version du système et du modèle de développement. Vérifier dans `SE24`[^terme-class-builder-se24] et dans la documentation correspondant exactement à la release.
 
 ## 22.D CODE HISTORIQUE
 
@@ -45,7 +45,7 @@ Relever la version ABAP Platform, le périmètre classique SAP GUI et les API r�
 
 ### 22.E.2 ÉTAPE 2 — ANALYSER LE CODE EXISTANT
 
-Rechercher les appels `APPL_LOG_*`, `BAL_*` et `CL_BALI_*` dans le composant. Cartographier création, ajout, affichage, sauvegarde et nettoyage. Ne pas remplacer une API historique avant d’avoir compris sa LUW et son format de journal.
+Rechercher les appels `APPL_LOG_*`, `BAL_*` et `CL_BALI_*` dans le composant. Cartographier création, ajout, affichage, sauvegarde et nettoyage. Ne pas remplacer une API historique avant d’avoir compris sa LUW[^terme-acro-luw] et son format de journal.
 
 ### 22.E.3 ÉTAPE 3 — CHOISIR UNE FAMILLE UNIQUE PAR ADAPTATEUR
 
@@ -53,15 +53,15 @@ Pour un développement classique compatible avec le système cible, retenir l’
 
 ### 22.E.4 ÉTAPE 4 — CRÉER UNE INTERFACE Z DE JOURNALISATION
 
-Définir des méthodes métier telles que démarrer, ajouter un message, ajouter une exception, sauvegarder et obtenir l’identifiant. Cacher handles et structures BAL derrière l’implémentation. L’appelant décide encore de poursuivre, rollback ou statut métier.
+Définir des méthodes métier telles que démarrer, ajouter un message, ajouter une exception[^terme-exception], sauvegarder et obtenir l’identifiant. Cacher handles et structures BAL[^terme-acro-bal] derrière l’implémentation. L’appelant décide encore de poursuivre, rollback ou statut métier.
 
 ### 22.E.5 ÉTAPE 5 — IMPLÉMENTER ET TESTER L’ADAPTATEUR
 
-Brancher l’API choisie et contrôler toutes ses erreurs. Utiliser une implémentation factice pour les tests du code métier. Tester succès, erreur d’objet `SLG0`, log plein, échec de sauvegarde et plusieurs journaux concurrents.
+Brancher l’API choisie et contrôler toutes ses erreurs. Utiliser une implémentation factice pour les tests du code métier. Tester succès, erreur d’objet `SLG0`[^outil-slg0], log plein, échec de sauvegarde et plusieurs journaux concurrents.
 
 ### 22.E.6 ÉTAPE 6 — MIGRER PROGRESSIVEMENT LE CODE HISTORIQUE
 
-Remplacer les appels directs derrière l’interface Z par scénario, sans changer simultanément le comportement transactionnel. Comparer le contenu `SLG1`, les identifiants, les autorisations et la rétention avant de retirer l’ancienne API.
+Remplacer les appels directs derrière l’interface Z par scénario, sans changer simultanément le comportement transactionnel. Comparer le contenu `SLG1`[^outil-slg1], les identifiants, les autorisations et la rétention avant de retirer l’ancienne API.
 
 ## 22.F VÉRIFICATION
 
@@ -105,3 +105,15 @@ Ordre de transport  :
 ---
 
 [Chapitre suivant — PROGRAMMES DE DÉMONSTRATION, TESTS ET DIAGNOSTIC](<./23 ├── PROGRAMMES DE DEMONSTRATION TESTS ET DIAGNOSTIC.md>)
+
+[^terme-api]: **API.** Application Programming Interface, contrat exposant des opérations ou données utilisables par d’autres composants. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/10 └── ACRONYMES SAP.md#api>).
+[^terme-abap]: **ABAP.** Langage de programmation de la plateforme ABAP, conçu pour développer des applications métier et techniques SAP. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#abap>).
+[^terme-sap-gui]: **SAP GUI.** Client graphique permettant d’utiliser les transactions et écrans d’un système SAP. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/02 ├── SAP GUI NAVIGATION ET TRANSACTIONS.md#sap-gui>).
+[^terme-class-builder-se24]: **CLASS BUILDER (SE24).** Outil SAP GUI utilisé pour créer, afficher, modifier, tester et documenter les classes et interfaces globales ABAP. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/06 ├── PROGRAMMES CLASSES ET OBJETS TECHNIQUES.md#class-builder-se24>).
+[^terme-acro-luw]: **LUW.** Logical Unit of Work. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/10 └── ACRONYMES SAP.md#acro-luw>).
+[^terme-exception]: **EXCEPTION.** Objet ou signal représentant une situation anormale qu’un appelant peut traiter. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#exception>).
+[^terme-acro-bal]: **BAL.** Business Application Log, API technique du journal applicatif. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/10 └── ACRONYMES SAP.md#acro-bal>).
+
+[^outil-se37]: **SE37.** Function Builder utilisé pour rechercher, afficher, tester et maintenir les modules fonction. Voir [le chapitre associé](<../🧩 12 ├── MODULES FONCTION RFC ET BAPI/03 ├── RECHERCHER ET ANALYSER AVEC SE37.md>).
+[^outil-slg0]: **SLG0.** Transaction de définition des objets et sous-objets de journal applicatif. Voir [le chapitre associé](<04 ├── CREER UN OBJET AVEC SLG0.md>).
+[^outil-slg1]: **SLG1.** Transaction de recherche et d’affichage des journaux applicatifs persistés. Voir [le chapitre associé](<05 ├── ANALYSER LES JOURNAUX AVEC SLG1.md>).

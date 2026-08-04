@@ -2,17 +2,17 @@
 
 ## 15.A RÉSULTAT ATTENDU
 
-- Utiliser `ST05` pour observer les accès SQL
-- Restreindre la trace à l’utilisateur et au scénario
+- Utiliser `ST05`[^outil-st05] pour observer les accès SQL[^terme-acro-sql]
+- Restreindre la trace[^terme-trace] à l’utilisateur et au scénario
 - Lire les opérations et durées principales
 - Repérer répétitions, lectures massives et accès non sélectifs
 - Désactiver immédiatement la trace après reproduction
 
 ## 15.B RÔLE DE ST05
 
-La transaction `ST05` fournit des fonctions de trace système, notamment la trace SQL. Selon le système, elle peut aussi couvrir d’autres catégories techniques comme les accès buffer, les contrôles d’autorisation, les enqueues ou les appels RFC.
+La transaction `ST05` fournit des fonctions de trace système, notamment la trace SQL. Selon le système, elle peut aussi couvrir d’autres catégories techniques comme les accès buffer, les contrôles d’autorisation, les enqueues ou les appels RFC[^terme-rfc].
 
-Ce chapitre se concentre sur l’usage développeur pour comprendre les accès produits par un traitement ABAP.
+Ce chapitre se concentre sur l’usage développeur pour comprendre les accès produits par un traitement ABAP[^terme-abap].
 
 ## 15.C PROCESS
 
@@ -84,7 +84,7 @@ La trace système peut également aider à analyser certains contrôles d’auto
 
 ## 15.H VÉRIFICATION
 
-- Le scénario reproduit correspond au même utilisateur, mandant, transaction et jeu de données.
+- Le scénario reproduit correspond au même utilisateur, mandant[^terme-mandant], transaction et jeu de données.
 - L’horodatage et l’identifiant de l’analyse sont conservés.
 - La cause retenue est soutenue par une ligne source, une trace ou une valeur observée.
 - Après correction, le même scénario ne reproduit plus le défaut et le résultat métier reste identique.
@@ -125,3 +125,11 @@ Ordre de transport  :
 ---
 
 [Chapitre suivant — ANALYSE CIBLÉE AVEC ST12](<./16 ├── ANALYSE CIBLEE AVEC ST12.md>)
+
+[^terme-acro-sql]: **SQL.** Structured Query Language. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/10 └── ACRONYMES SAP.md#acro-sql>).
+[^terme-trace]: **TRACE.** Enregistrement détaillé d’événements techniques pour analyser exécution, SQL ou appels. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/08 ├── EXECUTION EXPLOITATION ET ADMINISTRATION.md#trace>).
+[^terme-rfc]: **RFC.** Remote Function Call, mécanisme permettant d’appeler un module fonction compatible dans un autre contexte ou système. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/06 ├── PROGRAMMES CLASSES ET OBJETS TECHNIQUES.md#rfc>).
+[^terme-abap]: **ABAP.** Langage de programmation de la plateforme ABAP, conçu pour développer des applications métier et techniques SAP. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#abap>).
+[^terme-mandant]: **MANDANT.** Subdivision logique d’un système SAP. Il est identifié par un numéro à trois chiffres et isole une partie des données, du paramétrage et des utilisateurs. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/01 ├── SYSTEMES ENVIRONNEMENTS ET MANDANTS.md#mandant>).
+
+[^outil-st05]: **ST05.** Performance Trace utilisée notamment pour enregistrer et analyser les accès SQL. Voir [le chapitre associé](<../🧩 20 ├── PERFORMANCE QUALITE ET TESTS/08 ├── ANALYSER LES ACCES SQL AVEC ST05.md>).

@@ -6,19 +6,19 @@ Construire des variantes de contrôle stables et des inspections reproductibles.
 
 ## 14.B Concevoir une variante
 
-Une variante doit refléter un objectif explicite : contrôle quotidien développeur, sécurité, performance SQL, migration ou validation avant transport.
+Une variante doit refléter un objectif explicite : contrôle quotidien développeur, sécurité, performance SQL[^terme-acro-sql], migration ou validation avant transport.
 
 ### 14.B.1 Principes
 
-- partir d’une variante SAP ou projet reconnue ;
+- partir d’une variante SAP[^terme-acro-sap] ou projet reconnue ;
 - ne pas désactiver une règle uniquement pour réduire le nombre de findings ;
 - paramétrer les seuils selon la volumétrie et la release ;
 - versionner la décision de gouvernance hors de l’outil si nécessaire ;
-- tester la variante sur un package pilote.
+- tester la variante sur un package[^terme-package] pilote.
 
 ## 14.C Construire un jeu d’objets
 
-Le jeu peut viser un programme, une classe, un package, un transport ou un ensemble sélectionné. Il doit être assez précis pour fournir un résultat exploitable.
+Le jeu peut viser un programme, une classe[^terme-classe], un package, un transport ou un ensemble sélectionné. Il doit être assez précis pour fournir un résultat exploitable.
 
 ## 14.D Inspection reproductible
 
@@ -65,7 +65,7 @@ Attribuer chaque finding, corriger la cause et exécuter les tests. Documenter l
 
 ### 14.G.6 ÉTAPE 6 — VERSIONNER LA GOUVERNANCE
 
-Après changement de variante, informer les consommateurs et relancer les périmètres concernés. Conserver la date d’entrée en vigueur et les différences. Aligner SCI et ATC afin d’éviter des résultats contradictoires au moment du transport.
+Après changement de variante, informer les consommateurs et relancer les périmètres concernés. Conserver la date d’entrée en vigueur et les différences. Aligner SCI[^outil-sci] et ATC[^terme-acro-atc] afin d’éviter des résultats contradictoires au moment du transport.
 
 ## 14.H VÉRIFICATION
 
@@ -100,3 +100,11 @@ Ordre de transport  :
 - [ATC](<../🧩 00 ├── LEXIQUE SAP ET ABAP/10 └── ACRONYMES SAP.md#acro-atc>)
 - [ABAP](<../🧩 00 ├── LEXIQUE SAP ET ABAP/10 └── ACRONYMES SAP.md#acro-abap>)
 - [Trace](<../🧩 00 ├── LEXIQUE SAP ET ABAP/08 ├── EXECUTION EXPLOITATION ET ADMINISTRATION.md#trace>)
+
+[^terme-acro-sql]: **SQL.** Structured Query Language. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/10 └── ACRONYMES SAP.md#acro-sql>).
+[^terme-acro-sap]: **SAP.** Nom de l’éditeur et de son écosystème logiciel ; l’acronyme historique provient de l’allemand. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/10 └── ACRONYMES SAP.md#acro-sap>).
+[^terme-package]: **PACKAGE.** Conteneur logique qui regroupe les objets de développement et détermine notamment leur transportabilité. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/03 ├── REPOSITORY PACKAGES ET TRANSPORTS.md#package>).
+[^terme-classe]: **CLASSE.** Modèle orienté objet définissant état et comportements. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#classe>).
+[^terme-acro-atc]: **ATC.** ABAP Test Cockpit, infrastructure de contrôles statiques et de gouvernance qualité. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/10 └── ACRONYMES SAP.md#acro-atc>).
+
+[^outil-sci]: **SCI.** Code Inspector utilisé pour exécuter des contrôles statiques sur un ensemble d’objets ABAP. Voir [le chapitre associé](<13 ├── CODE INSPECTOR AVEC SCI.md>).

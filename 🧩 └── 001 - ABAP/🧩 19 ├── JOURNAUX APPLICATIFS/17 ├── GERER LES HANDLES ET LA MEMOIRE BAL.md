@@ -8,7 +8,7 @@
 
 ## 17.B MÉMOIRE GLOBALE
 
-Le framework BAL maintient des journaux et messages en mémoire. Cette mémoire peut contenir plusieurs journaux créés ou chargés par différents composants exécutés dans la même session interne.
+Le framework BAL[^terme-acro-bal] maintient des journaux et messages en mémoire. Cette mémoire peut contenir plusieurs journaux créés ou chargés par différents composants exécutés dans la même session interne.
 
 ## 17.C FONCTIONS UTILES
 
@@ -59,7 +59,7 @@ Utiliser `BAL_GLB_SEARCH_LOG`, `BAL_GLB_SEARCH_MSG`, `BAL_LOG_HDR_READ` ou `BAL_
 
 ### 17.F.5 ÉTAPE 5 — SAUVEGARDER AVANT LE NETTOYAGE
 
-Persister les handles requis selon la stratégie de LUW, puis vérifier le retour. Retirer ensuite un journal avec `BAL_LOG_REFRESH` lorsqu’il n’est plus utile. Le nettoyage mémoire n’équivaut pas à une suppression en base.
+Persister les handles requis selon la stratégie de LUW[^terme-acro-luw], puis vérifier le retour. Retirer ensuite un journal avec `BAL_LOG_REFRESH` lorsqu’il n’est plus utile. Le nettoyage mémoire n’équivaut pas à une suppression en base.
 
 ### 17.F.6 ÉTAPE 6 — TESTER PLUSIEURS JOURNAUX DANS LA MÊME SESSION
 
@@ -67,7 +67,7 @@ Créer deux logs avec des identifiants distincts, ajouter des messages alternés
 
 ## 17.G VÉRIFICATION
 
-- Le journal est retrouvable dans `SLG1` avec objet, sous-objet et période.
+- Le journal est retrouvable dans `SLG1`[^outil-slg1] avec objet, sous-objet et période.
 - Chaque erreur contient un contexte permettant d’identifier l’enregistrement concerné.
 - Le log est sauvegardé même lorsque le traitement se termine avec des erreurs gérées.
 - Aucune donnée sensible inutile n’est enregistrée.
@@ -82,7 +82,7 @@ Créer deux logs avec des identifiants distincts, ajouter des messages alternés
 ## 17.I SNIPPET À RÉUTILISER
 
 > [!NOTE]
-> Adapter les noms `Z*`, les types DDIC, les données et les autorisations au système cible. Effectuer un contrôle syntaxique avant activation.
+> Adapter les noms `Z*`, les types DDIC[^terme-acro-ddic], les données et les autorisations au système cible. Effectuer un contrôle syntaxique avant activation.
 
 ```abap
 CALL FUNCTION 'BAL_LOG_MSG_ADD'
@@ -107,3 +107,9 @@ CALL FUNCTION 'BAL_LOG_MSG_ADD'
 ---
 
 [Chapitre suivant — INTÉGRER LE JOURNAL AUX JOBS ET PROGRAMMES BATCH](<./18 ├── INTEGRER LE JOURNAL AUX JOBS ET PROGRAMMES BATCH.md>)
+
+[^terme-acro-bal]: **BAL.** Business Application Log, API technique du journal applicatif. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/10 └── ACRONYMES SAP.md#acro-bal>).
+[^terme-acro-luw]: **LUW.** Logical Unit of Work. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/10 └── ACRONYMES SAP.md#acro-luw>).
+[^terme-acro-ddic]: **DDIC.** Data Dictionary, abréviation courante de l’ABAP Dictionary. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/10 └── ACRONYMES SAP.md#acro-ddic>).
+
+[^outil-slg1]: **SLG1.** Transaction de recherche et d’affichage des journaux applicatifs persistés. Voir [le chapitre associé](<05 ├── ANALYSER LES JOURNAUX AVEC SLG1.md>).

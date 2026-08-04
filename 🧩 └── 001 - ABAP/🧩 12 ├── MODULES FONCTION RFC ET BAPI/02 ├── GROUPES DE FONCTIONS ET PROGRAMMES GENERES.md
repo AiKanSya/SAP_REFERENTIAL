@@ -34,7 +34,7 @@ Les noms exacts des includes techniques sont gérés par le Workbench. Ne pas le
 
 ## 2.D CHARGEMENT EN MÉMOIRE
 
-Lorsqu’un module fonction est appelé, le groupe de fonctions est chargé dans la session interne du programme appelant. Les données globales du groupe peuvent alors rester disponibles pour les appels suivants dans cette même session.
+Lorsqu’un module fonction[^terme-module-fonction] est appelé, le groupe de fonctions est chargé dans la session interne du programme appelant. Les données globales du groupe peuvent alors rester disponibles pour les appels suivants dans cette même session.
 
 Conséquences :
 
@@ -51,7 +51,7 @@ Préférer :
 
 - des paramètres explicites ;
 - des variables locales ;
-- une classe dédiée pour un état complexe ;
+- une classe[^terme-classe] dédiée pour un état complexe ;
 - un cache documenté et invalidé correctement lorsqu’il est nécessaire.
 
 ## 2.F COHÉSION
@@ -63,13 +63,13 @@ Exemples de regroupements cohérents :
 - gestion d’une interface métier précise ;
 - fonctions techniques relatives à un même format ;
 - modules générés par un framework ;
-- fonctions d’une même API classique.
+- fonctions d’une même API[^terme-api] classique.
 
 ## 2.G PROCESS
 
 ### 2.G.1 Étape 1 — Ouvrir le groupe depuis un module
 
-Afficher le module dans `SE37`, relever son groupe de fonctions puis naviguer vers celui-ci dans `SE80`. Vérifier le programme généré `SAPL...` et les includes proposés.
+Afficher le module dans `SE37`[^outil-se37], relever son groupe de fonctions puis naviguer vers celui-ci dans `SE80`[^outil-se80]. Vérifier le programme généré `SAPL...` et les includes proposés.
 
 ### 2.G.2 Étape 2 — Cartographier les includes
 
@@ -96,7 +96,7 @@ Activer le groupe complet et vérifier ses sous-objets dans l’ordre. La struct
 ## 2.I ERREURS FRÉQUENTES
 
 - Appeler un module fonction sans lire sa documentation et ses exceptions.
-- Supposer qu’une BAPI effectue automatiquement le commit.
+- Supposer qu’une BAPI[^terme-bapi] effectue automatiquement le commit.
 
 ## 2.J TERMES DU LEXIQUE
 
@@ -115,3 +115,11 @@ Activer le groupe complet et vérifier ses sous-objets dans l’ordre. La struct
 ---
 
 [Chapitre suivant — RECHERCHER ET ANALYSER AVEC SE37](<./03 ├── RECHERCHER ET ANALYSER AVEC SE37.md>)
+
+[^terme-module-fonction]: **MODULE FONCTION.** Procédure globale appelée avec `CALL FUNCTION` et définie dans un groupe de fonctions. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/06 ├── PROGRAMMES CLASSES ET OBJETS TECHNIQUES.md#module-fonction>).
+[^terme-classe]: **CLASSE.** Modèle orienté objet définissant état et comportements. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#classe>).
+[^terme-api]: **API.** Application Programming Interface, contrat exposant des opérations ou données utilisables par d’autres composants. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/10 └── ACRONYMES SAP.md#api>).
+[^terme-bapi]: **BAPI.** Interface métier publiée autour d’un Business Object SAP, généralement implémentée par un module fonction RFC. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/06 ├── PROGRAMMES CLASSES ET OBJETS TECHNIQUES.md#bapi>).
+
+[^outil-se37]: **SE37.** Function Builder utilisé pour rechercher, afficher, tester et maintenir les modules fonction. Voir [le chapitre associé](<03 ├── RECHERCHER ET ANALYSER AVEC SE37.md>).
+[^outil-se80]: **SE80.** Object Navigator utilisé pour parcourir et maintenir les objets du Repository ABAP. Voir [le chapitre associé](<../🧩 01 ├── FONDAMENTAUX ABAP/04 ├── EDITEURS ABAP SE38 ET SE80.md>).

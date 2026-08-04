@@ -8,12 +8,12 @@
 
 ## 7.B CRÉATION
 
-Dans `SE11` :
+Dans `SE11`[^outil-se11] :
 
 1. sélectionner **Objet de verrouillage** ;
 2. utiliser un nom client, généralement `EZ...` ou `EY...` ;
 3. définir la table primaire, par exemple `ZDEV_ORDER` ;
-4. ajouter les éventuelles tables secondaires liées par clé étrangère ;
+4. ajouter les éventuelles tables secondaires liées par clé étrangère[^terme-cle-etrangere] ;
 5. sélectionner les champs composant la clé de verrouillage ;
 6. définir le mode par défaut ;
 7. activer l’objet.
@@ -35,7 +35,7 @@ Un verrou trop large réduit la concurrence. Un verrou trop fin ne protège pas 
 
 ## 7.D CONTRÔLES
 
-- objet transporté avec son package ;
+- objet transporté avec son package[^terme-package] ;
 - relation entre tables correcte ;
 - clé compatible avec le découpage métier ;
 - modules générés activés ;
@@ -45,7 +45,7 @@ Un verrou trop large réduit la concurrence. Un verrou trop fin ne protège pas 
 
 ### 7.E.1 ÉTAPE 1 — DÉFINIR LA RESSOURCE ET LA CLÉ
 
-Identifier la table racine et les champs représentant l’unité métier à protéger. Inclure le mandant lorsque la table est dépendante du mandant. Vérifier que la clé choisie bloque toutes les écritures incompatibles sans immobiliser des documents indépendants.
+Identifier la table racine et les champs représentant l’unité métier à protéger. Inclure le mandant[^terme-mandant] lorsque la table est dépendante du mandant. Vérifier que la clé choisie bloque toutes les écritures incompatibles sans immobiliser des documents indépendants.
 
 ### 7.E.2 ÉTAPE 2 — CRÉER L’OBJET DANS `SE11`
 
@@ -53,7 +53,7 @@ Saisir `/nSE11`, sélectionner **Objet de verrouillage**, entrer un nom Z respec
 
 ### 7.E.3 ÉTAPE 3 — AJOUTER LES TABLES
 
-Définir la table primaire. Ajouter les tables secondaires uniquement si le même verrou doit couvrir leurs données et si leurs relations de clé sont explicites. Contrôler les relations proposées par le DDIC ; une association incorrecte produit un argument de verrou inadéquat.
+Définir la table primaire. Ajouter les tables secondaires uniquement si le même verrou doit couvrir leurs données et si leurs relations de clé sont explicites. Contrôler les relations proposées par le DDIC[^terme-acro-ddic] ; une association incorrecte produit un argument de verrou inadéquat.
 
 ### 7.E.4 ÉTAPE 4 — CHOISIR LE MODE ET LES PARAMÈTRES
 
@@ -61,11 +61,11 @@ Définir le mode de verrouillage correspondant aux accès concurrents autorisés
 
 ### 7.E.5 ÉTAPE 5 — GÉNÉRER LES MODULES FONCTION
 
-Contrôler puis activer l’objet. Vérifier dans `SE37` la génération des modules `ENQUEUE_<objet>` et `DEQUEUE_<objet>`. Relever leurs paramètres de clé, de mode, `_SCOPE`, `_WAIT` et les exceptions réellement disponibles.
+Contrôler puis activer l’objet. Vérifier dans `SE37`[^outil-se37] la génération des modules `ENQUEUE_<objet>` et `DEQUEUE_<objet>`. Relever leurs paramètres de clé, de mode, `_SCOPE`, `_WAIT` et les exceptions réellement disponibles.
 
 ### 7.E.6 ÉTAPE 6 — TESTER AVEC DEUX SESSIONS
 
-Créer un report Z non destructif appelant l’enqueue et maintenant temporairement le verrou. Depuis une seconde session, tester la même clé puis une clé différente. Contrôler `foreign_lock`, l’entrée visible dans `SM12` et la libération après dequeue, commit ou rollback selon le scénario.
+Créer un report Z non destructif appelant l’enqueue et maintenant temporairement le verrou. Depuis une seconde session, tester la même clé puis une clé différente. Contrôler `foreign_lock`, l’entrée visible dans `SM12`[^outil-sm12] et la libération après dequeue, commit ou rollback selon le scénario.
 
 ## 7.F VÉRIFICATION
 
@@ -111,3 +111,12 @@ Ordre de transport  :
 ---
 
 [Chapitre suivant — MODES DE VERROUILLAGE `S`, `E`, `X` ET `O`](<./08 ├── MODES DE VERROUILLAGE S E X ET O.md>)
+
+[^terme-cle-etrangere]: **CLÉ ÉTRANGÈRE.** Relation DDIC entre des champs d’une table et une table de contrôle. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/05 ├── DONNEES DICTIONNAIRE ET BASE DE DONNEES.md#cle-etrangere>).
+[^terme-package]: **PACKAGE.** Conteneur logique qui regroupe les objets de développement et détermine notamment leur transportabilité. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/03 ├── REPOSITORY PACKAGES ET TRANSPORTS.md#package>).
+[^terme-mandant]: **MANDANT.** Subdivision logique d’un système SAP. Il est identifié par un numéro à trois chiffres et isole une partie des données, du paramétrage et des utilisateurs. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/01 ├── SYSTEMES ENVIRONNEMENTS ET MANDANTS.md#mandant>).
+[^terme-acro-ddic]: **DDIC.** Data Dictionary, abréviation courante de l’ABAP Dictionary. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/10 └── ACRONYMES SAP.md#acro-ddic>).
+
+[^outil-se11]: **SE11.** Transaction de l’ABAP Dictionary utilisée pour analyser et maintenir les objets DDIC. Voir [le chapitre associé](<../🧩 07 ├── DICTIONNAIRE ABAP/02 ├── NAVIGATION ET ANALYSE AVEC SE11.md>).
+[^outil-se37]: **SE37.** Function Builder utilisé pour rechercher, afficher, tester et maintenir les modules fonction. Voir [le chapitre associé](<../🧩 12 ├── MODULES FONCTION RFC ET BAPI/03 ├── RECHERCHER ET ANALYSER AVEC SE37.md>).
+[^outil-sm12]: **SM12.** Transaction de surveillance et d’administration des entrées de verrouillage SAP. Voir [le chapitre associé](<12 ├── ANALYSER LES VERROUS AVEC SM12.md>).

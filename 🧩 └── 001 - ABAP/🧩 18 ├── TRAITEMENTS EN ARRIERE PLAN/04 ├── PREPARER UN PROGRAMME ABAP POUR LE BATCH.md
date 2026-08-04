@@ -2,7 +2,7 @@
 
 ## 4.A RÉSULTAT ATTENDU
 
-- Rendre un programme exécutable sans interaction SAP GUI
+- Rendre un programme exécutable[^terme-programme-executable] sans interaction SAP GUI[^terme-sap-gui]
 - Adapter les sorties et les erreurs
 - Tester séparément le mode dialogue et le mode batch
 
@@ -16,7 +16,7 @@ Un programme exécuté en arrière-plan ne doit pas dépendre d’une interactio
 - boîtes de dialogue ou popups ;
 - dynpros nécessitant une saisie ;
 - fichiers locaux du poste utilisateur ;
-- contrôle frontend ALV ou conteneur GUI ;
+- contrôle frontend[^terme-frontend] ALV[^terme-alv] ou conteneur GUI ;
 - attente d’une confirmation manuelle.
 
 ## 4.C DÉTECTER LE CONTEXTE
@@ -29,13 +29,13 @@ ELSE.
 ENDIF.
 ```
 
-`sy-batch` vaut `X` lors d’une exécution en arrière-plan. Ce test ne doit pas servir à dupliquer toute la logique métier. Isoler le traitement dans une classe ou une procédure commune, puis adapter uniquement l’entrée et la sortie.
+`sy-batch` vaut `X` lors d’une exécution en arrière-plan. Ce test ne doit pas servir à dupliquer toute la logique métier. Isoler le traitement dans une classe[^terme-classe] ou une procédure commune, puis adapter uniquement l’entrée et la sortie.
 
 ## 4.D SORTIES
 
 - écrire les résultats métier dans des tables ou fichiers serveur maîtrisés ;
 - produire un journal applicatif si une exploitation opérationnelle est requise ;
-- utiliser une liste classique uniquement si un spool est utile ;
+- utiliser une liste classique uniquement si un spool[^terme-spool] est utile ;
 - lever ou propager des erreurs de manière contrôlée ;
 - éviter les messages interactifs dépendant d’un écran.
 
@@ -73,7 +73,7 @@ Sélectionner et traiter par paquets ou documents métier déterministes. Défin
 
 ### 4.F.5 ÉTAPE 5 — PRODUIRE DES LOGS STRUCTURÉS
 
-Émettre un résumé dans le journal de job et utiliser le journal applicatif pour les messages détaillés exploitables. Compter les unités lues, réussies, ignorées et rejetées. Une erreur doit inclure la clé et l’étape technique sans nécessiter de debug.
+Émettre un résumé dans le journal de job[^terme-job] et utiliser le journal applicatif pour les messages détaillés exploitables. Compter les unités lues, réussies, ignorées et rejetées. Une erreur doit inclure la clé et l’étape technique sans nécessiter de debug.
 
 ### 4.F.6 ÉTAPE 6 — TESTER DANS LES DEUX MODES
 
@@ -81,7 +81,7 @@ Exécuter le report en dialogue avec la variante, puis comme étape de job sous 
 
 ## 4.G VÉRIFICATION
 
-- Le job apparaît dans `SM37` avec le statut attendu.
+- Le job apparaît dans `SM37`[^outil-sm37] avec le statut attendu.
 - Le journal ne contient pas de message d’erreur non traité.
 - Le spool, le fichier ou le journal applicatif contient le résultat attendu.
 - Une relance contrôlée ne crée pas de doublon métier.
@@ -96,7 +96,7 @@ Exécuter le report en dialogue avec la variante, puis comme étape de job sous 
 ## 4.I SNIPPET À RÉUTILISER
 
 > [!NOTE]
-> Adapter les noms `Z*`, les types DDIC, les données et les autorisations au système cible. Effectuer un contrôle syntaxique avant activation.
+> Adapter les noms `Z*`, les types DDIC[^terme-acro-ddic], les données et les autorisations au système cible. Effectuer un contrôle syntaxique avant activation.
 
 ```abap
 IF sy-batch = abap_true.
@@ -122,3 +122,14 @@ ENDIF.
 ---
 
 [Chapitre suivant — VARIANTES ET PARAMÈTRES DE SÉLECTION](<./05 ├── VARIANTES ET PARAMETRES DE SELECTION.md>)
+
+[^terme-programme-executable]: **PROGRAMME EXÉCUTABLE.** Programme ABAP de type report pouvant être lancé directement, généralement avec `F8` ou par une transaction. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/06 ├── PROGRAMMES CLASSES ET OBJETS TECHNIQUES.md#programme-executable>).
+[^terme-sap-gui]: **SAP GUI.** Client graphique permettant d’utiliser les transactions et écrans d’un système SAP. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/02 ├── SAP GUI NAVIGATION ET TRANSACTIONS.md#sap-gui>).
+[^terme-frontend]: **FRONTEND.** Poste ou couche cliente utilisée par l’utilisateur, par exemple SAP GUI for Windows. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/01 ├── SYSTEMES ENVIRONNEMENTS ET MANDANTS.md#frontend>).
+[^terme-alv]: **ALV.** ABAP List Viewer, ensemble de technologies d’affichage tabulaire avec tri, filtre, total et variantes. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/06 ├── PROGRAMMES CLASSES ET OBJETS TECHNIQUES.md#alv>).
+[^terme-classe]: **CLASSE.** Modèle orienté objet définissant état et comportements. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#classe>).
+[^terme-spool]: **SPOOL.** Infrastructure stockant et acheminant les sorties imprimables produites par les traitements SAP. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/06 ├── PROGRAMMES CLASSES ET OBJETS TECHNIQUES.md#spool>).
+[^terme-job]: **JOB.** Traitement planifié en arrière-plan composé d’une ou plusieurs étapes. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/06 ├── PROGRAMMES CLASSES ET OBJETS TECHNIQUES.md#job>).
+[^terme-acro-ddic]: **DDIC.** Data Dictionary, abréviation courante de l’ABAP Dictionary. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/10 └── ACRONYMES SAP.md#acro-ddic>).
+
+[^outil-sm37]: **SM37.** Transaction de recherche, surveillance et administration des jobs d’arrière-plan. Voir [le chapitre associé](<15 ├── SURVEILLER LES JOBS AVEC SM37.md>).

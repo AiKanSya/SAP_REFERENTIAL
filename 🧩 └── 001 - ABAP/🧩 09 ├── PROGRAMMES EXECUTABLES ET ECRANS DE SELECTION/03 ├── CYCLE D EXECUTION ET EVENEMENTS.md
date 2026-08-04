@@ -2,7 +2,7 @@
 
 ## 3.A RÉSULTAT ATTENDU
 
-- Comprendre le cycle d’un programme exécutable
+- Comprendre le cycle d’un programme exécutable[^terme-programme-executable]
 - Identifier les principaux blocs événementiels
 - Placer le traitement au bon endroit
 - Éviter le code implicite avant `START-OF-SELECTION`
@@ -10,7 +10,7 @@
 
 ## 3.B PRINCIPE
 
-Le runtime ABAP appelle certains blocs selon le type du programme et les actions de l’utilisateur.
+Le runtime ABAP[^terme-abap] appelle certains blocs selon le type du programme et les actions de l’utilisateur.
 
 ```mermaid
 flowchart TD
@@ -70,7 +70,7 @@ Ne pas ajouter cet événement par convention sans besoin réel.
 
 Les événements comme `TOP-OF-PAGE` ou `AT LINE-SELECTION` appartiennent au traitement des listes classiques. Ils ne sont pas déclenchés comme une séquence systématique après `START-OF-SELECTION`.
 
-Pour les restitutions tabulaires professionnelles, un ALV est généralement préférable à une liste interactive classique.
+Pour les restitutions tabulaires professionnelles, un ALV[^terme-alv] est généralement préférable à une liste interactive classique.
 
 ## 3.G VÉRIFICATION
 
@@ -89,7 +89,7 @@ Pour les restitutions tabulaires professionnelles, un ALV est généralement pr�
 ## 3.I SNIPPET À RÉUTILISER
 
 > [!NOTE]
-> Adapter les noms `Z*`, les types DDIC, les données et les autorisations au système cible. Effectuer un contrôle syntaxique avant activation.
+> Adapter les noms `Z*`, les types DDIC[^terme-acro-ddic], les données et les autorisations au système cible. Effectuer un contrôle syntaxique avant activation.
 
 ```abap
 REPORT zdev_bad_example.
@@ -119,3 +119,8 @@ START-OF-SELECTION.
 ---
 
 [Chapitre suivant — ÉCRAN DE SÉLECTION STANDARD](<./04 ├── ECRAN DE SELECTION STANDARD.md>)
+
+[^terme-programme-executable]: **PROGRAMME EXÉCUTABLE.** Programme ABAP de type report pouvant être lancé directement, généralement avec `F8` ou par une transaction. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/06 ├── PROGRAMMES CLASSES ET OBJETS TECHNIQUES.md#programme-executable>).
+[^terme-abap]: **ABAP.** Langage de programmation de la plateforme ABAP, conçu pour développer des applications métier et techniques SAP. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#abap>).
+[^terme-alv]: **ALV.** ABAP List Viewer, ensemble de technologies d’affichage tabulaire avec tri, filtre, total et variantes. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/06 ├── PROGRAMMES CLASSES ET OBJETS TECHNIQUES.md#alv>).
+[^terme-acro-ddic]: **DDIC.** Data Dictionary, abréviation courante de l’ABAP Dictionary. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/10 └── ACRONYMES SAP.md#acro-ddic>).

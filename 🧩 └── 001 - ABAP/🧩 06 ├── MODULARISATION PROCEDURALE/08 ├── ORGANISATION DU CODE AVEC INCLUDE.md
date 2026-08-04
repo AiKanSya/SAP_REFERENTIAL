@@ -2,7 +2,7 @@
 
 ## 8.A RÉSULTAT ATTENDU
 
-- Comprendre le rôle d’un include ABAP
+- Comprendre le rôle d’un include ABAP[^terme-abap]
 - Séparer un programme volumineux en unités source
 - Identifier les conséquences sur la portée des données
 - Utiliser des conventions de nommage cohérentes
@@ -47,7 +47,7 @@ Pour un programme procédural volumineux, une convention fréquente est :
 | ------- | ------------------------------------------ |
 | `_TOP`  | Déclarations globales, types et constantes |
 | `_F01`  | Sous-programmes `FORM`                     |
-| `_I01`  | Modules PAI d’un module pool               |
+| `_I01`  | Modules PAI d’un module pool[^terme-module-pool]               |
 | `_O01`  | Modules PBO d’un module pool               |
 
 Ces suffixes sont des conventions, pas des obligations du langage.
@@ -67,7 +67,7 @@ START-OF-SELECTION.
 
 ## 8.E ORDRE DES INCLUDES
 
-L’ordre des instructions `INCLUDE` influence la visibilité source et la structure résultante.
+L’ordre des instructions `INCLUDE` influence la visibilité[^terme-visibilite] source et la structure résultante.
 
 Une organisation habituelle place :
 
@@ -82,11 +82,11 @@ Le contrôle de syntaxe doit porter sur l’ensemble généré, pas uniquement s
 
 Les includes peuvent être créés et ouverts depuis :
 
-- l’éditeur ABAP `SE38` ;
-- l’Object Navigator `SE80` ;
+- l’éditeur ABAP `SE38`[^outil-se38] ;
+- l’Object Navigator `SE80`[^outil-se80] ;
 - la navigation depuis une instruction `INCLUDE` selon les fonctions disponibles du système.
 
-Ils appartiennent à un package et doivent être transportés avec les autres objets du programme.
+Ils appartiennent à un package[^terme-package] et doivent être transportés avec les autres objets du programme.
 
 ## 8.G RISQUES
 
@@ -107,7 +107,7 @@ Ils appartiennent à un package et doivent être transportés avec les autres ob
 
 ## 8.I POINTS À RETENIR
 
-- `INCLUDE` organise le code source sans fournir d’encapsulation.
+- `INCLUDE` organise le code source sans fournir d’encapsulation[^terme-encapsulation].
 - Le contenu de l’include est intégré au programme utilisant l’instruction.
 - Les données globales restent partagées dans le contexte du programme.
 - L’ordre des includes doit être cohérent.
@@ -138,7 +138,7 @@ Après chaque déplacement, contrôler la syntaxe du programme principal, pas un
 
 ### 8.J.4 Étape 4 — Contrôler les dépendances et le transport
 
-Utiliser la liste d’utilisation de chaque include pour confirmer ses programmes consommateurs. Vérifier dans `SE09`/`SE10` que programme principal et nouveaux includes appartiennent à la livraison prévue.
+Utiliser la liste d’utilisation de chaque include pour confirmer ses programmes consommateurs. Vérifier dans `SE09`[^outil-se09]/`SE10`[^outil-se10] que programme principal et nouveaux includes appartiennent à la livraison prévue.
 
 ### 8.J.5 Étape 5 — Valider l’exécution
 
@@ -146,9 +146,9 @@ Activer l’ensemble proposé, exécuter les mêmes données qu’avant le déco
 
 ## 8.K VÉRIFICATION
 
-- Le scénario reproduit correspond au même utilisateur, mandant, transaction et jeu de données.
+- Le scénario reproduit correspond au même utilisateur, mandant[^terme-mandant], transaction et jeu de données.
 - L’horodatage et l’identifiant de l’analyse sont conservés.
-- La cause retenue est soutenue par une ligne source, une trace ou une valeur observée.
+- La cause retenue est soutenue par une ligne source, une trace[^terme-trace] ou une valeur observée.
 - Après correction, le même scénario ne reproduit plus le défaut et le résultat métier reste identique.
 
 ## 8.L ERREURS FRÉQUENTES
@@ -161,7 +161,7 @@ Activer l’ensemble proposé, exécuter les mêmes données qu’avant le déco
 ## 8.M SNIPPET À RÉUTILISER
 
 > [!NOTE]
-> Adapter les noms `Z*`, les types DDIC, les données et les autorisations au système cible. Effectuer un contrôle syntaxique avant activation.
+> Adapter les noms `Z*`, les types DDIC[^terme-acro-ddic], les données et les autorisations au système cible. Effectuer un contrôle syntaxique avant activation.
 
 ```abap
 REPORT z_demo_modular.
@@ -189,3 +189,17 @@ START-OF-SELECTION.
 ---
 
 [Chapitre suivant — MACROS AVEC DEFINE](<./09 ├── MACROS AVEC DEFINE.md>)
+
+[^terme-abap]: **ABAP.** Langage de programmation de la plateforme ABAP, conçu pour développer des applications métier et techniques SAP. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#abap>).
+[^terme-module-pool]: **MODULE POOL.** Programme ABAP classique pilotant des dynpros au moyen de modules PBO et PAI. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/06 ├── PROGRAMMES CLASSES ET OBJETS TECHNIQUES.md#module-pool>).
+[^terme-visibilite]: **VISIBILITÉ.** Règle déterminant où un composant de classe peut être utilisé : `PUBLIC`, `PROTECTED` ou `PRIVATE`. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#visibilite>).
+[^terme-package]: **PACKAGE.** Conteneur logique qui regroupe les objets de développement et détermine notamment leur transportabilité. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/03 ├── REPOSITORY PACKAGES ET TRANSPORTS.md#package>).
+[^terme-encapsulation]: **ENCAPSULATION.** Principe consistant à protéger l’état interne d’un objet et à imposer son utilisation par une API contrôlée. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#encapsulation>).
+[^terme-mandant]: **MANDANT.** Subdivision logique d’un système SAP. Il est identifié par un numéro à trois chiffres et isole une partie des données, du paramétrage et des utilisateurs. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/01 ├── SYSTEMES ENVIRONNEMENTS ET MANDANTS.md#mandant>).
+[^terme-trace]: **TRACE.** Enregistrement détaillé d’événements techniques pour analyser exécution, SQL ou appels. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/08 ├── EXECUTION EXPLOITATION ET ADMINISTRATION.md#trace>).
+[^terme-acro-ddic]: **DDIC.** Data Dictionary, abréviation courante de l’ABAP Dictionary. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/10 └── ACRONYMES SAP.md#acro-ddic>).
+
+[^outil-se38]: **SE38.** Éditeur ABAP classique utilisé pour créer, modifier, vérifier et exécuter des programmes. Voir [le chapitre associé](<../🧩 01 ├── FONDAMENTAUX ABAP/04 ├── EDITEURS ABAP SE38 ET SE80.md>).
+[^outil-se80]: **SE80.** Object Navigator utilisé pour parcourir et maintenir les objets du Repository ABAP. Voir [le chapitre associé](<../🧩 01 ├── FONDAMENTAUX ABAP/04 ├── EDITEURS ABAP SE38 ET SE80.md>).
+[^outil-se09]: **SE09.** Transaction de l’Organisateur de transports utilisée pour consulter et gérer les ordres et tâches de transport. Voir [le chapitre associé](<../🧩 01 ├── FONDAMENTAUX ABAP/03 ├── PACKAGES ET ORDRES DE TRANSPORT.md>).
+[^outil-se10]: **SE10.** Transaction de l’Organisateur de transports utilisée pour consulter et gérer les ordres et tâches de transport. Voir [le chapitre associé](<../🧩 01 ├── FONDAMENTAUX ABAP/03 ├── PACKAGES ET ORDRES DE TRANSPORT.md>).

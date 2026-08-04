@@ -5,12 +5,12 @@
 - Déclarer les exceptions d’une procédure
 - Comprendre la propagation
 - Choisir entre interception locale et transmission
-- Préserver le contrat d’une méthode
+- Préserver le contrat d’une méthode[^terme-methode]
 - Éviter les interfaces trop générales
 
 ## 11.B PRINCIPE
 
-Une procédure peut traiter l’exception elle-même ou la transmettre à son appelant.
+Une procédure peut traiter l’exception[^terme-exception] elle-même ou la transmettre à son appelant.
 
 ```mermaid
 flowchart LR
@@ -80,7 +80,7 @@ TRY.
 ENDTRY.
 ```
 
-La couche supérieure ne dépend plus directement d’une exception technique SQL. La cause reste accessible via `PREVIOUS`.
+La couche supérieure ne dépend plus directement d’une exception technique SQL[^terme-acro-sql]. La cause reste accessible via `PREVIOUS`.
 
 ## 11.G ÉVITER UNE INTERFACE TROP GÉNÉRALE
 
@@ -97,9 +97,9 @@ Déclarer les classes pertinentes ou une superclasse applicative maîtrisée, pa
 
 Une méthode métier ne doit pas transformer systématiquement ses exceptions en `MESSAGE`. Le programme appelant peut être :
 
-- un report SAP GUI ;
-- un job ;
-- une BAPI ;
+- un report SAP GUI[^terme-sap-gui] ;
+- un job[^terme-job] ;
+- une BAPI[^terme-bapi] ;
 - un service OData ;
 - un test automatisé.
 
@@ -122,7 +122,7 @@ La propagation préserve la réutilisabilité.
 ## 11.K SNIPPET À RÉUTILISER
 
 > [!NOTE]
-> Adapter les noms `Z*`, les types DDIC, les données et les autorisations au système cible. Effectuer un contrôle syntaxique avant activation.
+> Adapter les noms `Z*`, les types DDIC[^terme-acro-ddic], les données et les autorisations au système cible. Effectuer un contrôle syntaxique avant activation.
 
 ```abap
 " Propager ou traiter l’erreur au niveau qui sait prendre une décision.
@@ -155,3 +155,11 @@ ENDMETHOD.
 ---
 
 [Chapitre suivant — TEXTES D’EXCEPTION ET INTERFACES T100](<./12 ├── TEXTES D EXCEPTION ET INTERFACES T100.md>)
+
+[^terme-methode]: **MÉTHODE.** Comportement déclaré dans une classe ou une interface et appelé avec une liste de paramètres définie. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#methode>).
+[^terme-exception]: **EXCEPTION.** Objet ou signal représentant une situation anormale qu’un appelant peut traiter. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#exception>).
+[^terme-acro-sql]: **SQL.** Structured Query Language. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/10 └── ACRONYMES SAP.md#acro-sql>).
+[^terme-sap-gui]: **SAP GUI.** Client graphique permettant d’utiliser les transactions et écrans d’un système SAP. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/02 ├── SAP GUI NAVIGATION ET TRANSACTIONS.md#sap-gui>).
+[^terme-job]: **JOB.** Traitement planifié en arrière-plan composé d’une ou plusieurs étapes. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/06 ├── PROGRAMMES CLASSES ET OBJETS TECHNIQUES.md#job>).
+[^terme-bapi]: **BAPI.** Interface métier publiée autour d’un Business Object SAP, généralement implémentée par un module fonction RFC. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/06 ├── PROGRAMMES CLASSES ET OBJETS TECHNIQUES.md#bapi>).
+[^terme-acro-ddic]: **DDIC.** Data Dictionary, abréviation courante de l’ABAP Dictionary. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/10 └── ACRONYMES SAP.md#acro-ddic>).

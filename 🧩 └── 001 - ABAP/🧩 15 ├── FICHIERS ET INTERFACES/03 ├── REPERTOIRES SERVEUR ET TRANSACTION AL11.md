@@ -2,18 +2,18 @@
 
 ## 3.A RÉSULTAT ATTENDU
 
-- Comprendre le rôle de `AL11`
+- Comprendre le rôle de `AL11`[^outil-al11]
 - Identifier les limites d’un chemin serveur
 - Vérifier un fichier sans confondre consultation et configuration
 
 ## 3.B RÔLE DE `AL11`
 
-La transaction `AL11` affiche les répertoires du serveur d’application déclarés dans la configuration du système. Elle permet généralement de consulter les fichiers accessibles depuis l’instance concernée.
+La transaction `AL11` affiche les répertoires du serveur d’application[^terme-fichier-serveur-application] déclarés dans la configuration du système. Elle permet généralement de consulter les fichiers accessibles depuis l’instance concernée.
 
 `AL11` n’est pas un explorateur universel du système d’exploitation et ne remplace pas :
 
 - la configuration des noms logiques ;
-- les autorisations ABAP ;
+- les autorisations ABAP[^terme-abap] ;
 - les droits du compte système d’exploitation ;
 - une procédure d’archivage ou de transfert.
 
@@ -27,14 +27,14 @@ flowchart LR
     C --> E
 ```
 
-Un fichier écrit sur un disque local de l’instance A peut être introuvable si le job suivant s’exécute sur l’instance B. Les interfaces automatiques doivent utiliser un stockage partagé ou une contrainte d’exécution maîtrisée.
+Un fichier écrit sur un disque local de l’instance A peut être introuvable si le job[^terme-job] suivant s’exécute sur l’instance B. Les interfaces automatiques doivent utiliser un stockage partagé ou une contrainte d’exécution maîtrisée.
 
 ## 3.D VÉRIFICATIONS
 
 Avant le développement :
 
 1. identifier le répertoire logique attendu ;
-2. confirmer qu’il existe dans chaque environnement ;
+2. confirmer qu’il existe dans chaque environnement[^terme-environnement] ;
 3. vérifier s’il est partagé entre instances ;
 4. connaître le compte chargé de déposer ou récupérer le fichier ;
 5. vérifier les règles de purge ;
@@ -60,7 +60,7 @@ Relever nom, date et taille, puis comparer l’horodatage avec le journal du pro
 
 ### 3.F.4 Étape 4 — Vérifier lecture et autorisation
 
-Confirmer avec le programme ou un test contrôlé que le chemin physique est accessible par l’utilisateur d’exécution. La visibilité dans `AL11` ne prouve pas cette autorisation.
+Confirmer avec le programme ou un test contrôlé que le chemin physique est accessible par l’utilisateur d’exécution. La visibilité[^terme-visibilite] dans `AL11` ne prouve pas cette autorisation.
 
 ### 3.F.5 Étape 5 — Classer l’anomalie
 
@@ -68,8 +68,8 @@ Distinguer absent, vide, incomplet, illisible et inaccessible. Ne modifier aucun
 
 ## 3.G ERREURS FRÉQUENTES
 
-- Mélanger fichiers frontend et serveur dans un même scénario.
-- Parser un CSV par simple séparation alors que les champs peuvent être échappés.
+- Mélanger fichiers frontend[^terme-frontend] et serveur dans un même scénario.
+- Parser un CSV[^terme-csv] par simple séparation alors que les champs peuvent être échappés.
 
 ## 3.H FICHE DE CONTRÔLE À COPIER
 
@@ -102,4 +102,15 @@ Ordre de transport  :
 
 ---
 
-[Chapitre suivant — NOMS ET CHEMINS LOGIQUES AVEC `FILE`](<./04 ├── NOMS ET CHEMINS LOGIQUES AVEC FILE.md>)
+[Chapitre suivant — NOMS ET CHEMINS LOGIQUES AVEC `FILE`[^outil-file]](<./04 ├── NOMS ET CHEMINS LOGIQUES AVEC FILE.md>)
+
+[^terme-fichier-serveur-application]: **SERVEUR D’APPLICATION.** Emplacement du backend où un programme ABAP peut lire ou écrire avec `OPEN DATASET`. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/07 ├── INTERFACES ET INTEGRATION.md#fichier-serveur-application>).
+[^terme-abap]: **ABAP.** Langage de programmation de la plateforme ABAP, conçu pour développer des applications métier et techniques SAP. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#abap>).
+[^terme-job]: **JOB.** Traitement planifié en arrière-plan composé d’une ou plusieurs étapes. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/06 ├── PROGRAMMES CLASSES ET OBJETS TECHNIQUES.md#job>).
+[^terme-environnement]: **ENVIRONNEMENT.** Rôle fonctionnel attribué à un système dans le cycle de vie : développement, test, recette, préproduction ou production. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/01 ├── SYSTEMES ENVIRONNEMENTS ET MANDANTS.md#environnement>).
+[^terme-visibilite]: **VISIBILITÉ.** Règle déterminant où un composant de classe peut être utilisé : `PUBLIC`, `PROTECTED` ou `PRIVATE`. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#visibilite>).
+[^terme-frontend]: **FRONTEND.** Poste ou couche cliente utilisée par l’utilisateur, par exemple SAP GUI for Windows. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/01 ├── SYSTEMES ENVIRONNEMENTS ET MANDANTS.md#frontend>).
+[^terme-csv]: **CSV.** Format texte tabulaire utilisant un séparateur de champs et des règles d’échappement. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/07 ├── INTERFACES ET INTEGRATION.md#csv>).
+
+[^outil-al11]: **AL11.** Transaction affichant les répertoires de fichiers accessibles sur le serveur d’applications. Voir [le chapitre associé](<03 ├── REPERTOIRES SERVEUR ET TRANSACTION AL11.md>).
+[^outil-file]: **FILE.** Transaction de maintenance des noms et chemins de fichiers logiques. Voir [le chapitre associé](<04 ├── NOMS ET CHEMINS LOGIQUES AVEC FILE.md>).

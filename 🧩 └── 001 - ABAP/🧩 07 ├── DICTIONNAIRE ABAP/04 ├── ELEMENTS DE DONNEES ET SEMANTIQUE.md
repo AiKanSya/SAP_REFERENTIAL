@@ -2,10 +2,10 @@
 
 ## 4.A RÉSULTAT ATTENDU
 
-- Comprendre le rôle d’un élément de données
+- Comprendre le rôle d’un élément de données[^terme-element-donnees]
 - Séparer caractéristiques techniques et signification métier
 - Maintenir les libellés et la documentation
-- Réutiliser un élément de données dans les objets DDIC et le code ABAP
+- Réutiliser un élément de données dans les objets DDIC[^terme-acro-ddic] et le code ABAP[^terme-abap]
 - Choisir entre domaine et type prédéfini
 
 ## 4.B DÉFINITION
@@ -27,7 +27,7 @@ Pour les champs de tables persistantes, l’utilisation d’un élément de donn
 | Texte court                            | Description technique de l’objet                         |
 | Libellés court, moyen, long et en-tête | Textes proposés aux interfaces classiques                |
 | Documentation                          | Définition détaillée de la donnée                        |
-| Aide à la recherche éventuelle         | Proposition de valeurs F4                                |
+| Aide à la recherche éventuelle         | Proposition de valeurs F4[^terme-aide-f4]                                |
 | ID de paramètre éventuel               | Mémorisation utilisateur dans certains écrans classiques |
 
 ```mermaid
@@ -105,20 +105,20 @@ Elle ne doit pas reproduire uniquement le nom technique.
 
 ### 4.I.1 Étape 1 — Définir la signification du champ
 
-Nommer la donnée métier indépendamment de la table qui l’utilisera. Définir ses libellés court, moyen et long ainsi que la documentation F1 nécessaire.
+Nommer la donnée métier indépendamment de la table qui l’utilisera. Définir ses libellés court, moyen et long ainsi que la documentation F1[^terme-aide-f1] nécessaire.
 
 Si deux champs ont le même format mais des significations différentes, ils ne doivent pas partager automatiquement le même élément de données.
 
 ### 4.I.2 Étape 2 — Créer l’élément de données
 
-1. Ouvrir `SE11`, choisir **Type de données** et saisir un nom `Z...`.
+1. Ouvrir `SE11`[^outil-se11], choisir **Type de données[^terme-type-donnees]** et saisir un nom `Z...`.
 2. Choisir **Élément de données**.
 3. Référencer le domaine correspondant à la même sémantique technique.
 4. Utiliser un type prédéfini uniquement si aucun domaine partagé n’est requis et si la règle du projet l’autorise.
 
 ### 4.I.3 Étape 3 — Maintenir les textes et propriétés
 
-Renseigner la désignation et les libellés selon les longueurs d’écran. Ajouter la documentation F1 utile. Activer l’indicateur de document de modification uniquement si le champ doit participer au mécanisme SCDO et si le scénario est conçu pour cela.
+Renseigner la désignation et les libellés selon les longueurs d’écran. Ajouter la documentation F1 utile. Activer l’indicateur de document de modification uniquement si le champ doit participer au mécanisme SCDO[^outil-scdo] et si le scénario est conçu pour cela.
 
 ### 4.I.4 Étape 4 — Contrôler et activer
 
@@ -131,7 +131,7 @@ Utiliser l’élément dans une structure ou un écran de test. Vérifier type, 
 ## 4.J VÉRIFICATION
 
 - Le contrôle de cohérence ne retourne aucune erreur bloquante.
-- L’objet est actif et son entrée de répertoire pointe vers le package attendu.
+- L’objet est actif et son entrée de répertoire pointe vers le package[^terme-package] attendu.
 - La liste d’utilisation et les dépendances correspondent au périmètre prévu.
 - Pour une table Z, la structure active et la structure de base sont cohérentes.
 
@@ -168,3 +168,14 @@ DATA lv_contract_id TYPE zde_contract_id.
 ---
 
 [Chapitre suivant — STRUCTURES ET STRUCTURES INCLUDE](<./05 ├── STRUCTURES ET STRUCTURES INCLUDE.md>)
+
+[^terme-element-donnees]: **ÉLÉMENT DE DONNÉES.** Objet DDIC qui attribue une signification métier, des libellés et une documentation à un type élémentaire ou à un domaine. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/05 ├── DONNEES DICTIONNAIRE ET BASE DE DONNEES.md#element-donnees>).
+[^terme-acro-ddic]: **DDIC.** Data Dictionary, abréviation courante de l’ABAP Dictionary. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/10 └── ACRONYMES SAP.md#acro-ddic>).
+[^terme-abap]: **ABAP.** Langage de programmation de la plateforme ABAP, conçu pour développer des applications métier et techniques SAP. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#abap>).
+[^terme-aide-f4]: **AIDE F4.** Aide à la saisie proposant des valeurs autorisées ou recherchables. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/02 ├── SAP GUI NAVIGATION ET TRANSACTIONS.md#aide-f4>).
+[^terme-aide-f1]: **AIDE F1.** Aide contextuelle expliquant un champ, une fonction ou un mot-clé. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/02 ├── SAP GUI NAVIGATION ET TRANSACTIONS.md#aide-f1>).
+[^terme-type-donnees]: **TYPE DE DONNÉES.** Définition des propriétés d’une valeur : nature, longueur, précision et opérations autorisées. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#type-donnees>).
+[^terme-package]: **PACKAGE.** Conteneur logique qui regroupe les objets de développement et détermine notamment leur transportabilité. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/03 ├── REPOSITORY PACKAGES ET TRANSPORTS.md#package>).
+
+[^outil-se11]: **SE11.** Transaction de l’ABAP Dictionary utilisée pour analyser et maintenir les objets DDIC. Voir [le chapitre associé](<02 ├── NAVIGATION ET ANALYSE AVEC SE11.md>).
+[^outil-scdo]: **SCDO.** Transaction de création et de génération des objets de documents de modification. Voir [le chapitre associé](<../🧩 23 ├── NUMEROTATION ET DOCUMENTS DE MODIFICATION/02 └── TRACER UNE MODIFICATION AVEC SCDO.md>).

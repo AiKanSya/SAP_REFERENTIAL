@@ -3,7 +3,7 @@
 ## 14.A RÉSULTAT ATTENDU
 
 - Générer un dialogue standard de maintenance
-- Distinguer SE54 et SM30
+- Distinguer SE54[^outil-se54] et SM30[^outil-sm30]
 - Choisir un écran en une ou deux étapes
 - Configurer le groupe de fonctions et l’autorisation
 - Identifier les limites d’un dialogue généré
@@ -33,7 +33,7 @@ Avant la génération :
 
 Le générateur est accessible :
 
-- depuis `SE11` via les utilitaires ;
+- depuis `SE11`[^outil-se11] via les utilitaires ;
 - directement avec `SE54`.
 
 Les paramètres principaux sont :
@@ -61,11 +61,11 @@ Dans `SM30` :
 
 ### 14.F.1 Étape 1 — Ouvrir le bon objet de maintenance
 
-Saisir la table ou la vue dans `SM30`, puis choisir **Afficher** avant **Gérer**. Vérifier le titre, les champs et le nombre d’entrées afin d’exclure une homonymie ou un mauvais mandant.
+Saisir la table ou la vue dans `SM30`, puis choisir **Afficher** avant **Gérer**. Vérifier le titre, les champs et le nombre d’entrées afin d’exclure une homonymie ou un mauvais mandant[^terme-mandant].
 
 ### 14.F.2 Étape 2 — Déterminer le mode de transport
 
-Contrôler la classe de livraison, le paramétrage du générateur et la procédure du projet. Déterminer si les entrées sont transportées, saisies dans chaque système ou considérées comme données applicatives.
+Contrôler la classe[^terme-classe] de livraison, le paramétrage du générateur et la procédure du projet. Déterminer si les entrées sont transportées, saisies dans chaque système ou considérées comme données applicatives.
 
 ### 14.F.3 Étape 3 — Créer ou modifier une entrée
 
@@ -73,7 +73,7 @@ Choisir **Nouvelles entrées** ou sélectionner une ligne existante. Renseigner 
 
 ### 14.F.4 Étape 4 — Enregistrer et traiter la demande
 
-Enregistrer. Si une demande Customizing est proposée, sélectionner l’ordre autorisé et contrôler son contenu dans `SE10`. Si aucune demande n’est proposée alors qu’elle est attendue, arrêter et vérifier le paramétrage avant de poursuivre.
+Enregistrer. Si une demande Customizing[^terme-customizing] est proposée, sélectionner l’ordre autorisé et contrôler son contenu dans `SE10`[^outil-se10]. Si aucune demande n’est proposée alors qu’elle est attendue, arrêter et vérifier le paramétrage avant de poursuivre.
 
 ### 14.F.5 Étape 5 — Relire et tester
 
@@ -124,7 +124,7 @@ Ouvrir le générateur depuis `SE11`, renseigner groupe de fonctions, groupe d�
 
 ### 14.J.3 Étape 3 — Contrôler la génération
 
-Générer puis lire tous les messages. Ouvrir le groupe de fonctions dans `SE80` et vérifier les écrans créés. Ne modifier le code généré directement que si la technique d’événements prévue ne couvre pas le besoin.
+Générer puis lire tous les messages. Ouvrir le groupe de fonctions dans `SE80`[^outil-se80] et vérifier les écrans créés. Ne modifier le code généré directement que si la technique d’événements prévue ne couvre pas le besoin.
 
 ### 14.J.4 Étape 4 — Tester les autorisations et opérations
 
@@ -135,7 +135,7 @@ La génération est validée lorsque `SM30` applique les règles de saisie et d�
 ## 14.K VÉRIFICATION
 
 - Le contrôle de cohérence ne retourne aucune erreur bloquante.
-- L’objet est actif et son entrée de répertoire pointe vers le package attendu.
+- L’objet est actif et son entrée de répertoire pointe vers le package[^terme-package] attendu.
 - La liste d’utilisation et les dépendances correspondent au périmètre prévu.
 - Pour une table Z, la structure active et la structure de base sont cohérentes.
 
@@ -175,3 +175,14 @@ Ordre de transport  :
 ---
 
 [Chapitre suivant — STRUCTURES APPEND ET EXTENSIONS](<./15 ├── STRUCTURES APPEND ET EXTENSIONS.md>)
+
+[^terme-mandant]: **MANDANT.** Subdivision logique d’un système SAP. Il est identifié par un numéro à trois chiffres et isole une partie des données, du paramétrage et des utilisateurs. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/01 ├── SYSTEMES ENVIRONNEMENTS ET MANDANTS.md#mandant>).
+[^terme-classe]: **CLASSE.** Modèle orienté objet définissant état et comportements. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#classe>).
+[^terme-customizing]: **CUSTOMIZING.** Paramétrage permettant d’adapter le comportement standard SAP à l’organisation. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/09 ├── NOTIONS FONCTIONNELLES ET ORGANISATIONNELLES.md#customizing>).
+[^terme-package]: **PACKAGE.** Conteneur logique qui regroupe les objets de développement et détermine notamment leur transportabilité. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/03 ├── REPOSITORY PACKAGES ET TRANSPORTS.md#package>).
+
+[^outil-se54]: **SE54.** Outil de génération et de maintenance des dialogues de mise à jour de tables et vues. Voir [le chapitre associé](<14 ├── GENERATEUR DE MAINTENANCE ET SM30.md>).
+[^outil-sm30]: **SM30.** Transaction d’exécution d’un dialogue de maintenance généré pour une table ou une vue. Voir [le chapitre associé](<14 ├── GENERATEUR DE MAINTENANCE ET SM30.md>).
+[^outil-se11]: **SE11.** Transaction de l’ABAP Dictionary utilisée pour analyser et maintenir les objets DDIC. Voir [le chapitre associé](<02 ├── NAVIGATION ET ANALYSE AVEC SE11.md>).
+[^outil-se10]: **SE10.** Transaction de l’Organisateur de transports utilisée pour consulter et gérer les ordres et tâches de transport. Voir [le chapitre associé](<../🧩 01 ├── FONDAMENTAUX ABAP/03 ├── PACKAGES ET ORDRES DE TRANSPORT.md>).
+[^outil-se80]: **SE80.** Object Navigator utilisé pour parcourir et maintenir les objets du Repository ABAP. Voir [le chapitre associé](<../🧩 01 ├── FONDAMENTAUX ABAP/04 ├── EDITEURS ABAP SE38 ET SE80.md>).

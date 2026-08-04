@@ -93,7 +93,7 @@ SHIFT lv_text RIGHT.
 SHIFT lv_text BY 3 PLACES LEFT.
 ```
 
-Pour un identifiant SAP avec conversion exit, ne pas remplacer systématiquement la conversion ALPHA par une suppression manuelle de zéros.
+Pour un identifiant SAP[^terme-acro-sap] avec conversion exit, ne pas remplacer systématiquement la conversion ALPHA par une suppression manuelle de zéros.
 
 ## 8.G FONCTIONS DE TRANSFORMATION
 
@@ -152,12 +152,12 @@ Ce traitement :
 - Copier un exemple sans adapter les types, noms d’objets et données disponibles dans le système.
 - Tester uniquement le cas nominal et ignorer les valeurs initiales, absentes ou invalides.
 - S’appuyer sur une conversion implicite pouvant tronquer ou arrondir.
-- Ignorer l’encodage et les formats externes.
+- Ignorer l’encodage[^terme-encodage] et les formats externes.
 
 ## 8.L SNIPPET À RÉUTILISER
 
 > [!NOTE]
-> Adapter les noms `Z*`, les types DDIC, les données et les autorisations au système cible. Effectuer un contrôle syntaxique avant activation.
+> Adapter les noms `Z*`, les types DDIC[^terme-acro-ddic], les données et les autorisations au système cible. Effectuer un contrôle syntaxique avant activation.
 
 ```abap
 PARAMETERS p_code TYPE c LENGTH 20.
@@ -184,3 +184,7 @@ START-OF-SELECTION.
 ---
 
 [Chapitre suivant — CONCATÉNATION ET MODÈLES DE CHAÎNES](<./09 ├── CONCATENATION ET MODELES DE CHAINES.md>)
+
+[^terme-acro-sap]: **SAP.** Nom de l’éditeur et de son écosystème logiciel ; l’acronyme historique provient de l’allemand. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/10 └── ACRONYMES SAP.md#acro-sap>).
+[^terme-encodage]: **ENCODAGE.** Règle transformant les caractères en octets et inversement. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/07 ├── INTERFACES ET INTEGRATION.md#encodage>).
+[^terme-acro-ddic]: **DDIC.** Data Dictionary, abréviation courante de l’ABAP Dictionary. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/10 └── ACRONYMES SAP.md#acro-ddic>).

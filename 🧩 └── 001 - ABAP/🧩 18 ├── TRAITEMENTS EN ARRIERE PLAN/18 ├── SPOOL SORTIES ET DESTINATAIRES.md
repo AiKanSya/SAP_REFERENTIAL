@@ -2,13 +2,13 @@
 
 ## 18.A RÉSULTAT ATTENDU
 
-- Comprendre où va la sortie d’une liste ABAP
+- Comprendre où va la sortie d’une liste ABAP[^terme-abap]
 - Configurer les paramètres d’impression
 - Éviter les spools massifs ou inutiles
 
 ## 18.B PRINCIPE
 
-Lorsqu’un programme ABAP exécuté en arrière-plan produit une liste, la sortie est enregistrée dans le système de spool.
+Lorsqu’un programme ABAP exécuté en arrière-plan produit une liste, la sortie est enregistrée dans le système de spool[^terme-spool].
 
 ```mermaid
 flowchart LR
@@ -43,9 +43,9 @@ Un rapport batch ne doit pas utiliser le spool comme base de données. Produire 
 
 ## 18.F OUTILS
 
-- `SM37` : spool lié au job ;
-- `SP01` : demandes de spool ;
-- `SPAD` : administration des périphériques, réservée aux équipes compétentes.
+- `SM37`[^outil-sm37] : spool lié au job[^terme-job] ;
+- `SP01`[^outil-sp01] : demandes de spool ;
+- `SPAD`[^outil-spad] : administration des périphériques, réservée aux équipes compétentes.
 
 ## 18.G PROCESS
 
@@ -115,3 +115,11 @@ Ordre de transport  :
 ---
 
 [Chapitre suivant — MODIFIER, COPIER, REPLANIFIER, ANNULER ET SUPPRIMER](<./19 ├── MODIFIER COPIER REPLANIFIER ANNULER ET SUPPRIMER.md>)
+
+[^terme-abap]: **ABAP.** Langage de programmation de la plateforme ABAP, conçu pour développer des applications métier et techniques SAP. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#abap>).
+[^terme-spool]: **SPOOL.** Infrastructure stockant et acheminant les sorties imprimables produites par les traitements SAP. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/06 ├── PROGRAMMES CLASSES ET OBJETS TECHNIQUES.md#spool>).
+[^terme-job]: **JOB.** Traitement planifié en arrière-plan composé d’une ou plusieurs étapes. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/06 ├── PROGRAMMES CLASSES ET OBJETS TECHNIQUES.md#job>).
+
+[^outil-sm37]: **SM37.** Transaction de recherche, surveillance et administration des jobs d’arrière-plan. Voir [le chapitre associé](<15 ├── SURVEILLER LES JOBS AVEC SM37.md>).
+[^outil-sp01]: **SP01.** Transaction de recherche, affichage et diagnostic des demandes spool. Voir [le chapitre associé](<../🧩 26 ├── FORMULAIRES IMPRESSION ET SPOOL/02 └── DIAGNOSTIQUER UNE SORTIE SPOOL.md>).
+[^outil-spad]: **SPAD.** Transaction d’administration des systèmes de sortie, périphériques et serveurs spool. Voir [le chapitre associé](<../🧩 26 ├── FORMULAIRES IMPRESSION ET SPOOL/02 └── DIAGNOSTIQUER UNE SORTIE SPOOL.md>).

@@ -3,8 +3,8 @@
 ## 18.A RÉSULTAT ATTENDU
 
 - Rendre un traitement batch exploitable
-- Relier le journal applicatif au journal de job
-- Éviter les dépendances à l’affichage SAP GUI
+- Relier le journal applicatif au journal de job[^terme-job]
+- Éviter les dépendances à l’affichage SAP GUI[^terme-sap-gui]
 
 ## 18.B STRATÉGIE
 
@@ -60,11 +60,11 @@ Au niveau supérieur du report, intercepter les exceptions non récupérables, l
 
 ### 18.E.5 ÉTAPE 5 — SAUVEGARDER ET ÉCRIRE LE RÉSUMÉ
 
-Sauvegarder le handle selon la LUW, puis écrire dans le journal de job objet, sous-objet, identifiant, compteurs et résultat global. Contrôler l’échec de sauvegarde séparément afin que l’exploitation sache que le log détaillé manque.
+Sauvegarder le handle selon la LUW[^terme-acro-luw], puis écrire dans le journal de job objet, sous-objet, identifiant, compteurs et résultat global. Contrôler l’échec de sauvegarde séparément afin que l’exploitation sache que le log détaillé manque.
 
 ### 18.E.6 ÉTAPE 6 — CONTRÔLER DANS `SM37` ET `SLG1`
 
-Exécuter le report comme job avec l’utilisateur technique. Depuis `SM37`, récupérer l’identifiant puis ouvrir le log dans `SLG1`. Tester succès, succès partiel, exception et relance ; vérifier l’absence de doublons métier.
+Exécuter le report comme job avec l’utilisateur technique. Depuis `SM37`[^outil-sm37], récupérer l’identifiant puis ouvrir le log dans `SLG1`[^outil-slg1]. Tester succès, succès partiel, exception[^terme-exception] et relance ; vérifier l’absence de doublons métier.
 
 ## 18.F VÉRIFICATION
 
@@ -83,7 +83,7 @@ Exécuter le report comme job avec l’utilisateur technique. Depuis `SM37`, ré
 ## 18.H SNIPPET À RÉUTILISER
 
 > [!NOTE]
-> Adapter les noms `Z*`, les types DDIC, les données et les autorisations au système cible. Effectuer un contrôle syntaxique avant activation.
+> Adapter les noms `Z*`, les types DDIC[^terme-acro-ddic], les données et les autorisations au système cible. Effectuer un contrôle syntaxique avant activation.
 
 ```abap
 WRITE: / |Journal SLG1 : ZDEV_LOG / IMPORT / { lv_extnumber }|.
@@ -103,3 +103,12 @@ WRITE: / |Journal SLG1 : ZDEV_LOG / IMPORT / { lv_extnumber }|.
 ---
 
 [Chapitre suivant — JOURNALISER IMPORTS, EXPORTS ET TRAITEMENTS DE MASSE](<./19 ├── JOURNALISER IMPORTS EXPORTS ET TRAITEMENTS DE MASSE.md>)
+
+[^terme-job]: **JOB.** Traitement planifié en arrière-plan composé d’une ou plusieurs étapes. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/06 ├── PROGRAMMES CLASSES ET OBJETS TECHNIQUES.md#job>).
+[^terme-sap-gui]: **SAP GUI.** Client graphique permettant d’utiliser les transactions et écrans d’un système SAP. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/02 ├── SAP GUI NAVIGATION ET TRANSACTIONS.md#sap-gui>).
+[^terme-acro-luw]: **LUW.** Logical Unit of Work. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/10 └── ACRONYMES SAP.md#acro-luw>).
+[^terme-exception]: **EXCEPTION.** Objet ou signal représentant une situation anormale qu’un appelant peut traiter. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#exception>).
+[^terme-acro-ddic]: **DDIC.** Data Dictionary, abréviation courante de l’ABAP Dictionary. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/10 └── ACRONYMES SAP.md#acro-ddic>).
+
+[^outil-sm37]: **SM37.** Transaction de recherche, surveillance et administration des jobs d’arrière-plan. Voir [le chapitre associé](<../🧩 18 ├── TRAITEMENTS EN ARRIERE PLAN/15 ├── SURVEILLER LES JOBS AVEC SM37.md>).
+[^outil-slg1]: **SLG1.** Transaction de recherche et d’affichage des journaux applicatifs persistés. Voir [le chapitre associé](<05 ├── ANALYSER LES JOURNAUX AVEC SLG1.md>).

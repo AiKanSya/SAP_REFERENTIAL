@@ -10,7 +10,7 @@
 
 ## 5.B CONSTANTE
 
-Une constante est un objet de données nommé dont la valeur ne peut pas être modifiée après sa déclaration.
+Une constante est un objet de données[^terme-objet-donnees] nommé dont la valeur ne peut pas être modifiée après sa déclaration.
 
 ```abap
 CONSTANTS lc_max_retries TYPE i VALUE 3.
@@ -134,7 +134,7 @@ METHOD validate_quantity.
 ENDMETHOD.
 ```
 
-Une constante globale peut être justifiée lorsqu’elle représente une règle commune à plusieurs procédures du même objet. Une constante publique de classe crée une dépendance d’interface et doit être stable.
+Une constante globale peut être justifiée lorsqu’elle représente une règle commune à plusieurs procédures du même objet. Une constante publique de classe[^terme-classe] crée une dépendance d’interface et doit être stable.
 
 ## 5.I ENUMÉRATIONS ET VALEURS CODÉES
 
@@ -157,7 +157,7 @@ IF lv_status = lc_status-error.
 ENDIF.
 ```
 
-Cette construction fournit un regroupement lisible. Les types énumérés disponibles dans certaines versions ABAP ne sont pas abordés ici afin de conserver une compatibilité large avec les environnements SAP GUI classiques.
+Cette construction fournit un regroupement lisible. Les types énumérés disponibles dans certaines versions ABAP[^terme-abap] ne sont pas abordés ici afin de conserver une compatibilité large avec les environnements SAP GUI[^terme-sap-gui] classiques.
 
 ## 5.J ERREURS FRÉQUENTES
 
@@ -182,7 +182,7 @@ Cette construction fournit un regroupement lisible. Les types énumérés dispon
 ## 5.L SNIPPET À RÉUTILISER
 
 > [!NOTE]
-> Adapter les noms `Z*`, les types DDIC, les données et les autorisations au système cible. Effectuer un contrôle syntaxique avant activation.
+> Adapter les noms `Z*`, les types DDIC[^terme-acro-ddic], les données et les autorisations au système cible. Effectuer un contrôle syntaxique avant activation.
 
 ```abap
 METHOD validate_quantity.
@@ -213,3 +213,9 @@ ENDMETHOD.
 ---
 
 [Chapitre suivant — TYPES LOCAUX AVEC `TYPES`](<./06 ├── TYPES LOCAUX AVEC TYPES.md>)
+
+[^terme-objet-donnees]: **OBJET DE DONNÉES.** Zone de mémoire typée contenant une valeur pendant l’exécution. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#objet-donnees>).
+[^terme-classe]: **CLASSE.** Modèle orienté objet définissant état et comportements. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#classe>).
+[^terme-abap]: **ABAP.** Langage de programmation de la plateforme ABAP, conçu pour développer des applications métier et techniques SAP. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#abap>).
+[^terme-sap-gui]: **SAP GUI.** Client graphique permettant d’utiliser les transactions et écrans d’un système SAP. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/02 ├── SAP GUI NAVIGATION ET TRANSACTIONS.md#sap-gui>).
+[^terme-acro-ddic]: **DDIC.** Data Dictionary, abréviation courante de l’ABAP Dictionary. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/10 └── ACRONYMES SAP.md#acro-ddic>).

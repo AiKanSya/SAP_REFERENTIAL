@@ -4,7 +4,7 @@
 
 - Distinguer une instruction, une expression et un opérande
 - Identifier les positions de lecture et d’écriture
-- Comprendre comment ABAP détermine le type d’un résultat
+- Comprendre comment ABAP[^terme-abap] détermine le type d’un résultat
 - Lire une expression complexe sans ambiguïté
 - Éviter les effets de bord inutiles dans les expressions
 
@@ -44,7 +44,7 @@ lv_gross_amount = lv_net_amount * ( 1 + lv_tax_rate / 100 ).
 
 ## 1.C POSITIONS DE LECTURE ET D’ÉCRITURE
 
-Une **position de lecture** utilise la valeur d’un objet de données.
+Une **position de lecture** utilise la valeur d’un objet de données[^terme-objet-donnees].
 
 ```abap
 lv_total = lv_price * lv_quantity.
@@ -147,12 +147,12 @@ lv_result = lv_unit_amount * lv_quantity.
 - Copier un exemple sans adapter les types, noms d’objets et données disponibles dans le système.
 - Tester uniquement le cas nominal et ignorer les valeurs initiales, absentes ou invalides.
 - S’appuyer sur une conversion implicite pouvant tronquer ou arrondir.
-- Ignorer l’encodage et les formats externes.
+- Ignorer l’encodage[^terme-encodage] et les formats externes.
 
 ## 1.I SNIPPET À RÉUTILISER
 
 > [!NOTE]
-> Adapter les noms `Z*`, les types DDIC, les données et les autorisations au système cible. Effectuer un contrôle syntaxique avant activation.
+> Adapter les noms `Z*`, les types DDIC[^terme-acro-ddic], les données et les autorisations au système cible. Effectuer un contrôle syntaxique avant activation.
 
 ```abap
 DATA(lv_unit_amount) = lv_base + lv_surcharge.
@@ -175,3 +175,8 @@ lv_result = lv_unit_amount * lv_quantity.
 ---
 
 [Chapitre suivant — AFFECTATIONS ET OPÉRATEURS D’AFFECTATION](<./02 ├── AFFECTATIONS ET OPERATEURS D AFFECTATION.md>)
+
+[^terme-abap]: **ABAP.** Langage de programmation de la plateforme ABAP, conçu pour développer des applications métier et techniques SAP. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#abap>).
+[^terme-objet-donnees]: **OBJET DE DONNÉES.** Zone de mémoire typée contenant une valeur pendant l’exécution. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#objet-donnees>).
+[^terme-encodage]: **ENCODAGE.** Règle transformant les caractères en octets et inversement. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/07 ├── INTERFACES ET INTEGRATION.md#encodage>).
+[^terme-acro-ddic]: **DDIC.** Data Dictionary, abréviation courante de l’ABAP Dictionary. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/10 └── ACRONYMES SAP.md#acro-ddic>).

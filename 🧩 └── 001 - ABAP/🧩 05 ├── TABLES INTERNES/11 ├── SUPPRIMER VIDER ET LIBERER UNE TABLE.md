@@ -62,7 +62,7 @@ DELETE lt_products WHERE obsolete = abap_true.
 CLEAR lt_products.
 ```
 
-Pour une table interne, `CLEAR` supprime toutes les lignes et place la table dans son état initial.
+Pour une table interne[^terme-table-interne], `CLEAR` supprime toutes les lignes et place la table dans son état initial.
 
 ## 11.F REFRESH
 
@@ -85,7 +85,7 @@ FREE lt_products.
 | Instruction |       Lignes supprimées | Intention principale                                |
 | ----------- | ----------------------: | --------------------------------------------------- |
 | `DELETE`    | Une sélection de lignes | Supprimer des enregistrements ciblés                |
-| `CLEAR`     |                  Toutes | Réinitialiser l’objet de données                    |
+| `CLEAR`     |                  Toutes | Réinitialiser l’objet de données[^terme-objet-donnees]                    |
 | `REFRESH`   |                  Toutes | Ancienne instruction spécifique aux tables internes |
 | `FREE`      |                  Toutes | Réinitialiser et libérer la mémoire occupée         |
 
@@ -122,7 +122,7 @@ ENDIF.
 ## 11.M SNIPPET À RÉUTILISER
 
 > [!NOTE]
-> Adapter les noms `Z*`, les types DDIC, les données et les autorisations au système cible. Effectuer un contrôle syntaxique avant activation.
+> Adapter les noms `Z*`, les types DDIC[^terme-acro-ddic], les données et les autorisations au système cible. Effectuer un contrôle syntaxique avant activation.
 
 ```abap
 DELETE lt_products WHERE stock = 0 AND obsolete = abap_true.
@@ -149,3 +149,7 @@ ENDIF.
 ---
 
 [Chapitre suivant — TRIER ET ÉLIMINER LES DOUBLONS](<./12 ├── TRIER ET ELIMINER LES DOUBLONS.md>)
+
+[^terme-table-interne]: **TABLE INTERNE.** Collection dynamique de lignes stockée en mémoire dans le programme ABAP. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#table-interne>).
+[^terme-objet-donnees]: **OBJET DE DONNÉES.** Zone de mémoire typée contenant une valeur pendant l’exécution. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#objet-donnees>).
+[^terme-acro-ddic]: **DDIC.** Data Dictionary, abréviation courante de l’ABAP Dictionary. Voir [l’entrée du lexique](<../🧩 00 ├── LEXIQUE SAP ET ABAP/10 └── ACRONYMES SAP.md#acro-ddic>).
