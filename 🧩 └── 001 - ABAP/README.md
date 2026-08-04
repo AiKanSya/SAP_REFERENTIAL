@@ -4,7 +4,7 @@
 
 Ce dossier est une aide pratique consacrée au développement ABAP classique sur SAP S/4HANA depuis SAP GUI.
 
-Il couvre notamment les transactions de développement et de diagnostic classiques, les programmes exécutables, ABAP Objects, le Dictionnaire ABAP, ABAP SQL, les modules fonction, RFC, BAPI, ALV, les enhancements, les traitements de fond, les journaux applicatifs, les performances et les tests.
+Il couvre notamment les transactions de développement et de diagnostic classiques, les programmes exécutables, ABAP Objects, le Dictionnaire ABAP, ABAP SQL, les modules fonction, RFC, BAPI, ALV, les enhancements, les traitements de fond, les journaux applicatifs, les performances, les tests, les dynpros, IDoc, formulaires, services BCS, mémoires SAP, batch input, workflow classique, archivage et accès SQL natif.
 
 ABAP Cloud, Clean Core, CDS, RAP et les autres modèles de développement disposent ou disposeront de dossiers distincts.
 
@@ -67,7 +67,7 @@ Règles :
 - Les sous-dossiers commencent par `🧩` afin de rester identifiables dans l’interface GitHub.
 - Les noms intermédiaires de l’arborescence utilisent `├──`.
 - Le dernier élément d’un niveau utilise `└──`.
-- Les marqueurs d’arborescence sont placés après le numéro : `🧩 08 ├── OPEN SQL` et `🧩 21 └── AUTORISATIONS ET SECURITE ABAP`.
+- Les marqueurs d’arborescence sont placés après le numéro : `🧩 08 ├── OPEN SQL` et `🧩 34 └── ADBC ET SQL NATIF`.
 - Les titres décrivent une action ou un résultat concret.
 
 ## MODÈLE D’UN TUTORIEL PRATIQUE
