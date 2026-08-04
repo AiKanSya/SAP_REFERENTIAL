@@ -70,14 +70,27 @@ En présence d’une erreur métier ou technique avant validation, appeler `BAPI
 
 Lorsque la BAPI est appelée via une destination RFC, la gestion de la transaction doit rester dans le même contexte RFC selon le modèle applicable. Vérifier la documentation de la BAPI et de l’environnement appelant.
 
-## PROCÉDURE PAS À PAS
+## PROCESS
 
-1. Saisir `/nSE37`.
-2. Entrer le nom du module fonction puis choisir **Afficher**, **Modifier** ou **Créer** selon l’autorisation.
-3. Analyser les onglets Import, Export, Changing, Tables et Exceptions.
-4. Lire la documentation et le code source avant tout appel.
-5. Utiliser **Test/Exécuter** avec des données non destructives.
-6. Pour un module Z, contrôler, activer puis tester les cas nominal et d’erreur.
+### Étape 1 — Préparer les données et la clé de corrélation
+
+Valider les entrées, renseigner structures et indicateurs `X`, puis conserver une clé permettant de retrouver le document ou la tentative.
+
+### Étape 2 — Appeler la BAPI
+
+Insérer le modèle exact depuis `SE37`, mapper tous les paramètres obligatoires et récupérer la clé retournée ainsi que la table `RETURN`.
+
+### Étape 3 — Décider succès ou échec
+
+Parcourir `RETURN`. Si une ligne de type `A`, `E` ou `X` existe, ne pas lancer le commit. Journaliser les messages utiles et appeler `BAPI_TRANSACTION_ROLLBACK` lorsque le contrat le prévoit.
+
+### Étape 4 — Valider la transaction
+
+En absence d’erreur bloquante, appeler `BAPI_TRANSACTION_COMMIT` avec attente lorsque la lecture immédiate est nécessaire. Ne mélanger pas ce commit avec une LUW métier plus large non conçue pour être validée ici.
+
+### Étape 5 — Relire l’objet
+
+Utiliser une BAPI ou API de lecture pour confirmer la persistance et la clé. Tester ensuite un cas d’erreur et vérifier qu’aucun objet partiel ne subsiste.
 
 ## VÉRIFICATION
 
@@ -137,7 +150,6 @@ ENDIF.
 - [BAPI_TRANSACTION_COMMIT versus COMMIT WORK — SAP Help Portal](https://help.sap.com/docs/btp/ABAP/3353526184.html)
 - [Transaction Model for Developing BAPIs — SAP Help Portal](https://help.sap.com/docs/SAP_ERP/67ae2d27aed945b7bd0ad1d2185ec217/4d5b102ba1483d8fe10000000a42189e.html)
 - [Example: BAPI Transaction Model Without Commit — SAP Help Portal](https://help.sap.com/docs/SAP_NETWEAVER_702/fe1c8e016c551014ba0ec92da35a91ee/4d5bfea2db8618b5e10000000a42189e.html)
-
 
 ---
 

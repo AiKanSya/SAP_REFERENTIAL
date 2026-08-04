@@ -71,14 +71,27 @@ Les programmes système peuvent être masqués ou affichés différemment. Leur 
 
 Activer ce mode uniquement lorsque le problème se situe réellement dans une couche système ou standard.
 
-## PROCÉDURE PAS À PAS
+## PROCESS
 
-1. Lire la définition et identifier les prérequis du chapitre.
-2. Choisir un objet Z ou un scénario de démonstration sans impact métier.
-3. Reproduire l’exemple dans un système de développement et relever les données d’entrée.
-4. Contrôler la syntaxe ou la configuration avant activation/exécution.
-5. Comparer le résultat observé avec la section **Vérification**.
-6. Documenter toute différence liée à la release, aux autorisations ou au paramétrage du système.
+### Étape 1 — Arrêter au point fautif
+
+Placer un breakpoint où la donnée incorrecte est observée et reproduire avec le même utilisateur et le même mode d’exécution.
+
+### Étape 2 — Lire la pile du bas vers le haut
+
+Identifier programme d’entrée et appels successifs. Relever le premier objet client ou point d’extension dans une pile standard.
+
+### Étape 3 — Examiner chaque frame
+
+Sélectionner les niveaux et comparer paramètres reçus, variables locales et valeurs retournées. Trouver le dernier niveau où la donnée était correcte.
+
+### Étape 4 — Isoler la frontière fautive
+
+Descendre d’un appel depuis ce dernier état correct. Cette frontière identifie l’interface ou la transformation responsable.
+
+### Étape 5 — Confirmer le contexte
+
+Relever utilisateur, transaction, programme principal, unité RFC ou job. Le diagnostic est terminé lorsque l’appelant, l’appelé et le paramètre divergent sont identifiés.
 
 ## VÉRIFICATION
 
@@ -118,7 +131,6 @@ Ordre de transport  :
 
 - [Call Stack — SAP Help Portal](https://help.sap.com/docs/ABAP_PLATFORM_NEW/ba879a6e2ea04d9bb94c7ccd7cdac446/88feb68f058446539bb51e8d95caac00.html)
 - [System Debugging — SAP Help Portal](https://help.sap.com/docs/ABAP_PLATFORM_NEW/ba879a6e2ea04d9bb94c7ccd7cdac446/4925636629ac16b7e10000000a42189d.html)
-
 
 ---
 

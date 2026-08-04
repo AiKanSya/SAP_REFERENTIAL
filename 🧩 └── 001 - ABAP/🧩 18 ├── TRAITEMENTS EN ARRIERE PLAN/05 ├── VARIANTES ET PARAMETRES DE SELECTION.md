@@ -10,16 +10,31 @@
 
 Une variante mémorise les valeurs d’un écran de sélection. Pour un rapport doté d’un écran de sélection, elle constitue le mécanisme standard permettant de transmettre les paramètres à une étape ABAP planifiée depuis les transactions de jobs.
 
-## CRÉATION
+## PROCESS
 
-Depuis `SE38` ou `SA38` :
+### ÉTAPE 1 — OUVRIR LA MAINTENANCE DES VARIANTES
 
-1. saisir le programme ;
-2. ouvrir la maintenance des variantes ;
-3. renseigner les paramètres ;
-4. enregistrer sous un nom explicite ;
-5. tester la variante en dialogue ;
-6. l’affecter à l’étape du job.
+Dans `SE38` ou `SA38`, saisir le programme actif puis ouvrir la maintenance des variantes. Vérifier que l’écran de sélection correspond à la version du report planifiée. Ne pas copier une variante d’un autre programme ou environnement sans contrôler chaque champ.
+
+### ÉTAPE 2 — RENSEIGNER LE PÉRIMÈTRE
+
+Saisir les dates, plages, options et modes prévus par l’exploitation. Limiter les sélections vides ou génériques qui pourraient traiter un volume non borné. Utiliser un chemin logique ou un identifiant de configuration plutôt qu’un chemin physique codé dans la variante.
+
+### ÉTAPE 3 — CONFIGURER LES VALEURS DYNAMIQUES
+
+Pour les dates calculées, choisir la variable de sélection adaptée et vérifier son aperçu. Tester son résultat aux changements de mois, d’année et de calendrier si pertinent. Une description comme « date du jour » doit être confirmée par la valeur réellement résolue à l’exécution.
+
+### ÉTAPE 4 — ENREGISTRER AVEC UN NOM EXPLICITE
+
+Utiliser la convention du projet et renseigner la description. Protéger la variante ou ses champs uniquement selon la gouvernance définie. Documenter le propriétaire et l’usage afin qu’une modification ultérieure soit analysable.
+
+### ÉTAPE 5 — TESTER LA VARIANTE EN DIALOGUE
+
+Exécuter le report avec un mode test ou un faible périmètre. Vérifier les paramètres effectifs, le volume sélectionné et les sorties. Tester aussi une valeur dynamique à la date d’exécution prévue, pas seulement au jour de création.
+
+### ÉTAPE 6 — AFFECTER ET CONTRÔLER DANS LE JOB
+
+Dans `SM36`, affecter la variante à l’étape ABAP. Enregistrer puis ouvrir le job dans `SM37` pour confirmer le nom du programme et de la variante. Avant production, comparer la variante du système cible, car son contenu peut différer entre environnements.
 
 ## BON NOMMAGE
 
@@ -90,7 +105,6 @@ Ordre de transport  :
 
 - [Variant Maintenance — SAP Help Portal](https://help.sap.com/docs/ABAP_PLATFORM_NEW/bd833c8355f34e96a6e83096b38bf192/c0980374e58611d194cc00a0c94260a5.html)
 - [Background Work Processes — SAP Help Portal](https://help.sap.com/docs/ABAP_PLATFORM_NEW/b07e7195f03f438b8e7ed273099d74f3/4b2b3c3e8eb51780e10000000a42189c.html)
-
 
 ---
 

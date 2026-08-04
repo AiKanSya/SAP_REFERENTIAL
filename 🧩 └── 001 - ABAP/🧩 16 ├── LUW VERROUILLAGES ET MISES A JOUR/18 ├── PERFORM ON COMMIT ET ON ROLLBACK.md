@@ -29,6 +29,32 @@ Dans ces routines, certaines instructions transactionnelles sont interdites, not
 
 Ce mécanisme reste important pour analyser des applications classiques. Pour un nouveau développement, préférer une orchestration explicite et des modules de mise à jour à interface claire lorsque l’update task est réellement nécessaire.
 
+## PROCESS
+
+### ÉTAPE 1 — LOCALISER L’ENREGISTREMENT ET LES ROUTINES
+
+Rechercher `PERFORM ... ON COMMIT`, `PERFORM ... ON ROLLBACK` et les `FORM` correspondants dans le programme principal et ses includes. Relever les données globales lues ou modifiées par chaque routine et l’ordre d’enregistrement.
+
+### ÉTAPE 2 — IDENTIFIER LA BORNE QUI DÉCLENCHE LA ROUTINE
+
+Suivre le flux jusqu’au `COMMIT WORK` ou `ROLLBACK WORK` effectif. Vérifier les appels intermédiaires susceptibles de terminer la LUW. Une routine enregistrée n’est pas exécutée au moment du `PERFORM`, mais lors de la borne correspondante.
+
+### ÉTAPE 3 — CONTRÔLER LES RESTRICTIONS
+
+Vérifier que les routines ne déclenchent pas elles-mêmes un nouveau commit ou rollback et n’ouvrent pas de dialogue. Examiner leurs appels de modules de mise à jour et leurs dépendances globales. Toute valeur nécessaire doit être stable au moment de l’exécution différée.
+
+### ÉTAPE 4 — TESTER LE CHEMIN COMMIT
+
+Enregistrer les routines puis exécuter un commit dans un report Z contrôlé. Poser des points d’arrêt dans les `FORM` et vérifier leur ordre, les valeurs globales observées et les modules de mise à jour enregistrés. Contrôler ensuite les données et `SM13`.
+
+### ÉTAPE 5 — TESTER LE CHEMIN ROLLBACK
+
+Exécuter le même scénario avec un rollback avant la borne finale. Vérifier que seules les routines prévues pour l’annulation s’exécutent et qu’aucune écriture destinée au commit n’est persistée.
+
+### ÉTAPE 6 — ENCADRER LA MAINTENANCE
+
+Pour une correction, préserver l’ordre et les dépendances tant que des tests de non-régression ne prouvent pas une refonte sûre. Pour un nouveau développement, isoler l’orchestration dans des méthodes explicites et réserver ce mécanisme à la compatibilité avec le code classique existant.
+
 ## VÉRIFICATION
 
 - Les données sont toutes validées ou toutes annulées selon le cas testé.
@@ -73,7 +99,6 @@ ENDFORM.
 - [PERFORM ON COMMIT — ABAP Keyword Documentation](https://help.sap.com/docs/SAP_NETWEAVER_731_BW_ABAP/cfae740a0a21455dbe6e510c2d86e36a/417af4e3a79e11d1950f0000e82de14a.html)
 - [COMMIT WORK — ABAP Keyword Documentation](https://help.sap.com/doc/abapdocu_752_index_htm/7.52/en-US/abapcommit.htm)
 - [Adding Update-Task Calls to a Subroutine — SAP Help Portal](https://help.sap.com/docs/SAP_NETWEAVER_731_BW_ABAP/cfae740a0a21455dbe6e510c2d86e36a/417af4e3a79e11d1950f0000e82de14a.html)
-
 
 ---
 

@@ -1,4 +1,5 @@
 # SUPPRI" Modifier uniquement les données de la table cible maîtrisée.
+
 " Modifier uniquement les données de la table cible maîtrisée.
 " Modifier uniquement les données de la table cible maîtrisée.
 " Modifier uniquement les données de la table cible maîtrisée.
@@ -47,13 +48,33 @@ DELETE FROM zdev_product
     AND active   = @abap_false.
 ```
 
+## PROCESS
+
 Avant une suppression de masse :
 
-1. exécuter un `SELECT COUNT( * )` avec la même condition ;
-2. afficher ou journaliser le périmètre ;
-3. contrôler les autorisations ;
-4. vérifier la possibilité de reprise ;
-5. valider la transaction au niveau approprié.
+### Étape 1 — Figer le prédicat de suppression
+
+Écrire la condition dans une forme unique et contrôler les variables utilisées. Interdire une condition vide ou une sélection globale non explicitement autorisée.
+
+### Étape 2 — Mesurer le périmètre
+
+Exécuter un `SELECT COUNT( * )` avec exactement le même prédicat. Si le nombre est nul, terminer sans `DELETE`. S’il dépasse le seuil validé, interrompre et faire confirmer le périmètre.
+
+### Étape 3 — Rendre les lignes vérifiables
+
+Lire les clés qui seront supprimées et les afficher ou les journaliser selon la sensibilité des données. Conserver un identifiant de traitement permettant de relier validation, suppression et résultat.
+
+### Étape 4 — Contrôler autorisation et reprise
+
+Exécuter l’autorisation métier avant la suppression. Vérifier l’existence d’une source de reprise, d’un archivage ou d’une procédure de reconstruction. Sans mécanisme validé, ne pas poursuivre une suppression irréversible.
+
+### Étape 5 — Supprimer dans la LUW responsable
+
+Exécuter `DELETE`, contrôler `SY-SUBRC` et comparer `SY-DBCNT` au nombre validé. Ne lancer `COMMIT WORK` que dans la couche propriétaire de la transaction ; sinon retourner le résultat à l’appelant.
+
+### Étape 6 — Contrôler après suppression
+
+Relire les clés ciblées. Aucune ne doit subsister et aucune clé hors périmètre ne doit avoir disparu. En cas d’écart avant commit, exécuter le rollback prévu et conserver le diagnostic.
 
 ## WHERE ABSENT
 
@@ -114,7 +135,6 @@ ENDIF.
 - [DELETE — ABAP Keyword Documentation](https://help.sap.com/doc/abapdocu_latest_index_htm/latest/en-US/ABAPDELETE_DB_TAB.html)
 - [ABAP SQL — ABAP Keyword Documentation](https://help.sap.com/doc/abapdocu_latest_index_htm/latest/en-US/ABENABAP_SQL_OVIEW.html)
 - [Database Locks — ABAP Keyword Documentation](https://help.sap.com/doc/abapdocu_latest_index_htm/latest/en-US/ABENDB_LOCK.html)
-
 
 ---
 

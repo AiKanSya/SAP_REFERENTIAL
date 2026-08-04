@@ -47,13 +47,31 @@ Un rapport batch ne doit pas utiliser le spool comme base de données. Produire 
 - `SP01` : demandes de spool ;
 - `SPAD` : administration des périphériques, réservée aux équipes compétentes.
 
-## PROCÉDURE PAS À PAS
+## PROCESS
 
-1. Saisir `/nSM37`.
-2. Renseigner le nom du job, l’utilisateur et une période suffisamment précise.
-3. Exécuter la recherche et sélectionner le job correspondant au bon horodatage.
-4. Lire le statut, le journal de job, les étapes et le spool.
-5. En cas d’échec, relever le message, le programme, la variante, l’utilisateur et l’heure avant toute relance.
+### ÉTAPE 1 — IDENTIFIER L’ÉTAPE PRODUCTRICE
+
+Dans `SM37`, ouvrir le job exact et sa liste d’étapes. Relever le programme, la variante, l’utilisateur et les paramètres de spool de l’étape concernée. Plusieurs étapes peuvent produire des demandes distinctes.
+
+### ÉTAPE 2 — OUVRIR LA DEMANDE DE SPOOL
+
+Depuis le job, afficher les spools associés et relever leur numéro, statut, nombre de pages et date. Si nécessaire, ouvrir le même numéro dans `SP01` pour examiner les attributs détaillés.
+
+### ÉTAPE 3 — CONTRÔLER LE CONTENU
+
+Afficher la liste et vérifier titre, en-têtes, pagination, caractères, troncature et compteurs métier. Distinguer un spool vide parce qu’aucune donnée n’était sélectionnée d’un spool absent à cause d’une erreur avant la sortie.
+
+### ÉTAPE 4 — CONTRÔLER LA DESTINATION
+
+Vérifier l’imprimante logique, le format, le destinataire et les options de conservation. Confirmer que la destination existe dans le système cible et que l’utilisateur d’exécution peut l’utiliser. Ne pas résoudre une erreur de destination en changeant arbitrairement le code du report.
+
+### ÉTAPE 5 — ANALYSER UN STATUT EN ERREUR
+
+Relever le message et l’heure de traitement de la demande. Corréler avec l’administration du spool et la disponibilité de la destination selon la procédure Basis. Conserver le numéro de spool avant toute réimpression ou suppression.
+
+### ÉTAPE 6 — VALIDER SORTIE ET RÉTENTION
+
+Après correction, générer un nouveau spool avec la même variante et comparer contenu et attributs. Vérifier la durée de conservation, la confidentialité et la purge. Le succès du job ne remplace pas le contrôle de la sortie effectivement remise au destinataire.
 
 ## VÉRIFICATION
 
@@ -93,7 +111,6 @@ Ordre de transport  :
 
 - [Obtaining Printing and Archiving Specifications — SAP Help Portal](https://help.sap.com/docs/ABAP_PLATFORM_NEW/b07e7195f03f438b8e7ed273099d74f3/4d9110b58e4f34b7e10000000a42189c.html)
 - [Background Work Processes — SAP Help Portal](https://help.sap.com/docs/ABAP_PLATFORM_NEW/b07e7195f03f438b8e7ed273099d74f3/4b2b3c3e8eb51780e10000000a42189c.html)
-
 
 ---
 

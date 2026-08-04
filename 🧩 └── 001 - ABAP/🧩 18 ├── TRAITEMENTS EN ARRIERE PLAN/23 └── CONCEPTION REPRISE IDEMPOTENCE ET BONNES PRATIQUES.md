@@ -66,13 +66,31 @@ flowchart TD
 
 SAP fournit des jobs techniques de nettoyage et de collecte à planifier selon les recommandations du produit et de la version. Leur fréquence et leur activation relèvent de l’administration du système, pas d’une convention générique de développement.
 
-## PROCÉDURE PAS À PAS
+## PROCESS
 
-1. Saisir `/nSM37`.
-2. Renseigner le nom du job, l’utilisateur et une période suffisamment précise.
-3. Exécuter la recherche et sélectionner le job correspondant au bon horodatage.
-4. Lire le statut, le journal de job, les étapes et le spool.
-5. En cas d’échec, relever le message, le programme, la variante, l’utilisateur et l’heure avant toute relance.
+### ÉTAPE 1 — DÉFINIR LE LOT ET SA CLÉ
+
+Attribuer à chaque exécution un identifiant stable lié au périmètre métier. Définir les données incluses, l’ordre de traitement et la règle empêchant deux jobs de traiter le même lot. Persister cet identifiant avant la première unité modifiée.
+
+### ÉTAPE 2 — DÉFINIR L’UNITÉ DE REPRISE
+
+Choisir document, fichier, paquet ou autre unité atomique. Pour chaque unité, enregistrer statut, tentatives, début, fin et message. Aligner les commits sur cette unité afin qu’un statut « réussi » corresponde à des données réellement validées.
+
+### ÉTAPE 3 — RENDRE LE TRAITEMENT IDEMPOTENT
+
+Avant création, rechercher la clé fonctionnelle ou technique déjà traitée. Transformer les répétitions en absence d’effet, mise à jour déterministe ou rejet explicite selon le contrat. Ne pas utiliser uniquement le statut du job pour détecter les doublons.
+
+### ÉTAPE 4 — JOURNALISER LES POINTS DE CONTRÔLE
+
+Écrire les compteurs, la dernière unité validée et la première erreur dans une table de pilotage ou le journal applicatif. Le journal de job conserve le résumé et l’identifiant de lot. Une reprise doit être calculée depuis l’état persistant, pas depuis une ligne de spool.
+
+### ÉTAPE 5 — TESTER LES INTERRUPTIONS
+
+Arrêter le traitement avant le premier commit, après plusieurs unités et après un effet externe. Relancer le même lot et comparer au résultat d’une exécution complète. Vérifier doublons, unités manquantes, verrous et statuts restés actifs.
+
+### ÉTAPE 6 — FORMALISER LA PROCÉDURE D’EXPLOITATION
+
+Documenter comment identifier le lot, corriger la cause, choisir le point de reprise, autoriser la relance et valider le résultat. Inclure les transactions, objets de log et contrôles métier. Une copie manuelle du job ne constitue pas une stratégie de reprise.
 
 ## VÉRIFICATION
 

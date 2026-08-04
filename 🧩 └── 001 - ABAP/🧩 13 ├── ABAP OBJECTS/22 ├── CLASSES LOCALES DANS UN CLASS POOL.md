@@ -19,14 +19,27 @@ Les classes globales sont le choix principal pour les services réutilisables. L
 
 La classe globale `ZCL_DEV_CSV_IMPORTER` a besoin d’un parseur privé spécifique à son implémentation. Aucun autre objet ne doit l’utiliser. `LCL_CSV_PARSER` reste local au Class Pool.
 
-## PROCÉDURE
+## PROCESS
 
-1. Ouvrir la classe globale dans `SE24` ou `SE80`.
-2. Accéder aux définitions locales du Class Pool.
-3. Déclarer la classe locale avant son utilisation.
-4. Placer son implémentation dans la zone locale prévue.
-5. L’utiliser uniquement depuis la classe globale ou les autres classes locales du même pool.
-6. Activer la classe globale complète.
+### Étape 1 — Vérifier la portée locale
+
+Confirmer que la classe sert uniquement au class pool et ne doit pas être appelée par un autre objet Repository. Sinon créer une classe globale.
+
+### Étape 2 — Ouvrir les sections locales
+
+Depuis `SE24` ou `SE80`, accéder aux définitions et implémentations locales prévues. Ne placer pas le code dans une zone générée du Class Builder.
+
+### Étape 3 — Déclarer avant utilisation
+
+Créer la définition locale avec visibilité minimale et signature complète. Si la classe globale référence le type avant sa définition complète, ajouter la déclaration différée appropriée.
+
+### Étape 4 — Implémenter dans la zone correspondante
+
+Ajouter les méthodes dans l’implémentation locale. Contrôler que les dépendances au global class pool sont intentionnelles.
+
+### Étape 5 — Activer et tester
+
+Activer la classe globale complète puis exécuter le test consommateur. La classe locale est validée lorsqu’aucun objet externe ne dépend de son nom.
 
 ## CODE À ADAPTER
 

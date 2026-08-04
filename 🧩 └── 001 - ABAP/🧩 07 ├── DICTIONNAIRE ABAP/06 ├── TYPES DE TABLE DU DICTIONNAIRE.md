@@ -100,15 +100,32 @@ Type de table : `ZTT_MESSAGE`
 - Il ne crée aucun objet physique en base.
 - Les opérations sur les tables internes restent détaillées dans le dossier dédié.
 
-## PROCÉDURE PAS À PAS
+## PROCESS
 
-1. Saisir `/nSE11`.
-2. Choisir le type d’objet DDIC correspondant au chapitre.
-3. Entrer le nom technique ; utiliser **Afficher** pour un objet existant ou **Créer** pour un objet Z autorisé.
-4. Renseigner les attributs et composants en suivant les règles du chapitre.
-5. Lancer le contrôle de cohérence.
-6. Activer l’objet et traiter chaque message avant de poursuivre.
-7. Utiliser la liste d’utilisation et, pour les tables, vérifier les paramètres techniques et la structure physique.
+### Étape 1 — Définir la ligne et les accès attendus
+
+Identifier le type de ligne partagé et les opérations dominantes : parcours séquentiel, lecture par clé exacte ou maintien trié. Le choix `STANDARD`, `SORTED` ou `HASHED` découle de ces accès, pas du volume seul.
+
+### Étape 2 — Créer le type de table
+
+1. Ouvrir `SE11`, choisir **Type de données** et saisir un nom client.
+2. Choisir **Type table**.
+3. Renseigner comme type de ligne une structure ou un élément DDIC actif.
+4. Sélectionner la catégorie de table décidée.
+
+### Étape 3 — Définir la clé
+
+Pour une table triée ou hachée, déclarer explicitement les composants constituant l’unicité ou l’ordre. Choisir `UNIQUE` uniquement si deux lignes portant la même clé sont fonctionnellement interdites.
+
+Si l’activation refuse la clé, vérifier que chaque composant appartient au type de ligne et qu’il possède un type autorisé pour cette catégorie.
+
+### Étape 4 — Activer puis déclarer une table
+
+Contrôler, activer puis déclarer une table interne avec `TYPE z...`. Insérer deux lignes distinctes et effectuer une lecture avec la clé définie.
+
+### Étape 5 — Tester les contraintes
+
+Pour une clé unique, tenter une deuxième insertion avec la même clé et traiter le résultat prévu. Le type est validé lorsque l’accès attendu fonctionne et que les doublons sont acceptés ou refusés conformément au contrat.
 
 ## VÉRIFICATION
 
@@ -145,7 +162,6 @@ DATA lt_messages TYPE ztt_message.
 
 - [Defining Dictionary Table Types — SAP Learning](https://learning.sap.com/courses/building-data-models-with-the-abap-dictionary-and-abap-core-data-services/defining-dictionary-table-types_df502cc6-441f-4fdc-aa9e-cc81caf6919c)
 - [Data Types in the ABAP Dictionary — SAP Help Portal](https://help.sap.com/docs/SAP_NETWEAVER_740/ec1c9c8191b74de98feb94001a95dd76/cf21f2e5446011d189700000e8322d00.html)
-
 
 ---
 

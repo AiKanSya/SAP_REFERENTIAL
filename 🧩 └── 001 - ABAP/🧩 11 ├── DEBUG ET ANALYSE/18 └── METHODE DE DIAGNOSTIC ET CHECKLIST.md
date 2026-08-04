@@ -75,14 +75,31 @@ flowchart TD
 
 Une fonction visible dans `SE37` n’est pas automatiquement une API stable. Une exécution réussie dans le système de développement ne prouve ni la sécurité, ni la compatibilité, ni la robustesse distribuée du scénario.
 
-## PROCÉDURE PAS À PAS
+## PROCESS
 
-1. Saisir `/nSE80`.
-2. Sélectionner le type d’objet ou le package dans la liste de gauche.
-3. Entrer le nom technique puis valider.
-4. Commencer en mode **Afficher** pour analyser l’objet et ses sous-objets.
-5. Passer en modification uniquement dans un système et un objet autorisés.
-6. Contrôler la syntaxe, activer les objets modifiés puis vérifier leur statut actif.
+### Étape 1 — Décrire sans interpréter
+
+Noter contexte, données, résultat attendu et résultat observé. Classer le symptôme : erreur fonctionnelle, dump, performance, mémoire, job ou appel distant.
+
+### Étape 2 — Reproduire de façon minimale
+
+Réduire les données et reproduire une fois. Si le défaut disparaît, réintroduire un paramètre à la fois jusqu’à identifier la condition nécessaire.
+
+### Étape 3 — Choisir l’outil
+
+Utiliser débogueur pour le flux, `ST22` pour un dump, `SAT` pour le temps ABAP, `ST05` pour SQL, `ST12` pour une corrélation, `SM37` pour un job et Memory Inspector pour les allocations.
+
+### Étape 4 — Chercher la première divergence
+
+Comparer le chemin attendu au chemin réel. Remonter pile, paramètres et valeurs jusqu’au dernier état correct, puis isoler l’instruction suivante.
+
+### Étape 5 — Corriger une cause
+
+Modifier uniquement la cause prouvée. Contrôler, activer et documenter l’objet réellement responsable.
+
+### Étape 6 — Vérifier et clôturer
+
+Rejouer le cas fautif, un cas nominal et une limite. Retirer traces et breakpoints. Le diagnostic est clos lorsque la preuve avant/après est conservée et qu’aucun effet de bord nouveau n’apparaît.
 
 ## VÉRIFICATION
 

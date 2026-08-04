@@ -62,14 +62,35 @@ Utiliser le journal applicatif lorsque l’interface doit être exploitée par l
 - [ ] Logs exploitables sans débogage
 - [ ] Test DEV, QAS et exécution en job
 
-## PROCÉDURE PAS À PAS
+## PROCESS
 
-1. Lire la définition et identifier les prérequis du chapitre.
-2. Choisir un objet Z ou un scénario de démonstration sans impact métier.
-3. Reproduire l’exemple dans un système de développement et relever les données d’entrée.
-4. Contrôler la syntaxe ou la configuration avant activation/exécution.
-5. Comparer le résultat observé avec la section **Vérification**.
-6. Documenter toute différence liée à la release, aux autorisations ou au paramétrage du système.
+### ÉTAPE 1 — IDENTIFIER L’EXÉCUTION EXACTE
+
+Dans `SM37`, rechercher le job avec son nom, son utilisateur, son intervalle de dates et son statut. Ouvrir l’étape pour relever le programme, la variante et le serveur d’exécution. Comparer ces paramètres à ceux du scénario attendu avant d’analyser le code.
+
+### ÉTAPE 2 — LOCALISER LA PREMIÈRE ERREUR PROUVÉE
+
+Lire le journal du job et le spool. Corréler l’heure avec `ST22` pour les dumps et avec le journal applicatif si l’interface l’utilise. Relever le fichier, l’unité métier, le numéro de ligne, le message complet et le dernier statut persistant ; ne pas déduire la cause du seul statut « Annulé ».
+
+### ÉTAPE 3 — VÉRIFIER LE FICHIER DANS LE BON CONTEXTE
+
+Résoudre le nom logique avec les mêmes paramètres que le job, puis contrôler le répertoire sur le serveur d’application concerné. Vérifier existence, taille, horodatage, droits, encodage et preuve de fin de dépôt. Un contrôle depuis le poste utilisateur ou un autre serveur ne prouve pas que le job voyait le même fichier.
+
+### ÉTAPE 4 — DÉTERMINER LE POINT DE REPRISE
+
+Consulter le journal de traitement ou la table de pilotage afin d’identifier les unités déjà validées par `COMMIT WORK`. La reprise commence à la première unité non validée, jamais au dernier message affiché. Vérifier que la clé idempotente empêche de recréer les unités déjà enregistrées.
+
+### ÉTAPE 5 — CORRIGER LA CAUSE AVANT DE RELANCER
+
+Corriger la donnée, l’autorisation, le chemin logique, l’encodage ou le défaut de programme identifié. Conserver le fichier initial et les preuves du premier passage. Si un nouveau fichier corrigé est déposé, lui attribuer un identifiant distinct ou appliquer explicitement la règle de remplacement prévue.
+
+### ÉTAPE 6 — RELANCER AVEC UN PÉRIMÈTRE MAÎTRISÉ
+
+Exécuter d’abord en développement ou en qualité avec la même variante et un fichier représentatif. En production, relancer uniquement l’étape ou l’unité prévue par la conception de reprise. Éviter une relance complète tant que son innocuité sur les données déjà validées n’est pas démontrée.
+
+### ÉTAPE 7 — VALIDER LE RÉSULTAT MÉTIER
+
+Comparer les compteurs lus, acceptés, rejetés et enregistrés avant et après reprise. Vérifier l’absence de doublons, le statut final du fichier, son archivage et le journal applicatif. Le job est résolu seulement si le résultat métier attendu est atteint, pas uniquement parce que `SM37` affiche « Terminé ».
 
 ## VÉRIFICATION
 

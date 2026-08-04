@@ -55,14 +55,27 @@ Ces opérations dépendent de SAP GUI et ne doivent pas être utilisées dans un
 | Traitement relançable sans session       | Serveur d’application |
 | Sélection interactive d’un fichier local | Poste utilisateur     |
 
-## PROCÉDURE PAS À PAS
+## PROCESS
 
-1. Saisir `/nSAT`.
-2. Créer ou sélectionner une variante de mesure adaptée.
-3. Définir le programme, la transaction ou l’utilisateur à mesurer.
-4. Démarrer la mesure puis reproduire une seule fois le scénario.
-5. Arrêter et analyser le hit list, la hiérarchie d’appels et les temps nets.
-6. Répéter la mesure après correction avec les mêmes données et le même contexte.
+### Étape 1 — Identifier le mode d’exécution
+
+Déterminer si le programme fonctionne en dialogue uniquement ou aussi en job, RFC ou traitement sans frontend. Un job ne peut pas utiliser les services du poste utilisateur.
+
+### Étape 2 — Choisir l’emplacement
+
+Utiliser le serveur pour un échange automatisé et partagé. Utiliser le frontend uniquement pour une action interactive où l’utilisateur choisit localement le fichier.
+
+### Étape 3 — Choisir l’API
+
+Pour le serveur, utiliser noms logiques et `OPEN DATASET`. Pour le frontend, utiliser `CL_GUI_FRONTEND_SERVICES` et vérifier la disponibilité de SAP GUI.
+
+### Étape 4 — Tester les contextes
+
+Exécuter en dialogue puis, si requis, en arrière-plan. Une erreur frontend en job impose de basculer vers un chemin serveur.
+
+### Étape 5 — Valider sécurité et reprise
+
+Contrôler autorisations, chemins et récupération. Le choix est validé lorsque l’emplacement reste accessible dans tous les modes prévus.
 
 ## VÉRIFICATION
 
@@ -105,7 +118,6 @@ Ordre de transport  :
 - [ABAP File Interface — SAP Help Portal](https://help.sap.com/docs/ABAP_PLATFORM_NEW/7bfe8cdcfbb040dcb6702dada8c3e2f0/fa2fd3be291f469f862c4c8215e0549b.html)
 - [Files on the Presentation Server — ABAP Keyword Documentation](https://help.sap.com/doc/abapdocu_latest_index_htm/latest/en-US/ABENFRONTEND_FILES.html)
 - [Physical and Logical File Names — SAP Help Portal](https://help.sap.com/docs/ABAP_PLATFORM_NEW/7bfe8cdcfbb040dcb6702dada8c3e2f0/9e49819d5b2a440fb508772494b9a473.html)
-
 
 ---
 

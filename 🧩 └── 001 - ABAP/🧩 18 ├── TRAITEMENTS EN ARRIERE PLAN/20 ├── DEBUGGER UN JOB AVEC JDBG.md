@@ -6,14 +6,31 @@
 - Comprendre la différence avec l’exécution batch réelle
 - Éviter toute modification de données involontaire
 
-## PROCÉDURE CLASSIQUE
+## PROCESS
 
-Dans `SM37` :
+### ÉTAPE 1 — FIGER LE CONTEXTE DU JOB
 
-1. sélectionner le job et l’étape ABAP concernée ;
-2. saisir `/h` ou `JDBG` selon la procédure supportée par la version ;
-3. lancer le debug de l’étape ;
-4. analyser les paramètres, la pile et les données.
+Dans `SM37`, relever le nom, le numéro, l’étape, le programme, la variante et l’utilisateur. Lire d’abord le journal, le spool et les dumps éventuels. Utiliser JDBG seulement si ces preuves ne suffisent pas à localiser la cause.
+
+### ÉTAPE 2 — CHOISIR UN ENVIRONNEMENT SÛR
+
+Copier ou reproduire le job en développement ou en qualité avec des données contrôlées. Vérifier si l’étape réalise des écritures, des commits, des appels externes ou des envois. Préparer des breakpoints avant le premier effet irréversible.
+
+### ÉTAPE 3 — SÉLECTIONNER L’OCCURRENCE ET L’ÉTAPE
+
+Dans `SM37`, sélectionner exactement le job à reproduire. Utiliser la fonction de debug batch supportée par la version, notamment la commande `JDBG` lorsqu’elle est disponible. Confirmer l’étape ABAP avant de lancer l’exécution simulée.
+
+### ÉTAPE 4 — VÉRIFIER LE CONTEXTE DÈS L’ENTRÉE
+
+Contrôler les valeurs de l’écran de sélection, `sy-batch`, l’utilisateur, le mandant et les chemins résolus. Comparer ces éléments au job initial. Le debug utilise un contexte de dialogue et ne reproduit pas nécessairement chaque caractéristique du processus batch d’origine.
+
+### ÉTAPE 5 — SUIVRE JUSQU’À LA PREMIÈRE DIVERGENCE
+
+Inspecter la pile, les conditions, la sélection de données et les retours d’API. Arrêter avant les écritures non autorisées. Ne modifier aucune variable afin de « réparer » une donnée productive ; toute correction doit passer par le code ou la procédure métier contrôlée.
+
+### ÉTAPE 6 — CONFIRMER HORS DEBUG
+
+Après correction, exécuter un nouveau job avec la même variante et un identifiant distinct. Vérifier journal, spool, données et durée. Le comportement hors debugger constitue la validation finale.
 
 La commande `JDBG` exécute l’étape dans un processus de dialogue sous contrôle du Debugger. Le contexte est simulé pour reproduire certains aspects du batch, mais l’environnement ne doit pas être considéré comme strictement identique.
 
@@ -72,7 +89,6 @@ Ordre de transport  :
 
 - [Starting and Directly Debugging ABAP Programs — SAP Help Portal](https://help.sap.com/docs/ABAP_PLATFORM_NEW/ba879a6e2ea04d9bb94c7ccd7cdac446/a95208086a6e448aa35f08357d958af5.html)
 - [Batch Debugging — SAP Help Portal](https://help.sap.com/docs/ABAP_PLATFORM_NEW/ba879a6e2ea04d9bb94c7ccd7cdac446/bf1a5464da734b559d94199e80926005.html)
-
 
 ---
 

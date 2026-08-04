@@ -1,4 +1,5 @@
 # CONSTR" Définir le contrat et limiter l’API publique au besoin réel.
+
 UCTEURS ET INITIALISATION
 
 ## RÉSULTAT ATTENDU
@@ -19,16 +20,27 @@ flowchart TD
     C -->|"Non"| E["Exception"]
 ```
 
-## PROCÉDURE DANS SE24
+## PROCESS
 
-1. Ouvrir la classe.
-2. Créer ou sélectionner la méthode spéciale `CONSTRUCTOR`.
-3. Définir les paramètres d’entrée.
-4. Déclarer les exceptions nécessaires.
-5. Affecter les dépendances aux attributs privés.
-6. Valider les valeurs obligatoires.
-7. Activer la classe.
-8. Tester une création valide puis une création invalide.
+### Étape 1 — Définir l’état valide minimal
+
+Lister les dépendances et valeurs sans lesquelles l’objet ne peut pas fonctionner. Ces données doivent être fournies au constructeur plutôt que complétées par un setter après création.
+
+### Étape 2 — Définir la signature du constructeur
+
+Dans `SE24`, ouvrir `CONSTRUCTOR`. Ajouter chaque dépendance obligatoire en `IMPORTING` avec son type d’interface ou DDIC, puis déclarer les exceptions autorisées par la signature du constructeur sur la release cible.
+
+### Étape 3 — Valider avant affectation
+
+Dans l’implémentation, vérifier références liées, plages et cohérence. Lever l’exception avant de rendre une instance partiellement initialisée.
+
+### Étape 4 — Affecter l’état privé
+
+Copier les paramètres validés vers les attributs privés. Éviter les appels externes ou commits dans le constructeur ; déplacer les traitements lourds vers une méthode ou une factory.
+
+### Étape 5 — Tester la création
+
+Créer une instance valide avec `NEW`, appeler une méthode qui utilise l’état, puis tenter une création invalide et intercepter l’exception. Le constructeur est validé lorsque toute instance obtenue est immédiatement utilisable.
 
 ## CODE À ADAPTER
 

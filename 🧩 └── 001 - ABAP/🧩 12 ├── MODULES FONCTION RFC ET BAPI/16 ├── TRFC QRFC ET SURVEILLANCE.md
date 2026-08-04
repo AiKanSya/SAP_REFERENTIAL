@@ -71,14 +71,27 @@ Ne jamais supprimer ou relancer une unité sans comprendre :
 
 Les garanties exactes de livraison et d’ordre dépendent du mécanisme et du scénario. Ne pas résumer tRFC ou qRFC à une promesse générale sans analyser l’implémentation de l’application.
 
-## PROCÉDURE PAS À PAS
+## PROCESS
 
-1. Saisir `/nSE37`.
-2. Entrer le nom du module fonction puis choisir **Afficher**, **Modifier** ou **Créer** selon l’autorisation.
-3. Analyser les onglets Import, Export, Changing, Tables et Exceptions.
-4. Lire la documentation et le code source avant tout appel.
-5. Utiliser **Test/Exécuter** avec des données non destructives.
-6. Pour un module Z, contrôler, activer puis tester les cas nominal et d’erreur.
+### Étape 1 — Définir la garantie nécessaire
+
+Choisir tRFC pour une exécution transactionnelle différée sans ordre entre unités indépendantes. Choisir qRFC lorsque l’ordre d’exécution dans une file constitue une exigence métier.
+
+### Étape 2 — Préparer un module compatible
+
+Vérifier l’attribut RFC et les types d’interface. Le module distant doit être idempotent ou protéger les doublons selon le contrat, car une reprise technique peut répéter la tentative.
+
+### Étape 3 — Enregistrer l’unité
+
+Pour tRFC, appeler `IN BACKGROUND TASK DESTINATION ...`. Pour qRFC, définir d’abord le nom de file selon l’API prévue, puis enregistrer l’appel. La LUW appelante déclenche l’envoi au commit.
+
+### Étape 4 — Surveiller
+
+Après commit, rechercher l’unité dans `SM58` pour tRFC et dans les moniteurs qRFC entrants/sortants appropriés. Relever destination, transaction ID, file, horodatage et texte d’erreur.
+
+### Étape 5 — Corriger avant reprise
+
+Corriger réseau, destination, autorisation ou donnée métier avant de relancer. Vérifier dans la cible qu’aucun document n’existe déjà. Le flux est validé lorsque l’unité disparaît du moniteur après succès et produit un seul effet métier.
 
 ## VÉRIFICATION
 
@@ -105,7 +118,6 @@ Les garanties exactes de livraison et d’ordre dépendent du mécanisme et du s
 - [RFC in SAP Systems — SAP Help Portal](https://help.sap.com/docs/SAP_NETWEAVER_700/108f625f6c53101491e88dc4cf51a6cc/48920827feb35ed2e10000000a42189d.html)
 - [Transactional RFC and Queued RFC Monitor — SAP Help Portal](https://help.sap.com/docs/SAP_NETWEAVER_700/10905b976c53101487c0c95187a63f9a/8bceea3b31aac554e10000000a114084.html)
 - [SMQ1 and SMQ2 — SAP Help Portal](https://help.sap.com/saphelp_snc70/helpdata/EN/76/e12041c877f623e10000000a155106/content.htm)
-
 
 ---
 

@@ -66,13 +66,27 @@ Une trace ne remplace pas la compréhension fonctionnelle. Une requête coûteus
 - conserver l’identifiant du résultat ;
 - protéger les données techniques exportées.
 
-## PROCÉDURE PAS À PAS
+## PROCESS
 
-1. Saisir `/nST12`.
-2. Choisir le type de trace et le contexte utilisateur/transaction.
-3. Démarrer la trace, reproduire le scénario puis l’arrêter.
-4. Analyser séparément la trace ABAP et la trace SQL.
-5. Conserver l’identifiant de la trace pour comparer avant et après correction.
+### Étape 1 — Choisir ST12 pour une analyse combinée
+
+Utiliser `ST12` lorsque le défaut nécessite de corréler temps ABAP et accès SQL dans une même reproduction. Fixer utilisateur, transaction, données et intervalle.
+
+### Étape 2 — Configurer les traces
+
+Ouvrir `ST12`, sélectionner trace ABAP, SQL ou les deux, puis définir le contexte d’exécution. Limiter la durée et le périmètre afin de ne pas enregistrer des traitements étrangers.
+
+### Étape 3 — Capturer le scénario
+
+Démarrer, reproduire une fois puis arrêter. Conserver l’identifiant, l’horodatage et les données utilisées.
+
+### Étape 4 — Analyser les deux axes
+
+Lire d’abord la distribution globale, puis la trace ABAP pour les unités coûteuses et la trace SQL pour les instructions dominantes. Utiliser les horodatages et appels pour relier une méthode à ses accès.
+
+### Étape 5 — Comparer
+
+Après correction, créer une nouvelle trace avec le même contexte. Comparer les identifiants et résultats. Le diagnostic est validé lorsque la cause dominante diminue sans déplacement injustifié du coût vers un autre axe.
 
 ## VÉRIFICATION
 
@@ -114,7 +128,6 @@ Ordre de transport  :
 - [How to Create an ST12 Performance Trace — SAP Help Portal](https://help.sap.com/docs/SUPPORT_CONTENT/abap/3353523507.html)
 - [Analyzing Performance with ABAP Runtime Analysis — SAP Help Portal](https://help.sap.com/docs/ABAP_PLATFORM_NEW/ba879a6e2ea04d9bb94c7ccd7cdac446/3c74c6163ce4459888bc06dedda37685.html)
 - [SQL Performance Monitoring — SAP Help Portal](https://help.sap.com/docs/ABAP_PLATFORM_NEW/a24970c68fcf4770a64bf9a78e3719e2/355d59ff44ce4f789d6b29cda7ec45fa.html)
-
 
 ---
 

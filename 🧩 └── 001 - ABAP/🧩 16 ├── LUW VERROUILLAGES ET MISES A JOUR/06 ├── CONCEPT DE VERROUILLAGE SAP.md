@@ -29,14 +29,31 @@ flowchart LR
 
 Verrouiller l’objet métier, pas seulement une instruction SQL. Le verrou doit couvrir la période comprise entre la lecture déterminante et la validation.
 
-## PROCÉDURE PAS À PAS
+## PROCESS
 
-1. Lire la définition et identifier les prérequis du chapitre.
-2. Choisir un objet Z ou un scénario de démonstration sans impact métier.
-3. Reproduire l’exemple dans un système de développement et relever les données d’entrée.
-4. Contrôler la syntaxe ou la configuration avant activation/exécution.
-5. Comparer le résultat observé avec la section **Vérification**.
-6. Documenter toute différence liée à la release, aux autorisations ou au paramétrage du système.
+### ÉTAPE 1 — IDENTIFIER L’INVARIANT À PROTÉGER
+
+Décrire la décision qui ne doit pas être prise simultanément par deux sessions : modifier un document, attribuer un numéro ou changer un statut. En déduire la ressource métier et la clé minimale qui couvrent cet invariant.
+
+### ÉTAPE 2 — UTILISER UN OBJET DE VERROUILLAGE DDIC
+
+Rechercher dans `SE11` un objet de verrouillage standard correspondant aux données. Pour un objet Z, créer un objet fondé sur les tables et relations nécessaires. Utiliser les modules `ENQUEUE_*` et `DEQUEUE_*` générés ; ne pas construire directement une entrée dans la table de verrouillage.
+
+### ÉTAPE 3 — ACQUÉRIR LE VERROU AVANT LA DÉCISION
+
+Déterminer la clé, appeler le module `ENQUEUE_*` et traiter toutes ses exceptions. Après obtention, relire les données utilisées pour prendre la décision métier, car elles ont pu changer depuis une lecture antérieure.
+
+### ÉTAPE 4 — LIMITER LA DURÉE DU VERROU
+
+Exécuter sous verrou uniquement les contrôles et mises à jour nécessaires. Éviter les dialogues utilisateur, appels réseau longs et traitements de masse dans cette zone. La propriété et la libération doivent être cohérentes avec `_SCOPE` et l’update task.
+
+### ÉTAPE 5 — LIBÉRER DANS TOUS LES CHEMINS PRÉVUS
+
+Laisser le commit ou le rollback libérer le verrou lorsque le contrat le prévoit, ou appeler le module `DEQUEUE_*` avec la même clé pour une libération explicite. Couvrir les exceptions gérées, retours anticipés et annulations.
+
+### ÉTAPE 6 — TESTER AVEC DEUX SESSIONS
+
+Dans une première session, conserver le verrou sur une clé connue. Dans une seconde, tenter la même opération puis une opération sur une autre clé. Vérifier la collision contrôlée dans le premier cas, l’absence de blocage excessif dans le second et la disparition du verrou dans `SM12` après la fin prévue.
 
 ## VÉRIFICATION
 
@@ -64,7 +81,6 @@ Verrouiller l’objet métier, pas seulement une instruction SQL. Le verrou doit
 - [SAP Lock Concept — SAP Help Portal](https://help.sap.com/docs/ABAP_PLATFORM_NEW/7bbf03267f654b5cb06a8bf78f61fca1/9101274dc2e048d4b473fe5c45ae4e29.html)
 - [Lock Table — SAP Help Portal](https://help.sap.com/docs/ABAP_PLATFORM_NEW/6568469cf5a1460a8d85c58b83d21ec2/47daae4038793c85e10000000a42189c.html)
 - [Work Processes in Application Server ABAP — SAP Help Portal](https://help.sap.com/docs/ABAP_PLATFORM_NEW/e067931e0b0a4b2089f4db327879cd55/22d85d37ab534b86a5098ded38c06c0f.html)
-
 
 ---
 

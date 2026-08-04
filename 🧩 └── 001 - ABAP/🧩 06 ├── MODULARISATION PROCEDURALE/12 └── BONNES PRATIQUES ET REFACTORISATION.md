@@ -140,14 +140,33 @@ Le passage aux méthodes sera traité dans le dossier `ABAP OBJECTS`. Il n’imp
 - Les interfaces explicites réduisent les effets de bord.
 - Pour les nouveaux composants, les méthodes constituent généralement la cible de conception.
 
-## PROCÉDURE PAS À PAS
+## PROCESS
 
-1. Saisir `/nSAT`.
-2. Créer ou sélectionner une variante de mesure adaptée.
-3. Définir le programme, la transaction ou l’utilisateur à mesurer.
-4. Démarrer la mesure puis reproduire une seule fois le scénario.
-5. Arrêter et analyser le hit list, la hiérarchie d’appels et les temps nets.
-6. Répéter la mesure après correction avec les mêmes données et le même contexte.
+### Étape 1 — Sélectionner un bloc et figer son comportement
+
+Choisir un bloc monolithique limité. Préparer des cas de test couvrant succès, validation en erreur et valeurs limites, puis conserver les sorties et effets de bord actuels.
+
+### Étape 2 — Repérer les frontières
+
+Marquer séparément validation, calcul, accès aux données et affichage. Relever pour chaque partie les variables globales lues ou modifiées. Une partie qui cumule plusieurs verbes doit encore être divisée.
+
+### Étape 3 — Extraire la première responsabilité
+
+Créer une procédure au nom explicite, déclarer ses entrées avec `USING` et ses sorties nécessaires avec `CHANGING`, puis déplacer le code sans autre changement fonctionnel. Contrôler et tester immédiatement.
+
+### Étape 4 — Réduire les dépendances implicites
+
+Remplacer progressivement les lectures de globales par des paramètres typés. Regrouper dans une structure les valeurs appartenant au même concept, sans créer un fourre-tout destiné à contourner l’interface.
+
+### Étape 5 — Répéter sans mélanger les corrections
+
+Extraire une responsabilité supplémentaire seulement après validation de la précédente. Ne pas combiner refactorisation, changement métier et optimisation dans le même pas : leur cause deviendrait impossible à isoler en cas d’écart.
+
+### Étape 6 — Valider et décider de la cible
+
+Relancer tous les tests initiaux, comparer les résultats et exécuter les contrôles statiques. Si le traitement doit évoluer ou être testé isolément, planifier sa migration vers une méthode plutôt que multiplier de nouveaux `FORM`.
+
+La refactorisation est terminée lorsque le scénario principal est lisible, les responsabilités sont séparées et aucun résultat fonctionnel n’a changé.
 
 ## VÉRIFICATION
 

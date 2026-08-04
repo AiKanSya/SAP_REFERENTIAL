@@ -85,14 +85,27 @@ Ne pas corriger uniquement la ligne la plus lente sans contexte. Vérifier :
 
 Comparer des scénarios similaires et répéter si nécessaire.
 
-## PROCÉDURE PAS À PAS
+## PROCESS
 
-1. Saisir `/nSAT`.
-2. Créer ou sélectionner une variante de mesure adaptée.
-3. Définir le programme, la transaction ou l’utilisateur à mesurer.
-4. Démarrer la mesure puis reproduire une seule fois le scénario.
-5. Arrêter et analyser le hit list, la hiérarchie d’appels et les temps nets.
-6. Répéter la mesure après correction avec les mêmes données et le même contexte.
+### Étape 1 — Définir une mesure reproductible
+
+Fixer programme ou transaction, utilisateur, sélection, volume et résultat attendu. Exécuter une fois pour confirmer que le scénario est stable.
+
+### Étape 2 — Configurer SAT
+
+Ouvrir `SAT`, créer ou sélectionner une variante et limiter les composants enregistrés à l’analyse nécessaire. Choisir mesure de programme, transaction ou utilisateur selon le point d’entrée réel.
+
+### Étape 3 — Enregistrer une seule exécution
+
+Démarrer la mesure, reproduire uniquement l’action ciblée puis arrêter. Écarter les temps de saisie utilisateur qui ne font pas partie du traitement serveur.
+
+### Étape 4 — Lire du global vers le détail
+
+Examiner temps total, hit list et hiérarchie d’appels. Distinguer temps brut, temps net, nombre d’appels et part base de données. Descendre jusqu’à l’unité consommant réellement le temps.
+
+### Étape 5 — Corriger puis comparer
+
+Modifier une cause, réexécuter avec la même variante et les mêmes données, puis comparer temps et nombre d’appels. La correction est validée si le coût diminue sans modifier le résultat fonctionnel.
 
 ## VÉRIFICATION
 
@@ -132,7 +145,6 @@ Ordre de transport  :
 
 - [Analyzing Performance with the ABAP Runtime Analysis — SAP Help Portal](https://help.sap.com/docs/ABAP_PLATFORM_NEW/ba879a6e2ea04d9bb94c7ccd7cdac446/3c74c6163ce4459888bc06dedda37685.html)
 - [Runtime Analysis — SAP Help Portal](https://help.sap.com/docs/SAP_NETWEAVER_750/ba879a6e2ea04d9bb94c7ccd7cdac446/4a2f5264cfc4044fe10000000a421937.html)
-
 
 ---
 

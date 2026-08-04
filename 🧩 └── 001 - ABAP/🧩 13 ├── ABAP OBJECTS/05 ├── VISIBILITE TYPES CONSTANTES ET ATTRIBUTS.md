@@ -8,23 +8,35 @@
 
 ## VISIBILITÉS
 
-| Visibilité | Accessible depuis |
-|---|---|
-| `PUBLIC` | Tous les consommateurs autorisés à utiliser la classe |
-| `PROTECTED` | La classe et ses sous-classes |
-| `PRIVATE` | La classe elle-même et, selon le cas, ses amis |
+| Visibilité  | Accessible depuis                                     |
+| ----------- | ----------------------------------------------------- |
+| `PUBLIC`    | Tous les consommateurs autorisés à utiliser la classe |
+| `PROTECTED` | La classe et ses sous-classes                         |
+| `PRIVATE`   | La classe elle-même et, selon le cas, ses amis        |
 
 L’API publique doit rester minimale. Un attribut interne est normalement privé. Une valeur destinée aux consommateurs peut être exposée par une méthode de lecture ou une constante publique.
 
-## PROCÉDURE DANS SE24
+## PROCESS
 
-1. Ouvrir la classe en modification.
-2. Créer un type dans l’onglet **Types**.
-3. Définir sa visibilité.
-4. Créer une constante dans l’onglet **Attributs** en choisissant le niveau classe et la catégorie constante si l’écran le permet.
-5. Créer les attributs d’instance privés.
-6. Ajouter des méthodes publiques pour lire ou modifier l’état selon les règles métier.
-7. Activer et tester.
+### Étape 1 — Classer chaque composant
+
+Avant `SE24`, décider si le composant appartient au contrat public, aux sous-classes ou uniquement à l’implémentation. Utiliser public, protected ou private selon ce consommateur réel.
+
+### Étape 2 — Créer un type
+
+Dans **Types**, ajouter le nom et le type référencé, puis choisir la visibilité. Un type public devient une dépendance pour les appelants ; ne l’exposer que s’il fait partie de la signature externe.
+
+### Étape 3 — Créer la constante
+
+Dans **Attributs**, créer une constante de niveau classe, lui affecter un type explicite et une valeur compatible. Choisir une visibilité publique uniquement si les consommateurs doivent partager cette valeur contractuelle.
+
+### Étape 4 — Créer l’état d’instance
+
+Ajouter les attributs privés nécessaires. Initialiser dans la déclaration ou le constructeur, puis créer des méthodes publiques orientées métier plutôt que des setters permettant n’importe quel état.
+
+### Étape 5 — Tester les frontières
+
+Depuis un report externe, vérifier que les composants publics sont accessibles et que les privés provoquent une erreur syntaxique. Tester ensuite que les méthodes publiques maintiennent les invariants. La visibilité est validée lorsque aucun appelant ne dépend de l’implémentation interne.
 
 ## CAS D’USAGE
 

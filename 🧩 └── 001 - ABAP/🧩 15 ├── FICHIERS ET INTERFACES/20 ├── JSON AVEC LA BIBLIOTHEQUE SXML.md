@@ -47,14 +47,31 @@ utiliser une transformation adaptée et valider le document produit.
 
 Le support JSON de `CALL TRANSFORMATION` et de la bibliothèque sXML dépend de la version ABAP. Vérifier les classes `CL_SXML_*`, l’interface `IF_SXML` et la documentation locale du système.
 
-## PROCÉDURE PAS À PAS
+## PROCESS
 
-1. Saisir `/nSE24`.
-2. Entrer le nom d’une classe globale Z puis choisir **Créer**, ou afficher une classe existante.
-3. Maintenir définition, visibilité, types, attributs et méthodes dans les onglets appropriés.
-4. Implémenter les méthodes dans l’éditeur.
-5. Contrôler et activer la classe complète.
-6. Utiliser la fonction de test ou un report Z appelant pour vérifier le comportement.
+### ÉTAPE 1 — DÉFINIR LE CONTRAT JSON
+
+Lister les propriétés, leur casse, leur type, leur caractère obligatoire et la représentation des valeurs initiales. Définir séparément les objets, tableaux et valeurs scalaires. Ne pas laisser le nom technique d’un composant ABAP décider implicitement du contrat externe.
+
+### ÉTAPE 2 — PRÉPARER DES DONNÉES ABAP TYPÉES
+
+Construire une structure ou une table dont chaque composant correspond à une donnée maîtrisée. Convertir explicitement les dates, heures, identifiants et nombres lorsque leur représentation JSON est contractuelle. Écarter les données non destinées au consommateur avant la sérialisation.
+
+### ÉTAPE 3 — CRÉER LE WRITER JSON
+
+Créer un writer SXML en mode JSON avec l’API disponible sur la release cible. Conserver sa référence pendant toute la production du document. Vérifier dans `SE24` la signature exacte des méthodes utilisées, car les possibilités de création et de récupération du résultat dépendent du niveau de composant logiciel.
+
+### ÉTAPE 4 — ÉCRIRE UNE STRUCTURE JSON VALIDE
+
+Produire les ouvertures et fermetures d’objets ou de tableaux dans un ordre strictement équilibré. Écrire chaque nom de propriété immédiatement avant sa valeur. Utiliser les méthodes du writer pour l’échappement ; ne pas concaténer manuellement des guillemets, barres obliques ou caractères de contrôle.
+
+### ÉTAPE 5 — RÉCUPÉRER ET CONVERTIR LE RÉSULTAT
+
+Récupérer le résultat binaire du writer, puis le convertir en texte uniquement si l’appelant exige une `STRING`. Conserver l’encodage UTF-8 lors d’un transfert de fichier ou HTTP. Ne pas appliquer une seconde conversion qui modifierait les octets produits.
+
+### ÉTAPE 6 — VALIDER PAR LECTURE INVERSÉE
+
+Faire analyser le JSON produit par un parseur indépendant ou par le reader SXML. Vérifier les caractères accentués, guillemets, barres obliques, valeurs initiales, tableaux vides et volumes représentatifs. Comparer ensuite le document à un exemple contractuel, pas seulement à son apparence dans l’éditeur.
 
 ## VÉRIFICATION
 
@@ -104,7 +121,6 @@ lv_json = lo_writer->get_output( ).
 - [Transformations for JSON — ABAP Keyword Documentation](https://help.sap.com/doc/abapdocu_latest_index_htm/latest/en-US/ABENABAP_JSON_TRAFOS.html)
 - [CALL TRANSFORMATION — ABAP Keyword Documentation](https://help.sap.com/doc/abapdocu_latest_index_htm/latest/en-US/ABAPCALL_TRANSFORMATION_SHORTREF.html)
 - [Identity Transformation with JSON Writer — ABAP Keyword Documentation](https://help.sap.com/doc/abapdocu_latest_index_htm/latest/en-US/ABENJSON_TRAFO_ID_ABEXA.html)
-
 
 ---
 

@@ -76,14 +76,29 @@ INITIALIZATION.
   ENDIF.
 ```
 
-## PROCÉDURE PAS À PAS
+## PROCESS
 
-1. Saisir `/nSAT`.
-2. Créer ou sélectionner une variante de mesure adaptée.
-3. Définir le programme, la transaction ou l’utilisateur à mesurer.
-4. Démarrer la mesure puis reproduire une seule fois le scénario.
-5. Arrêter et analyser le hit list, la hiérarchie d’appels et les temps nets.
-6. Répéter la mesure après correction avec les mêmes données et le même contexte.
+### Étape 1 — Identifier la source de chaque valeur initiale
+
+Pour chaque champ de sélection, décider si la valeur vient d’un défaut statique, de `INITIALIZATION`, de la mémoire SAP, d’une variante ou d’une saisie utilisateur. Ne pas alimenter le même champ depuis plusieurs sources sans définir leur priorité.
+
+### Étape 2 — Implémenter les défauts statiques
+
+Utiliser `DEFAULT` uniquement pour une valeur constante sûre dans tous les contextes visés. Activer puis exécuter sans variante et vérifier la valeur affichée dès le premier écran.
+
+### Étape 3 — Implémenter une initialisation calculée
+
+Placer dans `INITIALIZATION` uniquement le calcul nécessaire avant le premier affichage. Pour un `SELECT-OPTIONS`, construire explicitement les lignes `SIGN`, `OPTION`, `LOW` et `HIGH`, puis supprimer toute ligne résiduelle non prévue.
+
+### Étape 4 — Tester la priorité des sources
+
+Exécuter successivement sans variante, avec une variante, puis avec une valeur mémorisée si le champ utilise un parameter ID. Relever quelle source remplace l’autre sur le système cible.
+
+### Étape 5 — Tester le retour à l’écran
+
+Modifier manuellement la valeur et provoquer une validation en erreur. Vérifier que `INITIALIZATION` ne réécrit pas la saisie lors du simple retour sur l’écran.
+
+La mise en place est validée lorsque la première valeur est prévisible, que la variante produit le résultat attendu et que la saisie utilisateur n’est pas écrasée pendant la validation.
 
 ## VÉRIFICATION
 
@@ -128,7 +143,6 @@ INITIALIZATION.
 - [INITIALIZATION — ABAP Keyword Documentation](https://help.sap.com/doc/abapdocu_latest_index_htm/latest/en-US/ABAPINITIALIZATION.html)
 - [Selection Screen Processing — SAP Help Portal](https://help.sap.com/docs/SAP_NETWEAVER_700/a85596deeb19418982bee031d1fd1427/4a43c40d5a503f04e10000000a421937.html)
 - [SELECT-OPTIONS, Value Options — ABAP Keyword Documentation](https://help.sap.com/doc/abapdocu_latest_index_htm/latest/en-US/abapselect-options_value.htm)
-
 
 ---
 

@@ -47,14 +47,31 @@ flowchart TD
 - [ ] Diagnostic `SM12`, `SM13`, `ST22` et logs testé
 - [ ] Tests de rollback et d’échec partiel exécutés
 
-## PROCÉDURE PAS À PAS
+## PROCESS
 
-1. Saisir `/nST22`.
-2. Choisir la période correspondant à la reproduction.
-3. Filtrer par utilisateur, transaction ou runtime error lorsque nécessaire.
-4. Ouvrir le dump et relever le nom de l’erreur, l’exception, le programme et la ligne source.
-5. Lire les sections **Error analysis**, **How to correct the error** et **Source Code Extract**.
-6. Corréler le dump avec les données d’entrée et la version active du code.
+### ÉTAPE 1 — RECONSTRUIRE LA SAP LUW
+
+Identifier l’entrée utilisateur ou job, les clés métier, les lectures, les verrous, les écritures directes, les modules de mise à jour et la borne finale. Dessiner l’ordre réel des opérations. Le diagnostic doit porter sur l’unité complète, pas uniquement sur l’instruction qui a signalé l’erreur.
+
+### ÉTAPE 2 — CONTRÔLER LES BORNES ET LE PROPRIÉTAIRE DU COMMIT
+
+Rechercher tous les commits et rollbacks du code Z traversé, puis examiner le contrat des API standard appelées. Vérifier qu’un seul orchestrateur décide de la fin de l’unité métier. Identifier tout effet externe qui ne peut pas être annulé par la transaction ABAP.
+
+### ÉTAPE 3 — ANALYSER LES VERROUS
+
+Comparer la clé passée aux modules `ENQUEUE_*` et `DEQUEUE_*`, le mode, `_SCOPE` et la durée de détention. Reproduire avec deux sessions et observer `SM12`. Une collision légitime doit être restituée proprement ; un verrou trop large ou persistant doit être corrigé dans la conception.
+
+### ÉTAPE 4 — ANALYSER L’UPDATE TASK
+
+Dans `SM13`, rechercher les mises à jour du même utilisateur et du même intervalle. Relever le premier module en erreur, ses paramètres et le message. Corréler avec `ST22` si un dump existe et avec les données déjà persistées.
+
+### ÉTAPE 5 — DÉTERMINER L’ÉTAT EXACT APRÈS ÉCHEC
+
+Classer chaque effet comme non exécuté, non validé, validé ou externe. Vérifier les données V1, V2 et les verrous. Cette cartographie détermine si un rollback suffit, si une répétition est sûre ou si une compensation métier est nécessaire.
+
+### ÉTAPE 6 — CORRIGER ET REJOUER LE MÊME SCÉNARIO
+
+Corriger la cause prouvée, puis reprendre avec les mêmes paramètres et une clé de test contrôlée. Vérifier la cohérence finale, l’absence de doublons, la libération des verrous et l’absence d’update résiduelle en erreur. Conserver les identifiants de trace et les états avant/après.
 
 ## VÉRIFICATION
 

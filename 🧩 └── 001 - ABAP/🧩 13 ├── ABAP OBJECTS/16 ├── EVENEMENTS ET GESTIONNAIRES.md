@@ -1,4 +1,5 @@
 # ÉVÉNEM" Définir le contrat et limiter l’API publique au besoin réel.
+
 ENTS ET GESTIONNAIRES
 
 ## RÉSULTAT ATTENDU
@@ -12,16 +13,27 @@ ENTS ET GESTIONNAIRES
 
 Un traitement long publie sa progression. Plusieurs consommateurs peuvent réagir : affichage, journal applicatif ou mesure de performance, sans modifier la classe productrice.
 
-## PROCÉDURE DANS SE24
+## PROCESS
 
-1. Ouvrir la classe émettrice.
-2. Créer l’événement `PROGRESS_CHANGED`.
-3. Définir les paramètres de l’événement.
-4. Lever l’événement dans la méthode concernée.
-5. Créer une classe réceptrice.
-6. Déclarer une méthode `FOR EVENT ... OF ...`.
-7. Enregistrer le gestionnaire avec `SET HANDLER`.
-8. Exécuter et vérifier le déclenchement.
+### Étape 1 — Définir le fait publié
+
+Décrire `PROGRESS_CHANGED` comme un fait déjà survenu et définir les données minimales nécessaires aux récepteurs.
+
+### Étape 2 — Déclarer l’événement
+
+Dans la classe émettrice, créer l’événement et ses paramètres typés. Activer la définition avant d’implémenter l’émission.
+
+### Étape 3 — Lever au point exact
+
+Utiliser `RAISE EVENT` après la mise à jour réussie de la progression. Ne lever pas l’événement avant une validation susceptible d’échouer.
+
+### Étape 4 — Créer le gestionnaire
+
+Dans la classe réceptrice, déclarer une méthode `FOR EVENT progress_changed OF ...` avec les paramètres générés, puis implémenter un traitement sans modifier l’émetteur de façon récursive.
+
+### Étape 5 — Enregistrer et tester
+
+Exécuter `SET HANDLER`, déclencher l’événement, puis tester sans gestionnaire et après désenregistrement. La mise en place est validée lorsque chaque émission appelle exactement les récepteurs attendus une seule fois.
 
 ## CODE ÉMETTEUR À ADAPTER
 

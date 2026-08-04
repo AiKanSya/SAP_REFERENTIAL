@@ -56,13 +56,31 @@ flowchart TD
 - volumes ;
 - traces et identifiants applicatifs.
 
-## PROCÉDURE PAS À PAS
+## PROCESS
 
-1. Saisir `/nSM37`.
-2. Renseigner le nom du job, l’utilisateur et une période suffisamment précise.
-3. Exécuter la recherche et sélectionner le job correspondant au bon horodatage.
-4. Lire le statut, le journal de job, les étapes et le spool.
-5. En cas d’échec, relever le message, le programme, la variante, l’utilisateur et l’heure avant toute relance.
+### ÉTAPE 1 — IDENTIFIER L’OCCURRENCE ET LE SYMPTÔME
+
+Dans `SM37`, relever nom, numéro, statut, heure prévue, début, fin, serveur et étape. Classer le problème : non déclenché, démarré en retard, durée excessive, annulé ou terminé avec résultat métier incorrect.
+
+### ÉTAPE 2 — ANALYSER LA CONDITION DE DÉMARRAGE
+
+Pour un job en attente, vérifier date, événement, argument, prédécesseur, périodicité et statut libéré. Comparer l’heure prévue au début réel. Contrôler ensuite la capacité batch et le ciblage serveur avec Basis.
+
+### ÉTAPE 3 — LOCALISER LA PREMIÈRE ERREUR
+
+Lire journal, étapes et spool dans l’ordre. Corréler l’heure avec `ST22`, `SM13`, `SLG1`, les traces d’autorisation ou les systèmes externes selon le message. Relever la clé métier et le dernier point de progression confirmé.
+
+### ÉTAPE 4 — ANALYSER UNE DURÉE EXCESSIVE
+
+Comparer volume et durée à plusieurs exécutions de référence. Distinguer attente de verrou, SQL coûteux, appel externe, spool volumineux et manque de capacité. Utiliser une trace ciblée sur une reproduction contrôlée, pas sur une hypothèse générale.
+
+### ÉTAPE 5 — DÉTERMINER L’ÉTAT APRÈS INTERRUPTION
+
+Vérifier les commits, documents, fichiers, événements et statuts déjà produits. Identifier la première unité non validée. Ne pas relancer avant de savoir si le job est idempotent ou si une compensation est nécessaire.
+
+### ÉTAPE 6 — CORRIGER ET MESURER LE MÊME SCÉNARIO
+
+Appliquer la correction prouvée puis relancer avec la même variante et un volume comparable. Vérifier résultat métier, absence de doublons, début, durée, journal et spool. Conserver les identifiants avant/après dans le diagnostic.
 
 ## VÉRIFICATION
 
@@ -103,7 +121,6 @@ Ordre de transport  :
 - [Job Was Not Started — SAP Help Portal](https://help.sap.com/docs/ABAP_PLATFORM_NEW/b07e7195f03f438b8e7ed273099d74f3/4b272c13d1341780e10000000a42189c.html)
 - [Managing Jobs from the Job Overview — SAP Help Portal](https://help.sap.com/docs/ABAP_PLATFORM_NEW/b07e7195f03f438b8e7ed273099d74f3/4b2bc2224c594ba2e10000000a42189c.html)
 - [Job Storage Management — SAP Help Portal](https://help.sap.com/docs/ABAP_PLATFORM_NEW/b07e7195f03f438b8e7ed273099d74f3/4b2bc0974c594ba2e10000000a42189c.html)
-
 
 ---
 

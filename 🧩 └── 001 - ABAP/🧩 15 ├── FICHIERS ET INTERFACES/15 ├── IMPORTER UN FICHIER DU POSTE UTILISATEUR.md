@@ -53,14 +53,31 @@ Pour un contrat d’interface strict, importer des lignes texte puis effectuer s
 
 La méthode d’import doit retourner un contenu brut ou une table de lignes. Une méthode distincte transforme ce contenu en données métier. Le test du parsing devient alors indépendant de SAP GUI.
 
-## PROCÉDURE PAS À PAS
+## PROCESS
 
-1. Saisir `/nSAT`.
-2. Créer ou sélectionner une variante de mesure adaptée.
-3. Définir le programme, la transaction ou l’utilisateur à mesurer.
-4. Démarrer la mesure puis reproduire une seule fois le scénario.
-5. Arrêter et analyser le hit list, la hiérarchie d’appels et les temps nets.
-6. Répéter la mesure après correction avec les mêmes données et le même contexte.
+### ÉTAPE 1 — CONTRÔLER LE CONTEXTE D’EXÉCUTION
+
+Réserver l’import local à une exécution en mode dialogue avec SAP GUI. Tester la disponibilité des services frontend avant d’afficher une boîte de dialogue. Si le même traitement doit fonctionner en job, prévoir une entrée serveur distincte et réutiliser uniquement le parseur et le traitement métier.
+
+### ÉTAPE 2 — FAIRE SÉLECTIONNER LE FICHIER
+
+Appeler `CL_GUI_FRONTEND_SERVICES=>FILE_OPEN_DIALOG` avec un filtre correspondant au format accepté. Exploiter uniquement la sélection renvoyée par la méthode. Si l’utilisateur annule ou si aucun fichier n’est sélectionné, quitter sans appel à `GUI_UPLOAD` et sans produire de message d’erreur technique trompeur.
+
+### ÉTAPE 3 — CHARGER LE CONTENU BRUT
+
+Appeler `CL_GUI_FRONTEND_SERVICES=>GUI_UPLOAD` avec le chemin validé et un type de fichier adapté. Charger un fichier texte dans une table de lignes et un fichier binaire dans une table de type compatible avec l’API. Conserver le contenu brut séparément des données métier afin de pouvoir diagnostiquer le parsing.
+
+### ÉTAPE 4 — VALIDER LE CONTRAT DE FICHIER
+
+Contrôler l’extension autorisée, la taille, l’encodage, l’en-tête, le nombre de colonnes et les séparateurs avant toute mise à jour métier. Affecter un numéro à chaque ligne source. Une ligne invalide doit produire un rejet localisable indiquant la ligne, le champ, la valeur et la règle violée.
+
+### ÉTAPE 5 — TRANSFORMER ET TRAITER LES DONNÉES
+
+Convertir les lignes validées vers une structure typée. Exécuter ensuite les contrôles métier dans une méthode indépendante du frontend. Définir explicitement si une erreur annule tout le fichier ou seulement l’unité concernée ; aligner les `COMMIT WORK` et les reprises sur cette unité transactionnelle.
+
+### ÉTAPE 6 — VÉRIFIER LES RÉSULTATS ET LA REPRISE
+
+Comparer le nombre de lignes lues, acceptées, rejetées et enregistrées. Tester un fichier valide, vide, mal encodé, incomplet, dupliqué et partiellement incorrect. Rejouer le même fichier : le résultat doit respecter la règle d’idempotence documentée et ne pas créer de doublons silencieux.
 
 ## VÉRIFICATION
 
@@ -117,7 +134,6 @@ ENDIF.
 - [GUI_UPLOAD — SAP Help Portal](https://help.sap.com/docs/SAP_NETWEAVER_702/ff557c806c5510149761a0c32c810458/1dac0155370648569fe843170e07c4da.html)
 - [Files on the Presentation Server — ABAP Keyword Documentation](https://help.sap.com/doc/abapdocu_latest_index_htm/latest/en-US/ABENFRONTEND_FILES.html)
 - [File Upload and Download — SAP Help Portal](https://help.sap.com/docs/ABAP_PLATFORM_NEW/5a005e044eef436f8b27bbd3f73a3cfc/9ff8506b2b8f4812904912c4b207096c.html)
-
 
 ---
 

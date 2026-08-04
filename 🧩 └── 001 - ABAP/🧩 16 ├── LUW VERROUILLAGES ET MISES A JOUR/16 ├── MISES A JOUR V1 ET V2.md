@@ -28,14 +28,31 @@ Une erreur V2 ne doit pas remettre en cause les données V1 déjà validées. V2
 
 Utiliser V1 pour ce qui définit la cohérence de l’objet métier. Utiliser V2 pour des informations dérivées ou statistiques lorsque le standard concerné le prévoit. Ne pas détourner V2 pour masquer un traitement lent sans analyser la cohérence.
 
-## PROCÉDURE PAS À PAS
+## PROCESS
 
-1. Lire la définition et identifier les prérequis du chapitre.
-2. Choisir un objet Z ou un scénario de démonstration sans impact métier.
-3. Reproduire l’exemple dans un système de développement et relever les données d’entrée.
-4. Contrôler la syntaxe ou la configuration avant activation/exécution.
-5. Comparer le résultat observé avec la section **Vérification**.
-6. Documenter toute différence liée à la release, aux autorisations ou au paramétrage du système.
+### ÉTAPE 1 — CLASSER CHAQUE ÉCRITURE PAR CRITICITÉ
+
+Lister les tables et effets produits par la transaction. Marquer comme V1 tout ce qui est nécessaire à la cohérence et au résultat métier principal. Marquer comme V2 uniquement les compléments pouvant être retardés sans rendre le document principal invalide.
+
+### ÉTAPE 2 — CONFIGURER LE TYPE DE MISE À JOUR
+
+Dans `SE37`, afficher le module fonction et contrôler ses attributs de traitement. Pour un module Z, affecter le type de mise à jour conforme au classement retenu, puis contrôler et activer le groupe de fonctions. Ne pas modifier le type d’un module standard.
+
+### ÉTAPE 3 — ENREGISTRER LES APPELS DANS LE BON ORDRE LOGIQUE
+
+Préparer des paramètres complets, enregistrer les modules V1 et V2 dans la même SAP LUW, puis laisser l’orchestrateur décider du commit. Ne pas créer une dépendance V1 vers un résultat qui ne sera produit qu’en V2.
+
+### ÉTAPE 4 — TESTER LE SUCCÈS COMPLET
+
+Exécuter le scénario avec `COMMIT WORK AND WAIT`. Vérifier immédiatement les données V1, puis contrôler l’exécution des données V2 dans `SM13` ou dans les tables concernées. Documenter le délai acceptable pour les résultats secondaires.
+
+### ÉTAPE 5 — PROVOQUER UN ÉCHEC V1
+
+Dans un scénario Z contrôlé, faire échouer un module V1. Vérifier que le résultat principal n’est pas annoncé comme réussi et analyser l’entrée dans `SM13`. Contrôler le comportement des modules dépendants avant toute répétition.
+
+### ÉTAPE 6 — PROVOQUER UN ÉCHEC V2
+
+Faire échouer séparément une mise à jour V2 et vérifier que le document principal reste cohérent. Le journal doit permettre d’identifier et de reprendre le complément sans recréer le résultat V1. Si ce n’est pas possible, le classement V2 est incorrect.
 
 ## VÉRIFICATION
 
@@ -63,7 +80,6 @@ Utiliser V1 pour ce qui définit la cohérence de l’objet métier. Utiliser V2
 - [V1 and V2 Update Function Modules — SAP Help Portal](https://help.sap.com/docs/ABAP_PLATFORM_NEW/979cf1522d164bf7a781796efd8850ee/23e9aa61638e404d81575e939b5cd847.html)
 - [The Update Process — SAP Help Portal](https://help.sap.com/docs/SAP_NETWEAVER_AS_ABAP_752/979cf1522d164bf7a781796efd8850ee/c8ed15db039b4f45a8507015f531976b.html)
 - [Update Statuses — SAP Help Portal](https://help.sap.com/docs/ABAP_PLATFORM_NEW/979cf1522d164bf7a781796efd8850ee/3c7ad8b964b74aac9e1d3e709b33e794.html)
-
 
 ---
 

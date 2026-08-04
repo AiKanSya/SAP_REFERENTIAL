@@ -75,14 +75,31 @@ flowchart TD
 
 Une fonction visible dans `SE37` n’est pas automatiquement une API stable. Une exécution réussie dans le système de développement ne prouve ni la sécurité, ni la compatibilité, ni la robustesse distribuée du scénario.
 
-## PROCÉDURE PAS À PAS
+## PROCESS
 
-1. Saisir `/nSE80`.
-2. Sélectionner le type d’objet ou le package dans la liste de gauche.
-3. Entrer le nom technique puis valider.
-4. Commencer en mode **Afficher** pour analyser l’objet et ses sous-objets.
-5. Passer en modification uniquement dans un système et un objet autorisés.
-6. Contrôler la syntaxe, activer les objets modifiés puis vérifier leur statut actif.
+### Étape 1 — Classer le défaut
+
+Distinguer recherche de module, erreur de signature, exception locale, destination, communication, autorisation, unité tRFC/qRFC, message BAPI ou transaction non validée.
+
+### Étape 2 — Tester au niveau le plus bas
+
+Tester le module localement dans le système où il s’exécute. Si ce test échoue, corriger contrat ou données avant d’analyser RFC et réseau.
+
+### Étape 3 — Remonter les couches
+
+Tester destination `SM59`, appel distant minimal, puis appel applicatif complet. À chaque couche, conserver entrées, utilisateur, système et message exact.
+
+### Étape 4 — Contrôler les moniteurs
+
+Selon le modèle, examiner `SM13`, `SM58`, moniteurs qRFC, logs de job et `ST22`. Rechercher l’unité avec horodatage et identifiant de corrélation.
+
+### Étape 5 — Vérifier transaction et doublons
+
+Avant toute reprise, rechercher l’objet métier. Corriger la première cause, relancer une seule unité puis contrôler commit ou rollback.
+
+### Étape 6 — Clôturer
+
+Documenter cause, couche, correction et preuve. Le diagnostic est terminé lorsque le cas nominal réussit, le cas d’erreur est contrôlé et aucune unité ni donnée partielle ne reste.
 
 ## VÉRIFICATION
 

@@ -33,14 +33,27 @@ Le Class Builder fournit généralement des emplacements pour :
 
 Les classes locales sont utiles pour des collaborateurs strictement internes ou des doubles de test. Elles ne remplacent pas les classes globales devant être appelées depuis d’autres objets.
 
-## PROCÉDURE POUR CONSULTER LE CLASS POOL
+## PROCESS
 
-1. Ouvrir la classe dans `SE24` ou `SE80`.
-2. Accéder à l’affichage du code source complet ou des includes.
-3. Identifier les zones générées par le Class Builder.
-4. Ne modifier que les zones prévues pour le code client.
-5. Revenir à l’affichage par composants pour maintenir les méthodes et attributs.
-6. Activer la classe complète.
+### Étape 1 — Ouvrir le class pool
+
+Afficher la classe dans `SE24` ou `SE80`, puis naviguer vers son programme de classe et ses includes. Relever le nom technique généré et le package.
+
+### Étape 2 — Identifier les parties générées
+
+Distinguer définition publique/protected/private, implémentations de méthodes, includes locaux et zones contrôlées par le Class Builder. Ne modifier pas manuellement une section dont la prochaine génération écraserait le contenu.
+
+### Étape 3 — Localiser le bon point de maintenance
+
+Pour une signature, revenir aux onglets du Class Builder. Pour le corps d’une méthode, ouvrir son implémentation. Pour une classe locale prévue, utiliser l’include local dédié.
+
+### Étape 4 — Contrôler la cohérence globale
+
+Après modification, exécuter le contrôle de la classe complète. Une erreur signalée dans un include généré doit être corrigée depuis le composant source correspondant.
+
+### Étape 5 — Activer et vérifier
+
+Activer la classe et tous ses composants. La procédure est validée lorsque les zones générées restent intactes et que chaque changement se trouve dans son point de maintenance durable.
 
 ## CAS D’USAGE
 

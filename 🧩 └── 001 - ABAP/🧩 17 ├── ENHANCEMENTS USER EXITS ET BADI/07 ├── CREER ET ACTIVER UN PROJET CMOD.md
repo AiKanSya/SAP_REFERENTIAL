@@ -6,17 +6,31 @@
 - Affecter un enhancement `SMOD`
 - Implémenter, transporter et activer le projet
 
-## PROCÉDURE
+## PROCESS
 
-1. Ouvrir `CMOD`.
-2. Créer un projet client avec une description explicite.
-3. Affecter le projet à un package et à un ordre de transport.
-4. Ajouter l’enhancement identifié dans `SMOD`.
-5. Ouvrir les composants.
-6. Implémenter les includes, écrans ou fonctions prévus.
-7. Activer les objets techniques.
-8. Activer le projet `CMOD`.
-9. Tester le scénario métier complet.
+### ÉTAPE 1 — VÉRIFIER L’ABSENCE DE PROJET CONCURRENT
+
+À partir de l’enhancement validé dans `SMOD`, rechercher son affectation existante. Si un projet actif le contient déjà, analyser ce projet et compléter sa gouvernance plutôt que de créer une seconde affectation incompatible.
+
+### ÉTAPE 2 — CRÉER LE PROJET DANS `CMOD`
+
+Saisir `/nCMOD`, entrer un nom Z conforme aux conventions puis choisir **Créer**. Renseigner une description fonctionnelle explicite, le package et la demande de transport. Éviter les noms temporaires qui ne permettent pas d’identifier le domaine.
+
+### ÉTAPE 3 — AFFECTER L’ENHANCEMENT
+
+Ouvrir l’affectation des extensions et ajouter le nom `SMOD` confirmé. Traiter tout message indiquant une utilisation existante. Enregistrer puis ouvrir la vue des composants pour vérifier que la liste attendue est complète.
+
+### ÉTAPE 4 — IMPLÉMENTER LES COMPOSANTS CLIENT
+
+Pour chaque function exit, ouvrir l’include client prévu et déléguer la logique à une classe Z. Pour un screen ou menu exit, créer les objets associés selon leur contrat. Ajouter auparavant les append structures nécessaires aux données affichées ou transmises.
+
+### ÉTAPE 5 — ACTIVER DANS L’ORDRE
+
+Contrôler et activer les objets DDIC, includes, classes, écrans et fonctions de menu. Activer ensuite le projet CMOD. Vérifier séparément le statut actif du code et celui du projet ; l’un ne remplace pas l’autre.
+
+### ÉTAPE 6 — TESTER ET CONTRÔLER LE TRANSPORT
+
+Placer un breakpoint dans le composant, exécuter le processus standard et vérifier le résultat cible ainsi qu’un cas hors périmètre. Contrôler que le projet et tous ses objets dépendants figurent dans des demandes transportées dans l’ordre requis.
 
 ## NOMMAGE
 
@@ -75,7 +89,6 @@ Ordre de transport  :
 - [Customer Exits — SAP Help Portal](https://help.sap.com/docs/ABAP_PLATFORM_NEW/2b28ffa716c24348903f8ffbfeb81df8/c81975cc43b111d1896f0000e8322d00.html)
 - [Activating User Exits — SAP Help Portal](https://help.sap.com/docs/SAP_S4HANA_ON-PREMISE/83f4631d77654e14800e31b17fe9bd45/4c3a1afc9995677ae10000000a42189b.html)
 - [Customer Exit Glossary — SAP Help Portal](https://help.sap.com/saphelp_snc700_ehp01/helpdata/en/35/26b1b7afab52b9e10000009b38f974/content.htm)
-
 
 ---
 

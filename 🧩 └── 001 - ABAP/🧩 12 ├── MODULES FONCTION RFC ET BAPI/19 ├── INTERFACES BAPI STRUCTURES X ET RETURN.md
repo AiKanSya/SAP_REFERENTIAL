@@ -81,14 +81,27 @@ Conserver tous les messages utiles et pas uniquement le premier. Pour chaque mes
 - clé métier ;
 - corrélation du traitement.
 
-## PROCÉDURE PAS À PAS
+## PROCESS
 
-1. Saisir `/nSE37`.
-2. Entrer le nom du module fonction puis choisir **Afficher**, **Modifier** ou **Créer** selon l’autorisation.
-3. Analyser les onglets Import, Export, Changing, Tables et Exceptions.
-4. Lire la documentation et le code source avant tout appel.
-5. Utiliser **Test/Exécuter** avec des données non destructives.
-6. Pour un module Z, contrôler, activer puis tester les cas nominal et d’erreur.
+### Étape 1 — Aligner donnée et indicateur
+
+Ouvrir la structure métier et sa structure `X`. Pour chaque champ à modifier, renseigner la valeur dans la structure métier et l’indicateur correspondant dans la structure `X`.
+
+### Étape 2 — Distinguer initial et non modifié
+
+Pour effacer une valeur, transmettre sa valeur initiale et positionner l’indicateur `X`. Pour conserver la valeur existante, laisser l’indicateur vide. Tester explicitement cette différence.
+
+### Étape 3 — Alimenter les clés
+
+Renseigner les clés dans les deux structures si l’interface l’exige. Pour les tables de positions, aligner chaque ligne métier avec sa ligne d’indicateurs par la même clé.
+
+### Étape 4 — Lire toute la table RETURN
+
+Parcourir toutes les lignes, pas seulement la première. Classer `A`, `E`, `X` comme échec et conserver identifiant, numéro, variables et texte pour le diagnostic.
+
+### Étape 5 — Vérifier l’effet
+
+Sans erreur bloquante, exécuter le commit prévu puis relire l’objet avec une API officielle. Le test est validé lorsque seuls les champs marqués changent et qu’une erreur provoque un rollback.
 
 ## VÉRIFICATION
 
@@ -129,7 +142,6 @@ DATA(lv_has_error) = xsdbool(
 - [Describing Remote Function Calls and BAPIs — SAP Learning](https://learning.sap.com/courses/technical-implementation-and-operation-i-of-sap-s-4hana-and-sap-business-suite/describing-remote-function-calls-and-bapis)
 - [Transaction Model for Developing BAPIs — SAP Help Portal](https://help.sap.com/docs/SAP_ERP/67ae2d27aed945b7bd0ad1d2185ec217/4d5b102ba1483d8fe10000000a42189e.html)
 - [Purchasing BAPIs — SAP Help Portal](https://help.sap.com/docs/SUPPORT_CONTENT/spmm/3362167428.html)
-
 
 ---
 

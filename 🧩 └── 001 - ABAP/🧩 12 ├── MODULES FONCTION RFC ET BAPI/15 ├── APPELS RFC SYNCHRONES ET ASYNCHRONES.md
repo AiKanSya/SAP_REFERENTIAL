@@ -91,14 +91,27 @@ Ne pas paralléliser un traitement sans mesurer la charge globale du système.
 | Livraison fiable différée     | tRFC ou qRFC  |
 | Ordre strict entre unités     | qRFC          |
 
-## PROCÉDURE PAS À PAS
+## PROCESS
 
-1. Saisir `/nSE37`.
-2. Entrer le nom du module fonction puis choisir **Afficher**, **Modifier** ou **Créer** selon l’autorisation.
-3. Analyser les onglets Import, Export, Changing, Tables et Exceptions.
-4. Lire la documentation et le code source avant tout appel.
-5. Utiliser **Test/Exécuter** avec des données non destructives.
-6. Pour un module Z, contrôler, activer puis tester les cas nominal et d’erreur.
+### Étape 1 — Choisir le modèle d’appel
+
+Utiliser un appel synchrone lorsque le résultat est requis immédiatement. Choisir un appel asynchrone uniquement si l’appelant peut continuer et si la collecte du résultat ou de l’erreur est explicitement conçue.
+
+### Étape 2 — Vérifier destination et contrat
+
+Tester la destination dans `SM59`, puis contrôler dans le système cible la signature RFC, les autorisations et les effets métier du module.
+
+### Étape 3 — Implémenter l’appel synchrone
+
+Utiliser `DESTINATION`, mapper les paramètres et traiter séparément `COMMUNICATION_FAILURE`, `SYSTEM_FAILURE` et les erreurs métier. Ne considérer les sorties valides qu’après succès.
+
+### Étape 4 — Implémenter l’asynchrone
+
+Définir un nom de tâche unique, utiliser `STARTING NEW TASK` et fournir une routine ou méthode de callback si un résultat est attendu. Dans le callback, appeler `RECEIVE RESULTS FROM FUNCTION` et traiter ses erreurs.
+
+### Étape 5 — Tester les deux fins
+
+Tester succès, cible indisponible et erreur métier. Pour l’asynchrone, prouver que l’appelant n’attend pas un résultat avant le callback. Le flux est validé lorsque chaque issue produit un état observable et corrélé à la tâche.
 
 ## VÉRIFICATION
 
@@ -145,7 +158,6 @@ CALL FUNCTION 'Z_DEV_READ_REMOTE'
 - [CALL FUNCTION STARTING NEW TASK — ABAP Keyword Documentation](https://help.sap.com/doc/abapdocu_816_index_htm/8.16/en-US/ABAPCALL_FUNCTION_STARTING.html)
 - [Receiving Results from an Asynchronous RFC — SAP Help Portal](https://help.sap.com/docs/ABAP_PLATFORM_NEW/753088fc00704d0a80e7fbd6803c8adb/489bdeec0c1c73e7e10000000a42189b.html)
 - [Parallel Processing with Asynchronous RFC — SAP Help Portal](https://help.sap.com/docs/ABAP_PLATFORM_NEW/753088fc00704d0a80e7fbd6803c8adb/489aa5b948c673e8e10000000a42189b.html)
-
 
 ---
 

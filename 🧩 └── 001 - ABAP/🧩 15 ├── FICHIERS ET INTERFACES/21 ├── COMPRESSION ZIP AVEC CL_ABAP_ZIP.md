@@ -1,4 +1,5 @@
 # COMPRE" Construire les dépendances avant d’exécuter le traitement.
+
 " Construire les dépendances avant d’exécuter le traitement.
 SSION ZIP AVEC `CL_ABAP_ZIP`
 
@@ -55,14 +56,31 @@ Lors de l’extraction :
 - limiter la taille et le nombre d’entrées ;
 - ne pas extraire automatiquement vers un chemin construit depuis l’archive.
 
-## PROCÉDURE PAS À PAS
+## PROCESS
 
-1. Saisir `/nSE24`.
-2. Entrer le nom d’une classe globale Z puis choisir **Créer**, ou afficher une classe existante.
-3. Maintenir définition, visibilité, types, attributs et méthodes dans les onglets appropriés.
-4. Implémenter les méthodes dans l’éditeur.
-5. Contrôler et activer la classe complète.
-6. Utiliser la fonction de test ou un report Z appelant pour vérifier le comportement.
+### ÉTAPE 1 — PRÉPARER CHAQUE ENTRÉE EN BINAIRE
+
+Définir le nom interne de chaque fichier, son contenu et son encodage. Convertir les textes en `XSTRING` avec l’encodage prévu avant de les ajouter à l’archive. Pour un contenu déjà binaire, conserver les octets d’origine sans conversion texte intermédiaire.
+
+### ÉTAPE 2 — CRÉER L’ARCHIVE EN MÉMOIRE
+
+Instancier `CL_ABAP_ZIP`. Ajouter chaque entrée avec un nom relatif explicite et son contenu `XSTRING`. Refuser les noms vides, les doublons et les chemins relatifs ambigus avant l’appel ; les noms stockés dans le ZIP constituent le contrat de l’archive.
+
+### ÉTAPE 3 — PRODUIRE LE CONTENU ZIP
+
+Appeler la méthode de sauvegarde de l’objet ZIP afin d’obtenir l’archive complète sous forme de `XSTRING`. Vérifier que le résultat n’est pas initial et relever sa taille. Une archive n’est publiable qu’après l’ajout réussi de toutes les entrées attendues.
+
+### ÉTAPE 4 — PERSISTER OU TRANSMETTRE L’ARCHIVE
+
+Pour un fichier serveur, écrire le contenu en mode binaire avec `OPEN DATASET`. Pour un téléchargement local, convertir l’`XSTRING` dans la table binaire attendue par `GUI_DOWNLOAD`. Pour HTTP, transmettre les octets avec le type de contenu approprié sans conversion en texte.
+
+### ÉTAPE 5 — CONTRÔLER L’ARCHIVE PRODUITE
+
+Réouvrir l’archive avec un lecteur ZIP indépendant. Comparer la liste des entrées, leurs noms, leurs tailles et leur contenu aux sources. Vérifier au minimum une entrée texte avec accents et une entrée binaire afin de détecter une conversion destructive.
+
+### ÉTAPE 6 — TESTER LES CAS D’ÉCHEC
+
+Tester une archive vide, une entrée vide, deux noms identiques, un volume représentatif et un contenu ZIP corrompu lors de la lecture. Restituer l’entrée concernée dans le journal et ne pas publier une archive partielle comme un résultat valide.
 
 ## VÉRIFICATION
 
@@ -105,7 +123,6 @@ DATA(lv_file_content) = lo_zip->get( name = 'products.csv' ).
 - [CL_ABAP_ZIP Example — SAP Help Portal](https://help.sap.com/docs/SUPPORT_CONTENT/abap/3353524363.html)
 - [OPEN DATASET Modes — ABAP Keyword Documentation](https://help.sap.com/doc/abapdocu_latest_index_htm/latest/en-US/ABAPOPEN_DATASET_MODE.html)
 - [GUI_DOWNLOAD — SAP Help Portal](https://help.sap.com/docs/SAP_NETWEAVER_AS_ABAP_FOR_SOH_740/5a005e044eef436f8b27bbd3f73a3cfc/c75ab8ec178c44a8aacd1dcac3460db8.html)
-
 
 ---
 

@@ -45,13 +45,35 @@ Ne pas relancer mécaniquement une demande ancienne. Les données ou le customiz
 - `SLG1` si l’application écrit un journal applicatif ;
 - `SM14` pour l’état administratif du système de mise à jour.
 
-## PROCÉDURE PAS À PAS
+## PROCESS
 
-1. Saisir `/nSM13`.
-2. Rechercher les mises à jour par utilisateur et période.
-3. Ouvrir l’entrée en erreur et lire module, message et données de contexte.
-4. Identifier la cause avant toute répétition.
-5. Vérifier l’idempotence et l’état métier ; une reprise aveugle peut dupliquer une opération.
+### ÉTAPE 1 — DÉLIMITER L’INCIDENT
+
+Relever l’utilisateur, le mandant, la transaction, l’heure, le document métier et le message reçu. Vérifier dans `ST22` si un dump correspond au même intervalle. Ces éléments évitent de diagnostiquer une update homonyme appartenant à un autre traitement.
+
+### ÉTAPE 2 — RECHERCHER L’UPDATE DANS `SM13`
+
+Saisir `/nSM13`, renseigner l’utilisateur et la période la plus courte possible, puis sélectionner le statut pertinent. Ouvrir l’entrée correspondant à l’heure et à l’identifiant métier attendus. Relever son identifiant, son statut et sa séquence de modules.
+
+### ÉTAPE 3 — LOCALISER LE PREMIER MODULE EN ÉCHEC
+
+Consulter les détails et les données enregistrées pour identifier le module qui a échoué, son message et ses paramètres. Distinguer la première erreur des modules seulement non exécutés ensuite. Corréler le code actif et les valeurs enregistrées au moment de la SAP LUW initiale.
+
+### ÉTAPE 4 — CONTRÔLER L’ÉTAT MÉTIER PERSISTANT
+
+Vérifier les tables V1 et V2, les documents créés et les verrous restants. Déterminer précisément ce qui a été validé avant l’échec. Ne pas conclure qu’aucune donnée n’existe uniquement parce que l’update porte le statut d’erreur.
+
+### ÉTAPE 5 — CORRIGER LA CAUSE RACINE
+
+Corriger la donnée de référence, l’autorisation, le paramétrage ou le programme identifié. Tester la correction avec les mêmes caractéristiques en développement ou en qualité. Conserver les preuves de l’update initiale avant toute suppression ou répétition.
+
+### ÉTAPE 6 — ÉVALUER LA RÉPÉTITION
+
+Vérifier que les modules sont idempotents ou que leur état partiel est compatible avec une répétition. Si une unité déjà créée peut être dupliquée, appliquer d’abord la procédure métier de remise en cohérence. Une répétition dans `SM13` est une action de production, pas un test technique.
+
+### ÉTAPE 7 — RÉPÉTER ET VALIDER
+
+Après autorisation opérationnelle, répéter l’update ciblée. Contrôler son nouveau statut, les tables concernées, les compteurs métier et l’absence de doublons. Documenter l’identifiant initial, la cause, la correction et le résultat final.
 
 ## VÉRIFICATION
 
@@ -94,7 +116,6 @@ Ordre de transport  :
 - [Update Management — SAP Help Portal](https://help.sap.com/docs/SAP_NETWEAVER_AS_ABAP_752/979cf1522d164bf7a781796efd8850ee/078cb02dc14d497f9779f7a309c1a7bc.html)
 - [Update Statuses — SAP Help Portal](https://help.sap.com/docs/ABAP_PLATFORM_NEW/979cf1522d164bf7a781796efd8850ee/3c7ad8b964b74aac9e1d3e709b33e794.html)
 - [SM13 - Update Request — SAP Help Portal](https://help.sap.com/docs/SUPPORT_CONTENT/basis/3354611548.html)
-
 
 ---
 

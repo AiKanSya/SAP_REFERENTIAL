@@ -33,14 +33,31 @@ Lorsqu’un field exit existe :
 
 Les modifications directes, routines client spécifiques à une application et exits non documentés doivent être analysés comme du patrimoine à maintenir, pas comme des modèles de nouveau développement.
 
-## PROCÉDURE PAS À PAS
+## PROCESS
 
-1. Saisir `/nSE80`.
-2. Sélectionner le type d’objet ou le package dans la liste de gauche.
-3. Entrer le nom technique puis valider.
-4. Commencer en mode **Afficher** pour analyser l’objet et ses sous-objets.
-5. Passer en modification uniquement dans un système et un objet autorisés.
-6. Contrôler la syntaxe, activer les objets modifiés puis vérifier leur statut actif.
+### ÉTAPE 1 — CONFIRMER QU’UN FIELD EXIT EXISTE
+
+Relever le champ écran et son élément de données dans les informations techniques. Rechercher le module de field exit associé et son activation dans le système. Distinguer un contrôle de domaine, une aide de recherche et un field exit réel.
+
+### ÉTAPE 2 — MESURER LE PÉRIMÈTRE GLOBAL
+
+Rechercher toutes les utilisations de l’élément de données et les écrans susceptibles de déclencher le contrôle. Un field exit peut affecter plusieurs transactions sans lien fonctionnel direct. Lister ces consommateurs avant toute modification.
+
+### ÉTAPE 3 — REPRODUIRE L’APPEL
+
+Placer un breakpoint dans le module existant et tester le scénario cible puis un autre écran utilisant le même élément. Relever la valeur d’entrée, la valeur retournée, les messages et la pile. Vérifier si un suffixe ou une affectation spécifique limite le périmètre.
+
+### ÉTAPE 4 — ÉVALUER UNE ALTERNATIVE PLUS LOCALE
+
+Rechercher une BAdI, un customer exit, un contrôle PAI ou une validation applicative limitée au processus. Pour un nouveau besoin, retenir le mécanisme offrant le contrat et le périmètre les plus explicites. Ne prolonger la technologie historique que si la compatibilité l’impose.
+
+### ÉTAPE 5 — MODIFIER AVEC TESTS DE NON-RÉGRESSION
+
+Si la maintenance du field exit est obligatoire, isoler la nouvelle règle derrière des conditions précises et préserver les comportements existants. Tester toutes les transactions recensées, pas seulement celle ayant déclenché la demande.
+
+### ÉTAPE 6 — DOCUMENTER ACTIVATION ET RETRAIT
+
+Conserver le module, l’élément de données, le périmètre, le paramétrage d’activation et les résultats de test. Définir comment désactiver ou remplacer le mécanisme lors d’une future migration sans laisser de validation en double.
 
 ## VÉRIFICATION
 
@@ -80,7 +97,6 @@ Ordre de transport  :
 - [Field Exits — SAP Help Portal](https://help.sap.com/docs/SUPPORT_CONTENT/abap/3353525738.html)
 - [Enhancement Technologies — SAP Help Portal](https://help.sap.com/docs/ABAP_PLATFORM_NEW/46a2cfc13d25463b8b9a3d2a3c3ba0d9/7063da4023a28631e10000000a1550b0.html)
 - [Enhancement Framework — SAP Help Portal](https://help.sap.com/docs/SAP_S4HANA_ON-PREMISE/e322becd165844e5868e590bc8efafaf/949cdc40132a8531e10000000a1550b0.html)
-
 
 ---
 

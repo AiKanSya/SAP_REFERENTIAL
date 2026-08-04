@@ -83,14 +83,27 @@ Les autorisations et transactions disponibles dépendent du système.
 - [ ] La frontière transactionnelle est-elle gérée au bon niveau ?
 - [ ] Le scénario réel a-t-il été mesuré avec un outil adapté ?
 
-## PROCÉDURE PAS À PAS
+## PROCESS
 
-1. Lire la définition et identifier les prérequis du chapitre.
-2. Choisir un objet Z ou un scénario de démonstration sans impact métier.
-3. Reproduire l’exemple dans un système de développement et relever les données d’entrée.
-4. Contrôler la syntaxe ou la configuration avant activation/exécution.
-5. Comparer le résultat observé avec la section **Vérification**.
-6. Documenter toute différence liée à la release, aux autorisations ou au paramétrage du système.
+### Étape 1 — Reproduire le scénario lent
+
+Fixer programme ou transaction, utilisateur, sélection et volume. Exécuter une fois et relever le temps observable. Sans données identiques, les mesures avant/après ne sont pas comparables.
+
+### Étape 2 — Tracer les accès SQL
+
+Lancer `ST05` pour l’utilisateur ou le processus ciblé, reproduire une seule fois, puis arrêter immédiatement la trace. Filtrer sur le programme et classer les opérations par durée et nombre d’exécutions.
+
+### Étape 3 — Identifier la cause dominante
+
+Distinguer requête lente unique, requête rapide répétée dans une boucle, volume retourné excessif et prédicat non sélectif. Examiner texte SQL, lignes examinées/retournées et plan d’accès disponible.
+
+### Étape 4 — Corriger une cause à la fois
+
+Réduire colonnes ou lignes, regrouper les lectures, déplacer jointure/agrégation en base ou supprimer le `SELECT` de boucle. Ne créer un index qu’après preuve que le prédicat et la sélectivité le justifient.
+
+### Étape 5 — Mesurer avec le même contexte
+
+Répéter exactement l’étape 2, comparer durée, exécutions et volumes puis vérifier le résultat fonctionnel. La correction est validée uniquement si le coût diminue sans changer les données ni contourner l’API métier.
 
 ## VÉRIFICATION
 

@@ -22,18 +22,38 @@ flowchart LR
     E --> C
 ```
 
-## ÉTAPES DE CRÉATION
+## PROCESS
 
-1. Ouvrir `SE11`.
-2. Choisir **Table de base de données**.
-3. Saisir un nom dans l’espace client, généralement `Z...` ou `Y...`.
-4. Créer la table et renseigner le texte court.
-5. Maintenir la classe de livraison et l’autorisation de maintenance.
-6. Définir les champs et la clé primaire.
-7. Maintenir les références de devise ou d’unité si nécessaire.
-8. Maintenir les paramètres techniques.
-9. Définir la catégorie d’amélioration.
-10. Contrôler et activer.
+### Étape 1 — Définir la persistance
+
+Lister la clé métier, les données persistées, le propriétaire fonctionnel et le cycle de vie. Décider si la table est dépendante du mandant ; dans ce cas, prévoir `MANDT` en première position de la clé.
+
+### Étape 2 — Créer l’objet table
+
+1. Ouvrir `SE11`, choisir **Table de base de données** et saisir un nom client.
+2. Choisir **Créer** et renseigner le texte court.
+3. Sélectionner la classe de livraison correspondant au contenu : données applicatives, Customizing ou autre catégorie validée.
+4. Définir l’autorisation d’affichage/maintenance conformément au mode d’administration prévu.
+
+### Étape 3 — Définir la clé et les champs
+
+Ajouter les champs dans l’ordre prévu, avec des éléments de données actifs. Marquer la clé primaire sans rupture : tous les champs clés doivent précéder les champs non-clés.
+
+Pour un montant ou une quantité, renseigner respectivement le champ de référence devise ou unité et vérifier que ce champ existe dans la table ou dans la structure de référence autorisée.
+
+### Étape 4 — Maintenir les propriétés physiques
+
+Ouvrir les paramètres techniques, choisir la classe de données et la catégorie de taille selon le volume prévu. Activer une bufferisation uniquement après analyse du modèle de lecture et de mise à jour.
+
+Définir ensuite la catégorie d’amélioration compatible avec les types de champs.
+
+### Étape 5 — Contrôler et activer
+
+Exécuter le contrôle de cohérence et traiter chaque erreur. Activer la table puis vérifier le journal de création de l’objet physique.
+
+### Étape 6 — Tester sans modifier directement une table applicative standard
+
+Dans un programme Z de test, insérer une ligne contrôlée dans la table client, relire par clé puis supprimer la donnée de test selon la procédure du projet. La création est validée lorsque clé, références, paramètres techniques et accès ABAP correspondent au modèle décidé.
 
 ## CHAMPS
 
@@ -91,15 +111,21 @@ Avant de choisir la classe de livraison, déterminer :
 - La classe de livraison et les paramètres techniques ne sont pas accessoires.
 - La création n’est terminée qu’après contrôle et activation.
 
-## PROCÉDURE PAS À PAS
+## PROCESS
 
-1. Saisir `/nSE11`.
-2. Choisir le type d’objet DDIC correspondant au chapitre.
-3. Entrer le nom technique ; utiliser **Afficher** pour un objet existant ou **Créer** pour un objet Z autorisé.
-4. Renseigner les attributs et composants en suivant les règles du chapitre.
-5. Lancer le contrôle de cohérence.
-6. Activer l’objet et traiter chaque message avant de poursuivre.
-7. Utiliser la liste d’utilisation et, pour les tables, vérifier les paramètres techniques et la structure physique.
+### Étape 1 — Vérifier l’objet actif
+
+Rouvrir la table dans `SE11`, vérifier le statut actif et comparer les champs avec la définition attendue. Contrôler que `MANDT`, lorsqu’il existe, est correctement positionné dans la clé.
+
+### Étape 2 — Vérifier l’objet physique
+
+Utiliser les fonctions de base de données de `SE11` pour comparer définition DDIC et structure physique. Si une différence est signalée, ne lancer aucune conversion en production ; analyser d’abord l’évolution et le volume avec l’équipe Basis.
+
+### Étape 3 — Examiner les données et utilisations
+
+Afficher un échantillon avec les outils autorisés, puis consulter la liste d’utilisation. Vérifier qu’aucune donnée sensible n’est exportée et qu’aucun programme ne dépend d’un champ sur le point d’être modifié.
+
+Le contrôle est terminé lorsque définition active, objet physique, contenu de test et dépendances sont cohérents.
 
 ## VÉRIFICATION
 
@@ -141,7 +167,6 @@ Ordre de transport  :
 - [Creating Database Tables and Table Fields — SAP Help Portal](https://help.sap.com/docs/ABAP_PLATFORM_NEW/ec1c9c8191b74de98feb94001a95dd76/44f4ef984a1c2952e10000000a11466f.html)
 - [Creating Database Tables — SAP Learning](https://learning.sap.com/courses/building-data-models-with-the-abap-dictionary-and-abap-core-data-services/creating-database-tables_ebc1477d-96ed-414b-82d4-4171da43f4a6)
 - [Delivery Class — SAP Help Portal](https://help.sap.com/docs/SAP_NETWEAVER_731_BW_ABAP/ec1c9c8191b74de98feb94001a95dd76/4345860774b711d2959700a0c929b3c3.html)
-
 
 ---
 

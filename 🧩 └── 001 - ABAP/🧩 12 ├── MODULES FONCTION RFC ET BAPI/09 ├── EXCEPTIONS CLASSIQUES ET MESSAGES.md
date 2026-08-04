@@ -90,14 +90,27 @@ flowchart TD
 - Documenter les conditions exactes de chaque exception.
 - Conserver le contexte technique nécessaire au diagnostic.
 
-## PROCÉDURE PAS À PAS
+## PROCESS
 
-1. Saisir `/nSE37`.
-2. Entrer le nom du module fonction puis choisir **Afficher**, **Modifier** ou **Créer** selon l’autorisation.
-3. Analyser les onglets Import, Export, Changing, Tables et Exceptions.
-4. Lire la documentation et le code source avant tout appel.
-5. Utiliser **Test/Exécuter** avec des données non destructives.
-6. Pour un module Z, contrôler, activer puis tester les cas nominal et d’erreur.
+### Étape 1 — Définir les cas d’échec
+
+Lister les erreurs que l’appelant peut traiter séparément. Créer une exception classique par décision utile ; ne multiplier pas des noms différents si le traitement appelant reste identique.
+
+### Étape 2 — Déclarer dans SE37
+
+Ajouter les exceptions dans l’onglet correspondant et documenter leur condition. Si le module utilise des messages avec `RAISING`, vérifier le contrat exact produit pour l’appelant.
+
+### Étape 3 — Déclencher au point de cause
+
+Dans l’implémentation, lever l’exception dès que la condition est prouvée, avant toute sortie incohérente. Éviter les effets persistants avant une validation susceptible d’échouer.
+
+### Étape 4 — Mapper dans l’appelant
+
+Dans `CALL FUNCTION`, affecter des valeurs de `SY-SUBRC` distinctes et les traiter immédiatement. Conserver le message système pertinent lorsque l’API le prévoit, sans exposer un texte technique brut à l’utilisateur final.
+
+### Étape 5 — Tester chaque exception
+
+Préparer une entrée par cas, vérifier le code reçu et l’absence d’effet partiel. Le contrat est validé lorsque toutes les erreurs déclarées sont déclenchables et interprétées sans ambiguïté.
 
 ## VÉRIFICATION
 
@@ -144,7 +157,6 @@ CALL FUNCTION 'Z_DEV_PRODUCT_GET'
 - [Understanding Function Module Code — SAP Help Portal](https://help.sap.com/docs/ABAP_PLATFORM_NEW/bd833c8355f34e96a6e83096b38bf192/d1801f1c454211d189710000e8322d00.html)
 - [Exceptions in Function Modules and Methods — SAP Help Portal](https://help.sap.com/saphelp_scm700_ehp02/helpdata/en/9e/d58167116711d5b2f40050dadfb92b/content.htm)
 - [Calling Function Modules From Your Programs — SAP Help Portal](https://help.sap.com/docs/ABAP_PLATFORM_NEW/bd833c8355f34e96a6e83096b38bf192/d1801edb454211d189710000e8322d00.html)
-
 
 ---
 

@@ -37,14 +37,27 @@ DATA ls_product TYPE ty_product.
 
 Dans le débogueur, développer `ls_product`, puis contrôler chaque composant. Une structure entièrement initiale indique souvent qu’elle n’a pas été alimentée, mais ce n’est pas toujours une erreur.
 
-## PROCÉDURE PAS À PAS
+## PROCESS
 
-1. Lire la définition et identifier les prérequis du chapitre.
-2. Choisir un objet Z ou un scénario de démonstration sans impact métier.
-3. Reproduire l’exemple dans un système de développement et relever les données d’entrée.
-4. Contrôler la syntaxe ou la configuration avant activation/exécution.
-5. Comparer le résultat observé avec la section **Vérification**.
-6. Documenter toute différence liée à la release, aux autorisations ou au paramétrage du système.
+### Étape 1 — Ajouter les données au bureau
+
+À un breakpoint stable, ajouter une variable, une structure, une référence et un objet. Relever type déclaré et type dynamique lorsqu’il existe.
+
+### Étape 2 — Examiner les valeurs composites
+
+Développer la structure et comparer ses clés et indicateurs avec les entrées du scénario. Une valeur initiale peut être valide ; elle ne prouve pas à elle seule une lecture absente.
+
+### Étape 3 — Suivre une référence
+
+Contrôler `IS BOUND` avant d’ouvrir la cible. Si la référence est initiale, remonter à sa création ou son affectation au lieu de modifier artificiellement le pointeur.
+
+### Étape 4 — Examiner l’objet
+
+Afficher sa classe dynamique, ses attributs et ses références internes. Utiliser la pile pour identifier le constructeur ou la factory ayant créé l’instance.
+
+### Étape 5 — Comparer après exécution
+
+Exécuter un pas et relever uniquement les composants modifiés. L’analyse est terminée lorsque l’origine de la valeur incorrecte est localisée dans une affectation ou un appel précis.
 
 ## VÉRIFICATION
 
@@ -146,7 +159,6 @@ Les outils de débogage peuvent exposer des données métier ou personnelles. Ne
 
 - [Standard ABAP Debugger — SAP Help Portal](https://help.sap.com/docs/SAP_NETWEAVER_AS_ABAP_751_IP/ba879a6e2ea04d9bb94c7ccd7cdac446/49250c884d7216b5e10000000a42189d.html)
 - [ABAP Test and Analysis Tools — SAP Help Portal](https://help.sap.com/docs/ABAP_PLATFORM_NEW/ba879a6e2ea04d9bb94c7ccd7cdac446/491aa66f87041903e10000000a42189c.html)
-
 
 ---
 

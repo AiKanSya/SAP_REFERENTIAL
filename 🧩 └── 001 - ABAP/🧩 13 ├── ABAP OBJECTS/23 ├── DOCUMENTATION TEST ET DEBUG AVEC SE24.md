@@ -1,4 +1,5 @@
 # DOCUME" Construire les dépendances avant d’exécuter le traitement.
+
 NTATION, TEST ET DEBUG AVEC SE24
 
 ## RÉSULTAT ATTENDU
@@ -26,15 +27,27 @@ CLASS zcl_dev_due_date_service DEFINITION PUBLIC FINAL CREATE PUBLIC.
 ENDCLASS.
 ```
 
-## TEST MANUEL DANS SE24
+## PROCESS
 
-1. Ouvrir la classe.
-2. Choisir la fonction de test de classe si elle est disponible.
-3. Sélectionner une méthode publique testable.
-4. Renseigner les paramètres.
-5. Exécuter.
-6. Examiner les valeurs de retour et exceptions.
-7. Répéter avec les cas limites.
+### Étape 1 — Qualifier la méthode
+
+Ouvrir la classe active dans `SE24`, sélectionner une méthode publique et lire sa signature, sa documentation et ses exceptions avant le test.
+
+### Étape 2 — Préparer le cas nominal
+
+Ouvrir l’outil de test disponible, renseigner chaque paramètre obligatoire avec une valeur vérifiable et noter le résultat attendu.
+
+### Étape 3 — Exécuter et inspecter
+
+Lancer, examiner returning/exporting/changing et exception. Si le résultat diverge, placer un breakpoint dans la méthode et refaire exactement la même saisie.
+
+### Étape 4 — Tester les limites
+
+Répéter avec valeur initiale, limite et donnée invalide. Vérifier que les exceptions déclarées sont effectivement produites.
+
+### Étape 5 — Convertir en test automatique
+
+Créer un test ABAP Unit pour les cas stables. Le contrôle est validé lorsque le résultat peut être rejoué sans saisie manuelle.
 
 Le test manuel ne remplace pas un test automatisé : il dépend de la saisie et ne protège pas automatiquement contre les régressions.
 

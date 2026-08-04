@@ -86,14 +86,36 @@ La journalisation technique ne remplace pas une traçabilité applicative compl�
 - La catégorie de taille est une estimation, pas une limite fonctionnelle.
 - La journalisation doit être activée de manière ciblée.
 
-## PROCÉDURE PAS À PAS
+## PROCESS
 
-1. Saisir `/nSAT`.
-2. Créer ou sélectionner une variante de mesure adaptée.
-3. Définir le programme, la transaction ou l’utilisateur à mesurer.
-4. Démarrer la mesure puis reproduire une seule fois le scénario.
-5. Arrêter et analyser le hit list, la hiérarchie d’appels et les temps nets.
-6. Répéter la mesure après correction avec les mêmes données et le même contexte.
+### Étape 1 — Relever le profil de la table
+
+Identifier la nature des données, le volume initial, la croissance attendue, la fréquence de lecture, la fréquence de modification et la nécessité de lire immédiatement une mise à jour sur tous les serveurs. Ces informations déterminent les paramètres ; le nom de la table ne suffit pas.
+
+### Étape 2 — Ouvrir les paramètres techniques
+
+1. Afficher la table dans `SE11`.
+2. Ouvrir **Options techniques**.
+3. Relever la classe de données, la catégorie de taille et le mode de bufferisation actuel.
+4. Comparer ces valeurs avec le profil défini à l’étape 1.
+
+Si la table est standard, ne modifier aucune valeur sans instruction SAP explicite.
+
+### Étape 3 — Définir classe de données et taille
+
+Choisir la classe de données selon le rôle réel des enregistrements. Définir la catégorie de taille selon le nombre prévu de lignes et sa croissance, puis documenter l’hypothèse utilisée.
+
+Une catégorie trop faible peut multiplier les extensions physiques ; une valeur surdimensionnée n’est pas une optimisation automatique.
+
+### Étape 4 — Décider de la bufferisation
+
+N’activer le buffer que pour une table adaptée : lectures fréquentes, modifications rares et tolérance au mécanisme d’invalidation. Choisir buffer complet, générique ou par enregistrement selon les clés de lecture observées.
+
+Vérifier dans le code qu’aucun accès ne contourne volontairement le buffer sans justification et qu’aucun scénario n’exige une cohérence immédiate incompatible.
+
+### Étape 5 — Activer et mesurer
+
+Activer les paramètres, contrôler le journal puis exécuter une lecture représentative. Utiliser les outils de trace et de suivi du buffer disponibles pour confirmer les accès. La configuration est validée lorsque le comportement mesuré correspond au mode choisi et qu’aucune mise à jour ne retourne de donnée obsolète au scénario métier.
 
 ## VÉRIFICATION
 
@@ -134,7 +156,6 @@ Ordre de transport  :
 
 - [Technical Settings — SAP Help Portal](https://help.sap.com/docs/SAP_NETWEAVER_740/ec1c9c8191b74de98feb94001a95dd76/cf21eba2446011d189700000e8322d00.html)
 - [Creating Database Tables — Technical Table Settings — SAP Learning](https://learning.sap.com/courses/building-data-models-with-the-abap-dictionary-and-abap-core-data-services/creating-database-tables_ebc1477d-96ed-414b-82d4-4171da43f4a6)
-
 
 ---
 

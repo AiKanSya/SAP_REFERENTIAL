@@ -149,15 +149,45 @@ flowchart TD
 - comparer la version active et inactive en cas de doute ;
 - ne pas confondre enregistrement et activation.
 
-## PROCÉDURE PAS À PAS
+## PROCESS
 
-1. Ouvrir `/nSE38` pour travailler directement sur un programme exécutable connu.
-2. Entrer le nom du programme et choisir **Afficher** ou **Modifier**.
-3. Utiliser `/nSE80` lorsqu’il faut naviguer dans un package ou dans plusieurs sous-objets liés.
-4. Dans `SE80`, sélectionner le type d’objet puis ouvrir le même programme.
-5. Comparer les fonctions disponibles : arborescence, includes, écrans, GUI status, liste d’utilisation.
-6. Effectuer le contrôle syntaxique avec `Ctrl+F2` et l’activation avec `Ctrl+F3`.
-7. Utiliser `F1` sur un mot-clé pour consulter la documentation correspondant à la release.
+### Étape 1 — Ouvrir un programme connu dans SE38
+
+1. Saisir `/nSE38`.
+2. Entrer le nom technique exact du programme.
+3. Choisir **Afficher** pour l’analyse ou **Modifier** uniquement si une correction est autorisée.
+
+Si le programme est introuvable, vérifier son nom et son type. Une classe, un groupe de fonctions ou un include ne doit pas être créé comme report pour contourner une recherche incorrecte.
+
+### Étape 2 — Déterminer si SE38 suffit
+
+Utiliser SE38 pour consulter, modifier, contrôler, activer ou exécuter directement un programme connu. Relever ses includes et objets associés lorsque le changement dépasse le source principal.
+
+Si l’analyse exige des écrans, GUI status, includes nombreux ou objets d’un package, poursuivre dans SE80.
+
+### Étape 3 — Retrouver le même objet dans SE80
+
+1. Ouvrir `/nSE80`.
+2. Choisir le type **Programme**.
+3. Saisir le même nom puis valider.
+4. Développer l’arborescence et comparer le source principal, les includes, écrans et GUI status avec les informations vues dans SE38.
+
+L’objet ouvert dans les deux transactions doit porter le même nom et le même statut d’activation. SE80 ajoute la vue structurée ; il ne crée pas une copie distincte.
+
+### Étape 4 — Contrôler et activer
+
+1. Enregistrer la modification.
+2. Exécuter `Ctrl+F2` et traiter chaque erreur syntaxique.
+3. Exécuter `Ctrl+F3` pour activer.
+4. Vérifier dans l’arborescence que les objets dépendants ne restent pas inactifs.
+
+Un contrôle syntaxique réussi ne remplace pas l’activation. Une version enregistrée mais inactive n’est pas celle exécutée normalement.
+
+### Étape 5 — Consulter l’aide de la release
+
+Positionner le curseur sur une instruction ou une addition ABAP puis appuyer sur `F1`. Vérifier la syntaxe, les prérequis de release, les exceptions et les exemples applicables au système connecté.
+
+Le chapitre est validé lorsque le lecteur sait choisir SE38 pour l’accès direct et SE80 pour la navigation structurée, puis contrôler et activer le même objet sans ambiguïté.
 
 ## VÉRIFICATION
 
@@ -200,7 +230,6 @@ Ordre de transport  :
 - [Source Code-Based Editor](https://help.sap.com/docs/ABAP_PLATFORM_NEW/bd833c8355f34e96a6e83096b38bf192/4b2015f1ec4f0120e10000000a42189c.html)
 - [ABAP Source Code Editor](https://help.sap.com/docs/ABAP_PLATFORM_NEW/c238d694b825421f940829321ffa326a/9ac600a0fad14967aaf2964be5a21963.html)
 - [Creating a Program](https://help.sap.com/docs/ABAP_PLATFORM_NEW/bd833c8355f34e96a6e83096b38bf192/d1801a47454211d189710000e8322d00-65.html)
-
 
 ---
 

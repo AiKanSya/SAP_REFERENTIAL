@@ -6,16 +6,31 @@
 - Définir ses étapes et sa condition de démarrage
 - Vérifier qu’il est effectivement libéré
 
-## PROCÉDURE
+## PROCESS
 
-1. lancer `SM36` ;
-2. saisir un nom de job explicite ;
-3. choisir la classe appropriée ;
-4. définir au moins une étape ;
-5. sélectionner le programme ABAP et sa variante ;
-6. définir la condition de démarrage ;
-7. enregistrer ;
-8. contrôler le job dans `SM37`.
+### ÉTAPE 1 — PRÉPARER LES OBJETS D’EXÉCUTION
+
+Vérifier que le programme est actif, que la variante existe dans le système et que l’utilisateur technique possède les autorisations métier et techniques requises. Définir la fréquence, la classe et l’éventuel groupe de serveurs avec l’exploitation.
+
+### ÉTAPE 2 — CRÉER LE JOB
+
+Saisir `/nSM36`, entrer un nom explicite et choisir la classe autorisée. Renseigner un serveur cible uniquement si une contrainte technique validée l’exige. Un ciblage inutile réduit les possibilités d’ordonnancement.
+
+### ÉTAPE 3 — AJOUTER L’ÉTAPE ABAP
+
+Ouvrir **Étapes**, choisir un programme ABAP, puis saisir le report, sa variante et l’utilisateur d’exécution. Enregistrer l’étape et vérifier le récapitulatif. Ajouter d’autres étapes seulement si leur séquence appartient au même cycle de reprise.
+
+### ÉTAPE 4 — DÉFINIR LA CONDITION DE DÉMARRAGE
+
+Choisir un démarrage immédiat, une date/heure, une dépendance à un job ou un événement selon le besoin. Pour une exécution périodique, définir la périodicité et le comportement de calendrier. Contrôler le fuseau horaire utilisé par le système.
+
+### ÉTAPE 5 — ENREGISTRER ET LIBÉRER
+
+Enregistrer le job et vérifier le message de planification. Ouvrir `SM37`, rechercher le nom et contrôler le statut, l’heure prévue, les étapes, les variantes et l’utilisateur. Un job seulement créé mais non libéré ne démarrera pas.
+
+### ÉTAPE 6 — VALIDER LA PREMIÈRE EXÉCUTION
+
+Surveiller le passage aux statuts actif puis terminé. Lire le journal et le spool, contrôler le résultat métier et relever la durée. En cas d’erreur, conserver les preuves avant toute copie ou replanification.
 
 ```mermaid
 flowchart LR
@@ -82,7 +97,6 @@ Ordre de transport  :
 
 - [Scheduling Background Jobs — SAP Help Portal](https://help.sap.com/docs/ABAP_PLATFORM_NEW/b07e7195f03f438b8e7ed273099d74f3/4b2b2954365474fee10000000a421937.html)
 - [Job Scheduling Wizard — SAP Help Portal](https://help.sap.com/docs/ABAP_PLATFORM_NEW/b07e7195f03f438b8e7ed273099d74f3/4b2bbf7b4c594ba2e10000000a42189c.html)
-
 
 ---
 

@@ -67,14 +67,27 @@ Une BAPI peut être testée dans `SE37`, mais le test isolé peut être incomple
 
 Lorsqu’une API officielle plus récente existe pour le scénario, suivre la recommandation du produit SAP. Ne pas choisir une BAPI uniquement parce qu’elle est connue ou facile à appeler.
 
-## PROCÉDURE PAS À PAS
+## PROCESS
 
-1. Saisir `/nSE37`.
-2. Entrer le nom du module fonction puis choisir **Afficher**, **Modifier** ou **Créer** selon l’autorisation.
-3. Analyser les onglets Import, Export, Changing, Tables et Exceptions.
-4. Lire la documentation et le code source avant tout appel.
-5. Utiliser **Test/Exécuter** avec des données non destructives.
-6. Pour un module Z, contrôler, activer puis tester les cas nominal et d’erreur.
+### Étape 1 — Partir de l’objet métier
+
+Définir l’opération et l’objet : créer, modifier, lire ou annuler. Rechercher dans le BAPI Explorer ou les outils Repository disponibles plutôt que déduire le nom du module.
+
+### Étape 2 — Vérifier le statut de la BAPI
+
+Lire documentation, méthode métier, statut de publication et restrictions S/4HANA. Écarter un module interne ressemblant à une BAPI mais non publié pour le scénario.
+
+### Étape 3 — Étudier l’interface complète
+
+Ouvrir le module dans `SE37`. Relever clés, structures principales, structures `X`, tables, `RETURN` et comportement transactionnel documenté.
+
+### Étape 4 — Chercher un exemple fiable
+
+Examiner les appelants SAP ou programmes de test livrés. Vérifier que l’exemple correspond à la même opération et release, notamment pour les indicateurs de mise à jour.
+
+### Étape 5 — Tester sans commit initial
+
+Exécuter avec une donnée de test, lire toutes les lignes `RETURN` et rechercher le document avant commit. La BAPI est comprise lorsque validation, commit/rollback et clé retournée sont explicitement identifiés.
 
 ## VÉRIFICATION
 
@@ -115,7 +128,6 @@ Ordre de transport  :
 - [Describing Remote Function Calls and BAPIs — SAP Learning](https://learning.sap.com/courses/technical-implementation-and-operation-i-of-sap-s-4hana-and-sap-business-suite/describing-remote-function-calls-and-bapis)
 - [Explaining the Integration Technology Based on BAPIs and IDocs — SAP Learning](https://learning.sap.com/courses/developing-integration-scenarios-using-idoc-rfc-adapter-of-sap-process-orchestration/explaining-the-integration-technology-based-on-bapis-and-idocs-basics_db458c59-a70f-480d-b139-65065be1b9e9)
 - [Transaction Model for Developing BAPIs — SAP Help Portal](https://help.sap.com/docs/SAP_ERP/67ae2d27aed945b7bd0ad1d2185ec217/4d5b102ba1483d8fe10000000a42189e.html)
-
 
 ---
 

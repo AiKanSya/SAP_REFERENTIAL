@@ -39,14 +39,31 @@ SAP fournit généralement un module exemple décrivant l’interface. Le module
 - contrôler le mandant et le transport du Customizing ;
 - documenter l’ordre d’exécution observé.
 
-## PROCÉDURE PAS À PAS
+## PROCESS
 
-1. Saisir `/nSE80`.
-2. Sélectionner le type d’objet ou le package dans la liste de gauche.
-3. Entrer le nom technique puis valider.
-4. Commencer en mode **Afficher** pour analyser l’objet et ses sous-objets.
-5. Passer en modification uniquement dans un système et un objet autorisés.
-6. Contrôler la syntaxe, activer les objets modifiés puis vérifier leur statut actif.
+### ÉTAPE 1 — IDENTIFIER L’ÉVÉNEMENT BTE
+
+Dans `FIBF`, utiliser l’environnement d’information pour rechercher l’événement correspondant au processus FI. Lire sa documentation et relever s’il s’agit d’un événement de type publication ou processus, ainsi que le module exemple fourni.
+
+### ÉTAPE 2 — ANALYSER L’INTERFACE D’EXEMPLE
+
+Ouvrir le module exemple dans `SE37`. Relever les paramètres, tables, exceptions et commentaires. Utiliser la liste d’utilisation ou un breakpoint pour confirmer que l’événement est déclenché dans le scénario S/4HANA concerné.
+
+### ÉTAPE 3 — CRÉER LE MODULE CLIENT
+
+Copier l’interface vers un module fonction Z dans un groupe client, sans modifier la signature attendue. Implémenter une adaptation légère puis déléguer à une classe Z. Ne pas exécuter de commit si l’événement appartient à la LUW standard.
+
+### ÉTAPE 4 — DÉFINIR ET ACTIVER LE PRODUIT
+
+Dans les vues de paramétrage FIBF prévues, créer ou réutiliser un produit client Z avec une description et un statut maîtrisés. Affecter l’événement au module Z pour le périmètre requis. Enregistrer le paramétrage dans la demande appropriée.
+
+### ÉTAPE 5 — CONFIRMER L’APPEL AU RUNTIME
+
+Activer le module et le produit, poser un breakpoint dans le module Z puis reproduire le document FI. Relever l’événement, les paramètres, le nombre d’appels et le moment par rapport à la validation du document.
+
+### ÉTAPE 6 — TESTER LE PÉRIMÈTRE ET LE TRANSPORT
+
+Tester le cas cible, une société ou opération hors périmètre, une erreur contrôlée et l’annulation de la transaction. Vérifier le transport du module, de la classe et du paramétrage produit. Refaire le test dans le système cible avec le produit actif.
 
 ## VÉRIFICATION
 
@@ -87,7 +104,6 @@ Ordre de transport  :
 - [BTE - Business Transaction Event — SAP Help Portal](https://help.sap.com/docs/SUPPORT_CONTENT/abap/3353525100.html)
 - [Events, Business Transaction Events — SAP Help Portal](https://help.sap.com/docs/SAP_S4HANA_ON-PREMISE/e200555127f24878bed8d1481c9d5a0b/9601c5536a51204be10000000a174cb4.html)
 - [Defining a Business Transaction Event — SAP Help Portal](https://help.sap.com/docs/SAP_S4HANA_ON-PREMISE/c30311a28bc24fe08bd47eafbf3fd930/59cc7fd2927f477bb965c77b3b71060f.html)
-
 
 ---
 

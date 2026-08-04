@@ -46,14 +46,27 @@ Un nom de fichier fourni depuis l’extérieur et utilisé directement dans `OPE
 
 Selon le contexte et la politique du système, un contrôle explicite avec `AUTHORITY_CHECK_DATASET` peut compléter les contrôles automatiques. Le résultat doit être traité avant toute ouverture du fichier.
 
-## PROCÉDURE PAS À PAS
+## PROCESS
 
-1. Saisir `/nSAT`.
-2. Créer ou sélectionner une variante de mesure adaptée.
-3. Définir le programme, la transaction ou l’utilisateur à mesurer.
-4. Démarrer la mesure puis reproduire une seule fois le scénario.
-5. Arrêter et analyser le hit list, la hiérarchie d’appels et les temps nets.
-6. Répéter la mesure après correction avec les mêmes données et le même contexte.
+### Étape 1 — Restreindre le chemin
+
+Utiliser un nom logique `FILE` ou une liste blanche. Refuser traversée et séparateur non attendu avant résolution.
+
+### Étape 2 — Contrôler l’autorisation
+
+Exécuter les contrôles métier avant lecture ou écriture. Vérifier avec la sécurité les objets techniques appliqués par le système cible.
+
+### Étape 3 — Ouvrir dans le mode minimal
+
+Choisir lecture, écriture ou ajout selon le besoin, avec encodage explicite. Tester immédiatement `SY-SUBRC`.
+
+### Étape 4 — Protéger le diagnostic
+
+Journaliser numéro de ligne, clé de corrélation et erreur, sans secret ni contenu personnel complet.
+
+### Étape 5 — Tester succès et refus
+
+Exécuter avec utilisateur autorisé, chemin interdit et fichier inaccessible. La sécurité est validée lorsque chaque refus bloque avant modification et conserve une preuve contrôlée.
 
 ## VÉRIFICATION
 
@@ -96,7 +109,6 @@ Ordre de transport  :
 - [Authorization for File Access — SAP Help Portal](https://help.sap.com/docs/ABAP_PLATFORM_NEW/7bfe8cdcfbb040dcb6702dada8c3e2f0/dc545b5a743047b6b468bbadd0085ce2.html)
 - [OPEN DATASET Security Notes — ABAP Keyword Documentation](https://help.sap.com/doc/abapdocu_latest_index_htm/latest/en-US/ABAPOPEN_DATASET.html)
 - [Physical and Logical File Names — SAP Help Portal](https://help.sap.com/docs/ABAP_PLATFORM_NEW/7bfe8cdcfbb040dcb6702dada8c3e2f0/9e49819d5b2a440fb508772494b9a473.html)
-
 
 ---
 

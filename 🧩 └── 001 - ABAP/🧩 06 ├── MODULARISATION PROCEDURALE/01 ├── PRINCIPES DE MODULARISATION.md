@@ -103,14 +103,31 @@ Préférer :
 - Les dépendances globales réduisent l’intérêt de la modularisation.
 - Pour du nouveau développement, les méthodes offrent généralement une interface plus robuste ; elles seront étudiées dans le dossier ABAP Objects.
 
-## PROCÉDURE PAS À PAS
+## PROCESS
 
-1. Saisir `/nSAT`.
-2. Créer ou sélectionner une variante de mesure adaptée.
-3. Définir le programme, la transaction ou l’utilisateur à mesurer.
-4. Démarrer la mesure puis reproduire une seule fois le scénario.
-5. Arrêter et analyser le hit list, la hiérarchie d’appels et les temps nets.
-6. Répéter la mesure après correction avec les mêmes données et le même contexte.
+### Étape 1 — Identifier les responsabilités du bloc
+
+Ouvrir le traitement et séparer sur papier ses actions : validation, lecture, calcul, mise à jour, journalisation et présentation. Une responsabilité doit pouvoir être nommée par un verbe précis.
+
+Si un bloc mélange plusieurs actions, ne choisir pas encore le mécanisme ABAP ; définir d’abord les frontières métier.
+
+### Étape 2 — Définir les entrées et sorties
+
+Pour chaque responsabilité, relever les données réellement lues, les valeurs produites et les erreurs possibles. Distinguer une entrée nécessaire d’une variable globale accessible par facilité.
+
+Une unité dont les entrées ou sorties ne peuvent pas être listées reste trop couplée pour être extraite proprement.
+
+### Étape 3 — Choisir l’unité adaptée
+
+Dans du code procédural existant, utiliser un `FORM` local uniquement pour maintenir ce modèle. Pour un nouveau service réutilisable et testable, préférer une méthode. Un `INCLUDE` organise le source mais ne définit pas d’interface.
+
+### Étape 4 — Extraire une responsabilité à la fois
+
+Créer l’unité avec un nom orienté action, déclarer ses paramètres et déplacer uniquement le bloc correspondant. Remplacer l’ancien bloc par l’appel puis exécuter contrôle syntaxique et test ciblé.
+
+### Étape 5 — Vérifier le découpage
+
+Comparer le résultat avant/après, rechercher la duplication supprimée et examiner les accès globaux restants. Le découpage est valide lorsque le programme principal exprime l’enchaînement métier et que chaque unité possède un contrat identifiable.
 
 ## VÉRIFICATION
 
@@ -159,7 +176,6 @@ START-OF-SELECTION.
 - [Source Code Modularization — ABAP Keyword Documentation](https://help.sap.com/doc/abapdocu_latest_index_htm/latest/en-US/ABENSOURCE_CODE_MODULAR_GUIDL.html)
 - [Source Code Organization — ABAP Keyword Documentation](https://help.sap.com/doc/abapdocu_latest_index_htm/latest/en-US/ABENSOURCE_CODE_ORGA_GDL.html)
 - [ABAP Objects as a Programming Model — ABAP Keyword Documentation](https://help.sap.com/doc/abapdocu_latest_index_htm/latest/en-US/ABENABAP_OBJ_PROGR_MODEL_GUIDL.html)
-
 
 ---
 

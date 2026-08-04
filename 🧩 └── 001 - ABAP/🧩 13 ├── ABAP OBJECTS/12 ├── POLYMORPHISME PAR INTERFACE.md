@@ -41,14 +41,27 @@ DATA(lv_payload) = lo_exporter->serialize( it_data ).
 
 Le `CASE` reste ici au point de composition. Le traitement métier utilise ensuite uniquement l’interface.
 
-## PROCÉDURE DE VALIDATION
+## PROCESS
 
-1. Créer au moins deux implémentations.
-2. Typer la variable avec l’interface.
-3. Affecter une première classe et exécuter la méthode.
-4. Affecter la seconde sans modifier l’appel.
-5. Vérifier que chaque résultat correspond au contrat.
-6. Ajouter un double de test implémentant la même interface.
+### Étape 1 — Créer deux implémentations conformes
+
+Implémenter la même interface dans deux classes avec des comportements distincts mais un résultat respectant le même contrat.
+
+### Étape 2 — Typer le consommateur sur l’interface
+
+Déclarer sa dépendance `TYPE REF TO` l’interface. Supprimer tout `CASE` sur le nom de classe utilisé uniquement pour choisir l’appel.
+
+### Étape 3 — Injecter la première classe
+
+Affecter l’instance puis exécuter la méthode. Conserver entrées et résultat comme cas de référence.
+
+### Étape 4 — Substituer la seconde
+
+Changer seulement l’objet injecté et relancer les mêmes entrées. L’appelant ne doit nécessiter aucune modification.
+
+### Étape 5 — Ajouter un double déterministe
+
+Créer une classe locale de test implémentant l’interface et retournant une valeur contrôlée. Le polymorphisme est validé lorsque le consommateur est testable sans la dépendance réelle.
 
 ## CASTS
 

@@ -1,4 +1,5 @@
 # INJECT" Définir le contrat et limiter l’API publique au besoin réel.
+
 " Définir le contrat et limiter l’API publique au besoin réel.
 " Définir le contrat et limiter l’API publique au besoin réel.
 ER UNE DÉPENDANCE PAR CONSTRUCTEUR
@@ -72,13 +73,27 @@ DATA(lo_clock) = NEW zcl_dev_system_clock( ).
 DATA(lo_service) = NEW zcl_dev_validity_service( lo_clock ).
 ```
 
-## PROCÉDURE DE TEST
+## PROCESS
 
-1. Créer une classe locale de test implémentant `ZIF_DEV_CLOCK`.
-2. Faire retourner une date fixe.
-3. Injecter cette classe dans le service.
-4. Tester une date expirée et une date valide.
-5. Vérifier que le test ne dépend pas du jour d’exécution.
+### Étape 1 — Créer le double
+
+Dans la partie locale du test, créer `LCL_FIXED_CLOCK` et implémenter `ZIF_DEV_CLOCK`. Son constructeur reçoit une date et la conserve dans `MV_DATE`.
+
+### Étape 2 — Rendre le résultat déterministe
+
+Implémenter la méthode de l’interface pour retourner uniquement `MV_DATE`. Tester le double seul afin de vérifier que la date système n’est jamais lue.
+
+### Étape 3 — Injecter dans le service
+
+Créer le service en passant la référence du double au constructeur. Contrôler que le service stocke le type interface et n’instancie pas lui-même l’horloge réelle.
+
+### Étape 4 — Tester les deux frontières
+
+Créer une horloge avec date avant expiration puis une autre avec date encore valide. Exécuter la même méthode métier et vérifier les deux résultats.
+
+### Étape 5 — Prouver l’indépendance temporelle
+
+Relancer avec les mêmes dates un autre jour ou sans utiliser `SY-DATUM`. Le test est validé lorsqu’il dépend uniquement des valeurs injectées.
 
 Classe locale de remplacement à placer dans le programme de test ou dans la partie locale de la classe testée :
 

@@ -177,13 +177,25 @@ Selon le programme, analyser également :
 
 ## PROCÉDURE PAS À PAS
 
-1. Ouvrir un report Z actif dans `SE38`.
-2. Modifier une valeur sans activer puis enregistrer.
-3. Vérifier que le système distingue la version inactive de la version active.
-4. Exécuter le contrôle syntaxique.
-5. Activer le programme et traiter les éventuelles erreurs de dépendance.
-6. Exécuter avec `F8` et confirmer que la version active produit le résultat attendu.
-7. Utiliser la gestion des versions si une comparaison avec une version antérieure est nécessaire.
+### Étape 1 — Créer une version inactive observable
+
+Ouvrir un report Z actif dans `SE38`, modifier une valeur visible puis enregistrer sans activer. Vérifier l’indicateur de statut : le source sauvegardé doit être inactif tandis que l’ancienne version reste active.
+
+### Étape 2 — Contrôler avant activation
+
+Exécuter `Ctrl+F2`. Corriger les erreurs dans l’ordre indiqué. Si une erreur vient d’un objet dépendant, ouvrir cet objet et déterminer s’il doit être activé dans la même livraison.
+
+### Étape 3 — Activer
+
+Exécuter `Ctrl+F3` et examiner la liste des objets proposée. Activer uniquement le périmètre cohérent. En cas d’échec, relever l’objet et le message qui bloquent l’activation au lieu de relancer sans correction.
+
+### Étape 4 — Prouver la version exécutée
+
+Lancer avec `F8` et vérifier que la valeur modifiée apparaît. Si l’ancienne valeur persiste, confirmer le système, le programme et le statut actif.
+
+### Étape 5 — Comparer si nécessaire
+
+Utiliser la gestion des versions pour comparer la version active avec une version antérieure. Le contrôle est terminé lorsque le source sauvegardé et la version active attendue correspondent et que l’exécution produit le résultat prévu.
 
 ## VÉRIFICATION
 
@@ -224,7 +236,6 @@ gv_value = 'ABC'.
 - [ABAP Source Code Editor](https://help.sap.com/docs/ABAP_PLATFORM_NEW/c238d694b825421f940829321ffa326a/9ac600a0fad14967aaf2964be5a21963.html)
 - [Starting and Directly Debugging ABAP Programs](https://help.sap.com/docs/ABAP_PLATFORM_NEW/ba879a6e2ea04d9bb94c7ccd7cdac446/a95208086a6e448aa35f08357d958af5.html)
 - [Running Local Quality Checks with the ATC](https://help.sap.com/docs/ABAP_PLATFORM_NEW/ba879a6e2ea04d9bb94c7ccd7cdac446/ca5e041535c0491db596d3ca6658cd7d.html)
-
 
 ---
 

@@ -50,6 +50,32 @@ Ne pas poursuivre silencieusement après une collision. Relire les données apr�
 5. modifier ;
 6. valider ou annuler.
 
+## PROCESS
+
+### ÉTAPE 1 — CONSTRUIRE LA CLÉ COMPLÈTE
+
+Déterminer la clé métier à protéger et convertir ses composants dans les types attendus par le module généré. Renseigner explicitement le mandant si la signature le prévoit. Éviter les valeurs initiales non intentionnelles, qui peuvent élargir l’argument de verrouillage.
+
+### ÉTAPE 2 — CONTRÔLER LA SIGNATURE GÉNÉRÉE
+
+Afficher `ENQUEUE_<objet>` dans `SE37`. Relever les paramètres de table, de mode, `_SCOPE`, `_WAIT` et les exceptions exactes. Adapter le code à cette signature ; les noms de paramètres d’un autre objet ne sont pas transposables.
+
+### ÉTAPE 3 — DEMANDER LE VERROU
+
+Appeler le module avec le mode prévu par la conception. Utiliser `_WAIT = abap_false` pour un retour immédiat, sauf besoin d’attente explicitement validé. Tester `sy-subrc` immédiatement après l’appel.
+
+### ÉTAPE 4 — TRAITER CHAQUE RÉSULTAT
+
+Sur succès, poursuivre vers la relecture. Sur `foreign_lock`, informer que la ressource est déjà traitée et arrêter l’opération courante. Sur `system_failure` ou toute autre erreur, journaliser la cause technique et ne réaliser aucune modification non protégée.
+
+### ÉTAPE 5 — RELIRE SOUS VERROU
+
+Relire depuis la base l’état utilisé pour la décision métier. Comparer avec les données éventuellement affichées avant l’enqueue et refaire les validations dépendantes. Cette relecture ferme la fenêtre entre la consultation initiale et l’obtention du verrou.
+
+### ÉTAPE 6 — TESTER LA COLLISION
+
+Maintenir le verrou dans une première session. Dans une seconde, appeler le même scénario avec la même clé, puis avec une clé différente. Vérifier le message contrôlé, l’absence d’écriture concurrente et les entrées attendues dans `SM12`.
+
 ## VÉRIFICATION
 
 - Les données sont toutes validées ou toutes annulées selon le cas testé.
@@ -104,7 +130,6 @@ ENDCASE.
 
 - [Function Modules for Lock Requests — SAP Help Portal](https://help.sap.com/docs/ABAP_PLATFORM_NEW/ec1c9c8191b74de98feb94001a95dd76/cf21eebf446011d189700000e8322d00.html)
 - [Example Program: SAP Locking — SAP Help Portal](https://help.sap.com/docs/SAP_NETWEAVER_731_BW_ABAP/cfae740a0a21455dbe6e510c2d86e36a/417af4c8a79e11d1950f0000e82de14a.html)
-
 
 ---
 

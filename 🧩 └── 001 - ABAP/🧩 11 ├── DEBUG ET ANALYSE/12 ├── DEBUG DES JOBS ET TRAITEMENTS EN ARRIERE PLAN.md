@@ -75,13 +75,27 @@ Pour un job long ou difficile à reproduire, préférer parfois :
 - traces d’interface ;
 - instrumentation temporaire contrôlée.
 
-## PROCÉDURE PAS À PAS
+## PROCESS
 
-1. Saisir `/nSM37`.
-2. Renseigner le nom du job, l’utilisateur et une période suffisamment précise.
-3. Exécuter la recherche et sélectionner le job correspondant au bon horodatage.
-4. Lire le statut, le journal de job, les étapes et le spool.
-5. En cas d’échec, relever le message, le programme, la variante, l’utilisateur et l’heure avant toute relance.
+### Étape 1 — Identifier l’instance exacte
+
+Ouvrir `SM37`, renseigner nom, utilisateur, statut et intervalle précis. Comparer heure de début et numéro de job avec le symptôme ; deux exécutions du même nom ne sont pas interchangeables.
+
+### Étape 2 — Lire le contexte avant de relancer
+
+Ouvrir étapes, programme, variante, utilisateur d’exécution, serveur, journal et spool. Relever le premier message en erreur et les traitements déjà terminés.
+
+### Étape 3 — Déterminer le point de debug
+
+Si le job peut être reproduit sans effet dangereux, utiliser le mécanisme de debug de job disponible depuis `SM37` ou exécuter le programme avec la même variante et le même utilisateur dans un environnement de test.
+
+### Étape 4 — Comparer dialogue et arrière-plan
+
+Contrôler autorisations, paramètres utilisateur, accès frontend interdit, fichiers serveur, formats de date/nombre et commit. Un succès en dialogue ne prouve pas le succès avec l’utilisateur du job.
+
+### Étape 5 — Valider sans doublon
+
+Corriger puis créer une nouvelle exécution contrôlée. Vérifier journal, spool et documents déjà créés avant toute reprise. Le diagnostic est terminé lorsque le job finit dans le statut attendu sans répéter un effet métier.
 
 ## VÉRIFICATION
 
@@ -121,7 +135,6 @@ Ordre de transport  :
 
 - [Starting and Directly Debugging ABAP Programs — SAP Help Portal](https://help.sap.com/docs/ABAP_PLATFORM_NEW/ba879a6e2ea04d9bb94c7ccd7cdac446/a95208086a6e448aa35f08357d958af5.html)
 - [Batch Debugging — SAP Help Portal](https://help.sap.com/docs/ABAP_PLATFORM_NEW/ba879a6e2ea04d9bb94c7ccd7cdac446/bf1a5464da734b559d94199e80926005.html)
-
 
 ---
 

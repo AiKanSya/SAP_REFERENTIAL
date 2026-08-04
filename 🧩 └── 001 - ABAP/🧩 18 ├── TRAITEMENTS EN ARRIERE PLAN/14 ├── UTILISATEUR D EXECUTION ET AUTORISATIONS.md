@@ -44,14 +44,31 @@ Un compte batch doit :
 
 Un job peut être planifié avec succès puis échouer à l’exécution pour défaut d’autorisation. Examiner le journal, `SU53` lorsque le contexte le permet, et les traces `STAUTHTRACE` ou `ST01` selon la procédure de sécurité.
 
-## PROCÉDURE PAS À PAS
+## PROCESS
 
-1. Saisir `/nSAT`.
-2. Créer ou sélectionner une variante de mesure adaptée.
-3. Définir le programme, la transaction ou l’utilisateur à mesurer.
-4. Démarrer la mesure puis reproduire une seule fois le scénario.
-5. Arrêter et analyser le hit list, la hiérarchie d’appels et les temps nets.
-6. Répéter la mesure après correction avec les mêmes données et le même contexte.
+### ÉTAPE 1 — IDENTIFIER LES DEUX UTILISATEURS
+
+Dans `SM37`, ouvrir le job et relever son créateur puis l’utilisateur de chaque étape. Distinguer les droits nécessaires pour planifier ou libérer le job de ceux nécessaires au programme métier exécuté.
+
+### ÉTAPE 2 — REPRODUIRE SOUS L’IDENTITÉ D’EXÉCUTION
+
+Utiliser une exécution de test planifiée avec le même utilisateur technique et la même variante. Une exécution réussie sous le compte du développeur ne valide pas les autorisations batch.
+
+### ÉTAPE 3 — LOCALISER LE CONTRÔLE REFUSÉ
+
+Lire le journal de job et les messages applicatifs. Déclencher une trace d’autorisations ciblée selon la procédure sécurité, par exemple `STAUTHTRACE` ou `ST01`, sur l’utilisateur et l’intervalle exacts. Relever l’objet, les champs et les valeurs refusés.
+
+### ÉTAPE 4 — CLASSER L’AUTORISATION
+
+Déterminer si le refus concerne la gestion du job (`S_BTCH_*`), l’exécution du programme (`S_PROGRAM`) ou l’opération métier réalisée par le report. Ne pas ajouter une autorisation d’administration batch pour résoudre un contrôle métier.
+
+### ÉTAPE 5 — CORRIGER LE RÔLE MINIMAL
+
+Transmettre à l’équipe sécurité la preuve du contrôle et les valeurs strictement requises. Éviter les profils larges et les comptes personnels. Faire transporter ou appliquer le rôle selon la gouvernance, puis fermer la trace.
+
+### ÉTAPE 6 — REJOUER LE MÊME JOB
+
+Planifier à nouveau avec le même programme, la même variante et le même utilisateur. Vérifier le résultat métier et l’absence de nouveaux refus. Conserver le job, l’horodatage et la trace comme preuve de la correction.
 
 ## VÉRIFICATION
 
@@ -91,7 +108,6 @@ Ordre de transport  :
 
 - [Roles and Authorizations for Background Processing — SAP Help Portal](https://help.sap.com/docs/ABAP_PLATFORM_NEW/621bb4e3951b4a8ca633ca7ed1c0aba2/4ec48f2468ac35fde10000000a42189e.html)
 - [Defining Users for Background Processing — SAP Help Portal](https://help.sap.com/docs/ABAP_PLATFORM_BW4HANA/864321b9b3dd487d94c70f6a007b0397/4ec4b1bd745068b9e10000000a42189e.html)
-
 
 ---
 

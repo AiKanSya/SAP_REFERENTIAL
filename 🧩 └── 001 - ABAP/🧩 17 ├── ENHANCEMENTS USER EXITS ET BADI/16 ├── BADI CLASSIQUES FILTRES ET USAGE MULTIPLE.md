@@ -41,13 +41,31 @@ Avec multiple-use, plusieurs implémentations peuvent être exécutées. Le code
 - contrôler la multiplicité et l’ordre observé ;
 - mesurer le temps si le BAdI est appelé dans une boucle.
 
-## PROCÉDURE PAS À PAS
+## PROCESS
 
-1. Saisir `/nSE18`.
-2. Entrer le nom de la BAdI ou utiliser les outils de recherche.
-3. Afficher la définition et lire documentation, interface, filtres et options d’utilisation multiple.
-4. Analyser les implémentations existantes et leur ordre éventuel.
-5. Identifier le point d’appel dans le code standard avant de créer une nouvelle implémentation.
+### ÉTAPE 1 — RELEVER LES ATTRIBUTS DE LA DÉFINITION
+
+Dans `SE18`, vérifier si la BAdI est à usage simple ou multiple et si elle possède un filtre. Ouvrir le type du filtre et la documentation. Identifier dans le code appelant la valeur exacte utilisée pour la sélection runtime.
+
+### ÉTAPE 2 — CARTOGRAPHIER LES IMPLÉMENTATIONS
+
+Lister les implémentations actives avec leurs classes et plages de filtre. Repérer les valeurs qui se recouvrent et les implémentations sans filtre restrictif. Pour l’usage multiple, analyser le code sans dépendre d’un ordre non garanti par le contrat.
+
+### ÉTAPE 3 — DÉFINIR UNE MATRICE DE SÉLECTION
+
+Pour chaque valeur de filtre significative, indiquer quelles implémentations doivent être sélectionnées et le résultat attendu. Ajouter les valeurs initiales, inconnues et limites. Cette matrice sert de preuve avant et après activation.
+
+### ÉTAPE 4 — IMPLÉMENTER SANS DÉPENDANCE CROISÉE
+
+Créer ou ajuster les filtres dans `SE19`, puis isoler la logique de chaque implémentation. Ne pas supposer qu’une autre implémentation a déjà modifié un paramètre. Si un ordre métier est indispensable, centraliser l’orchestration dans une seule implémentation maîtrisée.
+
+### ÉTAPE 5 — TESTER CHAQUE LIGNE DE LA MATRICE
+
+Poser des breakpoints dans toutes les implémentations candidates et exécuter le scénario pour chaque valeur. Relever les implémentations appelées, les paramètres avant/après et le résultat final. Corriger tout chevauchement non prévu.
+
+### ÉTAPE 6 — CONTRÔLER ACTIVATION ET TRANSPORT
+
+Vérifier que les classes et implémentations sont actives et incluses dans les demandes attendues. Rejouer la matrice dans le système cible, car les implémentations présentes et leur activation peuvent différer entre environnements.
 
 ## VÉRIFICATION
 
@@ -87,7 +105,6 @@ Ordre de transport  :
 - [Classic BAdIs — SAP Help Portal](https://help.sap.com/docs/ABAP_PLATFORM_NEW/2b28ffa716c24348903f8ffbfeb81df8/e6d54d3c596f0b26e10000000a11402f.html)
 - [Implementing a Filter-Dependent Classic BAdI — SAP Help Portal](https://help.sap.com/docs/ABAP_PLATFORM_2020/2b28ffa716c24348903f8ffbfeb81df8/9790e24662d6d8478cf1f392108c5df0.html)
 - [How to Use Filters — SAP Help Portal](https://help.sap.com/docs/ABAP_PLATFORM_NEW/46a2cfc13d25463b8b9a3d2a3c3ba0d9/44f6cd83912541aae10000000a114a6b.html)
-
 
 ---
 

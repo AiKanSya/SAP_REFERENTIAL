@@ -23,16 +23,27 @@ flowchart TD
     D --> E
 ```
 
-## PROCÉDURE DANS SE24
+## PROCESS
 
-1. Créer `ZCL_DEV_APP_CONTEXT`.
-2. Dans les propriétés, définir l’instanciation comme privée.
-3. Créer l’attribut statique privé `GO_INSTANCE` de type référence vers la classe.
-4. Créer la méthode statique publique `GET_INSTANCE`.
-5. Définir un paramètre `RETURNING` du type référence vers la classe.
-6. Implémenter la création paresseuse.
-7. Activer la classe.
-8. Appeler deux fois la méthode et comparer les références.
+### Étape 1 — Justifier l’unicité
+
+Vérifier que le processus exige réellement une seule instance par session interne. Si le besoin est seulement de partager une dépendance, préférer l’injection explicite.
+
+### Étape 2 — Fermer l’instanciation
+
+Créer `ZCL_DEV_APP_CONTEXT` et définir l’instanciation privée. Vérifier depuis un report que `NEW zcl_dev_app_context( )` est interdit.
+
+### Étape 3 — Stocker l’instance
+
+Créer l’attribut de classe privé `GO_INSTANCE TYPE REF TO zcl_dev_app_context`. Créer la méthode de classe publique `GET_INSTANCE` avec une référence de même type en `RETURNING`.
+
+### Étape 4 — Implémenter la création paresseuse
+
+Si `GO_INSTANCE` n’est pas liée, créer l’objet ; retourner ensuite la référence existante. Ne placer pas dans le singleton un état utilisateur qui devrait être isolé par opération.
+
+### Étape 5 — Tester portée et identité
+
+Appeler deux fois et comparer les références. Relancer dans une nouvelle session interne pour vérifier la portée réelle. Le singleton est validé uniquement si cette portée correspond au besoin documenté.
 
 ## CODE PRÊT À ADAPTER
 

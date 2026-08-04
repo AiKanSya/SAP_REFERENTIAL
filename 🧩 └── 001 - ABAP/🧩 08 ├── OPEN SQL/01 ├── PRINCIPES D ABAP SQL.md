@@ -71,14 +71,27 @@ Les exemples de lecture utilisent principalement `SCARR`, `SPFLI` et `SFLIGHT`, 
 
 Les exemples d’écriture utilisent une table fictive `ZDEV_PRODUCT`. Ils ne doivent pas être exécutés sur une table applicative SAP standard.
 
-## PROCÉDURE PAS À PAS
+## PROCESS
 
-1. Lire la définition et identifier les prérequis du chapitre.
-2. Choisir un objet Z ou un scénario de démonstration sans impact métier.
-3. Reproduire l’exemple dans un système de développement et relever les données d’entrée.
-4. Contrôler la syntaxe ou la configuration avant activation/exécution.
-5. Comparer le résultat observé avec la section **Vérification**.
-6. Documenter toute différence liée à la release, aux autorisations ou au paramétrage du système.
+### Étape 1 — Définir le résultat de la requête
+
+Lister les colonnes attendues, les filtres obligatoires, l’unicité éventuelle et l’ordre réellement nécessaire. Déterminer si l’opération est une lecture ou une modification et identifier l’API métier qui pourrait devoir être utilisée à la place d’un accès direct.
+
+### Étape 2 — Examiner la source
+
+Afficher la table ou vue dans `SE11`. Relever clé, dépendance au mandant, types, références devise/unité, bufferisation et volume estimé. Pour un objet SAP, vérifier que la lecture directe est autorisée par le modèle applicatif.
+
+### Étape 3 — Écrire la requête minimale
+
+Sélectionner uniquement les colonnes nécessaires, utiliser les variables hôtes avec `@` et appliquer une condition sélective. Ne pas ajouter `ORDER BY` si l’ordre n’est pas utilisé ; ne jamais supposer un ordre implicite.
+
+### Étape 4 — Traiter tous les résultats
+
+Pour une lecture unique, traiter `SY-SUBRC = 0` et l’absence de ligne. Pour une lecture multiple, distinguer table vide et contenu valide. Pour une modification, contrôler `SY-SUBRC`, `SY-DBCNT` et la responsabilité transactionnelle.
+
+### Étape 5 — Vérifier avec des données connues
+
+Exécuter un cas trouvé, un cas absent et une limite de volume. Comparer le résultat avec les données sources autorisées. La requête est validée lorsque le résultat est déterministe, le mandant correct et chaque absence ou erreur traitée explicitement.
 
 ## VÉRIFICATION
 
@@ -109,7 +122,6 @@ Les exemples d’écriture utilisent une table fictive `ZDEV_PRODUCT`. Ils ne do
 - [ABAP SQL — ABAP Keyword Documentation](https://help.sap.com/doc/abapdocu_latest_index_htm/latest/en-US/ABENABAP_SQL_OVIEW.html)
 - [Implementing Basic SELECT Statements — SAP Learning](https://learning.sap.com/courses/basic-abap-programming/implementing-basic-select-statements_a6d4effa-f6b0-4ef8-96c8-b79baa2da157)
 - [SELECT — ABAP Keyword Documentation](https://help.sap.com/doc/abapdocu_latest_index_htm/latest/en-US/ABAPSELECT_SHORTREF.html)
-
 
 ---
 

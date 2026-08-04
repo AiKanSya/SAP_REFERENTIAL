@@ -152,16 +152,47 @@ La liste d’utilisations permet d’identifier les consommateurs d’un objet. 
 > [!IMPORTANT]
 > Une liste d’utilisations ne garantit pas toujours l’identification des appels dynamiques construits à l’exécution.
 
-## PROCÉDURE PAS À PAS
+## PROCESS
 
-1. Saisir `/nSE80`.
-2. Choisir le type d’objet connu : programme, classe, groupe de fonctions, package ou autre objet Repository.
-3. Entrer le nom technique puis valider.
-4. Commencer en mode **Afficher**.
-5. Identifier le programme principal, les includes, les sous-objets et le package.
-6. Utiliser la liste d’utilisation pour repérer les appelants ou dépendances.
-7. Ouvrir l’entrée de répertoire pour relever responsable, package et couche de transport.
-8. Ne passer en modification qu’après avoir confirmé l’objet et l’environnement.
+### Étape 1 — Ouvrir le navigateur d’objets
+
+1. Saisir `/nSE80` dans le champ de commande.
+2. Dans la liste située au-dessus de l’arborescence, choisir le type d’objet correspondant à l’information disponible : programme, classe/interface, groupe de fonctions, package ou objet local.
+3. Saisir le nom technique complet puis valider avec Entrée.
+
+Ne choisir le type « Package » que pour explorer un ensemble d’objets. Si le nom commence par `ZCL_` mais qu’une recherche de programme échoue, recommencer avec le type classe/interface.
+
+### Étape 2 — Confirmer l’identité de l’objet
+
+1. Rester d’abord en mode **Afficher**.
+2. Vérifier le titre, le type technique et le nom affichés.
+3. Développer l’arborescence pour identifier le programme principal, les includes, les écrans, les GUI status ou les sections de classe réellement présents.
+4. Relever le package affecté à l’objet.
+
+Si SE80 propose de créer l’objet, annuler : le nom ou le type saisi ne correspond pas à un objet existant dans ce système.
+
+### Étape 3 — Identifier la structure et les dépendances
+
+1. Sélectionner le nœud principal de l’objet.
+2. Ouvrir chaque sous-objet utile sans modifier son contenu.
+3. Utiliser la liste d’utilisation sur la méthode, le programme, la table ou le module concerné.
+4. Distinguer les appelants de l’objet et les objets que celui-ci appelle.
+
+Une liste vide peut signifier qu’aucune référence statique n’existe ; elle ne détecte pas nécessairement les appels dont le nom est construit dynamiquement.
+
+### Étape 4 — Relever les informations de transport
+
+1. Ouvrir l’entrée de répertoire de l’objet depuis les fonctions de navigation de SE80.
+2. Relever le package, le responsable, le système d’origine et la couche de transport disponible via le package.
+3. Comparer ces valeurs avec les conventions du projet.
+
+Un objet affecté à `$TMP` est local et ne sera pas transporté par un ordre Workbench normal. Ne pas le réaffecter sans connaître la destination attendue.
+
+### Étape 5 — Autoriser ou refuser la modification
+
+Passer en mode modification uniquement après avoir confirmé le système, le mandant, le nom, le type, le package et le périmètre de dépendances.
+
+Le contrôle est terminé lorsque l’objet analysé est identifié sans ambiguïté et que ses principaux sous-objets, appelants et informations de transport sont connus.
 
 ## VÉRIFICATION
 
@@ -204,7 +235,6 @@ Ordre de transport  :
 - [Object Directory](https://help.sap.com/docs/ABAP_PLATFORM_NEW/4a368c163b08418890a406d413933ba7/5738e06c4eb711d182bf0000e829fbfe.html)
 - [Object Navigator](https://help.sap.com/docs/ABAP_PLATFORM_NEW/bd833c8355f34e96a6e83096b38bf192/efd94b7bebf811d295b100a0c94260a5.html)
 - [Repository Browser](https://help.sap.com/docs/ABAP_PLATFORM_NEW/bd833c8355f34e96a6e83096b38bf192/d180194b454211d189710000e8322d00.html)
-
 
 ---
 

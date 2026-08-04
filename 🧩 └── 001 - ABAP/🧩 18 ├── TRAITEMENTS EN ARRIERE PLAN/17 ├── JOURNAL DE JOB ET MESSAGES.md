@@ -46,14 +46,31 @@ Le Business Application Log, consultable avec `SLG1`, est souvent plus adapté q
 
 Des messages de type `A`, `E` ou certaines exceptions non traitées peuvent provoquer l’annulation du job. Le comportement doit être testé explicitement en arrière-plan.
 
-## PROCÉDURE PAS À PAS
+## PROCESS
 
-1. Saisir `/nST22`.
-2. Choisir la période correspondant à la reproduction.
-3. Filtrer par utilisateur, transaction ou runtime error lorsque nécessaire.
-4. Ouvrir le dump et relever le nom de l’erreur, l’exception, le programme et la ligne source.
-5. Lire les sections **Error analysis**, **How to correct the error** et **Source Code Extract**.
-6. Corréler le dump avec les données d’entrée et la version active du code.
+### ÉTAPE 1 — OUVRIR L’OCCURRENCE EXACTE
+
+Dans `SM37`, rechercher le job avec nom, utilisateur et période, puis vérifier l’heure et le numéro. Sélectionner l’occurrence et ouvrir son journal. Ne pas utiliser le journal d’une exécution homonyme comme preuve.
+
+### ÉTAPE 2 — LIRE LES MESSAGES DANS L’ORDRE
+
+Relever l’heure, le type de message, l’étape et le texte complet. Identifier le dernier message de progression réussi puis la première erreur. Les messages de fin qui suivent peuvent être des conséquences et non la cause initiale.
+
+### ÉTAPE 3 — RETROUVER LA SOURCE DU MESSAGE
+
+Pour un message de classe, relever l’identifiant et le numéro puis l’analyser dans `SE91`. Pour un texte écrit par le report, localiser l’instruction correspondante. Relier le message au programme et à la variante de l’étape.
+
+### ÉTAPE 4 — CORRÉLER AVEC LES AUTRES PREUVES
+
+À la même heure et sous le même utilisateur, rechercher un dump dans `ST22`, une erreur d’update dans `SM13`, un log applicatif dans `SLG1` ou un problème de spool. N’ouvrir que les outils justifiés par le type d’échec observé.
+
+### ÉTAPE 5 — AMÉLIORER LA JOURNALISATION DU PROGRAMME
+
+Ajouter des messages avant et après les unités importantes, avec identifiant d’exécution, clé métier et compteurs. Utiliser le journal applicatif pour les traitements nécessitant recherche, regroupement et conservation structurée. Éviter les données sensibles et les milliers de messages identiques.
+
+### ÉTAPE 6 — VALIDER LE DIAGNOSTIC
+
+Rejouer avec la même variante après correction. Vérifier que la progression atteint l’étape suivante, que le résultat métier est correct et que le journal contient un résumé cohérent : lus, réussis, rejetés et durée.
 
 ## VÉRIFICATION
 
@@ -93,7 +110,6 @@ Ordre de transport  :
 
 - [Displaying a Job Log — SAP Help Portal](https://help.sap.com/docs/ABAP_PLATFORM_NEW/b07e7195f03f438b8e7ed273099d74f3/4b2bbd0f4c594ba2e10000000a42189c.html)
 - [Background Processing Function Modules — SAP Help Portal](https://help.sap.com/docs/ABAP_PLATFORM_BW4HANA/7bfe8cdcfbb040dcb6702dada8c3e2f0/4d906689eba36e73e10000000a15822b.html)
-
 
 ---
 

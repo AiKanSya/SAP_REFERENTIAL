@@ -37,14 +37,31 @@ Pendant une phase de sauvegarde :
 - ne pas déléguer la validation à une méthode profonde ;
 - laisser le propriétaire de la transaction décider du commit ou du rollback.
 
-## PROCÉDURE PAS À PAS
+## PROCESS
 
-1. Lire la définition et identifier les prérequis du chapitre.
-2. Choisir un objet Z ou un scénario de démonstration sans impact métier.
-3. Reproduire l’exemple dans un système de développement et relever les données d’entrée.
-4. Contrôler la syntaxe ou la configuration avant activation/exécution.
-5. Comparer le résultat observé avec la section **Vérification**.
-6. Documenter toute différence liée à la release, aux autorisations ou au paramétrage du système.
+### ÉTAPE 1 — PARTIR DE LA BORNE MÉTIER ATTENDUE
+
+Identifier les données qui doivent rester atomiques et l’endroit où leur validation est autorisée. Relever le programme ou la transaction qui possède cette décision. Toute borne technique trouvée avant ce point est potentiellement prématurée.
+
+### ÉTAPE 2 — RECHERCHER LES COMMITS EXPLICITES
+
+Utiliser la recherche de code pour localiser `COMMIT WORK`, `ROLLBACK WORK`, `BAPI_TRANSACTION_COMMIT` et `BAPI_TRANSACTION_ROLLBACK` dans le code Z appelé. Étendre l’analyse aux exits, BAdI, modules fonction et wrappers réellement traversés par le scénario.
+
+### ÉTAPE 3 — CONTRÔLER LES CHANGEMENTS DE CONTEXTE
+
+Repérer les appels RFC, les traitements en update task, les étapes de dialogue et les API qui documentent une transaction propre. Pour chaque changement, noter quelles données sont déjà validées et quelles opérations restent en attente. Un appel dans une autre unité ne peut pas être annulé par le rollback local.
+
+### ÉTAPE 4 — VÉRIFIER PAR UNE TRACE CIBLÉE
+
+Exécuter un scénario minimal avec un identifiant de donnée unique et une trace SQL limitée à l’utilisateur concerné. Corréler les écritures et les fins de traitement avec le flux applicatif. La trace sert à confirmer une borne suspectée, pas à remplacer la lecture de la documentation de l’API.
+
+### ÉTAPE 5 — SUPPRIMER OU ENCADRER LA BORNE INCORRECTE
+
+Remonter le commit à l’orchestrateur lorsque le contrat de l’API le permet. Si une API impose sa propre transaction, isoler cet effet, documenter son irréversibilité et prévoir une compensation. Ne jamais neutraliser un commit standard sans analyser ses invariants.
+
+### ÉTAPE 6 — REJOUER UN ÉCHEC APRÈS CHAQUE BORNE
+
+Provoquer une erreur immédiatement après les points identifiés. Vérifier les tables, l’update task et les systèmes externes. Le scénario est maîtrisé seulement si chaque état intermédiaire est soit impossible, soit détectable et compensable.
 
 ## VÉRIFICATION
 
@@ -72,7 +89,6 @@ Pendant une phase de sauvegarde :
 - [LUWs in ABAP — SAP Help Portal](https://help.sap.com/docs/ABAP_PLATFORM_NEW/8132142fd1a144a59303663a03a7c2d4/54f5462a9604498382319304869a4280.html)
 - [Transactional Consistency Check — SAP Help Portal](https://help.sap.com/docs/ABAP_PLATFORM_NEW/753088fc00704d0a80e7fbd6803c8adb/89be29c77d1b4b5e80678e4d2da51345.html)
 - [Committing Database Changes — SAP Help Portal](https://help.sap.com/docs/SAP_NETWEAVER_702/fe24b0146c551014891ad42d6b2789e5/fceb3b64358411d1829f0000e829fbfe.html)
-
 
 ---
 

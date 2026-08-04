@@ -42,14 +42,31 @@ flowchart LR
 
 Ce dossier traite des jobs classiques de l’AS ABAP accessibles principalement avec `SM36` et `SM37`. Les applications Fiori **Application Jobs**, les modèles RAP et les développements ADT sont hors périmètre.
 
-## PROCÉDURE PAS À PAS
+## PROCESS
 
-1. Saisir `/nSM36`.
-2. Donner un nom explicite au job et définir sa classe/priorité selon les règles d’exploitation.
-3. Ajouter une étape ABAP avec programme, variante et utilisateur d’exécution.
-4. Définir la condition de démarrage : immédiate, date/heure, après job ou événement.
-5. Enregistrer puis vérifier que le job est planifié.
-6. Surveiller ensuite son exécution dans `SM37`.
+### ÉTAPE 1 — DÉFINIR L’UNITÉ DE TRAITEMENT
+
+Décrire les données sélectionnées, le volume, la fréquence et le résultat attendu. Définir l’unité de commit et la clé d’idempotence. Un redémarrage doit pouvoir distinguer les unités déjà validées de celles restant à traiter.
+
+### ÉTAPE 2 — SUPPRIMER LES DÉPENDANCES AU FRONTEND
+
+Rechercher les boîtes de dialogue, services `CL_GUI_FRONTEND_SERVICES`, fichiers locaux, contrôles interactifs et messages bloquants. Remplacer ces dépendances par paramètres de variante, fichiers serveur, journal applicatif et statuts persistants.
+
+### ÉTAPE 3 — ENCADRER LES PARAMÈTRES
+
+Créer un écran de sélection contrôlant dates, plages, mode test et taille de paquet. Enregistrer une variante d’exploitation explicite. Le programme valide à nouveau les paramètres au démarrage ; une variante n’est pas une preuve de validité.
+
+### ÉTAPE 4 — FOURNIR UNE JOURNALISATION EXPLOITABLE
+
+Écrire les étapes, compteurs et erreurs dans le journal de job et, pour un traitement exploité régulièrement, dans le journal applicatif. Inclure programme, variante, identifiant d’exécution et première unité en erreur sans exposer de données sensibles inutiles.
+
+### ÉTAPE 5 — PLANIFIER AVEC LE BON UTILISATEUR
+
+Créer le job avec un utilisateur technique possédant uniquement les autorisations requises. Définir l’étape, la condition de démarrage et la classe conformément aux règles Basis. Vérifier dans `SM37` le statut libéré et les paramètres effectifs.
+
+### ÉTAPE 6 — TESTER ÉCHEC ET REPRISE
+
+Exécuter un faible volume en qualité, provoquer un échec après une unité validée puis relancer. Vérifier les données, les doublons, le journal, le spool et la durée. Le job est prêt seulement si la reprise produit le même état final qu’une exécution sans interruption.
 
 ## VÉRIFICATION
 
@@ -89,7 +106,6 @@ Ordre de transport  :
 
 - [Background Processing: Concepts and Features — SAP Help Portal](https://help.sap.com/docs/ABAP_PLATFORM_NEW/3ad3ba0715c5422eae08578d4c40328d/4b2b51c34c594ba2e10000000a42189c.html)
 - [Scheduling Background Jobs — SAP Help Portal](https://help.sap.com/docs/ABAP_PLATFORM_NEW/b07e7195f03f438b8e7ed273099d74f3/4b2b2954365474fee10000000a421937.html)
-
 
 ---
 

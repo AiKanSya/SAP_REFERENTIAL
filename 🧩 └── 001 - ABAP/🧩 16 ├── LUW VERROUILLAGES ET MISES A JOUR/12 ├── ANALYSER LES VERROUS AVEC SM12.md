@@ -32,13 +32,31 @@ Une entrée permet généralement d’identifier le propriétaire, la clé verro
 
 Supprimer un verrou ne restaure pas la cohérence des données. Le programme propriétaire peut encore poursuivre et écrire comme s’il détenait le verrou. La suppression manuelle est une opération d’administration, pas une solution applicative normale.
 
-## PROCÉDURE PAS À PAS
+## PROCESS
 
-1. Saisir `/nSM12`.
-2. Renseigner utilisateur, table de verrou ou argument si ces informations sont connues.
-3. Afficher les entrées et identifier le propriétaire ainsi que l’âge du verrou.
-4. Vérifier qu’aucune session ou mise à jour active ne dépend encore du verrou.
-5. Ne supprimer manuellement une entrée qu’après validation opérationnelle et technique.
+### ÉTAPE 1 — RELEVER LE CONTEXTE DE LA COLLISION
+
+Noter l’utilisateur, le mandant, l’heure, la transaction, le document métier et le message exact. Identifier si la collision est reproductible ou seulement historique. Sans cette clé de corrélation, une liste globale de verrous ne permet pas d’identifier le propriétaire utile.
+
+### ÉTAPE 2 — FILTRER DANS `SM12`
+
+Saisir `/nSM12`, puis filtrer avec l’utilisateur, l’objet de verrouillage ou l’argument connus. Limiter la recherche au périmètre nécessaire. Afficher les entrées et relever l’objet, la clé, le mode, le propriétaire et l’âge du verrou suspect.
+
+### ÉTAPE 3 — IDENTIFIER LE TRAITEMENT PROPRIÉTAIRE
+
+Corréler l’entrée avec les sessions de l’utilisateur, les jobs dans `SM37` et les mises à jour dans `SM13`. Vérifier si la transaction, le job ou l’update task est encore actif. Un verrou ancien n’est pas nécessairement orphelin tant que son propriétaire poursuit une opération valide.
+
+### ÉTAPE 4 — VÉRIFIER LA CAUSE APPLICATIVE
+
+Examiner la clé passée au module `ENQUEUE_*`, la valeur de `_SCOPE` et tous les chemins de sortie. Rechercher un retour anticipé, une exception gérée sans dequeue, une attente utilisateur trop longue ou une update bloquée. Corriger la durée ou la granularité plutôt que de traiter uniquement le symptôme dans `SM12`.
+
+### ÉTAPE 5 — DÉCIDER D’UNE SUPPRESSION MANUELLE
+
+Supprimer une entrée seulement après confirmation que son traitement propriétaire est terminé ou irrécupérable et qu’aucune mise à jour dépendante ne reste active. Obtenir la validation opérationnelle prévue par l’organisation. La suppression libère la concurrence ; elle n’annule ni ne restaure les données métier.
+
+### ÉTAPE 6 — REJOUER ET CONTRÔLER
+
+Relancer l’opération avec la même clé. Vérifier le résultat métier, la disparition normale du verrou et l’absence d’update en erreur. Conserver l’objet, l’argument, le propriétaire et la cause dans le diagnostic afin de rendre une récidive identifiable.
 
 ## VÉRIFICATION
 
@@ -81,7 +99,6 @@ Ordre de transport  :
 - [SM12 - Lock Concept — SAP Help Portal](https://help.sap.com/docs/SUPPORT_CONTENT/basis/3354611556.html)
 - [Select and Display Lock Entries — SAP Help Portal](https://help.sap.com/docs/SAP_NETWEAVER_AS_ABAP_752/d0739d980ecf42ae9f3b4c19e21a4b6e/47ea3bcee97f486ee10000000a42189d.html)
 - [Lock Table — SAP Help Portal](https://help.sap.com/docs/ABAP_PLATFORM_NEW/6568469cf5a1460a8d85c58b83d21ec2/47daae4038793c85e10000000a42189c.html)
-
 
 ---
 

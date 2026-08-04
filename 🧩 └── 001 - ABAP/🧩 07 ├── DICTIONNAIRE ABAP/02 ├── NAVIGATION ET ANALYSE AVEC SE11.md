@@ -103,15 +103,33 @@ Pour comprendre un champ standard :
 - La liste d’utilisation permet d’évaluer l’impact d’une modification.
 - SE14, SE54, SM30 et SE84 complètent SE11 pour des usages précis.
 
-## PROCÉDURE PAS À PAS
+## PROCESS
+
+### Étape 1 — Ouvrir le bon type d’objet
 
 1. Saisir `/nSE11`.
-2. Choisir le type d’objet DDIC correspondant au chapitre.
-3. Entrer le nom technique ; utiliser **Afficher** pour un objet existant ou **Créer** pour un objet Z autorisé.
-4. Renseigner les attributs et composants en suivant les règles du chapitre.
-5. Lancer le contrôle de cohérence.
-6. Activer l’objet et traiter chaque message avant de poursuivre.
-7. Utiliser la liste d’utilisation et, pour les tables, vérifier les paramètres techniques et la structure physique.
+2. Sélectionner explicitement table, vue, type de données, domaine, aide à la recherche ou objet de verrouillage.
+3. Saisir le nom technique et choisir **Afficher**.
+
+Si le système propose une création, annuler et vérifier le type et le nom. Ne pas créer un homonyme dans une autre catégorie.
+
+### Étape 2 — Lire les dépendances descendantes
+
+Pour une table ou structure, parcourir chaque composant et ouvrir son élément de données puis son domaine. Relever type, longueur, décimales, valeurs fixes, libellés et documentation.
+
+Une incohérence entre la sémantique du champ et celle de l’élément de données doit être signalée avant toute réutilisation.
+
+### Étape 3 — Lire les attributs propres à l’objet
+
+Contrôler les clés et paramètres techniques d’une table, les paramètres d’une aide de recherche, les tables d’un objet de verrouillage ou la catégorie d’un type de données. Noter les valeurs qui influencent l’exécution, pas seulement la structure visible.
+
+### Étape 4 — Examiner les consommateurs
+
+Ouvrir la liste d’utilisation et séparer objets DDIC, programmes, classes et interfaces. Une liste statique vide ne garantit pas l’absence d’utilisation dynamique.
+
+### Étape 5 — Confirmer l’état actif
+
+Vérifier le statut d’activation et le journal disponible. Pour une table, comparer si nécessaire la définition DDIC et l’objet physique avec les outils d’ajustement, sans lancer de conversion. L’analyse est terminée lorsque structure, dépendances, consommateurs et état actif sont identifiés.
 
 ## VÉRIFICATION
 
@@ -152,7 +170,6 @@ Ordre de transport  :
 
 - [ABAP Dictionary — SAP Help Portal](https://help.sap.com/docs/SAP_NETWEAVER_740/ec1c9c8191b74de98feb94001a95dd76/cf21ea0b446011d189700000e8322d00.html)
 - [Repository Information System — SAP Help Portal](https://help.sap.com/docs/SAP_NETWEAVER_740/bd833c8355f34e96a6e83096b38bf192/d180198c454211d189710000e8322d00.html)
-
 
 ---
 

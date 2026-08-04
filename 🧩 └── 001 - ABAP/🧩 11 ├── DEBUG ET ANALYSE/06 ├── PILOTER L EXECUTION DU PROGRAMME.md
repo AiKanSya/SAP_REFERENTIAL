@@ -64,14 +64,25 @@ Naviguer dans le code ne modifie pas l’instruction courante. La ligne affiché
 
 Toujours repérer l’indicateur de l’instruction courante avant de reprendre le programme.
 
-## PROCÉDURE PAS À PAS
+## PROCESS
 
-1. Lire la définition et identifier les prérequis du chapitre.
-2. Choisir un objet Z ou un scénario de démonstration sans impact métier.
-3. Reproduire l’exemple dans un système de développement et relever les données d’entrée.
-4. Contrôler la syntaxe ou la configuration avant activation/exécution.
-5. Comparer le résultat observé avec la section **Vérification**.
-6. Documenter toute différence liée à la release, aux autorisations ou au paramétrage du système.
+### Étape 1 — Arrêter avant un appel
+
+Placer un breakpoint sur une méthode, un module fonction ou un `PERFORM`. Relever les paramètres et la pile avant l’appel.
+
+### Étape 2 — Comparer F5 et F6
+
+Utiliser `F5` pour entrer et identifier la première instruction. Refaire le scénario avec `F6` : l’exécution doit reprendre après l’appel, avec les sorties déjà calculées.
+
+### Étape 3 — Utiliser F7
+
+Entrer dans l’appel, examiner le contexte puis utiliser `F7`. À l’appelant, comparer immédiatement paramètres de sortie et données modifiées.
+
+### Étape 4 — Continuer avec F8
+
+Placer un second breakpoint à une étape ultérieure puis utiliser `F8`. Si aucun arrêt ne survient, vérifier que ce point appartient à la branche exécutée.
+
+La procédure est validée lorsque chaque commande produit l’effet attendu sur la pile et permet de comparer l’état avant/après l’appel.
 
 ## VÉRIFICATION
 
@@ -107,7 +118,6 @@ lo_service->calculate( ).
 
 - [Source Code Execution and Navigation — SAP Help Portal](https://help.sap.com/docs/ABAP_PLATFORM_NEW/ba879a6e2ea04d9bb94c7ccd7cdac446/679664bc4ac74d2d82a05f458396797c.html)
 - [Standard ABAP Debugger — SAP Help Portal](https://help.sap.com/docs/SAP_NETWEAVER_AS_ABAP_751_IP/ba879a6e2ea04d9bb94c7ccd7cdac446/49250c884d7216b5e10000000a42189d.html)
-
 
 ---
 

@@ -1,4 +1,5 @@
 # MÉTHOD" Définir le contrat et limiter l’API publique au besoin réel.
+
 ES STATIQUES ET COMPOSANTS DE CLASSE
 
 ## RÉSULTAT ATTENDU
@@ -25,14 +26,27 @@ DATA(lv_normalized) = zcl_dev_string_tools=>normalize( iv_text ).
 
 Elle est moins adaptée si la méthode dépend de la base, de l’heure, de l’utilisateur, d’un customizing ou d’un autre service : ces dépendances deviennent cachées et difficiles à remplacer en test.
 
-## PROCÉDURE DANS SE24
+## PROCESS
 
-1. Créer une méthode.
-2. Activer l’indicateur **Méthode de classe** ou équivalent.
-3. Définir les paramètres.
-4. Implémenter sans dépendre d’attributs d’instance.
-5. Appeler la méthode avec `nom_classe=>nom_methode`.
-6. Ajouter un test des cas limites.
+### Étape 1 — Vérifier que l’instance est inutile
+
+Confirmer que le traitement ne dépend d’aucun état propre à un objet et qu’il représente une opération de classe, une conversion ou une factory. Sinon créer une méthode d’instance.
+
+### Étape 2 — Créer la méthode de classe
+
+Dans `SE24`, créer la méthode puis activer **Méthode de classe**. Définir visibilité et signature complète comme pour une méthode d’instance.
+
+### Étape 3 — Contrôler les dépendances
+
+Implémenter en utilisant paramètres, constantes et attributs de classe autorisés. Toute tentative d’accès direct à un attribut d’instance doit être supprimée ou remplacée par une instance explicitement fournie.
+
+### Étape 4 — Appeler sans instance
+
+Utiliser `zcl_nom=>methode( ... )` dans un report. Vérifier qu’aucun `NEW` n’est nécessaire et que le résultat ne dépend pas de l’ordre d’appels précédents.
+
+### Étape 5 — Tester les limites
+
+Tester cas nominal, valeur initiale et valeur maximale pertinente. La méthode est validée lorsque deux appels identiques produisent le même résultat en l’absence d’état de classe volontaire.
 
 ## CODE DE FONCTION PURE À ADAPTER
 

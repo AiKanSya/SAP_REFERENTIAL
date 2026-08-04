@@ -44,13 +44,27 @@ Avant le développement :
 
 Ne coder aucun chemin observé uniquement en développement. Un chemin comme `/usr/sap/.../interface` peut différer entre DEV, QAS et PRD. La résolution doit passer par un nom logique ou une configuration applicative transportable.
 
-## PROCÉDURE PAS À PAS
+## PROCESS
 
-1. Saisir `/nAL11`.
-2. Identifier le répertoire logique autorisé correspondant à l’interface.
-3. Afficher son contenu et relever nom, date et taille du fichier.
-4. Ne pas supposer qu’un fichier visible est lisible par le programme : vérifier aussi le chemin physique et les autorisations.
-5. Pour un test, utiliser un fichier non productif et documenter l’horodatage.
+### Étape 1 — Ouvrir l’alias attendu
+
+Saisir `/nAL11`, rechercher l’alias documenté puis l’ouvrir. Ne choisir pas un répertoire uniquement parce que son nom ressemble au flux.
+
+### Étape 2 — Relever le contexte physique
+
+Noter chemin et serveur d’application. Sur un système multi-instance, déterminer si le stockage est partagé ou local.
+
+### Étape 3 — Identifier le fichier exact
+
+Relever nom, date et taille, puis comparer l’horodatage avec le journal du producteur. Un fichier visible peut appartenir à une autre exécution.
+
+### Étape 4 — Vérifier lecture et autorisation
+
+Confirmer avec le programme ou un test contrôlé que le chemin physique est accessible par l’utilisateur d’exécution. La visibilité dans `AL11` ne prouve pas cette autorisation.
+
+### Étape 5 — Classer l’anomalie
+
+Distinguer absent, vide, incomplet, illisible et inaccessible. Ne modifier aucun fichier. Le diagnostic est terminé lorsque chemin, instance et anomalie sont prouvés.
 
 ## ERREURS FRÉQUENTES
 
@@ -85,7 +99,6 @@ Ordre de transport  :
 
 - [ABAP File Interface — SAP Help Portal](https://help.sap.com/docs/ABAP_PLATFORM_NEW/7bfe8cdcfbb040dcb6702dada8c3e2f0/fa2fd3be291f469f862c4c8215e0549b.html)
 - [Physical and Logical File Names — SAP Help Portal](https://help.sap.com/docs/ABAP_PLATFORM_NEW/7bfe8cdcfbb040dcb6702dada8c3e2f0/9e49819d5b2a440fb508772494b9a473.html)
-
 
 ---
 

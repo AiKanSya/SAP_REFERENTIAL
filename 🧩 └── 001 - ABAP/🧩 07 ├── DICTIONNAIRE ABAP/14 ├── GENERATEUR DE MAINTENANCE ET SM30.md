@@ -55,15 +55,29 @@ Les paramètres principaux sont :
 
 Le mode une étape convient aux tables simples comportant peu de champs. Le mode deux étapes est plus adapté lorsque la ligne contient de nombreux champs ou nécessite un écran détaillé.
 
-## EXÉCUTION AVEC SM30
+## PROCESS
 
 Dans `SM30` :
 
-1. saisir la table ou la vue ;
-2. choisir **Afficher** ou **Gérer** selon les autorisations ;
-3. utiliser **Nouvelles entrées** ou modifier les valeurs existantes ;
-4. enregistrer ;
-5. renseigner une demande de transport si la configuration l’exige.
+### Étape 1 — Ouvrir le bon objet de maintenance
+
+Saisir la table ou la vue dans `SM30`, puis choisir **Afficher** avant **Gérer**. Vérifier le titre, les champs et le nombre d’entrées afin d’exclure une homonymie ou un mauvais mandant.
+
+### Étape 2 — Déterminer le mode de transport
+
+Contrôler la classe de livraison, le paramétrage du générateur et la procédure du projet. Déterminer si les entrées sont transportées, saisies dans chaque système ou considérées comme données applicatives.
+
+### Étape 3 — Créer ou modifier une entrée
+
+Choisir **Nouvelles entrées** ou sélectionner une ligne existante. Renseigner la clé en premier, puis les valeurs contrôlées. Ne modifier jamais la clé d’une ligne existante pour simuler une suppression/création sans vérifier les dépendances.
+
+### Étape 4 — Enregistrer et traiter la demande
+
+Enregistrer. Si une demande Customizing est proposée, sélectionner l’ordre autorisé et contrôler son contenu dans `SE10`. Si aucune demande n’est proposée alors qu’elle est attendue, arrêter et vérifier le paramétrage avant de poursuivre.
+
+### Étape 5 — Relire et tester
+
+Quitter puis rouvrir la vue avec les mêmes critères. Vérifier la ligne enregistrée et exécuter le processus consommateur. La maintenance est validée lorsque la valeur est persistée dans le bon mandant et rattachée au transport prévu.
 
 ## ÉVÉNEMENTS DU GÉNÉRATEUR
 
@@ -98,15 +112,25 @@ Il est insuffisant lorsque le processus exige :
 - Les événements permettent des adaptations, mais augmentent la maintenance.
 - SM30 ne remplace pas une application métier complexe.
 
-## PROCÉDURE PAS À PAS
+## PROCESS
 
-1. Saisir `/nSE11`.
-2. Choisir le type d’objet DDIC correspondant au chapitre.
-3. Entrer le nom technique ; utiliser **Afficher** pour un objet existant ou **Créer** pour un objet Z autorisé.
-4. Renseigner les attributs et composants en suivant les règles du chapitre.
-5. Lancer le contrôle de cohérence.
-6. Activer l’objet et traiter chaque message avant de poursuivre.
-7. Utiliser la liste d’utilisation et, pour les tables, vérifier les paramètres techniques et la structure physique.
+### Étape 1 — Préparer la table ou la vue
+
+Vérifier dans `SE11` qu’elle est active, possède une clé cohérente et autorise le type de maintenance voulu. Définir les clés étrangères et textes avant de générer les écrans.
+
+### Étape 2 — Générer le dialogue de maintenance
+
+Ouvrir le générateur depuis `SE11`, renseigner groupe de fonctions, groupe d’autorisations, type une ou deux étapes et numéros d’écrans. Utiliser un groupe de fonctions client dédié ou explicitement partagé.
+
+### Étape 3 — Contrôler la génération
+
+Générer puis lire tous les messages. Ouvrir le groupe de fonctions dans `SE80` et vérifier les écrans créés. Ne modifier le code généré directement que si la technique d’événements prévue ne couvre pas le besoin.
+
+### Étape 4 — Tester les autorisations et opérations
+
+Tester affichage, création, modification et suppression avec les rôles représentatifs. Vérifier les contrôles de domaine, clés étrangères, doublons et transport.
+
+La génération est validée lorsque `SM30` applique les règles de saisie et d’autorisation sans permettre une modification hors périmètre.
 
 ## VÉRIFICATION
 
@@ -147,7 +171,6 @@ Ordre de transport  :
 
 - [Table Maintenance Generator — SAP Help Portal](https://help.sap.com/docs/SUPPORT_CONTENT/abap/3353525944.html)
 - [Maintenance Views — SAP Help Portal](https://help.sap.com/docs/SAP_NETWEAVER_731_BW_ABAP/ec1c9c8191b74de98feb94001a95dd76/cf21ecdf446011d189700000e8322d00.html)
-
 
 ---
 

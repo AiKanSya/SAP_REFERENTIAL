@@ -173,14 +173,40 @@ Surveiller notamment :
 - tester chaque branche et chaque mode de sortie ;
 - ne pas utiliser une construction moderne sans vérifier la version ABAP cible.
 
-## PROCÉDURE PAS À PAS
+## PROCESS
 
-1. Saisir `/nSAT`.
-2. Créer ou sélectionner une variante de mesure adaptée.
-3. Définir le programme, la transaction ou l’utilisateur à mesurer.
-4. Démarrer la mesure puis reproduire une seule fois le scénario.
-5. Arrêter et analyser le hit list, la hiérarchie d’appels et les temps nets.
-6. Répéter la mesure après correction avec les mêmes données et le même contexte.
+### Étape 1 — Cartographier les chemins imbriqués
+
+1. Ouvrir la méthode ou le programme en mode affichage.
+2. Repérer les blocs `IF`, `CASE`, `LOOP`, `DO` et `WHILE` imbriqués.
+3. Pour chaque niveau, noter la condition d’entrée et la sortie attendue.
+4. Identifier le chemin principal que le lecteur devrait suivre de haut en bas.
+
+Si une condition ne correspond qu’à un cas d’erreur, elle est candidate à une clause de garde. Ne modifier encore aucun branchement : cette étape sert à conserver le comportement existant.
+
+### Étape 2 — Prouver le comportement avant refactorisation
+
+Préparer au minimum un cas de test par branche : cas nominal, objet inactif, autorisation refusée et limite de boucle. Exécuter les tests et conserver les résultats observables.
+
+Sans résultat de référence, une réduction visuelle de l’imbrication peut modifier silencieusement le flux métier.
+
+### Étape 3 — Extraire les sorties anticipées
+
+1. Traiter en premier les entrées invalides ou les conditions bloquantes.
+2. Utiliser `RETURN`, `CONTINUE`, `CHECK` ou une exception uniquement selon la portée voulue.
+3. Replacer le traitement nominal au niveau d’indentation principal.
+
+Après chaque déplacement, relancer le cas correspondant. Si une sortie quitte une méthode entière au lieu d’une boucle, annuler et choisir l’instruction adaptée à la portée.
+
+### Étape 4 — Sécuriser les boucles conditionnelles
+
+Pour chaque `DO` ou `WHILE`, vérifier l’état initial, la condition de poursuite, l’instruction qui modifie cet état et la sortie normale. Ajouter une limite technique lorsque la condition dépend d’un état externe ou complexe.
+
+Le test de limite doit produire un résultat contrôlé : message, exception ou journal. Une boucle interrompue sans diagnostic reste inexploitable.
+
+### Étape 5 — Valider tous les chemins
+
+Relancer exactement les cas conservés à l’étape 2. Comparer résultats, messages et effets de bord. La refactorisation est terminée lorsque le chemin nominal est lisible, chaque sortie est explicite et aucun comportement observé n’a changé.
 
 ## VÉRIFICATION
 

@@ -87,14 +87,29 @@ Meilleur : protéger uniquement l’instruction ou l’appel dont l’exception 
 
 Un bloc court permet d’identifier clairement la cause et évite d’intercepter une exception inattendue provenant d’une autre opération.
 
-## PROCÉDURE PAS À PAS
+## PROCESS
 
-1. Saisir `/nATC` ou utiliser l’entrée ATC disponible dans le système.
-2. Choisir une variante de contrôle autorisée.
-3. Lancer le contrôle sur l’objet, le package ou l’ordre de transport.
-4. Classer les findings par priorité et corriger d’abord les erreurs bloquantes.
-5. Demander une exemption uniquement avec justification, propriétaire et échéance.
-6. Relancer le contrôle avant libération.
+### Étape 1 — Identifier les exceptions attendues
+
+Ouvrir la signature de l’appel et relever les classes déclarées ainsi que leurs relations d’héritage. Ne créer pas un `CATCH cx_root` général sans stratégie de traitement ou de retransmission.
+
+### Étape 2 — Délimiter le bloc TRY
+
+Placer dans `TRY` uniquement les instructions appartenant à la même stratégie de reprise. Un bloc trop large empêche d’identifier quelle opération a échoué et peut laisser un état partiellement modifié.
+
+### Étape 3 — Ordonner les CATCH
+
+Intercepter d’abord les classes les plus spécifiques, puis leurs superclasses. Dans chaque `CATCH`, décider explicitement : corriger localement, convertir en résultat métier, journaliser puis relancer, ou encapsuler avec `PREVIOUS`.
+
+### Étape 4 — Protéger les ressources et la transaction
+
+Fermer fichiers, result sets ou connexions dans le chemin d’erreur prévu. Si l’opération a modifié des données, laisser la couche propriétaire de la LUW décider du rollback ou du commit.
+
+### Étape 5 — Tester chaque branche
+
+Provoquer séparément chaque exception spécifique et une exception non prévue. Vérifier la classe interceptée, le message, le nettoyage et l’état transactionnel.
+
+Le bloc est validé lorsque aucune exception attendue n’est avalée silencieusement et que les erreurs inconnues conservent leur cause technique.
 
 ## VÉRIFICATION
 
@@ -136,7 +151,6 @@ ENDTRY.
 - [TRY — ABAP Keyword Documentation](https://help.sap.com/doc/abapdocu_latest_index_htm/latest/en-US/ABAPTRY.html)
 - [System Response After a Class-Based Exception — ABAP Keyword Documentation](https://help.sap.com/doc/abapdocu_latest_index_htm/latest/en-US/ABENEXCEPTIONS_SYSTEM_RESPONSE.html)
 - [Handling and Propagating Exceptions — ABAP Programming Guideline](https://help.sap.com/doc/abapdocu_latest_index_htm/latest/en-US/ABENHANDL_PROP_EXCEPT_GUIDL.html)
-
 
 ---
 

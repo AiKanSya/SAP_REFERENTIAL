@@ -99,14 +99,31 @@ Chaque niveau doit apporter une information distincte : format, sens, compositio
 - Les extensions doivent utiliser les mécanismes prévus par SAP.
 - Toute évolution DDIC exige une analyse des dépendances et de la base physique.
 
-## PROCÉDURE PAS À PAS
+## PROCESS
 
-1. Saisir `/nSAT`.
-2. Créer ou sélectionner une variante de mesure adaptée.
-3. Définir le programme, la transaction ou l’utilisateur à mesurer.
-4. Démarrer la mesure puis reproduire une seule fois le scénario.
-5. Arrêter et analyser le hit list, la hiérarchie d’appels et les temps nets.
-6. Répéter la mesure après correction avec les mêmes données et le même contexte.
+### Étape 1 — Reconstituer le modèle
+
+Lister tables, clés, relations, domaines, éléments de données, structures et aides de recherche du périmètre. Associer chaque objet à sa signification métier et à son propriétaire.
+
+### Étape 2 — Rechercher les duplications sémantiques
+
+Comparer les objets de même type et longueur. Déterminer s’ils représentent réellement la même donnée. Fusionner ou réutiliser uniquement lorsque format, valeurs autorisées, libellés et cycle de vie coïncident.
+
+### Étape 3 — Vérifier les clés et relations
+
+Contrôler stabilité des clés, gestion du mandant, clés étrangères, tables de textes et références devise/unité. Pour chaque relation absente, décider si elle doit être portée par le DDIC ou par une validation applicative documentée.
+
+### Étape 4 — Vérifier les propriétés physiques
+
+Examiner classes de livraison, paramètres techniques, bufferisation et index. Exiger une justification mesurée pour chaque index secondaire ou buffer actif.
+
+### Étape 5 — Contrôler l’évolutivité
+
+Vérifier catégories d’amélioration, append existants, listes d’utilisation et interfaces exposées. Simuler l’ajout d’un champ ou d’une valeur afin d’identifier les consommateurs fragiles.
+
+### Étape 6 — Formaliser les corrections
+
+Classer chaque anomalie par objet source, impact et ordre de correction. Activer du bas vers le haut et tester les consommateurs. La revue est terminée lorsque chaque objet possède une responsabilité claire et qu’aucune incohérence technique connue n’est laissée sans décision documentée.
 
 ## VÉRIFICATION
 

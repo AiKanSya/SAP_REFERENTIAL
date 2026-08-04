@@ -35,14 +35,31 @@ sequenceDiagram
 
 L’update task n’est pas une file d’intégration générique. Elle fait partie de la SAP LUW et doit exécuter des changements persistants déterministes, sans interaction utilisateur ni commit interne.
 
-## PROCÉDURE PAS À PAS
+## PROCESS
 
-1. Lire la définition et identifier les prérequis du chapitre.
-2. Choisir un objet Z ou un scénario de démonstration sans impact métier.
-3. Reproduire l’exemple dans un système de développement et relever les données d’entrée.
-4. Contrôler la syntaxe ou la configuration avant activation/exécution.
-5. Comparer le résultat observé avec la section **Vérification**.
-6. Documenter toute différence liée à la release, aux autorisations ou au paramétrage du système.
+### ÉTAPE 1 — SÉPARER PRÉPARATION ET PERSISTANCE
+
+Dans le traitement de dialogue, valider les entrées, poser les verrous et construire des paramètres complets. Dans le module de mise à jour, limiter le code à la persistance déterministe de ces paramètres. Ne pas dépendre d’un état global du programme appelant.
+
+### ÉTAPE 2 — CLASSER LES ÉCRITURES
+
+Placer en V1 les écritures indispensables à la cohérence du résultat métier. Réserver V2 aux mises à jour secondaires qui peuvent être exécutées après V1. Une donnée nécessaire pour confirmer le succès à l’utilisateur ne doit pas être reléguée en V2 par simple recherche de performance.
+
+### ÉTAPE 3 — CRÉER DES INTERFACES SÉRIALISABLES
+
+Définir les paramètres du module fonction avec des types DDIC compatibles avec l’update task. Transmettre les valeurs nécessaires au moment de l’enregistrement. Éviter les références d’objet, dépendances frontend et lectures ambiguës qui pourraient changer avant l’exécution.
+
+### ÉTAPE 4 — ENREGISTRER LES APPELS DANS LA SAP LUW
+
+Appeler les modules avec `CALL FUNCTION ... IN UPDATE TASK` après validation. Regrouper les appels appartenant à la même unité métier. L’enregistrement n’est pas une preuve de mise à jour : le traitement ne démarre qu’à la borne de commit.
+
+### ÉTAPE 5 — DÉCLENCHER ET OBSERVER LA MISE À JOUR
+
+Exécuter le commit dans l’orchestrateur. Utiliser `COMMIT WORK AND WAIT` uniquement lorsque l’appelant doit connaître immédiatement le résultat V1. Contrôler `sy-subrc`, les données persistées et `SM13` au lieu de déduire le succès du seul retour de l’enregistrement.
+
+### ÉTAPE 6 — TESTER UNE PANNE DE MODULE
+
+Provoquer une erreur contrôlée dans un module Z en développement. Vérifier le statut de l’update dans `SM13`, l’absence d’état V1 partiel et le comportement des mises à jour secondaires. Corriger la cause et valider la procédure de reprise avant livraison.
 
 ## VÉRIFICATION
 
@@ -70,7 +87,6 @@ L’update task n’est pas une file d’intégration générique. Elle fait par
 - [The Update Process — SAP Help Portal](https://help.sap.com/docs/SAP_NETWEAVER_AS_ABAP_752/979cf1522d164bf7a781796efd8850ee/c8ed15db039b4f45a8507015f531976b.html)
 - [Work Processes in Application Server ABAP — SAP Help Portal](https://help.sap.com/docs/ABAP_PLATFORM_NEW/e067931e0b0a4b2089f4db327879cd55/22d85d37ab534b86a5098ded38c06c0f.html)
 - [Synchronous and Asynchronous Updating — SAP Help Portal](https://help.sap.com/docs/ABAP_PLATFORM_NEW/979cf1522d164bf7a781796efd8850ee/6b96ee764b054c5f929dea77ffcf7a6b.html)
-
 
 ---
 

@@ -79,15 +79,32 @@ Pour de nouveaux modèles de lecture, SAP privilégie les vues CDS. Leur concept
 - Une vue de projection ne porte que sur une table.
 - Les vues CDS ne sont pas traitées dans ce dossier SAP GUI.
 
-## PROCÉDURE PAS À PAS
+## PROCESS
 
-1. Saisir `/nSE11`.
-2. Choisir le type d’objet DDIC correspondant au chapitre.
-3. Entrer le nom technique ; utiliser **Afficher** pour un objet existant ou **Créer** pour un objet Z autorisé.
-4. Renseigner les attributs et composants en suivant les règles du chapitre.
-5. Lancer le contrôle de cohérence.
-6. Activer l’objet et traiter chaque message avant de poursuivre.
-7. Utiliser la liste d’utilisation et, pour les tables, vérifier les paramètres techniques et la structure physique.
+### Étape 1 — Choisir le type de vue classique
+
+Définir le besoin : jointure de lecture, projection, aide de recherche ou maintenance. Vérifier qu’une vue CDS n’appartient pas au périmètre prévu du projet ; ce chapitre traite uniquement les vues classiques `SE11`.
+
+### Étape 2 — Définir les sources et jointures
+
+1. Ouvrir `SE11`, choisir **Vue** et créer un objet client.
+2. Sélectionner le type de vue adapté.
+3. Ajouter les tables sources.
+4. Définir chaque condition de jointure sur des champs de types compatibles.
+
+Pour une vue dépendante du mandant, contrôler la gestion de `MANDT` et éviter une jointure qui combine des clients différents.
+
+### Étape 3 — Sélectionner les champs
+
+Ajouter uniquement les champs nécessaires au consommateur. Conserver des noms non ambigus et vérifier les références de devise ou d’unité pour les montants et quantités.
+
+### Étape 4 — Définir les conditions de sélection autorisées
+
+Ajouter les conditions fixes réellement inhérentes à la vue. Ne pas figer un filtre dépendant d’un utilisateur ou d’un scénario ponctuel ; ce filtre appartient au programme consommateur.
+
+### Étape 5 — Activer et comparer
+
+Activer, tester le contenu dans `SE11`, puis exécuter une requête ABAP SQL avec des critères précis. Comparer les lignes avec une jointure directe de référence. La vue est validée lorsque jointures, mandant, cardinalité observée et champs retournés correspondent au modèle attendu.
 
 ## VÉRIFICATION
 
@@ -128,7 +145,6 @@ Ordre de transport  :
 
 - [Views — ABAP Dictionary — SAP Help Portal](https://help.sap.com/docs/SAP_NETWEAVER_AS_ABAP_FOR_SOH_740/ec1c9c8191b74de98feb94001a95dd76/cf21ec5d446011d189700000e8322d00.html?version=7.40.30)
 - [Maintenance Views — SAP Help Portal](https://help.sap.com/docs/SAP_NETWEAVER_731_BW_ABAP/ec1c9c8191b74de98feb94001a95dd76/cf21ecdf446011d189700000e8322d00.html)
-
 
 ---
 

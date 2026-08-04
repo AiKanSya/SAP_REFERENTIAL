@@ -94,15 +94,32 @@ Supprimer manuellement un verrou peut permettre à deux traitements incompatible
 - La durée du verrou doit couvrir le traitement critique sans être excessive.
 - Un verrou ne doit pas être supprimé dans SM12 sans diagnostic.
 
-## PROCÉDURE PAS À PAS
+## PROCESS
 
-1. Saisir `/nSE11`.
-2. Choisir le type d’objet DDIC correspondant au chapitre.
-3. Entrer le nom technique ; utiliser **Afficher** pour un objet existant ou **Créer** pour un objet Z autorisé.
-4. Renseigner les attributs et composants en suivant les règles du chapitre.
-5. Lancer le contrôle de cohérence.
-6. Activer l’objet et traiter chaque message avant de poursuivre.
-7. Utiliser la liste d’utilisation et, pour les tables, vérifier les paramètres techniques et la structure physique.
+### Étape 1 — Définir l’unité logique verrouillée
+
+Identifier la table racine et les champs qui représentent l’objet métier modifié simultanément. Le verrou doit couvrir l’unité de concurrence réelle : une clé trop large bloque inutilement, une clé trop étroite autorise des mises à jour concurrentes incohérentes.
+
+### Étape 2 — Créer l’objet de verrouillage
+
+1. Ouvrir `SE11`, choisir **Objet de verrouillage** et saisir un nom commençant par `EZ` ou `EY` selon la convention client.
+2. Ajouter la table primaire.
+3. Ajouter les tables secondaires uniquement lorsqu’elles appartiennent à la même unité verrouillée.
+4. Vérifier les relations proposées et les paramètres de clé générés.
+
+### Étape 3 — Choisir le mode de verrouillage
+
+Sélectionner le mode adapté au scénario de lecture/modification. Documenter la raison et la durée prévue du verrou. Ne pas conserver un verrou pendant une interaction utilisateur plus longue que nécessaire.
+
+### Étape 4 — Activer et contrôler les modules générés
+
+Activer l’objet puis ouvrir dans `SE37` les modules `ENQUEUE_...` et `DEQUEUE_...`. Relever leur signature exacte, notamment les champs clés, le mandant, le mode et les paramètres de portée.
+
+### Étape 5 — Tester la concurrence
+
+Dans une première session, appeler le module ENQUEUE avec une clé de test et conserver le verrou. Dans une seconde session, tenter la même clé : l’appel doit signaler le conflit prévu. Libérer ensuite avec DEQUEUE et vérifier dans `SM12` qu’aucun verrou de test ne subsiste.
+
+La mise en place est validée lorsque deux clés différentes peuvent travailler indépendamment et que la même clé ne peut pas être modifiée simultanément.
 
 ## VÉRIFICATION
 
@@ -150,7 +167,6 @@ ENDIF.
 
 - [Lock Objects — ABAP Dictionary — SAP Help Portal](https://help.sap.com/docs/SAP_NETWEAVER_731_BW_ABAP/ec1c9c8191b74de98feb94001a95dd76/cf21eea5446011d189700000e8322d00.html)
 - [SAP Lock Concept — SAP Help Portal](https://help.sap.com/docs/SAP_NETWEAVER_AS_ABAP_752/47df3d6f30fd4c9d8a91d99f6e2be3e5/4ec5c7196e391014adc9fffe4e204223.html)
-
 
 ---
 

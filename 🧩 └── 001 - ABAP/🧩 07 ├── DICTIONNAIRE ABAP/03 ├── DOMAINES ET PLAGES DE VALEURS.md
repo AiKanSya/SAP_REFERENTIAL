@@ -99,15 +99,34 @@ Pour un statut de commande :
 - La table de valeurs n’est pas une table de contrôle automatique.
 - Une routine de conversion distingue format interne et format externe.
 
-## PROCÉDURE PAS À PAS
+## PROCESS
 
-1. Saisir `/nSE11`.
-2. Choisir le type d’objet DDIC correspondant au chapitre.
-3. Entrer le nom technique ; utiliser **Afficher** pour un objet existant ou **Créer** pour un objet Z autorisé.
-4. Renseigner les attributs et composants en suivant les règles du chapitre.
-5. Lancer le contrôle de cohérence.
-6. Activer l’objet et traiter chaque message avant de poursuivre.
-7. Utiliser la liste d’utilisation et, pour les tables, vérifier les paramètres techniques et la structure physique.
+### Étape 1 — Définir le format commun
+
+Établir le type ABAP/DDIC, la longueur, les décimales, le signe et les éventuelles règles de casse. Vérifier qu’un domaine standard de même sémantique n’existe pas.
+
+### Étape 2 — Créer le domaine
+
+1. Ouvrir `SE11`, sélectionner **Domaine** et saisir un nom `Z...`.
+2. Choisir **Créer**, renseigner le texte court et l’onglet de définition.
+3. Saisir le type de données, la longueur et les décimales décidés.
+4. Maintenir les propriétés de sortie uniquement selon la donnée réelle.
+
+Le contrôle doit confirmer que le format peut représenter toutes les valeurs métier sans troncature.
+
+### Étape 3 — Définir les valeurs autorisées
+
+Dans l’onglet des valeurs, choisir soit des valeurs fixes/intervalles, soit une table de valeurs adaptée. Ne dupliquer pas dans le domaine une liste déjà gouvernée par une table de contrôle.
+
+Pour chaque valeur fixe, renseigner le libellé utilisateur. Une valeur techniquement possible mais non documentée ne doit pas être ajoutée par anticipation.
+
+### Étape 4 — Activer et tester
+
+Contrôler puis activer le domaine. Créer ou ouvrir un élément de données de test utilisant ce domaine et vérifier la saisie ainsi que l’aide disponible dans un champ consommateur.
+
+### Étape 5 — Gérer une modification
+
+Avant de changer longueur ou valeurs d’un domaine existant, utiliser la liste d’utilisation et mesurer l’impact sur toutes les tables et interfaces. La modification est validée uniquement après activation des dépendances et test des valeurs existantes.
 
 ## VÉRIFICATION
 
@@ -148,7 +167,6 @@ Ordre de transport  :
 
 - [Domains — SAP Help Portal](https://help.sap.com/docs/SAP_NETWEAVER_740/ec1c9c8191b74de98feb94001a95dd76/cf21ede5446011d189700000e8322d00.html)
 - [Defining Domains and Data Elements — SAP Learning](https://learning.sap.com/courses/building-data-models-with-the-abap-dictionary-and-abap-core-data-services/defining-domains-and-data-elements_b65b511a-4ad1-4437-80f5-5ad689cab833)
-
 
 ---
 

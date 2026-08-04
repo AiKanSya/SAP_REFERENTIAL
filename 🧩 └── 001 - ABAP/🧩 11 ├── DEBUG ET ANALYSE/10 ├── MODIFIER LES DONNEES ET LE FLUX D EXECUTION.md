@@ -82,14 +82,27 @@ Pour toute modification temporaire, noter :
 - résultat observé ;
 - hypothèse validée ou rejetée.
 
-## PROCÉDURE PAS À PAS
+## PROCESS
 
-1. Lire la définition et identifier les prérequis du chapitre.
-2. Choisir un objet Z ou un scénario de démonstration sans impact métier.
-3. Reproduire l’exemple dans un système de développement et relever les données d’entrée.
-4. Contrôler la syntaxe ou la configuration avant activation/exécution.
-5. Comparer le résultat observé avec la section **Vérification**.
-6. Documenter toute différence liée à la release, aux autorisations ou au paramétrage du système.
+### Étape 1 — Conserver l’état initial
+
+Avant toute modification dans le débogueur, relever variable, valeur, pile d’appels et données d’entrée. Exécuter uniquement dans un système non productif avec un scénario dont les effets sont réversibles.
+
+### Étape 2 — Formuler l’hypothèse
+
+Définir la valeur temporaire et le comportement qu’elle doit provoquer. Une modification sans hypothèse produit un résultat impossible à interpréter.
+
+### Étape 3 — Modifier une seule donnée
+
+Changer la variable puis poursuivre jusqu’à la décision concernée. Vérifier que la branche attendue est prise. Ne modifier pas simultanément le code courant, plusieurs paramètres et `SY-SUBRC`.
+
+### Étape 4 — Contrôler les effets
+
+Avant tout commit ou appel externe, examiner données modifiées, messages et pile. Interrompre ou exécuter un rollback si l’hypothèse entraîne un effet non prévu.
+
+### Étape 5 — Reproduire sans modification manuelle
+
+La modification du débogueur prouve une hypothèse, pas une correction. Adapter le code ou les données sources, activer puis rejouer sans intervention. Le diagnostic est validé uniquement si le résultat est reproductible normalement.
 
 ## VÉRIFICATION
 
@@ -130,7 +143,6 @@ Ordre de transport  :
 - [Source Code Execution and Navigation — SAP Help Portal](https://help.sap.com/docs/ABAP_PLATFORM_NEW/ba879a6e2ea04d9bb94c7ccd7cdac446/679664bc4ac74d2d82a05f458396797c.html)
 - [The Table Tool — SAP Help Portal](https://help.sap.com/docs/ABAP_PLATFORM_NEW/ba879a6e2ea04d9bb94c7ccd7cdac446/492db60934e414d0e10000000a42189b.html)
 - [Standard ABAP Debugger — SAP Help Portal](https://help.sap.com/docs/SAP_NETWEAVER_AS_ABAP_751_IP/ba879a6e2ea04d9bb94c7ccd7cdac446/49250c884d7216b5e10000000a42189d.html)
-
 
 ---
 

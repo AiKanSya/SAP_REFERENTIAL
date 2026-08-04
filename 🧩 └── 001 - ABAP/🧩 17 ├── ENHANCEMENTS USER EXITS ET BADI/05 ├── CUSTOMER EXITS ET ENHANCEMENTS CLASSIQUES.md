@@ -39,13 +39,31 @@ Le code présent dans un include client ne suffit pas. Le projet `CMOD` contenan
 - pas de filtrage générique comparable aux BAdI ;
 - plusieurs besoins peuvent devoir être regroupés dans le même projet ou composant.
 
-## PROCÉDURE PAS À PAS
+## PROCESS
 
-1. Saisir `/nSMOD`.
-2. Entrer l’enhancement classique ou utiliser la recherche.
-3. Afficher les composants : function exits, screen exits, menu exits et documentation.
-4. Identifier les structures append et objets associés.
-5. Ne pas modifier les includes client avant d’avoir confirmé le scénario d’appel.
+### ÉTAPE 1 — IDENTIFIER L’ENHANCEMENT CANDIDAT
+
+À partir du programme ou du package standard, rechercher les appels `CALL CUSTOMER-FUNCTION`, les objets `SMOD` associés et leur documentation. Relever le nom technique de l’enhancement, pas seulement celui du module `EXIT_*`.
+
+### ÉTAPE 2 — ANALYSER TOUS LES COMPOSANTS DANS `SMOD`
+
+Afficher l’enhancement et inventorier function exits, screen exits, menu exits et objets DDIC associés. Ouvrir chaque composant pour comprendre son rôle. Un même enhancement peut exiger plusieurs composants cohérents pour livrer une fonctionnalité complète.
+
+### ÉTAPE 3 — VÉRIFIER LE POINT D’APPEL
+
+Depuis le module `EXIT_*`, remonter au `CALL CUSTOMER-FUNCTION` dans le standard. Poser un breakpoint et exécuter le scénario. Relever les paramètres, le moment de l’appel et les traitements standard postérieurs.
+
+### ÉTAPE 4 — RECHERCHER LE PROJET CLIENT
+
+Dans `CMOD`, identifier si l’enhancement est déjà affecté à un projet. Vérifier son statut actif, son package et son propriétaire fonctionnel. Ne pas créer un projet concurrent pour un enhancement déjà géré.
+
+### ÉTAPE 5 — IMPLÉMENTER LE PÉRIMÈTRE MINIMAL
+
+Utiliser les includes client, subscreens ou fonctions de menu fournis par le projet. Ajouter les extensions DDIC requises avant le code qui les consomme. Déléguer la logique à des objets Z testables et éviter les dépendances globales inutiles.
+
+### ÉTAPE 6 — ACTIVER ET TESTER L’ENSEMBLE
+
+Activer les objets techniques puis le projet CMOD. Reproduire le scénario avec breakpoint, vérifier le résultat métier et tester les cas hors périmètre. Contrôler l’ordre de transport de tous les composants et de l’activation.
 
 ## VÉRIFICATION
 
@@ -85,7 +103,6 @@ Ordre de transport  :
 - [Customer Exits — SAP Help Portal](https://help.sap.com/docs/ABAP_PLATFORM_NEW/2b28ffa716c24348903f8ffbfeb81df8/c81975cc43b111d1896f0000e8322d00.html)
 - [Customer Exit Glossary — SAP Help Portal](https://help.sap.com/saphelp_snc700_ehp01/helpdata/en/35/26b1b7afab52b9e10000009b38f974/content.htm)
 - [Types of Exits — SAP Help Portal](https://help.sap.com/docs/ABAP_PLATFORM_NEW/2b28ffa716c24348903f8ffbfeb81df8/c81975e643b111d1896f0000e8322d00.html)
-
 
 ---
 

@@ -1,4 +1,5 @@
 # PATTER" Définir le contrat et limiter l’API publique au besoin réel.
+
 NS STRATEGY, ADAPTER ET FAÇADE
 
 ## RÉSULTAT ATTENDU
@@ -53,24 +54,37 @@ DATA(lv_document_id) = lo_billing_facade->create_and_post(
 
 La façade orchestre les validateurs, repositories et appels techniques, mais ne doit pas devenir une classe géante.
 
-## PROCÉDURE DE CHOIX
+## PROCESS
 
-1. Décrire le problème sans citer de pattern.
-2. Identifier ce qui varie ou ce qui est incompatible.
-3. Vérifier qu’une interface simple peut représenter le contrat.
-4. Appliquer le pattern minimal.
-5. Écrire un test démontrant la substitution ou la simplification.
-6. Documenter pourquoi une solution plus simple ne suffisait pas.
+### Étape 1 — Décrire le problème concret
+
+Écrire les variantes, incompatibilités ou complexités observées sans nommer de pattern. Si le problème tient en une condition locale stable, ne créer pas d’architecture supplémentaire.
+
+### Étape 2 — Choisir la relation adaptée
+
+Utiliser Strategy pour plusieurs algorithmes substituables, Adapter pour convertir une interface existante et Facade pour offrir un point d’entrée simplifié sur plusieurs services.
+
+### Étape 3 — Définir le contrat minimal
+
+Créer l’interface ou la méthode de façade à partir des besoins de l’appelant. Ne recopier pas toutes les méthodes du composant interne.
+
+### Étape 4 — Implémenter sans logique dupliquée
+
+La Strategy porte l’algorithme, l’Adapter traduit les paramètres/résultats et la Facade orchestre. Ne déplacer pas la même règle métier dans plusieurs couches.
+
+### Étape 5 — Prouver l’intérêt
+
+Tester substitution, traduction ou simplification. Documenter pourquoi une fonction ou composition directe ne suffisait pas. Le pattern est validé uniquement si cette preuve reste observable.
 
 ## TABLEAU DE DÉCISION
 
-| Situation | Pattern probable |
-|---|---|
-| Changer un calcul à l’exécution | Strategy |
-| Réutiliser une API existante incompatible | Adapter |
-| Masquer une séquence d’appels complexes | Façade |
-| Centraliser la création | Factory |
-| Une seule instance par session | Singleton, avec prudence |
+| Situation                                 | Pattern probable         |
+| ----------------------------------------- | ------------------------ |
+| Changer un calcul à l’exécution           | Strategy                 |
+| Réutiliser une API existante incompatible | Adapter                  |
+| Masquer une séquence d’appels complexes   | Façade                   |
+| Centraliser la création                   | Factory                  |
+| Une seule instance par session            | Singleton, avec prudence |
 
 ## CONTRÔLE
 

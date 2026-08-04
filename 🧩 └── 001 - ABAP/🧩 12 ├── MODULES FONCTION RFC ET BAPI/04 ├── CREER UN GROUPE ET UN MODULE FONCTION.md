@@ -78,14 +78,27 @@ Le groupe de fonctions et les modules sont des objets Repository. Vérifier que 
 - les types DDIC requis sont transportés avant ou avec le module ;
 - l’activation est complète dans le système source.
 
-## PROCÉDURE PAS À PAS
+## PROCESS
 
-1. Saisir `/nSE80`.
-2. Sélectionner le type d’objet ou le package dans la liste de gauche.
-3. Entrer le nom technique puis valider.
-4. Commencer en mode **Afficher** pour analyser l’objet et ses sous-objets.
-5. Passer en modification uniquement dans un système et un objet autorisés.
-6. Contrôler la syntaxe, activer les objets modifiés puis vérifier leur statut actif.
+### Étape 1 — Définir le périmètre du groupe
+
+Regrouper uniquement des modules partageant un même domaine et, si nécessaire, des données globales maîtrisées. Définir package, préfixe et responsable avant la création.
+
+### Étape 2 — Créer le groupe dans SE80
+
+Ouvrir `SE80`, sélectionner **Groupe de fonctions**, saisir le nom client et choisir **Créer**. Renseigner description, package et tâche de transport.
+
+### Étape 3 — Créer le module
+
+Depuis le groupe, créer le module `Z...`, renseigner texte court et type de traitement. Ne cocher RFC ou update que si le scénario impose réellement ces contraintes.
+
+### Étape 4 — Définir signature et code minimal
+
+Créer les paramètres avec des types DDIC stables, ajouter les exceptions puis implémenter un traitement sans commit implicite. Contrôler chaque objet dépendant.
+
+### Étape 5 — Activer et tester
+
+Activer le groupe et le module, tester cas nominal et erreur dans `SE37`, puis vérifier l’ordre de transport. La création est terminée lorsque l’appel ne dépend d’aucune initialisation cachée.
 
 ## VÉRIFICATION
 
@@ -125,7 +138,6 @@ Ordre de transport  :
 
 - [Creating New Function Modules — SAP Help Portal](https://help.sap.com/docs/ABAP_PLATFORM_NEW/bd833c8355f34e96a6e83096b38bf192/d1801ee8454211d189710000e8322d00.html)
 - [Working with ABAP Function Groups and Modules — SAP Help Portal](https://help.sap.com/docs/ABAP_PLATFORM_NEW/c238d694b825421f940829321ffa326a/5b3370ee088a4e2b9579da3f6e994456.html)
-
 
 ---
 

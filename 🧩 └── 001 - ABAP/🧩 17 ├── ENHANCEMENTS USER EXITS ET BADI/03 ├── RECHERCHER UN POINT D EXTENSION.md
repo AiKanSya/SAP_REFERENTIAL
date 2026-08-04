@@ -53,14 +53,31 @@ Un point d’extension n’est valide que si :
 - l’implémentation ne crée pas de commit ou de verrou incohérent ;
 - le point existe dans les versions cibles.
 
-## PROCÉDURE PAS À PAS
+## PROCESS
 
-1. Saisir `/nSE80`.
-2. Sélectionner le type d’objet ou le package dans la liste de gauche.
-3. Entrer le nom technique puis valider.
-4. Commencer en mode **Afficher** pour analyser l’objet et ses sous-objets.
-5. Passer en modification uniquement dans un système et un objet autorisés.
-6. Contrôler la syntaxe, activer les objets modifiés puis vérifier leur statut actif.
+### ÉTAPE 1 — CAPTURER LE SCÉNARIO EXACT
+
+Relever la transaction ou l’application, l’action utilisateur, la clé métier, l’utilisateur, le mandant et le résultat attendu. Réduire le scénario à une reproduction unique afin de limiter les appels observés.
+
+### ÉTAPE 2 — IDENTIFIER LES OBJETS EXÉCUTÉS
+
+Utiliser les informations système, la pile d’appels du débogueur et le Repository pour retrouver programme, classes, groupes de fonctions et package. Distinguer le programme de lancement du code métier réellement exécuté.
+
+### ÉTAPE 3 — RECHERCHER LES POINTS CANDIDATS
+
+Rechercher dans le code et le Repository les appels de BAdI, enhancement points/sections, `CALL CUSTOMER-FUNCTION`, user exits et mécanismes propres au domaine. Pour FI, compléter par les événements BTE lorsque le processus le prévoit.
+
+### ÉTAPE 4 — ANALYSER LE CONTRAT DE CHAQUE POINT
+
+Lire la documentation et les interfaces. Relever les données importées, modifiables ou retournées, les filtres, l’usage multiple et les restrictions transactionnelles. Écarter tout point ne fournissant pas les données ou le moment nécessaires.
+
+### ÉTAPE 5 — PROUVER L’APPEL PAR DEBUG
+
+Placer un breakpoint dans les candidats les plus pertinents et reproduire le scénario. Relever l’ordre d’appel, la pile, les paramètres et les validations standard exécutées après le retour. Désactiver les breakpoints non utiles après la preuve.
+
+### ÉTAPE 6 — VÉRIFIER L’ACTIVATION EXISTANTE
+
+Contrôler les implémentations BAdI, projets CMOD ou enhancements déjà actifs dans le système. Comparer leurs filtres et leur périmètre au besoin. Conserver le nom technique et la preuve runtime du point finalement retenu.
 
 ## VÉRIFICATION
 
@@ -100,7 +117,6 @@ ENHANCEMENT-SECTION
 - [Ways to Find a User Exit — SAP Help Portal](https://help.sap.com/docs/SUPPORT_CONTENT/abap/3353525969.html)
 - [Enhancement Information System — SAP Help Portal](https://help.sap.com/docs/SAP_NETWEAVER_750/46a2cfc13d25463b8b9a3d2a3c3ba0d9/29503e423a95b36be10000000a155106.html)
 - [Customer Exits (CMOD) — SAP Help Portal](https://help.sap.com/docs/SUPPORT_CONTENT/abap/3353525722.html)
-
 
 ---
 

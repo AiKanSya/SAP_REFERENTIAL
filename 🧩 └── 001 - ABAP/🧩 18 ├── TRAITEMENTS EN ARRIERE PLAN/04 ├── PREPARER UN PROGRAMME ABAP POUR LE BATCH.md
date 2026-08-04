@@ -53,14 +53,31 @@ START-OF-SELECTION.
   ENDTRY.
 ```
 
-## PROCÉDURE PAS À PAS
+## PROCESS
 
-1. Saisir `/nATC` ou utiliser l’entrée ATC disponible dans le système.
-2. Choisir une variante de contrôle autorisée.
-3. Lancer le contrôle sur l’objet, le package ou l’ordre de transport.
-4. Classer les findings par priorité et corriger d’abord les erreurs bloquantes.
-5. Demander une exemption uniquement avec justification, propriétaire et échéance.
-6. Relancer le contrôle avant libération.
+### ÉTAPE 1 — SÉPARER SÉLECTION, TRAITEMENT ET SORTIE
+
+Construire un report dont l’écran de sélection fournit uniquement les paramètres. Déléguer le traitement à une classe recevant des données typées. Isoler la journalisation et les sorties afin de tester le cœur sans SAP GUI.
+
+### ÉTAPE 2 — ÉLIMINER LES APPELS INTERACTIFS
+
+Rechercher `CL_GUI_FRONTEND_SERVICES`, dialogues de fichiers, popups, contrôles GUI et attentes de commande utilisateur. Pour le batch, utiliser des fichiers serveur, des paramètres de variante et des messages non interactifs. Tester explicitement `sy-batch` si le comportement doit différer.
+
+### ÉTAPE 3 — VALIDER LA VARIANTE AU DÉMARRAGE
+
+Contrôler les plages, dates, chemins logiques, taille de paquet et mode test. Rejeter une sélection vide ou excessivement large si le contrat l’interdit. Écrire les paramètres effectifs dans le journal sans données sensibles.
+
+### ÉTAPE 4 — TRAITER PAR UNITÉS REPRENABLES
+
+Sélectionner et traiter par paquets ou documents métier déterministes. Définir les commits au niveau de l’unité prévue et enregistrer une clé de traitement. Une interruption ne doit pas obliger à deviner quelles données sont déjà persistées.
+
+### ÉTAPE 5 — PRODUIRE DES LOGS STRUCTURÉS
+
+Émettre un résumé dans le journal de job et utiliser le journal applicatif pour les messages détaillés exploitables. Compter les unités lues, réussies, ignorées et rejetées. Une erreur doit inclure la clé et l’étape technique sans nécessiter de debug.
+
+### ÉTAPE 6 — TESTER DANS LES DEUX MODES
+
+Exécuter le report en dialogue avec la variante, puis comme étape de job sous l’utilisateur technique. Comparer résultats et autorisations. Tester un volume représentatif, un échec partiel et une relance ; contrôler données, spool, journal et absence de doublons.
 
 ## VÉRIFICATION
 
@@ -101,7 +118,6 @@ ENDIF.
 
 - [ABAP System Fields — SAP Help Portal](https://help.sap.com/docs/SAP_NETWEAVER_731_BW_ABAP/f68e489816e043f1add91d69a6842931/7bfb96c8882811d295a90000e8353423.html)
 - [Background Work Processes — SAP Help Portal](https://help.sap.com/docs/ABAP_PLATFORM_NEW/b07e7195f03f438b8e7ed273099d74f3/4b2b3c3e8eb51780e10000000a42189c.html)
-
 
 ---
 

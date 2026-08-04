@@ -28,14 +28,31 @@ flowchart TD
 
 Le mode `E` est courant pour une modification métier classique. Le mode `X` doit être utilisé lorsque la non-cumulativité est réellement requise. Le verrou optimiste demande une conception explicite de la phase de promotion et du traitement des collisions.
 
-## PROCÉDURE PAS À PAS
+## PROCESS
 
-1. Lire la définition et identifier les prérequis du chapitre.
-2. Choisir un objet Z ou un scénario de démonstration sans impact métier.
-3. Reproduire l’exemple dans un système de développement et relever les données d’entrée.
-4. Contrôler la syntaxe ou la configuration avant activation/exécution.
-5. Comparer le résultat observé avec la section **Vérification**.
-6. Documenter toute différence liée à la release, aux autorisations ou au paramétrage du système.
+### ÉTAPE 1 — QUALIFIER L’ACCÈS À PROTÉGER
+
+Déterminer si le scénario lit seulement une ressource partagée, la modifie, exige une exclusivité absolue ou repose sur un verrou optimiste. Partir de l’invariant métier et non du mode utilisé dans un exemple voisin.
+
+### ÉTAPE 2 — VÉRIFIER LE MODE DÉFINI DANS `SE11`
+
+Afficher l’objet de verrouillage et contrôler le mode associé à chaque table. Ouvrir ensuite le module `ENQUEUE_*` généré dans `SE37` pour identifier le paramètre de mode et sa valeur par défaut. Ne pas coder une valeur différente sans test de compatibilité.
+
+### ÉTAPE 3 — CONSERVER UN MODE COHÉRENT SUR TOUT LE CYCLE
+
+Passer le mode choisi lors de l’enqueue et utiliser une valeur compatible lors du dequeue. Documenter les scénarios concurrents autorisés et interdits. Un verrou partagé n’est correct que si aucun des détenteurs ne réalise ensuite une modification incompatible.
+
+### ÉTAPE 4 — TESTER LA MATRICE DE CONCURRENCE
+
+Ouvrir deux sessions avec la même clé. Tester successivement les combinaisons pertinentes de modes et relever si la seconde demande réussit ou produit `foreign_lock`. Répéter avec deux clés différentes pour contrôler la granularité.
+
+### ÉTAPE 5 — TESTER LE MODE OPTIMISTE AVEC SON CYCLE COMPLET
+
+Si le mode `O` est utilisé, tester explicitement la transition prévue avant modification et le comportement lorsque plusieurs propriétaires optimistes existent. Ne pas considérer un verrou optimiste comme une protection d’écriture tant que sa conversion n’a pas réussi.
+
+### ÉTAPE 6 — VALIDER DANS `SM12`
+
+Pendant chaque test, filtrer sur l’objet ou l’argument et contrôler le propriétaire, le mode et la clé enregistrée. Après commit, rollback ou dequeue, vérifier que l’entrée disparaît au moment prévu.
 
 ## VÉRIFICATION
 
@@ -63,7 +80,6 @@ Le mode `E` est courant pour une modification métier classique. Le mode `X` doi
 - [SAP Lock Concept — SAP Help Portal](https://help.sap.com/docs/ABAP_PLATFORM_NEW/7bbf03267f654b5cb06a8bf78f61fca1/9101274dc2e048d4b473fe5c45ae4e29.html)
 - [Function Modules for Lock Requests — SAP Help Portal](https://help.sap.com/docs/ABAP_PLATFORM_NEW/ec1c9c8191b74de98feb94001a95dd76/cf21eebf446011d189700000e8322d00.html)
 - [Programming with Optimistic Locks — SAP Help Portal](https://help.sap.com/docs/ABAP_PLATFORM_NEW/6568469cf5a1460a8d85c58b83d21ec2/47dc35b35bc33b8be10000000a421937.html)
-
 
 ---
 

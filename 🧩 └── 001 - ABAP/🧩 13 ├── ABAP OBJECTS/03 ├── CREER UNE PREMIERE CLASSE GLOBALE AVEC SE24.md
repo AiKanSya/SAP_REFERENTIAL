@@ -1,4 +1,5 @@
 # CRÉER " Construire les dépendances avant d’exécuter le traitement.
+
 UNE PREMIÈRE CLASSE GLOBALE AVEC SE24
 
 ## RÉSULTAT ATTENDU
@@ -18,23 +19,31 @@ Créer une classe `ZCL_DEV_TEXT_FORMATTER` réutilisable qui normalise un texte 
 - Package client existant, ou `$TMP` uniquement pour un essai local non transportable.
 - Convention de nommage du projet.
 
-## PROCÉDURE PAS À PAS
+## PROCESS
 
-1. Saisir `/nSE24`.
-2. Entrer `ZCL_DEV_TEXT_FORMATTER`.
-3. Choisir **Créer**.
-4. Saisir une description claire.
-5. Conserver une instanciation publique pour ce premier exemple.
-6. Affecter la classe au package du projet.
-7. Affecter l’objet à un ordre de transport.
-8. Dans l’onglet **Méthodes**, créer `NORMALIZE` en visibilité publique.
-9. Définir un paramètre `IV_TEXT` de type `STRING` en `IMPORTING`.
-10. Définir `RV_TEXT` de type `STRING` en `RETURNING` et activer la case **Passage par valeur** si l’outil le demande.
-11. Ouvrir l’implémentation de `NORMALIZE`.
-12. Saisir le code ci-dessous.
-13. Contrôler la syntaxe.
-14. Activer la classe complète.
-15. Tester depuis `SE24` ou avec le report fourni.
+### Étape 1 — Créer l’objet global
+
+Ouvrir `SE24`, saisir `ZCL_DEV_TEXT_FORMATTER` et choisir **Créer**. Si le nom existe, l’afficher et ne pas l’écraser. Renseigner description et instanciation publique, puis affecter package et tâche de transport.
+
+### Étape 2 — Définir la méthode publique
+
+Dans **Méthodes**, créer `NORMALIZE`, conserver le niveau instance et choisir la visibilité publique. Ouvrir la signature avant d’écrire l’implémentation.
+
+### Étape 3 — Définir la signature exacte
+
+Ajouter `IV_TEXT` dans `IMPORTING` avec le type `STRING`. Ajouter `RV_TEXT` dans `RETURNING`, type `STRING`, passage par valeur. Vérifier qu’un seul paramètre returning existe et qu’aucun paramètre inutile n’a été généré.
+
+### Étape 4 — Implémenter
+
+Ouvrir le source de `NORMALIZE`, coller le code du chapitre et vérifier qu’il utilise uniquement `IV_TEXT` pour calculer `RV_TEXT`. Enregistrer puis exécuter le contrôle syntaxique.
+
+### Étape 5 — Activer la classe complète
+
+Activer et examiner la liste d’objets. Si la signature ou l’implémentation reste inactive, corriger le premier message avant de relancer.
+
+### Étape 6 — Tester deux cas
+
+Instancier avec `NEW zcl_dev_text_formatter( )`, appeler la méthode avec un texte contenant espaces irréguliers puis avec une chaîne vide. La classe est validée lorsque chaque résultat correspond au contrat et que l’appel utilise la signature publiée.
 
 ## IMPLÉMENTATION
 

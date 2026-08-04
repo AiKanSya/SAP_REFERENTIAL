@@ -11,15 +11,27 @@
 
 Une classe de repository ne trouve pas un objet demandé. Elle ne doit ni afficher un message, ni retourner silencieusement une structure vide si l’absence est une erreur métier. Elle lève `ZCX_DEV_NOT_FOUND`.
 
-## PROCÉDURE DE CRÉATION
+## PROCESS
 
-1. Ouvrir `SE24`.
-2. Créer une classe `ZCX_*` héritant d’une catégorie adaptée de `CX_STATIC_CHECK`, `CX_DYNAMIC_CHECK` ou `CX_NO_CHECK` selon le contrat retenu.
-3. Définir les textes d’exception, idéalement intégrés à une classe de messages si le projet l’exige.
-4. Activer la classe d’exception.
-5. Ajouter l’exception dans `RAISING` de la méthode métier.
-6. Lever l’exception avec les informations de contexte.
-7. La capturer à une frontière appropriée : report, job, service ou contrôleur.
+### Étape 1 — Choisir la catégorie
+
+Utiliser `CX_STATIC_CHECK` si l’appelant doit traiter l’erreur, `CX_DYNAMIC_CHECK` pour un contrôle d’exécution non déclaré obligatoirement, et `CX_NO_CHECK` seulement si la gestion locale n’a pas de sens.
+
+### Étape 2 — Créer la classe ZCX
+
+Dans `SE24`, créer la classe avec la superclasse choisie. Ajouter les attributs nécessaires au contexte sans stocker de donnée sensible inutile.
+
+### Étape 3 — Définir les textes
+
+Créer les text IDs ou les rattacher à la classe de messages prévue. Vérifier la substitution des attributs et activer.
+
+### Étape 4 — Déclarer puis lever
+
+Ajouter la classe dans `RAISING` lorsque requis. Lever au point où la cause est connue ; lors d’une conversion, transmettre l’exception d’origine dans `PREVIOUS`.
+
+### Étape 5 — Intercepter à la frontière
+
+Capturer dans le report, job, service ou contrôleur capable de décider message, journal ou reprise. Tester texte, attributs et cause précédente pour chaque branche.
 
 ## CODE À ADAPTER
 

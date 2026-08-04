@@ -75,14 +75,27 @@ Une bonne interface :
 - documente les unités, formats et règles ;
 - sépare résultat métier et diagnostic.
 
-## PROCÉDURE PAS À PAS
+## PROCESS
 
-1. Saisir `/nSE37`.
-2. Entrer le nom du module fonction puis choisir **Afficher**, **Modifier** ou **Créer** selon l’autorisation.
-3. Analyser les onglets Import, Export, Changing, Tables et Exceptions.
-4. Lire la documentation et le code source avant tout appel.
-5. Utiliser **Test/Exécuter** avec des données non destructives.
-6. Pour un module Z, contrôler, activer puis tester les cas nominal et d’erreur.
+### Étape 1 — Écrire le contrat avant les onglets
+
+Lister données nécessaires, résultats, valeurs modifiées et erreurs. Une donnée uniquement lue appartient à Import ; un résultat à Export ; une valeur lue puis modifiée à Changing.
+
+### Étape 2 — Ajouter les paramètres
+
+Dans `SE37`, ouvrir le module en modification et saisir les paramètres dans les onglets correspondants. Utiliser des types DDIC adaptés au partage et des noms décrivant le rôle métier.
+
+### Étape 3 — Définir obligation et passage
+
+Marquer les paramètres facultatifs uniquement si le code possède un comportement clair en leur absence. Choisir passage par valeur ou référence selon le contrat, sans utiliser Changing comme raccourci pour multiplier les sorties.
+
+### Étape 4 — Définir les erreurs
+
+Ajouter exceptions classiques ou structure de retour selon le type d’API. Chaque erreur doit être déclenchée par une condition identifiable et documentée.
+
+### Étape 5 — Tester chaque combinaison
+
+Exécuter tous les paramètres obligatoires, chaque option facultative et chaque exception. L’interface est validée lorsque l’appelant peut comprendre le résultat uniquement depuis la signature et la documentation.
 
 ## VÉRIFICATION
 
@@ -123,7 +136,6 @@ Ordre de transport  :
 
 - [Specifying Parameters and Exceptions — SAP Help Portal](https://help.sap.com/docs/ABAP_PLATFORM_2021/bd833c8355f34e96a6e83096b38bf192/d1801f0f454211d189710000e8322d00.html)
 - [Interface Parameters of a Function Module — SAP Help Portal](https://help.sap.com/docs/SAP_NETWEAVER_702/ff59ad5d6c55101492f7f1c64dee0529/d1801ece454211d189710000e8322d00.html)
-
 
 ---
 

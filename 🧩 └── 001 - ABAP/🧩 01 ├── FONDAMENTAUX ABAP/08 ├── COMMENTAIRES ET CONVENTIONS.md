@@ -182,15 +182,27 @@ REPORT zdemo_comments.
 - retirer le code commenté ;
 - conserver les messages et textes destinés aux utilisateurs dans les mécanismes adaptés.
 
-## PROCÉDURE PAS À PAS
+## PROCESS
 
-1. Ouvrir un programme Z existant en mode modification.
-2. Ajouter un commentaire de ligne avec `"` uniquement pour expliquer une intention non évidente.
-3. Éviter les commentaires qui répètent littéralement l’instruction.
-4. Appliquer les conventions de nommage du projet aux variables et constantes.
-5. Utiliser le Pretty Printer configuré par l’équipe.
-6. Contrôler que le code reste compréhensible lorsque les commentaires superflus sont retirés.
-7. Faire relire le changement avant transport lorsque la logique est sensible.
+### Étape 1 — Choisir un code de travail
+
+Ouvrir un programme Z autorisé en modification et sélectionner un bloc dont l’intention n’est pas évidente. Ne pas utiliser un objet standard pour cet exercice.
+
+### Étape 2 — Commenter la décision
+
+Ajouter un commentaire avec `"` au-dessus de la décision technique ou métier. Décrire la raison, la contrainte ou l’effet non visible ; ne pas reformuler littéralement l’instruction suivante.
+
+### Étape 3 — Normaliser les noms
+
+Comparer variables, constantes, types et références avec les conventions du projet. Renommer uniquement dans un périmètre dont les utilisations ont été identifiées, puis relancer la liste d’utilisation si l’objet est partagé.
+
+### Étape 4 — Formater et relire
+
+Appliquer le Pretty Printer configuré par l’équipe. Examiner le diff : seules les lignes utiles doivent changer. Retirer les commentaires sans valeur et vérifier que le code reste compréhensible sans connaissance implicite.
+
+### Étape 5 — Valider
+
+Exécuter contrôle syntaxique et contrôles statiques. Pour une logique sensible, faire relire la décision commentée. Le chapitre est validé lorsque noms, formatage et commentaires expliquent le code sans masquer une complexité évitable.
 
 ## VÉRIFICATION
 
@@ -241,7 +253,6 @@ ENDCLASS.
 - [Comments — SAP Help Portal](https://help.sap.com/docs/abap-cloud/abap-concepts/comments)
 - [Adding ABAP Doc Comments](https://help.sap.com/doc/c238d694b825421f940829321ffa326a/7.40.25/en-US/17e98e1c1ff545cea3f95b85a0539322.html)
 - [Clean ABAP — SAP Style Guides](https://github.com/SAP/styleguides/blob/main/clean-abap/CleanABAP.md)
-
 
 ---
 

@@ -164,17 +164,54 @@ Après création :
 | Le texte du paramètre est technique | Texte de sélection non maintenu                    |
 | La création est refusée             | Autorisation, verrou ou client non modifiable      |
 
-## PROCÉDURE PAS À PAS
+## PROCESS
+
+### Étape 1 — Créer le report
 
 1. Saisir `/nSE38`.
 2. Entrer `ZREF_HELLO_WORLD` puis choisir **Créer**.
-3. Saisir un titre et sélectionner le type **Programme exécutable**.
-4. Affecter `$TMP` pour un exercice local autorisé, ou le package et l’ordre fournis par le projet.
-5. Saisir le code du snippet du chapitre.
-6. Exécuter le contrôle syntaxique avec `Ctrl+F2` et corriger chaque erreur.
-7. Activer avec `Ctrl+F3`.
-8. Exécuter avec `F8`.
-9. Vérifier la sortie puis modifier une valeur, réactiver et confirmer que la version exécutée change.
+3. Si le système indique que le nom existe déjà, annuler et choisir un nom client libre ; ne pas écraser un programme existant.
+4. Saisir un titre explicite et sélectionner **Programme exécutable**.
+
+Le type exécutable permet un lancement direct avec `F8`. Un include ou un module pool ne répond pas à ce scénario.
+
+### Étape 2 — Affecter le package et le transport
+
+1. Utiliser `$TMP` seulement si l’exercice doit rester local.
+2. Pour un développement transportable, saisir le package fourni par le projet.
+3. Affecter la tâche de transport correspondant à l’utilisateur et au sujet.
+
+Avant de poursuivre, vérifier dans les attributs que le package affiché est celui choisi. Une mauvaise affectation doit être corrigée avant la livraison.
+
+### Étape 3 — Saisir un programme minimal
+
+Copier le snippet du chapitre en conservant la déclaration `REPORT` et l’instruction de sortie. Remplacer le nom du report dans le code s’il diffère du nom créé.
+
+Après la saisie, enregistrer. Le système doit conserver une version inactive tant que l’activation n’a pas été exécutée.
+
+### Étape 4 — Contrôler la syntaxe
+
+1. Exécuter `Ctrl+F2`.
+2. Si une erreur apparaît, double-cliquer sur le message pour atteindre la ligne.
+3. Corriger le nom, le point final, le type ou l’instruction signalés.
+4. Relancer le contrôle jusqu’à obtenir un résultat sans erreur.
+
+Ne pas activer en ignorant une erreur. Les avertissements doivent également être lus et justifiés.
+
+### Étape 5 — Activer et exécuter
+
+1. Exécuter `Ctrl+F3`.
+2. Vérifier que le statut de l’objet devient actif.
+3. Lancer le programme avec `F8`.
+4. Comparer la sortie affichée avec le texte attendu par le snippet.
+
+Si l’ancienne sortie apparaît, revenir à l’éditeur et contrôler que la dernière version a été activée dans le même système.
+
+### Étape 6 — Prouver le cycle de modification
+
+Modifier une valeur visible, enregistrer, contrôler, réactiver puis relancer avec `F8`. La sortie doit refléter la nouvelle valeur.
+
+Le chapitre est terminé lorsque le programme existe dans le bon package, est actif, s’exécute sans erreur et produit la valeur correspondant exactement au dernier source activé.
 
 ## VÉRIFICATION
 
@@ -211,7 +248,6 @@ START-OF-SELECTION.
 - [Creating a Program](https://help.sap.com/docs/ABAP_PLATFORM_NEW/bd833c8355f34e96a6e83096b38bf192/d1801a47454211d189710000e8322d00-65.html)
 - [REPORT — ABAP Keyword Documentation](https://help.sap.com/doc/abapdocu_latest_index_htm/latest/en-US/ABAPREPORT.html)
 - [ABAP Source Code Editor](https://help.sap.com/docs/ABAP_PLATFORM_NEW/c238d694b825421f940829321ffa326a/9ac600a0fad14967aaf2964be5a21963.html)
-
 
 ---
 

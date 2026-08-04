@@ -40,14 +40,31 @@ Les noms de paramètres sont définis par SAP. Ne pas supposer qu’un paramètr
 - ne pas lancer une mise à jour indépendante qui survivrait à un rollback du standard ;
 - conserver un temps d’exécution faible si l’exit est appelé dans une boucle.
 
-## PROCÉDURE PAS À PAS
+## PROCESS
 
-1. Saisir `/nCMOD`.
-2. Créer ou afficher un projet client Z.
-3. Affecter l’enhancement `SMOD` validé.
-4. Implémenter les composants nécessaires dans les includes client.
-5. Activer les composants puis le projet.
-6. Tester le scénario avec un breakpoint et vérifier qu’aucun autre projet actif ne provoque de conflit.
+### ÉTAPE 1 — ANALYSER LE MODULE `EXIT_*`
+
+Depuis `SMOD`, ouvrir le function exit dans `SE37`. Lire la documentation et relever précisément les paramètres importés, exportés, modifiés et les tables. Identifier l’include client proposé dans le code source du module.
+
+### ÉTAPE 2 — RETROUVER LE POINT D’APPEL STANDARD
+
+Utiliser la liste d’utilisation ou la recherche source pour localiser `CALL CUSTOMER-FUNCTION`. Examiner les valeurs préparées avant l’appel et les contrôles exécutés après. Le sens fonctionnel des paramètres dépend de ce contexte.
+
+### ÉTAPE 3 — CONFIRMER LES VALEURS AU RUNTIME
+
+Placer un breakpoint dans le module ou l’include client et reproduire le scénario. Relever la pile, les valeurs d’entrée, les paramètres réellement modifiables et le nombre d’appels. Vérifier si l’exit intervient avant ou après une borne transactionnelle.
+
+### ÉTAPE 4 — IMPLÉMENTER DANS L’INCLUDE CLIENT
+
+Ouvrir le composant depuis le projet `CMOD` afin de créer ou modifier uniquement l’include prévu. Valider les paramètres, appliquer la condition fonctionnelle minimale puis déléguer le traitement à une classe Z. Ne pas lire ou modifier des globales standard non contractuelles.
+
+### ÉTAPE 5 — ACTIVER CODE ET PROJET
+
+Contrôler et activer l’include et les classes appelées, puis activer le projet `CMOD`. Vérifier que l’enhancement n’est pas affecté à un autre projet concurrent et que tous les objets figurent dans les transports attendus.
+
+### ÉTAPE 6 — TESTER RETOURS ET ERREURS
+
+Tester les valeurs nominales, initiales et invalides autorisées par l’interface. Vérifier les paramètres au retour de l’exit, les messages et la suite du traitement standard. Exécuter un cas hors périmètre pour prouver l’absence d’effet parasite.
 
 ## VÉRIFICATION
 
@@ -87,7 +104,6 @@ zcl_dev_customer_exit=>process(
 - [Types of Exits — SAP Help Portal](https://help.sap.com/docs/ABAP_PLATFORM_NEW/2b28ffa716c24348903f8ffbfeb81df8/c81975e643b111d1896f0000e8322d00.html)
 - [Customer Exits — SAP Help Portal](https://help.sap.com/docs/ABAP_PLATFORM_NEW/2b28ffa716c24348903f8ffbfeb81df8/c81975cc43b111d1896f0000e8322d00.html)
 - [Customer Exits (CMOD) — SAP Help Portal](https://help.sap.com/docs/SUPPORT_CONTENT/abap/3353525722.html)
-
 
 ---
 

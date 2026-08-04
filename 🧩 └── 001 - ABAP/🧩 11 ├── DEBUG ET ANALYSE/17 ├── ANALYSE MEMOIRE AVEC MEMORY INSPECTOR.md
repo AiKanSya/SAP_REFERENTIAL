@@ -78,14 +78,27 @@ Après preuve :
 
 Ne pas ajouter `FREE` partout sans mesurer. La gestion mémoire ABAP suit ses propres mécanismes et une libération prématurée peut dégrader la lisibilité sans résoudre la cause.
 
-## PROCÉDURE PAS À PAS
+## PROCESS
 
-1. Lire la définition et identifier les prérequis du chapitre.
-2. Choisir un objet Z ou un scénario de démonstration sans impact métier.
-3. Reproduire l’exemple dans un système de développement et relever les données d’entrée.
-4. Contrôler la syntaxe ou la configuration avant activation/exécution.
-5. Comparer le résultat observé avec la section **Vérification**.
-6. Documenter toute différence liée à la release, aux autorisations ou au paramétrage du système.
+### Étape 1 — Définir deux points comparables
+
+Choisir un point avant allocation et un point après le traitement suspect. Utiliser les mêmes données et éviter les interactions sans rapport entre les deux mesures.
+
+### Étape 2 — Créer le premier snapshot
+
+Arrêter au premier breakpoint et créer un snapshot mémoire depuis le débogueur ou l’outil disponible. Nommer la mesure avec scénario et étape.
+
+### Étape 3 — Créer le second snapshot
+
+Poursuivre jusqu’au second point sans changer la sélection, puis créer le snapshot suivant. Vérifier que les deux captures appartiennent à la même exécution et au même utilisateur.
+
+### Étape 4 — Comparer les dominants
+
+Ouvrir Memory Inspector, comparer taille totale, types, instances et références conservées. Chercher les objets dont le nombre ou la taille augmente sans être libéré après le traitement.
+
+### Étape 5 — Prouver l’origine
+
+Relier le type dominant à sa création dans le code, corriger puis refaire les deux snapshots. La correction est validée lorsque l’écart attendu diminue avec un résultat fonctionnel identique.
 
 ## VÉRIFICATION
 
@@ -126,7 +139,6 @@ Ordre de transport  :
 - [Using the Memory Inspector Transaction — SAP Help Portal](https://help.sap.com/docs/ABAP_PLATFORM_NEW/ba879a6e2ea04d9bb94c7ccd7cdac446/49255f4629ac16b7e10000000a42189d.html)
 - [Understanding the Memory Inspector Overview — SAP Help Portal](https://help.sap.com/docs/ABAP_PLATFORM_NEW/ba879a6e2ea04d9bb94c7ccd7cdac446/d538045f647c46adab25a98299a2dd03.html)
 - [ABAP Test and Analysis Tools — SAP Help Portal](https://help.sap.com/docs/ABAP_PLATFORM_NEW/ba879a6e2ea04d9bb94c7ccd7cdac446/491aa66f87041903e10000000a42189c.html)
-
 
 ---
 

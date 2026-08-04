@@ -212,15 +212,27 @@ Cette fonction sert à :
 - ne pas déboguer un traitement productif sensible sans procédure validée ;
 - supprimer les breakpoints devenus inutiles.
 
-## PROCÉDURE PAS À PAS
+## PROCESS
 
-1. Ouvrir un report Z de démonstration dans `SE38`.
-2. Placer un breakpoint sur une instruction exécutable.
-3. Activer puis exécuter avec `F8`.
-4. Dans le débogueur, utiliser `F5` pour entrer dans un appel, `F6` pour l’exécuter sans entrer, `F7` pour revenir et `F8` pour continuer.
-5. Observer une variable, une structure et une table interne dans les outils de données.
-6. Créer un watchpoint sur une valeur modifiée par le programme.
-7. Terminer proprement l’exécution et retirer les breakpoints devenus inutiles.
+### Étape 1 — Déclencher le débogueur
+
+Ouvrir un report Z de démonstration, placer un breakpoint sur une instruction exécutable, activer puis lancer avec `F8`. Si l’arrêt ne se produit pas, vérifier que la ligne appartient au chemin réellement exécuté et que le breakpoint est actif pour l’utilisateur courant.
+
+### Étape 2 — Contrôler le déplacement
+
+Sur un appel connu, utiliser `F5` pour entrer puis recommencer avec `F6` pour exécuter sans entrer. Utiliser `F7` pour sortir du contexte courant et `F8` pour atteindre le prochain breakpoint. Observer la pile d’appels après chaque action.
+
+### Étape 3 — Examiner les données
+
+Ajouter une variable, une structure et une table interne dans les outils de données. Vérifier type, contenu courant et modifications après l’instruction suivante ; ne pas confondre une valeur initiale avec une donnée absente en base.
+
+### Étape 4 — Arrêter sur une modification
+
+Créer un watchpoint sur une variable dont la valeur change. Continuer avec `F8` et vérifier que l’arrêt se produit sur l’instruction responsable, avec l’ancienne et la nouvelle valeur disponibles.
+
+### Étape 5 — Terminer
+
+Quitter ou poursuivre proprement l’exécution puis supprimer les breakpoints devenus inutiles. Le chapitre est validé lorsque l’utilisateur sait reproduire un arrêt, choisir le bon mode de pas, examiner les données et localiser une modification par watchpoint.
 
 ## VÉRIFICATION
 

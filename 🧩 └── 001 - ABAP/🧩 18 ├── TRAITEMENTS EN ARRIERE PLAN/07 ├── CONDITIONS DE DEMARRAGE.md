@@ -37,14 +37,31 @@ flowchart TD
 
 Une date ou fenêtre limite peut empêcher le démarrage tardif d’un traitement devenu inutile ou dangereux. Elle doit être définie selon les exigences métier, pas seulement pour masquer un problème de capacité.
 
-## PROCÉDURE PAS À PAS
+## PROCESS
 
-1. Saisir `/nSM36`.
-2. Donner un nom explicite au job et définir sa classe/priorité selon les règles d’exploitation.
-3. Ajouter une étape ABAP avec programme, variante et utilisateur d’exécution.
-4. Définir la condition de démarrage : immédiate, date/heure, après job ou événement.
-5. Enregistrer puis vérifier que le job est planifié.
-6. Surveiller ensuite son exécution dans `SM37`.
+### ÉTAPE 1 — TRADUIRE LE BESOIN EN DÉCLENCHEUR
+
+Déterminer si le job doit partir dès sa libération, à une date, après un autre job, après un événement ou après une opération. Définir aussi la règle en cas de retard, d’échec du prédécesseur ou d’événement reçu plusieurs fois.
+
+### ÉTAPE 2 — VÉRIFIER LES PRÉREQUIS
+
+Pour une date, confirmer le fuseau et le calendrier. Pour une dépendance, relever le nom exact et la condition de fin du job précédent. Pour un événement, vérifier sa définition dans `SM62` et le paramètre attendu.
+
+### ÉTAPE 3 — MAINTENIR LA CONDITION DANS `SM36`
+
+Ouvrir les conditions de démarrage du job et sélectionner le type convenu. Renseigner uniquement les champs nécessaires. Pour une condition périodique, activer la périodicité et définir son intervalle après avoir contrôlé la première date.
+
+### ÉTAPE 4 — ENREGISTRER ET CONTRÔLER LE STATUT
+
+Enregistrer le job puis le rechercher dans `SM37`. Vérifier qu’il est libéré et que l’heure ou le déclencheur affiché correspond au contrat. Un statut planifié sans condition complète nécessite une correction avant exploitation.
+
+### ÉTAPE 5 — TESTER LE DÉCLENCHEMENT
+
+Dans un environnement de test, produire la date, la fin de job ou l’événement attendu. Relever l’heure de réception et l’heure réelle de début. Vérifier qu’un paramètre d’événement incorrect ou un prédécesseur en erreur ne déclenche pas silencieusement le traitement.
+
+### ÉTAPE 6 — TESTER LES CAS DE RETARD ET DE DOUBLON
+
+Simuler une indisponibilité de processus batch, un déclencheur répété et un job déjà actif. Vérifier la règle de non-chevauchement et l’idempotence. Documenter l’action opérationnelle attendue plutôt que de laisser plusieurs instances concurrentes traiter le même périmètre.
 
 ## VÉRIFICATION
 
@@ -84,7 +101,6 @@ Ordre de transport  :
 
 - [Specifying Job Start Conditions — SAP Help Portal](https://help.sap.com/docs/ABAP_PLATFORM_NEW/b07e7195f03f438b8e7ed273099d74f3/4b2b2b4a365474fee10000000a421937.html)
 - [Job Start Management — SAP Help Portal](https://help.sap.com/docs/ABAP_PLATFORM_NEW/b07e7195f03f438b8e7ed273099d74f3/4b2bc0094c594ba2e10000000a42189c.html)
-
 
 ---
 

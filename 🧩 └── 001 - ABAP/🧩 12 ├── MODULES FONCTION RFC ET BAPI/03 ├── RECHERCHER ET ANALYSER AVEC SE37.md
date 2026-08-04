@@ -68,14 +68,27 @@ La présence d’un module standard dans `SE37` ne garantit pas qu’il constitu
 
 Ne pas appeler directement une fonction standard non documentée comme API simplement parce qu’un test `SE37` fonctionne.
 
-## PROCÉDURE PAS À PAS
+## PROCESS
 
-1. Saisir `/nSE37`.
-2. Entrer le nom du module fonction puis choisir **Afficher**, **Modifier** ou **Créer** selon l’autorisation.
-3. Analyser les onglets Import, Export, Changing, Tables et Exceptions.
-4. Lire la documentation et le code source avant tout appel.
-5. Utiliser **Test/Exécuter** avec des données non destructives.
-6. Pour un module Z, contrôler, activer puis tester les cas nominal et d’erreur.
+### Étape 1 — Rechercher avec un critère vérifiable
+
+Ouvrir `SE37` et utiliser le nom partiel, la recherche Repository ou le groupe de fonctions connu. Comparer plusieurs candidats ; un nom ressemblant au besoin n’est pas une preuve de compatibilité.
+
+### Étape 2 — Vérifier le statut et la documentation
+
+Ouvrir chaque candidat en affichage. Lire texte court, documentation, attribut RFC/update et éventuelles restrictions d’utilisation.
+
+### Étape 3 — Analyser la signature
+
+Relever paramètres obligatoires, structures `RETURN`, exceptions et types. Écarter le module si l’entrée nécessaire n’est pas représentée ou si une sortie importante reste implicite.
+
+### Étape 4 — Examiner appels et dépendances
+
+Utiliser la liste d’utilisation pour trouver des appelants comparables. Lire le source pour identifier autorisations, tables et appels transactionnels.
+
+### Étape 5 — Tester sans effet destructif
+
+Dans l’outil de test, saisir une clé connue en affichage et contrôler toutes les sorties. L’analyse est terminée lorsque le module choisi possède un contrat compatible et un comportement confirmé par un cas réel.
 
 ## VÉRIFICATION
 
@@ -115,7 +128,6 @@ Ordre de transport  :
 
 - [Looking Up Function Modules — SAP Help Portal](https://help.sap.com/docs/ABAP_PLATFORM_NEW/bd833c8355f34e96a6e83096b38bf192/d1801ec1454211d189710000e8322d00.html)
 - [Calling Function Modules From Your Programs — SAP Help Portal](https://help.sap.com/docs/ABAP_PLATFORM_NEW/bd833c8355f34e96a6e83096b38bf192/d1801edb454211d189710000e8322d00.html)
-
 
 ---
 

@@ -78,14 +78,27 @@ Un dump de mémoire, de temps maximal ou de ressources requiert souvent des outi
 
 L’accès aux dumps est protégé. SAP documente notamment l’objet d’autorisation `S_ABAPDUMP` pour l’analyse des dumps.
 
-## PROCÉDURE PAS À PAS
+## PROCESS
 
-1. Saisir `/nST22`.
-2. Choisir la période correspondant à la reproduction.
-3. Filtrer par utilisateur, transaction ou runtime error lorsque nécessaire.
-4. Ouvrir le dump et relever le nom de l’erreur, l’exception, le programme et la ligne source.
-5. Lire les sections **Error analysis**, **How to correct the error** et **Source Code Extract**.
-6. Corréler le dump avec les données d’entrée et la version active du code.
+### Étape 1 — Fixer le contexte
+
+Relever date, heure, utilisateur, transaction, saisie et action précédant l’arrêt. Sans ces valeurs, un dump du même type peut être attribué au mauvais scénario.
+
+### Étape 2 — Rechercher dans ST22
+
+Ouvrir `ST22`, choisir la période et filtrer par utilisateur ou runtime error. Sélectionner l’entrée dont l’horodatage et le programme correspondent exactement.
+
+### Étape 3 — Lire dans l’ordre utile
+
+Relever runtime error, exception, programme, include et ligne. Lire **Error analysis**, **How to correct the error**, extrait source puis pile d’appels.
+
+### Étape 4 — Localiser la responsabilité
+
+Dans la pile, identifier le premier objet client, enhancement ou appel avec une valeur incorrecte. Vérifier que la version active du source correspond à l’extrait enregistré.
+
+### Étape 5 — Corréler les données
+
+Comparer les variables du dump avec les entrées et données persistées. Corriger la première cause prouvée, puis rejouer le cas fautif et un cas nominal. Le diagnostic est terminé lorsqu’aucun nouveau dump n’est créé et que l’erreur est traitée de façon contrôlée.
 
 ## VÉRIFICATION
 
@@ -125,7 +138,6 @@ Ordre de transport  :
 
 - [ABAP Dump Analysis ST22 — SAP Help Portal](https://help.sap.com/docs/ABAP_PLATFORM_NEW/ba879a6e2ea04d9bb94c7ccd7cdac446/b134ab1cd8e44562b0fee9524c638cca.html)
 - [ABAP Test and Analysis Tools — SAP Help Portal](https://help.sap.com/docs/ABAP_PLATFORM_NEW/ba879a6e2ea04d9bb94c7ccd7cdac446/491aa66f87041903e10000000a42189c.html)
-
 
 ---
 

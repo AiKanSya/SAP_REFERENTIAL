@@ -6,15 +6,31 @@
 - Examiner ses composants et sa documentation
 - Retrouver les objets techniques appelés
 
-## PROCÉDURE
+## PROCESS
 
-1. Ouvrir `SMOD`.
-2. Saisir le nom de l’enhancement ou utiliser la recherche.
-3. Afficher la documentation.
-4. Ouvrir la liste des composants.
-5. Pour chaque composant, analyser le programme, le groupe de fonctions, l’écran ou le code fonction.
-6. Vérifier le point d’appel dans le code standard.
-7. Rechercher le projet `CMOD` éventuellement associé.
+### ÉTAPE 1 — OUVRIR LA DÉFINITION DANS `SMOD`
+
+Saisir `/nSMOD`, entrer le nom exact de l’enhancement et choisir **Afficher**. Si le nom est inconnu, utiliser la recherche par composant ou package, puis confirmer chaque résultat avec le programme réellement exécuté.
+
+### ÉTAPE 2 — LIRE LA DOCUMENTATION
+
+Ouvrir la documentation SAP et relever le processus couvert, les conditions d’appel et les restrictions. Comparer ces informations au besoin fonctionnel. Ne pas continuer avec un enhancement dont le contrat ne correspond qu’approximativement au scénario.
+
+### ÉTAPE 3 — INVENTORIER LES COMPOSANTS
+
+Afficher la liste complète des function, screen et menu exits ainsi que les objets DDIC liés. Pour chaque composant, noter son objet technique, son interface et son rôle. Identifier les composants obligatoires les uns pour les autres.
+
+### ÉTAPE 4 — REMONTER AU CODE APPELANT
+
+Ouvrir le module `EXIT_*`, l’écran ou le code fonction puis retrouver son utilisation dans le standard. Relever le programme, l’include et la séquence de traitement. Examiner ce que le standard fait des valeurs au retour de l’exit.
+
+### ÉTAPE 5 — CONFIRMER L’EXÉCUTION
+
+Placer un breakpoint dans le module ou l’include client et reproduire le scénario. Contrôler la pile d’appels, les paramètres, le nombre de passages et le contexte transactionnel. Conserver ces éléments comme preuve du point retenu.
+
+### ÉTAPE 6 — IDENTIFIER LE PROJET `CMOD`
+
+Rechercher si l’enhancement est déjà affecté à un projet client. Vérifier le statut actif du projet et des objets implémentés. Si aucun projet n’existe, consigner l’enhancement et ses dépendances avant toute création.
 
 ## INFORMATIONS À RELEVER
 
@@ -80,7 +96,6 @@ Ordre de transport  :
 - [Customer Exits (CMOD) — SAP Help Portal](https://help.sap.com/docs/SUPPORT_CONTENT/abap/3353525722.html)
 - [Ways to Find a User Exit — SAP Help Portal](https://help.sap.com/docs/SUPPORT_CONTENT/abap/3353525969.html)
 - [Activating User Exits — SAP Help Portal](https://help.sap.com/docs/SAP_S4HANA_ON-PREMISE/83f4631d77654e14800e31b17fe9bd45/4c3a1afc9995677ae10000000a42189b.html)
-
 
 ---
 

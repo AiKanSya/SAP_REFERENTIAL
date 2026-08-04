@@ -43,17 +43,29 @@ Les éléments ajoutés appartiennent à l’append et sont transportés avec lu
 
 Pour une extension client, utiliser le mécanisme prévu par SAP. Une modification directe du standard complique les montées de version et doit être évitée.
 
-## CRÉATION
+## PROCESS
 
 Depuis la table ou la structure dans `SE11` :
 
-1. ouvrir la fonction d’append ;
-2. créer une structure append dans l’espace client ;
-3. définir les composants ;
-4. utiliser des éléments de données adaptés ;
-5. maintenir la catégorie d’amélioration de l’append si nécessaire ;
-6. activer l’append ;
-7. contrôler l’activation de l’objet cible et ses dépendances.
+### Étape 1 — Vérifier que l’extension est autorisée
+
+Afficher l’objet cible dans `SE11`, relever son propriétaire, sa catégorie d’amélioration et les append existants. Pour un objet SAP, vérifier la documentation d’extension du composant avant d’ajouter un champ.
+
+### Étape 2 — Créer l’append
+
+Ouvrir la fonction d’append, saisir un nom client et renseigner un texte court. Ajouter uniquement des composants client nommés selon l’espace réservé et typés avec des éléments de données actifs.
+
+### Étape 3 — Contrôler les contraintes techniques
+
+Vérifier catégorie d’amélioration, types profonds/plats autorisés, références de devise ou d’unité et absence de collision de noms. Corriger la définition plutôt que forcer une catégorie incompatible.
+
+### Étape 4 — Activer dans le bon ordre
+
+Activer d’abord les éléments de données, puis l’append et enfin contrôler l’objet cible. Lire le journal d’ajustement de base lorsqu’une table transparente est étendue.
+
+### Étape 5 — Tester les consommateurs
+
+Lire et renseigner le nouveau composant depuis un programme de test. Vérifier les interfaces, extractions et structures qui utilisent une correspondance par nom ou une longueur fixe. L’extension est validée lorsque l’objet cible et ses consommateurs restent actifs.
 
 ## CATÉGORIE D’AMÉLIORATION
 
@@ -83,15 +95,19 @@ Avant l’extension :
 - La catégorie d’amélioration doit être respectée.
 - Une extension de table peut nécessiter un ajustement physique et des tests de régression.
 
-## PROCÉDURE PAS À PAS
+## PROCESS
 
-1. Saisir `/nSE11`.
-2. Choisir le type d’objet DDIC correspondant au chapitre.
-3. Entrer le nom technique ; utiliser **Afficher** pour un objet existant ou **Créer** pour un objet Z autorisé.
-4. Renseigner les attributs et composants en suivant les règles du chapitre.
-5. Lancer le contrôle de cohérence.
-6. Activer l’objet et traiter chaque message avant de poursuivre.
-7. Utiliser la liste d’utilisation et, pour les tables, vérifier les paramètres techniques et la structure physique.
+### Étape 1 — Rechercher l’impact avant modification
+
+Utiliser la liste d’utilisation de l’objet cible et des composants concernés. Identifier les programmes, interfaces et formulaires qui pourraient traiter la structure complète.
+
+### Étape 2 — Comparer avant et après activation
+
+Conserver la définition active, activer l’append puis comparer la structure finale. Vérifier que seuls les composants prévus ont été ajoutés et qu’aucun nom standard n’a été masqué.
+
+### Étape 3 — Contrôler le transport
+
+Vérifier que l’append et toutes ses dépendances sont placés dans des ordres dont la séquence d’import est correcte. Le contrôle est terminé après activation et test dans le système cible de développement.
 
 ## VÉRIFICATION
 
@@ -133,7 +149,6 @@ Ordre de transport  :
 
 - [Append Structures — SAP Help Portal](https://help.sap.com/docs/SAP_NETWEAVER_731_BW_ABAP/ec1c9c8191b74de98feb94001a95dd76/cf21eb61446011d189700000e8322d00.html)
 - [Adding an Append Structure — SAP Help Portal](https://help.sap.com/docs/SAP_NETWEAVER_740/ec1c9c8191b74de98feb94001a95dd76/cf21ebc9446011d189700000e8322d00.html)
-
 
 ---
 

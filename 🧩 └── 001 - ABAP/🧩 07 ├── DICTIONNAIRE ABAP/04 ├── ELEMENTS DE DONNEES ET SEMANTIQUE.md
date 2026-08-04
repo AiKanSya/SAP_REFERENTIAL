@@ -101,15 +101,32 @@ Elle ne doit pas reproduire uniquement le nom technique.
 - Un même domaine peut alimenter plusieurs éléments de données métier.
 - Un élément de données peut être utilisé directement avec `TYPE` en ABAP.
 
-## PROCÉDURE PAS À PAS
+## PROCESS
 
-1. Saisir `/nSE11`.
-2. Choisir le type d’objet DDIC correspondant au chapitre.
-3. Entrer le nom technique ; utiliser **Afficher** pour un objet existant ou **Créer** pour un objet Z autorisé.
-4. Renseigner les attributs et composants en suivant les règles du chapitre.
-5. Lancer le contrôle de cohérence.
-6. Activer l’objet et traiter chaque message avant de poursuivre.
-7. Utiliser la liste d’utilisation et, pour les tables, vérifier les paramètres techniques et la structure physique.
+### Étape 1 — Définir la signification du champ
+
+Nommer la donnée métier indépendamment de la table qui l’utilisera. Définir ses libellés court, moyen et long ainsi que la documentation F1 nécessaire.
+
+Si deux champs ont le même format mais des significations différentes, ils ne doivent pas partager automatiquement le même élément de données.
+
+### Étape 2 — Créer l’élément de données
+
+1. Ouvrir `SE11`, choisir **Type de données** et saisir un nom `Z...`.
+2. Choisir **Élément de données**.
+3. Référencer le domaine correspondant à la même sémantique technique.
+4. Utiliser un type prédéfini uniquement si aucun domaine partagé n’est requis et si la règle du projet l’autorise.
+
+### Étape 3 — Maintenir les textes et propriétés
+
+Renseigner la désignation et les libellés selon les longueurs d’écran. Ajouter la documentation F1 utile. Activer l’indicateur de document de modification uniquement si le champ doit participer au mécanisme SCDO et si le scénario est conçu pour cela.
+
+### Étape 4 — Contrôler et activer
+
+Exécuter le contrôle, traiter les messages puis activer. Si le domaine est inactif, l’activer d’abord au lieu de forcer l’objet supérieur.
+
+### Étape 5 — Tester dans un consommateur
+
+Utiliser l’élément dans une structure ou un écran de test. Vérifier type, libellés, aide F1 et comportement F4. La création est terminée lorsque l’utilisateur comprend la donnée affichée sans dépendre du nom technique du champ.
 
 ## VÉRIFICATION
 
@@ -147,7 +164,6 @@ DATA lv_contract_id TYPE zde_contract_id.
 
 - [Data Elements — SAP Help Portal](https://help.sap.com/docs/SAP_NETWEAVER_740/ec1c9c8191b74de98feb94001a95dd76/908d72feb1af11d194f600a0c929b3c3.html)
 - [Using Dictionary Objects as Data Types — SAP Learning](https://learning.sap.com/courses/building-data-models-with-the-abap-dictionary-and-abap-core-data-services/using-dictionary-objects-as-data-types_e28df7c3-7686-414e-9827-673dceeb21fb)
-
 
 ---
 

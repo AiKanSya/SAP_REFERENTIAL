@@ -14,14 +14,31 @@ La transaction `ST05` fournit des fonctions de trace système, notamment la trac
 
 Ce chapitre se concentre sur l’usage développeur pour comprendre les accès produits par un traitement ABAP.
 
-## PROCÉDURE GÉNÉRALE
+## PROCESS
 
-1. préparer le scénario ;
-2. activer la trace avec un périmètre restrictif ;
-3. exécuter uniquement l’action utile ;
-4. désactiver la trace ;
-5. afficher et filtrer les résultats ;
-6. analyser les opérations dominantes.
+### Étape 1 — Préparer une requête reproductible
+
+Fixer utilisateur, programme, sélection et volume. Exécuter une fois sans trace et confirmer le résultat fonctionnel.
+
+### Étape 2 — Activer un périmètre restrictif
+
+Ouvrir `ST05`, choisir la trace SQL et cibler l’utilisateur ou le contexte disponible. Vérifier qu’aucune trace concurrente incompatible n’est active.
+
+### Étape 3 — Capturer uniquement l’action utile
+
+Activer, exécuter une seule fois puis désactiver immédiatement. Une trace contenant connexion, navigation et plusieurs tests rend les temps difficiles à attribuer.
+
+### Étape 4 — Filtrer et agréger
+
+Afficher la trace, filtrer sur programme ou table, puis regrouper les instructions identiques. Examiner durée cumulée, exécutions, lignes examinées et lignes retournées.
+
+### Étape 5 — Analyser la cause
+
+Distinguer requête lente unique, requête répétée en boucle, prédicat non sélectif et volume excessif. Ouvrir l’explication du plan lorsque nécessaire.
+
+### Étape 6 — Mesurer après correction
+
+Répéter exactement la capture. La correction est validée lorsque temps, exécutions ou volume diminuent avec un résultat fonctionnel inchangé.
 
 ```mermaid
 flowchart LR
@@ -104,7 +121,6 @@ Ordre de transport  :
 - [SQL Performance Monitoring — SAP Help Portal](https://help.sap.com/docs/ABAP_PLATFORM_NEW/a24970c68fcf4770a64bf9a78e3719e2/355d59ff44ce4f789d6b29cda7ec45fa.html)
 - [Preparations for SQL Trace — SAP Help Portal](https://help.sap.com/docs/ABAP_PLATFORM_NEW/a24970c68fcf4770a64bf9a78e3719e2/9f6bbd60512c488499c02065ceb6033b.html)
 - [System Trace — SAP Help Portal](https://help.sap.com/docs/ABAP_PLATFORM_NEW/e067931e0b0a4b2089f4db327879cd55/47cc212e3fa5296fe10000000a42189b.html)
-
 
 ---
 

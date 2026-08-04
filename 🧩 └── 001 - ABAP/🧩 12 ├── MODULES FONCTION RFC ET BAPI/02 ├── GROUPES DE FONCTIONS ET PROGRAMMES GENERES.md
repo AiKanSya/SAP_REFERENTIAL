@@ -65,14 +65,27 @@ Exemples de regroupements cohérents :
 - modules générés par un framework ;
 - fonctions d’une même API classique.
 
-## PROCÉDURE PAS À PAS
+## PROCESS
 
-1. Saisir `/nSE37`.
-2. Entrer le nom du module fonction puis choisir **Afficher**, **Modifier** ou **Créer** selon l’autorisation.
-3. Analyser les onglets Import, Export, Changing, Tables et Exceptions.
-4. Lire la documentation et le code source avant tout appel.
-5. Utiliser **Test/Exécuter** avec des données non destructives.
-6. Pour un module Z, contrôler, activer puis tester les cas nominal et d’erreur.
+### Étape 1 — Ouvrir le groupe depuis un module
+
+Afficher le module dans `SE37`, relever son groupe de fonctions puis naviguer vers celui-ci dans `SE80`. Vérifier le programme généré `SAPL...` et les includes proposés.
+
+### Étape 2 — Cartographier les includes
+
+Identifier l’include TOP, les includes de modules fonction, les écrans éventuels et les includes client. Distinguer code généré et zones prévues pour la maintenance.
+
+### Étape 3 — Relever les données globales
+
+Examiner types, constantes et variables du groupe. Utiliser la liste d’utilisation pour déterminer quels modules lisent ou modifient chaque globale.
+
+### Étape 4 — Vérifier le couplage
+
+Tester deux modules du groupe dans une même séquence puis séparément. Si le résultat dépend d’un état global conservé, documenter ce contrat ou supprimer la dépendance.
+
+### Étape 5 — Contrôler activation et transport
+
+Activer le groupe complet et vérifier ses sous-objets dans l’ordre. La structure est maîtrisée lorsque chaque source modifiable, globale partagée et objet transporté est identifié.
 
 ## VÉRIFICATION
 
@@ -98,7 +111,6 @@ Exemples de regroupements cohérents :
 - [Understanding Function Module Code — SAP Help Portal](https://help.sap.com/docs/ABAP_PLATFORM_NEW/bd833c8355f34e96a6e83096b38bf192/d1801f1c454211d189710000e8322d00.html)
 - [Creating New Function Modules — SAP Help Portal](https://help.sap.com/docs/ABAP_PLATFORM_NEW/bd833c8355f34e96a6e83096b38bf192/d1801ee8454211d189710000e8322d00.html)
 - [Overview of Function Modules — SAP Help Portal](https://help.sap.com/docs/SAP_NETWEAVER_702/ff59ad5d6c55101492f7f1c64dee0529/d1801ea7454211d189710000e8322d00.html)
-
 
 ---
 

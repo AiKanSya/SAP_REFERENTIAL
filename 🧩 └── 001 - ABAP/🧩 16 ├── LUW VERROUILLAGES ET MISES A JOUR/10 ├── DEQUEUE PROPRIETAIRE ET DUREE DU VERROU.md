@@ -34,6 +34,32 @@ Ne pas modifier `_SCOPE` par habitude. Vérifier le comportement exact dans la d
 
 Une procédure robuste libère les verrous dans tous les chemins qui n’aboutissent pas à un commit prévu : erreur de validation, exception gérée, abandon utilisateur ou retour anticipé.
 
+## PROCESS
+
+### ÉTAPE 1 — RELEVER LE CONTRAT DE L’ENQUEUE
+
+Conserver l’objet, le mode, la clé et la valeur de `_SCOPE` utilisés lors de l’acquisition. Identifier si la propriété reste au programme de dialogue, est transférée à l’update task ou est partagée selon le paramétrage retenu.
+
+### ÉTAPE 2 — CHOISIR LE MOMENT DE LIBÉRATION
+
+Pour une section critique courte, prévoir un dequeue explicite dès que l’invariant n’a plus besoin de protection. Pour une protection jusqu’à la fin de la SAP LUW, laisser commit ou rollback agir conformément à `_SCOPE`. Ne pas libérer avant la persistance que le verrou doit protéger.
+
+### ÉTAPE 3 — APPELER LE MODULE GÉNÉRÉ
+
+Afficher `DEQUEUE_<objet>` dans `SE37` et reprendre les paramètres exacts. Passer une clé et un mode compatibles avec l’enqueue initial. Une valeur différente peut ne pas cibler l’entrée détenue.
+
+### ÉTAPE 4 — COUVRIR LES CHEMINS D’ERREUR
+
+Structurer le code afin que les exceptions gérées, validations négatives et retours anticipés atteignent le nettoyage prévu. Éviter plusieurs sorties dispersées après l’enqueue. Ne pas effectuer un dequeue appartenant à une update task encore active.
+
+### ÉTAPE 5 — OBSERVER LA PROPRIÉTÉ DANS `SM12`
+
+Pendant le scénario, rechercher l’objet et l’argument. Vérifier quand le propriétaire ou l’entrée change autour de l’enregistrement de l’update et du commit. Comparer cette observation au comportement attendu de `_SCOPE`.
+
+### ÉTAPE 6 — TESTER TOUTES LES FINS DE TRAITEMENT
+
+Exécuter un succès, une erreur de validation, une exception gérée, un rollback et une update task en erreur. Après chaque scénario, contrôler `SM12`, `SM13` et les données. Aucun verrou ne doit disparaître trop tôt ni persister sans propriétaire actif.
+
 ## VÉRIFICATION
 
 - Les données sont toutes validées ou toutes annulées selon le cas testé.
@@ -75,7 +101,6 @@ CALL FUNCTION 'DEQUEUE_EZDEV_ORDER'
 - [\_SCOPE Parameters — SAP Help Portal](https://help.sap.com/docs/ABAP_PLATFORM_NEW/6568469cf5a1460a8d85c58b83d21ec2/47daadf638793c85e10000000a42189c.html)
 - [Function Modules for Lock Requests — SAP Help Portal](https://help.sap.com/docs/ABAP_PLATFORM_NEW/ec1c9c8191b74de98feb94001a95dd76/cf21eebf446011d189700000e8322d00.html)
 - [COMMIT WORK — ABAP Keyword Documentation](https://help.sap.com/doc/abapdocu_752_index_htm/7.52/en-US/abapcommit.htm)
-
 
 ---
 

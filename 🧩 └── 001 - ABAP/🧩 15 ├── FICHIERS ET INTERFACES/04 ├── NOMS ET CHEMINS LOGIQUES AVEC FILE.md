@@ -1,4 +1,5 @@
 # NOMS E" Appeler l’API classique et traiter explicitement son résultat.
+
 T CHEMINS LOGIQUES AVEC `FILE`
 
 ## RÉSULTAT ATTENDU
@@ -60,14 +61,27 @@ L’interface exacte du module fonction doit être vérifiée dans `SE37` sur la
 - Tester la résolution dans tous les environnements.
 - Documenter le propriétaire de la configuration `FILE`.
 
-## PROCÉDURE PAS À PAS
+## PROCESS
 
-1. Saisir `/nSE37`.
-2. Entrer le nom du module fonction puis choisir **Afficher**, **Modifier** ou **Créer** selon l’autorisation.
-3. Analyser les onglets Import, Export, Changing, Tables et Exceptions.
-4. Lire la documentation et le code source avant tout appel.
-5. Utiliser **Test/Exécuter** avec des données non destructives.
-6. Pour un module Z, contrôler, activer puis tester les cas nominal et d’erreur.
+### Étape 1 — Examiner la configuration FILE
+
+Ouvrir `FILE`, afficher nom et chemin logiques. Relever syntax group, placeholders et chemin physique associé au système.
+
+### Étape 2 — Préparer les paramètres
+
+Identifier les variables utilisées par la définition. Fournir uniquement des valeurs validées, sans séparateur de chemin transmis par l’utilisateur.
+
+### Étape 3 — Résoudre avec l’API standard
+
+Dans `SE37`, ouvrir `FILE_GET_NAME` ou l’API prévue sur la release, reprendre sa signature exacte et renseigner nom logique et paramètres obligatoires.
+
+### Étape 4 — Valider le résultat
+
+Vérifier que le chemin retourné appartient au répertoire autorisé, utilise le syntax group du serveur et possède le nom attendu.
+
+### Étape 5 — Tester le consommateur
+
+Utiliser le chemin dans `OPEN DATASET`, traiter `SY-SUBRC` puis fermer. La configuration est validée lorsque le même nom logique fonctionne dans chaque système sans chemin codé en dur.
 
 ## VÉRIFICATION
 
@@ -120,7 +134,6 @@ ENDIF.
 
 - [Physical and Logical File Names — SAP Help Portal](https://help.sap.com/docs/ABAP_PLATFORM_NEW/7bfe8cdcfbb040dcb6702dada8c3e2f0/9e49819d5b2a440fb508772494b9a473.html)
 - [Defining Logical Path and File Names — SAP Help Portal](https://help.sap.com/docs/SAP_NETWEAVER_700/10907a5e6c531014a252fdc4265a1f8e/4d88692f8d7a40ade10000000a15822b.html)
-
 
 ---
 

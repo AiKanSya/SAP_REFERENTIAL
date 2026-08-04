@@ -47,14 +47,31 @@ Le traitement métier ne doit pas dépendre directement d’une boîte de dialog
 
 Cette séparation permet de réutiliser le même cœur de traitement avec un fichier serveur.
 
-## PROCÉDURE PAS À PAS
+## PROCESS
 
-1. Saisir `/nSE24`.
-2. Entrer le nom d’une classe globale Z puis choisir **Créer**, ou afficher une classe existante.
-3. Maintenir définition, visibilité, types, attributs et méthodes dans les onglets appropriés.
-4. Implémenter les méthodes dans l’éditeur.
-5. Contrôler et activer la classe complète.
-6. Utiliser la fonction de test ou un report Z appelant pour vérifier le comportement.
+### ÉTAPE 1 — CONFIRMER QUE LE FRONTEND EST DISPONIBLE
+
+Exécuter le traitement en mode dialogue depuis SAP GUI. Avant toute boîte de dialogue ou tout transfert, vérifier la disponibilité des services frontend avec la méthode prévue par `CL_GUI_FRONTEND_SERVICES` sur la release cible. Interrompre proprement le scénario si aucun frontend n’est disponible ; un job ou un appel sans session SAP GUI ne doit pas poursuivre vers une méthode locale.
+
+### ÉTAPE 2 — SÉPARER LE CHOIX DU FICHIER DU TRAITEMENT
+
+Créer une méthode dédiée à la sélection du chemin et une autre au chargement ou au téléchargement. Le parseur et le traitement métier reçoivent des données ABAP, jamais une dépendance directe à une boîte de dialogue. Cette séparation permet de tester le traitement sans intervention utilisateur et de remplacer ultérieurement la source locale par un fichier serveur.
+
+### ÉTAPE 3 — OUVRIR LA BOÎTE DE DIALOGUE ADAPTÉE
+
+Utiliser `FILE_OPEN_DIALOG` pour sélectionner un fichier existant et `FILE_SAVE_DIALOG` pour choisir une destination. Limiter les extensions visibles au contrat attendu. Après le retour, distinguer explicitement l’annulation de l’utilisateur, l’absence de sélection et l’erreur technique ; aucune de ces situations ne doit déclencher un traitement avec un chemin initial ou vide.
+
+### ÉTAPE 4 — TRANSFÉRER SELON LA NATURE DU CONTENU
+
+Utiliser `GUI_UPLOAD` ou `GUI_DOWNLOAD` avec un type de fichier cohérent : texte pour des lignes textuelles, binaire pour un contenu `XSTRING` converti en table binaire. Définir l’encodage lorsque le contrat l’impose. Ne pas supposer qu’une extension de fichier transforme le contenu.
+
+### ÉTAPE 5 — TRAITER LES EXCEPTIONS AU NIVEAU FRONTEND
+
+Intercepter les exceptions déclarées par la méthode réellement disponible dans `SE24`. Restituer une erreur exploitable indiquant l’opération, le nom du fichier et la cause, sans exposer inutilement un chemin utilisateur sensible. Ne pas masquer un refus de sécurité SAP GUI sous un message métier générique.
+
+### ÉTAPE 6 — TESTER LES CONTEXTES POSITIFS ET NÉGATIFS
+
+Tester un fichier valide, une annulation, un fichier absent, un fichier verrouillé, un nom contenant des espaces ou des accents et un volume représentatif. Planifier aussi une exécution en arrière-plan : le programme doit refuser le scénario frontend de manière contrôlée avant tout accès au fichier.
 
 ## VÉRIFICATION
 
@@ -96,7 +113,6 @@ Ordre de transport  :
 
 - [Files on the Presentation Server — ABAP Keyword Documentation](https://help.sap.com/doc/abapdocu_latest_index_htm/latest/en-US/ABENFRONTEND_FILES.html)
 - [File Upload and Download — SAP Help Portal](https://help.sap.com/docs/ABAP_PLATFORM_NEW/5a005e044eef436f8b27bbd3f73a3cfc/9ff8506b2b8f4812904912c4b207096c.html)
-
 
 ---
 

@@ -43,14 +43,31 @@ flowchart LR
     C --> D["Job consommateur"]
 ```
 
-## PROCÉDURE PAS À PAS
+## PROCESS
 
-1. Saisir `/nSE24`.
-2. Entrer le nom d’une classe globale Z puis choisir **Créer**, ou afficher une classe existante.
-3. Maintenir définition, visibilité, types, attributs et méthodes dans les onglets appropriés.
-4. Implémenter les méthodes dans l’éditeur.
-5. Contrôler et activer la classe complète.
-6. Utiliser la fonction de test ou un report Z appelant pour vérifier le comportement.
+### ÉTAPE 1 — VÉRIFIER L’ÉVÉNEMENT ET LES JOBS EN ATTENTE
+
+Dans `SM62`, confirmer l’identifiant et le contrat de l’argument. Dans `SM37`, vérifier qu’un job de test libéré attend cette combinaison. Ne développer l’émetteur qu’après avoir prouvé la configuration du consommateur.
+
+### ÉTAPE 2 — CHOISIR L’API DISPONIBLE
+
+Afficher `CL_BATCH_EVENT` dans `SE24` ou `BP_EVENT_RAISE` dans `SE37` et relever la signature active. Utiliser l’API retenue derrière une méthode Z afin d’isoler les différences de release et de faciliter les tests.
+
+### ÉTAPE 3 — CONSTRUIRE IDENTIFIANT ET ARGUMENT
+
+Utiliser des constantes ou une configuration validée pour l’identifiant. Construire l’argument selon le format documenté et vérifier longueur, casse et absence de données sensibles. Refuser une valeur initiale si le contrat la rend obligatoire.
+
+### ÉTAPE 4 — ÉMETTRE APRÈS LA VALIDATION DES DONNÉES
+
+Valider d’abord les données que le consommateur doit lire. Émettre l’événement seulement lorsque leur état persistant est disponible. Si l’événement est envoyé après un commit, traiter son échec comme une situation de reprise distincte, car les données sont déjà validées.
+
+### ÉTAPE 5 — TRAITER CHAQUE ERREUR DE L’API
+
+Pour `BP_EVENT_RAISE`, contrôler `sy-subrc` immédiatement et distinguer identifiant absent, événement inexistant et échec d’émission. Journaliser l’identifiant, l’argument et la cause. Ne pas annoncer le déclenchement si l’API a échoué.
+
+### ÉTAPE 6 — VÉRIFIER ET REJOUER
+
+Contrôler dans `SM37` le démarrage du job attendu et son résultat métier. Tester un événement invalide, un argument ne correspondant à aucun job et une émission répétée. La reprise de l’émetteur ne doit pas produire de traitement métier en double.
 
 ## VÉRIFICATION
 
@@ -100,7 +117,6 @@ ENDIF.
 
 - [Triggering Events from ABAP Programs — SAP Help Portal](https://help.sap.com/docs/SAP_NETWEAVER_AS_ABAP_752/b07e7195f03f438b8e7ed273099d74f3/4d983cd18e3d0b93e10000000a42189e.html)
 - [Background Processing Function Modules — SAP Help Portal](https://help.sap.com/docs/ABAP_PLATFORM_BW4HANA/7bfe8cdcfbb040dcb6702dada8c3e2f0/4d906689eba36e73e10000000a15822b.html)
-
 
 ---
 

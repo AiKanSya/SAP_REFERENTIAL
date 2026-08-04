@@ -25,17 +25,27 @@ flowchart LR
     C --> D["Instruction MESSAGE"]
 ```
 
-## CRÉATION AVEC SE91
+## PROCESS
 
-Procédure générale :
+### Étape 1 — Définir le périmètre de la classe
 
-1. ouvrir la transaction `SE91` ;
-2. saisir un nom de classe client, par exemple `ZDEV_MSG` ;
-3. choisir **Créer** ;
-4. renseigner une description ;
-5. maintenir les numéros et textes ;
-6. enregistrer dans le bon package et ordre de transport ;
-7. traduire les textes dans les langues requises.
+Regrouper des messages appartenant au même composant ou service. Rechercher une classe client existante avant d’en créer une nouvelle et vérifier son package et ses responsables.
+
+### Étape 2 — Créer la classe
+
+Ouvrir `SE91`, saisir un nom client comme `ZDEV_MSG` et choisir **Créer**. Renseigner une description précise, puis affecter le package et la tâche de transport du composant.
+
+### Étape 3 — Ajouter un message
+
+Choisir un numéro libre, saisir un texte court et utiliser au maximum `&1` à `&4` pour les valeurs dynamiques. Le texte doit rester compréhensible après substitution et ne doit pas exposer de donnée sensible.
+
+### Étape 4 — Enregistrer et contrôler le transport
+
+Enregistrer puis vérifier dans `SE10` que la classe et ses textes sont rattachés à l’ordre attendu. Contrôler que le numéro ajouté n’a pas été simultanément utilisé par un autre changement.
+
+### Étape 5 — Préparer les traductions
+
+Identifier les langues supportées et transmettre les textes au processus de traduction prévu. Tester la classe dans chaque langue disponible plutôt que de supposer un fallback acceptable.
 
 La maintenance peut également être atteinte depuis les outils du Workbench ABAP selon la version du système.
 
@@ -100,14 +110,21 @@ La traduction ne doit pas être remplacée par des textes assemblés manuellemen
 - ne pas réutiliser un numéro avec une nouvelle signification ;
 - conserver les messages stables lorsqu’ils constituent un contrat d’interface.
 
-## PROCÉDURE PAS À PAS
+## PROCESS
 
-1. Saisir `/nSE91`.
-2. Entrer une classe de messages Z puis choisir **Créer** ou **Modifier**.
-3. Ajouter un numéro libre et un texte court ; utiliser `&1` à `&4` pour les variables.
-4. Enregistrer dans le package et l’ordre appropriés.
-5. Activer si le système le demande.
-6. Appeler le message depuis un report de test et vérifier le texte dans la langue de connexion.
+### Étape 1 — Appeler le message avec des paramètres typés
+
+Créer un report de test et utiliser `MESSAGE` avec la classe, le numéro et le même nombre de paramètres que les placeholders. Fournir des valeurs dont la longueur permet de vérifier une éventuelle troncature.
+
+### Étape 2 — Tester le type de message dans son contexte
+
+Tester le message dans le contexte réel : écran de sélection, traitement de fond, méthode ou dynpro. Les types `E`, `W`, `S`, `I`, `A` et `X` n’ont pas le même effet selon le contexte ; ne déduire pas leur comportement depuis un seul report.
+
+### Étape 3 — Vérifier le texte résolu
+
+Exécuter dans la langue de connexion, contrôler substitutions, ordre des valeurs et lisibilité. Relancer dans une autre langue supportée.
+
+La classe est validée lorsque le bon texte et le bon comportement apparaissent dans chaque contexte prévu, sans dump ni information sensible.
 
 ## VÉRIFICATION
 
@@ -147,7 +164,6 @@ Ordre de transport  :
 - [Messages and Message Classes — SAP Help Portal](https://help.sap.com/docs/ABAP_PLATFORM_NEW/c238d694b825421f940829321ffa326a/4ec242f66e391014adc9fffe4e204223.html)
 - [Maintaining Messages — SAP Help Portal](https://help.sap.com/docs/SAP_NETWEAVER_AS_ABAP_752/bd833c8355f34e96a6e83096b38bf192/d1801b3e454211d189710000e8322d00.html)
 - [MESSAGE — ABAP Keyword Documentation](https://help.sap.com/doc/abapdocu_latest_index_htm/latest/en-US/ABAPMESSAGE_SHORTREF.html)
-
 
 ---
 

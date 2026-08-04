@@ -41,14 +41,31 @@ Le programme doit définir explicitement :
 5. le comportement en cas d’erreur ;
 6. la méthode de diagnostic et de reprise.
 
-## PROCÉDURE PAS À PAS
+## PROCESS
 
-1. Lire la définition et identifier les prérequis du chapitre.
-2. Choisir un objet Z ou un scénario de démonstration sans impact métier.
-3. Reproduire l’exemple dans un système de développement et relever les données d’entrée.
-4. Contrôler la syntaxe ou la configuration avant activation/exécution.
-5. Comparer le résultat observé avec la section **Vérification**.
-6. Documenter toute différence liée à la release, aux autorisations ou au paramétrage du système.
+### ÉTAPE 1 — DÉFINIR L’UNITÉ MÉTIER ATOMIQUE
+
+Lister les écritures qui doivent réussir ou échouer ensemble. Identifier la clé métier, les tables concernées et les effets externes éventuels. Une unité transactionnelle ne se déduit pas du découpage technique en méthodes : elle se déduit de l’état métier qui doit rester cohérent.
+
+### ÉTAPE 2 — RECENSER LES BORNES TRANSACTIONNELLES
+
+Rechercher les `COMMIT WORK`, `ROLLBACK WORK`, appels de BAPI avec gestion de commit, appels RFC et traitements qui quittent le contexte courant. Vérifier aussi les commits effectués par les API appelées. Aucun composant interne ne doit valider une partie de l’unité sans contrat explicite.
+
+### ÉTAPE 3 — PROTÉGER LA DONNÉE PARTAGÉE
+
+Déterminer la clé de verrouillage la plus fine couvrant l’invariant métier. Poser le verrou SAP avant la décision de mise à jour, puis relire l’état persistant déterminant. Traiter une collision comme un résultat fonctionnel contrôlé, pas comme une autorisation de poursuivre sans protection.
+
+### ÉTAPE 4 — ORDONNER CONTRÔLES ET ÉCRITURES
+
+Effectuer les validations structurelles et métier avant les effets irréversibles. Regrouper les écritures de la même unité et vérifier chaque retour d’API. Enregistrer les modules de mise à jour seulement lorsque leurs paramètres sont complets et cohérents.
+
+### ÉTAPE 5 — CENTRALISER LA DÉCISION FINALE
+
+L’orchestrateur exécute un seul `COMMIT WORK` lorsque toute l’unité est prête, ou `ROLLBACK WORK` tant qu’aucun effet externe irréversible n’a eu lieu. Libérer les verrous selon la propriété définie par `_SCOPE` et les chemins d’erreur prévus.
+
+### ÉTAPE 6 — PROUVER LA COHÉRENCE
+
+Tester le succès, une erreur avant écriture, une erreur après une première écriture, une collision concurrente et une update task en échec. Après chaque test, contrôler les tables, `SM12`, `SM13` et le journal applicatif. Aucun scénario ne doit laisser un état métier partiellement validé sans statut de reprise.
 
 ## VÉRIFICATION
 
@@ -75,7 +92,6 @@ Le programme doit définir explicitement :
 
 - [LUWs in ABAP — SAP Help Portal](https://help.sap.com/docs/ABAP_PLATFORM_NEW/8132142fd1a144a59303663a03a7c2d4/54f5462a9604498382319304869a4280.html)
 - [LUW and Transactional Phases — SAP Help Portal](https://help.sap.com/docs/abap-cloud/abap-concepts/luw-and-transactional-phases)
-
 
 ---
 

@@ -1,4 +1,5 @@
 # LIRE D" Lire uniquement les colonnes et les lignes nécessaires.
+
 " Lire uniquement les colonnes et les lignes nécessaires.
 ES DONNÉES AVEC `SELECT`
 
@@ -15,15 +16,33 @@ Créer et exécuter un programme qui lit les compagnies aériennes d’une devis
 > [!NOTE]
 > Si `SCARR` est absente ou vide, utiliser une table `Z` de démonstration ou une source autorisée en lecture seule. Ne pas remplacer l’exemple par une table applicative standard destinée à être modifiée.
 
-## PROCÉDURE RAPIDE
+## PROCESS
 
-1. Ouvrir `SE38`.
-2. Créer le programme `ZDEMO_SELECT_CARRIERS` dans `$TMP` pour un test local, ou dans le package fourni par le projet.
-3. Coller le programme complet ci-dessous.
-4. Lancer le contrôle syntaxique avec `Ctrl+F2`.
-5. Activer avec `Ctrl+F3`.
-6. Exécuter avec `F8`.
-7. Saisir une devise présente dans `SCARR`, par exemple `EUR`, puis exécuter.
+### Étape 1 — Vérifier les données de test
+
+Afficher `SCARR` dans `SE11` ou un outil de consultation autorisé. Relever une devise réellement présente et au moins un transporteur associé. Ne retenir `EUR` que si cette valeur existe dans le système courant.
+
+### Étape 2 — Créer le programme
+
+Ouvrir `SE38`, saisir `ZDEMO_SELECT_CARRIERS` et choisir **Créer**. Utiliser `$TMP` pour un exercice local ou le package et la tâche imposés par le projet. Si le nom existe, ne pas écraser le programme : choisir un nom libre.
+
+### Étape 3 — Insérer et vérifier le code
+
+Coller le programme complet du chapitre. Vérifier que la déclaration `REPORT` correspond au nom créé et que les variables hôtes de la requête sont précédées de `@`.
+
+### Étape 4 — Contrôler puis activer
+
+Exécuter `Ctrl+F2`, corriger chaque erreur, puis `Ctrl+F3`. Si `SCARR` ou un champ est inconnu, confirmer que le système cible contient le modèle de démonstration utilisé par le chapitre.
+
+### Étape 5 — Exécuter le cas positif
+
+Lancer avec `F8`, saisir la devise relevée à l’étape 1 puis exécuter. Comparer nombre de lignes, identifiants et devises avec la source.
+
+### Étape 6 — Exécuter le cas sans résultat
+
+Relancer avec une valeur valide techniquement mais absente des données. Le programme doit afficher ou traiter explicitement l’absence de transporteur, sans conserver le résultat de l’exécution précédente.
+
+Le test est terminé lorsque les cas présent et absent produisent deux résultats distincts et contrôlés.
 
 ## CODE PRÊT À ADAPTER
 
@@ -60,13 +79,13 @@ La variable ABAP `p_curr` est préfixée par `@` parce qu’elle est utilisée c
 
 ## POINTS À REMPLACER
 
-| Élément | Remplacement attendu |
-|---|---|
-| `ZDEMO_SELECT_CARRIERS` | Nom du programme client |
-| `SCARR` | Source DDIC autorisée |
-| `CARRID`, `CARRNAME`, `CURRCODE` | Colonnes strictement nécessaires |
-| `P_CURR` | Critère de sélection adapté au besoin |
-| `ORDER BY CARRID` | Ordre déterministe requis par l’affichage |
+| Élément                          | Remplacement attendu                      |
+| -------------------------------- | ----------------------------------------- |
+| `ZDEMO_SELECT_CARRIERS`          | Nom du programme client                   |
+| `SCARR`                          | Source DDIC autorisée                     |
+| `CARRID`, `CARRNAME`, `CURRCODE` | Colonnes strictement nécessaires          |
+| `P_CURR`                         | Critère de sélection adapté au besoin     |
+| `ORDER BY CARRID`                | Ordre déterministe requis par l’affichage |
 
 ## VARIANTES UTILES
 
@@ -116,14 +135,14 @@ Contrôler les doublons avant d’employer `APPENDING TABLE` dans plusieurs lect
 
 ## ERREURS FRÉQUENTES
 
-| Symptôme | Cause probable | Correction |
-|---|---|---|
-| Erreur de syntaxe sur `P_CURR` | Marqueur de variable hôte absent | Utiliser `@p_curr` dans ABAP SQL |
-| Aucun résultat | Valeur absente de la table ou espace significatif | Contrôler les données avec `SE16H` et la valeur saisie |
-| Résultat dans un ordre variable | Aucun ordre SQL demandé | Ajouter `ORDER BY` lorsque l’ordre est fonctionnellement requis |
-| Trop de données transférées | Restriction `WHERE` insuffisante | Ajouter les critères disponibles avant la lecture |
-| Structure cible incompatible | Colonnes et cible ne correspondent pas | Utiliser une cible inline ou adapter explicitement le type |
-| Doublons inattendus | Usage successif de `APPENDING TABLE` | Vider la cible ou utiliser `INTO TABLE` |
+| Symptôme                        | Cause probable                                    | Correction                                                      |
+| ------------------------------- | ------------------------------------------------- | --------------------------------------------------------------- |
+| Erreur de syntaxe sur `P_CURR`  | Marqueur de variable hôte absent                  | Utiliser `@p_curr` dans ABAP SQL                                |
+| Aucun résultat                  | Valeur absente de la table ou espace significatif | Contrôler les données avec `SE16H` et la valeur saisie          |
+| Résultat dans un ordre variable | Aucun ordre SQL demandé                           | Ajouter `ORDER BY` lorsque l’ordre est fonctionnellement requis |
+| Trop de données transférées     | Restriction `WHERE` insuffisante                  | Ajouter les critères disponibles avant la lecture               |
+| Structure cible incompatible    | Colonnes et cible ne correspondent pas            | Utiliser une cible inline ou adapter explicitement le type      |
+| Doublons inattendus             | Usage successif de `APPENDING TABLE`              | Vider la cible ou utiliser `INTO TABLE`                         |
 
 ## COMPATIBILITÉ S/4HANA
 

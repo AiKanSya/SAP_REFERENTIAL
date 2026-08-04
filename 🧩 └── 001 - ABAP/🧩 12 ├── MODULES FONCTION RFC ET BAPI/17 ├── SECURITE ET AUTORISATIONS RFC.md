@@ -79,14 +79,27 @@ Journaliser suffisamment pour relier :
 - résultat ;
 - identifiant de corrélation lorsqu’il existe.
 
-## PROCÉDURE PAS À PAS
+## PROCESS
 
-1. Saisir `/nSAT`.
-2. Créer ou sélectionner une variante de mesure adaptée.
-3. Définir le programme, la transaction ou l’utilisateur à mesurer.
-4. Démarrer la mesure puis reproduire une seule fois le scénario.
-5. Arrêter et analyser le hit list, la hiérarchie d’appels et les temps nets.
-6. Répéter la mesure après correction avec les mêmes données et le même contexte.
+### Étape 1 — Identifier l’identité d’exécution
+
+Dans `SM59`, relever le mode de logon et l’utilisateur réellement utilisé dans la cible. Distinguer utilisateur de dialogue, technique, current user et trusted RFC.
+
+### Étape 2 — Limiter l’autorisation technique
+
+Avec l’équipe sécurité, définir `S_RFC` ou les objets applicables au strict périmètre de groupes/modules nécessaires. Ne donner pas une autorisation large pour compenser une interface mal inventoriée.
+
+### Étape 3 — Contrôler dans le module cible
+
+Valider toutes les entrées et exécuter les `AUTHORITY-CHECK` métier dans le système cible. L’autorisation de lancer le module ne donne pas automatiquement le droit de lire ou modifier l’objet métier.
+
+### Étape 4 — Tracer un refus
+
+Reproduire avec l’utilisateur de destination, puis analyser `SU53` immédiatement ou `STAUTHTRACE` sur le bon utilisateur et le bon système. Relever objet, champs et valeurs contrôlés.
+
+### Étape 5 — Tester le moindre privilège
+
+Exécuter un cas autorisé et un cas explicitement refusé. La sécurité est validée lorsque le module requis fonctionne, qu’un module hors périmètre est refusé et que les contrôles métier bloquent les données non autorisées.
 
 ## VÉRIFICATION
 
@@ -129,7 +142,6 @@ ENDIF.
 - [Authorizations — SAP Help Portal](https://help.sap.com/docs/ABAP_PLATFORM_NEW/c495ada972d045b2be2869f5573af8e7/488de31b81cd0e27e10000000a421937.html)
 - [RFC Authorization — SAP Help Portal](https://help.sap.com/docs/SAP_NETWEAVER_700/108f625f6c53101491e88dc4cf51a6cc/4895128d94cc73eae10000000a42189b.html)
 - [Authorization Object S_RFC_ADM — SAP Help Portal](https://help.sap.com/docs/ABAP_PLATFORM_NEW/c495ada972d045b2be2869f5573af8e7/488d1c05ae444e6ee10000000a421937.html)
-
 
 ---
 

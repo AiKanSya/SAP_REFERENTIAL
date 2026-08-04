@@ -47,14 +47,31 @@ flowchart TD
 - comportement après upgrade ;
 - possibilité de désactivation rapide.
 
-## PROCÉDURE PAS À PAS
+## PROCESS
 
-1. Saisir `/nSE80`.
-2. Sélectionner le type d’objet ou le package dans la liste de gauche.
-3. Entrer le nom technique puis valider.
-4. Commencer en mode **Afficher** pour analyser l’objet et ses sous-objets.
-5. Passer en modification uniquement dans un système et un objet autorisés.
-6. Contrôler la syntaxe, activer les objets modifiés puis vérifier leur statut actif.
+### ÉTAPE 1 — IDENTIFIER LE TYPE DE PROCESSUS
+
+Déterminer si le besoin concerne une transaction classique, un traitement FI, un écran Dynpro, une classe, une API ou un framework applicatif. Relever le composant logiciel et le scénario exact. La technologie pertinente dépend du point d’exécution réel.
+
+### ÉTAPE 2 — RECHERCHER LES EXTENSIONS DOCUMENTÉES
+
+Consulter la documentation du composant et les objets Repository associés. Pour chaque BAdI, customer exit, BTE ou enhancement explicite trouvé, relever les paramètres, les filtres, l’usage multiple, le moment d’appel et les restrictions.
+
+### ÉTAPE 3 — CONFIRMER L’APPEL AU RUNTIME
+
+Placer un breakpoint dans le point candidat ou utiliser un breakpoint sur les mécanismes d’appel adaptés. Reproduire une seule fois le processus. Vérifier que le point est atteint avec les données requises et dans le bon contexte transactionnel.
+
+### ÉTAPE 4 — COMPARER LES CANDIDATS
+
+Classer chaque option selon sa stabilité, son périmètre, ses données disponibles, son ordre d’exécution et sa transportabilité. Privilégier le contrat d’extension prévu par SAP. N’utiliser une option implicite qu’en l’absence de point public approprié et avec une justification documentée.
+
+### ÉTAPE 5 — VÉRIFIER LES IMPLÉMENTATIONS EXISTANTES
+
+Rechercher les projets CMOD, implémentations BAdI et enhancements actifs. Contrôler leurs filtres et leur ordre éventuel. Déterminer si le besoin doit compléter une implémentation existante ou s’il peut être isolé sans comportement concurrent.
+
+### ÉTAPE 6 — CONSIGNER LA DÉCISION
+
+Documenter le point retenu, les alternatives écartées, le scénario de preuve, les objets à transporter et les tests de non-régression. Cette fiche devient le contrôle de référence lors des upgrades et changements de support package.
 
 ## VÉRIFICATION
 
@@ -94,7 +111,6 @@ Ordre de transport  :
 - [Enhancement Technologies — SAP Help Portal](https://help.sap.com/docs/ABAP_PLATFORM_NEW/46a2cfc13d25463b8b9a3d2a3c3ba0d9/7063da4023a28631e10000000a1550b0.html)
 - [Enhancement Framework — SAP Help Portal](https://help.sap.com/docs/SAP_S4HANA_ON-PREMISE/e322becd165844e5868e590bc8efafaf/949cdc40132a8531e10000000a1550b0.html)
 - [Customer Exits — SAP Help Portal](https://help.sap.com/docs/ABAP_PLATFORM_NEW/2b28ffa716c24348903f8ffbfeb81df8/c81975cc43b111d1896f0000e8322d00.html)
-
 
 ---
 

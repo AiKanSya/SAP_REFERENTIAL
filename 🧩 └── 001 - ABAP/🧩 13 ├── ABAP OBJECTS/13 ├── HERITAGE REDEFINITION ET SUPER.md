@@ -1,4 +1,5 @@
 # REDÉFI" Construire les dépendances avant d’exécuter le traitement.
+
 NIR UNE MÉTHODE HÉRITÉE AVEC `SUPER`
 
 ## RÉSULTAT ATTENDU
@@ -16,16 +17,27 @@ ABAP Objects utilise l’héritage simple : une classe ne possède qu’une supe
 
 Une classe de base calcule un prix standard. Une sous-classe spécialisée ajoute un supplément réglementaire tout en réutilisant le calcul commun.
 
-## PROCÉDURE DANS SE24
+## PROCESS
 
-1. Créer la superclasse globale et l’activer.
-2. Créer la sous-classe.
-3. Renseigner la superclasse dans les propriétés d’héritage.
-4. Sélectionner une méthode redéfinissable.
-5. Choisir **Redéfinir**.
-6. Implémenter la méthode dans la sous-classe.
-7. Appeler `SUPER->méthode( )` si le comportement commun doit être conservé.
-8. Tester via une référence de superclasse.
+### Étape 1 — Valider la relation d’héritage
+
+Confirmer que la sous-classe peut remplacer la superclasse sans violer son contrat. Si le besoin consiste seulement à réutiliser un service, préférer la composition.
+
+### Étape 2 — Créer et activer la superclasse
+
+Définir ses méthodes publiques/protected, leurs signatures et les points redéfinissables. Activer avant de créer la classe fille.
+
+### Étape 3 — Créer la sous-classe
+
+Dans `SE24`, renseigner la superclasse dans les propriétés. Examiner les composants hérités puis sélectionner la méthode et choisir **Redéfinir**.
+
+### Étape 4 — Implémenter avec ou sans SUPER
+
+Conserver préconditions et résultats compatibles. Utiliser `super->methode( )` si le comportement parent doit rester exécuté, et vérifier l’ordre pour éviter un double effet.
+
+### Étape 5 — Tester la substitution
+
+Affecter l’instance fille à une référence de superclasse et appeler la méthode. Le test est validé lorsque la redéfinition s’exécute sans connaissance de la sous-classe.
 
 ## CODE À ADAPTER
 

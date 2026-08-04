@@ -37,14 +37,31 @@ flowchart TD
 
 Le mécanisme SAP est nécessaire parce qu’un verrou de base de données ne doit pas rester actif pendant qu’un utilisateur réfléchit sur un écran.
 
-## PROCÉDURE PAS À PAS
+## PROCESS
 
-1. Lire la définition et identifier les prérequis du chapitre.
-2. Choisir un objet Z ou un scénario de démonstration sans impact métier.
-3. Reproduire l’exemple dans un système de développement et relever les données d’entrée.
-4. Contrôler la syntaxe ou la configuration avant activation/exécution.
-5. Comparer le résultat observé avec la section **Vérification**.
-6. Documenter toute différence liée à la release, aux autorisations ou au paramétrage du système.
+### ÉTAPE 1 — DESSINER LE SCÉNARIO MÉTIER COMPLET
+
+Décrire depuis la première lecture jusqu’au résultat visible par l’utilisateur. Marquer les étapes de dialogue, appels de fonctions, mises à jour différées et effets externes. Cette chaîne représente la SAP LUW attendue, qui peut couvrir plusieurs LUW de base de données.
+
+### ÉTAPE 2 — MARQUER CHAQUE FIN DE LUW BASE
+
+Identifier les `COMMIT WORK`, `ROLLBACK WORK` et changements de contexte qui terminent une LUW de base de données. Examiner la documentation des API appelées pour détecter leur propre gestion transactionnelle. Ne pas supposer qu’une méthode conserve la même transaction uniquement parce qu’elle est appelée dans la même pile ABAP.
+
+### ÉTAPE 3 — PLACER L’UPDATE TASK
+
+Pour les écritures qui doivent attendre la décision finale, enregistrer des modules de mise à jour avec `CALL FUNCTION ... IN UPDATE TASK`. Fournir uniquement des paramètres sérialisables et complets. L’enregistrement appartient à la SAP LUW courante ; son exécution dépend du commit final.
+
+### ÉTAPE 4 — ATTRIBUER LA RESPONSABILITÉ DU COMMIT
+
+Désigner un seul orchestrateur pour valider ou annuler l’unité métier. Les méthodes réutilisables documentent si elles enregistrent une update, mais n’exécutent pas de commit caché. Cette règle évite qu’un appel interne valide prématurément les modifications de son appelant.
+
+### ÉTAPE 5 — OBSERVER LES DEUX NIVEAUX
+
+Exécuter un scénario de test avec un identifiant unique. Avant le commit, vérifier que les mises à jour différées ne sont pas encore visibles comme résultat final. Après `COMMIT WORK AND WAIT`, contrôler les données et `SM13`; après `ROLLBACK WORK`, vérifier que les appels enregistrés n’ont pas été exécutés.
+
+### ÉTAPE 6 — TESTER UNE INTERRUPTION ENTRE DEUX ÉTAPES
+
+Provoquer une erreur contrôlée avant la décision finale. Vérifier que les LUW de base déjà terminées n’ont pas créé un état métier incomplet et que la SAP LUW possède une stratégie de reprise. Si ce test échoue, déplacer la borne transactionnelle ou introduire une compensation explicite.
 
 ## VÉRIFICATION
 
@@ -71,7 +88,6 @@ Le mécanisme SAP est nécessaire parce qu’un verrou de base de données ne do
 
 - [Database Logical Unit of Work — SAP Help Portal](https://help.sap.com/docs/SAP_NETWEAVER_703/a0f7f14dd0414b13aaf81261cc50f809/417af4bca79e11d1950f0000e82de14a.html)
 - [LUWs in ABAP — SAP Help Portal](https://help.sap.com/docs/ABAP_PLATFORM_NEW/8132142fd1a144a59303663a03a7c2d4/54f5462a9604498382319304869a4280.html)
-
 
 ---
 

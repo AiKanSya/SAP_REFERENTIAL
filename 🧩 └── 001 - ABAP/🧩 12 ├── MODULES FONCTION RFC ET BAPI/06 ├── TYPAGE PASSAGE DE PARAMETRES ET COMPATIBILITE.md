@@ -58,14 +58,27 @@ Une modification de type peut casser les appelants même si le nom du paramètre
 4. préserver les paramètres obligatoires existants ;
 5. versionner l’API lorsque la compatibilité ne peut pas être conservée.
 
-## PROCÉDURE PAS À PAS
+## PROCESS
 
-1. Saisir `/nSE37`.
-2. Entrer le nom du module fonction puis choisir **Afficher**, **Modifier** ou **Créer** selon l’autorisation.
-3. Analyser les onglets Import, Export, Changing, Tables et Exceptions.
-4. Lire la documentation et le code source avant tout appel.
-5. Utiliser **Test/Exécuter** avec des données non destructives.
-6. Pour un module Z, contrôler, activer puis tester les cas nominal et d’erreur.
+### Étape 1 — Relever les frontières d’utilisation
+
+Déterminer si le module reste local, traverse RFC ou constitue une API stable. Plus la frontière est large, plus les types doivent être persistants, DDIC et compatibles avec la sérialisation.
+
+### Étape 2 — Vérifier chaque type
+
+Dans `SE37`, ouvrir le type référencé de chaque paramètre. Contrôler longueur, décimales, structures imbriquées et types non compatibles RFC lorsque l’appel peut être distant.
+
+### Étape 3 — Vérifier la sémantique du passage
+
+Pour chaque paramètre, déterminer si une copie est attendue ou si une modification partagée est acceptable. Mesurer les gros volumes avant de changer le mode uniquement pour la performance.
+
+### Étape 4 — Tester les limites
+
+Appeler avec valeurs initiales, longueur maximale, caractères spéciaux et table vide. Pour RFC, répéter via une destination de test.
+
+### Étape 5 — Protéger la compatibilité
+
+Avant toute évolution, analyser les appelants. Ajouter un paramètre facultatif plutôt que rendre un nouveau paramètre obligatoire. La compatibilité est validée lorsque les anciens appels restent actifs et que le nouveau cas est testé.
 
 ## VÉRIFICATION
 
@@ -91,7 +104,6 @@ Une modification de type peut casser les appelants même si le nom du paramètre
 - [CALL FUNCTION — ABAP Keyword Documentation](https://help.sap.com/doc/abapdocu_latest_index_htm/latest/en-US/abapcall_function.htm)
 - [RFC Restrictions — ABAP Keyword Documentation](https://help.sap.com/doc/abapdocu_816_index_htm/8.16/en-US/ABENRFC_LIMITATIONS.html)
 - [Specifying Parameters and Exceptions — SAP Help Portal](https://help.sap.com/docs/ABAP_PLATFORM_2021/bd833c8355f34e96a6e83096b38bf192/d1801f0f454211d189710000e8322d00.html)
-
 
 ---
 

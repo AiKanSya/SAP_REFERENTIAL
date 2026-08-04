@@ -50,13 +50,31 @@ Selon le statut et les autorisations, `SM37` permet notamment de :
 
 Avant toute action destructive, capturer le nom, le numéro, les étapes, le journal, la variante et les horaires. Le numéro du job distingue plusieurs occurrences portant le même nom.
 
-## PROCÉDURE PAS À PAS
+## PROCESS
 
-1. Saisir `/nSM37`.
-2. Renseigner le nom du job, l’utilisateur et une période suffisamment précise.
-3. Exécuter la recherche et sélectionner le job correspondant au bon horodatage.
-4. Lire le statut, le journal de job, les étapes et le spool.
-5. En cas d’échec, relever le message, le programme, la variante, l’utilisateur et l’heure avant toute relance.
+### ÉTAPE 1 — DÉLIMITER LA RECHERCHE
+
+Relever le nom ou son motif, l’utilisateur, le mandant et la période. Saisir `/nSM37` et sélectionner uniquement les statuts utiles. Une plage trop large augmente le risque d’ouvrir une occurrence homonyme.
+
+### ÉTAPE 2 — IDENTIFIER L’OCCURRENCE EXACTE
+
+Comparer heure prévue, début, fin, statut et numéro de job. Ouvrir les détails pour relever classe, serveur, créateur et condition de démarrage. Conserver ces informations avant toute action.
+
+### ÉTAPE 3 — ANALYSER LES ÉTAPES
+
+Afficher la liste des étapes et identifier programme, variante, utilisateur et type de commande. Pour un job actif, déterminer l’étape courante. Pour un job annulé, localiser la première étape qui n’a pas atteint son résultat attendu.
+
+### ÉTAPE 4 — LIRE JOURNAL ET SPOOL
+
+Ouvrir le journal de job, puis chaque spool utile. Relever les messages dans l’ordre chronologique, les compteurs et les identifiants métier. Corréler l’heure avec `ST22`, le journal applicatif ou les traces seulement si le message le justifie.
+
+### ÉTAPE 5 — VÉRIFIER LE RÉSULTAT MÉTIER
+
+Contrôler le fichier, les documents, la table de pilotage ou le journal applicatif attendus. Un statut « Terminé » indique la fin technique du job, pas nécessairement la réussite fonctionnelle de toutes les unités.
+
+### ÉTAPE 6 — DÉCIDER DE L’ACTION
+
+Classer l’occurrence comme normale, en retard, bloquée, annulée ou terminée avec anomalie métier. Corriger la cause et vérifier l’idempotence avant toute relance, copie ou replanification. Documenter l’identifiant initial et le résultat final.
 
 ## VÉRIFICATION
 
@@ -96,7 +114,6 @@ Ordre de transport  :
 
 - [Managing Jobs from the Job Overview — SAP Help Portal](https://help.sap.com/docs/ABAP_PLATFORM_NEW/b07e7195f03f438b8e7ed273099d74f3/4b2bc2224c594ba2e10000000a42189c.html)
 - [Scheduling Background Jobs — SAP Help Portal](https://help.sap.com/docs/ABAP_PLATFORM_NEW/b07e7195f03f438b8e7ed273099d74f3/4b2b2954365474fee10000000a421937.html)
-
 
 ---
 

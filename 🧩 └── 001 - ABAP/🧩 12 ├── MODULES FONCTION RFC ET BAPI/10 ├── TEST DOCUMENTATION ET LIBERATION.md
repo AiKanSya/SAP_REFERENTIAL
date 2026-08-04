@@ -13,12 +13,25 @@ Dans `SE37`, choisir **Tester / Exécuter**. L’écran de test reprend les sect
 
 Procédure :
 
-1. renseigner les paramètres d’entrée ;
-2. exécuter ;
-3. contrôler les sorties ;
-4. contrôler les exceptions ;
-5. vérifier les effets persistants éventuels ;
-6. répéter avec cas nominal, limites et erreurs.
+### Étape 1 — Préparer un jeu de données
+
+Relever une clé existante pour le cas nominal, une clé absente et une valeur limite. Identifier avant le test les effets persistants ou appels externes possibles.
+
+### Étape 2 — Renseigner l’interface
+
+Dans `SE37`, choisir **Tester/Exécuter** et saisir tous les imports obligatoires. Pour les structures et tables, contrôler chaque composant et son format interne.
+
+### Étape 3 — Exécuter et relever toutes les sorties
+
+Noter exports, changing, tables, exception et messages. Comparer avec le résultat attendu avant de modifier une entrée.
+
+### Étape 4 — Vérifier les effets de bord
+
+Rechercher les écritures, verrous, tâches update ou commits indiqués par le contrat. Nettoyer les données de test selon la procédure prévue.
+
+### Étape 5 — Tester les autres branches
+
+Recommencer avec cas absent, limite et chaque erreur prévue. Le test direct est validé lorsque toutes les branches ont un résultat observable et reproductible.
 
 ```mermaid
 flowchart LR
@@ -32,10 +45,21 @@ flowchart LR
 
 Certains modules doivent être testés dans une séquence, par exemple :
 
-1. initialisation ;
-2. lecture ;
-3. modification ;
-4. validation transactionnelle.
+### Étape 1 — Définir l’ordre imposé
+
+Identifier le module d’initialisation, la lecture, la modification et le module ou BAPI de validation. Relever les données transmises entre appels.
+
+### Étape 2 — Construire la séquence
+
+Dans l’outil de séquence `SE37`, ajouter les modules dans cet ordre et renseigner des entrées cohérentes. Ne valider pas encore la transaction si le test doit contrôler un rollback.
+
+### Étape 3 — Exécuter jusqu’à la modification
+
+Contrôler les sorties après chaque appel. Si une étape échoue, arrêter : les étapes suivantes ne doivent pas masquer la première erreur.
+
+### Étape 4 — Tester validation et annulation
+
+Exécuter une séquence avec commit prévu, puis une autre avec rollback. Vérifier la persistance réelle des données dans les deux cas.
 
 Utiliser les fonctions de séquence de test disponibles dans le Function Builder lorsque le scénario l’exige. Ne pas conclure à un défaut uniquement parce qu’un module transactionnel a été appelé isolément.
 
@@ -77,12 +101,21 @@ Le test direct ne remplace pas :
 
 ## PROCÉDURE PAS À PAS
 
-1. Saisir `/nSE37`.
-2. Entrer le nom du module fonction puis choisir **Afficher**, **Modifier** ou **Créer** selon l’autorisation.
-3. Analyser les onglets Import, Export, Changing, Tables et Exceptions.
-4. Lire la documentation et le code source avant tout appel.
-5. Utiliser **Test/Exécuter** avec des données non destructives.
-6. Pour un module Z, contrôler, activer puis tester les cas nominal et d’erreur.
+### Étape 1 — Compléter la documentation
+
+Documenter objectif, paramètres, unités, valeurs initiales, exceptions, autorisations et responsabilité de commit. Un lecteur doit pouvoir construire un appel sans lire l’implémentation.
+
+### Étape 2 — Exécuter la matrice de tests
+
+Tester cas nominal, absent, limite, autorisation refusée et erreur technique applicable. Conserver entrées et résultats.
+
+### Étape 3 — Contrôler qualité et dépendances
+
+Exécuter contrôle syntaxique, ATC/SCI prévu et liste d’utilisation. Vérifier que les types DDIC et objets appelés sont actifs et transportés avant le module.
+
+### Étape 4 — Libérer la livraison
+
+Contrôler contenu de la tâche, activer le groupe complet puis libérer selon le processus. La livraison est validée lorsque documentation, tests et dépendances correspondent à la version transportée.
 
 ## VÉRIFICATION
 

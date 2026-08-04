@@ -81,14 +81,25 @@ Cette manipulation ne constitue pas une correction. Elle peut changer le résult
 - field-symbol encore lié à la ligne actuelle ;
 - tri incompatible avec le traitement suivant.
 
-## PROCÉDURE PAS À PAS
+## PROCESS
 
-1. Lire la définition et identifier les prérequis du chapitre.
-2. Choisir un objet Z ou un scénario de démonstration sans impact métier.
-3. Reproduire l’exemple dans un système de développement et relever les données d’entrée.
-4. Contrôler la syntaxe ou la configuration avant activation/exécution.
-5. Comparer le résultat observé avec la section **Vérification**.
-6. Documenter toute différence liée à la release, aux autorisations ou au paramétrage du système.
+### Étape 1 — Relever la définition
+
+Afficher catégorie `STANDARD`, `SORTED` ou `HASHED`, type de ligne, clé primaire et clés secondaires. Ces propriétés déterminent l’ordre et les accès possibles.
+
+### Étape 2 — Filtrer sur le cas métier
+
+Relever le nombre de lignes puis filtrer sur la clé du scénario. Contrôler le format interne avant de conclure qu’une ligne est absente.
+
+### Étape 3 — Chercher doublons ou valeurs inattendues
+
+Afficher uniquement les colonnes utiles et comparer les clés identiques. Pour une table unique, rechercher l’insertion ayant échoué ou remplacé une ligne.
+
+### Étape 4 — Suivre l’opération de modification
+
+Arrêter avant `INSERT`, `APPEND`, `MODIFY` ou `DELETE`. Contrôler ligne source, `SY-SUBRC`, `SY-TABIX` lorsqu’il est pertinent et contenu après l’opération.
+
+La cause est prouvée lorsque l’instruction qui ajoute, omet ou altère la ligne est identifiée avec ses valeurs d’entrée.
 
 ## VÉRIFICATION
 
@@ -123,7 +134,6 @@ Ordre de transport  :
 
 - [The Table Tool: Work With Internal Tables in the ABAP Debugger — SAP Help Portal](https://help.sap.com/docs/ABAP_PLATFORM_NEW/ba879a6e2ea04d9bb94c7ccd7cdac446/492db60934e414d0e10000000a42189b.html)
 - [Standard ABAP Debugger — SAP Help Portal](https://help.sap.com/docs/SAP_NETWEAVER_AS_ABAP_751_IP/ba879a6e2ea04d9bb94c7ccd7cdac446/49250c884d7216b5e10000000a42189d.html)
-
 
 ---
 

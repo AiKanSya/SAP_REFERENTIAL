@@ -41,14 +41,31 @@ Documenter pour chaque étape :
 
 Les dépendances classiques de `SM36` ne constituent pas un moteur complet de workflow. Une chaîne avec nombreuses branches, compensations et dépendances externes doit être gérée par un ordonnanceur ou une orchestration adaptée.
 
-## PROCÉDURE PAS À PAS
+## PROCESS
 
-1. Saisir `/nSM36`.
-2. Donner un nom explicite au job et définir sa classe/priorité selon les règles d’exploitation.
-3. Ajouter une étape ABAP avec programme, variante et utilisateur d’exécution.
-4. Définir la condition de démarrage : immédiate, date/heure, après job ou événement.
-5. Enregistrer puis vérifier que le job est planifié.
-6. Surveiller ensuite son exécution dans `SM37`.
+### ÉTAPE 1 — DÉFINIR LE CONTRAT ENTRE PRODUCTEUR ET CONSOMMATEUR
+
+Identifier le job producteur, son résultat persistant et le job consommateur. Définir les statuts de fin autorisant la suite et les preuves de complétude : fichier publié, lot validé ou statut métier. Le nom du prédécesseur seul ne prouve pas que la donnée attendue existe.
+
+### ÉTAPE 2 — CHOISIR LE MÉCANISME DE DÉPENDANCE
+
+Utiliser une condition « après job » pour une séquence batch simple et stable. Utiliser un événement ou un statut applicatif lorsque l’identité du lot ou la complétude métier doit être transmise. Éviter une simple heure décalée, qui ne garantit aucune fin réelle.
+
+### ÉTAPE 3 — CONFIGURER LE CONSOMMATEUR
+
+Dans `SM36`, définir l’étape et sa condition après le job ou l’événement exact. Renseigner les paramètres nécessaires et vérifier le comportement prévu si le producteur se termine en erreur. Enregistrer puis contrôler le statut libéré dans `SM37`.
+
+### ÉTAPE 4 — AJOUTER UNE VALIDATION À L’ENTRÉE
+
+Au démarrage, le consommateur vérifie l’identifiant de lot, le statut final et les contrôles de volume. Si la preuve manque, il s’arrête sans traiter des données partielles. Journaliser le prérequis absent avec la clé attendue.
+
+### ÉTAPE 5 — TESTER SUCCÈS, ÉCHEC ET RETARD
+
+Exécuter un producteur réussi, un producteur en erreur et un producteur retardé. Vérifier quand le consommateur devient éligible et ce qu’il fait dans chaque cas. Tester aussi un événement dupliqué ou un nom de job homonyme.
+
+### ÉTAPE 6 — DÉFINIR LA REPRISE DE LA CHAÎNE
+
+Documenter si la reprise relance le producteur, le consommateur ou une unité précise. Vérifier l’idempotence des deux côtés et conserver les identifiants du lot. Ne pas recopier toute la chaîne si une étape validée produirait des doublons.
 
 ## VÉRIFICATION
 
@@ -88,7 +105,6 @@ Ordre de transport  :
 
 - [Specifying Job Start Conditions — SAP Help Portal](https://help.sap.com/docs/ABAP_PLATFORM_NEW/b07e7195f03f438b8e7ed273099d74f3/4b2b2b4a365474fee10000000a421937.html)
 - [Managing Jobs from the Job Overview — SAP Help Portal](https://help.sap.com/docs/ABAP_PLATFORM_NEW/b07e7195f03f438b8e7ed273099d74f3/4b2bc2224c594ba2e10000000a42189c.html)
-
 
 ---
 

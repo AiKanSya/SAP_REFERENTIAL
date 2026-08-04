@@ -75,14 +75,27 @@ Une classe d’exception peut être créée avec les outils du Workbench, notamm
 
 La création détaillée des classes sera approfondie dans le dossier ABAP Objects. Dans ce dossier, l’objectif est d’utiliser correctement leur contrat d’erreur.
 
-## PROCÉDURE PAS À PAS
+## PROCESS
 
-1. Lire la définition et identifier les prérequis du chapitre.
-2. Choisir un objet Z ou un scénario de démonstration sans impact métier.
-3. Reproduire l’exemple dans un système de développement et relever les données d’entrée.
-4. Contrôler la syntaxe ou la configuration avant activation/exécution.
-5. Comparer le résultat observé avec la section **Vérification**.
-6. Documenter toute différence liée à la release, aux autorisations ou au paramétrage du système.
+### Étape 1 — Définir le contrat d’erreur
+
+Lister les situations que l’appelant peut raisonnablement traiter. Regrouper dans une même classe les erreurs du même domaine et séparer les défauts techniques des validations métier lorsque leur traitement diffère.
+
+### Étape 2 — Choisir la catégorie
+
+Utiliser `CX_STATIC_CHECK` lorsque l’appelant doit déclarer ou intercepter l’erreur, `CX_DYNAMIC_CHECK` pour une erreur vérifiable à l’exécution sans déclaration obligatoire, et `CX_NO_CHECK` uniquement pour une situation que les appelants ordinaires ne doivent pas gérer localement.
+
+### Étape 3 — Créer la classe dans SE24
+
+Créer une classe d’exception client héritant de la catégorie choisie. Définir les attributs nécessaires au diagnostic, les textes d’exception et, si nécessaire, le chaînage `PREVIOUS`.
+
+### Étape 4 — Déclarer et lever
+
+Ajouter `RAISING` à la signature lorsque la catégorie le requiert. Lever l’exception au point où la cause est connue, avec les valeurs de contexte déjà validées.
+
+### Étape 5 — Tester le contrat
+
+Créer un test qui provoque chaque texte, vérifie les attributs et contrôle la conservation de l’exception précédente. La classe est validée lorsque l’appelant peut distinguer les cas sans analyser une chaîne de texte libre.
 
 ## VÉRIFICATION
 
@@ -106,7 +119,6 @@ La création détaillée des classes sera approfondie dans le dossier ABAP Objec
 - [Exception Categories — ABAP Keyword Documentation](https://help.sap.com/doc/abapdocu_latest_index_htm/latest/en-US/ABENEXCEPTION_CATEGORIES.html)
 - [Exception Classes for ABAP Statements — ABAP Keyword Documentation](https://help.sap.com/doc/abapdocu_latest_index_htm/latest/en-US/ABENABAP_EXCEPTION_CLASSES.html)
 - [Creating an Exception Class — SAP Help Portal](https://help.sap.com/docs/ABAP_PLATFORM_NEW/bd833c8355f34e96a6e83096b38bf192/92823e6017aa11d5969b00a0c94260a5.html)
-
 
 ---
 

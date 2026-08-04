@@ -49,15 +49,27 @@ METHOD get_reserved_quantity.
 ENDMETHOD.
 ```
 
-## PROCÉDURE DE CONCEPTION
+## PROCESS
 
-1. Écrire les règles qui doivent toujours rester vraies.
-2. Placer les attributs correspondants en privé.
-3. Définir les opérations métier publiques.
-4. Valider les préconditions au début des méthodes.
-5. Modifier l’état seulement après validation.
-6. Retourner un résultat ou lever une exception claire.
-7. Tester chaque invariant avec un cas valide et un cas invalide.
+### Étape 1 — Formaliser les invariants
+
+Lister les règles vraies après construction et après chaque méthode publique. Associer à chacune les données concernées et le résultat attendu en cas de violation.
+
+### Étape 2 — Masquer l’état
+
+Placer les attributs en `PRIVATE SECTION`. Avant de réduire une visibilité existante, rechercher les consommateurs et planifier leur migration.
+
+### Étape 3 — Exposer des opérations métier
+
+Créer des méthodes comme `APPROVE` ou `CHANGE_QUANTITY` plutôt que des setters génériques. Leur signature contient uniquement les données nécessaires à la décision.
+
+### Étape 4 — Valider avant mutation
+
+Contrôler toutes les préconditions avant de modifier le premier attribut. En cas d’échec, lever une exception et conserver l’état antérieur complet.
+
+### Étape 5 — Tester les frontières
+
+Tester construction valide, opération autorisée et chaque refus. Relire l’état après exception. L’encapsulation est validée lorsqu’aucune API publique ne permet un état interdit.
 
 ## COMMANDES ET REQUÊTES
 

@@ -43,6 +43,32 @@ Avec `AND WAIT`, le programme attend la fin des modules de mise à jour priorita
 
 Ne pas l’exécuter dans un module de mise à jour ni dans une routine `ON COMMIT` ou `ON ROLLBACK`.
 
+## PROCESS
+
+### ÉTAPE 1 — IDENTIFIER LE PROPRIÉTAIRE DE LA VALIDATION
+
+Placer la décision de commit dans le programme qui orchestre toute l’unité métier. Vérifier que les méthodes et modules appelés ne valident pas eux-mêmes une partie du traitement. Documenter dans l’interface des API réutilisables si elles enregistrent une update task.
+
+### ÉTAPE 2 — TERMINER TOUS LES CONTRÔLES AVANT LE COMMIT
+
+Valider les données, acquérir les verrous, relire l’état critique et préparer toutes les écritures. Enregistrer les modules de mise à jour avec leurs paramètres complets. Ne pas utiliser le commit comme mécanisme intermédiaire pour rendre une écriture visible avant la fin de l’unité.
+
+### ÉTAPE 3 — CHOISIR LA FORME DU COMMIT
+
+Utiliser `COMMIT WORK` lorsque la suite du programme ne dépend pas immédiatement du résultat V1. Utiliser `COMMIT WORK AND WAIT` lorsque l’appelant doit connaître ce résultat avant de poursuivre. Ce choix ne modifie pas la définition de l’unité métier.
+
+### ÉTAPE 4 — CONTRÔLER LE RETOUR SYNCHRONE
+
+Après `COMMIT WORK AND WAIT`, lire immédiatement `sy-subrc` et traiter une valeur non nulle comme un échec de mise à jour. Ne pas écraser cette valeur par une autre instruction avant le contrôle. Restituer un message exploitable et conserver la clé métier du traitement.
+
+### ÉTAPE 5 — VÉRIFIER LES EFFETS DE FIN DE LUW
+
+Contrôler les données persistées, l’exécution des routines `ON COMMIT`, l’update task dans `SM13` et la libération des verrous dans `SM12`. Vérifier également les curseurs ou connexions utilisés par le traitement si celui-ci poursuit après le commit.
+
+### ÉTAPE 6 — TESTER LE SUCCÈS ET L’ÉCHEC
+
+Exécuter un cas nominal puis provoquer une erreur contrôlée dans une update Z. Comparer le comportement de `COMMIT WORK` et de `COMMIT WORK AND WAIT`. Le test doit prouver le résultat métier et la traçabilité de l’échec, pas seulement l’absence de dump.
+
 ## VÉRIFICATION
 
 - Les données sont toutes validées ou toutes annulées selon le cas testé.
@@ -83,7 +109,6 @@ ENDIF.
 
 - [COMMIT WORK — ABAP Keyword Documentation](https://help.sap.com/doc/abapdocu_752_index_htm/7.52/en-US/abapcommit.htm)
 - [Synchronous and Asynchronous Updating — SAP Help Portal](https://help.sap.com/docs/ABAP_PLATFORM_NEW/979cf1522d164bf7a781796efd8850ee/6b96ee764b054c5f929dea77ffcf7a6b.html)
-
 
 ---
 

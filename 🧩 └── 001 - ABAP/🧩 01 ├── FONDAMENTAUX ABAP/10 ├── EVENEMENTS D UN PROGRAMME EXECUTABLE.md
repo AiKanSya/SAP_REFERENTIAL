@@ -185,14 +185,25 @@ Flux :
 - ne pas utiliser `END-OF-SELECTION` sans besoin réel ;
 - garder le flux visible et testable.
 
-## PROCÉDURE PAS À PAS
+## PROCESS
 
-1. Créer un report Z avec un `PARAMETERS` simple.
-2. Ajouter `INITIALIZATION`, `AT SELECTION-SCREEN` et `START-OF-SELECTION`.
-3. Insérer un breakpoint dans chaque bloc.
-4. Activer puis exécuter le report.
-5. Observer que `INITIALIZATION` prépare l’écran, que `AT SELECTION-SCREEN` valide la saisie et que `START-OF-SELECTION` lance le traitement principal.
-6. Tester une valeur invalide pour confirmer que le traitement principal n’est pas exécuté.
+### Étape 1 — Construire le scénario
+
+Créer un report Z avec un `PARAMETERS` simple. Ajouter `INITIALIZATION`, `AT SELECTION-SCREEN` et `START-OF-SELECTION`, chacun contenant une instruction exécutable identifiable.
+
+### Étape 2 — Instrumenter l’ordre d’exécution
+
+Placer un breakpoint dans chaque bloc, activer puis exécuter. Noter l’ordre réel : initialisation avant affichage, validation après action sur l’écran, puis traitement principal après validation réussie.
+
+### Étape 3 — Tester le chemin valide
+
+Saisir une valeur acceptée et exécuter. Le débogueur doit atteindre `START-OF-SELECTION`. Si ce bloc n’est pas atteint, examiner le message ou la logique de validation exécutée auparavant.
+
+### Étape 4 — Tester le chemin refusé
+
+Saisir une valeur que `AT SELECTION-SCREEN` rejette. Vérifier que l’écran reste affiché et que `START-OF-SELECTION` n’est pas exécuté.
+
+Le chapitre est validé lorsque les deux chemins prouvent l’ordre des événements et l’arrêt du traitement principal après une validation en erreur.
 
 ## VÉRIFICATION
 
@@ -245,7 +256,6 @@ START-OF-SELECTION.
 - [START-OF-SELECTION — ABAP Keyword Documentation](https://help.sap.com/doc/abapdocu_latest_index_htm/latest/en-US/abapstart-of-selection.htm)
 - [AT SELECTION-SCREEN](https://help.sap.com/docs/SAP_NETWEAVER_731_BW_ABAP/cfae740a0a21455dbe6e510c2d86e36a/9fdb9a2e35c111d1829f0000e829fbfe.html)
 - [Description of Reporting Events](https://help.sap.com/docs/SAP_NETWEAVER_731_BW_ABAP/cfae740a0a21455dbe6e510c2d86e36a/9fdb9a1435c111d1829f0000e829fbfe.html)
-
 
 ---
 

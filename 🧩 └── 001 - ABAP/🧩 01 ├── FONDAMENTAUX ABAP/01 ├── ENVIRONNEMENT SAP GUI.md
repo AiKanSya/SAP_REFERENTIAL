@@ -42,13 +42,13 @@ Un **mandant** est une subdivision logique d’un système SAP. Il est identifi�
 
 Un même système peut contenir plusieurs mandants. Ils partagent le même Repository ABAP actif, mais une partie de leurs données, de leur paramétrage et de leurs utilisateurs peut être séparée.
 
-| Élément | Exemple | Portée habituelle |
-| --- | --- | --- |
-| Système | `D01` | Ensemble technique complet |
-| Mandant | `200` | Contexte logique dans le système |
-| Utilisateur | `DEV_USER` | Identité et autorisations dans le mandant |
-| Programme ABAP | `ZDEV_REPORT` | Généralement commun aux mandants du système |
-| Données d’une table avec `MANDT` | Ligne du mandant `200` | Séparées par mandant |
+| Élément                          | Exemple                | Portée habituelle                           |
+| -------------------------------- | ---------------------- | ------------------------------------------- |
+| Système                          | `D01`                  | Ensemble technique complet                  |
+| Mandant                          | `200`                  | Contexte logique dans le système            |
+| Utilisateur                      | `DEV_USER`             | Identité et autorisations dans le mandant   |
+| Programme ABAP                   | `ZDEV_REPORT`          | Généralement commun aux mandants du système |
+| Données d’une table avec `MANDT` | Ligne du mandant `200` | Séparées par mandant                        |
 
 Dans une table dépendante du mandant, le premier champ de clé est généralement `MANDT`. ABAP SQL applique normalement automatiquement le mandant courant. Les accès inter-mandants sont des cas particuliers qui exigent une justification et des autorisations adaptées.
 
@@ -159,15 +159,46 @@ flowchart TD
 - fermer les sessions devenues inutiles ;
 - utiliser les transactions techniques uniquement avec les autorisations adaptées.
 
-## PROCÉDURE PAS À PAS
+## PROCESS
 
-1. Ouvrir la connexion concernée dans SAP Logon.
-2. Dans SAP GUI, ouvrir **Système → Statut**.
-3. Relever le SID, le mandant, l’utilisateur et le serveur d’application.
-4. Comparer ces valeurs avec le ticket, la consigne de l’équipe ou la documentation du paysage.
-5. Vérifier que l’action demandée est autorisée dans cet environnement.
-6. Ouvrir la transaction avec `/n<code>` dans la même session ou `/o<code>` dans une nouvelle session.
-7. Avant une modification ou une exécution destructive, refaire le contrôle du contexte.
+### Étape 1 — Sélectionner la connexion SAP
+
+1. Ouvrir SAP Logon.
+2. Repérer la connexion indiquée dans le ticket ou la documentation du paysage.
+3. Comparer son libellé, son SID et son environnement annoncé : développement, qualité ou production.
+4. Ouvrir cette connexion puis saisir le mandant, l’utilisateur, le mot de passe et la langue autorisés.
+
+Le libellé SAP Logon ne constitue pas une preuve suffisante : il peut être personnalisé localement. La vérification doit continuer dans le système connecté.
+
+### Étape 2 — Identifier le système réellement ouvert
+
+1. Dans SAP GUI, ouvrir **Système → Statut**.
+2. Relever au minimum le SID, le mandant, l’utilisateur, le serveur d’application et la version du composant ABAP lorsque celle-ci est nécessaire au diagnostic.
+3. Conserver ces valeurs dans le ticket ou les notes de diagnostic.
+
+Le SID identifie le système, le mandant sépare les données dépendantes du client et l’utilisateur détermine le contexte d’autorisation. Un résultat dans un autre mandant ne prouve rien pour le mandant demandé.
+
+### Étape 3 — Comparer le contexte avec la demande
+
+1. Comparer le SID et le mandant avec les valeurs explicitement indiquées dans la demande.
+2. Vérifier que l’utilisateur utilisé est celui autorisé pour l’action.
+3. Contrôler que l’environnement permet l’opération prévue : affichage, développement, test ou correction.
+
+Si une seule valeur diffère, arrêter l’action. Revenir à SAP Logon et sélectionner la bonne connexion ; ne pas tenter de compenser une erreur de contexte en poursuivant dans le mauvais système.
+
+### Étape 4 — Ouvrir la transaction sans perdre le contexte
+
+1. Utiliser `/n<code>` pour remplacer la transaction de la session courante, par exemple `/nSE80`.
+2. Utiliser `/o<code>` pour ouvrir une nouvelle session, par exemple `/oST22`, lorsque la comparaison avec l’écran courant doit être conservée.
+3. Vérifier le titre et le code de transaction affichés après la navigation.
+
+Si SAP refuse la transaction, relever le message exact. Distinguer un code inexistant, une transaction verrouillée et un refus d’autorisation avant de choisir le chapitre de diagnostic approprié.
+
+### Étape 5 — Revalider avant une action sensible
+
+Avant une modification, une activation, une suppression, un retraitement ou une exécution volumique, rouvrir **Système → Statut** et confirmer SID, mandant et utilisateur.
+
+Le contrôle est terminé lorsque le contexte affiché correspond intégralement à la demande et que la transaction cible est ouverte dans ce même contexte.
 
 ## VÉRIFICATION
 
@@ -211,7 +242,6 @@ Ordre de transport  :
 - [SAP GUI — SAP Easy Access](https://help.sap.com/docs/ABAP_PLATFORM_1909/b1c834a22d05483b8a75710743b5ff26/cb11a43814a54af19c4bcf0221c24eb7.html)
 - [SAP GUI — Using Transaction Codes](https://help.sap.com/docs/SAP_NETWEAVER_AS_ABAP_FOR_SOH_740/b1c834a22d05483b8a75710743b5ff26/f735dd776e724195b5562592a5e88b45.html)
 - [SAP GUI for Windows — Fields and Input Help](https://help.sap.com/docs/sap_gui_for_windows/63bd20104af84112973ad59590645513/a7ca442f0a4d43ddb266e5a73dbb989d.html)
-
 
 ---
 

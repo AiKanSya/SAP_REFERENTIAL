@@ -39,14 +39,31 @@ Pour implémenter une option existante :
 
 Le client ne doit pas créer un enhancement spot dans un objet SAP uniquement pour contourner l’absence d’un point prévu ; cela modifierait la définition standard.
 
-## PROCÉDURE PAS À PAS
+## PROCESS
 
-1. Saisir `/nSE80`.
-2. Sélectionner le type d’objet ou le package dans la liste de gauche.
-3. Entrer le nom technique puis valider.
-4. Commencer en mode **Afficher** pour analyser l’objet et ses sous-objets.
-5. Passer en modification uniquement dans un système et un objet autorisés.
-6. Contrôler la syntaxe, activer les objets modifiés puis vérifier leur statut actif.
+### ÉTAPE 1 — IDENTIFIER LE SPOT DEPUIS LE PROCESSUS
+
+Retrouver dans le code standard l’enhancement point, l’enhancement section ou l’appel de BAdI concerné. Relever le nom du spot et le package. Confirmer au débogueur que ce code appartient au scénario et à la version actifs.
+
+### ÉTAPE 2 — ANALYSER LE SPOT
+
+Ouvrir l’enhancement spot dans `SE18` ou `SE80`. Lire sa documentation et inventorier ses éléments : définitions BAdI, points explicites et sections. Examiner les interfaces et restrictions de chaque élément avant de choisir une implémentation.
+
+### ÉTAPE 3 — INVENTORIER LES IMPLÉMENTATIONS EXISTANTES
+
+Afficher les enhancement implementations liées au spot. Relever leur statut, package, contenu, filtres et système d’origine. Vérifier si une implémentation Z couvre déjà le besoin ou si plusieurs blocs pourraient agir au même endroit.
+
+### ÉTAPE 4 — CRÉER L’IMPLÉMENTATION CLIENT
+
+Créer une enhancement implementation Z avec une description fonctionnelle, un package et une demande de transport. Ajouter seulement les éléments nécessaires. Conserver une seule responsabilité métier identifiable par implémentation.
+
+### ÉTAPE 5 — IMPLÉMENTER ET ACTIVER
+
+Pour une BAdI, implémenter les méthodes dans une classe Z et maintenir les filtres. Pour un point source, placer un code minimal déléguant à une classe de service. Activer les classes, éléments d’enhancement puis l’implémentation complète.
+
+### ÉTAPE 6 — TESTER ET PRÉPARER L’UPGRADE
+
+Poser un breakpoint dans chaque élément implémenté et reproduire le scénario cible puis un cas hors périmètre. Conserver le spot, l’élément, la position source et les tests. Cette fiche sert à contrôler l’implémentation après une mise à niveau.
 
 ## VÉRIFICATION
 
@@ -86,7 +103,6 @@ Ordre de transport  :
 - [Creating Enhancement Spots — SAP Help Portal](https://help.sap.com/docs/ABAP_PLATFORM_NEW/46a2cfc13d25463b8b9a3d2a3c3ba0d9/3b0a39426f79f83ae10000000a1550b0.html)
 - [Enhancement Implementations — SAP Help Portal](https://help.sap.com/docs/ABAP_PLATFORM_NEW/46a2cfc13d25463b8b9a3d2a3c3ba0d9/8343e040e136742ae10000000a155106.html)
 - [ABAP: Enhancement Concepts — SAP Help Portal](https://help.sap.com/docs/ABAP_PLATFORM_NEW/7bfe8cdcfbb040dcb6702dada8c3e2f0/f17cdbf76d1f4cb8805ed69891eafdd9.html)
-
 
 ---
 

@@ -59,14 +59,31 @@ Ne rendre le fichier visible au consommateur qu’après écriture et fermeture 
 - absence d’erreur d’écriture ;
 - journal avec paramètres de sélection.
 
-## PROCÉDURE PAS À PAS
+## PROCESS
 
-1. Lire la définition et identifier les prérequis du chapitre.
-2. Choisir un objet Z ou un scénario de démonstration sans impact métier.
-3. Reproduire l’exemple dans un système de développement et relever les données d’entrée.
-4. Contrôler la syntaxe ou la configuration avant activation/exécution.
-5. Comparer le résultat observé avec la section **Vérification**.
-6. Documenter toute différence liée à la release, aux autorisations ou au paramétrage du système.
+### ÉTAPE 1 — FIGER LE CONTRAT DE SORTIE
+
+Documenter le canal, le répertoire logique, le nom de fichier, l’encodage, le séparateur, la version, l’ordre des champs, la représentation des valeurs initiales et le signal de fin de production. Définir également ce que représente un export vide et comment le consommateur doit le traiter.
+
+### ÉTAPE 2 — DÉFINIR LE PÉRIMÈTRE DE DONNÉES
+
+Déterminer la sélection initiale, l’horodatage de référence et la règle d’incrément. Stabiliser ce périmètre pour toute l’exécution afin qu’un redémarrage ne mélange pas deux états métier. Trier les données selon une clé déterministe avant de générer le contenu.
+
+### ÉTAPE 3 — PRODUIRE DANS UN EMPLACEMENT NON PUBLIÉ
+
+Écrire d’abord dans un fichier de travail ou un canal inaccessible au consommateur. Contrôler chaque opération d’écriture et fermer le fichier dans tous les chemins de sortie. Ne jamais utiliser directement le nom final si le consommateur peut lire le fichier pendant sa construction.
+
+### ÉTAPE 4 — CALCULER LES CONTRÔLES DE SORTIE
+
+Relever le nombre de lignes, la taille, les totaux métier et, si le contrat le prévoit, une empreinte. Comparer ces valeurs à la sélection source. Produire un manifeste ou un journal contenant la version du format, les paramètres, l’horodatage et les compteurs.
+
+### ÉTAPE 5 — PUBLIER UNIQUEMENT LE FICHIER COMPLET
+
+Après fermeture et contrôles réussis, rendre le fichier visible selon le mécanisme convenu : déplacement atomique assuré par l’infrastructure, indicateur de fin ou prise en charge middleware. En cas d’échec, conserver le fichier de travail hors du périmètre consommable et journaliser sa localisation.
+
+### ÉTAPE 6 — TESTER LE REJEU ET LA CONSOMMATION
+
+Relancer l’export avec le même périmètre et vérifier la règle attendue : même contenu, remplacement contrôlé ou nouveau numéro de version. Faire lire le fichier par le consommateur ou un validateur indépendant. Tester un export vide, un arrêt pendant l’écriture et une nouvelle exécution après correction.
 
 ## VÉRIFICATION
 
@@ -94,7 +111,6 @@ Ne rendre le fichier visible au consommateur qu’après écriture et fermeture 
 - [ABAP File Interface — SAP Help Portal](https://help.sap.com/docs/ABAP_PLATFORM_NEW/7bfe8cdcfbb040dcb6702dada8c3e2f0/fa2fd3be291f469f862c4c8215e0549b.html)
 - [Physical and Logical File Names — SAP Help Portal](https://help.sap.com/docs/ABAP_PLATFORM_NEW/7bfe8cdcfbb040dcb6702dada8c3e2f0/9e49819d5b2a440fb508772494b9a473.html)
 - [TRANSFER — ABAP Keyword Documentation](https://help.sap.com/doc/abapdocu_latest_index_htm/latest/en-US/ABAPTRANSFER.html)
-
 
 ---
 

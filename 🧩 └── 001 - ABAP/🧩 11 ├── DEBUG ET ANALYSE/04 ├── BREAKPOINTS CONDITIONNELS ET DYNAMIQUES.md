@@ -80,14 +80,27 @@ Il évite de rechercher manuellement chaque appel dans un environnement complexe
 - supprimer les breakpoints devenus inutiles ;
 - ne pas utiliser une condition dépendant d’une variable hors portée.
 
-## PROCÉDURE PAS À PAS
+## PROCESS
 
-1. Lire la définition et identifier les prérequis du chapitre.
-2. Choisir un objet Z ou un scénario de démonstration sans impact métier.
-3. Reproduire l’exemple dans un système de développement et relever les données d’entrée.
-4. Contrôler la syntaxe ou la configuration avant activation/exécution.
-5. Comparer le résultat observé avec la section **Vérification**.
-6. Documenter toute différence liée à la release, aux autorisations ou au paramétrage du système.
+### Étape 1 — Définir le cas d’arrêt
+
+Choisir une instruction exécutée plusieurs fois et une valeur qui caractérise le cas fautif, par exemple une clé ou un index. Vérifier que la variable existe à cette ligne.
+
+### Étape 2 — Créer le breakpoint conditionnel
+
+Placer le breakpoint, ouvrir ses propriétés et saisir une expression booléenne minimale. Contrôler type, casse et format interne de la valeur comparée.
+
+### Étape 3 — Interpréter l’absence d’arrêt
+
+Si le débogueur ne s’arrête pas, vérifier successivement l’exécution de la ligne, l’utilisateur du breakpoint et la vérité de la condition. Ne rendre la condition plus large qu’après avoir identifié lequel de ces points échoue.
+
+### Étape 4 — Utiliser un breakpoint dynamique
+
+Lorsque la ligne est inconnue, définir un arrêt sur instruction, méthode, module fonction ou message. Limiter le périmètre pour éviter les arrêts dans tout le framework.
+
+### Étape 5 — Nettoyer
+
+Supprimer les breakpoints après analyse. La procédure est validée lorsque l’arrêt se produit uniquement sur le cas ciblé et expose l’état précédant la divergence.
 
 ## VÉRIFICATION
 
@@ -126,7 +139,6 @@ lines( lt_items ) > 1000
 - [Managing Dynamic Breakpoints — SAP Help Portal](https://help.sap.com/docs/ABAP_PLATFORM_NEW/ba879a6e2ea04d9bb94c7ccd7cdac446/49256af629ac16b7e10000000a42189d.html)
 - [Breakpoints Tool — SAP Help Portal](https://help.sap.com/docs/ABAP_PLATFORM_NEW/ba879a6e2ea04d9bb94c7ccd7cdac446/492535784d7216b5e10000000a42189d.html)
 - [Breakpoints — SAP Help Portal](https://help.sap.com/docs/ABAP_PLATFORM_NEW/ba879a6e2ea04d9bb94c7ccd7cdac446/491e9433f3ee6492e10000000a42189b.html)
-
 
 ---
 

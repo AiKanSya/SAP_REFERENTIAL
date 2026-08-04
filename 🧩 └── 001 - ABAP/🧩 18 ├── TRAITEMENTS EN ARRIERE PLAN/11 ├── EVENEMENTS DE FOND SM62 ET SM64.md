@@ -43,13 +43,31 @@ Argument  : SALES_20260731.csv
 - ne pas transmettre de données sensibles ;
 - garantir que le consommateur peut être exécuté plusieurs fois sans corruption.
 
-## PROCÉDURE PAS À PAS
+## PROCESS
 
-1. Saisir `/nSM37`.
-2. Renseigner le nom du job, l’utilisateur et une période suffisamment précise.
-3. Exécuter la recherche et sélectionner le job correspondant au bon horodatage.
-4. Lire le statut, le journal de job, les étapes et le spool.
-5. En cas d’échec, relever le message, le programme, la variante, l’utilisateur et l’heure avant toute relance.
+### ÉTAPE 1 — DÉFINIR L’ÉVÉNEMENT DANS `SM62`
+
+Créer ou afficher l’identifiant avec un préfixe Z et une description explicite. Documenter l’émetteur, les consommateurs et le sens de l’argument. Vérifier les autorisations et la gouvernance avant de créer un événement de portée globale.
+
+### ÉTAPE 2 — NORMALISER L’ARGUMENT
+
+Définir le format exact : identifiant de lot, fichier ou domaine fonctionnel. Limiter sa longueur et exclure les données sensibles. Le producteur et le job en attente doivent utiliser la même casse et la même convention.
+
+### ÉTAPE 3 — PLANIFIER LE JOB CONSOMMATEUR
+
+Dans `SM36`, créer l’étape puis choisir une condition de démarrage par événement. Renseigner l’identifiant et l’argument attendus, enregistrer et libérer. Dans `SM37`, vérifier que le job attend le bon événement.
+
+### ÉTAPE 4 — DÉCLENCHER MANUELLEMENT EN TEST
+
+Dans `SM64`, sélectionner l’événement défini et saisir l’argument exact. Déclencher une seule occurrence en environnement de test. Relever l’heure et contrôler dans `SM37` quel job devient éligible.
+
+### ÉTAPE 5 — VÉRIFIER LA CORRESPONDANCE
+
+Tester l’argument correct, une casse différente, un argument absent et un argument inconnu. Vérifier qu’aucun job non destiné au lot ne démarre. Le consommateur contrôle aussi la présence du résultat métier associé.
+
+### ÉTAPE 6 — TESTER LES ÉVÉNEMENTS DUPLIQUÉS
+
+Déclencher deux fois la même combinaison. Vérifier la règle de périodicité ou de replanification et l’idempotence du traitement. Journaliser l’occurrence et l’identifiant de lot afin de diagnostiquer toute exécution multiple.
 
 ## VÉRIFICATION
 
@@ -90,7 +108,6 @@ Ordre de transport  :
 - [Events in Background Processing Explained — SAP Help Portal](https://help.sap.com/docs/ABAP_PLATFORM_NEW/b07e7195f03f438b8e7ed273099d74f3/4b2bbdd14c594ba2e10000000a42189c.html)
 - [Defining Events — SAP Help Portal](https://help.sap.com/docs/ABAP_PLATFORM_NEW/b07e7195f03f438b8e7ed273099d74f3/4d9521f0d1b83c46e10000000a42189e.html)
 - [Triggering Events from SAP GUI — SAP Help Portal](https://help.sap.com/docs/ABAP_PLATFORM_NEW/b07e7195f03f438b8e7ed273099d74f3/4d99bd4f786d1822e10000000a42189e.html)
-
 
 ---
 

@@ -218,15 +218,25 @@ TEXT-001 = Critères principaux
 - ne pas construire une clause SQL dynamique non maîtrisée à partir des saisies ;
 - tester les inclusions, exclusions et intervalles d’un `SELECT-OPTIONS`.
 
-## PROCÉDURE PAS À PAS
+## PROCESS
 
-1. Créer un report Z dans `SE38`.
-2. Déclarer un `PARAMETERS` et un `SELECT-OPTIONS` en utilisant des types DDIC adaptés.
-3. Ajouter des valeurs par défaut uniquement lorsqu’elles sont sûres et explicites.
-4. Activer puis exécuter le report avec `F8`.
-5. Tester une valeur unique, un intervalle, une exclusion et une sélection vide.
-6. Sauvegarder une variante de test puis relancer le report avec cette variante.
-7. Vérifier que les critères reçus correspondent exactement à l’écran.
+### Étape 1 — Déclarer les critères
+
+Créer un report Z dans `SE38`. Déclarer un `PARAMETERS` pour une valeur unique et un `SELECT-OPTIONS` référencé à un champ DDIC. Vérifier que les libellés et aides de saisie proviennent des références attendues.
+
+### Étape 2 — Définir les valeurs initiales
+
+Ajouter une valeur par défaut uniquement si elle est sûre pour tous les utilisateurs concernés. Exécuter une première fois et confirmer visuellement la valeur affichée ; sinon supprimer la valeur par défaut.
+
+### Étape 3 — Tester les formes de sélection
+
+Activer puis exécuter avec `F8`. Tester séparément une valeur unique, un intervalle, une exclusion et une sélection vide. À chaque exécution, afficher ou observer les lignes de la range table afin de contrôler `SIGN`, `OPTION`, `LOW` et `HIGH`.
+
+### Étape 4 — Valider une variante
+
+Sauvegarder une variante de test avec un nom explicite, quitter le report puis le relancer avec cette variante. Comparer tous les critères restaurés avec ceux enregistrés.
+
+Le chapitre est terminé lorsque chaque forme de sélection produit les lignes attendues et que la variante restitue exactement les valeurs sauvegardées.
 
 ## VÉRIFICATION
 
@@ -287,7 +297,6 @@ START-OF-SELECTION.
 - [Selection Screens — Create](https://help.sap.com/doc/abapdocu_latest_index_htm/latest/en-US/ABENSELECTION_SCREEN_CREATE.html)
 - [SELECT-OPTIONS — ABAP Keyword Documentation](https://help.sap.com/doc/abapdocu_latest_index_htm/latest/en-US/ABAPSELECT-OPTIONS_SHORTREF.html)
 - [SELECTION-SCREEN, BEGIN OF](https://help.sap.com/doc/abapdocu_latest_index_htm/latest/en-US/ABAPSELECTION-SCREEN_DEFINITION.html)
-
 
 ---
 

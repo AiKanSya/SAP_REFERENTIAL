@@ -14,15 +14,27 @@ Un export doit sélectionner une implémentation CSV ou JSON. Les reports ne doi
 
 Une méthode de classe retourne une instance. Elle peut valider les paramètres, sélectionner une sous-classe ou gérer un cache.
 
-## PROCÉDURE DANS SE24
+## PROCESS
 
-1. Définir l’interface commune.
-2. Créer les classes concrètes.
-3. Créer une classe fabrique, ou une méthode de classe sur la classe concernée.
-4. Définir une méthode statique `CREATE` ou `GET_INSTANCE` avec un paramètre de sélection.
-5. Retourner une référence typée par l’interface.
-6. Lever une exception pour une configuration inconnue.
-7. Tester chaque branche.
+### Étape 1 — Définir le produit abstrait
+
+Créer l’interface commune avec uniquement les opérations dont l’appelant a besoin. Activer puis implémenter au moins deux classes concrètes conformes.
+
+### Étape 2 — Définir la règle de sélection
+
+Identifier la donnée qui choisit l’implémentation : type métier, configuration ou paramètre. Valider sa liste de valeurs et décider du comportement pour une valeur inconnue.
+
+### Étape 3 — Créer la factory
+
+Créer une classe fabrique ou une méthode de classe `CREATE`. Ajouter le sélecteur en `IMPORTING`, une référence d’interface en `RETURNING` et une exception en `RAISING`.
+
+### Étape 4 — Instancier sans exposer le concret
+
+Dans la factory, choisir la classe, exécuter `NEW` et retourner via l’interface. Ne faire sortir aucun type propre à une implémentation.
+
+### Étape 5 — Tester toutes les branches
+
+Tester chaque valeur reconnue et une valeur inconnue. Vérifier type dynamique, contrat et exception. La factory est validée lorsque l’appelant n’utilise aucun nom de classe concrète.
 
 ## CODE SIMPLE FACTORY À ADAPTER
 

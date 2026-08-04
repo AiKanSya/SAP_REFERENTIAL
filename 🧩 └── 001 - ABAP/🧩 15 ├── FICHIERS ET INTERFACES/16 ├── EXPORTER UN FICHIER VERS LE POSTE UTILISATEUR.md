@@ -53,14 +53,31 @@ Pour un vrai fichier Office Open XML, utiliser une technologie explicitement pr�
 
 Ne lancer aucune application locale automatiquement après téléchargement sans besoin justifié. Pour afficher un document temporaire, SAP fournit des services frontend spécifiques plus sûrs que l’enchaînement historique téléchargement puis exécution.
 
-## PROCÉDURE PAS À PAS
+## PROCESS
 
-1. Saisir `/nSAT`.
-2. Créer ou sélectionner une variante de mesure adaptée.
-3. Définir le programme, la transaction ou l’utilisateur à mesurer.
-4. Démarrer la mesure puis reproduire une seule fois le scénario.
-5. Arrêter et analyser le hit list, la hiérarchie d’appels et les temps nets.
-6. Répéter la mesure après correction avec les mêmes données et le même contexte.
+### ÉTAPE 1 — PRÉPARER LE CONTENU À EXPORTER
+
+Construire le contenu final avant d’ouvrir la boîte de sauvegarde. Pour un texte délimité, formater explicitement l’en-tête, les séparateurs, les guillemets, les dates, les décimaux et les zéros initiaux. Pour un fichier binaire, produire un `XSTRING` puis le convertir dans le type de table attendu par le service frontend.
+
+### ÉTAPE 2 — CONTRÔLER LA DISPONIBILITÉ DU FRONTEND
+
+Exécuter l’export en mode dialogue et vérifier les services SAP GUI avant tout appel local. Un programme prévu pour l’arrière-plan doit utiliser un fichier serveur ou un autre canal ; il ne doit pas tenter de contourner l’absence de frontend.
+
+### ÉTAPE 3 — CHOISIR LA DESTINATION
+
+Appeler `CL_GUI_FRONTEND_SERVICES=>FILE_SAVE_DIALOG` avec un nom proposé et une extension cohérente avec le contenu. Récupérer le chemin complet retourné. En cas d’annulation ou de chemin vide, quitter sans écrire et sans réutiliser une ancienne valeur.
+
+### ÉTAPE 4 — TÉLÉCHARGER LE FICHIER
+
+Appeler `CL_GUI_FRONTEND_SERVICES=>GUI_DOWNLOAD` avec le chemin retenu, le type texte ou binaire approprié et l’encodage prévu par le contrat. Ne pas nommer `.xlsx` un contenu CSV : l’extension ne crée pas un classeur Office Open XML.
+
+### ÉTAPE 5 — RESTITUER LE RÉSULTAT EXACT
+
+Après succès, afficher le chemin choisi, le nombre de lignes ou la taille produite et le format réel. En cas d’échec, distinguer un refus de sécurité SAP GUI, un fichier verrouillé, un chemin invalide et une erreur de conversion. Ne pas annoncer la création du fichier si `GUI_DOWNLOAD` a échoué.
+
+### ÉTAPE 6 — OUVRIR ET CONTRÔLER LE FICHIER
+
+Réouvrir le fichier avec un outil indépendant et vérifier les accents, séparateurs, dates, décimaux, zéros initiaux et fins de ligne. Tester aussi un export vide, un nom avec espaces ou accents, un fichier existant et un volume représentatif.
 
 ## VÉRIFICATION
 
@@ -120,7 +137,6 @@ ENDIF.
 - [GUI_DOWNLOAD — SAP Help Portal](https://help.sap.com/docs/SAP_NETWEAVER_AS_ABAP_FOR_SOH_740/5a005e044eef436f8b27bbd3f73a3cfc/c75ab8ec178c44a8aacd1dcac3460db8.html)
 - [File Upload and Download — SAP Help Portal](https://help.sap.com/docs/ABAP_PLATFORM_NEW/5a005e044eef436f8b27bbd3f73a3cfc/9ff8506b2b8f4812904912c4b207096c.html)
 - [SHOW_DOCUMENT — SAP Help Portal](https://help.sap.com/docs/SAP_NETWEAVER_AS_ABAP_751_IP/5a005e044eef436f8b27bbd3f73a3cfc/b174a19731f9424db1692ac6260a68c9.html)
-
 
 ---
 

@@ -36,17 +36,31 @@ Modifications à risque :
 
 Préférer une évolution compatible lorsque cela est possible : nouveau paramètre optionnel, nouvelle méthode, nouvelle interface versionnée ou adaptateur.
 
-## PROCÉDURE DE CONTRÔLE AVANT LIVRAISON
+## PROCESS
 
-1. Contrôler la syntaxe et activer la classe complète.
-2. Exécuter ABAP Unit.
-3. Exécuter ATC ou SCI avec la variante projet.
-4. Consulter la liste des utilisations des composants modifiés.
-5. Tester les cas nominaux et erreurs.
-6. Vérifier les autorisations et données utilisées.
-7. Contrôler l’ordre de transport.
-8. Documenter le changement fonctionnel et technique.
-9. Préparer un scénario de non-régression.
+### Étape 1 — Stabiliser la version active
+
+Contrôler la syntaxe, activer la classe complète et vérifier qu’aucun composant local ou interface ne reste inactif.
+
+### Étape 2 — Exécuter les tests
+
+Lancer ABAP Unit, puis cas manuels nécessaires. Toute erreur doit être corrigée ou explicitement hors périmètre avant de poursuivre.
+
+### Étape 3 — Exécuter les contrôles statiques
+
+Lancer ATC ou SCI avec la variante projet. Traiter les findings bloquants et documenter toute exemption avec responsable et échéance.
+
+### Étape 4 — Analyser l’impact
+
+Consulter les utilisations des méthodes, types et attributs modifiés. Vérifier compatibilité des signatures, autorisations et données sensibles.
+
+### Étape 5 — Contrôler le transport
+
+Dans `SE10`, vérifier classe, interfaces, exceptions, messages et types DDIC. Confirmer l’ordre d’import des dépendances.
+
+### Étape 6 — Documenter et rejouer
+
+Décrire changement, preuve et scénario de non-régression. La livraison est prête lorsque la version transportée correspond exactement à la version testée.
 
 ## CHECKLIST À COPIER
 

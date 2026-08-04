@@ -73,14 +73,25 @@ Les détails varient selon la version du débogueur et le type de donnée.
 - documenter la valeur attendue ;
 - vérifier la pile d’appels au déclenchement.
 
-## PROCÉDURE PAS À PAS
+## PROCESS
 
-1. Saisir `/nATC` ou utiliser l’entrée ATC disponible dans le système.
-2. Choisir une variante de contrôle autorisée.
-3. Lancer le contrôle sur l’objet, le package ou l’ordre de transport.
-4. Classer les findings par priorité et corriger d’abord les erreurs bloquantes.
-5. Demander une exemption uniquement avec justification, propriétaire et échéance.
-6. Relancer le contrôle avant libération.
+### Étape 1 — Atteindre la portée de la donnée
+
+Arrêter le programme après la création de la variable. Afficher son type et sa valeur initiale ; un watchpoint ne peut pas suivre une donnée qui n’existe pas dans le contexte courant.
+
+### Étape 2 — Créer le watchpoint
+
+Sélectionner la variable dans le débogueur. Choisir un arrêt sur toute modification ou ajouter une condition sur la nouvelle valeur.
+
+### Étape 3 — Continuer jusqu’à l’écriture
+
+Utiliser `F8`. À l’arrêt, relever la ligne responsable, l’ancienne valeur, la nouvelle valeur et la pile d’appels.
+
+### Étape 4 — Isoler une modification indirecte
+
+Si l’arrêt suit un appel, répéter le scénario et entrer dans cet appel pour localiser l’affectation exacte. Pour une structure ou table, cibler le composant utile afin de limiter les arrêts.
+
+Le diagnostic est terminé lorsque l’instruction et son appelant sont identifiés. Supprimer ensuite le watchpoint.
 
 ## VÉRIFICATION
 
@@ -116,7 +127,6 @@ lv_quantity < 0
 
 - [Watchpoints — SAP Help Portal](https://help.sap.com/docs/ABAP_PLATFORM_NEW/ba879a6e2ea04d9bb94c7ccd7cdac446/4926d933c93016b8e10000000a42189d.html)
 - [Breakpoints Tool — SAP Help Portal](https://help.sap.com/docs/ABAP_PLATFORM_NEW/ba879a6e2ea04d9bb94c7ccd7cdac446/492535784d7216b5e10000000a42189d.html)
-
 
 ---
 

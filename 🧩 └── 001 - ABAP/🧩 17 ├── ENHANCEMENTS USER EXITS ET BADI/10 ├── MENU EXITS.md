@@ -35,13 +35,31 @@ flowchart LR
 - tester les langues de connexion utilisées ;
 - contrôler le retour vers l’écran standard.
 
-## PROCÉDURE PAS À PAS
+## PROCESS
 
-1. Saisir `/nSMOD`.
-2. Entrer l’enhancement classique ou utiliser la recherche.
-3. Afficher les composants : function exits, screen exits, menu exits et documentation.
-4. Identifier les structures append et objets associés.
-5. Ne pas modifier les includes client avant d’avoir confirmé le scénario d’appel.
+### ÉTAPE 1 — ANALYSER LE MENU EXIT
+
+Dans `SMOD`, afficher l’enhancement puis le composant menu. Relever le code fonction fourni par SAP, les GUI status concernés et la documentation. Identifier le function exit ou user exit prévu pour traiter la commande.
+
+### ÉTAPE 2 — VÉRIFIER LE PROJET `CMOD`
+
+Ouvrir le projet contenant l’enhancement et contrôler son statut. Accéder au composant menu depuis le projet. Ne pas modifier directement le GUI status standard dans `SE41`.
+
+### ÉTAPE 3 — MAINTENIR LE TEXTE DE FONCTION
+
+Renseigner le libellé client associé au code fonction et, si le composant le prévoit, les textes complémentaires. Utiliser un texte traduisible et cohérent avec l’action. Conserver exactement le code fonction déclaré par l’exit.
+
+### ÉTAPE 4 — IMPLÉMENTER LE TRAITEMENT DE COMMANDE
+
+Dans l’exit prévu, traiter la valeur de commande par une branche explicite, puis déléguer l’action à une classe Z. Vérifier les autorisations et le contexte métier avant l’exécution. Ne pas intercepter les commandes standard non concernées.
+
+### ÉTAPE 5 — GÉRER LA DISPONIBILITÉ
+
+Lorsque le contrat le permet, désactiver ou masquer l’action si le statut du document ou l’autorisation l’interdit. Répéter le contrôle dans le traitement de commande ; l’état visuel seul ne constitue pas une protection.
+
+### ÉTAPE 6 — ACTIVER ET TESTER
+
+Activer les includes et le projet. Tester l’affichage du menu dans chaque GUI status concerné, l’exécution de la commande, l’autorisation refusée et un écran où l’action ne doit pas apparaître. Vérifier les traductions et le transport des textes.
 
 ## VÉRIFICATION
 
@@ -80,7 +98,6 @@ Ordre de transport  :
 
 - [Types of Exits — SAP Help Portal](https://help.sap.com/docs/ABAP_PLATFORM_NEW/2b28ffa716c24348903f8ffbfeb81df8/c81975e643b111d1896f0000e8322d00.html)
 - [Enhancements, User Exits and Customer Exits — SAP Help Portal](https://help.sap.com/docs/btp/ABAP/3353526313.html)
-
 
 ---
 

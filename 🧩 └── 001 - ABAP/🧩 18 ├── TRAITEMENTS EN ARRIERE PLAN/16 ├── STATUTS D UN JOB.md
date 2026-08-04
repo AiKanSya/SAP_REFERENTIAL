@@ -45,13 +45,31 @@ Un programme peut finir techniquement sans erreur tout en ayant rejeté toutes l
 
 Contrôler les processus batch, la classe, le serveur cible, les modes d’exploitation et la charge système.
 
-## PROCÉDURE PAS À PAS
+## PROCESS
 
-1. Saisir `/nSM37`.
-2. Renseigner le nom du job, l’utilisateur et une période suffisamment précise.
-3. Exécuter la recherche et sélectionner le job correspondant au bon horodatage.
-4. Lire le statut, le journal de job, les étapes et le spool.
-5. En cas d’échec, relever le message, le programme, la variante, l’utilisateur et l’heure avant toute relance.
+### ÉTAPE 1 — IDENTIFIER LE STATUT ET L’HORODATAGE
+
+Dans `SM37`, sélectionner l’occurrence exacte et relever statut, heure prévue, début et fin. Comparer ces valeurs avant d’interpréter l’état. Un job libéré en attente et un job actif depuis longtemps nécessitent des diagnostics différents.
+
+### ÉTAPE 2 — INTERPRÉTER « PLANIFIÉ » OU « LIBÉRÉ »
+
+Pour un job planifié, vérifier qu’une condition de démarrage complète existe. Pour un job libéré, contrôler la date, l’événement, le prédécesseur et la disponibilité des processus batch. Ne pas relancer une copie tant que la cause de l’attente n’est pas connue.
+
+### ÉTAPE 3 — INTERPRÉTER « PRÊT » OU « ACTIF »
+
+Pour un job prêt, vérifier la capacité et le ciblage serveur. Pour un job actif, ouvrir les étapes et identifier le programme courant, le serveur et la durée. Corréler avec le journal avant de conclure à un blocage.
+
+### ÉTAPE 4 — INTERPRÉTER « TERMINÉ »
+
+Lire le journal, le spool et les compteurs métier. Vérifier le résultat persistant. Un programme peut se terminer sans erreur système tout en journalisant des rejets ou en ne sélectionnant aucune donnée.
+
+### ÉTAPE 5 — INTERPRÉTER « ANNULÉ »
+
+Relever le premier message d’erreur, l’étape, le programme et l’heure. Rechercher un dump `ST22`, une erreur d’autorisation, une annulation opérateur ou un défaut externe correspondant. Distinguer la cause initiale des messages secondaires de fin.
+
+### ÉTAPE 6 — AGIR SELON L’ÉTAT MÉTIER
+
+Contrôler les unités déjà validées et la stratégie de reprise avant modification du job. Documenter l’action : attendre, corriger la condition, résoudre la capacité, réparer le code ou relancer une unité idempotente. Le statut seul n’autorise jamais une répétition aveugle.
 
 ## VÉRIFICATION
 
@@ -91,7 +109,6 @@ Ordre de transport  :
 
 - [Possible Status of Background Jobs — SAP Help Portal](https://help.sap.com/docs/ABAP_PLATFORM_NEW/b07e7195f03f438b8e7ed273099d74f3/4b308aa91dd90a93e10000000a421937.html)
 - [Job Was Not Started — SAP Help Portal](https://help.sap.com/docs/ABAP_PLATFORM_NEW/b07e7195f03f438b8e7ed273099d74f3/4b272c13d1341780e10000000a42189c.html)
-
 
 ---
 

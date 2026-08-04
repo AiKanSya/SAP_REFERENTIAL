@@ -113,14 +113,36 @@ Ils appartiennent à un package et doivent être transportés avec les autres ob
 - L’ordre des includes doit être cohérent.
 - Un include ne remplace pas une interface de procédure.
 
-## PROCÉDURE PAS À PAS
+## PROCESS
 
-1. Saisir `/nSAT`.
-2. Créer ou sélectionner une variante de mesure adaptée.
-3. Définir le programme, la transaction ou l’utilisateur à mesurer.
-4. Démarrer la mesure puis reproduire une seule fois le scénario.
-5. Arrêter et analyser le hit list, la hiérarchie d’appels et les temps nets.
-6. Répéter la mesure après correction avec les mêmes données et le même contexte.
+### Étape 1 — Définir le contenu de chaque include
+
+Lister les catégories du programme : déclarations globales, écran de sélection, événements et sous-programmes. Affecter une seule catégorie principale à chaque include selon la convention du projet, par exemple `_TOP` et `_F01`.
+
+Un include ne doit pas être créé pour masquer un découpage fonctionnel absent. Il ne fournit ni interface ni encapsulation.
+
+### Étape 2 — Créer les includes depuis le programme principal
+
+1. Ouvrir le programme dans `SE80`.
+2. Ajouter l’instruction `INCLUDE z_nom_include.` à l’emplacement prévu.
+3. Double-cliquer sur le nom et confirmer la création comme programme include.
+4. Affecter le même package et l’ordre cohérent avec le programme principal.
+
+Si le nom existe déjà, l’ouvrir et vérifier son propriétaire et ses utilisations avant de le réemployer.
+
+### Étape 3 — Déplacer le code dans l’ordre correct
+
+Déplacer d’abord les déclarations vers l’include chargé avant leurs utilisations, puis les sous-programmes vers l’include dédié. Conserver les blocs d’événements dans un ordre qui rend le flux principal lisible.
+
+Après chaque déplacement, contrôler la syntaxe du programme principal, pas uniquement celle de l’include.
+
+### Étape 4 — Contrôler les dépendances et le transport
+
+Utiliser la liste d’utilisation de chaque include pour confirmer ses programmes consommateurs. Vérifier dans `SE09`/`SE10` que programme principal et nouveaux includes appartiennent à la livraison prévue.
+
+### Étape 5 — Valider l’exécution
+
+Activer l’ensemble proposé, exécuter les mêmes données qu’avant le découpage et comparer le résultat. L’organisation est terminée lorsque tous les includes sont actifs, transportés et que le comportement du programme reste identique.
 
 ## VÉRIFICATION
 
@@ -163,7 +185,6 @@ START-OF-SELECTION.
 - [include program — ABAP Keyword Documentation](https://help.sap.com/doc/abapdocu_latest_index_htm/latest/en-US/ABENINCLUDE_PROGRAM_GLOSRY.html)
 - [Source Code Organization — ABAP Keyword Documentation](https://help.sap.com/doc/abapdocu_latest_index_htm/latest/en-US/ABENSOURCE_CODE_ORGA_GDL.html)
 - [Source Code Modularization — ABAP Keyword Documentation](https://help.sap.com/doc/abapdocu_latest_index_htm/latest/en-US/ABENSOURCE_CODE_MODULAR_GUIDL.html)
-
 
 ---
 

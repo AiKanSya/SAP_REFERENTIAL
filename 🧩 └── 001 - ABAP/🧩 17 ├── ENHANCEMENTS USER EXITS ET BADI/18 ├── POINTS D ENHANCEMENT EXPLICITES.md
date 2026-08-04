@@ -40,14 +40,31 @@ Le remplacement augmente le risque de perdre des corrections ou évolutions appo
 
 Certaines options sont statiques et interviennent dans les parties déclaratives ; d’autres sont dynamiques et interviennent dans le flux d’exécution. Respecter le contexte syntaxique de l’option.
 
-## PROCÉDURE PAS À PAS
+## PROCESS
 
-1. Saisir `/nSE80`.
-2. Sélectionner le type d’objet ou le package dans la liste de gauche.
-3. Entrer le nom technique puis valider.
-4. Commencer en mode **Afficher** pour analyser l’objet et ses sous-objets.
-5. Passer en modification uniquement dans un système et un objet autorisés.
-6. Contrôler la syntaxe, activer les objets modifiés puis vérifier leur statut actif.
+### ÉTAPE 1 — RETROUVER LE POINT EXPLICITE
+
+Ouvrir le programme ou l’include standard en affichage et rechercher `ENHANCEMENT-POINT` ou `ENHANCEMENT-SECTION`. Relever le nom du point, le spot associé et le code environnant. Confirmer que le point est exécuté dans le scénario par un breakpoint proche.
+
+### ÉTAPE 2 — ANALYSER LA POSITION ET LE CONTRAT
+
+Examiner les données visibles, leur portée et les traitements exécutés avant et après le point. Pour une section, analyser précisément le code standard remplacé par l’implémentation. Écarter le point si le besoin exige des données absentes ou une borne transactionnelle différente.
+
+### ÉTAPE 3 — AFFICHER LES IMPLÉMENTATIONS EXISTANTES
+
+Depuis les opérations d’enhancement de l’éditeur, lister les implémentations attachées au point. Vérifier leur statut et leur comportement. Déterminer si plusieurs implémentations peuvent coexister sans dépendre d’un ordre implicite.
+
+### ÉTAPE 4 — CRÉER L’ENHANCEMENT IMPLEMENTATION
+
+Passer en mode enhancement, sélectionner le point et créer une implémentation Z dans le package et la demande prévus. Donner une description liée au besoin métier. Ne modifier aucune ligne standard autour du bloc généré.
+
+### ÉTAPE 5 — AJOUTER UN CODE MINIMAL
+
+Appeler une classe Z avec les données disponibles et traiter explicitement les valeurs initiales ou erreurs. Pour une enhancement section, reproduire ou remplacer uniquement le comportement décidé et tester toutes les branches standard supprimées par le remplacement.
+
+### ÉTAPE 6 — ACTIVER ET TESTER
+
+Activer la classe, le bloc et l’enhancement implementation. Exécuter le scénario avec breakpoint puis les cas hors périmètre. Contrôler les messages, la LUW, les performances et la liste des objets transportés.
 
 ## VÉRIFICATION
 
@@ -85,7 +102,6 @@ ENDENHANCEMENT.
 - [Explicit Enhancement Options — SAP Help Portal](https://help.sap.com/docs/ABAP_PLATFORM_NEW/46a2cfc13d25463b8b9a3d2a3c3ba0d9/56ee9441026aae5fe10000000a1550b0.html)
 - [ABAP Source Code Enhancements — SAP Help Portal](https://help.sap.com/docs/SAP_NETWEAVER_AS_ABAP_752/46a2cfc13d25463b8b9a3d2a3c3ba0d9/a047e94086087e7fe10000000a1550b0.html)
 - [Source Code Plug-Ins — SAP Help Portal](https://help.sap.com/docs/ABAP_PLATFORM_BW4HANA/7bfe8cdcfbb040dcb6702dada8c3e2f0/e5dca35db39546569b2a35a359f816b4.html)
-
 
 ---
 

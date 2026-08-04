@@ -57,14 +57,27 @@ Pour une nouvelle logique purement interne et orientée objet, préférer géné
 
 Un module fonction constitue une **frontière d’interface**. Le contrat d’entrée, de sortie et d’erreur doit être plus stable que son implémentation.
 
-## PROCÉDURE PAS À PAS
+## PROCESS
 
-1. Saisir `/nSE37`.
-2. Entrer le nom du module fonction puis choisir **Afficher**, **Modifier** ou **Créer** selon l’autorisation.
-3. Analyser les onglets Import, Export, Changing, Tables et Exceptions.
-4. Lire la documentation et le code source avant tout appel.
-5. Utiliser **Test/Exécuter** avec des données non destructives.
-6. Pour un module Z, contrôler, activer puis tester les cas nominal et d’erreur.
+### Étape 1 — Identifier le service attendu
+
+Définir entrées, sorties, erreurs, effets de bord et responsabilité transactionnelle. Vérifier qu’une classe ou une API publiée n’est pas déjà la cible imposée avant de choisir un module fonction.
+
+### Étape 2 — Rechercher un module existant
+
+Dans `SE37`, rechercher par nom ou groupe de fonctions, puis lire documentation et statut de publication. Ne réutiliser un module non documenté ou interne que si sa stabilité est explicitement garantie.
+
+### Étape 3 — Lire le contrat complet
+
+Examiner Import, Export, Changing, Tables et Exceptions. Pour chaque paramètre, relever type DDIC, caractère obligatoire, passage par valeur/référence et valeur par défaut.
+
+### Étape 4 — Identifier les effets invisibles
+
+Lire le source pour repérer mises à jour, commits, appels distants, autorisations et données globales. Un résultat correct dans `SE37` ne garantit pas l’absence d’effet de bord.
+
+### Étape 5 — Tester le contrat
+
+Exécuter cas nominal, donnée absente et entrée invalide dans un système de test. Le module est compris lorsque sorties, exceptions et effets transactionnels sont prévisibles pour chaque cas.
 
 ## VÉRIFICATION
 
@@ -90,7 +103,6 @@ Un module fonction constitue une **frontière d’interface**. Le contrat d’en
 - [Modularization with Function Modules — SAP Help Portal](https://help.sap.com/docs/SAP_NETWEAVER_AS_ABAP_752/c238d694b825421f940829321ffa326a/4ec1cbf46e391014adc9fffe4e204223.html)
 - [Working with ABAP Function Groups and Modules — SAP Help Portal](https://help.sap.com/docs/ABAP_PLATFORM_NEW/c238d694b825421f940829321ffa326a/5b3370ee088a4e2b9579da3f6e994456.html)
 - [Describing Remote Function Calls and BAPIs — SAP Learning](https://learning.sap.com/courses/technical-implementation-and-operation-i-of-sap-s-4hana-and-sap-business-suite/describing-remote-function-calls-and-bapis)
-
 
 ---
 

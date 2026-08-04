@@ -40,14 +40,31 @@ Un serveur cible est justifié seulement lorsqu’une dépendance technique l’
 - `RZ04` : modes d’exploitation et répartition des processus ;
 - `SM21` : journal système.
 
-## PROCÉDURE PAS À PAS
+## PROCESS
 
-1. Saisir `/nATC` ou utiliser l’entrée ATC disponible dans le système.
-2. Choisir une variante de contrôle autorisée.
-3. Lancer le contrôle sur l’objet, le package ou l’ordre de transport.
-4. Classer les findings par priorité et corriger d’abord les erreurs bloquantes.
-5. Demander une exemption uniquement avec justification, propriétaire et échéance.
-6. Relancer le contrôle avant libération.
+### ÉTAPE 1 — IDENTIFIER L’EXÉCUTION ET LE SERVEUR
+
+Dans `SM37`, ouvrir le job et relever l’heure, l’étape, le statut et le serveur d’exécution. Distinguer l’attente de planification, l’attente d’un processus batch et l’exécution réelle. Ne pas attribuer un retard au programme avant son démarrage effectif.
+
+### ÉTAPE 2 — CONTRÔLER LE PROGRAMME DE L’ÉTAPE
+
+Relever le programme, la variante, l’utilisateur et la classe. Vérifier si l’étape appelle un programme ABAP, une commande externe ou un programme externe. Chaque type utilise un contexte et des autorisations différents.
+
+### ÉTAPE 3 — EXAMINER LA DISPONIBILITÉ BATCH
+
+Avec les outils d’administration autorisés, contrôler les processus de travail batch disponibles sur le serveur et les groupes de serveurs définis. Corréler leur occupation avec l’heure prévue du job. Une absence de capacité doit être traitée avec Basis, pas contournée dans le code.
+
+### ÉTAPE 4 — DISTINGUER TEMPS D’ATTENTE ET TEMPS D’EXÉCUTION
+
+Comparer l’heure prévue, l’heure de début et l’heure de fin dans `SM37`. Calculer séparément le retard de démarrage et la durée du programme. Utiliser ensuite le journal, le spool ou une trace ciblée uniquement pour la partie réellement lente.
+
+### ÉTAPE 5 — VÉRIFIER LES CONTRAINTES DE CIBLAGE
+
+Contrôler la classe de job, le serveur cible, le groupe de serveurs et les restrictions d’exploitation. Vérifier qu’un ciblage trop étroit ne force pas le job à attendre une ressource indisponible. Toute modification de capacité ou de classe relève de la gouvernance Basis.
+
+### ÉTAPE 6 — REPRODUIRE ET MESURER
+
+Planifier une exécution contrôlée avec les mêmes caractéristiques et un volume représentatif. Conserver les horodatages, le serveur et les ressources. Comparer avant/après correction sans mélanger un gain de capacité système et une optimisation du programme ABAP.
 
 ## VÉRIFICATION
 
@@ -88,7 +105,6 @@ Ordre de transport  :
 
 - [Background Work Processes — SAP Help Portal](https://help.sap.com/docs/ABAP_PLATFORM_NEW/b07e7195f03f438b8e7ed273099d74f3/4b2b3c3e8eb51780e10000000a42189c.html)
 - [Job Start Management — SAP Help Portal](https://help.sap.com/docs/ABAP_PLATFORM_NEW/b07e7195f03f438b8e7ed273099d74f3/4b2bc0094c594ba2e10000000a42189c.html)
-
 
 ---
 

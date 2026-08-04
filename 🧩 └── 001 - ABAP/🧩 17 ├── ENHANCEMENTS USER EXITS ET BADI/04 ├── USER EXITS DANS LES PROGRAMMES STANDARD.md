@@ -40,14 +40,31 @@ Le nom, l’emplacement et les paramètres dépendent de l’application. Ne pas
 - encapsuler le traitement dans une classe client ;
 - documenter la transaction et l’événement métier concernés.
 
-## PROCÉDURE PAS À PAS
+## PROCESS
 
-1. Saisir `/nSE80`.
-2. Sélectionner le type d’objet ou le package dans la liste de gauche.
-3. Entrer le nom technique puis valider.
-4. Commencer en mode **Afficher** pour analyser l’objet et ses sous-objets.
-5. Passer en modification uniquement dans un système et un objet autorisés.
-6. Contrôler la syntaxe, activer les objets modifiés puis vérifier leur statut actif.
+### ÉTAPE 1 — RETROUVER LE PROGRAMME RÉEL
+
+Depuis le scénario standard, relever le programme principal et la pile d’appels. Ouvrir l’objet en affichage dans `SE80` ou `SE38`. Ne pas rechercher uniquement dans le programme de transaction si le traitement est délégué à des includes ou groupes de fonctions.
+
+### ÉTAPE 2 — RECHERCHER LES CONVENTIONS D’EXIT
+
+Rechercher les `FORM USEREXIT_*`, includes client documentés et appels associés. Examiner aussi les commentaires SAP et la documentation du composant. Un nom ressemblant à un user exit ne prouve pas qu’il est prévu pour le scénario.
+
+### ÉTAPE 3 — ANALYSER LES DONNÉES DISPONIBLES
+
+Dans le point candidat, relever les paramètres formels, données globales utilisées et structures modifiables. Identifier les validations et mises à jour exécutées après le retour. Écarter un exit dont l’utilisation exigerait de modifier indirectement un état non contractuel.
+
+### ÉTAPE 4 — CONFIRMER PAR UN BREAKPOINT
+
+Placer un breakpoint dans l’exit sans modifier le standard, puis reproduire le scénario. Vérifier la pile d’appels, les valeurs et le nombre de passages. Tester aussi un scénario proche hors périmètre pour déterminer la condition d’activation nécessaire.
+
+### ÉTAPE 5 — IMPLÉMENTER DANS LA ZONE CLIENT AUTORISÉE
+
+Ajouter le code uniquement dans l’include ou le mécanisme client prévu. Déléguer la logique à une classe Z et conserver dans l’exit l’adaptation des paramètres. Ne pas créer de modification directe de l’objet SAP.
+
+### ÉTAPE 6 — TESTER ACTIVATION ET NON-RÉGRESSION
+
+Activer les objets client et exécuter le scénario complet. Vérifier le résultat, les messages, la LUW et les performances. Contrôler ensuite un cas où la condition client est fausse afin de prouver que le standard reste inchangé.
 
 ## VÉRIFICATION
 
@@ -87,7 +104,6 @@ ENDFORM.
 
 - [Enhancements, User Exits and Customer Exits — SAP Help Portal](https://help.sap.com/docs/btp/ABAP/3353526313.html)
 - [Enhancements and Modifications — SAP Help Portal](https://help.sap.com/docs/SUPPORT_CONTENT/abap/3353523593.html)
-
 
 ---
 

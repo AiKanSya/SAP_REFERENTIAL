@@ -41,15 +41,31 @@ Un verrou trop large réduit la concurrence. Un verrou trop fin ne protège pas 
 - modules générés activés ;
 - scénario de collision testé avec deux sessions.
 
-## PROCÉDURE PAS À PAS
+## PROCESS
 
-1. Saisir `/nSE11`.
-2. Choisir le type d’objet DDIC correspondant au chapitre.
-3. Entrer le nom technique ; utiliser **Afficher** pour un objet existant ou **Créer** pour un objet Z autorisé.
-4. Renseigner les attributs et composants en suivant les règles du chapitre.
-5. Lancer le contrôle de cohérence.
-6. Activer l’objet et traiter chaque message avant de poursuivre.
-7. Utiliser la liste d’utilisation et, pour les tables, vérifier les paramètres techniques et la structure physique.
+### ÉTAPE 1 — DÉFINIR LA RESSOURCE ET LA CLÉ
+
+Identifier la table racine et les champs représentant l’unité métier à protéger. Inclure le mandant lorsque la table est dépendante du mandant. Vérifier que la clé choisie bloque toutes les écritures incompatibles sans immobiliser des documents indépendants.
+
+### ÉTAPE 2 — CRÉER L’OBJET DANS `SE11`
+
+Saisir `/nSE11`, sélectionner **Objet de verrouillage**, entrer un nom Z respectant la convention du projet, puis choisir **Créer**. Renseigner une description et affecter le package et la demande de transport attendus.
+
+### ÉTAPE 3 — AJOUTER LES TABLES
+
+Définir la table primaire. Ajouter les tables secondaires uniquement si le même verrou doit couvrir leurs données et si leurs relations de clé sont explicites. Contrôler les relations proposées par le DDIC ; une association incorrecte produit un argument de verrou inadéquat.
+
+### ÉTAPE 4 — CHOISIR LE MODE ET LES PARAMÈTRES
+
+Définir le mode de verrouillage correspondant aux accès concurrents autorisés. Dans l’onglet des paramètres, conserver uniquement les champs nécessaires à la granularité métier. Examiner l’effet d’une valeur initiale, qui peut élargir le périmètre verrouillé.
+
+### ÉTAPE 5 — GÉNÉRER LES MODULES FONCTION
+
+Contrôler puis activer l’objet. Vérifier dans `SE37` la génération des modules `ENQUEUE_<objet>` et `DEQUEUE_<objet>`. Relever leurs paramètres de clé, de mode, `_SCOPE`, `_WAIT` et les exceptions réellement disponibles.
+
+### ÉTAPE 6 — TESTER AVEC DEUX SESSIONS
+
+Créer un report Z non destructif appelant l’enqueue et maintenant temporairement le verrou. Depuis une seconde session, tester la même clé puis une clé différente. Contrôler `foreign_lock`, l’entrée visible dans `SM12` et la libération après dequeue, commit ou rollback selon le scénario.
 
 ## VÉRIFICATION
 
@@ -91,7 +107,6 @@ Ordre de transport  :
 
 - [Lock Objects — SAP Help Portal](https://help.sap.com/docs/SAP_NETWEAVER_AS_ABAP_FOR_SOH_740/ec1c9c8191b74de98feb94001a95dd76/cf21eea5446011d189700000e8322d00.html)
 - [Function Modules for Lock Requests — SAP Help Portal](https://help.sap.com/docs/ABAP_PLATFORM_NEW/ec1c9c8191b74de98feb94001a95dd76/cf21eebf446011d189700000e8322d00.html)
-
 
 ---
 

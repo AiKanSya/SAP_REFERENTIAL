@@ -57,14 +57,27 @@ Le programme doit pouvoir expliquer précisément :
 4. quelles opérations SAP ont été exécutées ;
 5. comment reprendre sans créer de doublons.
 
-## PROCÉDURE PAS À PAS
+## PROCESS
 
-1. Lire la définition et identifier les prérequis du chapitre.
-2. Choisir un objet Z ou un scénario de démonstration sans impact métier.
-3. Reproduire l’exemple dans un système de développement et relever les données d’entrée.
-4. Contrôler la syntaxe ou la configuration avant activation/exécution.
-5. Comparer le résultat observé avec la section **Vérification**.
-6. Documenter toute différence liée à la release, aux autorisations ou au paramétrage du système.
+### Étape 1 — Définir le contrat du fichier
+
+Fixer producteur, consommateur, emplacement, encodage, séparateur, fin de ligne, formats, volume et fréquence. Définir aussi la règle de nommage et l’unicité.
+
+### Étape 2 — Définir la preuve de complétude
+
+Choisir comment le consommateur distingue un fichier terminé : renommage atomique, extension temporaire, témoin ou protocole externe.
+
+### Étape 3 — Définir validation et rejet
+
+Lister contrôles d’en-tête, colonnes, types, doublons et cohérence métier. Décider si une ligne invalide rejette tout le fichier ou alimente un rejet corrélé.
+
+### Étape 4 — Définir transaction et reprise
+
+Choisir taille des lots, stratégie de commit, clé d’idempotence et reprise après interruption. Une relance ne doit pas créer de doublon.
+
+### Étape 5 — Tester le protocole
+
+Tester fichier valide, vide, tronqué, encodage invalide, doublon et reprise. L’interface est validée lorsque chaque cas produit un état, un journal et une reprise déterministes.
 
 ## VÉRIFICATION
 
@@ -91,7 +104,6 @@ Le programme doit pouvoir expliquer précisément :
 
 - [ABAP File Interface — SAP Help Portal](https://help.sap.com/docs/ABAP_PLATFORM_NEW/7bfe8cdcfbb040dcb6702dada8c3e2f0/fa2fd3be291f469f862c4c8215e0549b.html)
 - [Physical and Logical File Names — SAP Help Portal](https://help.sap.com/docs/ABAP_PLATFORM_NEW/7bfe8cdcfbb040dcb6702dada8c3e2f0/9e49819d5b2a440fb508772494b9a473.html)
-
 
 ---
 

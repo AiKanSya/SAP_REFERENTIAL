@@ -1,4 +1,5 @@
 # COMPOS" Définir le contrat et limiter l’API publique au besoin réel.
+
 ITION ET DÉLÉGATION
 
 ## RÉSULTAT ATTENDU
@@ -18,14 +19,27 @@ flowchart LR
     S --> L["ZIF_DEV_LOGGER"]
 ```
 
-## PROCÉDURE DE CONCEPTION
+## PROCESS
 
-1. Identifier chaque responsabilité indépendante.
-2. Définir une interface pour les collaborations variables ou testables.
-3. Ajouter des attributs privés de type référence d’interface.
-4. Recevoir les dépendances dans le constructeur.
-5. Déléguer le traitement à chaque collaborateur.
-6. Garder dans la classe principale uniquement l’orchestration métier.
+### Étape 1 — Séparer les responsabilités
+
+Lister les actions de la classe et identifier celles appartenant à un service indépendant. Nommer chaque collaborateur par son rôle, pas par une étape technique.
+
+### Étape 2 — Définir les contrats
+
+Créer une interface pour chaque collaboration variable ou testable. Vérifier que sa signature ne dépend pas de l’orchestrateur.
+
+### Étape 3 — Injecter les composants
+
+Ajouter des références d’interface privées et les recevoir dans le constructeur. Refuser une référence non liée avant d’affecter l’état.
+
+### Étape 4 — Déléguer
+
+Dans la méthode métier, appeler chaque collaborateur et conserver uniquement séquence, décisions globales et gestion cohérente des erreurs.
+
+### Étape 5 — Tester indépendamment
+
+Injecter des doubles enregistrant les appels. Vérifier ordre, paramètres et arrêt après erreur. La composition est validée lorsque chaque responsabilité peut évoluer sans modifier les autres contrats.
 
 ## CODE À ADAPTER
 

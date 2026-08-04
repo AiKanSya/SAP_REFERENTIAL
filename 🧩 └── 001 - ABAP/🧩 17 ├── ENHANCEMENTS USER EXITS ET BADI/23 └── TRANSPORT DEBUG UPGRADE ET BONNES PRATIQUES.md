@@ -61,14 +61,31 @@ Contrôler particulièrement :
 - [ ] Contrôle `SPAU_ENH` prévu après upgrade
 - [ ] Documentation technique reliée au besoin métier
 
-## PROCÉDURE PAS À PAS
+## PROCESS
 
-1. Saisir `/nCMOD`.
-2. Créer ou afficher un projet client Z.
-3. Affecter l’enhancement `SMOD` validé.
-4. Implémenter les composants nécessaires dans les includes client.
-5. Activer les composants puis le projet.
-6. Tester le scénario avec un breakpoint et vérifier qu’aucun autre projet actif ne provoque de conflit.
+### ÉTAPE 1 — INVENTORIER L’EXTENSION COMPLÈTE
+
+Lister le point standard, le projet CMOD ou l’implémentation, les classes, includes, objets DDIC, écrans, filtres et paramétrages. Relever le package, les demandes et les dépendances. Une activation locale réussie ne prouve pas que l’ensemble est transportable.
+
+### ÉTAPE 2 — CONTRÔLER L’ORDRE DE TRANSPORT
+
+Placer les domaines, éléments de données et append structures avant le code et les écrans qui les référencent. Inclure les objets d’implémentation et le paramétrage d’activation requis. Vérifier le contenu des demandes dans `SE09` ou `SE10` avant libération.
+
+### ÉTAPE 3 — PROUVER L’APPEL PAR DEBUG
+
+Dans le système source, poser un breakpoint dans l’implémentation et reproduire un scénario identifié. Conserver la pile, les paramètres, les filtres et le résultat. Après import, répéter la même preuve avec les mêmes caractéristiques fonctionnelles.
+
+### ÉTAPE 4 — DIAGNOSTIQUER UNE EXTENSION NON APPELÉE
+
+Contrôler successivement le point d’appel standard, le statut actif, le projet ou produit, les filtres, le mandant et la version de l’objet. Comparer les implémentations présentes entre systèmes. Ne modifier le code qu’après avoir isolé le niveau où la sélection échoue.
+
+### ÉTAPE 5 — TRAITER LA MISE À NIVEAU
+
+Après upgrade ou support package, examiner les ajustements d’enhancements dans les outils prévus, notamment `SPAU_ENH` lorsque le système l’utilise. Comparer le contexte source, les signatures et les implémentations standard nouvelles. Réévaluer chaque option implicite, section et overwrite.
+
+### ÉTAPE 6 — EXÉCUTER LA NON-RÉGRESSION
+
+Tester le cas cible, les cas exclus, les filtres, les erreurs, la LUW et les performances. Vérifier qu’aucune correction standard nouvelle n’est masquée. Documenter la version testée, les objets ajustés et la décision de conserver, adapter ou retirer l’extension.
 
 ## VÉRIFICATION
 

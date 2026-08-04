@@ -40,15 +40,27 @@ METHOD execute.
 ENDMETHOD.
 ```
 
-## PROCÉDURE DANS SE24
+## PROCESS
 
-1. Marquer la classe de base comme abstraite.
-2. Déclarer la méthode d’extension en visibilité protégée.
-3. Marquer cette méthode comme abstraite.
-4. Créer une sous-classe.
-5. Redéfinir toutes les méthodes abstraites.
-6. Activer la sous-classe.
-7. Tester l’instanciation de la sous-classe ; l’instanciation de la base doit être interdite.
+### Étape 1 — Séparer commun et variable
+
+Identifier le comportement implémentable dans la base et les opérations que chaque sous-classe doit fournir. Une base abstraite ne doit pas représenter une instance métier complète.
+
+### Étape 2 — Déclarer la base abstraite
+
+Marquer la classe abstraite. Créer la méthode d’extension avec sa signature, la visibilité appropriée puis l’indicateur abstrait.
+
+### Étape 3 — Créer une sous-classe concrète
+
+Renseigner la superclasse et implémenter toutes les méthodes abstraites. L’activation doit signaler tout contrat non réalisé.
+
+### Étape 4 — Utiliser FINAL avec justification
+
+Marquer classe ou méthode finale uniquement lorsque toute extension violerait un invariant ou un contrat stable.
+
+### Étape 5 — Tester
+
+Vérifier que la base ne peut pas être instanciée, que la fille le peut et que l’appel via une référence de base exécute son implémentation.
 
 ## FINAL
 

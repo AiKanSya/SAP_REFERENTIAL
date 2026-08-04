@@ -66,14 +66,27 @@ flowchart TD
 
 `CALL FUNCTION (lv_name)` permet un appel dynamique. Ne l’utiliser que pour un besoin justifié, avec une liste blanche ou une validation stricte du nom. Un nom provenant directement d’une entrée utilisateur constitue un risque technique et de sécurité.
 
-## PROCÉDURE PAS À PAS
+## PROCESS
 
-1. Saisir `/nSE37`.
-2. Entrer le nom du module fonction puis choisir **Afficher**, **Modifier** ou **Créer** selon l’autorisation.
-3. Analyser les onglets Import, Export, Changing, Tables et Exceptions.
-4. Lire la documentation et le code source avant tout appel.
-5. Utiliser **Test/Exécuter** avec des données non destructives.
-6. Pour un module Z, contrôler, activer puis tester les cas nominal et d’erreur.
+### Étape 1 — Copier la signature exacte
+
+Afficher le module dans `SE37`, puis insérer son modèle d’appel depuis l’éditeur ABAP. Ne recopier pas une signature de mémoire : paramètres et exceptions dépendent de la version active.
+
+### Étape 2 — Préparer des variables typées
+
+Déclarer chaque entrée et sortie avec le type DDIC de l’interface. Alimenter les paramètres obligatoires et documenter toute valeur facultative omise.
+
+### Étape 3 — Implémenter CALL FUNCTION
+
+Conserver les sections `EXPORTING`, `IMPORTING`, `CHANGING`, `TABLES` réellement nécessaires. Dans `EXCEPTIONS`, affecter un code distinct aux erreurs que l’appelant doit différencier et terminer par `OTHERS` si le contrat l’exige.
+
+### Étape 4 — Traiter immédiatement le résultat
+
+Tester `SY-SUBRC` juste après l’appel. Ne lire les sorties comme valides que pour les codes documentés. Transformer l’erreur en exception, message ou retour contrôlé au niveau responsable.
+
+### Étape 5 — Tester les chemins
+
+Exécuter un cas nominal puis chaque exception reproductible. L’appel est validé lorsque aucune erreur n’est ignorée et que les sorties correspondent au test direct `SE37` pour les mêmes entrées.
 
 ## VÉRIFICATION
 
@@ -118,7 +131,6 @@ CALL FUNCTION 'Z_DEV_PRODUCT_GET'
 
 - [CALL FUNCTION — ABAP Keyword Documentation](https://help.sap.com/doc/abapdocu_latest_index_htm/latest/en-US/abapcall_function.htm)
 - [Calling Function Modules From Your Programs — SAP Help Portal](https://help.sap.com/docs/ABAP_PLATFORM_NEW/bd833c8355f34e96a6e83096b38bf192/d1801edb454211d189710000e8322d00.html)
-
 
 ---
 

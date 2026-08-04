@@ -18,16 +18,9 @@ flowchart TD
 
 SAP place une zone de sous-écran dans le Dynpro standard. Le client crée le sous-écran dans le programme ou groupe de fonctions prévu par le composant.
 
-## ÉTAPES
+## COMPOSANTS À COORDONNER
 
-1. Identifier le screen exit dans `SMOD`.
-2. Créer ou ouvrir le projet `CMOD`.
-3. Créer le sous-écran avec le numéro attendu.
-4. Ajouter les champs et éléments DDIC nécessaires.
-5. Implémenter le PBO et le PAI.
-6. Utiliser les function exits associés pour transférer les données.
-7. Activer le sous-écran, les includes et le projet.
-8. Tester création, modification, affichage et annulation.
+Un screen exit opérationnel associe le sous-écran déclaré dans `SMOD`, le projet `CMOD`, les champs DDIC, les modules PBO/PAI et les function exits qui échangent les données avec le programme standard. L’écran seul n’assure ni l’initialisation ni la sauvegarde.
 
 ## POINTS DE VIGILANCE
 
@@ -37,13 +30,31 @@ SAP place une zone de sous-écran dans le Dynpro standard. Le client crée le so
 - le PAI ne doit pas persister les données indépendamment du standard ;
 - les champs ajoutés peuvent nécessiter une append structure et une logique de sauvegarde.
 
-## PROCÉDURE PAS À PAS
+## PROCESS
 
-1. Saisir `/nSMOD`.
-2. Entrer l’enhancement classique ou utiliser la recherche.
-3. Afficher les composants : function exits, screen exits, menu exits et documentation.
-4. Identifier les structures append et objets associés.
-5. Ne pas modifier les includes client avant d’avoir confirmé le scénario d’appel.
+### ÉTAPE 1 — ANALYSER LE SCREEN EXIT DANS `SMOD`
+
+Afficher l’enhancement et ouvrir le composant écran. Relever le programme ou groupe de fonctions client prévu, le numéro de sous-écran et la zone de subscreen standard. Identifier les function exits associés au transfert aller et retour des données.
+
+### ÉTAPE 2 — OUVRIR LE PROJET `CMOD`
+
+Vérifier que l’enhancement est affecté au projet attendu et que le projet est transportable. Ouvrir le composant écran depuis le projet afin de créer le sous-écran dans l’objet client prévu, pas dans le programme SAP standard.
+
+### ÉTAPE 3 — CRÉER LE SOUS-ÉCRAN
+
+Dans Screen Painter, créer le numéro indiqué avec le type **Sous-écran**. Ajouter uniquement les champs requis, fondés sur des types DDIC stables. Ne créer ni GUI status autonome ni navigation incompatible avec le Dynpro principal.
+
+### ÉTAPE 4 — IMPLÉMENTER PBO ET PAI
+
+Dans le flow logic, appeler des modules PBO pour initialiser l’affichage et PAI pour transférer ou valider les saisies. Conserver ces modules légers. Ne pas exécuter de commit ni persister indépendamment du cycle de sauvegarde standard.
+
+### ÉTAPE 5 — RELIER LES DONNÉES AU STANDARD
+
+Implémenter les function exits associés pour alimenter les globales du sous-écran et récupérer les valeurs modifiées. Ajouter les append structures prévues avant le code qui accède aux champs. Vérifier le comportement en création, modification et affichage.
+
+### ÉTAPE 6 — ACTIVER ET TESTER LE CYCLE COMPLET
+
+Activer les objets DDIC, le sous-écran, les includes et le projet CMOD. Tester affichage, saisie, sauvegarde, retour, annulation et réouverture du document. Vérifier qu’aucune valeur d’un document précédent ne reste dans les données globales.
 
 ## VÉRIFICATION
 
@@ -83,7 +94,6 @@ Ordre de transport  :
 - [Types of Exits — SAP Help Portal](https://help.sap.com/docs/ABAP_PLATFORM_NEW/2b28ffa716c24348903f8ffbfeb81df8/c81975e643b111d1896f0000e8322d00.html)
 - [Customer Exits — SAP Help Portal](https://help.sap.com/docs/ABAP_PLATFORM_NEW/2b28ffa716c24348903f8ffbfeb81df8/c81975cc43b111d1896f0000e8322d00.html)
 - [Enhancement Technologies — SAP Help Portal](https://help.sap.com/docs/ABAP_PLATFORM_NEW/46a2cfc13d25463b8b9a3d2a3c3ba0d9/7063da4023a28631e10000000a1550b0.html)
-
 
 ---
 

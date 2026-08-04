@@ -86,14 +86,27 @@ L’administration système :
 - gère les certificats ou secrets ;
 - contrôle les autorisations et la disponibilité.
 
-## PROCÉDURE PAS À PAS
+## PROCESS
 
-1. Saisir `/nSM59`.
-2. Sélectionner le type de destination et ouvrir la destination concernée.
-3. Commencer en mode affichage et contrôler hôte, système cible et options de connexion.
-4. Exécuter **Test de connexion** puis **Test d’autorisation** lorsque disponible.
-5. Distinguer une erreur réseau, une erreur de connexion et une erreur d’autorisation.
-6. Ne jamais modifier les identifiants ou paramètres productifs sans validation Basis/sécurité.
+### Étape 1 — Identifier la destination attendue
+
+Ouvrir `SM59`, choisir le type de connexion puis la destination exacte. Relever description, système cible et propriétaire. Commencer en affichage.
+
+### Étape 2 — Contrôler les paramètres techniques
+
+Vérifier hôte, numéro de système ou gateway, options réseau et mandant selon le type. Comparer avec la documentation Basis ; ne corriger pas une valeur de production sur simple supposition.
+
+### Étape 3 — Exécuter le test de connexion
+
+Lancer le test et relever durée et message complet. Un échec à ce stade oriente vers résolution réseau, gateway ou disponibilité du système, pas vers le code ABAP appelant.
+
+### Étape 4 — Tester le logon et l’autorisation
+
+Utiliser les tests disponibles. Distinguer identifiants invalides, utilisateur verrouillé et autorisation RFC manquante. Vérifier avec l’équipe sécurité l’utilisateur réellement utilisé.
+
+### Étape 5 — Tester le module cible
+
+Après succès technique, appeler un module autorisé non destructif. La destination est validée lorsque connexion, logon et exécution fonctionnelle réussissent séparément, avec un diagnostic clair pour chaque échec.
 
 ## VÉRIFICATION
 
@@ -140,7 +153,6 @@ CALL FUNCTION 'Z_DEV_PRODUCT_GET'
 - [RFC Destinations — SAP Help Portal](https://help.sap.com/docs/ABAP_PLATFORM_NEW/753088fc00704d0a80e7fbd6803c8adb/4899b539ee2b73e7e10000000a42189b.html)
 - [Calling RFC Function Modules in ABAP — SAP Help Portal](https://help.sap.com/docs/ABAP_PLATFORM_NEW/753088fc00704d0a80e7fbd6803c8adb/48a0f18641bc062de10000000a42189d.html)
 - [Authorization Object S_RFC_ADM — SAP Help Portal](https://help.sap.com/docs/ABAP_PLATFORM_NEW/c495ada972d045b2be2869f5573af8e7/488d1c05ae444e6ee10000000a421937.html)
-
 
 ---
 

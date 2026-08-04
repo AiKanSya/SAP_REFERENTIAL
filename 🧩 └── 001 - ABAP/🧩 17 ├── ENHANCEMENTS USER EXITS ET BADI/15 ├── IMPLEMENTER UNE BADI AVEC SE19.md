@@ -6,17 +6,31 @@
 - Générer ou affecter la classe d’implémentation
 - Activer et tester l’ensemble des objets
 
-## PROCÉDURE
+## PROCESS
 
-1. Ouvrir `SE19`.
-2. Choisir le mode correspondant au type de BAdI.
-3. Saisir la définition BAdI ou l’enhancement spot.
-4. Créer l’implémentation dans un package client.
-5. Renseigner une description fonctionnelle.
-6. Maintenir les valeurs de filtre si nécessaire.
-7. Implémenter les méthodes de la classe générée ou affectée.
-8. Activer la classe et l’implémentation.
-9. Tester le scénario standard.
+### ÉTAPE 1 — PARTIR D’UNE DÉFINITION VALIDÉE
+
+Conserver le nom, la méthode, le point d’appel, les filtres et les implémentations existantes analysés dans `SE18`. Définir le cas métier sélectionné et les cas qui doivent rester sans effet.
+
+### ÉTAPE 2 — CRÉER L’IMPLÉMENTATION DANS `SE19`
+
+Saisir `/nSE19`, choisir le mode de BAdI approprié puis créer une implémentation Z pour la définition ou l’enhancement spot. Renseigner une description explicite, le package et la demande de transport.
+
+### ÉTAPE 3 — MAINTENIR LES FILTRES
+
+Saisir uniquement les valeurs nécessaires au périmètre convenu et contrôler leur type. Comparer avec les implémentations actives afin d’éviter un chevauchement involontaire. Documenter le comportement attendu lorsque aucune valeur ne correspond.
+
+### ÉTAPE 4 — IMPLÉMENTER LES MÉTHODES
+
+Ouvrir la classe générée ou affectée. Dans chaque méthode nécessaire, valider le contexte puis déléguer à une classe de service Z. Respecter la direction des paramètres, les exceptions et la LUW du standard. Laisser les méthodes non utilisées sans effet explicite.
+
+### ÉTAPE 5 — ACTIVER TOUS LES NIVEAUX
+
+Contrôler et activer la classe de service, la classe d’implémentation et l’implémentation BAdI. Vérifier le statut actif dans `SE19` et l’apparition de l’implémentation dans `SE18`. Contrôler les dépendances de transport.
+
+### ÉTAPE 6 — TESTER LA SÉLECTION RUNTIME
+
+Placer un breakpoint dans la méthode BAdI. Tester une valeur de filtre incluse, une valeur exclue, un cas d’erreur et les scénarios couverts par d’autres implémentations. Vérifier le résultat après le retour au standard et l’absence d’effet hors périmètre.
 
 ## DÉLÉGATION
 
@@ -84,7 +98,6 @@ ENDMETHOD.
 - [Implementation of BAdIs in the Enhancement Builder — SAP Help Portal](https://help.sap.com/docs/SAP_NETWEAVER_700/12a713d06c531014903e876ccc9a0b0d27/b2873842134bad04e10000000a1550b0.html)
 - [How to Implement a BAdI — SAP Help Portal](https://help.sap.com/docs/ABAP_PLATFORM_NEW/46a2cfc13d25463b8b9a3d2a3c3ba0d9/44f518d884056c30e10000000a114a6b.html)
 - [Business Add-Ins — SAP Help Portal](https://help.sap.com/docs/PRODUCT_ID/46a2cfc13d25463b8b9a3d2a3c3ba0d9/8ff2e540f8648431e10000000a1550b0.html)
-
 
 ---
 

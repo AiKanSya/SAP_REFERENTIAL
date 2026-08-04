@@ -33,14 +33,29 @@ D’autres attributs peuvent apparaître selon la version du système.
 
 Avant une modification, vérifier le système, le mandant, le package et l’ordre de transport.
 
-## EXÉCUTION DIRECTE
+## PROCESS
 
 Dans `SE38` ou `SA38` :
 
-1. saisir le nom du programme ;
-2. choisir **Exécuter** ;
-3. renseigner l’écran de sélection ;
-4. lancer le traitement.
+### Étape 1 — Identifier le programme actif
+
+Saisir le nom exact dans `SE38` ou `SA38` et choisir **Afficher** avant l’exécution. Vérifier titre, type exécutable, package et documentation. Si le programme n’est pas exécutable ou si son usage n’est pas documenté, ne pas le lancer directement.
+
+### Étape 2 — Lire les attributs d’exécution
+
+Dans les attributs du programme, relever le type, le statut, l’application et les paramètres qui limitent son lancement. Vérifier également si une transaction dédiée ou un job standard doit être utilisé à la place de `SA38`.
+
+### Étape 3 — Préparer une sélection contrôlée
+
+Choisir **Exécuter**, puis renseigner l’écran avec un périmètre minimal et vérifiable. Examiner les variantes existantes sans en utiliser une dont le propriétaire ou la finalité est inconnu.
+
+### Étape 4 — Exécuter et relever le résultat
+
+Lancer avec `F8`. Noter messages, spool, journal, nombre d’objets traités et éventuel job créé. Si l’écran revient sans résultat, vérifier la barre de statut et les journaux prévus par le programme.
+
+### Étape 5 — Valider l’absence d’effet involontaire
+
+Contrôler les données ou objets ciblés. L’exécution est validée lorsque le programme actif, la sélection réellement appliquée et les effets produits correspondent au scénario prévu.
 
 Le raccourci standard d’exécution dans l’éditeur est généralement `F8`.
 
@@ -119,7 +134,6 @@ Ordre de transport  :
 - [Accessing and Editing ABAP Repository Objects — SAP Learning](https://learning.sap.com/courses/technical-implementation-and-operation-i-of-sap-s-4hana-and-sap-business-suite/accessing-and-editing-abap-repository-objects)
 - [Opening Programs in the ABAP Editor — SAP Help Portal](https://help.sap.com/docs/SAP_NETWEAVER_731_BW_ABAP/cfae740a0a21455dbe6e510c2d86e36a/fceb2d26358411d1829f0000e829fbfe.html)
 - [Authorization Checks — SAP Help Portal](https://help.sap.com/docs/SAP_NETWEAVER_731_BW_ABAP/cfae740a0a21455dbe6e510c2d86e36a/9fdbaccb35c111d1829f0000e829fbfe.html)
-
 
 ---
 

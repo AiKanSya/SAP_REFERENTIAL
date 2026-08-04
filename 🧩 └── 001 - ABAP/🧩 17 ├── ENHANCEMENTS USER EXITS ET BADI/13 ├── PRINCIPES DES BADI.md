@@ -33,13 +33,31 @@ Les BAdI classiques sont antérieurs à AS ABAP 7.0. Les nouvelles définitions 
 
 Pour le consultant qui implémente un BAdI standard, le point essentiel est d’identifier son type dans `SE18` et d’utiliser le mode d’implémentation correspondant dans `SE19`.
 
-## PROCÉDURE PAS À PAS
+## PROCESS
 
-1. Saisir `/nSE18`.
-2. Entrer le nom de la BAdI ou utiliser les outils de recherche.
-3. Afficher la définition et lire documentation, interface, filtres et options d’utilisation multiple.
-4. Analyser les implémentations existantes et leur ordre éventuel.
-5. Identifier le point d’appel dans le code standard avant de créer une nouvelle implémentation.
+### ÉTAPE 1 — IDENTIFIER LA DÉFINITION
+
+À partir du processus et du code appelant, relever le nom exact de la BAdI et, pour l’Enhancement Framework, son enhancement spot. Confirmer que la définition appartient au composant et à la version réellement exécutés.
+
+### ÉTAPE 2 — LIRE LE CONTRAT DANS `SE18`
+
+Afficher la documentation, l’interface et chaque méthode. Relever les paramètres importés, exportés, changing et returning, ainsi que les exceptions. Identifier les filtres, l’usage multiple et le caractère dépendant du contexte.
+
+### ÉTAPE 3 — ANALYSER L’APPEL STANDARD
+
+Retrouver l’instanciation ou l’appel de la BAdI dans le code standard. Examiner les valeurs de filtre calculées, l’ordre relatif aux validations et la manière dont les résultats sont consommés. Confirmer avec un breakpoint si nécessaire.
+
+### ÉTAPE 4 — INVENTORIER LES IMPLÉMENTATIONS
+
+Afficher toutes les implémentations actives et inactives. Relever leurs classes, filtres, packages et périmètres. Pour une BAdI à usage multiple, ne pas supposer un ordre d’exécution si le contrat ne le garantit pas.
+
+### ÉTAPE 5 — CONCEVOIR UNE IMPLÉMENTATION ISOLÉE
+
+Définir des filtres non chevauchants et des conditions métier précises. Garder la méthode BAdI légère et déléguer à une classe Z testable. Ne pas modifier des données que l’interface ne déclare pas modifiables.
+
+### ÉTAPE 6 — PROUVER SÉLECTION ET NON-RÉGRESSION
+
+Tester une valeur de filtre qui sélectionne l’implémentation, une valeur qui l’exclut et les interactions avec les implémentations existantes. Vérifier le résultat standard après le retour et la présence de tous les objets dans le transport.
 
 ## VÉRIFICATION
 
@@ -79,7 +97,6 @@ Ordre de transport  :
 - [Business Add-Ins — SAP Help Portal](https://help.sap.com/docs/PRODUCT_ID/46a2cfc13d25463b8b9a3d2a3c3ba0d9/8ff2e540f8648431e10000000a1550b0.html)
 - [Classic BAdIs — SAP Help Portal](https://help.sap.com/docs/ABAP_PLATFORM_NEW/2b28ffa716c24348903f8ffbfeb81df8/e6d54d3c596f0b26e10000000a11402f.html)
 - [Definition of BAdIs in the Enhancement Builder — SAP Help Portal](https://help.sap.com/docs/SAP_NETWEAVER_700/12a713d06c531014903e876ccc9a0b0d27/7e873842134bad04e10000000a1550b0.html)
-
 
 ---
 

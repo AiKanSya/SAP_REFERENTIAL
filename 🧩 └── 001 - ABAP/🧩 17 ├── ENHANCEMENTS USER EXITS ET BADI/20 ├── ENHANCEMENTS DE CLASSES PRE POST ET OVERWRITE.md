@@ -43,14 +43,31 @@ Pour un pre/post method :
 - éviter de modifier un état interne non prévu ;
 - mesurer les effets sur toutes les sous-classes et tous les appelants.
 
-## PROCÉDURE PAS À PAS
+## PROCESS
 
-1. Saisir `/nSE80`.
-2. Sélectionner le type d’objet ou le package dans la liste de gauche.
-3. Entrer le nom technique puis valider.
-4. Commencer en mode **Afficher** pour analyser l’objet et ses sous-objets.
-5. Passer en modification uniquement dans un système et un objet autorisés.
-6. Contrôler la syntaxe, activer les objets modifiés puis vérifier leur statut actif.
+### ÉTAPE 1 — ANALYSER LA MÉTHODE STANDARD
+
+Ouvrir la classe et la méthode en affichage dans `SE24` ou `SE80`. Relever la signature, les préconditions, les effets, les exceptions et les appelants. Reproduire le scénario avec un breakpoint afin de confirmer les valeurs d’entrée et de sortie.
+
+### ÉTAPE 2 — CHOISIR LE TYPE D’ENHANCEMENT
+
+Utiliser un pré-exit pour préparer ou valider avant le code standard, un post-exit pour compléter le résultat après le standard, et un overwrite uniquement lorsque le remplacement complet est indispensable. Documenter pourquoi une BAdI, un point explicite ou une composition ne couvre pas le besoin.
+
+### ÉTAPE 3 — MESURER LES DONNÉES DISPONIBLES
+
+Vérifier les paramètres et attributs accessibles à l’option retenue. Déterminer quelles valeurs peuvent être modifiées et comment le standard les consomme. Pour un overwrite, inventorier toutes les branches standard qui ne s’exécuteront plus.
+
+### ÉTAPE 4 — CRÉER L’IMPLÉMENTATION
+
+Depuis les opérations d’enhancement de la classe, créer une enhancement implementation Z et le bloc pré, post ou overwrite. Affecter le package et le transport. Conserver le code du bloc minimal et déléguer le métier à une classe Z.
+
+### ÉTAPE 5 — TESTER L’ORDRE ET LES EXCEPTIONS
+
+Poser des breakpoints dans le pré-exit, la méthode standard et le post-exit afin de confirmer la séquence. Tester un retour normal et chaque exception pertinente. Pour un overwrite, comparer les résultats à un référentiel standard sur toutes les variantes métier.
+
+### ÉTAPE 6 — ENCADRER LE RISQUE D’UPGRADE
+
+Activer et transporter l’ensemble des objets, puis consigner la version et le contenu standard remplacé. Après une mise à niveau, comparer la méthode livrée par SAP et réévaluer l’overwrite avant réactivation. Une nouvelle correction standard ignorée doit être traitée explicitement.
 
 ## VÉRIFICATION
 
@@ -91,7 +108,6 @@ Ordre de transport  :
 - [Enhancements to Classes and Interfaces — SAP Help Portal](https://help.sap.com/docs/ABAP_PLATFORM_NEW/46a2cfc13d25463b8b9a3d2a3c3ba0d9/584fb541d3d52d31e10000000a155106.html)
 - [Enhancing Components of Global Classes — SAP Help Portal](https://help.sap.com/docs/SAP_NETWEAVER_AS_ABAP_FOR_SOH_740/46a2cfc13d25463b8b9a3d2a3c3ba0d9/86b83142680d5c33e10000000a155106.html)
 - [Enhancement Technologies — SAP Help Portal](https://help.sap.com/docs/ABAP_PLATFORM_NEW/46a2cfc13d25463b8b9a3d2a3c3ba0d9/7063da4023a28631e10000000a1550b0.html)
-
 
 ---
 

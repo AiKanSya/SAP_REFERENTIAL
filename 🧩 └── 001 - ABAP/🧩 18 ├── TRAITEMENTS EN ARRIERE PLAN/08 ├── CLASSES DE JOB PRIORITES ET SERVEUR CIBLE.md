@@ -41,13 +41,31 @@ Si un job reste prêt :
 - rechercher une saturation ou un arrêt d’instance ;
 - analyser les modes d’exploitation.
 
-## PROCÉDURE PAS À PAS
+## PROCESS
 
-1. Saisir `/nSM37`.
-2. Renseigner le nom du job, l’utilisateur et une période suffisamment précise.
-3. Exécuter la recherche et sélectionner le job correspondant au bon horodatage.
-4. Lire le statut, le journal de job, les étapes et le spool.
-5. En cas d’échec, relever le message, le programme, la variante, l’utilisateur et l’heure avant toute relance.
+### ÉTAPE 1 — CLASSER LE BESOIN D’EXPLOITATION
+
+Documenter la criticité, l’heure limite, la durée habituelle, le volume et l’impact d’un retard. Faire valider la classe de job par l’exploitation. Une classe élevée ne corrige ni un programme lent ni une planification surchargée.
+
+### ÉTAPE 2 — VÉRIFIER LA CAPACITÉ DISPONIBLE
+
+Identifier les serveurs ou groupes disposant de processus batch pendant la fenêtre prévue. Examiner avec Basis les autres charges concurrentes. Déterminer si le programme nécessite une proximité particulière avec une ressource ou un fichier local au serveur.
+
+### ÉTAPE 3 — CONFIGURER CLASSE ET CIBLAGE
+
+Dans `SM36`, affecter la classe autorisée. Laisser le système choisir la ressource lorsque aucune contrainte n’existe. Si un serveur ou groupe est requis, renseigner le ciblage validé et documenter la raison technique.
+
+### ÉTAPE 4 — CONTRÔLER LE JOB LIBÉRÉ
+
+Dans `SM37`, ouvrir les détails et vérifier classe, serveur cible, condition de démarrage et étapes. Comparer au contrat d’exploitation. Corriger avant la fenêtre si le job dépend d’un serveur indisponible.
+
+### ÉTAPE 5 — MESURER LE DÉMARRAGE RÉEL
+
+Après exécution, relever heure prévue, heure de début, serveur d’exécution et durée. Distinguer un retard d’ordonnancement d’une durée programme excessive. Conserver plusieurs exécutions comparables avant de conclure à un problème de capacité.
+
+### ÉTAPE 6 — RÉÉVALUER SANS CONTOURNER LA GOUVERNANCE
+
+Si l’objectif n’est pas tenu, ajuster avec Basis la fenêtre, la classe, le groupe ou la capacité, puis mesurer à nouveau. Ne pas forcer durablement une classe prioritaire ou un serveur cible depuis un programme Z sans décision d’exploitation.
 
 ## VÉRIFICATION
 
@@ -88,7 +106,6 @@ Ordre de transport  :
 
 - [Scheduling Background Jobs — SAP Help Portal](https://help.sap.com/docs/ABAP_PLATFORM_NEW/b07e7195f03f438b8e7ed273099d74f3/4b2b2954365474fee10000000a421937.html)
 - [Background Work Processes — SAP Help Portal](https://help.sap.com/docs/ABAP_PLATFORM_NEW/b07e7195f03f438b8e7ed273099d74f3/4b2b3c3e8eb51780e10000000a42189c.html)
-
 
 ---
 

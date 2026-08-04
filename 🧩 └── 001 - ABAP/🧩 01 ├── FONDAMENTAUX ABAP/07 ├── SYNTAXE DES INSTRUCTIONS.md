@@ -211,14 +211,27 @@ START-OF-SELECTION.
 - `IF ... ENDIF` forme une structure de contrôle ;
 - chaque instruction se termine par un point.
 
-## PROCÉDURE PAS À PAS
+## PROCESS
 
-1. Ouvrir un report Z de démonstration dans `SE38`.
-2. Saisir une instruction simple terminée par un point.
-3. Répartir volontairement une instruction sur plusieurs lignes et vérifier qu’elle reste valide.
-4. Positionner le curseur sur le mot-clé puis appuyer sur `F1`.
-5. Comparer la syntaxe courte, les additions et les exemples fournis par la documentation du système.
-6. Lancer `Ctrl+F2`, corriger l’erreur indiquée puis activer.
+### Étape 1 — Préparer le report de test
+
+Ouvrir dans `SE38` un report Z réservé aux exercices. Confirmer son nom et son package avant de passer en modification afin de ne pas utiliser un programme applicatif.
+
+### Étape 2 — Vérifier la terminaison d’une instruction
+
+Saisir une instruction simple terminée par un point, enregistrer puis exécuter `Ctrl+F2`. Retirer ensuite le point et relancer le contrôle : le message doit localiser l’instruction incomplète. Restaurer le point avant de poursuivre.
+
+### Étape 3 — Tester la mise en forme multiligne
+
+Répartir la même instruction sur plusieurs lignes sans ajouter de point intermédiaire. Le contrôle doit rester positif, car le point et non le retour à la ligne termine l’instruction.
+
+### Étape 4 — Lire la syntaxe de la release
+
+Positionner le curseur sur le mot-clé, appuyer sur `F1` puis comparer la forme de base, les additions et les exemples. Si une addition documentée ailleurs est absente, ne pas l’utiliser avant d’avoir confirmé sa disponibilité sur cette release.
+
+### Étape 5 — Valider
+
+Relancer `Ctrl+F2`, traiter chaque erreur puis activer avec `Ctrl+F3`. Le contrôle est terminé lorsque la version active ne contient aucune erreur et que chaque addition utilisée apparaît dans l’aide du système.
 
 ## VÉRIFICATION
 
@@ -266,7 +279,6 @@ START-OF-SELECTION.
 - [ABAP Syntax Overview](https://help.sap.com/docs/ABAP_PLATFORM_NEW/8132142fd1a144a59303663a03a7c2d4/4352eee7c454433cb926bd2b567e9f16.html)
 - [Statements](https://help.sap.com/docs/ABAP_PLATFORM_NEW/8132142fd1a144a59303663a03a7c2d4/3a12ce73d4d445eca8143bd4cef92761.html)
 - [ABAP Statements — Overview](https://help.sap.com/doc/abapdocu_latest_index_htm/latest/en-US/ABENABAP_STATEMENTS_OVERVIEW.html)
-
 
 ---
 

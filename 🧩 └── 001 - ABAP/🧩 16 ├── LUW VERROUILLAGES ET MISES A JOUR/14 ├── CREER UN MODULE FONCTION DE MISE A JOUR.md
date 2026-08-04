@@ -41,14 +41,31 @@ ENDFUNCTION.
 
 Le contrôle métier complexe doit être effectué avant l’enregistrement de la mise à jour. Le module persiste un état déjà validé.
 
-## PROCÉDURE PAS À PAS
+## PROCESS
 
-1. Saisir `/nSE37`.
-2. Entrer le nom du module fonction puis choisir **Afficher**, **Modifier** ou **Créer** selon l’autorisation.
-3. Analyser les onglets Import, Export, Changing, Tables et Exceptions.
-4. Lire la documentation et le code source avant tout appel.
-5. Utiliser **Test/Exécuter** avec des données non destructives.
-6. Pour un module Z, contrôler, activer puis tester les cas nominal et d’erreur.
+### ÉTAPE 1 — DÉFINIR L’ÉCRITURE ATOMIQUE
+
+Lister les modifications qui doivent être exécutées ensemble par l’update task. Définir les données d’entrée complètes nécessaires à ces écritures. Le module ne doit pas dépendre d’une variable globale du programme de dialogue ni demander une interaction utilisateur.
+
+### ÉTAPE 2 — CRÉER LE MODULE DANS `SE37`
+
+Saisir `/nSE37`, entrer un nom Z et choisir **Créer**. Affecter le module à un groupe de fonctions et renseigner sa description. Dans les attributs, sélectionner le traitement de mise à jour correspondant à la criticité V1 ou V2 définie par l’architecture.
+
+### ÉTAPE 3 — CONSTRUIRE UNE INTERFACE COMPATIBLE
+
+Déclarer des paramètres d’import fondés sur des types DDIC sérialisables et suffisants pour la persistance. Respecter les restrictions affichées par `SE37` pour un module de mise à jour. Éviter toute référence d’objet ou dépendance au contexte frontend.
+
+### ÉTAPE 4 — IMPLÉMENTER LA PERSISTANCE
+
+Écrire les instructions Open SQL nécessaires et contrôler leurs résultats. Ne pas exécuter `COMMIT WORK`, `ROLLBACK WORK`, dialogue utilisateur ou appel impropre à l’update task dans le module. Produire un message ou une exception exploitable par le mécanisme de mise à jour en cas d’incohérence technique.
+
+### ÉTAPE 5 — ACTIVER LE GROUPE DE FONCTIONS
+
+Contrôler la syntaxe du module, puis activer le module et les objets inactifs du groupe. Vérifier la signature active dans `SE37`. Le test direct de `SE37` ne reproduit pas à lui seul l’enregistrement et le déclenchement par une SAP LUW.
+
+### ÉTAPE 6 — TESTER DEPUIS UN PROGRAMME APPELANT
+
+Créer un report Z qui prépare les paramètres, appelle le module `IN UPDATE TASK`, puis exécute `COMMIT WORK AND WAIT`. Vérifier les données et `sy-subrc`. Tester ensuite un `ROLLBACK WORK` avant le commit et un échec contrôlé du module ; analyser ce dernier dans `SM13`.
 
 ## VÉRIFICATION
 
@@ -93,7 +110,6 @@ ENDFUNCTION.
 
 - [Creating Update Function Modules — SAP Help Portal](https://help.sap.com/docs/SAP_NETWEAVER_731_BW_ABAP/cfae740a0a21455dbe6e510c2d86e36a/417af4daa79e11d1950f0000e82de14a.html)
 - [COMMIT WORK — ABAP Keyword Documentation](https://help.sap.com/doc/abapdocu_752_index_htm/7.52/en-US/abapcommit.htm)
-
 
 ---
 

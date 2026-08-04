@@ -36,14 +36,31 @@ Mesures possibles :
 
 La périodicité classique de `SM36` est principalement fondée sur des intervalles et conditions de démarrage. Les règles complexes de jours ouvrés doivent être prises en charge par la fonctionnalité applicative, une variante dynamique, un programme planificateur ou un outil d’ordonnancement validé.
 
-## PROCÉDURE PAS À PAS
+## PROCESS
 
-1. Saisir `/nSM36`.
-2. Donner un nom explicite au job et définir sa classe/priorité selon les règles d’exploitation.
-3. Ajouter une étape ABAP avec programme, variante et utilisateur d’exécution.
-4. Définir la condition de démarrage : immédiate, date/heure, après job ou événement.
-5. Enregistrer puis vérifier que le job est planifié.
-6. Surveiller ensuite son exécution dans `SM37`.
+### ÉTAPE 1 — DÉFINIR LA FENÊTRE D’EXPLOITATION
+
+Fixer l’heure de début autorisée, l’heure limite, la fréquence et le calendrier. Recenser les jobs, sauvegardes et interfaces concurrents. Définir ce qui doit se passer si l’occurrence précédente est encore active.
+
+### ÉTAPE 2 — MESURER UNE DURÉE DE RÉFÉRENCE
+
+Dans `SM37`, relever plusieurs exécutions comparables avec leur volume, début et fin. Utiliser la durée haute représentative pour dimensionner la fenêtre. Ne pas planifier sur la seule durée d’un test à faible volume.
+
+### ÉTAPE 3 — CONFIGURER LA PÉRIODICITÉ
+
+Dans `SM36`, définir la première date et heure, puis activer l’exécution périodique avec l’intervalle prévu. Vérifier le fuseau du système et les effets des changements d’heure, fins de mois et jours non ouvrés selon le contrat.
+
+### ÉTAPE 4 — EMPÊCHER LES CHEVAUCHEMENTS NON AUTORISÉS
+
+Ajouter un verrou applicatif, un statut d’exécution ou un contrôle de prédécesseur pour la même unité de traitement. En cas d’instance déjà active, sortir avec un message contrôlé ou différer selon la règle documentée ; ne pas traiter deux fois le même périmètre.
+
+### ÉTAPE 5 — CONTRÔLER LES PROCHAINES OCCURRENCES
+
+Après enregistrement, afficher le job dans `SM37` et vérifier son statut périodique, sa prochaine date et sa condition. Contrôler la première exécution et l’occurrence suivante. Une seule exécution réussie ne prouve pas la périodicité.
+
+### ÉTAPE 6 — TRAITER UN DÉPASSEMENT DE FENÊTRE
+
+Comparer chaque fin à l’heure limite et journaliser le volume. Si la fenêtre est dépassée, déterminer s’il s’agit d’un retard de démarrage ou d’une durée excessive. Ajuster code, capacité ou calendrier avec des mesures comparables, puis retester la reprise après interruption.
 
 ## VÉRIFICATION
 
@@ -83,7 +100,6 @@ Ordre de transport  :
 
 - [Periodicity: Specifying Automatic Job Repetition — SAP Help Portal](https://help.sap.com/docs/ABAP_PLATFORM_NEW/b07e7195f03f438b8e7ed273099d74f3/4b3087831dd90a93e10000000a421937.html)
 - [Specifying Job Start Conditions — SAP Help Portal](https://help.sap.com/docs/ABAP_PLATFORM_NEW/b07e7195f03f438b8e7ed273099d74f3/4b2b2b4a365474fee10000000a421937.html)
-
 
 ---
 

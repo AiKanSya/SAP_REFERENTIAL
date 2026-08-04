@@ -66,14 +66,27 @@ Séparer :
 
 Une interface RFC peut avoir des consommateurs invisibles depuis le système fournisseur. Toute modification doit être gouvernée comme une modification d’API distribuée.
 
-## PROCÉDURE PAS À PAS
+## PROCESS
 
-1. Saisir `/nSE37`.
-2. Entrer le nom du module fonction puis choisir **Afficher**, **Modifier** ou **Créer** selon l’autorisation.
-3. Analyser les onglets Import, Export, Changing, Tables et Exceptions.
-4. Lire la documentation et le code source avant tout appel.
-5. Utiliser **Test/Exécuter** avec des données non destructives.
-6. Pour un module Z, contrôler, activer puis tester les cas nominal et d’erreur.
+### Étape 1 — Activer RFC uniquement si nécessaire
+
+Ouvrir les attributs du module et cocher l’accès distant seulement si un consommateur hors du système est prévu. Un module RFC devient une surface d’interface et de sécurité à maintenir.
+
+### Étape 2 — Vérifier les types
+
+Contrôler chaque paramètre avec les restrictions RFC de la release. Utiliser des types DDIC stables et éviter références d’objet ou types locaux impossibles à sérialiser.
+
+### Étape 3 — Éliminer les dépendances de session
+
+Ne dépendre ni de mémoire ABAP, ni d’état global laissé par un appel précédent, ni de paramètres utilisateur non documentés. Fournir toutes les données nécessaires dans l’interface.
+
+### Étape 4 — Appliquer les contrôles dans la cible
+
+Valider les entrées et exécuter les `AUTHORITY-CHECK` métier dans le système où l’action a lieu. L’autorisation d’utiliser la destination ne remplace pas ces contrôles.
+
+### Étape 5 — Tester local et distant
+
+Comparer le test `SE37` local et l’appel via destination, puis provoquer une coupure ou un refus. Le module est validé lorsque les erreurs de communication, système et métier sont distinctes.
 
 ## VÉRIFICATION
 
@@ -99,7 +112,6 @@ Une interface RFC peut avoir des consommateurs invisibles depuis le système fou
 - [RFC Restrictions — ABAP Keyword Documentation](https://help.sap.com/doc/abapdocu_816_index_htm/8.16/en-US/ABENRFC_LIMITATIONS.html)
 - [RFC Call Restrictions — SAP Help Portal](https://help.sap.com/docs/ABAP_PLATFORM_NEW/753088fc00704d0a80e7fbd6803c8adb/4889340284b84e6fe10000000a421937.html)
 - [RFC Interface — SAP Help Portal](https://help.sap.com/docs/ABAP_PLATFORM_NEW/753088fc00704d0a80e7fbd6803c8adb/4889653184b84e6fe10000000a421937.html)
-
 
 ---
 

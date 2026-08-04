@@ -111,14 +111,27 @@ Exécuter au minimum :
 - tests en arrière-plan si le programme est concerné ;
 - analyse d’un éventuel dump dans `ST22`.
 
-## PROCÉDURE PAS À PAS
+## PROCESS
 
-1. Lire la définition et identifier les prérequis du chapitre.
-2. Choisir un objet Z ou un scénario de démonstration sans impact métier.
-3. Reproduire l’exemple dans un système de développement et relever les données d’entrée.
-4. Contrôler la syntaxe ou la configuration avant activation/exécution.
-5. Comparer le résultat observé avec la section **Vérification**.
-6. Documenter toute différence liée à la release, aux autorisations ou au paramétrage du système.
+### Étape 1 — Cartographier les frontières
+
+Identifier interface utilisateur, service métier, accès technique et appel distant. Pour chaque frontière, définir quelles erreurs peuvent être corrigées localement et lesquelles doivent remonter.
+
+### Étape 2 — Choisir le mécanisme par couche
+
+Utiliser une exception pour transporter une erreur entre unités de code, un message pour informer l’utilisateur au bord de l’application et un journal pour conserver le diagnostic d’un traitement différé. Ne pas afficher un `MESSAGE` profond dans un service réutilisable.
+
+### Étape 3 — Définir les informations conservées
+
+Conserver classe d’erreur, contexte fonctionnel minimal, clé de corrélation et cause précédente. Exclure mots de passe, jetons et données personnelles non nécessaires.
+
+### Étape 4 — Définir la responsabilité transactionnelle
+
+Nommer la couche qui décide `COMMIT WORK` ou `ROLLBACK WORK`. Les couches inférieures signalent l’échec mais ne valident pas une LUW qu’elles ne possèdent pas.
+
+### Étape 5 — Tester la matrice d’erreurs
+
+Pour chaque erreur recensée, exécuter un test et vérifier mécanisme, texte utilisateur, journal, cause technique et état des données. La stratégie est validée lorsque chaque cas possède un propriétaire et qu’aucune erreur ne disparaît entre les couches.
 
 ## VÉRIFICATION
 

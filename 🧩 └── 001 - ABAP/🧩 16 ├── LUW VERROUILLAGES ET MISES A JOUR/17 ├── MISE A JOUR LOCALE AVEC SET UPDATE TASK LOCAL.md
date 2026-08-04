@@ -33,13 +33,31 @@ Le mode local est désactivé par défaut au début d’une nouvelle SAP LUW cla
 
 Ne pas utiliser la mise à jour locale comme solution automatique à un problème `SM13`. Elle modifie l’architecture d’exécution et peut augmenter la durée du processus de dialogue.
 
-## PROCÉDURE PAS À PAS
+## PROCESS
 
-1. Saisir `/nSM13`.
-2. Rechercher les mises à jour par utilisateur et période.
-3. Ouvrir l’entrée en erreur et lire module, message et données de contexte.
-4. Identifier la cause avant toute répétition.
-5. Vérifier l’idempotence et l’état métier ; une reprise aveugle peut dupliquer une opération.
+### ÉTAPE 1 — JUSTIFIER LA MISE À JOUR LOCALE
+
+Utiliser `SET UPDATE TASK LOCAL` uniquement lorsque les modules de mise à jour doivent s’exécuter dans le processus de travail courant et que ce comportement est compatible avec le scénario. Documenter l’écart par rapport à l’update task habituelle et vérifier les contraintes de performance et de reprise.
+
+### ÉTAPE 2 — POSITIONNER L’INSTRUCTION AVANT LES ENREGISTREMENTS
+
+Exécuter `SET UPDATE TASK LOCAL` au début de la SAP LUW concernée, avant les appels `CALL FUNCTION ... IN UPDATE TASK`. Ne pas disperser cette décision dans une méthode profonde : l’orchestrateur transactionnel doit rendre le mode d’exécution visible.
+
+### ÉTAPE 3 — ENREGISTRER LES MÊMES MODULES DE MISE À JOUR
+
+Préparer des paramètres complets puis appeler les modules avec `IN UPDATE TASK`. Ne pas appeler directement leur implémentation pour simuler le mode local. Les restrictions propres aux modules de mise à jour restent applicables.
+
+### ÉTAPE 4 — DÉCLENCHER AVEC LE COMMIT
+
+Exécuter `COMMIT WORK` au point de validation défini. En mode local, les modules enregistrés sont traités dans le processus courant. Contrôler les erreurs au point d’orchestration et ne pas introduire un second commit dans le module.
+
+### ÉTAPE 5 — COMPARER LOCAL ET STANDARD
+
+Exécuter le même scénario avec des données distinctes en mode local puis avec l’update task standard. Comparer le résultat métier, l’ordre des écritures, les verrous, les temps de réponse et les informations disponibles dans `SM13`. Toute différence doit être comprise avant livraison.
+
+### ÉTAPE 6 — TESTER LE ROLLBACK ET L’ÉCHEC
+
+Enregistrer un module puis exécuter `ROLLBACK WORK` : aucune écriture ne doit être réalisée. Provoquer aussi une erreur contrôlée pendant l’exécution locale et vérifier l’état complet de la LUW. Une exception visible en dialogue ne remplace pas le contrôle des données persistées.
 
 ## VÉRIFICATION
 
@@ -84,7 +102,6 @@ COMMIT WORK.
 - [Local Update — SAP Help Portal](https://help.sap.com/saphelp_snc700_ehp01/helpdata/en/41/7af4d7a79e11d1950f0000e82de14a/content.htm)
 - [LUWs in ABAP — SAP Help Portal](https://help.sap.com/docs/ABAP_PLATFORM_NEW/8132142fd1a144a59303663a03a7c2d4/54f5462a9604498382319304869a4280.html)
 - [COMMIT WORK — ABAP Keyword Documentation](https://help.sap.com/doc/abapdocu_752_index_htm/7.52/en-US/abapcommit.htm)
-
 
 ---
 

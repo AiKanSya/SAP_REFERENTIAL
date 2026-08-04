@@ -43,13 +43,31 @@ Le comportement en l’absence d’implémentation dépend des propriétés de l
 - documenter l’ordre attendu pour les BAdI multiple-use ;
 - éviter les dépendances entre implémentations.
 
-## PROCÉDURE PAS À PAS
+## PROCESS
 
-1. Saisir `/nSE18`.
-2. Entrer le nom de la BAdI ou utiliser les outils de recherche.
-3. Afficher la définition et lire documentation, interface, filtres et options d’utilisation multiple.
-4. Analyser les implémentations existantes et leur ordre éventuel.
-5. Identifier le point d’appel dans le code standard avant de créer une nouvelle implémentation.
+### ÉTAPE 1 — ANALYSER LA DÉFINITION ET SON SPOT
+
+Dans `SE18`, ouvrir l’enhancement spot puis la définition BAdI. Relever l’interface, les filtres, le mode d’usage et les implémentations. Vérifier les types exacts nécessaires aux valeurs de filtre et aux paramètres des méthodes.
+
+### ÉTAPE 2 — RETROUVER L’ACQUISITION DE L’INSTANCE
+
+Rechercher `GET BADI` dans le code appelant. Examiner les valeurs de filtre transmises et le traitement des exceptions ou de l’absence d’implémentation selon le contrat. Poser un breakpoint après l’acquisition pour confirmer la sélection runtime.
+
+### ÉTAPE 3 — RETROUVER L’APPEL DE MÉTHODE
+
+Rechercher `CALL BADI` sur la référence obtenue. Comparer les paramètres passés à la signature de l’interface. Identifier comment le résultat, les paramètres changing et les exceptions influencent la suite du traitement.
+
+### ÉTAPE 4 — TESTER LA SÉLECTION DES IMPLÉMENTATIONS
+
+Placer des breakpoints dans chaque classe candidate. Exécuter le scénario avec une valeur de filtre incluse, exclue et initiale. Pour une BAdI à usage multiple, relever toutes les implémentations appelées sans supposer un ordre non documenté.
+
+### ÉTAPE 5 — IMPLÉMENTER LE CONTRAT CLIENT
+
+Créer l’implémentation dans `SE19`, maintenir des filtres non ambigus et coder les méthodes de l’interface. Déléguer la logique à une classe Z et respecter les paramètres modifiables. Activer classe, implémentation et objets dépendants.
+
+### ÉTAPE 6 — VALIDER AU POINT D’APPEL
+
+Rejouer le processus depuis l’application standard. Contrôler les valeurs avant `CALL BADI`, à l’entrée et à la sortie de l’implémentation, puis après le retour au standard. Tester aussi le système cible après transport pour vérifier l’activation et les filtres.
 
 ## VÉRIFICATION
 
@@ -94,7 +112,6 @@ CALL BADI lo_badi->change_data
 - [Business Add-Ins — SAP Help Portal](https://help.sap.com/docs/PRODUCT_ID/46a2cfc13d25463b8b9a3d2a3c3ba0d9/8ff2e540f8648431e10000000a1550b0.html)
 - [Single-Use BAdI — SAP Help Portal](https://help.sap.com/docs/ABAP_PLATFORM_NEW/46a2cfc13d25463b8b9a3d2a3c3ba0d9/44f55e8acb460485e10000000a155369.html)
 - [How to Use Filters — SAP Help Portal](https://help.sap.com/docs/ABAP_PLATFORM_NEW/46a2cfc13d25463b8b9a3d2a3c3ba0d9/44f6cd83912541aae10000000a114a6b.html)
-
 
 ---
 

@@ -76,14 +76,31 @@ ENDIF.
 - journaliser le job créé ;
 - ne pas exécuter de `COMMIT WORK` caché dans une API appelante sans contrat clair.
 
-## PROCÉDURE PAS À PAS
+## PROCESS
 
-1. Saisir `/nSM36`.
-2. Donner un nom explicite au job et définir sa classe/priorité selon les règles d’exploitation.
-3. Ajouter une étape ABAP avec programme, variante et utilisateur d’exécution.
-4. Définir la condition de démarrage : immédiate, date/heure, après job ou événement.
-5. Enregistrer puis vérifier que le job est planifié.
-6. Surveiller ensuite son exécution dans `SM37`.
+### ÉTAPE 1 — DÉFINIR UNE CLÉ D’IDEMPOTENCE DE PLANIFICATION
+
+Construire un nom et un identifiant métier permettant de reconnaître une demande déjà créée. Avant de planifier, rechercher ou consulter une table de pilotage afin qu’une relance du programme ne crée pas plusieurs jobs équivalents.
+
+### ÉTAPE 2 — OUVRIR LE JOB AVEC `JOB_OPEN`
+
+Préparer `jobname`, appeler `JOB_OPEN` et récupérer `jobcount`. Contrôler `sy-subrc` immédiatement. Conserver le couple nom/numéro dans le journal ; le nom seul peut correspondre à plusieurs exécutions.
+
+### ÉTAPE 3 — AJOUTER L’ÉTAPE
+
+Utiliser `SUBMIT ... VIA JOB ... AND RETURN` ou `JOB_SUBMIT` selon les paramètres requis. Fournir programme, variante ou valeurs de sélection, utilisateur et attributs de spool de manière explicite. Contrôler le retour avant de fermer le job.
+
+### ÉTAPE 4 — FERMER ET LIBÉRER AVEC `JOB_CLOSE`
+
+Définir une condition de démarrage cohérente : immédiate, date/heure ou autre option supportée par la signature. Appeler `JOB_CLOSE` avec le même nom et numéro, puis traiter chaque code d’erreur. Un job ouvert mais non fermé doit être signalé pour nettoyage.
+
+### ÉTAPE 5 — PERSISTER LE RÉSULTAT DE PLANIFICATION
+
+Enregistrer le nom, le numéro, l’étape, les paramètres, le créateur et la date. Restituer ces informations à l’appelant. Ne pas masquer un échec de fermeture après un `JOB_OPEN` réussi.
+
+### ÉTAPE 6 — CONTRÔLER DANS `SM37`
+
+Rechercher le couple créé, vérifier le statut libéré, le programme, la variante, l’utilisateur et la condition. Tester le succès, un programme ou une variante invalide, un `JOB_CLOSE` en échec et une relance de la demande initiale.
 
 ## VÉRIFICATION
 
@@ -164,7 +181,6 @@ ENDIF.
 - [JOB_SUBMIT — SAP Help Portal](https://help.sap.com/docs/SAP_NETWEAVER_700/12acb4f96c531014b9dad87356daf3a3/4d914143e637497fe10000000a15822b.html)
 - [JOB_CLOSE — SAP Help Portal](https://help.sap.com/docs/SAP_NETWEAVER_700/12acb4f96c531014b9dad87356daf3a3/4d92c00d37621747e10000000a15822b.html)
 - [Sample Program with ABAP SUBMIT — SAP Help Portal](https://help.sap.com/docs/ABAP_PLATFORM_NEW/7bfe8cdcfbb040dcb6702dada8c3e2f0/4d938d6848846e73e10000000a15822b.html)
-
 
 ---
 

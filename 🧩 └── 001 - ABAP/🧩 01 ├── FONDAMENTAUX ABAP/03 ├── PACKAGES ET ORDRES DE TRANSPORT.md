@@ -165,16 +165,53 @@ flowchart LR
 | Libérer dans le mauvais ordre                       | Dépendance non satisfaite                        |
 | Transporter sans test après import                  | Défaut découvert tardivement                     |
 
-## PROCÉDURE PAS À PAS
+## PROCESS
 
-1. Lors de la sauvegarde d’un objet, saisir le package fourni par le projet ; utiliser `$TMP` uniquement pour un objet local autorisé.
-2. Sélectionner une tâche existante ou créer l’ordre demandé selon les règles de l’équipe.
-3. Ouvrir `/nSE09` ou `/nSE10`.
-4. Rechercher l’ordre par propriétaire ou numéro.
-5. Développer la tâche et contrôler la liste des objets enregistrés.
-6. Vérifier que les objets dépendants nécessaires sont inclus dans un ordre cohérent.
-7. Avant libération, effectuer contrôle syntaxique, activation et tests.
-8. Libérer d’abord la tâche, puis l’ordre parent uniquement lorsque la livraison est autorisée.
+### Étape 1 — Affecter le bon package
+
+1. Lors de la première sauvegarde, saisir le package fourni par le projet.
+2. Vérifier son libellé et son composant avant de valider.
+3. Utiliser `$TMP` uniquement pour un exercice ou un objet explicitement local.
+
+Si le package attendu est inconnu, annuler l’affectation. Choisir un package arbitraire peut envoyer l’objet vers une mauvaise couche de transport.
+
+### Étape 2 — Affecter une tâche de transport
+
+1. Dans la demande de transport, rechercher l’ordre Workbench prévu pour la livraison.
+2. Sélectionner la tâche appartenant à votre utilisateur.
+3. Vérifier la description, le propriétaire et la cible de l’ordre parent.
+4. Créer un nouvel ordre uniquement selon la convention de nommage et de découpage de l’équipe.
+
+L’objet doit apparaître sous une tâche, elle-même rattachée à l’ordre parent. Un ordre d’un autre sujet ne doit pas être réutilisé pour éviter une livraison non maîtrisée.
+
+### Étape 3 — Contrôler le contenu dans SE09 ou SE10
+
+1. Ouvrir `/nSE09` ou `/nSE10`.
+2. Rechercher par numéro d’ordre ou propriétaire.
+3. Développer l’ordre puis la tâche affectée.
+4. Vérifier les clés d’objet enregistrées : type, nom et sous-objet.
+5. Comparer la liste avec les objets réellement créés ou modifiés.
+
+Un objet absent peut ne pas avoir été sauvegardé, être enregistré dans une autre tâche ou relever d’un transport Customizing distinct.
+
+### Étape 4 — Vérifier les dépendances de livraison
+
+1. Identifier les dépendances nécessaires : élément de données, structure, table, classe, message, enhancement ou Customizing.
+2. Rechercher leur ordre respectif.
+3. Vérifier que leur séquence d’import est compatible avec celle de l’objet appelant.
+
+Le but n’est pas de placer tous les objets dans le même ordre, mais d’empêcher qu’un objet soit importé avant une dépendance indispensable.
+
+### Étape 5 — Préparer puis libérer
+
+1. Exécuter les contrôles syntaxiques et statiques prévus.
+2. Activer tous les objets dépendants.
+3. Exécuter les tests positifs et négatifs.
+4. Contrôler une dernière fois le contenu de la tâche.
+5. Libérer la tâche utilisateur.
+6. Libérer l’ordre parent uniquement après l’autorisation de livraison.
+
+Après libération, vérifier le journal. Le processus est terminé lorsque l’ordre est libéré sans erreur, contient exactement le périmètre validé et est disponible pour la chaîne de transport attendue.
 
 ## VÉRIFICATION
 
@@ -212,7 +249,6 @@ Ordre de transport  :
 - [Object Directory](https://help.sap.com/docs/ABAP_PLATFORM_NEW/4a368c163b08418890a406d413933ba7/5738e06c4eb711d182bf0000e829fbfe.html)
 - [Creating Main Packages](https://help.sap.com/docs/ABAP_PLATFORM_NEW/bd833c8355f34e96a6e83096b38bf192/eac05d8cf01011d3964000a0c94260a5.html)
 - [Assigning an Object to a Different Package](https://help.sap.com/docs/SAP_NETWEAVER_AS_ABAP_752/bd833c8355f34e96a6e83096b38bf192/d1801972454211d189710000e8322d00.html)
-
 
 ---
 

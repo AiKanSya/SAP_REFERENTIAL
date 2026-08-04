@@ -28,15 +28,34 @@ DATA ls_address TYPE zst_address.
 
 La distinction est importante car certains usages classiques exigent des structures plates.
 
-## CRÉATION DANS SE11
+## PROCESS
 
-1. Ouvrir `SE11`.
-2. Choisir **Type de données**.
-3. Saisir un nom `Z...` ou `Y...`.
-4. Choisir **Structure**.
-5. Définir les composants et leurs types.
-6. Maintenir la catégorie d’amélioration lorsque demandée.
-7. Contrôler puis activer.
+### Étape 1 — Définir le contrat de la structure
+
+Lister les composants, leur ordre et leur signification. Pour chaque composant, rechercher un élément de données existant qui porte la même sémantique. Une structure destinée à une interface partagée ne doit pas dépendre de types locaux au programme.
+
+### Étape 2 — Créer la structure
+
+1. Ouvrir `SE11` et choisir **Type de données**.
+2. Saisir un nom client puis choisir **Créer** et **Structure**.
+3. Renseigner le texte court.
+4. Ajouter chaque composant avec son élément de données ou son type DDIC.
+
+Si un composant est inconnu, créer et activer sa dépendance avant de reprendre la structure.
+
+### Étape 3 — Ajouter une structure include si nécessaire
+
+Utiliser une structure include uniquement pour réutiliser un groupe de champs possédant une identité commune. Vérifier les noms de composants afin d’éviter les collisions avec ceux de la structure principale.
+
+Après insertion, développer l’include et contrôler l’ordre final des composants tel qu’il sera vu par le code ABAP.
+
+### Étape 4 — Définir la catégorie d’amélioration
+
+Choisir la catégorie compatible avec la nature réelle des composants et la politique d’extension de l’objet. Ne pas sélectionner une catégorie plus permissive uniquement pour supprimer un avertissement.
+
+### Étape 5 — Activer et tester
+
+Contrôler puis activer. Déclarer une variable de ce type dans un report de test et accéder à un composant direct puis à un composant issu de l’include. La création est validée lorsque tous les composants sont typés, visibles et actifs.
 
 ## EXEMPLE DE STRUCTURE
 
@@ -102,15 +121,25 @@ Cette référence permet aux technologies classiques d’interpréter correcteme
 - Un append étend un objet existant et répond à un autre besoin.
 - Les montants et quantités doivent être associés à leur devise ou unité.
 
-## PROCÉDURE PAS À PAS
+## PROCESS
 
-1. Saisir `/nSE11`.
-2. Choisir le type d’objet DDIC correspondant au chapitre.
-3. Entrer le nom technique ; utiliser **Afficher** pour un objet existant ou **Créer** pour un objet Z autorisé.
-4. Renseigner les attributs et composants en suivant les règles du chapitre.
-5. Lancer le contrôle de cohérence.
-6. Activer l’objet et traiter chaque message avant de poursuivre.
-7. Utiliser la liste d’utilisation et, pour les tables, vérifier les paramètres techniques et la structure physique.
+### Étape 1 — Vérifier la définition active
+
+Rouvrir la structure en mode affichage et contrôler le statut actif, le package et les composants réellement générés. Comparer cette définition avec le contrat préparé avant la création.
+
+### Étape 2 — Examiner les dépendances
+
+Ouvrir les éléments de données et structures incluses. Toute dépendance inactive doit être corrigée à sa source ; ne pas remplacer son type par un type générique pour forcer l’activation.
+
+### Étape 3 — Examiner les consommateurs
+
+Utiliser la liste d’utilisation et identifier programmes, classes, modules fonction et autres structures. Avant toute évolution, déterminer quels consommateurs dépendent de l’ordre ou du nom des composants.
+
+### Étape 4 — Tester une évolution contrôlée
+
+Ajouter un composant uniquement dans un environnement de développement, activer puis contrôler les consommateurs. En cas d’incompatibilité, annuler l’évolution ou adapter explicitement les interfaces concernées.
+
+Le contrôle est terminé lorsque la définition active, ses dépendances et l’impact sur les consommateurs sont connus.
 
 ## VÉRIFICATION
 
@@ -151,7 +180,6 @@ ls_customer-city        = 'PARIS'.
 
 - [Structures — SAP Help Portal](https://help.sap.com/docs/SAP_NETWEAVER_740/ec1c9c8191b74de98feb94001a95dd76/908d7301b1af11d194f600a0c929b3c3.html)
 - [Creating Database Tables — Include Structures — SAP Learning](https://learning.sap.com/courses/building-data-models-with-the-abap-dictionary-and-abap-core-data-services/creating-database-tables_ebc1477d-96ed-414b-82d4-4171da43f4a6)
-
 
 ---
 

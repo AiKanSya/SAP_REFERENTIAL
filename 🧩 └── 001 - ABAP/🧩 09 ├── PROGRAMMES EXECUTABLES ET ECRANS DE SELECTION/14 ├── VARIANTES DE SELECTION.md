@@ -21,15 +21,31 @@ flowchart LR
 
 Une variante de sélection ne doit pas être confondue avec une variante de mise en page ALV.
 
-## CRÉATION
+## PROCESS
 
 Depuis l’écran de sélection :
 
-1. saisir les valeurs ;
-2. choisir la fonction d’enregistrement de variante ;
-3. renseigner le nom et la description ;
-4. définir les attributs adaptés ;
-5. sauvegarder.
+### Étape 1 — Préparer une sélection représentative
+
+Ouvrir le programme dans le système et le mandant cibles. Saisir toutes les valeurs à mémoriser, y compris intervalles et exclusions, puis vérifier le récapitulatif de sélection avant l’enregistrement.
+
+### Étape 2 — Enregistrer la variante
+
+Ouvrir la fonction **Variantes → Sauvegarder comme variante** depuis l’écran. Saisir un nom conforme à la convention, une description fonctionnelle et, si requis, le propriétaire ou le périmètre de protection.
+
+### Étape 3 — Définir les attributs des champs
+
+Pour chaque champ, décider s’il doit être protégé, masqué, obligatoire ou alimenté dynamiquement. Ne protéger une valeur que si l’utilisateur ne doit réellement pas l’adapter.
+
+### Étape 4 — Sauvegarder et recharger
+
+Enregistrer, quitter le programme puis le relancer en choisissant la variante. Comparer chaque paramètre et chaque ligne de `SELECT-OPTIONS` avec les valeurs préparées.
+
+### Étape 5 — Tester l’exécution réelle
+
+Exécuter avec la variante et contrôler le périmètre traité. Pour une utilisation en job, tester la variante avec l’utilisateur d’exécution prévu et vérifier qu’aucune variable de sélection n’est résolue différemment.
+
+La variante est validée lorsque son rechargement restitue exactement le périmètre autorisé et que son exécution produit le même résultat qu’une saisie manuelle équivalente.
 
 La maintenance est également accessible depuis les fonctions de variantes de `SE38` ou `SA38`.
 
@@ -112,7 +128,6 @@ Ordre de transport  :
 - [Variant Maintenance — SAP Help Portal](https://help.sap.com/saphelp_ewm900/helpdata/en/c0/980374e58611d194cc00a0c94260a5/content.htm)
 - [Understanding the Concept of Background Processing — SAP Learning](https://learning.sap.com/courses/technical-implementation-and-operation-ii-of-sap-s-4hana-and-sap-business-suite/understanding-the-concept-of-background-processing-1)
 - [SUBMIT — ABAP Keyword Documentation](https://help.sap.com/doc/abapdocu_latest_index_htm/latest/en-US/ABAPSUBMIT_SHORTREF.html)
-
 
 ---
 

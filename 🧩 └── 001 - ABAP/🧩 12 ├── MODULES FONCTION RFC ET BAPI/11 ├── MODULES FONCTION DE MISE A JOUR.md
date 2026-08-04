@@ -66,14 +66,27 @@ Outils classiques :
 - `ST22` en cas de dump ;
 - journaux applicatifs ou techniques du processus.
 
-## PROCÉDURE PAS À PAS
+## PROCESS
 
-1. Saisir `/nSE37`.
-2. Entrer le nom du module fonction puis choisir **Afficher**, **Modifier** ou **Créer** selon l’autorisation.
-3. Analyser les onglets Import, Export, Changing, Tables et Exceptions.
-4. Lire la documentation et le code source avant tout appel.
-5. Utiliser **Test/Exécuter** avec des données non destructives.
-6. Pour un module Z, contrôler, activer puis tester les cas nominal et d’erreur.
+### Étape 1 — Séparer préparation et écriture
+
+Valider et préparer toutes les données dans le programme appelant. Le module update doit recevoir un état cohérent et exécuter uniquement l’écriture prévue.
+
+### Étape 2 — Déclarer le type de mise à jour
+
+Dans les attributs `SE37`, choisir le type update requis par la conception. Vérifier les restrictions de l’interface et l’absence d’opération interdite dans ce contexte.
+
+### Étape 3 — Enregistrer la tâche
+
+Appeler le module avec `IN UPDATE TASK`. À ce stade, vérifier qu’aucune écriture n’est encore considérée comme validée par l’appelant.
+
+### Étape 4 — Décider la LUW
+
+Lancer `COMMIT WORK` uniquement dans la couche propriétaire du processus. Tester aussi `ROLLBACK WORK` avant commit : la tâche enregistrée ne doit pas être exécutée.
+
+### Étape 5 — Diagnostiquer
+
+Après un échec, contrôler `SM13`, l’utilisateur, l’heure et le module. Corriger la cause avant toute répétition. La mise en place est validée lorsque commit écrit une fois et rollback n’écrit rien.
 
 ## VÉRIFICATION
 
@@ -114,7 +127,6 @@ CALL FUNCTION 'Z_DEV_UPDATE_DOCUMENT'
 - [Creating Update Function Modules — SAP Help Portal](https://help.sap.com/docs/SAP_NETWEAVER_731_BW_ABAP/cfae740a0a21455dbe6e510c2d86e36a/417af4daa79e11d1950f0000e82de14a.html)
 - [Synchronous and Asynchronous Updating — SAP Help Portal](https://help.sap.com/docs/ABAP_PLATFORM_NEW/979cf1522d164bf7a781796efd8850ee/6b96ee764b054c5f929dea77ffcf7a6b.html)
 - [V1 and V2 Update Function Modules — SAP Help Portal](https://help.sap.com/docs/ABAP_PLATFORM_NEW/979cf1522d164bf7a781796efd8850ee/23e9aa61638e404d81575e939b5cd847.html)
-
 
 ---
 

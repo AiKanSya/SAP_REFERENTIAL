@@ -62,14 +62,27 @@ Certains appels asynchrones ou transactionnels ne restent pas dans la session de
 - reproduire l’unité appelée directement ;
 - activer une option spécifique du débogueur.
 
-## PROCÉDURE PAS À PAS
+## PROCESS
 
-1. Lire la définition et identifier les prérequis du chapitre.
-2. Choisir un objet Z ou un scénario de démonstration sans impact métier.
-3. Reproduire l’exemple dans un système de développement et relever les données d’entrée.
-4. Contrôler la syntaxe ou la configuration avant activation/exécution.
-5. Comparer le résultat observé avec la section **Vérification**.
-6. Documenter toute différence liée à la release, aux autorisations ou au paramétrage du système.
+### Étape 1 — Identifier le changement de contexte
+
+Déterminer si le code s’exécute dans une mise à jour, un appel RFC, une tâche asynchrone, un autre utilisateur ou du code système. Relever l’instruction qui provoque ce changement.
+
+### Étape 2 — Activer uniquement le mode requis
+
+Configurer le débogage système, update ou RFC selon le scénario et les autorisations. Éviter d’activer tous les modes : les arrêts dans le framework masquent le chemin utile.
+
+### Étape 3 — Placer un breakpoint dans le contexte cible
+
+Utiliser un breakpoint externe lorsque l’utilisateur ou la session change. Pour une update task, cibler le module de mise à jour ; pour RFC, cibler le module appelé dans le système destinataire.
+
+### Étape 4 — Reproduire une seule unité
+
+Exécuter le scénario et vérifier dans le débogueur l’utilisateur, le programme et le système. Si l’arrêt ne survient pas, déterminer si l’unité a été créée avant de modifier le breakpoint.
+
+### Étape 5 — Désactiver les options spéciales
+
+Après analyse, retirer breakpoints externes et modes système/update. Le diagnostic est terminé lorsque le changement de contexte et le code réellement exécuté sont prouvés.
 
 ## VÉRIFICATION
 
@@ -111,7 +124,6 @@ Ordre de transport  :
 - [Debugger Settings — SAP Help Portal](https://help.sap.com/docs/ABAP_PLATFORM_NEW/ba879a6e2ea04d9bb94c7ccd7cdac446/7b8f8115c62847f493e69bef6e78ba81.html)
 - [Analyzing Canceled Updates — SAP Help Portal](https://help.sap.com/docs/ABAP_PLATFORM_NEW/979cf1522d164bf7a781796efd8850ee/97de29925b894871aba86eb7e2963bcb.html)
 - [Starting and Directly Debugging ABAP Programs — SAP Help Portal](https://help.sap.com/docs/ABAP_PLATFORM_NEW/ba879a6e2ea04d9bb94c7ccd7cdac446/a95208086a6e448aa35f08357d958af5.html)
-
 
 ---
 

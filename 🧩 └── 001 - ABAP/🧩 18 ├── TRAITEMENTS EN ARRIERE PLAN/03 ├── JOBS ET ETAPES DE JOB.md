@@ -41,13 +41,31 @@ Les étapes ne constituent pas automatiquement une transaction métier unique. S
 
 Utiliser plusieurs étapes lorsque l’enchaînement est réellement indissociable et simple. Pour une orchestration complexe, préférer des jobs distincts reliés par une condition « après job » ou par un événement documenté.
 
-## PROCÉDURE PAS À PAS
+## PROCESS
 
-1. Saisir `/nSM37`.
-2. Renseigner le nom du job, l’utilisateur et une période suffisamment précise.
-3. Exécuter la recherche et sélectionner le job correspondant au bon horodatage.
-4. Lire le statut, le journal de job, les étapes et le spool.
-5. En cas d’échec, relever le message, le programme, la variante, l’utilisateur et l’heure avant toute relance.
+### ÉTAPE 1 — DÉFINIR LE RÉSULTAT DE CHAQUE ÉTAPE
+
+Décrire pour chaque étape son programme, ses entrées, son utilisateur, ses sorties et sa condition de succès. Ne regrouper dans un même job que les étapes dont la séquence et le cycle d’exploitation sont communs.
+
+### ÉTAPE 2 — CONFIGURER L’ORDRE DANS `SM36`
+
+Créer ou modifier le job, puis ajouter les étapes dans l’ordre exact. Pour une étape ABAP, renseigner programme et variante ; pour une commande externe, utiliser la définition Basis prévue. Vérifier l’utilisateur d’exécution de chaque étape.
+
+### ÉTAPE 3 — CONTRÔLER LA PROPAGATION DES DONNÉES
+
+Une étape ne doit pas dépendre implicitement de la mémoire de la précédente. Utiliser des données persistantes, fichiers, événements ou statuts documentés pour transmettre le résultat. Définir comment l’étape suivante détecte un résultat absent ou incomplet.
+
+### ÉTAPE 4 — LIBÉRER LE JOB
+
+Définir la condition de démarrage puis enregistrer. Dans `SM37`, vérifier que le job est libéré, que toutes les étapes sont présentes et que les variantes actives sont celles attendues. Conserver le numéro de job et l’horodatage de la vérification.
+
+### ÉTAPE 5 — SUIVRE L’EXÉCUTION PAR ÉTAPE
+
+Après démarrage, ouvrir le journal et les spools. Identifier l’étape en cours ou la première étape en erreur. Relever son programme, ses paramètres et son heure ; le statut global ne suffit pas à localiser la cause.
+
+### ÉTAPE 6 — TESTER UNE ÉTAPE INTERMÉDIAIRE EN ÉCHEC
+
+Provoquer un échec contrôlé dans un environnement de test et vérifier que les étapes suivantes ne produisent pas un résultat invalide. Documenter la procédure de reprise : job complet, copie à partir d’une étape ou nouveau job dédié avec état persistant contrôlé.
 
 ## VÉRIFICATION
 
@@ -87,7 +105,6 @@ Ordre de transport  :
 
 - [Jobs and Job Steps Explained — SAP Help Portal](https://help.sap.com/docs/ABAP_PLATFORM_NEW/b07e7195f03f438b8e7ed273099d74f3/4b2bc12b4c594ba2e10000000a42189c.html)
 - [Scheduling Background Jobs — SAP Help Portal](https://help.sap.com/docs/ABAP_PLATFORM_NEW/b07e7195f03f438b8e7ed273099d74f3/4b2b2954365474fee10000000a421937.html)
-
 
 ---
 

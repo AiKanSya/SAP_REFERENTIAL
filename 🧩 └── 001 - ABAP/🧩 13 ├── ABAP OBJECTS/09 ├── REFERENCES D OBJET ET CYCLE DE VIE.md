@@ -1,4 +1,5 @@
 # RÉFÉRE" Construire les dépendances avant d’exécuter le traitement.
+
 " Construire les dépendances avant d’exécuter le traitement.
 NCES D’OBJET ET CYCLE DE VIE
 
@@ -32,14 +33,27 @@ ENDIF.
 
 Une fabrique peut ne retourner aucun objet si une configuration facultative est absente. Le contrat doit définir clairement si elle retourne une référence initiale ou lève une exception. Le consommateur ne doit pas deviner.
 
-## PROCÉDURE DE DIAGNOSTIC
+## PROCESS
 
-1. Placer un breakpoint avant l’appel `->`.
-2. Vérifier si la référence est liée.
-3. Afficher la classe dynamique de l’objet dans le debugger.
-4. Vérifier si la référence a été écrasée ou vidée.
-5. Contrôler le chemin de création : constructeur, factory ou injection.
-6. Rechercher les exceptions de type référence initiale dans `ST22` si un dump s’est produit.
+### Étape 1 — Arrêter avant le déréférencement
+
+Placer un breakpoint juste avant l’appel `->`. Relever le type statique de la variable et le chemin ayant dû fournir l’objet.
+
+### Étape 2 — Vérifier la liaison
+
+Évaluer `IS BOUND`. Si le résultat est faux, ne modifier pas artificiellement la référence : remonter à la branche de création ou d’injection.
+
+### Étape 3 — Identifier le type dynamique
+
+Ouvrir la référence dans le débogueur et relever la classe concrète. Comparer avec l’implémentation attendue par la factory ou la configuration.
+
+### Étape 4 — Retrouver le cycle de vie
+
+Remonter jusqu’au constructeur, à `NEW`, à la factory ou à l’injection. Rechercher ensuite remplacement, `CLEAR` ou sortie de portée ayant supprimé le dernier propriétaire.
+
+### Étape 5 — Corréler un dump
+
+Si un dump existe, ouvrir `ST22`, vérifier ligne et pile puis comparer avec le chemin observé. Le diagnostic est terminé lorsque création, type concret et instruction ayant perdu la référence sont identifiés.
 
 ## CODE D’AFFECTATION ET D’IDENTITÉ À ADAPTER
 

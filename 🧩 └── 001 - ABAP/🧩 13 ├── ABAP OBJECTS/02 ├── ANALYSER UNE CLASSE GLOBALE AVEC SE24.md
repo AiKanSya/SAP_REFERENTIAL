@@ -11,20 +11,31 @@
 
 Un incident est signalé dans une méthode `ZCL_MM_STOCK_SERVICE=>GET_STOCK`. Avant de modifier le code, il faut comprendre qui appelle la classe, quelles exceptions sont déclarées et si la méthode est redéfinie dans des sous-classes.
 
-## PROCÉDURE D’ANALYSE
+## PROCESS
 
-1. Saisir `/nSE24`.
-2. Entrer le nom exact de la classe.
-3. Choisir **Afficher**.
-4. Consulter les propriétés générales : description, package, instanciation, classe finale ou abstraite.
-5. Ouvrir l’onglet **Méthodes** et identifier les méthodes publiques.
-6. Vérifier pour chaque méthode les paramètres `IMPORTING`, `EXPORTING`, `CHANGING`, `RETURNING` et `RAISING`.
-7. Consulter les attributs et leur visibilité.
-8. Consulter les interfaces implémentées.
-9. Vérifier la superclasse et les éventuelles redéfinitions.
-10. Ouvrir l’implémentation de la méthode ciblée.
-11. Utiliser la **liste des utilisations** sur la classe ou la méthode.
-12. Consulter la documentation de la classe si elle existe.
+### Étape 1 — Confirmer l’identité de la classe
+
+Ouvrir `SE24`, saisir le nom exact et choisir **Afficher**. Relever description, package, responsable, statut actif, mode d’instanciation et indicateurs abstrait/final. Si l’outil propose de créer, annuler et vérifier le nom.
+
+### Étape 2 — Cartographier l’API publique
+
+Dans **Méthodes**, filtrer ou repérer les composants publics. Pour chaque méthode utile, ouvrir la signature et relever `IMPORTING`, `EXPORTING`, `CHANGING`, `RETURNING`, passage par valeur et `RAISING`. Une méthode ne doit pas être appelée avant que paramètres obligatoires et exceptions soient connus.
+
+### Étape 3 — Examiner l’état
+
+Dans **Attributs**, distinguer instance/classe et public/protected/private. Identifier les méthodes autorisées à modifier les attributs privés et les invariants que ces méthodes maintiennent.
+
+### Étape 4 — Examiner les contrats hérités
+
+Ouvrir interfaces, superclasse et redéfinitions. Pour une méthode héritée, comparer la définition d’origine et l’implémentation redéfinie afin de savoir quel contrat reste imposé.
+
+### Étape 5 — Lire l’implémentation ciblée
+
+Ouvrir uniquement la méthode liée au scénario. Relever appels externes, accès aux données, exceptions et effets de bord. Utiliser la liste d’utilisation pour trouver des appelants représentatifs.
+
+### Étape 6 — Valider l’analyse
+
+Construire un appel minimal dans un report ou test. L’analyse est terminée lorsque instanciation, signature, erreurs, dépendances et effet de la méthode peuvent être décrits sans supposition.
 
 > [!NOTE]
 > Les libellés exacts des boutons peuvent varier selon la release et le mode du Class Builder. Les mêmes objets sont également accessibles dans `SE80`.

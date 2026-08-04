@@ -8,26 +8,37 @@
 
 ## CATÉGORIES DE PARAMÈTRES
 
-| Catégorie | Usage recommandé |
-|---|---|
-| `IMPORTING` | Donnée fournie à la méthode |
-| `RETURNING` | Résultat principal unique |
-| `EXPORTING` | Résultats supplémentaires |
-| `CHANGING` | Donnée réellement modifiée par la méthode |
-| `RAISING` | Exceptions de classe que l’appelant doit gérer |
+| Catégorie   | Usage recommandé                               |
+| ----------- | ---------------------------------------------- |
+| `IMPORTING` | Donnée fournie à la méthode                    |
+| `RETURNING` | Résultat principal unique                      |
+| `EXPORTING` | Résultats supplémentaires                      |
+| `CHANGING`  | Donnée réellement modifiée par la méthode      |
+| `RAISING`   | Exceptions de classe que l’appelant doit gérer |
 
 Une méthode fonctionnelle courte privilégie souvent `IMPORTING` et un seul `RETURNING`. `CHANGING` doit rester explicite : l’appelant doit comprendre que sa donnée peut être modifiée.
 
-## PROCÉDURE DANS SE24
+## PROCESS
 
-1. Ouvrir l’onglet **Méthodes**.
-2. Créer `CALCULATE_TOTAL` en visibilité publique.
-3. Ouvrir les paramètres.
-4. Ajouter `IT_ITEMS` en `IMPORTING` avec un type de table défini dans le Dictionary ou dans la classe.
-5. Ajouter `RV_TOTAL` en `RETURNING`.
-6. Ajouter une exception si les données invalides doivent interrompre le traitement.
-7. Implémenter la méthode.
-8. Contrôler la syntaxe et activer.
+### Étape 1 — Définir le contrat
+
+Décider que `CALCULATE_TOTAL` reçoit une table d’articles et retourne un montant. Identifier le type de ligne, le type de table et le type de montant avant d’ouvrir la signature.
+
+### Étape 2 — Créer la méthode
+
+Dans **Méthodes**, créer `CALCULATE_TOTAL`, niveau instance, visibilité publique. Ouvrir immédiatement les paramètres.
+
+### Étape 3 — Créer la signature complète
+
+Ajouter `IT_ITEMS` dans `IMPORTING` avec le type de table exact. Ajouter `RV_TOTAL` dans `RETURNING`, passage par valeur, avec le type montant prévu. Dans `RAISING`, ajouter la classe d’exception utilisée pour une ligne invalide.
+
+### Étape 4 — Implémenter avec l’état d’instance nécessaire
+
+Valider les lignes, utiliser uniquement les attributs privés appartenant au calcul puis affecter `RV_TOTAL` sur tous les chemins normaux. Lever l’exception avant de retourner un total partiel.
+
+### Étape 5 — Activer et tester
+
+Tester table valide, table vide et ligne invalide. Vérifier le montant et la classe d’exception. La méthode est validée lorsque sa signature suffit à comprendre entrées, sortie et erreur.
 
 ## CAS D’USAGE
 

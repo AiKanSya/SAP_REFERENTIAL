@@ -87,15 +87,35 @@ La relation doit être définie avec le type sémantique approprié pour que le 
 - Les métadonnées DDIC n’empêchent pas toutes les écritures incohérentes par elles-mêmes.
 - Une table de texte associe une clé métier à des libellés traduits.
 
-## PROCÉDURE PAS À PAS
+## PROCESS
 
-1. Saisir `/nSE11`.
-2. Choisir le type d’objet DDIC correspondant au chapitre.
-3. Entrer le nom technique ; utiliser **Afficher** pour un objet existant ou **Créer** pour un objet Z autorisé.
-4. Renseigner les attributs et composants en suivant les règles du chapitre.
-5. Lancer le contrôle de cohérence.
-6. Activer l’objet et traiter chaque message avant de poursuivre.
-7. Utiliser la liste d’utilisation et, pour les tables, vérifier les paramètres techniques et la structure physique.
+### Étape 1 — Identifier la relation à modéliser
+
+Déterminer la table contenant la valeur saisie et la table de contrôle qui porte les valeurs autorisées. Comparer les champs de relation : domaine, type, longueur et rôle métier doivent être compatibles.
+
+### Étape 2 — Créer la clé étrangère
+
+1. Ouvrir la table dépendante dans `SE11` et sélectionner le champ concerné.
+2. Ouvrir la définition de clé étrangère.
+3. Saisir la table de contrôle.
+4. Affecter chaque champ de la clé de la table de contrôle au champ correspondant de la table dépendante ou à une constante autorisée.
+5. Définir la cardinalité selon les données réellement possibles.
+
+Si un champ clé ne peut pas être affecté, revoir le modèle plutôt que d’utiliser une correspondance artificielle.
+
+### Étape 3 — Tester le contrôle de saisie
+
+Activer les deux tables puis tester le champ dans un écran ou une maintenance utilisant les contrôles DDIC. Une valeur présente dans la table de contrôle doit être acceptée ; une valeur absente doit produire le comportement prévu.
+
+La clé étrangère DDIC contribue aux aides et contrôles d’écran, mais ne remplace pas nécessairement une validation applicative lors d’une écriture ABAP directe.
+
+### Étape 4 — Créer une table de textes
+
+Créer une table dont la clé reprend celle de la table de base et ajoute la langue `SPRAS`. Ajouter le champ texte, définir la relation vers la table de base puis déclarer cette table comme table de textes selon les fonctions de `SE11`.
+
+### Étape 5 — Valider les langues
+
+Créer deux textes pour une même clé dans deux langues, puis vérifier leur restitution selon `SY-LANGU`. La modélisation est validée lorsque la relation empêche les clés orphelines dans les outils concernés et que chaque langue possède au maximum un texte par objet.
 
 ## VÉRIFICATION
 
@@ -136,7 +156,6 @@ Ordre de transport  :
 
 - [Foreign Keys — SAP Help Portal](https://help.sap.com/docs/SAP_NETWEAVER_702/ff5206fc6c551014a1d28b076487e7df/cf21ea77446011d189700000e8322d00.html)
 - [Generic and Constant Foreign Keys — SAP Help Portal](https://help.sap.com/docs/SAP_NETWEAVER_731_BW_ABAP/ec1c9c8191b74de98feb94001a95dd76/cf21ea84446011d189700000e8322d00.html)
-
 
 ---
 

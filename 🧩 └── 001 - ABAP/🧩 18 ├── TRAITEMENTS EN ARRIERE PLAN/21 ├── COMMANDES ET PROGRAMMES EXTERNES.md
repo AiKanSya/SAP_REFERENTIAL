@@ -48,13 +48,31 @@ Une commande externe peut donner accès au système d’exploitation. Elle doit 
 - sortie d’erreur dans le journal ;
 - serveur cible incompatible.
 
-## PROCÉDURE PAS À PAS
+## PROCESS
 
-1. Saisir `/nSM37`.
-2. Renseigner le nom du job, l’utilisateur et une période suffisamment précise.
-3. Exécuter la recherche et sélectionner le job correspondant au bon horodatage.
-4. Lire le statut, le journal de job, les étapes et le spool.
-5. En cas d’échec, relever le message, le programme, la variante, l’utilisateur et l’heure avant toute relance.
+### ÉTAPE 1 — DÉFINIR LE BESOIN AVEC BASIS
+
+Documenter la commande, l’hôte, le compte système, les paramètres autorisés, le répertoire et les codes retour. Écarter tout appel construit librement à partir d’une saisie utilisateur. Une commande externe étend le périmètre de sécurité au système d’exploitation.
+
+### ÉTAPE 2 — CRÉER OU ANALYSER LA DÉFINITION DANS `SM69`
+
+Utiliser une définition existante validée ou faire créer une commande Z par l’administration. Vérifier le programme externe, les paramètres, les restrictions d’hôte et les contrôles de sécurité. Ne placer aucun secret dans une ligne de commande ou un journal.
+
+### ÉTAPE 3 — TESTER DE MANIÈRE CONTRÔLÉE
+
+Exécuter la commande avec l’outil d’administration autorisé, notamment `SM49` selon le scénario. Utiliser des paramètres non destructifs et relever sortie, erreur et code retour. Confirmer l’utilisateur système et le répertoire de travail effectifs.
+
+### ÉTAPE 4 — AJOUTER L’ÉTAPE AU JOB
+
+Dans `SM36`, créer une étape de commande ou programme externe en sélectionnant uniquement l’objet défini. Renseigner les paramètres validés, l’utilisateur SAP et la condition de démarrage. Enregistrer puis contrôler le détail de l’étape dans `SM37`.
+
+### ÉTAPE 5 — TRAITER LE CODE RETOUR ET LES SORTIES
+
+Définir quels codes représentent succès, avertissement ou échec. Conserver la sortie utile dans le journal prévu sans exposer de secret. Un processus lancé avec succès mais retournant une erreur métier ne doit pas être annoncé comme réussi.
+
+### ÉTAPE 6 — TESTER ÉCHEC ET REPRISE
+
+Simuler un exécutable absent, un droit insuffisant, un paramètre invalide et un timeout. Vérifier l’état métier externe avant relance. La répétition doit être sûre ou protégée par un identifiant transmis au programme externe.
 
 ## VÉRIFICATION
 
@@ -95,7 +113,6 @@ Ordre de transport  :
 - [External Commands and External Programs — SAP Help Portal](https://help.sap.com/docs/ABAP_PLATFORM_NEW/b07e7195f03f438b8e7ed273099d74f3/4b2bbe5e4c594ba2e10000000a42189c.html)
 - [Defining External Commands — SAP Help Portal](https://help.sap.com/docs/ABAP_PLATFORM_NEW/b07e7195f03f438b8e7ed273099d74f3/4b2b3e958eb51780e10000000a42189c.html)
 - [Analyzing Problems with External Commands — SAP Help Portal](https://help.sap.com/docs/ABAP_PLATFORM_NEW/b07e7195f03f438b8e7ed273099d74f3/4b272d0ed1341780e10000000a42189c.html)
-
 
 ---
 

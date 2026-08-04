@@ -82,15 +82,36 @@ Les définitions CDS et leur édition dans ADT ne sont pas détaillées ici. Ell
 - Les tables transparentes définissent également des objets persistants en base.
 - Les dépendances doivent être analysées avant toute modification.
 
-## PROCÉDURE PAS À PAS
+## PROCESS
 
-1. Saisir `/nSE11`.
-2. Choisir le type d’objet DDIC correspondant au chapitre.
-3. Entrer le nom technique ; utiliser **Afficher** pour un objet existant ou **Créer** pour un objet Z autorisé.
-4. Renseigner les attributs et composants en suivant les règles du chapitre.
-5. Lancer le contrôle de cohérence.
-6. Activer l’objet et traiter chaque message avant de poursuivre.
-7. Utiliser la liste d’utilisation et, pour les tables, vérifier les paramètres techniques et la structure physique.
+### Étape 1 — Identifier le besoin sémantique
+
+Décrire la donnée à modéliser, son format, ses valeurs autorisées, son libellé et les objets qui la réutiliseront. Ne commencer aucune création tant qu’il est impossible de distinguer domaine, élément de données, structure, type de table et table persistante.
+
+### Étape 2 — Rechercher une définition existante
+
+1. Ouvrir `/nSE11`.
+2. Rechercher par nom connu, puis utiliser les aides de recherche et les objets applicatifs proches.
+3. Afficher les domaines et éléments de données déjà utilisés par des champs comparables.
+4. Consulter leur liste d’utilisation.
+
+Réutiliser un objet uniquement si sa sémantique et ses règles de valeur correspondent exactement au besoin, pas seulement sa longueur technique.
+
+### Étape 3 — Choisir l’objet DDIC à créer
+
+- créer un domaine pour mutualiser format et valeurs autorisées ;
+- créer un élément de données pour porter la signification et les libellés ;
+- créer une structure pour regrouper des champs sans persistance ;
+- créer un type de table pour une interface partagée ;
+- créer une table transparente uniquement lorsqu’une persistance propre est nécessaire.
+
+### Étape 4 — Construire puis activer du bas vers le haut
+
+Créer et activer d’abord les dépendances : domaine, élément de données, structure, puis objet consommateur. Après chaque activation, lire tous les messages avant de poursuivre.
+
+### Étape 5 — Vérifier l’utilisation réelle
+
+Déclarer un petit objet ABAP consommateur ou examiner l’objet applicatif cible. Contrôler type, aide F1/F4, libellés et valeurs autorisées. La modélisation est validée lorsque l’objet DDIC apporte la même sémantique partout où il est réutilisé.
 
 ## VÉRIFICATION
 
@@ -130,7 +151,6 @@ DATA ls_bapiret TYPE bapiret2.
 - [Exploring ABAP Dictionary — SAP Learning](https://learning.sap.com/courses/building-data-models-with-the-abap-dictionary-and-abap-core-data-services/exploring-abap-dictionary_af8fdedf-0a10-43ab-aa1b-20abbece9d8b)
 - [ABAP Dictionary — SAP Help Portal](https://help.sap.com/docs/SAP_NETWEAVER_740/ec1c9c8191b74de98feb94001a95dd76/cf21ea0b446011d189700000e8322d00.html)
 - [Repository Information System — SAP Help Portal](https://help.sap.com/docs/SAP_NETWEAVER_740/bd833c8355f34e96a6e83096b38bf192/d180198c454211d189710000e8322d00.html)
-
 
 ---
 

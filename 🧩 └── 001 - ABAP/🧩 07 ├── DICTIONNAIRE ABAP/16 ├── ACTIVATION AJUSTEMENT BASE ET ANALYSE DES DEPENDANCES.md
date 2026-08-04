@@ -106,15 +106,27 @@ Après l’activation :
 - SE14 est un outil technique puissant et potentiellement destructif.
 - La liste d’utilisation et les tests de non-régression sont obligatoires avant une modification structurante.
 
-## PROCÉDURE PAS À PAS
+## PROCESS
 
-1. Saisir `/nSE11`.
-2. Choisir le type d’objet DDIC correspondant au chapitre.
-3. Entrer le nom technique ; utiliser **Afficher** pour un objet existant ou **Créer** pour un objet Z autorisé.
-4. Renseigner les attributs et composants en suivant les règles du chapitre.
-5. Lancer le contrôle de cohérence.
-6. Activer l’objet et traiter chaque message avant de poursuivre.
-7. Utiliser la liste d’utilisation et, pour les tables, vérifier les paramètres techniques et la structure physique.
+### Étape 1 — Identifier l’écart
+
+Ouvrir l’objet dans `SE11`, vérifier son statut puis comparer définition active et version modifiée. Pour une table, utiliser les outils de base de données afin de distinguer erreur DDIC, objet physique manquant et conversion nécessaire.
+
+### Étape 2 — Analyser les dépendances
+
+Consulter la liste d’utilisation et l’ordre d’activation : domaines, éléments de données, structures et tables. Corriger d’abord l’objet le plus bas dans la chaîne.
+
+### Étape 3 — Évaluer le risque sur les données
+
+Avant une réduction de longueur, un changement de type ou de clé, mesurer les lignes existantes et rechercher les valeurs incompatibles. Une activation technique ne doit pas être utilisée pour découvrir le risque en production.
+
+### Étape 4 — Activer ou planifier l’ajustement
+
+Pour un changement sans conversion, activer dans l’ordre des dépendances. Si un ajustement de base est nécessaire, analyser le journal et planifier l’opération avec Basis selon le volume et l’indisponibilité potentielle.
+
+### Étape 5 — Vérifier après opération
+
+Comparer à nouveau DDIC et base, exécuter une lecture représentative et contrôler les objets dépendants inactifs. La correction est terminée uniquement lorsqu’aucun écart structurel ni objet dépendant invalide ne subsiste.
 
 ## VÉRIFICATION
 
@@ -155,7 +167,6 @@ Ordre de transport  :
 
 - [Adjustment of Database Structures — SAP Help Portal](https://help.sap.com/docs/SAP_NETWEAVER_740/ec1c9c8191b74de98feb94001a95dd76/cf21f1ab446011d189700000e8322d00.html)
 - [Handling Changes to Database Tables — SAP Learning](https://learning.sap.com/courses/building-data-models-with-the-abap-dictionary-and-abap-core-data-services/handling-changes-to-database-tables_d6d6d97a-979e-4efe-b5c3-f3e3d85332fb)
-
 
 ---
 

@@ -49,6 +49,34 @@ Une page opérationnelle est considérée exploitable lorsqu’elle contient :
 
 Les pages de lexique et les procédures exclusivement administratives ne doivent pas recevoir de code artificiel. Elles doivent fournir un chemin de diagnostic, des valeurs à relever et un critère de sortie.
 
+## CONVENTION DE RÉDACTION DES ÉTAPES
+
+Une procédure ne doit pas se limiter à une liste d’actions générales. Chaque étape doit permettre au lecteur d’agir sans devoir déduire l’écran, la valeur ou le contrôle attendu.
+
+Chaque étape opérationnelle doit préciser, lorsque le sujet le permet :
+
+1. **Le point de départ** : transaction, programme, classe, objet du Repository ou écran à ouvrir.
+2. **L’action exacte** : bouton, menu, champ, instruction ou méthode à utiliser.
+3. **La valeur à fournir** : nom technique, type, format, exemple et origine de la valeur.
+4. **Le résultat observable** : statut, message, objet créé, valeur de retour ou donnée affichée.
+5. **L’interprétation** : ce que le résultat confirme ou exclut.
+6. **La branche suivante** : étape à poursuivre selon un succès, une absence de résultat ou une erreur.
+7. **Le critère de sortie** : preuve permettant de considérer l’action ou le diagnostic terminé.
+
+Une formulation vague doit être remplacée par une instruction vérifiable.
+
+| Formulation insuffisante | Formulation attendue |
+|---|---|
+| Vérifier la configuration | Ouvrir la transaction concernée, rechercher la clé exacte, contrôler les champs déterminants puis indiquer la correction selon la valeur observée |
+| Contrôler les données | Nommer la table, la structure, le segment ou le conteneur, préciser les champs à relever et les valeurs attendues |
+| Analyser le journal | Indiquer la transaction, les filtres, le message à ouvrir et la décision associée à chaque statut |
+| Tester le programme | Définir les données du cas positif et du cas négatif, exécuter puis comparer le résultat observable |
+| Corriger l’erreur | Identifier la cause prouvée, modifier l’objet responsable puis répéter uniquement l’étape qui valide la correction |
+
+Pour un diagnostic comportant plusieurs causes possibles, utiliser des étapes distinctes et un tableau de décision. Ne pas mélanger dans une seule étape l’absence d’un événement, une erreur de traitement et un résultat fonctionnel incorrect.
+
+Les pages de lexique et de référence ne doivent pas recevoir artificiellement une procédure. Elles doivent expliquer les notions, indiquer où les observer dans SAP et relier chaque notion aux chapitres opérationnels correspondants.
+
 ## CONVENTION DES TITRES
 
 | Niveau Markdown | Usage |

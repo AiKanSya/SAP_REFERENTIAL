@@ -37,13 +37,31 @@ Pour chaque paramètre :
 
 La documentation seule ne suffit pas. Rechercher l’utilisation du BAdI ou placer un breakpoint dans une implémentation temporaire contrôlée. Vérifier le moment d’appel, la fréquence et le contexte transactionnel.
 
-## PROCÉDURE PAS À PAS
+## PROCESS
 
-1. Saisir `/nSE18`.
-2. Entrer le nom de la BAdI ou utiliser les outils de recherche.
-3. Afficher la définition et lire documentation, interface, filtres et options d’utilisation multiple.
-4. Analyser les implémentations existantes et leur ordre éventuel.
-5. Identifier le point d’appel dans le code standard avant de créer une nouvelle implémentation.
+### ÉTAPE 1 — OUVRIR LA BONNE DÉFINITION
+
+Saisir `/nSE18`, choisir le mode correspondant à la BAdI classique ou à l’Enhancement Framework, puis entrer le nom technique. Ouvrir en affichage et vérifier le package, la documentation et le composant logiciel.
+
+### ÉTAPE 2 — ANALYSER LES ATTRIBUTS
+
+Relever si l’usage est simple ou multiple, si la définition possède des filtres et si une instanciation dépend du contexte. Pour chaque filtre, noter le type et les valeurs réellement calculées au point d’appel.
+
+### ÉTAPE 3 — ANALYSER L’INTERFACE
+
+Ouvrir l’interface et documenter chaque méthode : objectif, paramètres, mutabilité, exceptions et valeurs initiales. Identifier les paramètres permettant de limiter le périmètre métier et ceux dont la modification affecte la suite du standard.
+
+### ÉTAPE 4 — AFFICHER LES IMPLÉMENTATIONS
+
+Lister les implémentations associées et relever leur statut, classe, filtre et package. Ouvrir leur code pour détecter les chevauchements ou dépendances. Ne pas créer une nouvelle implémentation avant d’avoir compris les actives.
+
+### ÉTAPE 5 — RETROUVER LE POINT D’APPEL
+
+Utiliser la navigation vers les utilisations ou la recherche source afin d’ouvrir l’appel standard. Placer un breakpoint sur la méthode d’interface et reproduire le scénario. Relever la pile, les filtres et l’ordre des validations.
+
+### ÉTAPE 6 — PRODUIRE UNE FICHE DE DÉCISION
+
+Conserver la définition, la méthode retenue, les données disponibles, les filtres, les implémentations existantes et la preuve runtime. Conclure explicitement si la BAdI couvre le besoin ou pourquoi elle doit être écartée.
 
 ## VÉRIFICATION
 
@@ -83,7 +101,6 @@ Ordre de transport  :
 - [Definition of BAdIs in the Enhancement Builder — SAP Help Portal](https://help.sap.com/docs/SAP_NETWEAVER_700/12a713d06c531014903e876ccc9a0b0d27/7e873842134bad04e10000000a1550b0.html)
 - [Classic BAdIs — SAP Help Portal](https://help.sap.com/docs/ABAP_PLATFORM_NEW/2b28ffa716c24348903f8ffbfeb81df8/e6d54d3c596f0b26e10000000a11402f.html)
 - [How to Use Filters — SAP Help Portal](https://help.sap.com/docs/ABAP_PLATFORM_NEW/46a2cfc13d25463b8b9a3d2a3c3ba0d9/44f6cd83912541aae10000000a114a6b.html)
-
 
 ---
 

@@ -44,6 +44,32 @@ flowchart TD
 
 Détecter les erreurs avant les effets irréversibles. Une architecture qui dépend d’un rollback après des appels externes est fragile.
 
+## PROCESS
+
+### ÉTAPE 1 — DÉFINIR CE QUI EST ENCORE ANNULABLE
+
+Lister les écritures effectuées depuis la dernière borne transactionnelle. Séparer les modifications non validées, les modules de mise à jour seulement enregistrés, les données déjà commitées et les effets externes. `ROLLBACK WORK` ne couvre que le contexte transactionnel encore ouvert.
+
+### ÉTAPE 2 — DÉTECTER L’ERREUR AVANT UN EFFET IRRÉVERSIBLE
+
+Exécuter les contrôles structurels et métier avant l’envoi d’un fichier, d’un message ou d’un appel externe. Après chaque écriture Open SQL ou appel d’API, traiter le retour au niveau qui connaît l’unité métier complète.
+
+### ÉTAPE 3 — EXÉCUTER LE ROLLBACK DEPUIS L’ORCHESTRATEUR
+
+Lorsque l’unité ne peut plus réussir, appeler `ROLLBACK WORK` une seule fois au niveau d’orchestration. Ne pas exécuter de commit dans un gestionnaire d’erreur. Restituer ensuite la cause initiale sans la remplacer par un message générique d’annulation.
+
+### ÉTAPE 4 — TRAITER LES VERROUS ET RESSOURCES
+
+Vérifier la libération des verrous selon leur `_SCOPE`. Libérer explicitement ceux dont le contrat l’exige et fermer les ressources non transactionnelles ouvertes par le programme. Un rollback base de données ne ferme pas automatiquement un fichier externe selon l’intention métier.
+
+### ÉTAPE 5 — DÉCLENCHER UNE COMPENSATION SI NÉCESSAIRE
+
+Si une étape a déjà été validée ou exécutée dans un autre système, appeler une procédure métier dédiée : annulation de document, contre-écriture ou message compensatoire. Journaliser séparément l’échec initial et le résultat de la compensation.
+
+### ÉTAPE 6 — VÉRIFIER L’ÉTAT FINAL
+
+Contrôler les tables, `SM13`, `SM12` et les systèmes externes. Tester une erreur avant écriture, après écriture non validée et après effet externe. Chaque scénario doit aboutir à un état cohérent ou à un statut de reprise explicite.
+
 ## VÉRIFICATION
 
 - Les données sont toutes validées ou toutes annulées selon le cas testé.
@@ -87,7 +113,6 @@ ENDIF.
 
 - [ROLLBACK WORK — ABAP Keyword Documentation](https://help.sap.com/docs/ABAP_PLATFORM_NEW/8132142fd1a144a59303663a03a7c2d4/54f5462a9604498382319304869a4280.html)
 - [LUWs in ABAP — SAP Help Portal](https://help.sap.com/docs/ABAP_PLATFORM_NEW/8132142fd1a144a59303663a03a7c2d4/54f5462a9604498382319304869a4280.html)
-
 
 ---
 

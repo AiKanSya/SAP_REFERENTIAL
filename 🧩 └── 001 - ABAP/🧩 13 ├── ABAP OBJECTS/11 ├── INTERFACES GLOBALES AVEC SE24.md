@@ -1,4 +1,5 @@
 # INTERF" Construire les dépendances avant d’exécuter le traitement.
+
 " Construire les dépendances avant d’exécuter le traitement.
 ACES GLOBALES AVEC SE24
 
@@ -12,19 +13,27 @@ ACES GLOBALES AVEC SE24
 
 Un service de notification peut envoyer un message par e-mail, journal applicatif ou système externe. Les consommateurs doivent dépendre d’un contrat `ZIF_DEV_NOTIFIER`, pas d’une classe concrète.
 
-## PROCÉDURE DE CRÉATION
+## PROCESS
 
-1. Saisir `/nSE24`.
-2. Entrer un nom d’interface, par exemple `ZIF_DEV_NOTIFIER`.
-3. Choisir la création d’une interface.
-4. Affecter l’objet au package et à l’ordre de transport.
-5. Créer la méthode `SEND`.
-6. Ajouter les paramètres nécessaires et les exceptions.
-7. Activer l’interface.
-8. Ouvrir la classe d’implémentation.
-9. Ajouter l’interface dans l’onglet **Interfaces**.
-10. Implémenter la méthode générée.
-11. Activer la classe.
+### Étape 1 — Définir le contrat minimal
+
+Décider ce que `SEND` reçoit, retourne et peut lever. Exclure les paramètres propres à une technologie d’implémentation particulière.
+
+### Étape 2 — Créer l’interface
+
+Ouvrir `SE24`, saisir `ZIF_DEV_NOTIFIER`, choisir le type interface puis affecter package et tâche de transport.
+
+### Étape 3 — Définir la signature complète
+
+Créer `SEND`. Ajouter les `IMPORTING`, éventuel `RETURNING` et classes `RAISING` avec des types stables. Contrôler et activer l’interface.
+
+### Étape 4 — Ajouter l’interface à la classe
+
+Ouvrir la classe d’implémentation, ajouter l’interface dans l’onglet correspondant puis ouvrir `ZIF_DEV_NOTIFIER~SEND`. Implémenter sans modifier le contrat.
+
+### Étape 5 — Tester par l’interface
+
+Déclarer une référence `TYPE REF TO zif_dev_notifier`, affecter l’instance et appeler `SEND`. La conception est validée lorsque l’appelant ne dépend pas de la classe concrète.
 
 ## DÉFINITION DU CONTRAT
 

@@ -6,15 +6,27 @@
 - Créer le conteneur et la grille
 - Gérer le cycle PBO et PAI
 
-## CRÉER L’ÉCRAN
+## PROCESS
 
-Dans `SE51` ou depuis `SE80` :
+### Étape 1 — Créer le dynpro 0100
 
-1. créer l’écran `0100` ;
-2. ajouter un Custom Control ;
-3. lui attribuer le nom `CC_ALV` ;
-4. définir un statut GUI avec une fonction de retour ;
-5. créer les modules PBO et PAI.
+Ouvrir le programme ou module pool dans `SE80`, développer **Écrans**, créer `0100` et conserver le type d’écran normal. Renseigner une description et vérifier qu’aucun écran du programme n’utilise déjà ce numéro.
+
+### Étape 2 — Ajouter le Custom Control
+
+Ouvrir le Layout dans Screen Painter, sélectionner **Custom Control**, tracer sa zone puis saisir `CC_ALV` comme nom technique. Enregistrer et vérifier dans la liste des éléments que le nom ne contient ni espace ni variante de casse.
+
+### Étape 3 — Définir la logique de flux
+
+Dans la flow logic, ajouter `MODULE status_0100 OUTPUT` sous `PROCESS BEFORE OUTPUT` et `MODULE user_command_0100 INPUT` sous `PROCESS AFTER INPUT`. Créer les modules dans les includes PBO/PAI prévus par le programme.
+
+### Étape 4 — Créer le statut GUI
+
+Créer `STATUS_0100` dans Menu Painter. Ajouter au minimum `BACK`, `EXIT` et `CANC`, puis affecter les touches standards correspondantes. Créer aussi le titre si le programme l’utilise.
+
+### Étape 5 — Relier le champ OK_CODE
+
+Déclarer `GV_OKCODE TYPE SY-UCOMM`, puis affecter ce nom dans les attributs de l’écran lorsque le dynpro requiert un champ OK_CODE explicite. Le code reçu doit être copié ou traité puis vidé dans le PAI.
 
 ## DONNÉES GLOBALES
 
@@ -67,14 +79,31 @@ Lorsque l’application utilise les événements du Control Framework, intégrer
 - appel d’affichage avant l’instanciation du conteneur ;
 - statut GUI absent ou code fonction non traité.
 
-## PROCÉDURE PAS À PAS
+## PROCESS
 
-1. Saisir `/nSE80`.
-2. Sélectionner le type d’objet ou le package dans la liste de gauche.
-3. Entrer le nom technique puis valider.
-4. Commencer en mode **Afficher** pour analyser l’objet et ses sous-objets.
-5. Passer en modification uniquement dans un système et un objet autorisés.
-6. Contrôler la syntaxe, activer les objets modifiés puis vérifier leur statut actif.
+### Étape 1 — Déclarer les références avec une durée suffisante
+
+Placer `GO_CONTAINER`, `GO_GRID` et `GV_OKCODE` dans les données globales du programme ou de l’instance contrôleur qui survit aux cycles PBO/PAI. Des variables locales au PBO seraient détruites après le module.
+
+### Étape 2 — Instancier une seule fois dans le PBO
+
+Dans `STATUS_0100`, exécuter `SET PF-STATUS`, puis tester `GO_CONTAINER IS NOT BOUND`. Créer `CL_GUI_CUSTOM_CONTAINER` avec `CONTAINER_NAME = 'CC_ALV'`, exactement identique au nom du Screen Painter.
+
+### Étape 3 — Créer la grille et afficher les données
+
+Instancier `CL_GUI_ALV_GRID` avec `I_PARENT = GO_CONTAINER`, puis appeler la routine d’affichage seulement après la création. Lors des PBO suivants, ne recréer ni container ni grille ; utiliser les méthodes de rafraîchissement prévues.
+
+### Étape 4 — Traiter la navigation dans le PAI
+
+Pour `BACK`, `EXIT` et `CANC`, quitter l’écran avec la séquence adaptée au programme. Vider `GV_OKCODE` après traitement afin d’éviter la répétition de la commande au cycle suivant.
+
+### Étape 5 — Activer dans l’ordre
+
+Contrôler puis activer programme, includes, écran, statut GUI et titre. Si le dynpro reste inactif, ouvrir son journal et corriger le premier sous-objet signalé.
+
+### Étape 6 — Tester le cycle complet
+
+Ouvrir `0100`, vérifier l’affichage, provoquer un second PBO et confirmer que les références restent identiques. Tester les trois commandes de sortie. La mise en place est validée lorsque l’ALV apparaît une seule fois et que l’écran se ferme sans dump ni contrôle orphelin.
 
 ## VÉRIFICATION
 
@@ -115,7 +144,6 @@ ENDMODULE.
 
 - [Getting Started with ALV Grid Control — SAP Help Portal](https://help.sap.com/docs/ABAP_PLATFORM_NEW/70396d7dec4c4f19b9ca3b2e47559d12/4eba23f5250f568be10000000a421937.html)
 - [Working with the ALV Grid Control — SAP Help Portal](https://help.sap.com/docs/ABAP_PLATFORM_NEW/70396d7dec4c4f19b9ca3b2e47559d12/4ebd16291041389ee10000000a421937.html)
-
 
 ---
 

@@ -81,14 +81,27 @@ Un module fonction doit pouvoir être compris à partir de :
 
 Une variable globale modifiée par un autre module du groupe constitue une dépendance cachée. La supprimer ou la documenter précisément.
 
-## PROCÉDURE PAS À PAS
+## PROCESS
 
-1. Saisir `/nSE37`.
-2. Entrer le nom du module fonction puis choisir **Afficher**, **Modifier** ou **Créer** selon l’autorisation.
-3. Analyser les onglets Import, Export, Changing, Tables et Exceptions.
-4. Lire la documentation et le code source avant tout appel.
-5. Utiliser **Test/Exécuter** avec des données non destructives.
-6. Pour un module Z, contrôler, activer puis tester les cas nominal et d’erreur.
+### Étape 1 — Localiser le source généré
+
+Depuis `SE37`, naviguer vers le groupe dans `SE80`. Identifier l’include du module et l’include TOP ; ne modifier pas les parties générées hors des zones prévues.
+
+### Étape 2 — Implémenter depuis la signature
+
+Valider d’abord les imports, exécuter le traitement puis alimenter toutes les sorties. Ne lire une donnée globale que si elle représente explicitement l’état partagé du groupe.
+
+### Étape 3 — Réduire les globales
+
+Pour chaque globale utilisée, rechercher tous les modules consommateurs. Remplacer par variable locale ou paramètre lorsque sa conservation entre appels n’est pas indispensable.
+
+### Étape 4 — Traiter erreurs et transaction
+
+Déclencher l’exception ou le retour prévu au point où la cause est connue. Ne lancer ni commit ni rollback sauf si le contrat du module en fait explicitement le propriétaire.
+
+### Étape 5 — Tester l’indépendance
+
+Exécuter le module seul, puis après un autre module du groupe. Les résultats doivent rester identiques pour les mêmes entrées, sauf état partagé documenté. Activer le groupe complet et vérifier ses includes.
 
 ## VÉRIFICATION
 
@@ -132,7 +145,6 @@ ENDFUNCTION.
 
 - [Understanding Function Module Code — SAP Help Portal](https://help.sap.com/docs/ABAP_PLATFORM_NEW/bd833c8355f34e96a6e83096b38bf192/d1801f1c454211d189710000e8322d00.html)
 - [Creating New Function Modules — SAP Help Portal](https://help.sap.com/docs/ABAP_PLATFORM_NEW/bd833c8355f34e96a6e83096b38bf192/d1801ee8454211d189710000e8322d00.html)
-
 
 ---
 

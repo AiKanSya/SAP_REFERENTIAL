@@ -33,14 +33,31 @@ flowchart LR
 
 La bonne clé correspond à l’unité métier qui doit rester cohérente. Mesurer les collisions plutôt que réduire arbitrairement la portée.
 
-## PROCÉDURE PAS À PAS
+## PROCESS
 
-1. Lire la définition et identifier les prérequis du chapitre.
-2. Choisir un objet Z ou un scénario de démonstration sans impact métier.
-3. Reproduire l’exemple dans un système de développement et relever les données d’entrée.
-4. Contrôler la syntaxe ou la configuration avant activation/exécution.
-5. Comparer le résultat observé avec la section **Vérification**.
-6. Documenter toute différence liée à la release, aux autorisations ou au paramétrage du système.
+### ÉTAPE 1 — MESURER LA CLÉ DE VERROUILLAGE RÉELLE
+
+Afficher l’objet dans `SE11` et relever les champs formant l’argument de verrou. Tester une clé complète puis une clé partielle dans un environnement contrôlé. Dans `SM12`, vérifier quelles entrées sont réellement créées et quelles données concurrentes elles bloquent.
+
+### ÉTAPE 2 — RÉDUIRE LA GRANULARITÉ AU JUSTE NÉCESSAIRE
+
+Verrouiller l’unité métier minimale qui protège l’invariant. Éviter une clé initiale ou trop courte qui transforme un verrou d’enregistrement en verrou de plage excessif. Ne pas réduire la clé si deux enregistrements distincts participent à la même règle métier.
+
+### ÉTAPE 3 — CHOISIR LE COMPORTEMENT DE COLLISION
+
+Utiliser `_WAIT = abap_false` lorsqu’un retour immédiat et un message utilisateur sont attendus. N’activer `_WAIT` que si l’attente est acceptable et bornée par le comportement du système. Dans tous les cas, traiter `foreign_lock` et permettre une nouvelle tentative contrôlée au niveau applicatif.
+
+### ÉTAPE 4 — N’UTILISER `_COLLECT` QU’AVEC UN BESOIN MESURÉ
+
+Vérifier dans la documentation et la signature générée le comportement de collecte disponible sur la release. Si des demandes sont collectées localement, prévoir leur transmission explicite au service de verrouillage avant la section critique. Une demande seulement collectée ne constitue pas encore une protection distante prouvée.
+
+### ÉTAPE 5 — TESTER SOUS CONCURRENCE RÉALISTE
+
+Exécuter deux sessions sur la même clé, puis sur des clés voisines. Mesurer le temps d’attente, le taux de collision et la durée de détention. Observer `SM12` pendant le traitement afin de confirmer la granularité et la propriété.
+
+### ÉTAPE 6 — CORRIGER LA CAUSE DES CONTENTIONS
+
+Réduire la durée sous verrou, déplacer les opérations lentes hors de la section critique ou revoir la clé. Ne pas masquer une contention structurelle par une attente plus longue : le résultat doit rester prévisible en dialogue comme en traitement de masse.
 
 ## VÉRIFICATION
 
@@ -67,7 +84,6 @@ La bonne clé correspond à l’unité métier qui doit rester cohérente. Mesur
 
 - [Function Modules for Lock Requests — SAP Help Portal](https://help.sap.com/docs/ABAP_PLATFORM_NEW/ec1c9c8191b74de98feb94001a95dd76/cf21eebf446011d189700000e8322d00.html)
 - [Frequently Asked Questions: Lock Concept — SAP Help Portal](https://help.sap.com/docs/ABAP_PLATFORM_BW4HANA/6568469cf5a1460a8d85c58b83d21ec2/47db6c1ae4282972e10000000a42189b.html)
-
 
 ---
 

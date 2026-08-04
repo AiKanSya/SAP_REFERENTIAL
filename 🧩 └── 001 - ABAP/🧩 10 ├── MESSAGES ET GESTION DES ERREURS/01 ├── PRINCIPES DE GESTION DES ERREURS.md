@@ -94,14 +94,36 @@ Une erreur doit toujours produire au moins un résultat exploitable :
 
 Une instruction échouée suivie d’une poursuite silencieuse est généralement plus dangereuse qu’un arrêt clair.
 
-## PROCÉDURE PAS À PAS
+## PROCESS
+
+### Étape 1 — Reproduire et horodater l’erreur
+
+Noter système, mandant, utilisateur, transaction, date, heure, saisie et dernière action effectuée. Si l’erreur est reproductible sans effet métier supplémentaire, la reproduire une seule fois pour obtenir un horodatage précis.
+
+### Étape 2 — Déterminer le canal d’erreur
+
+Rechercher d’abord le résultat observable : message applicatif, exception interceptée, journal `SLG1`, échec de job, erreur RFC ou dump. Ouvrir `ST22` uniquement lorsqu’un arrêt d’exécution non intercepté est plausible.
+
+### Étape 3 — Rechercher le dump dans ST22
 
 1. Saisir `/nST22`.
-2. Choisir la période correspondant à la reproduction.
-3. Filtrer par utilisateur, transaction ou runtime error lorsque nécessaire.
-4. Ouvrir le dump et relever le nom de l’erreur, l’exception, le programme et la ligne source.
-5. Lire les sections **Error analysis**, **How to correct the error** et **Source Code Extract**.
-6. Corréler le dump avec les données d’entrée et la version active du code.
+2. Choisir la date et l’intervalle correspondant à la reproduction.
+3. Filtrer avec l’utilisateur et, si connu, le runtime error.
+4. Ouvrir l’entrée dont l’horodatage et le contexte correspondent exactement au test.
+
+Plusieurs dumps du même nom peuvent avoir des causes fonctionnelles différentes. Ne pas analyser un dump uniquement parce que son titre ressemble au symptôme.
+
+### Étape 4 — Relever la cause technique
+
+Lire **Error analysis**, **How to correct the error**, exception, programme actif, include, ligne et extrait source. Examiner ensuite la pile d’appels pour trouver le premier objet client ou point d’extension responsable.
+
+### Étape 5 — Corréler avec les données et la version
+
+Comparer les variables ou clés mentionnées avec la saisie du test. Ouvrir la version active de la ligne source et vérifier qu’elle correspond à l’extrait du dump.
+
+### Étape 6 — Corriger puis tester les deux chemins
+
+Corriger la cause dans l’objet responsable, puis exécuter le cas ayant échoué et un cas nominal. Le diagnostic est terminé lorsque le dump ne réapparaît pas et que l’erreur fonctionnelle est désormais traitée par un message, une exception ou un résultat contrôlé.
 
 ## VÉRIFICATION
 
@@ -141,7 +163,6 @@ ENDMETHOD.
 - [MESSAGE — ABAP Keyword Documentation](https://help.sap.com/doc/abapdocu_latest_index_htm/latest/en-US/ABAPMESSAGE_SHORTREF.html)
 - [Return Code — ABAP Programming Guideline](https://help.sap.com/doc/abapdocu_latest_index_htm/latest/en-US/ABENRETURN_CODE_GUIDL.html)
 - [System Response After a Class-Based Exception — ABAP Keyword Documentation](https://help.sap.com/doc/abapdocu_latest_index_htm/latest/en-US/ABENEXCEPTIONS_SYSTEM_RESPONSE.html)
-
 
 ---
 

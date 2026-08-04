@@ -39,13 +39,31 @@ flowchart TD
 
 Modifier une occurrence ne modifie pas nécessairement toute la série de la manière attendue. Après intervention, vérifier la prochaine date planifiée et l’existence d’éventuelles occurrences en doublon.
 
-## PROCÉDURE PAS À PAS
+## PROCESS
 
-1. Saisir `/nSM12`.
-2. Renseigner utilisateur, table de verrou ou argument si ces informations sont connues.
-3. Afficher les entrées et identifier le propriétaire ainsi que l’âge du verrou.
-4. Vérifier qu’aucune session ou mise à jour active ne dépend encore du verrou.
-5. Ne supprimer manuellement une entrée qu’après validation opérationnelle et technique.
+### ÉTAPE 1 — SAUVEGARDER L’ÉTAT INITIAL
+
+Dans `SM37`, sélectionner l’occurrence exacte et relever nom, numéro, statut, étapes, variantes, utilisateur, condition et journal. Vérifier l’état métier déjà produit. Toute action de gestion doit rester corrélable au job initial.
+
+### ÉTAPE 2 — CHOISIR L’ACTION SELON LE STATUT
+
+Modifier ou replanifier un job qui n’a pas encore commencé selon les autorisations. Copier lorsque le job d’origine doit rester comme preuve et qu’une nouvelle définition est nécessaire. Annuler uniquement un job actif dont l’arrêt a été validé par l’exploitation.
+
+### ÉTAPE 3 — MODIFIER OU COPIER SANS PERDRE LES PARAMÈTRES
+
+Après l’action dans `SM37`, ouvrir le nouveau job et comparer toutes les étapes, variantes, utilisateurs, paramètres de spool et conditions. Changer uniquement la cause identifiée. Un job copié peut conserver une variante ou un utilisateur inadapté.
+
+### ÉTAPE 4 — ANNULER EN CONNAISSANT LES EFFETS
+
+Avant l’annulation, identifier l’étape active et les unités déjà commitées. L’annulation du processus ne restaure pas les données déjà validées ni les effets externes. Prévoir une reprise ou une compensation avant de lancer une nouvelle occurrence.
+
+### ÉTAPE 5 — SUPPRIMER UNIQUEMENT APRÈS RÉTENTION
+
+Ne supprimer un job ou ses spools qu’après conservation des journaux, identifiants et preuves requises. Vérifier qu’il n’est pas le prédécesseur ou la référence d’une chaîne encore exploitée. Appliquer la politique de rétention plutôt qu’un nettoyage ponctuel non tracé.
+
+### ÉTAPE 6 — CONTRÔLER LE RÉSULTAT DE L’ACTION
+
+Rechercher de nouveau l’ancien et le nouveau numéro dans `SM37`. Vérifier statut, prochaine exécution et résultat métier. Documenter l’auteur, l’heure, la raison et le lien entre les occurrences.
 
 ## VÉRIFICATION
 
@@ -85,7 +103,6 @@ Ordre de transport  :
 
 - [Managing Jobs from the Job Overview — SAP Help Portal](https://help.sap.com/docs/ABAP_PLATFORM_NEW/b07e7195f03f438b8e7ed273099d74f3/4b2bc2224c594ba2e10000000a42189c.html)
 - [Possible Status of Background Jobs — SAP Help Portal](https://help.sap.com/docs/ABAP_PLATFORM_NEW/b07e7195f03f438b8e7ed273099d74f3/4b308aa91dd90a93e10000000a421937.html)
-
 
 ---
 

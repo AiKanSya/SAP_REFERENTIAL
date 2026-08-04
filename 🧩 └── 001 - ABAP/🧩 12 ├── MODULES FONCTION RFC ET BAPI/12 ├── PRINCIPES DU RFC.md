@@ -61,14 +61,27 @@ Le choix dépend du besoin de réponse, d’ordre, de fiabilité et de reprise.
 
 Une BAPI est généralement implémentée par un module fonction compatible RFC, mais tout module RFC n’est pas une BAPI. La BAPI ajoute un contrat métier standardisé et une gouvernance d’API.
 
-## PROCÉDURE PAS À PAS
+## PROCESS
 
-1. Saisir `/nSE37`.
-2. Entrer le nom du module fonction puis choisir **Afficher**, **Modifier** ou **Créer** selon l’autorisation.
-3. Analyser les onglets Import, Export, Changing, Tables et Exceptions.
-4. Lire la documentation et le code source avant tout appel.
-5. Utiliser **Test/Exécuter** avec des données non destructives.
-6. Pour un module Z, contrôler, activer puis tester les cas nominal et d’erreur.
+### Étape 1 — Cartographier les deux systèmes
+
+Relever système appelant, destination, système cible, mandant et utilisateur technique. Définir si l’appel doit être synchrone, asynchrone ou transactionnel.
+
+### Étape 2 — Identifier le contrat distant
+
+Afficher le module cible dans son système et vérifier l’attribut RFC, les types compatibles, les autorisations métier et les effets transactionnels.
+
+### Étape 3 — Tester la destination séparément
+
+Dans `SM59`, effectuer test de connexion puis test d’autorisation disponible. Ne modifier pas le code tant qu’une erreur réseau ou de logon subsiste.
+
+### Étape 4 — Tester l’appel minimal
+
+Appeler avec une entrée non destructive, traiter `SYSTEM_FAILURE` et `COMMUNICATION_FAILURE`, puis comparer la sortie au test local du système cible.
+
+### Étape 5 — Prouver la sécurité et la reprise
+
+Tester avec l’utilisateur réellement configuré et un cas refusé. Le flux est validé lorsque connexion, autorisation, contrat fonctionnel et comportement après erreur sont connus.
 
 ## VÉRIFICATION
 
@@ -94,7 +107,6 @@ Une BAPI est généralement implémentée par un module fonction compatible RFC,
 - [RFC Calls — SAP Help Portal](https://help.sap.com/docs/ABAP_PLATFORM_NEW/753088fc00704d0a80e7fbd6803c8adb/48920827feb35ed2e10000000a42189d.html)
 - [Calling RFC Function Modules in ABAP — SAP Help Portal](https://help.sap.com/docs/ABAP_PLATFORM_NEW/753088fc00704d0a80e7fbd6803c8adb/48a0f18641bc062de10000000a42189d.html)
 - [Describing Remote Function Calls and BAPIs — SAP Learning](https://learning.sap.com/courses/technical-implementation-and-operation-i-of-sap-s-4hana-and-sap-business-suite/describing-remote-function-calls-and-bapis)
-
 
 ---
 
