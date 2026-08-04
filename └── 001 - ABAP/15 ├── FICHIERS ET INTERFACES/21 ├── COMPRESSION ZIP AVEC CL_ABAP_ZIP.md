@@ -9,11 +9,10 @@
 ## CRÉATION
 
 ```abap
-DATA lo_zip     TYPE REF TO cl_abap_zip.
 DATA lv_content TYPE xstring.
 DATA lv_archive TYPE xstring.
 
-CREATE OBJECT lo_zip.
+DATA(lo_zip) = NEW cl_abap_zip( ).
 
 lo_zip->add(
   name    = 'products.csv'
@@ -27,7 +26,7 @@ Le contenu ajouté doit être binaire (`xstring`). Un texte doit donc être conv
 ## LECTURE
 
 ```abap
-CREATE OBJECT lo_zip.
+lo_zip = NEW cl_abap_zip( ).
 lo_zip->load( zip = lv_archive ).
 
 DATA(lv_file_content) = lo_zip->get( name = 'products.csv' ).
@@ -81,7 +80,7 @@ Lors de l’extraction :
 > Adapter les noms `Z*`, les types DDIC, les données et les autorisations au système cible. Effectuer un contrôle syntaxique avant activation.
 
 ```abap
-CREATE OBJECT lo_zip.
+lo_zip = NEW cl_abap_zip( ).
 lo_zip->load( zip = lv_archive ).
 
 DATA(lv_file_content) = lo_zip->get( name = 'products.csv' ).

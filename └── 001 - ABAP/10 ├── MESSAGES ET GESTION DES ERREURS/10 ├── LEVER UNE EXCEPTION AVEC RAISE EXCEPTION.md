@@ -34,11 +34,8 @@ Le texte de l’erreur peut ensuite utiliser ces attributs.
 ## LEVER UN OBJET EXISTANT
 
 ```abap
-DATA lx_error TYPE REF TO zcx_dev_error.
-
-CREATE OBJECT lx_error
-  EXPORTING
-    textid = zcx_dev_error=>invalid_state.
+DATA(lx_error) = NEW zcx_dev_error(
+  textid = zcx_dev_error=>invalid_state ).
 
 RAISE EXCEPTION lx_error.
 ```

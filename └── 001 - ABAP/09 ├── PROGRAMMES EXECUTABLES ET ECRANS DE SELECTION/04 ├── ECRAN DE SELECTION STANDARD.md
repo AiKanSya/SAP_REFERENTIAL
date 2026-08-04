@@ -50,10 +50,9 @@ Les éléments de sélection sont déclarés dans la partie globale du programme
 ```abap
 REPORT zdev_selection_demo.
 
-TABLES scarr.
-
 PARAMETERS p_carr TYPE scarr-carrid.
-SELECT-OPTIONS s_name FOR scarr-carrname.
+DATA gv_carrname TYPE scarr-carrname.
+SELECT-OPTIONS s_name FOR gv_carrname.
 
 START-OF-SELECTION.
   " Traitement
@@ -100,10 +99,9 @@ L’écran standard suffit à la majorité des programmes exécutables.
 ```abap
 REPORT zdev_selection_demo.
 
-TABLES scarr.
-
 PARAMETERS p_carr TYPE scarr-carrid.
-SELECT-OPTIONS s_name FOR scarr-carrname.
+DATA gv_carrname TYPE scarr-carrname.
+SELECT-OPTIONS s_name FOR gv_carrname.
 
 START-OF-SELECTION.
   " Traitement

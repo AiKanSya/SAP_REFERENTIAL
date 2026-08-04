@@ -14,7 +14,7 @@ FORM display_grid.
 
   ls_variant-report = sy-repid.
 
-  CALL METHOD go_grid->set_table_for_first_display
+  go_grid->set_table_for_first_display(
     EXPORTING
       is_variant      = ls_variant
       i_save          = 'A'
@@ -26,7 +26,7 @@ FORM display_grid.
       invalid_parameter_combination = 1
       program_error                 = 2
       too_many_lines                = 3
-      OTHERS                        = 4.
+      OTHERS                        = 4 ).
 
   IF sy-subrc <> 0.
     MESSAGE 'Impossible d afficher l ALV' TYPE 'E'.
@@ -89,7 +89,7 @@ FORM display_grid.
 
   ls_variant-report = sy-repid.
 
-  CALL METHOD go_grid->set_table_for_first_display
+  go_grid->set_table_for_first_display(
     EXPORTING
       is_variant      = ls_variant
       i_save          = 'A'
@@ -101,7 +101,7 @@ FORM display_grid.
       invalid_parameter_combination = 1
       program_error                 = 2
       too_many_lines                = 3
-      OTHERS                        = 4.
+      OTHERS                        = 4 ).
 
   IF sy-subrc <> 0.
     MESSAGE 'Impossible d afficher l ALV' TYPE 'E'.

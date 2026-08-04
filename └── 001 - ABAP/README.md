@@ -8,6 +8,15 @@ Il couvre notamment les transactions de développement et de diagnostic classiqu
 
 ABAP Cloud, Clean Core, CDS, RAP et les autres modèles de développement disposent ou disposeront de dossiers distincts.
 
+## BASE DE COMPATIBILITÉ DU CODE
+
+- Cible minimale : SAP S/4HANA et ABAP Platform associée.
+- Les exemples de nouveau code utilisent la syntaxe d’expression disponible sur S/4HANA : déclarations inline, variables hôte `@`, appels de méthodes fonctionnels et opérateurs `NEW`, `VALUE`, `CONV` et `CORRESPONDING` lorsque le contexte s’y prête.
+- Une déclaration explicite reste préférée lorsque le type fait partie du contrat, améliore la lecture ou doit survivre à plusieurs branches du traitement.
+- Les syntaxes classiques restent présentes uniquement lorsqu’elles sont nécessaires à une API SAP classique ou constituent le sujet du chapitre : `FORM`, `PERFORM`, modules fonction, exceptions classiques, Dynpro et fonctions `REUSE_ALV`.
+- Toute syntaxe historique montrée pour la maintenance doit être explicitement qualifiée comme telle et ne doit pas être présentée comme modèle pour un nouveau développement.
+- L’aide `F1` du système cible reste l’autorité pour une release S/4HANA précise.
+
 ## OBJECTIF ÉDITORIAL
 
 Chaque page doit permettre de réaliser ou de diagnostiquer une action précise sans parcourir un cours complet.

@@ -149,13 +149,13 @@ DATA ls_target TYPE ty_product.
 ls_target = ls_source.
 ```
 
-Pour des structures de types différents possédant des composants de même nom, l’instruction `MOVE-CORRESPONDING` peut être utilisée :
+Pour des structures de types différents possédant des composants de même nom, utiliser l’opérateur constructeur `CORRESPONDING` :
 
 ```abap
-MOVE-CORRESPONDING ls_source TO ls_target.
+ls_target = CORRESPONDING #( ls_source ).
 ```
 
-Cette instruction et l’opérateur constructeur `CORRESPONDING` seront détaillés avec les traitements de données. Il faut vérifier les conversions et les composants réellement copiés.
+L’instruction historique `MOVE-CORRESPONDING` reste disponible, mais `CORRESPONDING` s’intègre aux expressions et permet d’expliciter des règles de mapping. Vérifier les conversions et les composants réellement copiés.
 
 ## STRUCTURE LOCALE OU GLOBALE
 

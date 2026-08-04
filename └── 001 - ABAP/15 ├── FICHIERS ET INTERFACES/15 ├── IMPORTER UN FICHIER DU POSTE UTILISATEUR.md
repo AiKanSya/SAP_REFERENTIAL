@@ -12,7 +12,7 @@
 DATA lt_lines    TYPE STANDARD TABLE OF string WITH EMPTY KEY.
 DATA lv_filename TYPE string.
 
-CALL METHOD cl_gui_frontend_services=>gui_upload
+cl_gui_frontend_services=>gui_upload(
   EXPORTING
     filename = lv_filename
     filetype = 'ASC'
@@ -23,7 +23,7 @@ CALL METHOD cl_gui_frontend_services=>gui_upload
     file_read_error         = 2
     no_batch                = 3
     gui_refuse_filetransfer = 4
-    OTHERS                  = 5.
+    OTHERS                  = 5 ).
 
 IF sy-subrc <> 0.
   MESSAGE e003(zdev_file) WITH sy-subrc.
@@ -85,7 +85,7 @@ La méthode d’import doit retourner un contenu brut ou une table de lignes. Un
 DATA lt_lines    TYPE STANDARD TABLE OF string WITH EMPTY KEY.
 DATA lv_filename TYPE string.
 
-CALL METHOD cl_gui_frontend_services=>gui_upload
+cl_gui_frontend_services=>gui_upload(
   EXPORTING
     filename = lv_filename
     filetype = 'ASC'
@@ -96,7 +96,7 @@ CALL METHOD cl_gui_frontend_services=>gui_upload
     file_read_error         = 2
     no_batch                = 3
     gui_refuse_filetransfer = 4
-    OTHERS                  = 5.
+    OTHERS                  = 5 ).
 
 IF sy-subrc <> 0.
   MESSAGE e003(zdev_file) WITH sy-subrc.

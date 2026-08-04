@@ -63,7 +63,7 @@ lv_total = 0.
 Certaines positions sont à la fois lues et modifiées :
 
 ```abap
-ADD 1 TO lv_counter.
+lv_counter = lv_counter + 1.
 ```
 
 ## CATÉGORIES D’EXPRESSIONS

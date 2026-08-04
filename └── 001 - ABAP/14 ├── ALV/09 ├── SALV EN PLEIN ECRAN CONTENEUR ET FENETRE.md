@@ -17,9 +17,8 @@ DATA:
   go_container TYPE REF TO cl_gui_custom_container,
   go_salv      TYPE REF TO cl_salv_table.
 
-CREATE OBJECT go_container
-  EXPORTING
-    container_name = 'CC_ALV'.
+go_container = NEW cl_gui_custom_container(
+  container_name = 'CC_ALV' ).
 
 cl_salv_table=>factory(
   EXPORTING
@@ -78,9 +77,8 @@ DATA:
   go_container TYPE REF TO cl_gui_custom_container,
   go_salv      TYPE REF TO cl_salv_table.
 
-CREATE OBJECT go_container
-  EXPORTING
-    container_name = 'CC_ALV'.
+go_container = NEW cl_gui_custom_container(
+  container_name = 'CC_ALV' ).
 
 cl_salv_table=>factory(
   EXPORTING

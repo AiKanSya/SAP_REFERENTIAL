@@ -16,7 +16,7 @@ lt_lines = VALUE #(
   ( `ARTICLE;QUANTITE;UNITE` )
   ( `MAT-001;10;PC` ) ).
 
-CALL METHOD cl_gui_frontend_services=>gui_download
+cl_gui_frontend_services=>gui_download(
   EXPORTING
     filename = lv_filename
     filetype = 'ASC'
@@ -26,7 +26,7 @@ CALL METHOD cl_gui_frontend_services=>gui_download
     file_write_error        = 1
     no_batch                = 2
     gui_refuse_filetransfer = 3
-    OTHERS                  = 4.
+    OTHERS                  = 4 ).
 
 IF sy-subrc <> 0.
   MESSAGE e004(zdev_file) WITH sy-subrc.
@@ -89,7 +89,7 @@ lt_lines = VALUE #(
   ( `ARTICLE;QUANTITE;UNITE` )
   ( `MAT-001;10;PC` ) ).
 
-CALL METHOD cl_gui_frontend_services=>gui_download
+cl_gui_frontend_services=>gui_download(
   EXPORTING
     filename = lv_filename
     filetype = 'ASC'
@@ -99,7 +99,7 @@ CALL METHOD cl_gui_frontend_services=>gui_download
     file_write_error        = 1
     no_batch                = 2
     gui_refuse_filetransfer = 3
-    OTHERS                  = 4.
+    OTHERS                  = 4 ).
 
 IF sy-subrc <> 0.
   MESSAGE e004(zdev_file) WITH sy-subrc.

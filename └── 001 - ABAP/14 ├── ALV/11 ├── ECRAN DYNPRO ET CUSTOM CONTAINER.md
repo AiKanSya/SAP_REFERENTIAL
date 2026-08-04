@@ -32,13 +32,11 @@ MODULE status_0100 OUTPUT.
   SET PF-STATUS 'STATUS_0100'.
 
   IF go_container IS NOT BOUND.
-    CREATE OBJECT go_container
-      EXPORTING
-        container_name = 'CC_ALV'.
+    go_container = NEW cl_gui_custom_container(
+      container_name = 'CC_ALV' ).
 
-    CREATE OBJECT go_grid
-      EXPORTING
-        i_parent = go_container.
+    go_grid = NEW cl_gui_alv_grid(
+      i_parent = go_container ).
 
     PERFORM display_grid.
   ENDIF.
@@ -95,13 +93,11 @@ MODULE status_0100 OUTPUT.
   SET PF-STATUS 'STATUS_0100'.
 
   IF go_container IS NOT BOUND.
-    CREATE OBJECT go_container
-      EXPORTING
-        container_name = 'CC_ALV'.
+    go_container = NEW cl_gui_custom_container(
+      container_name = 'CC_ALV' ).
 
-    CREATE OBJECT go_grid
-      EXPORTING
-        i_parent = go_container.
+    go_grid = NEW cl_gui_alv_grid(
+      i_parent = go_container ).
 
     PERFORM display_grid.
   ENDIF.

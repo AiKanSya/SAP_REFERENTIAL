@@ -16,13 +16,15 @@ Choisir la catégorie de table et la clé adaptées au profil d’accès réel.
 DATA lt_carriers TYPE HASHED TABLE OF scarr
                  WITH UNIQUE KEY carrid.
 
-SELECT *
+SELECT carrid,
+       carrname,
+       currcode,
+       url
   FROM scarr
   INTO TABLE @lt_carriers.
 
-READ TABLE lt_carriers
-  WITH TABLE KEY carrid = 'LH'
-  INTO DATA(ls_carrier).
+DATA(ls_carrier) = VALUE scarr(
+  lt_carriers[ carrid = 'LH' ] OPTIONAL ).
 ```
 
 ## Exploiter les clés

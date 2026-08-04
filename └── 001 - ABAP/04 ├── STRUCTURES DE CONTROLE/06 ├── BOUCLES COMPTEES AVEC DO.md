@@ -73,7 +73,7 @@ Pour un compteur métier indépendant :
 DATA lv_sequence TYPE i VALUE 100.
 
 DO 3 TIMES.
-  ADD 10 TO lv_sequence.
+  lv_sequence = lv_sequence + 10.
   WRITE: / 'Séquence :', lv_sequence.
 ENDDO.
 ```
@@ -86,7 +86,7 @@ ENDDO.
 DATA lv_counter TYPE i.
 
 DO.
-  ADD 1 TO lv_counter.
+  lv_counter = lv_counter + 1.
 
   IF lv_counter >= 5.
     EXIT.

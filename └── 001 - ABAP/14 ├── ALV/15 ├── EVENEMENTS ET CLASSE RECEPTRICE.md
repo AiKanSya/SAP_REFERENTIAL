@@ -44,9 +44,7 @@ ENDCLASS.
 ## ENREGISTREMENT
 
 ```abap
-DATA go_receiver TYPE REF TO lcl_event_receiver.
-
-CREATE OBJECT go_receiver.
+DATA(go_receiver) = NEW lcl_event_receiver( ).
 SET HANDLER go_receiver->handle_double_click FOR go_grid.
 SET HANDLER go_receiver->handle_user_command FOR go_grid.
 ```

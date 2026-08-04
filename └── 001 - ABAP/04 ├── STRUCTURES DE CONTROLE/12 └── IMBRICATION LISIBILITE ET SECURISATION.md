@@ -99,7 +99,7 @@ START-OF-SELECTION.
   WHILE lv_found = abap_false
     AND lv_iteration < lc_max_iterations.
 
-    ADD 1 TO lv_iteration.
+  lv_iteration = lv_iteration + 1.
 
     IF lv_iteration = p_target.
       lv_found = abap_true.
@@ -219,7 +219,7 @@ START-OF-SELECTION.
   WHILE lv_found = abap_false
     AND lv_iteration < lc_max_iterations.
 
-    ADD 1 TO lv_iteration.
+  lv_iteration = lv_iteration + 1.
 
     IF lv_iteration = p_target.
       lv_found = abap_true.

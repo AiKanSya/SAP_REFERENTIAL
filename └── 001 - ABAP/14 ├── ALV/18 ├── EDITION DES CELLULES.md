@@ -27,13 +27,13 @@ Le contrôle précis doit rester dans le catalogue ou dans les styles de cellule
 ## ENREGISTRER LES ÉVÉNEMENTS D’ÉDITION
 
 ```abap
-CALL METHOD go_grid->register_edit_event
+go_grid->register_edit_event(
   EXPORTING
-    i_event_id = cl_gui_alv_grid=>mc_evt_modified.
+    i_event_id = cl_gui_alv_grid=>mc_evt_modified ).
 
-CALL METHOD go_grid->register_edit_event
+go_grid->register_edit_event(
   EXPORTING
-    i_event_id = cl_gui_alv_grid=>mc_evt_enter.
+    i_event_id = cl_gui_alv_grid=>mc_evt_enter ).
 ```
 
 ## RÉCUPÉRER LES MODIFICATIONS
@@ -77,13 +77,13 @@ Rendre une cellule éditable ne met pas à jour la base. Le programme doit :
 > Adapter les noms `Z*`, les types DDIC, les données et les autorisations au système cible. Effectuer un contrôle syntaxique avant activation.
 
 ```abap
-CALL METHOD go_grid->register_edit_event
+go_grid->register_edit_event(
   EXPORTING
-    i_event_id = cl_gui_alv_grid=>mc_evt_modified.
+    i_event_id = cl_gui_alv_grid=>mc_evt_modified ).
 
-CALL METHOD go_grid->register_edit_event
+go_grid->register_edit_event(
   EXPORTING
-    i_event_id = cl_gui_alv_grid=>mc_evt_enter.
+    i_event_id = cl_gui_alv_grid=>mc_evt_enter ).
 ```
 
 ## TERMES DU LEXIQUE

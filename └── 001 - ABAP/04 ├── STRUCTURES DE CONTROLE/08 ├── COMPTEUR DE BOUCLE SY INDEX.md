@@ -28,7 +28,7 @@ DATA lv_value TYPE i VALUE 10.
 WHILE lv_value > 0.
   WRITE: / 'Itération :', sy-index,
            'Valeur :', lv_value.
-  SUBTRACT 2 FROM lv_value.
+  lv_value = lv_value - 2.
 ENDWHILE.
 ```
 

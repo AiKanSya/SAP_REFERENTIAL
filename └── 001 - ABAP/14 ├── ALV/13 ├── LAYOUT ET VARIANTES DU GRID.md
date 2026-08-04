@@ -39,14 +39,14 @@ gs_variant-report = sy-repid.
 Lors de l’affichage :
 
 ```abap
-CALL METHOD go_grid->set_table_for_first_display
+go_grid->set_table_for_first_display(
   EXPORTING
     is_variant      = gs_variant
     i_save          = 'A'
     is_layout       = gs_layout
   CHANGING
     it_outtab       = gt_output
-    it_fieldcatalog = gt_fieldcat.
+    it_fieldcatalog = gt_fieldcat ).
 ```
 
 `I_SAVE = 'A'` autorise généralement les variantes utilisateur et globales, sous réserve des autorisations et du comportement de la version utilisée.

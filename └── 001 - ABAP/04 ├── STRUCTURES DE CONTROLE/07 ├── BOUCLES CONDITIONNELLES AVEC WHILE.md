@@ -17,7 +17,7 @@ DATA lv_counter TYPE i VALUE 1.
 
 WHILE lv_counter <= 5.
   WRITE: / 'Compteur :', lv_counter.
-  ADD 1 TO lv_counter.
+  lv_counter = lv_counter + 1.
 ENDWHILE.
 ```
 
@@ -41,7 +41,7 @@ DATA lv_remaining TYPE i VALUE 3.
 
 WHILE lv_remaining > 0.
   WRITE: / 'Restant :', lv_remaining.
-  SUBTRACT 1 FROM lv_remaining.
+  lv_remaining = lv_remaining - 1.
 ENDWHILE.
 ```
 
@@ -62,7 +62,7 @@ DATA lv_complete TYPE abap_bool VALUE abap_false.
 DATA lv_attempt  TYPE i.
 
 WHILE lv_complete = abap_false.
-  ADD 1 TO lv_attempt.
+  lv_attempt = lv_attempt + 1.
 
   IF lv_attempt >= 3.
     lv_complete = abap_true.
@@ -82,7 +82,7 @@ DATA lv_complete  TYPE abap_bool VALUE abap_false.
 WHILE lv_complete = abap_false
   AND lv_iteration < lc_max_iterations.
 
-  ADD 1 TO lv_iteration.
+  lv_iteration = lv_iteration + 1.
   " Traitement susceptible de positionner lv_complete
 ENDWHILE.
 
