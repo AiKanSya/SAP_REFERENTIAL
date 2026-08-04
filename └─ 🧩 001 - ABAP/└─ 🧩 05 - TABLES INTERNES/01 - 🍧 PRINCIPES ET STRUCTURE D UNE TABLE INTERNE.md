@@ -111,20 +111,6 @@ ENDLOOP.
 - Une table interne n’est pas une table de base de données.
 - Le contenu est généralement temporaire et propre à la session ABAP.
 
-## 🌺 CAS D’USAGE
-
-Dans un contexte où un traitement de masse charge des commandes en mémoire, recherche des lignes, élimine des doublons et prépare un résultat, le besoin consiste à **manipuler une table interne avec principes et structure d’une table interne en contrôlant clé, présence des lignes et performance**. Cette notion est pertinente lorsque le choix technique doit être compris avant d’appliquer une procédure.
-
-## 🌺 PROCÉDURE PAS À PAS
-
-1. Saisir `/nSE38` dans le champ de commande.
-2. Entrer le nom d’un programme Z de test, par exemple `ZREF_DEMO`, puis choisir **Créer** ou **Modifier** selon le cas.
-3. Pour un exercice local uniquement, affecter `$TMP` ; pour un développement livrable, utiliser le package et l’ordre fournis par le projet.
-4. Coller ou adapter le snippet du chapitre.
-5. Exécuter le contrôle syntaxique avec `Ctrl+F2`.
-6. Activer avec `Ctrl+F3`.
-7. Exécuter avec `F8` et comparer le résultat avec la section **Vérification**.
-
 ## 🌺 VÉRIFICATION
 
 - Le contrôle syntaxique réussit.

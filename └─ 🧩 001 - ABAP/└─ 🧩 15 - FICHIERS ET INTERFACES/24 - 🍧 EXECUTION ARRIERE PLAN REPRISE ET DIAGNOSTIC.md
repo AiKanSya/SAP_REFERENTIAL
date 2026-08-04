@@ -62,10 +62,6 @@ Utiliser le journal applicatif lorsque l’interface doit être exploitée par l
 - [ ] Logs exploitables sans débogage
 - [ ] Test DEV, QAS et exécution en job
 
-## 🌺 CAS D’USAGE
-
-Dans un contexte où SAP échange un fichier structuré avec une application externe et doit garantir format, encodage, sécurité et reprise, le besoin consiste à **analyser méthodiquement « exécution arrière-plan, reprise et diagnostic » à partir d’un scénario reproductible**. Cette notion est pertinente lorsque la cause ne doit pas être supposée avant reproduction et collecte des preuves.
-
 ## 🌺 PROCÉDURE PAS À PAS
 
 1. Lire la définition et identifier les prérequis du chapitre.
@@ -95,12 +91,6 @@ Dans un contexte où SAP échange un fichier structuré avec une application ext
 - [CSV](<../└─ 🧩 00 - LEXIQUE SAP ET ABAP/07 - 🍧 INTERFACES ET INTEGRATION.md#csv>)
 - [Encodage](<../└─ 🧩 00 - LEXIQUE SAP ET ABAP/07 - 🍧 INTERFACES ET INTEGRATION.md#encodage>)
 - [Serveur d’application](<../└─ 🧩 00 - LEXIQUE SAP ET ABAP/07 - 🍧 INTERFACES ET INTEGRATION.md#fichier-serveur-application>)
-
-## 🌺 À RETENIR
-
-- À l’issue du chapitre, le lecteur sait **analyser méthodiquement « exécution arrière-plan, reprise et diagnostic » à partir d’un scénario reproductible**.
-- Toujours tester sur un objet Z ou un jeu de données sans impact avant d’intervenir sur un traitement réel.
-- La documentation `F1` du système reste la référence pour la syntaxe disponible dans sa release.
 
 ## 🌺 RÉFÉRENCES OFFICIELLES SAP
 

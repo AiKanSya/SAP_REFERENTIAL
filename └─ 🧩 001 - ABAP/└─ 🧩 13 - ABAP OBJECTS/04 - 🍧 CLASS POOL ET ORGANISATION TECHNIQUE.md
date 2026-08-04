@@ -1,6 +1,6 @@
 # 🌸 CLASS POOL ET ORGANISATION TECHNIQUE
 
-## 🌺 OBJECTIFS
+## 🌺 RÉSULTAT ATTENDU
 
 - Comprendre où le système stocke une classe globale.
 - Identifier les includes gérés par le Class Builder.
@@ -46,7 +46,7 @@ Les classes locales sont utiles pour des collaborateurs strictement internes ou 
 
 Une classe globale doit utiliser un petit parseur qui n’a aucun sens en dehors de son implémentation. Une classe locale du Class Pool peut encapsuler ce détail sans ajouter un objet global supplémentaire dans le package.
 
-## 🌺 SNIPPET DE CLASSE LOCALE INTERNE
+## 🌺 CODE DE CLASSE LOCALE À ADAPTER
 
 ```abap
 CLASS lcl_tokenizer DEFINITION FINAL.
@@ -64,7 +64,7 @@ CLASS lcl_tokenizer IMPLEMENTATION.
 ENDCLASS.
 ```
 
-## 🌺 VÉRIFICATION
+## 🌺 CONTRÔLE
 
 - La classe globale reste activable.
 - La classe locale n’est pas visible depuis un report externe.
@@ -76,6 +76,12 @@ ENDCLASS.
 - Développer toute la logique dans les includes au lieu des méthodes de la classe globale.
 - Déclarer globalement une classe qui ne sert qu’à une seule implémentation privée.
 - Dépendre d’une classe locale depuis un autre objet Repository.
+
+## 🌺 COMPATIBILITÉ S/4HANA
+
+- Statut : compatible avec le développement ABAP classique sur SAP S/4HANA.
+- Vérifier la syntaxe exacte avec l’aide `F1` du système cible lorsque plusieurs versions d’ABAP Platform sont prises en charge.
+- Les objets globaux doivent être créés dans le package et l’ordre de transport du projet.
 
 ## 🌺 RÉFÉRENCES OFFICIELLES SAP
 

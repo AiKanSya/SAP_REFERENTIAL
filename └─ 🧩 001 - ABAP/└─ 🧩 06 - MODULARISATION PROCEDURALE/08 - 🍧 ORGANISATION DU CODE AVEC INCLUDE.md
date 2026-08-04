@@ -113,10 +113,6 @@ Ils appartiennent à un package et doivent être transportés avec les autres ob
 - L’ordre des includes doit être cohérent.
 - Un include ne remplace pas une interface de procédure.
 
-## 🌺 CAS D’USAGE
-
-Dans un contexte où un report devenu long doit être découpé en unités compréhensibles et testables sans modifier son résultat, le besoin consiste à **mesurer le temps d’exécution d’un scénario reproductible**. Cette notion est pertinente lorsque le lecteur doit pouvoir relier la syntaxe ou l’outil à une situation professionnelle concrète.
-
 ## 🌺 PROCÉDURE PAS À PAS
 
 1. Saisir `/nSAT`.

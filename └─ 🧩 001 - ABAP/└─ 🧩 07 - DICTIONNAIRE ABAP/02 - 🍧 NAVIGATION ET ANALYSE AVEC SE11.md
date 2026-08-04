@@ -103,10 +103,6 @@ Pour comprendre un champ standard :
 - La liste d’utilisation permet d’évaluer l’impact d’une modification.
 - SE14, SE54, SM30 et SE84 complètent SE11 pour des usages précis.
 
-## 🌺 CAS D’USAGE
-
-Dans un contexte où une application Z nécessite un modèle de données partagé, cohérent et réutilisable dans plusieurs programmes, le besoin consiste à **afficher ou maintenir un objet du Dictionary en contrôlant ses dépendances**. Cette notion est pertinente lorsque le lecteur doit pouvoir relier la syntaxe ou l’outil à une situation professionnelle concrète.
-
 ## 🌺 PROCÉDURE PAS À PAS
 
 1. Saisir `/nSE11`.

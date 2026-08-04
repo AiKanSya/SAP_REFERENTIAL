@@ -152,10 +152,6 @@ La liste d’utilisations permet d’identifier les consommateurs d’un objet. 
 > [!IMPORTANT]
 > Une liste d’utilisations ne garantit pas toujours l’identification des appels dynamiques construits à l’exécution.
 
-## 🌺 CAS D’USAGE
-
-Dans un contexte où une intervention de correction doit être réalisée dans le bon système et sur le bon objet sans affecter un environnement non autorisé, le besoin consiste à **retrouver l’objet technique responsable et comprendre ses dépendances**. Cette notion est pertinente lorsque le lecteur doit pouvoir relier la syntaxe ou l’outil à une situation professionnelle concrète.
-
 ## 🌺 PROCÉDURE PAS À PAS
 
 1. Saisir `/nSE80`.
@@ -201,12 +197,6 @@ Ordre de transport  :
 - [Mandant](<../└─ 🧩 00 - LEXIQUE SAP ET ABAP/01 - 🍧 SYSTEMES ENVIRONNEMENTS ET MANDANTS.md#mandant>)
 - [SAP GUI](<../└─ 🧩 00 - LEXIQUE SAP ET ABAP/02 - 🍧 SAP GUI NAVIGATION ET TRANSACTIONS.md#sap-gui>)
 - [Transaction](<../└─ 🧩 00 - LEXIQUE SAP ET ABAP/02 - 🍧 SAP GUI NAVIGATION ET TRANSACTIONS.md#transaction>)
-
-## 🌺 À RETENIR
-
-- À l’issue du chapitre, le lecteur sait **retrouver l’objet technique responsable et comprendre ses dépendances**.
-- Toujours tester sur un objet Z ou un jeu de données sans impact avant d’intervenir sur un traitement réel.
-- La documentation `F1` du système reste la référence pour la syntaxe disponible dans sa release.
 
 ## 🌺 RÉFÉRENCES OFFICIELLES SAP
 

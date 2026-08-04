@@ -43,10 +43,6 @@ Transporter dans un ordre cohérent :
 4. projet ou implémentation d’extension ;
 5. paramétrage éventuel.
 
-## 🌺 CAS D’USAGE
-
-Dans un contexte où un besoin client doit compléter le comportement standard SAP sans modifier directement le code livré par SAP, le besoin consiste à **utiliser extensions ddic associées aux exits pour étendre le standard sans créer de modification directe ni d’effet de bord hors périmètre**. Cette notion est pertinente lorsque le lecteur doit pouvoir relier la syntaxe ou l’outil à une situation professionnelle concrète.
-
 ## 🌺 PROCÉDURE PAS À PAS
 
 1. Saisir `/nSE80`.
@@ -89,12 +85,6 @@ Ordre de transport  :
 - [BAdI](<../└─ 🧩 00 - LEXIQUE SAP ET ABAP/10 - 🍧 ACRONYMES SAP.md#acro-badi>)
 - [BTE](<../└─ 🧩 00 - LEXIQUE SAP ET ABAP/10 - 🍧 ACRONYMES SAP.md#acro-bte>)
 - [Objet Repository](<../└─ 🧩 00 - LEXIQUE SAP ET ABAP/03 - 🍧 REPOSITORY PACKAGES ET TRANSPORTS.md#objet-repository>)
-
-## 🌺 À RETENIR
-
-- À l’issue du chapitre, le lecteur sait **utiliser extensions ddic associées aux exits pour étendre le standard sans créer de modification directe ni d’effet de bord hors périmètre**.
-- Toujours tester sur un objet Z ou un jeu de données sans impact avant d’intervenir sur un traitement réel.
-- La documentation `F1` du système reste la référence pour la syntaxe disponible dans sa release.
 
 ## 🌺 RÉFÉRENCES OFFICIELLES SAP
 

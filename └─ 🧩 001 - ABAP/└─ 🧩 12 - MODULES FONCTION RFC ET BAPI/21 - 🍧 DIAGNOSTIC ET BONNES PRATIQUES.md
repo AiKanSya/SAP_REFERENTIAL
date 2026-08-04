@@ -75,10 +75,6 @@ flowchart TD
 
 Une fonction visible dans `SE37` n’est pas automatiquement une API stable. Une exécution réussie dans le système de développement ne prouve ni la sécurité, ni la compatibilité, ni la robustesse distribuée du scénario.
 
-## 🌺 CAS D’USAGE
-
-Dans un contexte où une logique doit être réutilisée localement ou appelée à distance tout en respectant son interface et sa transaction, le besoin consiste à **analyser méthodiquement « diagnostic et bonnes pratiques » à partir d’un scénario reproductible**. Cette notion est pertinente lorsque plusieurs solutions sont possibles et il faut retenir celle qui limite les risques de maintenance.
-
 ## 🌺 PROCÉDURE PAS À PAS
 
 1. Saisir `/nSE80`.
@@ -121,12 +117,6 @@ Ordre de transport  :
 - [RFC](<../└─ 🧩 00 - LEXIQUE SAP ET ABAP/10 - 🍧 ACRONYMES SAP.md#acro-rfc>)
 - [BAPI](<../└─ 🧩 00 - LEXIQUE SAP ET ABAP/10 - 🍧 ACRONYMES SAP.md#acro-bapi>)
 - [Destination RFC](<../└─ 🧩 00 - LEXIQUE SAP ET ABAP/07 - 🍧 INTERFACES ET INTEGRATION.md#destination-rfc>)
-
-## 🌺 À RETENIR
-
-- À l’issue du chapitre, le lecteur sait **analyser méthodiquement « diagnostic et bonnes pratiques » à partir d’un scénario reproductible**.
-- Toujours tester sur un objet Z ou un jeu de données sans impact avant d’intervenir sur un traitement réel.
-- La documentation `F1` du système reste la référence pour la syntaxe disponible dans sa release.
 
 ## 🌺 RÉFÉRENCES OFFICIELLES SAP
 

@@ -101,10 +101,6 @@ Elle ne doit pas reproduire uniquement le nom technique.
 - Un même domaine peut alimenter plusieurs éléments de données métier.
 - Un élément de données peut être utilisé directement avec `TYPE` en ABAP.
 
-## 🌺 CAS D’USAGE
-
-Dans un contexte où une application Z nécessite un modèle de données partagé, cohérent et réutilisable dans plusieurs programmes, le besoin consiste à **répéter un traitement un nombre connu ou borné de fois**. Cette notion est pertinente lorsque le lecteur doit pouvoir relier la syntaxe ou l’outil à une situation professionnelle concrète.
-
 ## 🌺 PROCÉDURE PAS À PAS
 
 1. Saisir `/nSE11`.

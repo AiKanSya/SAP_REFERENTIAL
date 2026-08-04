@@ -47,10 +47,6 @@ flowchart TD
 - [SAP Help Portal — ATC Quality Checking](https://help.sap.com/docs/ABAP_PLATFORM_NEW/c238d694b825421f940829321ffa326a/4ec1a1126e391014adc9fffe4e204223.html)
 - [SAP Help Portal — ATC Exemptions](https://help.sap.com/docs/ABAP_PLATFORM_NEW/ba879a6e2ea04d9bb94c7ccd7cdac446/3a759579e173410caa551e0d428bd7d6.html)
 
-## 🌺 CAS D’USAGE
-
-Dans un contexte où un programme critique doit conserver ses résultats tout en respectant les exigences de performance, qualité et non-régression, le besoin consiste à **exécuter les contrôles qualité, analyser les findings et corriger les causes**. Cette notion est pertinente lorsque le lecteur doit pouvoir relier la syntaxe ou l’outil à une situation professionnelle concrète.
-
 ## 🌺 PROCÉDURE PAS À PAS
 
 1. Saisir `/nATC` ou utiliser l’entrée ATC disponible dans le système.
@@ -92,14 +88,3 @@ Ordre de transport  :
 - [ATC](<../└─ 🧩 00 - LEXIQUE SAP ET ABAP/10 - 🍧 ACRONYMES SAP.md#acro-atc>)
 - [ABAP](<../└─ 🧩 00 - LEXIQUE SAP ET ABAP/10 - 🍧 ACRONYMES SAP.md#acro-abap>)
 - [Trace](<../└─ 🧩 00 - LEXIQUE SAP ET ABAP/08 - 🍧 EXECUTION EXPLOITATION ET ADMINISTRATION.md#trace>)
-
-## 🌺 À RETENIR
-
-- À l’issue du chapitre, le lecteur sait **exécuter les contrôles qualité, analyser les findings et corriger les causes**.
-- Toujours tester sur un objet Z ou un jeu de données sans impact avant d’intervenir sur un traitement réel.
-- La documentation `F1` du système reste la référence pour la syntaxe disponible dans sa release.
-
-
----
-
-➡️ [Chapitre suivant — PRINCIPES D ABAP UNIT](<./17 - 🍧 PRINCIPES D ABAP UNIT.md>)

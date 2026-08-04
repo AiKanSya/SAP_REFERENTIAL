@@ -99,10 +99,6 @@ Pour un statut de commande :
 - La table de valeurs n’est pas une table de contrôle automatique.
 - Une routine de conversion distingue format interne et format externe.
 
-## 🌺 CAS D’USAGE
-
-Dans un contexte où une application Z nécessite un modèle de données partagé, cohérent et réutilisable dans plusieurs programmes, le besoin consiste à **répéter un traitement un nombre connu ou borné de fois**. Cette notion est pertinente lorsque le lecteur doit pouvoir relier la syntaxe ou l’outil à une situation professionnelle concrète.
-
 ## 🌺 PROCÉDURE PAS À PAS
 
 1. Saisir `/nSE11`.

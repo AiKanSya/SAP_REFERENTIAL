@@ -45,10 +45,6 @@ flowchart TD
 - [SAP Help Portal — Analyzing Performance with ABAP Runtime Analysis](https://help.sap.com/docs/ABAP_PLATFORM_NEW/ba879a6e2ea04d9bb94c7ccd7cdac446/3c74c6163ce4459888bc06dedda37685.html)
 - [SAP Help Portal — ABAP Performance and Tuning](https://help.sap.com/docs/SUPPORT_CONTENT/ABAP/3353523595.html)
 
-## 🌺 CAS D’USAGE
-
-Dans un contexte où un programme critique doit conserver ses résultats tout en respectant les exigences de performance, qualité et non-régression, le besoin consiste à **mesurer le temps d’exécution d’un scénario reproductible**. Cette notion est pertinente lorsque le lecteur doit pouvoir relier la syntaxe ou l’outil à une situation professionnelle concrète.
-
 ## 🌺 VÉRIFICATION
 
 - Le scénario reproduit correspond au même utilisateur, mandant, transaction et jeu de données.
@@ -81,14 +77,3 @@ Ordre de transport  :
 - [ATC](<../└─ 🧩 00 - LEXIQUE SAP ET ABAP/10 - 🍧 ACRONYMES SAP.md#acro-atc>)
 - [ABAP](<../└─ 🧩 00 - LEXIQUE SAP ET ABAP/10 - 🍧 ACRONYMES SAP.md#acro-abap>)
 - [Trace](<../└─ 🧩 00 - LEXIQUE SAP ET ABAP/08 - 🍧 EXECUTION EXPLOITATION ET ADMINISTRATION.md#trace>)
-
-## 🌺 À RETENIR
-
-- À l’issue du chapitre, le lecteur sait **mesurer le temps d’exécution d’un scénario reproductible**.
-- Toujours tester sur un objet Z ou un jeu de données sans impact avant d’intervenir sur un traitement réel.
-- La documentation `F1` du système reste la référence pour la syntaxe disponible dans sa release.
-
-
----
-
-➡️ [Chapitre suivant — ANALYSER LES ACCES SQL AVEC ST05](<./08 - 🍧 ANALYSER LES ACCES SQL AVEC ST05.md>)

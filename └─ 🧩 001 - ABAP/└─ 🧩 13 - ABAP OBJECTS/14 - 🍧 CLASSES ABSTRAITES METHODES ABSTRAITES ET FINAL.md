@@ -1,6 +1,6 @@
 # 🌸 CLASSES ABSTRAITES, MÉTHODES ABSTRAITES ET FINAL
 
-## 🌺 OBJECTIFS
+## 🌺 RÉSULTAT ATTENDU
 
 - Empêcher l’instanciation d’une classe incomplète.
 - Imposer une implémentation aux sous-classes.
@@ -14,7 +14,7 @@ Une classe abstraite définit un socle commun mais ne peut pas être instanciée
 
 Plusieurs traitements d’import suivent le même enchaînement : lire, valider, transformer et enregistrer. La classe abstraite définit le flux commun et délègue la lecture du format à chaque sous-classe.
 
-## 🌺 SNIPPET À ADAPTER
+## 🌺 CODE À ADAPTER
 
 ```abap
 CLASS zcl_dev_importer DEFINITION
@@ -56,7 +56,7 @@ ENDMETHOD.
 - Une méthode finale ne peut pas être redéfinie.
 - Une méthode publique stable peut être finale pour protéger un algorithme commun.
 
-## 🌺 VÉRIFICATION
+## 🌺 CONTRÔLE
 
 - La classe abstraite ne peut pas être créée avec `NEW`.
 - La sous-classe reste inactive tant qu’une méthode abstraite n’est pas implémentée.
@@ -67,6 +67,12 @@ ENDMETHOD.
 - Créer une classe abstraite sans comportement commun.
 - Utiliser l’abstraction pour remplacer une interface alors qu’aucun état partagé n’est nécessaire.
 - Déclarer `FINAL` partout sans besoin réel d’intégrité du contrat.
+
+## 🌺 COMPATIBILITÉ S/4HANA
+
+- Statut : compatible avec le développement ABAP classique sur SAP S/4HANA.
+- Vérifier la syntaxe exacte avec l’aide `F1` du système cible lorsque plusieurs versions d’ABAP Platform sont prises en charge.
+- Les objets globaux doivent être créés dans le package et l’ordre de transport du projet.
 
 ## 🌺 RÉFÉRENCES OFFICIELLES SAP
 

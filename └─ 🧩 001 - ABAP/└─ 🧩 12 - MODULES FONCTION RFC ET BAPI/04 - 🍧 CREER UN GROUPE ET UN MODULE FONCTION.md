@@ -78,10 +78,6 @@ Le groupe de fonctions et les modules sont des objets Repository. Vérifier que 
 - les types DDIC requis sont transportés avant ou avec le module ;
 - l’activation est complète dans le système source.
 
-## 🌺 CAS D’USAGE
-
-Dans un contexte où une logique doit être réutilisée localement ou appelée à distance tout en respectant son interface et sa transaction, le besoin consiste à **analyser ou appeler créer un groupe et un module fonction en respectant l’interface, les exceptions, les autorisations et la transaction**. Cette notion est pertinente lorsque le lecteur doit pouvoir relier la syntaxe ou l’outil à une situation professionnelle concrète.
-
 ## 🌺 PROCÉDURE PAS À PAS
 
 1. Saisir `/nSE80`.
@@ -124,12 +120,6 @@ Ordre de transport  :
 - [RFC](<../└─ 🧩 00 - LEXIQUE SAP ET ABAP/10 - 🍧 ACRONYMES SAP.md#acro-rfc>)
 - [BAPI](<../└─ 🧩 00 - LEXIQUE SAP ET ABAP/10 - 🍧 ACRONYMES SAP.md#acro-bapi>)
 - [Destination RFC](<../└─ 🧩 00 - LEXIQUE SAP ET ABAP/07 - 🍧 INTERFACES ET INTEGRATION.md#destination-rfc>)
-
-## 🌺 À RETENIR
-
-- À l’issue du chapitre, le lecteur sait **analyser ou appeler créer un groupe et un module fonction en respectant l’interface, les exceptions, les autorisations et la transaction**.
-- Toujours tester sur un objet Z ou un jeu de données sans impact avant d’intervenir sur un traitement réel.
-- La documentation `F1` du système reste la référence pour la syntaxe disponible dans sa release.
 
 ## 🌺 RÉFÉRENCES OFFICIELLES SAP
 

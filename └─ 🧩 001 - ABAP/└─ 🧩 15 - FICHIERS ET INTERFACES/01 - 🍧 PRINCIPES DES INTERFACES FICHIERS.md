@@ -57,10 +57,6 @@ Le programme doit pouvoir expliquer précisément :
 4. quelles opérations SAP ont été exécutées ;
 5. comment reprendre sans créer de doublons.
 
-## 🌺 CAS D’USAGE
-
-Dans un contexte où SAP échange un fichier structuré avec une application externe et doit garantir format, encodage, sécurité et reprise, le besoin consiste à **définir le contrat complet d’une interface fichier avant d’écrire le code de lecture ou d’écriture**. Cette notion est pertinente lorsque le choix technique doit être compris avant d’appliquer une procédure.
-
 ## 🌺 PROCÉDURE PAS À PAS
 
 1. Lire la définition et identifier les prérequis du chapitre.
@@ -90,12 +86,6 @@ Dans un contexte où SAP échange un fichier structuré avec une application ext
 - [CSV](<../└─ 🧩 00 - LEXIQUE SAP ET ABAP/07 - 🍧 INTERFACES ET INTEGRATION.md#csv>)
 - [Encodage](<../└─ 🧩 00 - LEXIQUE SAP ET ABAP/07 - 🍧 INTERFACES ET INTEGRATION.md#encodage>)
 - [Serveur d’application](<../└─ 🧩 00 - LEXIQUE SAP ET ABAP/07 - 🍧 INTERFACES ET INTEGRATION.md#fichier-serveur-application>)
-
-## 🌺 À RETENIR
-
-- À l’issue du chapitre, le lecteur sait **définir le contrat complet d’une interface fichier avant d’écrire le code de lecture ou d’écriture**.
-- Toujours tester sur un objet Z ou un jeu de données sans impact avant d’intervenir sur un traitement réel.
-- La documentation `F1` du système reste la référence pour la syntaxe disponible dans sa release.
 
 ## 🌺 RÉFÉRENCES OFFICIELLES SAP
 

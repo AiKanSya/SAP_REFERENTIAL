@@ -86,10 +86,6 @@ L’administration système :
 - gère les certificats ou secrets ;
 - contrôle les autorisations et la disponibilité.
 
-## 🌺 CAS D’USAGE
-
-Dans un contexte où une logique doit être réutilisée localement ou appelée à distance tout en respectant son interface et sa transaction, le besoin consiste à **tester une destination RFC et distinguer connectivité et autorisation**. Cette notion est pertinente lorsque le lecteur doit pouvoir relier la syntaxe ou l’outil à une situation professionnelle concrète.
-
 ## 🌺 PROCÉDURE PAS À PAS
 
 1. Saisir `/nSM59`.
@@ -138,12 +134,6 @@ CALL FUNCTION 'Z_DEV_PRODUCT_GET'
 - [RFC](<../└─ 🧩 00 - LEXIQUE SAP ET ABAP/10 - 🍧 ACRONYMES SAP.md#acro-rfc>)
 - [BAPI](<../└─ 🧩 00 - LEXIQUE SAP ET ABAP/10 - 🍧 ACRONYMES SAP.md#acro-bapi>)
 - [Destination RFC](<../└─ 🧩 00 - LEXIQUE SAP ET ABAP/07 - 🍧 INTERFACES ET INTEGRATION.md#destination-rfc>)
-
-## 🌺 À RETENIR
-
-- À l’issue du chapitre, le lecteur sait **tester une destination RFC et distinguer connectivité et autorisation**.
-- Toujours tester sur un objet Z ou un jeu de données sans impact avant d’intervenir sur un traitement réel.
-- La documentation `F1` du système reste la référence pour la syntaxe disponible dans sa release.
 
 ## 🌺 RÉFÉRENCES OFFICIELLES SAP
 

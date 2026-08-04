@@ -44,10 +44,6 @@ Le nom doit permettre de retrouver rapidement :
 
 Un job enregistré mais non libéré ne démarrera pas. Vérifier le statut, l’heure prévue, l’utilisateur, le programme, la variante et le serveur cible éventuel.
 
-## 🌺 CAS D’USAGE
-
-Dans un contexte où un traitement récurrent et volumineux doit s’exécuter sans session utilisateur, laisser des traces et pouvoir être repris, le besoin consiste à **planifier un job avec programme, variante, utilisateur et condition de démarrage**. Cette notion est pertinente lorsque le lecteur doit pouvoir relier la syntaxe ou l’outil à une situation professionnelle concrète.
-
 ## 🌺 VÉRIFICATION
 
 - Le job apparaît dans `SM37` avec le statut attendu.
@@ -81,12 +77,6 @@ Ordre de transport  :
 - [Spool](<../└─ 🧩 00 - LEXIQUE SAP ET ABAP/06 - 🍧 PROGRAMMES CLASSES ET OBJETS TECHNIQUES.md#spool>)
 - [Processus background](<../└─ 🧩 00 - LEXIQUE SAP ET ABAP/08 - 🍧 EXECUTION EXPLOITATION ET ADMINISTRATION.md#processus-background>)
 - [Variante](<../└─ 🧩 00 - LEXIQUE SAP ET ABAP/06 - 🍧 PROGRAMMES CLASSES ET OBJETS TECHNIQUES.md#variante>)
-
-## 🌺 À RETENIR
-
-- À l’issue du chapitre, le lecteur sait **planifier un job avec programme, variante, utilisateur et condition de démarrage**.
-- Toujours tester sur un objet Z ou un jeu de données sans impact avant d’intervenir sur un traitement réel.
-- La documentation `F1` du système reste la référence pour la syntaxe disponible dans sa release.
 
 ## 🌺 RÉFÉRENCES OFFICIELLES SAP
 

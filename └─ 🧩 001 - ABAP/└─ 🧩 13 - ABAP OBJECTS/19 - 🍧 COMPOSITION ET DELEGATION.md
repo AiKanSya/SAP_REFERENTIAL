@@ -1,6 +1,6 @@
 # 🌸 COMPOSITION ET DÉLÉGATION
 
-## 🌺 OBJECTIFS
+## 🌺 RÉSULTAT ATTENDU
 
 - Construire une classe à partir de collaborateurs.
 - Déléguer une responsabilité au bon objet.
@@ -26,7 +26,7 @@ flowchart LR
 5. Déléguer le traitement à chaque collaborateur.
 6. Garder dans la classe principale uniquement l’orchestration métier.
 
-## 🌺 SNIPPET À ADAPTER
+## 🌺 CODE À ADAPTER
 
 ```abap
 METHOD constructor.
@@ -53,7 +53,7 @@ METHOD is_valid.
 ENDMETHOD.
 ```
 
-## 🌺 VÉRIFICATION
+## 🌺 CONTRÔLE
 
 - La classe principale ne connaît pas les détails de persistance.
 - Chaque collaborateur peut être testé séparément.
@@ -65,6 +65,12 @@ ENDMETHOD.
 - Créer un objet collaborateur directement dans chaque méthode.
 - Exposer les dépendances comme attributs publics.
 - Introduire trop de petites interfaces sans responsabilité réelle.
+
+## 🌺 COMPATIBILITÉ S/4HANA
+
+- Statut : compatible avec le développement ABAP classique sur SAP S/4HANA.
+- Vérifier la syntaxe exacte avec l’aide `F1` du système cible lorsque plusieurs versions d’ABAP Platform sont prises en charge.
+- Les objets globaux doivent être créés dans le package et l’ordre de transport du projet.
 
 ## 🌺 RÉFÉRENCES OFFICIELLES SAP
 

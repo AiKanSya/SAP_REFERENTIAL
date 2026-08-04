@@ -44,10 +44,6 @@ Une branche métier critique non couverte est prioritaire. Une ligne technique s
 - [SAP Help Portal — Coverage Analyzer](https://help.sap.com/docs/ABAP_PLATFORM_NEW/ba879a6e2ea04d9bb94c7ccd7cdac446/49216c634ab514cde10000000a42189b.html)
 - [SAP Help Portal — ABAP Unit](https://help.sap.com/docs/ABAP_PLATFORM_NEW/ba879a6e2ea04d9bb94c7ccd7cdac446/491cfd8926bc14cde10000000a42189b.html)
 
-## 🌺 CAS D’USAGE
-
-Dans un contexte où un programme critique doit conserver ses résultats tout en respectant les exigences de performance, qualité et non-régression, le besoin consiste à **mesurer quelles instructions sont réellement exécutées par les tests**. Cette notion est pertinente lorsque le lecteur doit pouvoir relier la syntaxe ou l’outil à une situation professionnelle concrète.
-
 ## 🌺 PROCÉDURE PAS À PAS
 
 1. Lire la définition et identifier les prérequis du chapitre.
@@ -89,14 +85,3 @@ Ordre de transport  :
 - [ATC](<../└─ 🧩 00 - LEXIQUE SAP ET ABAP/10 - 🍧 ACRONYMES SAP.md#acro-atc>)
 - [ABAP](<../└─ 🧩 00 - LEXIQUE SAP ET ABAP/10 - 🍧 ACRONYMES SAP.md#acro-abap>)
 - [Trace](<../└─ 🧩 00 - LEXIQUE SAP ET ABAP/08 - 🍧 EXECUTION EXPLOITATION ET ADMINISTRATION.md#trace>)
-
-## 🌺 À RETENIR
-
-- À l’issue du chapitre, le lecteur sait **mesurer quelles instructions sont réellement exécutées par les tests**.
-- Toujours tester sur un objet Z ou un jeu de données sans impact avant d’intervenir sur un traitement réel.
-- La documentation `F1` du système reste la référence pour la syntaxe disponible dans sa release.
-
-
----
-
-➡️ [Chapitre suivant — STRATEGIE DE TEST ET NON REGRESSION](<./23 - 🍧 STRATEGIE DE TEST ET NON REGRESSION.md>)

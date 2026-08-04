@@ -1,6 +1,6 @@
 # 🌸 RÉFÉRENCES D’OBJET ET CYCLE DE VIE
 
-## 🌺 OBJECTIFS
+## 🌺 RÉSULTAT ATTENDU
 
 - Déclarer et vérifier une référence d’objet.
 - Comprendre `IS BOUND`, `NEW`, affectation et identité.
@@ -38,7 +38,7 @@ Une fabrique peut ne retourner aucun objet si une configuration facultative est 
 5. Contrôler le chemin de création : constructeur, factory ou injection.
 6. Rechercher les exceptions de type référence initiale dans `ST22` si un dump s’est produit.
 
-## 🌺 SNIPPET D’AFFECTATION ET D’IDENTITÉ
+## 🌺 CODE D’AFFECTATION ET D’IDENTITÉ À ADAPTER
 
 ```abap
 DATA(lo_first)  = NEW zcl_dev_counter( ).
@@ -52,7 +52,7 @@ ASSERT lo_first = lo_second.
 
 Les deux variables désignent ici la même instance.
 
-## 🌺 VÉRIFICATION
+## 🌺 CONTRÔLE
 
 - Différencier une référence initiale d’un objet existant avec état initial.
 - Expliquer pourquoi l’affectation d’une référence ne copie pas l’objet.
@@ -63,6 +63,12 @@ Les deux variables désignent ici la même instance.
 - Tester uniquement `IS INITIAL` sans comprendre le contrat de la méthode.
 - Créer une nouvelle instance à chaque appel alors qu’un objet devait conserver un état.
 - Conserver des références globales statiques sans raison et prolonger inutilement la durée de vie des objets.
+
+## 🌺 COMPATIBILITÉ S/4HANA
+
+- Statut : compatible avec le développement ABAP classique sur SAP S/4HANA.
+- Vérifier la syntaxe exacte avec l’aide `F1` du système cible lorsque plusieurs versions d’ABAP Platform sont prises en charge.
+- Les objets globaux doivent être créés dans le package et l’ordre de transport du projet.
 
 ## 🌺 RÉFÉRENCES OFFICIELLES SAP
 

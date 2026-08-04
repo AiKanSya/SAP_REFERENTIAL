@@ -1,6 +1,6 @@
 # 🌸 MÉTHODES D’INSTANCE ET PARAMÈTRES
 
-## 🌺 OBJECTIFS
+## 🌺 RÉSULTAT ATTENDU
 
 - Définir une méthode d’instance dans `SE24`.
 - Choisir les catégories de paramètres.
@@ -33,7 +33,7 @@ Une méthode fonctionnelle courte privilégie souvent `IMPORTING` et un seul `RE
 
 Calculer le total d’une liste de lignes de commande sans modifier la table fournie.
 
-## 🌺 SNIPPET À ADAPTER
+## 🌺 CODE À ADAPTER
 
 ```abap
 METHOD calculate_total.
@@ -54,7 +54,7 @@ DATA(lv_total) = lo_service->calculate_total( lt_items ).
 
 La configuration exacte dépend de la catégorie de paramètre et de la release. Un paramètre de retour est transmis par valeur. Pour les gros volumes, éviter les copies inutiles, mais ne pas sacrifier la clarté de l’interface sans mesure réelle.
 
-## 🌺 VÉRIFICATION
+## 🌺 CONTRÔLE
 
 - La méthode ne modifie pas `IT_ITEMS`.
 - Le résultat est déterministe pour une même entrée.
@@ -66,6 +66,12 @@ La configuration exacte dépend de la catégorie de paramètre et de la release.
 - Utiliser plusieurs `EXPORTING` alors qu’une structure de résultat serait plus claire.
 - Modifier indirectement un objet fourni sans que l’interface le signale.
 - Retourner `sy-subrc` au lieu d’une exception ou d’un résultat métier explicite.
+
+## 🌺 COMPATIBILITÉ S/4HANA
+
+- Statut : compatible avec le développement ABAP classique sur SAP S/4HANA.
+- Vérifier la syntaxe exacte avec l’aide `F1` du système cible lorsque plusieurs versions d’ABAP Platform sont prises en charge.
+- Les objets globaux doivent être créés dans le package et l’ordre de transport du projet.
 
 ## 🌺 RÉFÉRENCES OFFICIELLES SAP
 

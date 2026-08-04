@@ -173,10 +173,6 @@ Surveiller notamment :
 - tester chaque branche et chaque mode de sortie ;
 - ne pas utiliser une construction moderne sans vérifier la version ABAP cible.
 
-## 🌺 CAS D’USAGE
-
-Dans un contexte où un traitement doit appliquer plusieurs règles métier et arrêter ou poursuivre le flux selon les données rencontrées, le besoin consiste à **mesurer le temps d’exécution d’un scénario reproductible**. Cette notion est pertinente lorsque le lecteur doit pouvoir relier la syntaxe ou l’outil à une situation professionnelle concrète.
-
 ## 🌺 PROCÉDURE PAS À PAS
 
 1. Saisir `/nSAT`.
@@ -241,12 +237,6 @@ START-OF-SELECTION.
 
 - [Instruction ABAP](<../└─ 🧩 00 - LEXIQUE SAP ET ABAP/04 - 🍧 LANGAGE ET DEVELOPPEMENT ABAP.md#instruction-abap>)
 - [Expression](<../└─ 🧩 00 - LEXIQUE SAP ET ABAP/04 - 🍧 LANGAGE ET DEVELOPPEMENT ABAP.md#expression>)
-
-## 🌺 À RETENIR
-
-- À l’issue du chapitre, le lecteur sait **mesurer le temps d’exécution d’un scénario reproductible**.
-- Toujours tester sur un objet Z ou un jeu de données sans impact avant d’intervenir sur un traitement réel.
-- La documentation `F1` du système reste la référence pour la syntaxe disponible dans sa release.
 
 ## 🌺 RÉFÉRENCES OFFICIELLES SAP
 

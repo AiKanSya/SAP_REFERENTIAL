@@ -1,6 +1,6 @@
 # 🌸 SINGLETON
 
-## 🌺 OBJECTIFS
+## 🌺 RÉSULTAT ATTENDU
 
 - Implémenter un Singleton avec une classe globale `SE24`.
 - Garantir une instance unique par session interne.
@@ -34,7 +34,7 @@ flowchart TD
 7. Activer la classe.
 8. Appeler deux fois la méthode et comparer les références.
 
-## 🌺 SNIPPET COMPLET
+## 🌺 CODE PRÊT À ADAPTER
 
 ```abap
 CLASS zcl_dev_app_context DEFINITION
@@ -90,7 +90,7 @@ ASSERT lo_first = lo_second.
 
 Un Singleton est un état global masqué. Il complique les tests, le parallélisme et la réinitialisation. Il est pertinent pour une ressource réellement unique dans la session, pas pour éviter de transmettre une dépendance.
 
-## 🌺 VÉRIFICATION
+## 🌺 CONTRÔLE
 
 - `NEW zcl_dev_app_context( )` est interdit hors de la classe.
 - Deux appels retournent la même référence.
@@ -102,6 +102,12 @@ Un Singleton est un état global masqué. Il complique les tests, le parallélis
 - Considérer le Singleton comme unique dans tout le système SAP.
 - Stocker des données métier sensibles dans un attribut statique.
 - Utiliser le pattern à la place d’une injection de dépendances.
+
+## 🌺 COMPATIBILITÉ S/4HANA
+
+- Statut : compatible avec le développement ABAP classique sur SAP S/4HANA.
+- Vérifier la syntaxe exacte avec l’aide `F1` du système cible lorsque plusieurs versions d’ABAP Platform sont prises en charge.
+- Les objets globaux doivent être créés dans le package et l’ordre de transport du projet.
 
 ## 🌺 RÉFÉRENCES OFFICIELLES SAP
 

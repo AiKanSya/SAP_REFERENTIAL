@@ -52,10 +52,6 @@ Conserver la worklist initiale, la justification du choix, la correction et les 
 - [SAP Help Portal — SQL Monitor](https://help.sap.com/docs/ABAP_PLATFORM_NEW/a24970c68fcf4770a64bf9a78e3719e2/1ec2329419b64f3992a9c342437d3a0f.html)
 - [SAP Help Portal — Code Inspector](https://help.sap.com/docs/ABAP_PLATFORM_NEW/ba879a6e2ea04d9bb94c7ccd7cdac446/49205531d0fc14cfe10000000a42189b.html)
 
-## 🌺 CAS D’USAGE
-
-Dans un contexte où un programme critique doit conserver ses résultats tout en respectant les exigences de performance, qualité et non-régression, le besoin consiste à **appliquer prioriser avec swlt pour mesurer, contrôler et sécuriser la qualité d’une livraison ABAP**. Cette notion est pertinente lorsque le lecteur doit pouvoir relier la syntaxe ou l’outil à une situation professionnelle concrète.
-
 ## 🌺 PROCÉDURE PAS À PAS
 
 1. Lire la définition et identifier les prérequis du chapitre.
@@ -97,14 +93,3 @@ Ordre de transport  :
 - [ATC](<../└─ 🧩 00 - LEXIQUE SAP ET ABAP/10 - 🍧 ACRONYMES SAP.md#acro-atc>)
 - [ABAP](<../└─ 🧩 00 - LEXIQUE SAP ET ABAP/10 - 🍧 ACRONYMES SAP.md#acro-abap>)
 - [Trace](<../└─ 🧩 00 - LEXIQUE SAP ET ABAP/08 - 🍧 EXECUTION EXPLOITATION ET ADMINISTRATION.md#trace>)
-
-## 🌺 À RETENIR
-
-- À l’issue du chapitre, le lecteur sait **appliquer prioriser avec swlt pour mesurer, contrôler et sécuriser la qualité d’une livraison ABAP**.
-- Toujours tester sur un objet Z ou un jeu de données sans impact avant d’intervenir sur un traitement réel.
-- La documentation `F1` du système reste la référence pour la syntaxe disponible dans sa release.
-
-
----
-
-➡️ [Chapitre suivant — CONTROLES STATIQUES ET CONTROLE SYNTAXIQUE](<./11 - 🍧 CONTROLES STATIQUES ET CONTROLE SYNTAXIQUE.md>)

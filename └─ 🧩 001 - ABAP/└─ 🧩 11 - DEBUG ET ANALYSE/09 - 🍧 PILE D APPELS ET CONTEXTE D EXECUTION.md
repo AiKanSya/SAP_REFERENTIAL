@@ -71,10 +71,6 @@ Les programmes système peuvent être masqués ou affichés différemment. Leur 
 
 Activer ce mode uniquement lorsque le problème se situe réellement dans une couche système ou standard.
 
-## 🌺 CAS D’USAGE
-
-Dans un contexte où un incident ne se produit que pour certaines données et doit être reproduit puis localisé sans modifier le comportement métier, le besoin consiste à **utiliser pile d’appels et contexte d’exécution pour collecter une preuve technique et localiser la cause d’un incident reproductible**. Cette notion est pertinente lorsque le lecteur doit pouvoir relier la syntaxe ou l’outil à une situation professionnelle concrète.
-
 ## 🌺 PROCÉDURE PAS À PAS
 
 1. Lire la définition et identifier les prérequis du chapitre.
@@ -117,12 +113,6 @@ Ordre de transport  :
 - [Watchpoint](<../└─ 🧩 00 - LEXIQUE SAP ET ABAP/08 - 🍧 EXECUTION EXPLOITATION ET ADMINISTRATION.md#watchpoint>)
 - [Dump ABAP](<../└─ 🧩 00 - LEXIQUE SAP ET ABAP/08 - 🍧 EXECUTION EXPLOITATION ET ADMINISTRATION.md#dump-abap>)
 - [Trace](<../└─ 🧩 00 - LEXIQUE SAP ET ABAP/08 - 🍧 EXECUTION EXPLOITATION ET ADMINISTRATION.md#trace>)
-
-## 🌺 À RETENIR
-
-- À l’issue du chapitre, le lecteur sait **utiliser pile d’appels et contexte d’exécution pour collecter une preuve technique et localiser la cause d’un incident reproductible**.
-- Toujours tester sur un objet Z ou un jeu de données sans impact avant d’intervenir sur un traitement réel.
-- La documentation `F1` du système reste la référence pour la syntaxe disponible dans sa release.
 
 ## 🌺 RÉFÉRENCES OFFICIELLES SAP
 

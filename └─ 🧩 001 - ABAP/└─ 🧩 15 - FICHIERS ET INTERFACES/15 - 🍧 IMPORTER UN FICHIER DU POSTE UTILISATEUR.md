@@ -53,10 +53,6 @@ Pour un contrat d’interface strict, importer des lignes texte puis effectuer s
 
 La méthode d’import doit retourner un contenu brut ou une table de lignes. Une méthode distincte transforme ce contenu en données métier. Le test du parsing devient alors indépendant de SAP GUI.
 
-## 🌺 CAS D’USAGE
-
-Dans un contexte où SAP échange un fichier structuré avec une application externe et doit garantir format, encodage, sécurité et reprise, le besoin consiste à **mesurer le temps d’exécution d’un scénario reproductible**. Cette notion est pertinente lorsque le lecteur doit pouvoir relier la syntaxe ou l’outil à une situation professionnelle concrète.
-
 ## 🌺 PROCÉDURE PAS À PAS
 
 1. Saisir `/nSAT`.
@@ -115,12 +111,6 @@ ENDIF.
 - [Flux sortant](<../└─ 🧩 00 - LEXIQUE SAP ET ABAP/07 - 🍧 INTERFACES ET INTEGRATION.md#flux-sortant>)
 - [CSV](<../└─ 🧩 00 - LEXIQUE SAP ET ABAP/07 - 🍧 INTERFACES ET INTEGRATION.md#csv>)
 - [Encodage](<../└─ 🧩 00 - LEXIQUE SAP ET ABAP/07 - 🍧 INTERFACES ET INTEGRATION.md#encodage>)
-
-## 🌺 À RETENIR
-
-- À l’issue du chapitre, le lecteur sait **mesurer le temps d’exécution d’un scénario reproductible**.
-- Toujours tester sur un objet Z ou un jeu de données sans impact avant d’intervenir sur un traitement réel.
-- La documentation `F1` du système reste la référence pour la syntaxe disponible dans sa release.
 
 ## 🌺 RÉFÉRENCES OFFICIELLES SAP
 

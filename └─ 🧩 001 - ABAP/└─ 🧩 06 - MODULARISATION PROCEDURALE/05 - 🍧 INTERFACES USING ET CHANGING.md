@@ -143,20 +143,6 @@ Ces préfixes ne font pas partie du langage ABAP. Ils doivent rester cohérents 
 - Une table interne doit être typée explicitement avec `USING` ou `CHANGING`.
 - L’addition `TABLES` est obsolète et doit être évitée dans le nouveau code.
 
-## 🌺 CAS D’USAGE
-
-Dans un contexte où un report devenu long doit être découpé en unités compréhensibles et testables sans modifier son résultat, le besoin consiste à **organiser un programme procédural avec interfaces using et changing sans créer de dépendances globales inutiles**. Cette notion est pertinente lorsque le lecteur doit pouvoir relier la syntaxe ou l’outil à une situation professionnelle concrète.
-
-## 🌺 PROCÉDURE PAS À PAS
-
-1. Saisir `/nSE38` dans le champ de commande.
-2. Entrer le nom d’un programme Z de test, par exemple `ZREF_DEMO`, puis choisir **Créer** ou **Modifier** selon le cas.
-3. Pour un exercice local uniquement, affecter `$TMP` ; pour un développement livrable, utiliser le package et l’ordre fournis par le projet.
-4. Coller ou adapter le snippet du chapitre.
-5. Exécuter le contrôle syntaxique avec `Ctrl+F2`.
-6. Activer avec `Ctrl+F3`.
-7. Exécuter avec `F8` et comparer le résultat avec la section **Vérification**.
-
 ## 🌺 VÉRIFICATION
 
 - Le contrôle syntaxique réussit.

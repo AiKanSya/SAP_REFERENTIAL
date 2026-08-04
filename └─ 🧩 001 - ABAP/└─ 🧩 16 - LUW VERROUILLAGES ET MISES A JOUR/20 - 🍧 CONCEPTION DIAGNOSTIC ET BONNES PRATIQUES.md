@@ -47,10 +47,6 @@ flowchart TD
 - [ ] Diagnostic `SM12`, `SM13`, `ST22` et logs testé
 - [ ] Tests de rollback et d’échec partiel exécutés
 
-## 🌺 CAS D’USAGE
-
-Dans un contexte où plusieurs modifications liées doivent être validées ensemble et protégées contre les accès concurrents, le besoin consiste à **analyser méthodiquement « conception, diagnostic et bonnes pratiques » à partir d’un scénario reproductible**. Cette notion est pertinente lorsque plusieurs solutions sont possibles et il faut retenir celle qui limite les risques de maintenance.
-
 ## 🌺 PROCÉDURE PAS À PAS
 
 1. Saisir `/nST22`.
@@ -95,12 +91,6 @@ Ordre de transport  :
 - [ROLLBACK WORK](<../└─ 🧩 00 - LEXIQUE SAP ET ABAP/08 - 🍧 EXECUTION EXPLOITATION ET ADMINISTRATION.md#rollback-work>)
 - [Enqueue server](<../└─ 🧩 00 - LEXIQUE SAP ET ABAP/08 - 🍧 EXECUTION EXPLOITATION ET ADMINISTRATION.md#enqueue-server>)
 - [Update task](<../└─ 🧩 00 - LEXIQUE SAP ET ABAP/08 - 🍧 EXECUTION EXPLOITATION ET ADMINISTRATION.md#update-task>)
-
-## 🌺 À RETENIR
-
-- À l’issue du chapitre, le lecteur sait **analyser méthodiquement « conception, diagnostic et bonnes pratiques » à partir d’un scénario reproductible**.
-- Toujours tester sur un objet Z ou un jeu de données sans impact avant d’intervenir sur un traitement réel.
-- La documentation `F1` du système reste la référence pour la syntaxe disponible dans sa release.
 
 ## 🌺 RÉFÉRENCES OFFICIELLES SAP
 

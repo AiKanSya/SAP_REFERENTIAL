@@ -1,6 +1,6 @@
 # 🌸 PATTERNS STRATEGY, ADAPTER ET FAÇADE
 
-## 🌺 OBJECTIFS
+## 🌺 RÉSULTAT ATTENDU
 
 - Reconnaître trois patterns courants en ABAP Objects.
 - Choisir un pattern en fonction du problème, pas par effet de mode.
@@ -61,7 +61,7 @@ La façade orchestre les validateurs, repositories et appels techniques, mais ne
 | Centraliser la création | Factory |
 | Une seule instance par session | Singleton, avec prudence |
 
-## 🌺 VÉRIFICATION
+## 🌺 CONTRÔLE
 
 Le pattern doit réduire le couplage observable. Si le nombre de classes augmente sans simplifier les consommateurs ou les tests, la conception doit être réévaluée.
 
@@ -70,6 +70,12 @@ Le pattern doit réduire le couplage observable. Si le nombre de classes augment
 - Ajouter un pattern pour un seul `IF` stable.
 - Confondre façade et classe « fourre-tout ».
 - Adapter une API que l’on contrôle au lieu de corriger directement son contrat.
+
+## 🌺 COMPATIBILITÉ S/4HANA
+
+- Statut : compatible avec le développement ABAP classique sur SAP S/4HANA.
+- Vérifier la syntaxe exacte avec l’aide `F1` du système cible lorsque plusieurs versions d’ABAP Platform sont prises en charge.
+- Les objets globaux doivent être créés dans le package et l’ordre de transport du projet.
 
 ## 🌺 RÉFÉRENCES OFFICIELLES SAP
 

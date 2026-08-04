@@ -56,20 +56,6 @@ Réduire d’abord le volume lu et conservé. Une micro-optimisation de quelques
 - [SAP Help Portal — ABAP Performance and Tuning](https://help.sap.com/docs/SUPPORT_CONTENT/ABAP/3353523595.html)
 - [ABAP Keyword Documentation — Internal Tables Performance Notes](https://help.sap.com/doc/abapdocu_latest_index_htm/latest/en-US/abenitab_perfo.html)
 
-## 🌺 CAS D’USAGE
-
-Dans un contexte où un programme critique doit conserver ses résultats tout en respectant les exigences de performance, qualité et non-régression, le besoin consiste à **appliquer maitriser memoire copies et volumes pour mesurer, contrôler et sécuriser la qualité d’une livraison ABAP**. Cette notion est pertinente lorsque le lecteur doit pouvoir relier la syntaxe ou l’outil à une situation professionnelle concrète.
-
-## 🌺 PROCÉDURE PAS À PAS
-
-1. Saisir `/nSE38` dans le champ de commande.
-2. Entrer le nom d’un programme Z de test, par exemple `ZREF_DEMO`, puis choisir **Créer** ou **Modifier** selon le cas.
-3. Pour un exercice local uniquement, affecter `$TMP` ; pour un développement livrable, utiliser le package et l’ordre fournis par le projet.
-4. Coller ou adapter le snippet du chapitre.
-5. Exécuter le contrôle syntaxique avec `Ctrl+F2`.
-6. Activer avec `Ctrl+F3`.
-7. Exécuter avec `F8` et comparer le résultat avec la section **Vérification**.
-
 ## 🌺 VÉRIFICATION
 
 - Le résultat fonctionnel est identique avant et après optimisation.
@@ -100,14 +86,3 @@ ENDLOOP.
 - [ATC](<../└─ 🧩 00 - LEXIQUE SAP ET ABAP/10 - 🍧 ACRONYMES SAP.md#acro-atc>)
 - [ABAP](<../└─ 🧩 00 - LEXIQUE SAP ET ABAP/10 - 🍧 ACRONYMES SAP.md#acro-abap>)
 - [Trace](<../└─ 🧩 00 - LEXIQUE SAP ET ABAP/08 - 🍧 EXECUTION EXPLOITATION ET ADMINISTRATION.md#trace>)
-
-## 🌺 À RETENIR
-
-- À l’issue du chapitre, le lecteur sait **appliquer maitriser memoire copies et volumes pour mesurer, contrôler et sécuriser la qualité d’une livraison ABAP**.
-- Toujours tester sur un objet Z ou un jeu de données sans impact avant d’intervenir sur un traitement réel.
-- La documentation `F1` du système reste la référence pour la syntaxe disponible dans sa release.
-
-
----
-
-➡️ [Chapitre suivant — MESURER LE TEMPS D EXECUTION AVEC SAT](<./07 - 🍧 MESURER LE TEMPS D EXECUTION AVEC SAT.md>)

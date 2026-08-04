@@ -165,10 +165,6 @@ flowchart LR
 | Libérer dans le mauvais ordre                       | Dépendance non satisfaite                        |
 | Transporter sans test après import                  | Défaut découvert tardivement                     |
 
-## 🌺 CAS D’USAGE
-
-Dans un contexte où une intervention de correction doit être réalisée dans le bon système et sur le bon objet sans affecter un environnement non autorisé, le besoin consiste à **enregistrer chaque modification dans le package et le transport appropriés**. Cette notion est pertinente lorsque le lecteur doit pouvoir relier la syntaxe ou l’outil à une situation professionnelle concrète.
-
 ## 🌺 PROCÉDURE PAS À PAS
 
 1. Lors de la sauvegarde d’un objet, saisir le package fourni par le projet ; utiliser `$TMP` uniquement pour un objet local autorisé.
@@ -209,12 +205,6 @@ Ordre de transport  :
 - [SAP GUI](<../└─ 🧩 00 - LEXIQUE SAP ET ABAP/02 - 🍧 SAP GUI NAVIGATION ET TRANSACTIONS.md#sap-gui>)
 - [Transaction](<../└─ 🧩 00 - LEXIQUE SAP ET ABAP/02 - 🍧 SAP GUI NAVIGATION ET TRANSACTIONS.md#transaction>)
 - [Repository ABAP](<../└─ 🧩 00 - LEXIQUE SAP ET ABAP/03 - 🍧 REPOSITORY PACKAGES ET TRANSPORTS.md#repository-abap>)
-
-## 🌺 À RETENIR
-
-- À l’issue du chapitre, le lecteur sait **enregistrer chaque modification dans le package et le transport appropriés**.
-- Toujours tester sur un objet Z ou un jeu de données sans impact avant d’intervenir sur un traitement réel.
-- La documentation `F1` du système reste la référence pour la syntaxe disponible dans sa release.
 
 ## 🌺 RÉFÉRENCES OFFICIELLES SAP
 

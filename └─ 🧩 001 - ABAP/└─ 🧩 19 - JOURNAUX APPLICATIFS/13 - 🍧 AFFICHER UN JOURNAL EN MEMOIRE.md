@@ -43,10 +43,6 @@ Le profil BAL est une structure technique `BAL_S_PROF`. Il ne s’agit pas d’u
 
 L’affichage immédiat exige une session dialogue. Il ne doit pas être utilisé comme dépendance d’un traitement batch. En arrière-plan, sauvegarder le journal et fournir son objet, son sous-objet et son identifiant externe dans le spool ou le journal de job.
 
-## 🌺 CAS D’USAGE
-
-Dans un contexte où un traitement automatique doit produire un historique exploitable par le support avec contexte, messages et identifiants, le besoin consiste à **obtenir et interpréter le résultat attendu pour « afficher un journal en mémoire »**. Cette notion est pertinente lorsque le lecteur doit pouvoir relier la syntaxe ou l’outil à une situation professionnelle concrète.
-
 ## 🌺 PROCÉDURE PAS À PAS
 
 1. Saisir `/nSLG1`.
@@ -99,12 +95,6 @@ CALL FUNCTION 'BAL_DSP_LOG_DISPLAY'
 - [Application Log](<../└─ 🧩 00 - LEXIQUE SAP ET ABAP/08 - 🍧 EXECUTION EXPLOITATION ET ADMINISTRATION.md#application-log>)
 - [BAL](<../└─ 🧩 00 - LEXIQUE SAP ET ABAP/10 - 🍧 ACRONYMES SAP.md#acro-bal>)
 - [Job](<../└─ 🧩 00 - LEXIQUE SAP ET ABAP/06 - 🍧 PROGRAMMES CLASSES ET OBJETS TECHNIQUES.md#job>)
-
-## 🌺 À RETENIR
-
-- À l’issue du chapitre, le lecteur sait **obtenir et interpréter le résultat attendu pour « afficher un journal en mémoire »**.
-- Toujours tester sur un objet Z ou un jeu de données sans impact avant d’intervenir sur un traitement réel.
-- La documentation `F1` du système reste la référence pour la syntaxe disponible dans sa release.
 
 ## 🌺 RÉFÉRENCES OFFICIELLES SAP
 

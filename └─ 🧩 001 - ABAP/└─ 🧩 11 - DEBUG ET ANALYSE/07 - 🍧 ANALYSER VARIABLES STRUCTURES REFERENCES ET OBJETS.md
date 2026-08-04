@@ -37,10 +37,6 @@ DATA ls_product TYPE ty_product.
 
 Dans le débogueur, développer `ls_product`, puis contrôler chaque composant. Une structure entièrement initiale indique souvent qu’elle n’a pas été alimentée, mais ce n’est pas toujours une erreur.
 
-## 🌺 CAS D’USAGE
-
-Dans un contexte où un incident ne se produit que pour certaines données et doit être reproduit puis localisé sans modifier le comportement métier, le besoin consiste à **analyser méthodiquement « analyser variables, structures, références et objets » à partir d’un scénario reproductible**. Cette notion est pertinente lorsque la modification ne doit intervenir qu’après identification du bon objet et de son impact.
-
 ## 🌺 PROCÉDURE PAS À PAS
 
 1. Lire la définition et identifier les prérequis du chapitre.
@@ -87,12 +83,6 @@ DATA ls_product TYPE ty_product.
 - [Watchpoint](<../└─ 🧩 00 - LEXIQUE SAP ET ABAP/08 - 🍧 EXECUTION EXPLOITATION ET ADMINISTRATION.md#watchpoint>)
 - [Dump ABAP](<../└─ 🧩 00 - LEXIQUE SAP ET ABAP/08 - 🍧 EXECUTION EXPLOITATION ET ADMINISTRATION.md#dump-abap>)
 - [Trace](<../└─ 🧩 00 - LEXIQUE SAP ET ABAP/08 - 🍧 EXECUTION EXPLOITATION ET ADMINISTRATION.md#trace>)
-
-## 🌺 À RETENIR
-
-- À l’issue du chapitre, le lecteur sait **analyser méthodiquement « analyser variables, structures, références et objets » à partir d’un scénario reproductible**.
-- Toujours tester sur un objet Z ou un jeu de données sans impact avant d’intervenir sur un traitement réel.
-- La documentation `F1` du système reste la référence pour la syntaxe disponible dans sa release.
 
 ## 🌺 RÉFÉRENCES
 

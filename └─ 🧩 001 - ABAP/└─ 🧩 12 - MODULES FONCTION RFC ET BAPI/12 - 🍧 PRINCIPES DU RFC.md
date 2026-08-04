@@ -61,10 +61,6 @@ Le choix dépend du besoin de réponse, d’ordre, de fiabilité et de reprise.
 
 Une BAPI est généralement implémentée par un module fonction compatible RFC, mais tout module RFC n’est pas une BAPI. La BAPI ajoute un contrat métier standardisé et une gouvernance d’API.
 
-## 🌺 CAS D’USAGE
-
-Dans un contexte où une logique doit être réutilisée localement ou appelée à distance tout en respectant son interface et sa transaction, le besoin consiste à **analyser ou appeler principes du rfc en respectant l’interface, les exceptions, les autorisations et la transaction**. Cette notion est pertinente lorsque le choix technique doit être compris avant d’appliquer une procédure.
-
 ## 🌺 PROCÉDURE PAS À PAS
 
 1. Saisir `/nSE37`.
@@ -92,12 +88,6 @@ Dans un contexte où une logique doit être réutilisée localement ou appelée 
 - [RFC](<../└─ 🧩 00 - LEXIQUE SAP ET ABAP/10 - 🍧 ACRONYMES SAP.md#acro-rfc>)
 - [BAPI](<../└─ 🧩 00 - LEXIQUE SAP ET ABAP/10 - 🍧 ACRONYMES SAP.md#acro-bapi>)
 - [Destination RFC](<../└─ 🧩 00 - LEXIQUE SAP ET ABAP/07 - 🍧 INTERFACES ET INTEGRATION.md#destination-rfc>)
-
-## 🌺 À RETENIR
-
-- À l’issue du chapitre, le lecteur sait **analyser ou appeler principes du rfc en respectant l’interface, les exceptions, les autorisations et la transaction**.
-- Toujours tester sur un objet Z ou un jeu de données sans impact avant d’intervenir sur un traitement réel.
-- La documentation `F1` du système reste la référence pour la syntaxe disponible dans sa release.
 
 ## 🌺 RÉFÉRENCES OFFICIELLES SAP
 

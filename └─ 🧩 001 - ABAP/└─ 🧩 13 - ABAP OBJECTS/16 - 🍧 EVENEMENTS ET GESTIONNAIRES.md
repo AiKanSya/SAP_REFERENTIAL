@@ -1,6 +1,6 @@
 # 🌸 ÉVÉNEMENTS ET GESTIONNAIRES
 
-## 🌺 OBJECTIFS
+## 🌺 RÉSULTAT ATTENDU
 
 - Déclarer un événement dans une classe globale.
 - Lever l’événement.
@@ -22,7 +22,7 @@ Un traitement long publie sa progression. Plusieurs consommateurs peuvent réagi
 7. Enregistrer le gestionnaire avec `SET HANDLER`.
 8. Exécuter et vérifier le déclenchement.
 
-## 🌺 SNIPPET ÉMETTEUR
+## 🌺 CODE ÉMETTEUR À ADAPTER
 
 ```abap
 EVENTS progress_changed
@@ -38,7 +38,7 @@ METHOD execute.
 ENDMETHOD.
 ```
 
-## 🌺 SNIPPET GESTIONNAIRE
+## 🌺 CODE GESTIONNAIRE À ADAPTER
 
 ```abap
 METHOD on_progress_changed.
@@ -56,7 +56,7 @@ lo_service->execute( ).
 - Une exception dans un gestionnaire suit les règles spécifiques des événements et doit être conçue avec prudence.
 - Les événements ne remplacent pas un résultat de méthode requis immédiatement.
 
-## 🌺 VÉRIFICATION
+## 🌺 CONTRÔLE
 
 - Le gestionnaire est appelé exactement le nombre attendu de fois.
 - Aucun appel n’a lieu avant `SET HANDLER`.
@@ -67,6 +67,12 @@ lo_service->execute( ).
 - Utiliser un événement pour un simple appel direct connu.
 - Enregistrer plusieurs fois le même gestionnaire sans le savoir.
 - Modifier lourdement l’état métier dans un gestionnaire de notification.
+
+## 🌺 COMPATIBILITÉ S/4HANA
+
+- Statut : compatible avec le développement ABAP classique sur SAP S/4HANA.
+- Vérifier la syntaxe exacte avec l’aide `F1` du système cible lorsque plusieurs versions d’ABAP Platform sont prises en charge.
+- Les objets globaux doivent être créés dans le package et l’ordre de transport du projet.
 
 ## 🌺 RÉFÉRENCES OFFICIELLES SAP
 

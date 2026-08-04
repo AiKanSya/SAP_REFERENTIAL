@@ -1,6 +1,6 @@
 # 🌸 PRINCIPES D’ABAP OBJECTS ET CLASSES GLOBALES
 
-## 🌺 OBJECTIFS
+## 🌺 RÉSULTAT ATTENDU
 
 - Comprendre le rôle d’une classe globale dans un système ABAP.
 - Distinguer classe, objet, référence et instance.
@@ -54,7 +54,7 @@ Un programme d’achat doit vérifier une quantité, lire les données article, 
 5. Créer un report de démonstration ou un test ABAP Unit.
 6. Vérifier qu’un appelant n’a pas besoin de connaître l’implémentation interne.
 
-## 🌺 SNIPPET À ADAPTER
+## 🌺 CODE À ADAPTER
 
 ```abap
 DATA(lo_service) = NEW zcl_dev_order_service( ).
@@ -70,7 +70,7 @@ ENDTRY.
 > [!IMPORTANT]
 > Le nom de classe, la méthode, le type de résultat et l’exception sont fictifs. Ils doivent être créés dans le namespace client.
 
-## 🌺 VÉRIFICATION
+## 🌺 CONTRÔLE
 
 Le chapitre est acquis lorsque le lecteur peut expliquer :
 
@@ -84,6 +84,12 @@ Le chapitre est acquis lorsque le lecteur peut expliquer :
 - Exposer tous les attributs en `PUBLIC`.
 - Utiliser une classe uniquement comme regroupement de méthodes statiques sans état ni abstraction.
 - Mélanger accès aux données, dialogue utilisateur et calcul métier dans la même méthode.
+
+## 🌺 COMPATIBILITÉ S/4HANA
+
+- Statut : compatible avec le développement ABAP classique sur SAP S/4HANA.
+- Vérifier la syntaxe exacte avec l’aide `F1` du système cible lorsque plusieurs versions d’ABAP Platform sont prises en charge.
+- Les objets globaux doivent être créés dans le package et l’ordre de transport du projet.
 
 ## 🌺 RÉFÉRENCES OFFICIELLES SAP
 

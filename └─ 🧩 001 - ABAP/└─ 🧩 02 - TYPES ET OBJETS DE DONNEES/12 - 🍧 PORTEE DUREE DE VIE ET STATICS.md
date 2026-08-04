@@ -206,10 +206,6 @@ ENDFORM.
 
 `lv_message` est recréée à chaque appel. `sv_call_count` conserve son état entre les deux appels.
 
-## 🌺 CAS D’USAGE
-
-Dans un contexte où un programme de contrôle manipule des identifiants, montants, dates, statuts et structures dont le typage doit rester explicite, le besoin consiste à **déclarer et utiliser portée, durée de vie et `statics` avec un typage explicite dans un programme ABAP**. Cette notion est pertinente lorsque le lecteur doit pouvoir relier la syntaxe ou l’outil à une situation professionnelle concrète.
-
 ## 🌺 VÉRIFICATION
 
 - Le contrôle syntaxique réussit.
@@ -257,12 +253,6 @@ ENDFORM.
 - [Table interne](<../└─ 🧩 00 - LEXIQUE SAP ET ABAP/04 - 🍧 LANGAGE ET DEVELOPPEMENT ABAP.md#table-interne>)
 - [Field-symbol](<../└─ 🧩 00 - LEXIQUE SAP ET ABAP/04 - 🍧 LANGAGE ET DEVELOPPEMENT ABAP.md#field-symbol>)
 - [Référence](<../└─ 🧩 00 - LEXIQUE SAP ET ABAP/04 - 🍧 LANGAGE ET DEVELOPPEMENT ABAP.md#reference>)
-
-## 🌺 À RETENIR
-
-- À l’issue du chapitre, le lecteur sait **déclarer et utiliser portée, durée de vie et `statics` avec un typage explicite dans un programme ABAP**.
-- Toujours tester sur un objet Z ou un jeu de données sans impact avant d’intervenir sur un traitement réel.
-- La documentation `F1` du système reste la référence pour la syntaxe disponible dans sa release.
 
 ## 🌺 RÉFÉRENCES OFFICIELLES SAP
 

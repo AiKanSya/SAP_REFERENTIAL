@@ -100,10 +100,6 @@ La traduction ne doit pas être remplacée par des textes assemblés manuellemen
 - ne pas réutiliser un numéro avec une nouvelle signification ;
 - conserver les messages stables lorsqu’ils constituent un contrat d’interface.
 
-## 🌺 CAS D’USAGE
-
-Dans un contexte où un import doit signaler clairement les erreurs, permettre leur traitement et éviter les arrêts non maîtrisés, le besoin consiste à **créer un message traduisible puis l’utiliser dans le programme**. Cette notion est pertinente lorsque le lecteur doit pouvoir relier la syntaxe ou l’outil à une situation professionnelle concrète.
-
 ## 🌺 PROCÉDURE PAS À PAS
 
 1. Saisir `/nSE91`.
@@ -145,12 +141,6 @@ Ordre de transport  :
 - [Classe](<../└─ 🧩 00 - LEXIQUE SAP ET ABAP/04 - 🍧 LANGAGE ET DEVELOPPEMENT ABAP.md#classe>)
 - [Exception](<../└─ 🧩 00 - LEXIQUE SAP ET ABAP/04 - 🍧 LANGAGE ET DEVELOPPEMENT ABAP.md#exception>)
 - [Dump ABAP](<../└─ 🧩 00 - LEXIQUE SAP ET ABAP/08 - 🍧 EXECUTION EXPLOITATION ET ADMINISTRATION.md#dump-abap>)
-
-## 🌺 À RETENIR
-
-- À l’issue du chapitre, le lecteur sait **créer un message traduisible puis l’utiliser dans le programme**.
-- Toujours tester sur un objet Z ou un jeu de données sans impact avant d’intervenir sur un traitement réel.
-- La documentation `F1` du système reste la référence pour la syntaxe disponible dans sa release.
 
 ## 🌺 RÉFÉRENCES OFFICIELLES SAP
 

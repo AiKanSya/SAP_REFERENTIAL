@@ -1,6 +1,6 @@
 # 🌸 FACTORY METHOD ET SIMPLE FACTORY
 
-## 🌺 OBJECTIFS
+## 🌺 RÉSULTAT ATTENDU
 
 - Contrôler la création d’objets.
 - Centraliser le choix d’une implémentation.
@@ -24,7 +24,7 @@ Une méthode de classe retourne une instance. Elle peut valider les paramètres,
 6. Lever une exception pour une configuration inconnue.
 7. Tester chaque branche.
 
-## 🌺 SNIPPET SIMPLE FACTORY
+## 🌺 CODE SIMPLE FACTORY À ADAPTER
 
 ```abap
 CLASS-METHODS create
@@ -55,7 +55,7 @@ DATA(lv_payload) = lo_exporter->serialize( lt_data ).
 
 Si aucune création directe ne doit être possible, configurer l’instanciation privée dans les propriétés `SE24`. La méthode de fabrique reste alors le seul point de création externe.
 
-## 🌺 VÉRIFICATION
+## 🌺 CONTRÔLE
 
 - Le consommateur ne contient aucun `NEW` des implémentations concrètes.
 - La valeur inconnue produit une exception explicite.
@@ -66,6 +66,12 @@ Si aucune création directe ne doit être possible, configurer l’instanciation
 - Placer de la logique métier dans la fabrique.
 - Retourner `REF TO object` sans contrat précis.
 - Créer une fabrique pour une classe triviale sans variation ni contrainte de création.
+
+## 🌺 COMPATIBILITÉ S/4HANA
+
+- Statut : compatible avec le développement ABAP classique sur SAP S/4HANA.
+- Vérifier la syntaxe exacte avec l’aide `F1` du système cible lorsque plusieurs versions d’ABAP Platform sont prises en charge.
+- Les objets globaux doivent être créés dans le package et l’ordre de transport du projet.
 
 ## 🌺 RÉFÉRENCES OFFICIELLES SAP
 

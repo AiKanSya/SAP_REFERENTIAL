@@ -115,10 +115,6 @@ Ces outils seront approfondis dans le dossier consacré au débogage et à l’a
 - Le passage par référence et `VALUE(...)` produisent des comportements distincts dans le débogueur.
 - Les appels dynamiques exigent une vérification des noms au runtime.
 
-## 🌺 CAS D’USAGE
-
-Dans un contexte où un report devenu long doit être découpé en unités compréhensibles et testables sans modifier son résultat, le besoin consiste à **arrêter l’exécution au bon endroit et observer les données utiles**. Cette notion est pertinente lorsque le lecteur doit pouvoir relier la syntaxe ou l’outil à une situation professionnelle concrète.
-
 ## 🌺 VÉRIFICATION
 
 - Le contrôle syntaxique réussit.

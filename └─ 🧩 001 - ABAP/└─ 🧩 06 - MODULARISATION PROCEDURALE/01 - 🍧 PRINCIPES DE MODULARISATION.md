@@ -103,10 +103,6 @@ Préférer :
 - Les dépendances globales réduisent l’intérêt de la modularisation.
 - Pour du nouveau développement, les méthodes offrent généralement une interface plus robuste ; elles seront étudiées dans le dossier ABAP Objects.
 
-## 🌺 CAS D’USAGE
-
-Dans un contexte où un report devenu long doit être découpé en unités compréhensibles et testables sans modifier son résultat, le besoin consiste à **mesurer le temps d’exécution d’un scénario reproductible**. Cette notion est pertinente lorsque le choix technique doit être compris avant d’appliquer une procédure.
-
 ## 🌺 PROCÉDURE PAS À PAS
 
 1. Saisir `/nSAT`.

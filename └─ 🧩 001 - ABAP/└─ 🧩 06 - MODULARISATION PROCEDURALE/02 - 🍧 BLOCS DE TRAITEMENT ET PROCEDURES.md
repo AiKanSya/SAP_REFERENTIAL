@@ -114,10 +114,6 @@ ENDFORM.
 - Les variables locales limitent les dépendances et les effets de bord.
 - Les sous-programmes sont des procédures classiques, principalement rencontrées dans du code ABAP historique ou procédural.
 
-## 🌺 CAS D’USAGE
-
-Dans un contexte où un report devenu long doit être découpé en unités compréhensibles et testables sans modifier son résultat, le besoin consiste à **organiser un programme procédural avec blocs de traitement et procédures sans créer de dépendances globales inutiles**. Cette notion est pertinente lorsque le lecteur doit pouvoir relier la syntaxe ou l’outil à une situation professionnelle concrète.
-
 ## 🌺 VÉRIFICATION
 
 - Le contrôle syntaxique réussit.

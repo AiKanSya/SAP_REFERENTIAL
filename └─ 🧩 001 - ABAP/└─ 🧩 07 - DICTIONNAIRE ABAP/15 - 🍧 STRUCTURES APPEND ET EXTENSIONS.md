@@ -83,10 +83,6 @@ Avant l’extension :
 - La catégorie d’amélioration doit être respectée.
 - Une extension de table peut nécessiter un ajustement physique et des tests de régression.
 
-## 🌺 CAS D’USAGE
-
-Dans un contexte où une application Z nécessite un modèle de données partagé, cohérent et réutilisable dans plusieurs programmes, le besoin consiste à **analyser ou modéliser structures append et extensions dans l’ABAP Dictionary avec des dépendances cohérentes**. Cette notion est pertinente lorsque le lecteur doit pouvoir relier la syntaxe ou l’outil à une situation professionnelle concrète.
-
 ## 🌺 PROCÉDURE PAS À PAS
 
 1. Saisir `/nSE11`.

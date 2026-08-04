@@ -1,6 +1,6 @@
 # 🌸 INTERFACES GLOBALES AVEC SE24
 
-## 🌺 OBJECTIFS
+## 🌺 RÉSULTAT ATTENDU
 
 - Créer une interface globale dans `SE24`.
 - Définir un contrat indépendant d’une implémentation.
@@ -65,7 +65,7 @@ lo_notifier->send(
 - Les types publics utilisés doivent être stables et disponibles.
 - Une interface trop large doit être découpée en contrats plus ciblés.
 
-## 🌺 VÉRIFICATION
+## 🌺 CONTRÔLE
 
 Remplacer `ZCL_DEV_MAIL_NOTIFIER` par une autre classe implémentant la même interface sans modifier le code consommateur, hors composition de l’objet.
 
@@ -74,6 +74,12 @@ Remplacer `ZCL_DEV_MAIL_NOTIFIER` par une autre classe implémentant la même in
 - Créer une interface contenant des dizaines de méthodes sans cohésion.
 - Ajouter un paramètre spécifique à une seule implémentation.
 - Typer les consommateurs avec la classe concrète malgré l’existence de l’interface.
+
+## 🌺 COMPATIBILITÉ S/4HANA
+
+- Statut : compatible avec le développement ABAP classique sur SAP S/4HANA.
+- Vérifier la syntaxe exacte avec l’aide `F1` du système cible lorsque plusieurs versions d’ABAP Platform sont prises en charge.
+- Les objets globaux doivent être créés dans le package et l’ordre de transport du projet.
 
 ## 🌺 RÉFÉRENCES OFFICIELLES SAP
 

@@ -87,10 +87,6 @@ La relation doit être définie avec le type sémantique approprié pour que le 
 - Les métadonnées DDIC n’empêchent pas toutes les écritures incohérentes par elles-mêmes.
 - Une table de texte associe une clé métier à des libellés traduits.
 
-## 🌺 CAS D’USAGE
-
-Dans un contexte où une application Z nécessite un modèle de données partagé, cohérent et réutilisable dans plusieurs programmes, le besoin consiste à **analyser ou modéliser clés étrangères, tables de contrôle et tables de texte dans l’ABAP Dictionary avec des dépendances cohérentes**. Cette notion est pertinente lorsque le lecteur doit pouvoir relier la syntaxe ou l’outil à une situation professionnelle concrète.
-
 ## 🌺 PROCÉDURE PAS À PAS
 
 1. Saisir `/nSE11`.

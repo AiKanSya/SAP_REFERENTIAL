@@ -1,6 +1,6 @@
 # 🌸 CLASSES LOCALES DANS UN CLASS POOL
 
-## 🌺 OBJECTIFS
+## 🌺 RÉSULTAT ATTENDU
 
 - Positionner correctement les classes locales dans un développement centré sur `SE24`.
 - Créer un helper privé ou une classe de test locale.
@@ -28,7 +28,7 @@ La classe globale `ZCL_DEV_CSV_IMPORTER` a besoin d’un parseur privé spécifi
 5. L’utiliser uniquement depuis la classe globale ou les autres classes locales du même pool.
 6. Activer la classe globale complète.
 
-## 🌺 SNIPPET À ADAPTER
+## 🌺 CODE À ADAPTER
 
 ```abap
 CLASS lcl_csv_parser DEFINITION FINAL.
@@ -54,7 +54,7 @@ Promouvoir la classe si :
 - son interface doit être documentée et transportée indépendamment ;
 - elle doit être injectée depuis l’extérieur.
 
-## 🌺 VÉRIFICATION
+## 🌺 CONTRÔLE
 
 La liste des utilisations reste limitée au Class Pool. Aucun consommateur externe ne dépend d’un détail local.
 
@@ -63,6 +63,12 @@ La liste des utilisations reste limitée au Class Pool. Aucun consommateur exter
 - Définir localement toute l’architecture d’un report et empêcher la réutilisation.
 - Utiliser une classe locale pour contourner les règles de package.
 - Placer une responsabilité métier importante dans un helper invisible et non documenté.
+
+## 🌺 COMPATIBILITÉ S/4HANA
+
+- Statut : compatible avec le développement ABAP classique sur SAP S/4HANA.
+- Vérifier la syntaxe exacte avec l’aide `F1` du système cible lorsque plusieurs versions d’ABAP Platform sont prises en charge.
+- Les objets globaux doivent être créés dans le package et l’ordre de transport du projet.
 
 ## 🌺 RÉFÉRENCES OFFICIELLES SAP
 

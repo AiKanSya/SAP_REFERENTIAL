@@ -130,20 +130,6 @@ Le contrat doit être documenté lorsqu’il n’est pas évident.
 - Un résultat caché dans une globale est plus difficile à tester et à maintenir.
 - Une forte dépendance aux globales indique souvent qu’une refactorisation est nécessaire.
 
-## 🌺 CAS D’USAGE
-
-Dans un contexte où un report devenu long doit être découpé en unités compréhensibles et testables sans modifier son résultat, le besoin consiste à **répéter un traitement un nombre connu ou borné de fois**. Cette notion est pertinente lorsque le lecteur doit pouvoir relier la syntaxe ou l’outil à une situation professionnelle concrète.
-
-## 🌺 PROCÉDURE PAS À PAS
-
-1. Saisir `/nSE38` dans le champ de commande.
-2. Entrer le nom d’un programme Z de test, par exemple `ZREF_DEMO`, puis choisir **Créer** ou **Modifier** selon le cas.
-3. Pour un exercice local uniquement, affecter `$TMP` ; pour un développement livrable, utiliser le package et l’ordre fournis par le projet.
-4. Coller ou adapter le snippet du chapitre.
-5. Exécuter le contrôle syntaxique avec `Ctrl+F2`.
-6. Activer avec `Ctrl+F3`.
-7. Exécuter avec `F8` et comparer le résultat avec la section **Vérification**.
-
 ## 🌺 VÉRIFICATION
 
 - Le contrôle syntaxique réussit.

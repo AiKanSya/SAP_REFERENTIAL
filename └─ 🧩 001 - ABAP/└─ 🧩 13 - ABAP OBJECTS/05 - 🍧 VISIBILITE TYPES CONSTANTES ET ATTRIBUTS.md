@@ -1,6 +1,6 @@
 # 🌸 VISIBILITÉ, TYPES, CONSTANTES ET ATTRIBUTS
 
-## 🌺 OBJECTIFS
+## 🌺 RÉSULTAT ATTENDU
 
 - Choisir entre visibilité publique, protégée et privée.
 - Déclarer les types, constantes et attributs au bon niveau.
@@ -30,7 +30,7 @@ L’API publique doit rester minimale. Un attribut interne est normalement priv�
 
 Une classe représentant une limite de crédit doit empêcher un montant négatif. Si `MV_LIMIT` est public, tout appelant peut contourner la règle. L’attribut doit être privé et modifié uniquement par `SET_LIMIT`.
 
-## 🌺 SNIPPET À ADAPTER
+## 🌺 CODE À ADAPTER
 
 ```abap
 CLASS zcl_dev_credit_limit DEFINITION
@@ -65,7 +65,7 @@ ENDCLASS.
 - Un attribut public modifiable crée un couplage fort et affaiblit les contrôles.
 - Un attribut statique conserve une valeur partagée pour la session interne : l’utiliser uniquement si ce partage est intentionnel.
 
-## 🌺 VÉRIFICATION
+## 🌺 CONTRÔLE
 
 Tenter d’accéder à l’attribut privé depuis un report doit produire une erreur de syntaxe. La valeur doit être accessible uniquement via la méthode prévue.
 
@@ -74,6 +74,12 @@ Tenter d’accéder à l’attribut privé depuis un report doit produire une er
 - Utiliser `PUBLIC` par facilité.
 - Déclarer des types publics qui ne servent qu’à l’implémentation.
 - Employer un attribut statique pour stocker un état utilisateur sans maîtriser sa durée de vie.
+
+## 🌺 COMPATIBILITÉ S/4HANA
+
+- Statut : compatible avec le développement ABAP classique sur SAP S/4HANA.
+- Vérifier la syntaxe exacte avec l’aide `F1` du système cible lorsque plusieurs versions d’ABAP Platform sont prises en charge.
+- Les objets globaux doivent être créés dans le package et l’ordre de transport du projet.
 
 ## 🌺 RÉFÉRENCES OFFICIELLES SAP
 

@@ -1,6 +1,6 @@
 # 🌸 HÉRITAGE, REDÉFINITION ET SUPER
 
-## 🌺 OBJECTIFS
+## 🌺 RÉSULTAT ATTENDU
 
 - Créer une sous-classe globale.
 - Redéfinir une méthode héritée.
@@ -26,7 +26,7 @@ Une classe de base calcule un prix standard. Une sous-classe spécialisée ajout
 7. Appeler `SUPER->méthode( )` si le comportement commun doit être conservé.
 8. Tester via une référence de superclasse.
 
-## 🌺 SNIPPET À ADAPTER
+## 🌺 CODE À ADAPTER
 
 ```abap
 METHOD calculate_price.
@@ -47,7 +47,7 @@ DATA(lv_price) = lo_pricer->calculate_price( ls_item ).
 
 L’héritage est adapté si la sous-classe est réellement substituable à la superclasse et partage son contrat. Si le besoin consiste seulement à réutiliser une fonction, préférer une dépendance ou une composition.
 
-## 🌺 VÉRIFICATION
+## 🌺 CONTRÔLE
 
 - Une référence de superclasse peut utiliser l’objet de sous-classe.
 - La redéfinition conserve les préconditions du contrat.
@@ -59,6 +59,12 @@ L’héritage est adapté si la sous-classe est réellement substituable à la s
 - Hériter uniquement pour réutiliser quelques lignes de code.
 - Modifier le sens du contrat dans la sous-classe.
 - Créer une hiérarchie profonde difficile à comprendre.
+
+## 🌺 COMPATIBILITÉ S/4HANA
+
+- Statut : compatible avec le développement ABAP classique sur SAP S/4HANA.
+- Vérifier la syntaxe exacte avec l’aide `F1` du système cible lorsque plusieurs versions d’ABAP Platform sont prises en charge.
+- Les objets globaux doivent être créés dans le package et l’ordre de transport du projet.
 
 ## 🌺 RÉFÉRENCES OFFICIELLES SAP
 

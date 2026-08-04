@@ -121,12 +121,6 @@ Ordre de transport  :
 - [Dump ABAP](<../└─ 🧩 00 - LEXIQUE SAP ET ABAP/08 - 🍧 EXECUTION EXPLOITATION ET ADMINISTRATION.md#dump-abap>)
 - [Trace](<../└─ 🧩 00 - LEXIQUE SAP ET ABAP/08 - 🍧 EXECUTION EXPLOITATION ET ADMINISTRATION.md#trace>)
 
-## 🌺 À RETENIR
-
-- À l’issue du chapitre, le lecteur sait **utiliser analyse mémoire avec memory inspector pour collecter une preuve technique et localiser la cause d’un incident reproductible**.
-- Toujours tester sur un objet Z ou un jeu de données sans impact avant d’intervenir sur un traitement réel.
-- La documentation `F1` du système reste la référence pour la syntaxe disponible dans sa release.
-
 ## 🌺 RÉFÉRENCES OFFICIELLES SAP
 
 - [Using the Memory Inspector Transaction — SAP Help Portal](https://help.sap.com/docs/ABAP_PLATFORM_NEW/ba879a6e2ea04d9bb94c7ccd7cdac446/49255f4629ac16b7e10000000a42189d.html)

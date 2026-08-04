@@ -1,6 +1,6 @@
 # 🌸 CRÉER UNE PREMIÈRE CLASSE GLOBALE AVEC SE24
 
-## 🌺 OBJECTIFS
+## 🌺 RÉSULTAT ATTENDU
 
 - Créer une classe globale transportable.
 - Définir une méthode publique simple.
@@ -75,6 +75,12 @@ Pour l’entrée `  exemple   sap  `, le programme doit afficher un texte conden
 - Créer l’objet dans `$TMP` alors qu’il doit être transporté.
 - Utiliser un paramètre `CHANGING` alors qu’une valeur de retour suffit.
 - Placer le formatage directement dans plusieurs reports au lieu de centraliser la règle.
+
+## 🌺 COMPATIBILITÉ S/4HANA
+
+- Statut : compatible avec le développement ABAP classique sur SAP S/4HANA.
+- Vérifier la syntaxe exacte avec l’aide `F1` du système cible lorsque plusieurs versions d’ABAP Platform sont prises en charge.
+- Les objets globaux doivent être créés dans le package et l’ordre de transport du projet.
 
 ## 🌺 RÉFÉRENCES OFFICIELLES SAP
 

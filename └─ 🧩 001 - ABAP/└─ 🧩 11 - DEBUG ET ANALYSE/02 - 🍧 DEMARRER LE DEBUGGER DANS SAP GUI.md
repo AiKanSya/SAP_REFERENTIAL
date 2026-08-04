@@ -80,20 +80,6 @@ Vérifier :
 
 Une transaction interrompue peut conserver des verrous ou laisser une opération métier inachevée jusqu’à la fin de la session.
 
-## 🌺 CAS D’USAGE
-
-Dans un contexte où un incident ne se produit que pour certaines données et doit être reproduit puis localisé sans modifier le comportement métier, le besoin consiste à **utiliser démarrer le débogueur dans sap gui pour collecter une preuve technique et localiser la cause d’un incident reproductible**. Cette notion est pertinente lorsque le lecteur doit pouvoir relier la syntaxe ou l’outil à une situation professionnelle concrète.
-
-## 🌺 PROCÉDURE PAS À PAS
-
-1. Saisir `/nSE38` dans le champ de commande.
-2. Entrer le nom d’un programme Z de test, par exemple `ZREF_DEMO`, puis choisir **Créer** ou **Modifier** selon le cas.
-3. Pour un exercice local uniquement, affecter `$TMP` ; pour un développement livrable, utiliser le package et l’ordre fournis par le projet.
-4. Coller ou adapter le snippet du chapitre.
-5. Exécuter le contrôle syntaxique avec `Ctrl+F2`.
-6. Activer avec `Ctrl+F3`.
-7. Exécuter avec `F8` et comparer le résultat avec la section **Vérification**.
-
 ## 🌺 VÉRIFICATION
 
 - Le scénario reproduit correspond au même utilisateur, mandant, transaction et jeu de données.
@@ -127,12 +113,6 @@ WRITE lv_total.
 - [Watchpoint](<../└─ 🧩 00 - LEXIQUE SAP ET ABAP/08 - 🍧 EXECUTION EXPLOITATION ET ADMINISTRATION.md#watchpoint>)
 - [Dump ABAP](<../└─ 🧩 00 - LEXIQUE SAP ET ABAP/08 - 🍧 EXECUTION EXPLOITATION ET ADMINISTRATION.md#dump-abap>)
 - [Trace](<../└─ 🧩 00 - LEXIQUE SAP ET ABAP/08 - 🍧 EXECUTION EXPLOITATION ET ADMINISTRATION.md#trace>)
-
-## 🌺 À RETENIR
-
-- À l’issue du chapitre, le lecteur sait **utiliser démarrer le débogueur dans sap gui pour collecter une preuve technique et localiser la cause d’un incident reproductible**.
-- Toujours tester sur un objet Z ou un jeu de données sans impact avant d’intervenir sur un traitement réel.
-- La documentation `F1` du système reste la référence pour la syntaxe disponible dans sa release.
 
 ## 🌺 RÉFÉRENCES OFFICIELLES SAP
 

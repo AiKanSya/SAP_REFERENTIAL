@@ -78,10 +78,6 @@ Un dump de mémoire, de temps maximal ou de ressources requiert souvent des outi
 
 L’accès aux dumps est protégé. SAP documente notamment l’objet d’autorisation `S_ABAPDUMP` pour l’analyse des dumps.
 
-## 🌺 CAS D’USAGE
-
-Dans un contexte où un incident ne se produit que pour certaines données et doit être reproduit puis localisé sans modifier le comportement métier, le besoin consiste à **retrouver le dump correspondant au scénario et identifier la cause technique**. Cette notion est pertinente lorsque la modification ne doit intervenir qu’après identification du bon objet et de son impact.
-
 ## 🌺 PROCÉDURE PAS À PAS
 
 1. Saisir `/nST22`.
@@ -124,12 +120,6 @@ Ordre de transport  :
 - [Watchpoint](<../└─ 🧩 00 - LEXIQUE SAP ET ABAP/08 - 🍧 EXECUTION EXPLOITATION ET ADMINISTRATION.md#watchpoint>)
 - [Dump ABAP](<../└─ 🧩 00 - LEXIQUE SAP ET ABAP/08 - 🍧 EXECUTION EXPLOITATION ET ADMINISTRATION.md#dump-abap>)
 - [Trace](<../└─ 🧩 00 - LEXIQUE SAP ET ABAP/08 - 🍧 EXECUTION EXPLOITATION ET ADMINISTRATION.md#trace>)
-
-## 🌺 À RETENIR
-
-- À l’issue du chapitre, le lecteur sait **retrouver le dump correspondant au scénario et identifier la cause technique**.
-- Toujours tester sur un objet Z ou un jeu de données sans impact avant d’intervenir sur un traitement réel.
-- La documentation `F1` du système reste la référence pour la syntaxe disponible dans sa release.
 
 ## 🌺 RÉFÉRENCES OFFICIELLES SAP
 

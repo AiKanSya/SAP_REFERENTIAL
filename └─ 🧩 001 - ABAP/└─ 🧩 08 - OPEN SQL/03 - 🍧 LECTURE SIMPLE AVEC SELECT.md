@@ -1,168 +1,143 @@
-# 🌸 LECTURE SIMPLE AVEC SELECT
+# 🌸 LIRE DES DONNÉES AVEC `SELECT`
 
-## 🌺 OBJECTIFS
+## 🌺 RÉSULTAT ATTENDU
 
-- Écrire une instruction `SELECT` simple
-- Lire plusieurs lignes dans une table interne
-- Lire une ligne dans une structure
-- Utiliser la syntaxe moderne avec variables hôte
-- Interpréter le résultat de la lecture
+Créer et exécuter un programme qui lit les compagnies aériennes d’une devise donnée, puis affiche uniquement les colonnes utiles.
 
-## 🌺 STRUCTURE GÉNÉRALE
+## 🌺 PRÉREQUIS
 
-Une lecture contient au minimum :
+- Accès à `SE38` ou `SE80` dans un système de développement S/4HANA.
+- Autorisation de créer ou modifier un programme `Z`.
+- Tables de démonstration `SCARR` disponibles et alimentées.
 
-- une liste de colonnes ;
-- une source après `FROM` ;
-- une cible après `INTO` ;
-- généralement une restriction `WHERE`.
+> [!NOTE]
+> Si `SCARR` est absente ou vide, utiliser une table `Z` de démonstration ou une source autorisée en lecture seule. Ne pas remplacer l’exemple par une table applicative standard destinée à être modifiée.
 
-```abap
-SELECT carrid, carrname, currcode
-  FROM scarr
-  WHERE currcode = @p_curr
-  INTO TABLE @DATA(lt_carriers).
-```
+## 🌺 PROCÉDURE RAPIDE
 
-La syntaxe avec `@` distingue explicitement les variables ABAP des colonnes SQL.
+1. Ouvrir `SE38`.
+2. Créer le programme `ZDEMO_SELECT_CARRIERS` dans `$TMP` pour un test local, ou dans le package fourni par le projet.
+3. Coller le programme complet ci-dessous.
+4. Lancer le contrôle syntaxique avec `Ctrl+F2`.
+5. Activer avec `Ctrl+F3`.
+6. Exécuter avec `F8`.
+7. Saisir une devise présente dans `SCARR`, par exemple `EUR`, puis exécuter.
 
-## 🌺 LECTURE DE PLUSIEURS LIGNES
+## 🌺 CODE PRÊT À ADAPTER
 
 ```abap
+REPORT zdemo_select_carriers.
+
 PARAMETERS p_curr TYPE scarr-currcode DEFAULT 'EUR'.
 
-SELECT carrid, carrname, currcode
-  FROM scarr
-  WHERE currcode = @p_curr
-  INTO TABLE @DATA(lt_carriers).
+START-OF-SELECTION.
+  SELECT carrid,
+         carrname,
+         currcode
+    FROM scarr
+    WHERE currcode = @p_curr
+    ORDER BY carrid
+    INTO TABLE @DATA(lt_carriers).
+
+  IF sy-subrc <> 0.
+    WRITE / |Aucune compagnie trouvée pour la devise { p_curr }.|.
+    RETURN.
+  ENDIF.
+
+  LOOP AT lt_carriers ASSIGNING FIELD-SYMBOL(<ls_carrier>).
+    WRITE: / <ls_carrier>-carrid,
+             <ls_carrier>-carrname,
+             <ls_carrier>-currcode.
+  ENDLOOP.
 ```
 
-`INTO TABLE` remplace le contenu actuel de la table interne cible.
+La variable ABAP `p_curr` est préfixée par `@` parce qu’elle est utilisée comme variable hôte dans l’instruction ABAP SQL.
 
-Pour ajouter au contenu existant, certaines variantes utilisent `APPENDING TABLE`. Cette forme doit rester intentionnelle afin d’éviter les doublons ou les résultats mélangés.
+`INTO TABLE` remplace le contenu de la table interne cible. `APPENDING TABLE` ajoute les lignes au contenu existant et ne doit être utilisé que si cette accumulation est voulue.
 
-## 🌺 LECTURE D’UNE LIGNE
+## 🌺 POINTS À REMPLACER
+
+| Élément | Remplacement attendu |
+|---|---|
+| `ZDEMO_SELECT_CARRIERS` | Nom du programme client |
+| `SCARR` | Source DDIC autorisée |
+| `CARRID`, `CARRNAME`, `CURRCODE` | Colonnes strictement nécessaires |
+| `P_CURR` | Critère de sélection adapté au besoin |
+| `ORDER BY CARRID` | Ordre déterministe requis par l’affichage |
+
+## 🌺 VARIANTES UTILES
+
+### 🌻 LIRE UNE SEULE LIGNE PAR CLÉ
 
 ```abap
 PARAMETERS p_carrid TYPE scarr-carrid.
 
-SELECT SINGLE carrid, carrname, currcode
+SELECT SINGLE carrid,
+              carrname,
+              currcode
   FROM scarr
   WHERE carrid = @p_carrid
   INTO @DATA(ls_carrier).
+
+IF sy-subrc <> 0.
+  MESSAGE 'Compagnie introuvable' TYPE 'S' DISPLAY LIKE 'E'.
+  RETURN.
+ENDIF.
 ```
 
-Après l’instruction :
+Utiliser cette forme lorsque la condition identifie une ligne unique. Le choix entre `SELECT SINGLE` et `UP TO 1 ROWS` est détaillé dans le chapitre suivant consacré à ce sujet.
 
-- `sy-subrc = 0` si une ligne a été fournie ;
-- `sy-subrc <> 0` si aucune ligne n’a été trouvée.
-
-## 🌺 NE PAS LIRE PLUS QUE NÉCESSAIRE
-
-Éviter :
+### 🌻 AJOUTER À UNE TABLE INTERNE EXISTANTE
 
 ```abap
-SELECT *
+SELECT carrid,
+       carrname,
+       currcode
   FROM scarr
-  INTO TABLE @DATA(lt_all_fields).
+  WHERE currcode = @p_curr
+  APPENDING TABLE @lt_carriers.
 ```
 
-Préférer une liste explicite :
+Contrôler les doublons avant d’employer `APPENDING TABLE` dans plusieurs lectures successives.
 
-```abap
-SELECT carrid, carrname
-  FROM scarr
-  INTO TABLE @DATA(lt_names).
-```
+## 🌺 CONTRÔLE
 
-La liste explicite :
-
-- réduit les données transférées ;
-- documente le besoin ;
-- limite l’impact d’une extension de table ;
-- facilite le typage du résultat.
-
-## 🌺 SELECT DANS UNE BOUCLE
-
-La forme `SELECT ... ENDSELECT` traite les lignes l’une après l’autre.
-
-```abap
-SELECT carrid, carrname
-  FROM scarr
-  INTO @DATA(ls_carrier).
-
-  WRITE: / ls_carrier-carrid, ls_carrier-carrname.
-ENDSELECT.
-```
-
-Elle reste valide, mais une lecture en masse dans une table interne est généralement plus claire et plus facile à réutiliser.
-
-## 🌺 CAS D’USAGE
-
-Dans un contexte où un report doit lire ou mettre à jour des données en limitant le volume transféré et en conservant une transaction cohérente, le besoin consiste à **écrire une lecture ABAP SQL déterministe et limitée aux données nécessaires**. Cette notion est pertinente lorsque le lecteur doit pouvoir relier la syntaxe ou l’outil à une situation professionnelle concrète.
-
-## 🌺 PROCÉDURE PAS À PAS
-
-1. Saisir `/nSE38` dans le champ de commande.
-2. Entrer le nom d’un programme Z de test, par exemple `ZREF_DEMO`, puis choisir **Créer** ou **Modifier** selon le cas.
-3. Pour un exercice local uniquement, affecter `$TMP` ; pour un développement livrable, utiliser le package et l’ordre fournis par le projet.
-4. Coller ou adapter le snippet du chapitre.
-5. Exécuter le contrôle syntaxique avec `Ctrl+F2`.
-6. Activer avec `Ctrl+F3`.
-7. Exécuter avec `F8` et comparer le résultat avec la section **Vérification**.
-
-## 🌺 VÉRIFICATION
-
-- Le contrôle syntaxique réussit.
-- La version active correspond au code sauvegardé.
-- L’exécution produit le résultat décrit dans le chapitre.
-- Les cas vide, limite et erreur sont testés séparément lorsque la syntaxe le permet.
+- `Ctrl+F2` ne retourne aucune erreur de syntaxe.
+- Une devise existante produit une liste triée par `CARRID`.
+- Une devise absente affiche le message prévu.
+- `SY-SUBRC = 0` lorsqu’au moins une ligne est transférée dans la cible.
+- `SY-SUBRC = 4` lorsqu’aucune ligne n’est trouvée.
+- La liste `SELECT` ne contient que les colonnes utilisées.
 
 ## 🌺 ERREURS FRÉQUENTES
 
-- Copier un exemple sans adapter les types, noms d’objets et données disponibles dans le système.
-- Tester uniquement le cas nominal et ignorer les valeurs initiales, absentes ou invalides.
-- Lire toutes les colonnes ou toutes les lignes par défaut.
-- Effectuer des commits dans une méthode réutilisable sans contrat explicite.
+| Symptôme | Cause probable | Correction |
+|---|---|---|
+| Erreur de syntaxe sur `P_CURR` | Marqueur de variable hôte absent | Utiliser `@p_curr` dans ABAP SQL |
+| Aucun résultat | Valeur absente de la table ou espace significatif | Contrôler les données avec `SE16H` et la valeur saisie |
+| Résultat dans un ordre variable | Aucun ordre SQL demandé | Ajouter `ORDER BY` lorsque l’ordre est fonctionnellement requis |
+| Trop de données transférées | Restriction `WHERE` insuffisante | Ajouter les critères disponibles avant la lecture |
+| Structure cible incompatible | Colonnes et cible ne correspondent pas | Utiliser une cible inline ou adapter explicitement le type |
+| Doublons inattendus | Usage successif de `APPENDING TABLE` | Vider la cible ou utiliser `INTO TABLE` |
 
-## 🌺 SNIPPET À RÉUTILISER
+## 🌺 COMPATIBILITÉ S/4HANA
 
-> [!NOTE]
-> Adapter les noms `Z*`, les types DDIC, les données et les autorisations au système cible. Effectuer un contrôle syntaxique avant activation.
-
-```abap
-PARAMETERS p_curr TYPE scarr-currcode DEFAULT 'EUR'.
-
-SELECT carrid, carrname, currcode
-  FROM scarr
-  WHERE currcode = @p_curr
-  INTO TABLE @DATA(lt_carriers).
-```
+- Statut : recommandé pour le développement ABAP classique.
+- Employer la syntaxe ABAP SQL avec variables hôte `@`.
+- Préférer une lecture ensembliste dans une table interne à une succession de lectures SQL dans une boucle ABAP.
+- La disponibilité de la syntaxe exacte dépend de la version d’ABAP Platform ; la documentation `F1` du système reste la référence exécutable.
 
 ## 🌺 TERMES DU LEXIQUE
 
 - [SQL](<../└─ 🧩 00 - LEXIQUE SAP ET ABAP/10 - 🍧 ACRONYMES SAP.md#acro-sql>)
 - [MANDT](<../└─ 🧩 00 - LEXIQUE SAP ET ABAP/05 - 🍧 DONNEES DICTIONNAIRE ET BASE DE DONNEES.md#mandt>)
 - [Table transparente](<../└─ 🧩 00 - LEXIQUE SAP ET ABAP/05 - 🍧 DONNEES DICTIONNAIRE ET BASE DE DONNEES.md#table-transparente>)
-- [LUW base de données](<../└─ 🧩 00 - LEXIQUE SAP ET ABAP/08 - 🍧 EXECUTION EXPLOITATION ET ADMINISTRATION.md#luw-base>)
-
-## 🌺 À RETENIR
-
-- À l’issue du chapitre, le lecteur sait **écrire une lecture ABAP SQL déterministe et limitée aux données nécessaires**.
-- Toujours tester sur un objet Z ou un jeu de données sans impact avant d’intervenir sur un traitement réel.
-- La documentation `F1` du système reste la référence pour la syntaxe disponible dans sa release.
-
-## 🌺 MODÈLE DE DÉMONSTRATION SFLIGHT
-
-> [!NOTE]
-> Les tables `SCARR`, `SPFLI` et `SFLIGHT` appartiennent au modèle de démonstration SAP et peuvent être absentes ou non alimentées dans certains systèmes. Dans ce cas, remplacer les exemples par une table Z de démonstration ou par une source en lecture seule autorisée, sans modifier une table applicative standard.
 
 ## 🌺 RÉFÉRENCES OFFICIELLES SAP
 
 - [Implementing Basic SELECT Statements — SAP Learning](https://learning.sap.com/courses/basic-abap-programming/implementing-basic-select-statements_a6d4effa-f6b0-4ef8-96c8-b79baa2da157)
 - [SELECT — ABAP Keyword Documentation](https://help.sap.com/doc/abapdocu_latest_index_htm/latest/en-US/ABAPSELECT_SHORTREF.html)
 - [SELECT List — ABAP Keyword Documentation](https://help.sap.com/doc/abapdocu_latest_index_htm/latest/en-US/ABAPSELECT_LIST.html)
-
 
 ---
 

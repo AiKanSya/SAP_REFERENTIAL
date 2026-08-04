@@ -1,6 +1,6 @@
 # 🌸 ENCAPSULATION, INVARIANTS ET API PUBLIQUE
 
-## 🌺 OBJECTIFS
+## 🌺 RÉSULTAT ATTENDU
 
 - Concevoir une API publique réduite.
 - Protéger les invariants métier.
@@ -16,7 +16,7 @@ Exemple : une quantité réservée ne peut pas être négative et ne peut pas d�
 
 Une classe `ZCL_MM_RESERVATION` expose `RESERVE` et `RELEASE`, mais pas l’attribut `MV_RESERVED_QUANTITY`. Les méthodes contrôlent la cohérence et lèvent une exception si la règle est violée.
 
-## 🌺 SNIPPET À ADAPTER
+## 🌺 CODE À ADAPTER
 
 ```abap
 METHOD reserve.
@@ -46,7 +46,7 @@ ENDMETHOD.
 
 Une méthode de commande modifie l’état : `RESERVE`, `SAVE`, `CANCEL`. Une méthode de requête lit l’état : `GET_STATUS`, `IS_ALLOWED`. Éviter qu’une méthode nommée `GET_*` déclenche une mise à jour implicite.
 
-## 🌺 VÉRIFICATION
+## 🌺 CONTRÔLE
 
 - Aucun appelant ne peut affecter directement l’état critique.
 - Après chaque méthode publique, les invariants restent vrais.
@@ -58,6 +58,12 @@ Une méthode de commande modifie l’état : `RESERVE`, `SAVE`, `CANCEL`. Une m�
 - Générer systématiquement des getters et setters pour tous les attributs.
 - Exposer une table interne par référence puis laisser l’appelant la modifier.
 - Mélanger persistance et décision métier sans séparation claire.
+
+## 🌺 COMPATIBILITÉ S/4HANA
+
+- Statut : compatible avec le développement ABAP classique sur SAP S/4HANA.
+- Vérifier la syntaxe exacte avec l’aide `F1` du système cible lorsque plusieurs versions d’ABAP Platform sont prises en charge.
+- Les objets globaux doivent être créés dans le package et l’ordre de transport du projet.
 
 ## 🌺 RÉFÉRENCES OFFICIELLES SAP
 

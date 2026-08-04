@@ -1,6 +1,6 @@
 # 🌸 DOCUMENTATION, TEST ET DEBUG AVEC SE24
 
-## 🌺 OBJECTIFS
+## 🌺 RÉSULTAT ATTENDU
 
 - Documenter une classe globale et ses composants.
 - Exécuter un test simple depuis le Class Builder.
@@ -63,7 +63,7 @@ START-OF-SELECTION.
 
 Les classes de test locales peuvent être placées dans le Class Pool. Elles doivent tester le comportement public et les cas limites, pas reproduire l’implémentation ligne par ligne.
 
-## 🌺 VÉRIFICATION
+## 🌺 CONTRÔLE
 
 - La classe possède une responsabilité compréhensible sans ouvrir son code.
 - Chaque méthode publique non triviale possède des cas de test définis.
@@ -75,6 +75,12 @@ Les classes de test locales peuvent être placées dans le Class Pool. Elles doi
 - Documenter uniquement ce que le code dit déjà.
 - Tester uniquement le cas nominal.
 - Modifier les valeurs dans le debugger et considérer le résultat comme une validation fiable.
+
+## 🌺 COMPATIBILITÉ S/4HANA
+
+- Statut : compatible avec le développement ABAP classique sur SAP S/4HANA.
+- Vérifier la syntaxe exacte avec l’aide `F1` du système cible lorsque plusieurs versions d’ABAP Platform sont prises en charge.
+- Les objets globaux doivent être créés dans le package et l’ordre de transport du projet.
 
 ## 🌺 RÉFÉRENCES OFFICIELLES SAP
 

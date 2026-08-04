@@ -102,10 +102,6 @@ Il doit rester réservé aux besoins impossibles à exprimer par la configuratio
 - Le niveau d’affectation détermine la portée de l’aide.
 - Un exit est une extension avancée, pas le mécanisme par défaut.
 
-## 🌺 CAS D’USAGE
-
-Dans un contexte où une application Z nécessite un modèle de données partagé, cohérent et réutilisable dans plusieurs programmes, le besoin consiste à **analyser ou modéliser aides à la recherche élémentaires et collectives dans l’ABAP Dictionary avec des dépendances cohérentes**. Cette notion est pertinente lorsque le lecteur doit pouvoir relier la syntaxe ou l’outil à une situation professionnelle concrète.
-
 ## 🌺 PROCÉDURE PAS À PAS
 
 1. Saisir `/nSE11`.

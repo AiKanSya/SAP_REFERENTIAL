@@ -1,6 +1,6 @@
 # 🌸 CONSTRUCTEURS ET INITIALISATION
 
-## 🌺 OBJECTIFS
+## 🌺 RÉSULTAT ATTENDU
 
 - Utiliser le constructeur d’instance `CONSTRUCTOR`.
 - Comprendre le constructeur de classe `CLASS_CONSTRUCTOR`.
@@ -29,7 +29,7 @@ flowchart TD
 7. Activer la classe.
 8. Tester une création valide puis une création invalide.
 
-## 🌺 SNIPPET À ADAPTER
+## 🌺 CODE À ADAPTER
 
 ```abap
 METHOD constructor.
@@ -58,7 +58,7 @@ ENDMETHOD.
 
 Une classe de service dépend d’un repository. Sans ce repository, aucune méthode ne peut fonctionner correctement. Le constructeur impose la dépendance et empêche la création d’un objet partiellement initialisé.
 
-## 🌺 VÉRIFICATION
+## 🌺 CONTRÔLE
 
 - Une référence non liée provoque l’exception attendue.
 - Après création, toutes les méthodes publiques peuvent supposer l’invariant respecté.
@@ -69,6 +69,12 @@ Une classe de service dépend d’un repository. Sans ce repository, aucune mét
 - Faire des lectures massives ou des mises à jour en base dans le constructeur.
 - Accepter des paramètres invalides puis reporter l’erreur à une méthode ultérieure.
 - Utiliser `CLASS_CONSTRUCTOR` pour initialiser des données dépendantes du contexte sans possibilité de réinitialisation.
+
+## 🌺 COMPATIBILITÉ S/4HANA
+
+- Statut : compatible avec le développement ABAP classique sur SAP S/4HANA.
+- Vérifier la syntaxe exacte avec l’aide `F1` du système cible lorsque plusieurs versions d’ABAP Platform sont prises en charge.
+- Les objets globaux doivent être créés dans le package et l’ordre de transport du projet.
 
 ## 🌺 RÉFÉRENCES OFFICIELLES SAP
 

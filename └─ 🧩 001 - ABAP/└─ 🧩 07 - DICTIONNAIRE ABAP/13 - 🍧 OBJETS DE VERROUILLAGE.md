@@ -94,10 +94,6 @@ Supprimer manuellement un verrou peut permettre à deux traitements incompatible
 - La durée du verrou doit couvrir le traitement critique sans être excessive.
 - Un verrou ne doit pas être supprimé dans SM12 sans diagnostic.
 
-## 🌺 CAS D’USAGE
-
-Dans un contexte où une application Z nécessite un modèle de données partagé, cohérent et réutilisable dans plusieurs programmes, le besoin consiste à **analyser ou modéliser objets de verrouillage dans l’ABAP Dictionary avec des dépendances cohérentes**. Cette notion est pertinente lorsque le lecteur doit pouvoir relier la syntaxe ou l’outil à une situation professionnelle concrète.
-
 ## 🌺 PROCÉDURE PAS À PAS
 
 1. Saisir `/nSE11`.

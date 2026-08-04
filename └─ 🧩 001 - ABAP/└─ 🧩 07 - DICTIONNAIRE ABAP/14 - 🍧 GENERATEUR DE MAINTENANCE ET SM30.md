@@ -98,10 +98,6 @@ Il est insuffisant lorsque le processus exige :
 - Les événements permettent des adaptations, mais augmentent la maintenance.
 - SM30 ne remplace pas une application métier complexe.
 
-## 🌺 CAS D’USAGE
-
-Dans un contexte où une application Z nécessite un modèle de données partagé, cohérent et réutilisable dans plusieurs programmes, le besoin consiste à **générer puis tester un dialogue de maintenance autorisé pour une table Z**. Cette notion est pertinente lorsque le lecteur doit pouvoir relier la syntaxe ou l’outil à une situation professionnelle concrète.
-
 ## 🌺 PROCÉDURE PAS À PAS
 
 1. Saisir `/nSE11`.

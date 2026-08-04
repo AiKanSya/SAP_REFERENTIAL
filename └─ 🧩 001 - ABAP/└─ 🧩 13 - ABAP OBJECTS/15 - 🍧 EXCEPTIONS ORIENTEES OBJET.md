@@ -1,6 +1,6 @@
 # 🌸 EXCEPTIONS ORIENTÉES OBJET
 
-## 🌺 OBJECTIFS
+## 🌺 RÉSULTAT ATTENDU
 
 - Déclarer et lever une exception depuis une méthode.
 - Créer une classe d’exception globale.
@@ -21,7 +21,7 @@ Une classe de repository ne trouve pas un objet demandé. Elle ne doit ni affich
 6. Lever l’exception avec les informations de contexte.
 7. La capturer à une frontière appropriée : report, job, service ou contrôleur.
 
-## 🌺 SNIPPET À ADAPTER
+## 🌺 CODE À ADAPTER
 
 ```abap
 METHOD get_by_id.
@@ -52,7 +52,7 @@ ENDTRY.
 
 Lorsqu’une exception technique est convertie en exception métier, conserver la cause précédente si la classe le permet. Cela facilite le diagnostic sans exposer toute la technique à l’appelant.
 
-## 🌺 VÉRIFICATION
+## 🌺 CONTRÔLE
 
 - La méthode ne produit aucun message d’écran.
 - L’appelant sait quelles erreurs gérer grâce à la signature.
@@ -64,6 +64,12 @@ Lorsqu’une exception technique est convertie en exception métier, conserver l
 - Capturer `CX_ROOT` puis ignorer l’erreur.
 - Lever une exception `NO_CHECK` pour toute validation métier.
 - Mélanger message utilisateur, journalisation et création de l’exception dans chaque couche.
+
+## 🌺 COMPATIBILITÉ S/4HANA
+
+- Statut : compatible avec le développement ABAP classique sur SAP S/4HANA.
+- Vérifier la syntaxe exacte avec l’aide `F1` du système cible lorsque plusieurs versions d’ABAP Platform sont prises en charge.
+- Les objets globaux doivent être créés dans le package et l’ordre de transport du projet.
 
 ## 🌺 RÉFÉRENCES OFFICIELLES SAP
 

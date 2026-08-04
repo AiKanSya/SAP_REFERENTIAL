@@ -1,6 +1,6 @@
 # 🌸 MÉTHODES STATIQUES ET COMPOSANTS DE CLASSE
 
-## 🌺 OBJECTIFS
+## 🌺 RÉSULTAT ATTENDU
 
 - Comprendre la différence entre composant d’instance et composant statique.
 - Créer une méthode statique dans `SE24`.
@@ -32,7 +32,7 @@ Elle est moins adaptée si la méthode dépend de la base, de l’heure, de l’
 5. Appeler la méthode avec `nom_classe=>nom_methode`.
 6. Ajouter un test des cas limites.
 
-## 🌺 SNIPPET DE FONCTION PURE
+## 🌺 CODE DE FONCTION PURE À ADAPTER
 
 ```abap
 CLASS-METHODS normalize_key
@@ -55,7 +55,7 @@ Un attribut statique est partagé par tous les objets de la classe dans une sess
 
 Il est dangereux pour stocker un état métier implicite ou dépendant d’un utilisateur.
 
-## 🌺 VÉRIFICATION
+## 🌺 CONTRÔLE
 
 Créer deux instances de la classe et vérifier qu’un attribut d’instance reste propre à chacune. Vérifier qu’un attribut statique est partagé, uniquement lorsque ce comportement est voulu.
 
@@ -64,6 +64,12 @@ Créer deux instances de la classe et vérifier qu’un attribut d’instance re
 - Transformer toute la classe en catalogue de méthodes statiques.
 - Masquer un accès base ou un `COMMIT WORK` dans une méthode utilitaire.
 - Utiliser un cache statique sans mécanisme d’invalidation.
+
+## 🌺 COMPATIBILITÉ S/4HANA
+
+- Statut : compatible avec le développement ABAP classique sur SAP S/4HANA.
+- Vérifier la syntaxe exacte avec l’aide `F1` du système cible lorsque plusieurs versions d’ABAP Platform sont prises en charge.
+- Les objets globaux doivent être créés dans le package et l’ordre de transport du projet.
 
 ## 🌺 RÉFÉRENCES OFFICIELLES SAP
 

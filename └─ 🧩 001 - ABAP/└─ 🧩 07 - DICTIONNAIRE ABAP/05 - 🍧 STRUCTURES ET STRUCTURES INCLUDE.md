@@ -102,10 +102,6 @@ Cette référence permet aux technologies classiques d’interpréter correcteme
 - Un append étend un objet existant et répond à un autre besoin.
 - Les montants et quantités doivent être associés à leur devise ou unité.
 
-## 🌺 CAS D’USAGE
-
-Dans un contexte où une application Z nécessite un modèle de données partagé, cohérent et réutilisable dans plusieurs programmes, le besoin consiste à **analyser ou modéliser structures et structures include dans l’ABAP Dictionary avec des dépendances cohérentes**. Cette notion est pertinente lorsque le lecteur doit pouvoir relier la syntaxe ou l’outil à une situation professionnelle concrète.
-
 ## 🌺 PROCÉDURE PAS À PAS
 
 1. Saisir `/nSE11`.

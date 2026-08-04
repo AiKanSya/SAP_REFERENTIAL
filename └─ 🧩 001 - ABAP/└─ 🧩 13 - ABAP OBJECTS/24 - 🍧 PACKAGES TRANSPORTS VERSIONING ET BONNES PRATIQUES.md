@@ -1,6 +1,6 @@
 # 🌸 PACKAGES, TRANSPORTS, VERSIONING ET BONNES PRATIQUES
 
-## 🌺 OBJECTIFS
+## 🌺 RÉSULTAT ATTENDU
 
 - Intégrer les classes globales dans un package cohérent.
 - Transporter toutes les dépendances nécessaires.
@@ -79,6 +79,12 @@ Documentation mise à jour : Oui / Non
 ## 🌺 CRITÈRE DE FIN DE DOSSIER
 
 Le lecteur doit être capable de créer dans `SE24` une classe globale transportable, définir son API, injecter ses dépendances, implémenter une interface, gérer ses exceptions, choisir un pattern adapté et fournir un test reproductible.
+
+## 🌺 COMPATIBILITÉ S/4HANA
+
+- Statut : compatible avec le développement ABAP classique sur SAP S/4HANA.
+- Vérifier la syntaxe exacte avec l’aide `F1` du système cible lorsque plusieurs versions d’ABAP Platform sont prises en charge.
+- Les objets globaux doivent être créés dans le package et l’ordre de transport du projet.
 
 ## 🌺 RÉFÉRENCES OFFICIELLES SAP
 

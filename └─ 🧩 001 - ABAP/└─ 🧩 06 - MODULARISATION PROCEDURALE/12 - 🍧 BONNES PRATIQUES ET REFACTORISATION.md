@@ -140,10 +140,6 @@ Le passage aux méthodes sera traité dans le dossier `ABAP OBJECTS`. Il n’imp
 - Les interfaces explicites réduisent les effets de bord.
 - Pour les nouveaux composants, les méthodes constituent généralement la cible de conception.
 
-## 🌺 CAS D’USAGE
-
-Dans un contexte où un report devenu long doit être découpé en unités compréhensibles et testables sans modifier son résultat, le besoin consiste à **mesurer le temps d’exécution d’un scénario reproductible**. Cette notion est pertinente lorsque plusieurs solutions sont possibles et il faut retenir celle qui limite les risques de maintenance.
-
 ## 🌺 PROCÉDURE PAS À PAS
 
 1. Saisir `/nSAT`.

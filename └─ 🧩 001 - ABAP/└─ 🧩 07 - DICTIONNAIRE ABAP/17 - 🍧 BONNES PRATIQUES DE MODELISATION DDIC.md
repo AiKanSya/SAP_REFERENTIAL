@@ -99,10 +99,6 @@ Chaque niveau doit apporter une information distincte : format, sens, compositio
 - Les extensions doivent utiliser les mécanismes prévus par SAP.
 - Toute évolution DDIC exige une analyse des dépendances et de la base physique.
 
-## 🌺 CAS D’USAGE
-
-Dans un contexte où une application Z nécessite un modèle de données partagé, cohérent et réutilisable dans plusieurs programmes, le besoin consiste à **mesurer le temps d’exécution d’un scénario reproductible**. Cette notion est pertinente lorsque plusieurs solutions sont possibles et il faut retenir celle qui limite les risques de maintenance.
-
 ## 🌺 PROCÉDURE PAS À PAS
 
 1. Saisir `/nSAT`.

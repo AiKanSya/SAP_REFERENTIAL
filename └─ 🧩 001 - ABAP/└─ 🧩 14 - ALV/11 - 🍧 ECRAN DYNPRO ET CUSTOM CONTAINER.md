@@ -69,10 +69,6 @@ Lorsque l’application utilise les événements du Control Framework, intégrer
 - appel d’affichage avant l’instanciation du conteneur ;
 - statut GUI absent ou code fonction non traité.
 
-## 🌺 CAS D’USAGE
-
-Dans un contexte où un utilisateur métier doit analyser une liste tabulaire, trier, filtrer et éventuellement interagir avec les lignes, le besoin consiste à **mettre en œuvre écran dynpro et custom container dans un affichage ALV borné et adapté aux interactions attendues**. Cette notion est pertinente lorsque le lecteur doit pouvoir relier la syntaxe ou l’outil à une situation professionnelle concrète.
-
 ## 🌺 PROCÉDURE PAS À PAS
 
 1. Saisir `/nSE80`.
@@ -118,12 +114,6 @@ ENDMODULE.
 - [ALV](<../└─ 🧩 00 - LEXIQUE SAP ET ABAP/10 - 🍧 ACRONYMES SAP.md#acro-alv>)
 - [SALV](<../└─ 🧩 00 - LEXIQUE SAP ET ABAP/10 - 🍧 ACRONYMES SAP.md#acro-salv>)
 - [Table interne](<../└─ 🧩 00 - LEXIQUE SAP ET ABAP/04 - 🍧 LANGAGE ET DEVELOPPEMENT ABAP.md#table-interne>)
-
-## 🌺 À RETENIR
-
-- À l’issue du chapitre, le lecteur sait **mettre en œuvre écran dynpro et custom container dans un affichage ALV borné et adapté aux interactions attendues**.
-- Toujours tester sur un objet Z ou un jeu de données sans impact avant d’intervenir sur un traitement réel.
-- La documentation `F1` du système reste la référence pour la syntaxe disponible dans sa release.
 
 ## 🌺 RÉFÉRENCES OFFICIELLES SAP
 

@@ -71,10 +71,6 @@ Les exemples de lecture utilisent principalement `SCARR`, `SPFLI` et `SFLIGHT`, 
 
 Les exemples d’écriture utilisent une table fictive `ZDEV_PRODUCT`. Ils ne doivent pas être exécutés sur une table applicative SAP standard.
 
-## 🌺 CAS D’USAGE
-
-Dans un contexte où un report doit lire ou mettre à jour des données en limitant le volume transféré et en conservant une transaction cohérente, le besoin consiste à **écrire et vérifier une instruction ABAP SQL utilisant principes d’abap sql sur un jeu de données maîtrisé**. Cette notion est pertinente lorsque le choix technique doit être compris avant d’appliquer une procédure.
-
 ## 🌺 PROCÉDURE PAS À PAS
 
 1. Lire la définition et identifier les prérequis du chapitre.
@@ -102,12 +98,6 @@ Dans un contexte où un report doit lire ou mettre à jour des données en limit
 - [MANDT](<../└─ 🧩 00 - LEXIQUE SAP ET ABAP/05 - 🍧 DONNEES DICTIONNAIRE ET BASE DE DONNEES.md#mandt>)
 - [Table transparente](<../└─ 🧩 00 - LEXIQUE SAP ET ABAP/05 - 🍧 DONNEES DICTIONNAIRE ET BASE DE DONNEES.md#table-transparente>)
 - [LUW base de données](<../└─ 🧩 00 - LEXIQUE SAP ET ABAP/08 - 🍧 EXECUTION EXPLOITATION ET ADMINISTRATION.md#luw-base>)
-
-## 🌺 À RETENIR
-
-- À l’issue du chapitre, le lecteur sait **écrire et vérifier une instruction ABAP SQL utilisant principes d’abap sql sur un jeu de données maîtrisé**.
-- Toujours tester sur un objet Z ou un jeu de données sans impact avant d’intervenir sur un traitement réel.
-- La documentation `F1` du système reste la référence pour la syntaxe disponible dans sa release.
 
 ## 🌺 MODÈLE DE DÉMONSTRATION SFLIGHT
 

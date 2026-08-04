@@ -1,6 +1,6 @@
 # 🌸 ANALYSER UNE CLASSE GLOBALE AVEC SE24
 
-## 🌺 OBJECTIFS
+## 🌺 RÉSULTAT ATTENDU
 
 - Ouvrir une classe globale existante.
 - Identifier son API publique, ses dépendances et ses implémentations.
@@ -67,7 +67,7 @@ Ordre de transport   :
 Risque de régression :
 ```
 
-## 🌺 VÉRIFICATION
+## 🌺 CONTRÔLE
 
 L’analyse est complète lorsque vous pouvez répondre sans lire tout le code :
 
@@ -82,6 +82,12 @@ L’analyse est complète lorsque vous pouvez répondre sans lire tout le code :
 - Se limiter au code de la méthode sans vérifier les méthodes redéfinies.
 - Ignorer les interfaces qui constituent le véritable contrat public.
 - Considérer qu’une classe non instanciée directement n’est pas utilisée : elle peut être créée par une fabrique ou un framework.
+
+## 🌺 COMPATIBILITÉ S/4HANA
+
+- Statut : compatible avec le développement ABAP classique sur SAP S/4HANA.
+- Vérifier la syntaxe exacte avec l’aide `F1` du système cible lorsque plusieurs versions d’ABAP Platform sont prises en charge.
+- Les objets globaux doivent être créés dans le package et l’ordre de transport du projet.
 
 ## 🌺 RÉFÉRENCES OFFICIELLES SAP
 

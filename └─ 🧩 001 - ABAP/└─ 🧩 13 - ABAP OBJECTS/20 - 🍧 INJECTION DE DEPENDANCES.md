@@ -1,6 +1,6 @@
 # 🌸 INJECTION DE DÉPENDANCES
 
-## 🌺 OBJECTIFS
+## 🌺 RÉSULTAT ATTENDU
 
 - Fournir les collaborateurs depuis l’extérieur de la classe.
 - Rendre les dépendances visibles.
@@ -56,7 +56,7 @@ DATA(lo_service) = NEW zcl_dev_validity_service( lo_clock ).
 4. Tester une date expirée et une date valide.
 5. Vérifier que le test ne dépend pas du jour d’exécution.
 
-## 🌺 VÉRIFICATION
+## 🌺 CONTRÔLE
 
 - Toutes les dépendances obligatoires apparaissent dans le constructeur.
 - La classe n’utilise pas `NEW` pour créer ses services internes variables.
@@ -67,6 +67,12 @@ DATA(lo_service) = NEW zcl_dev_validity_service( lo_clock ).
 - Ajouter des setters publics permettant de retirer une dépendance obligatoire après construction.
 - Injecter des objets purement techniques sans bénéfice de substitution.
 - Construire toute la chaîne d’objets à l’intérieur de la classe métier.
+
+## 🌺 COMPATIBILITÉ S/4HANA
+
+- Statut : compatible avec le développement ABAP classique sur SAP S/4HANA.
+- Vérifier la syntaxe exacte avec l’aide `F1` du système cible lorsque plusieurs versions d’ABAP Platform sont prises en charge.
+- Les objets globaux doivent être créés dans le package et l’ordre de transport du projet.
 
 ## 🌺 RÉFÉRENCES OFFICIELLES SAP
 

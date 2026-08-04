@@ -75,10 +75,6 @@ Une classe d’exception peut être créée avec les outils du Workbench, notamm
 
 La création détaillée des classes sera approfondie dans le dossier ABAP Objects. Dans ce dossier, l’objectif est d’utiliser correctement leur contrat d’erreur.
 
-## 🌺 CAS D’USAGE
-
-Dans un contexte où un import doit signaler clairement les erreurs, permettre leur traitement et éviter les arrêts non maîtrisés, le besoin consiste à **gérer une situation d’erreur avec classes d’exception et catégories et produire une information exploitable par l’appelant ou l’utilisateur**. Cette notion est pertinente lorsque le lecteur doit pouvoir relier la syntaxe ou l’outil à une situation professionnelle concrète.
-
 ## 🌺 PROCÉDURE PAS À PAS
 
 1. Lire la définition et identifier les prérequis du chapitre.
@@ -104,12 +100,6 @@ Dans un contexte où un import doit signaler clairement les erreurs, permettre l
 - [Classe](<../└─ 🧩 00 - LEXIQUE SAP ET ABAP/04 - 🍧 LANGAGE ET DEVELOPPEMENT ABAP.md#classe>)
 - [Exception](<../└─ 🧩 00 - LEXIQUE SAP ET ABAP/04 - 🍧 LANGAGE ET DEVELOPPEMENT ABAP.md#exception>)
 - [Dump ABAP](<../└─ 🧩 00 - LEXIQUE SAP ET ABAP/08 - 🍧 EXECUTION EXPLOITATION ET ADMINISTRATION.md#dump-abap>)
-
-## 🌺 À RETENIR
-
-- À l’issue du chapitre, le lecteur sait **gérer une situation d’erreur avec classes d’exception et catégories et produire une information exploitable par l’appelant ou l’utilisateur**.
-- Toujours tester sur un objet Z ou un jeu de données sans impact avant d’intervenir sur un traitement réel.
-- La documentation `F1` du système reste la référence pour la syntaxe disponible dans sa release.
 
 ## 🌺 RÉFÉRENCES OFFICIELLES SAP
 

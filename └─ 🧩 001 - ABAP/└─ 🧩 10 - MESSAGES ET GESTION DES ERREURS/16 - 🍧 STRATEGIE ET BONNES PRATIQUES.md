@@ -111,10 +111,6 @@ Exécuter au minimum :
 - tests en arrière-plan si le programme est concerné ;
 - analyse d’un éventuel dump dans `ST22`.
 
-## 🌺 CAS D’USAGE
-
-Dans un contexte où un import doit signaler clairement les erreurs, permettre leur traitement et éviter les arrêts non maîtrisés, le besoin consiste à **gérer une situation d’erreur avec stratégie et bonnes pratiques et produire une information exploitable par l’appelant ou l’utilisateur**. Cette notion est pertinente lorsque plusieurs solutions sont possibles et il faut retenir celle qui limite les risques de maintenance.
-
 ## 🌺 PROCÉDURE PAS À PAS
 
 1. Lire la définition et identifier les prérequis du chapitre.
@@ -139,12 +135,6 @@ Dans un contexte où un import doit signaler clairement les erreurs, permettre l
 
 - [Exception](<../└─ 🧩 00 - LEXIQUE SAP ET ABAP/04 - 🍧 LANGAGE ET DEVELOPPEMENT ABAP.md#exception>)
 - [Dump ABAP](<../└─ 🧩 00 - LEXIQUE SAP ET ABAP/08 - 🍧 EXECUTION EXPLOITATION ET ADMINISTRATION.md#dump-abap>)
-
-## 🌺 À RETENIR
-
-- À l’issue du chapitre, le lecteur sait **gérer une situation d’erreur avec stratégie et bonnes pratiques et produire une information exploitable par l’appelant ou l’utilisateur**.
-- Toujours tester sur un objet Z ou un jeu de données sans impact avant d’intervenir sur un traitement réel.
-- La documentation `F1` du système reste la référence pour la syntaxe disponible dans sa release.
 
 ## 🌺 RÉFÉRENCES OFFICIELLES SAP
 

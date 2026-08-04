@@ -70,10 +70,6 @@ En présence d’une erreur métier ou technique avant validation, appeler `BAPI
 
 Lorsque la BAPI est appelée via une destination RFC, la gestion de la transaction doit rester dans le même contexte RFC selon le modèle applicable. Vérifier la documentation de la BAPI et de l’environnement appelant.
 
-## 🌺 CAS D’USAGE
-
-Dans un contexte où une logique doit être réutilisée localement ou appelée à distance tout en respectant son interface et sa transaction, le besoin consiste à **appeler une API métier publiée, analyser `RETURN` et piloter le commit**. Cette notion est pertinente lorsque l’interface, les erreurs et la transaction de l’appelé doivent être respectées.
-
 ## 🌺 PROCÉDURE PAS À PAS
 
 1. Saisir `/nSE37`.
@@ -135,12 +131,6 @@ ENDIF.
 - [Function group](<../└─ 🧩 00 - LEXIQUE SAP ET ABAP/06 - 🍧 PROGRAMMES CLASSES ET OBJETS TECHNIQUES.md#function-group>)
 - [RFC](<../└─ 🧩 00 - LEXIQUE SAP ET ABAP/10 - 🍧 ACRONYMES SAP.md#acro-rfc>)
 - [Destination RFC](<../└─ 🧩 00 - LEXIQUE SAP ET ABAP/07 - 🍧 INTERFACES ET INTEGRATION.md#destination-rfc>)
-
-## 🌺 À RETENIR
-
-- À l’issue du chapitre, le lecteur sait **appeler une API métier publiée, analyser `RETURN` et piloter le commit**.
-- Toujours tester sur un objet Z ou un jeu de données sans impact avant d’intervenir sur un traitement réel.
-- La documentation `F1` du système reste la référence pour la syntaxe disponible dans sa release.
 
 ## 🌺 RÉFÉRENCES OFFICIELLES SAP
 

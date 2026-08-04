@@ -32,10 +32,6 @@ Une entrée permet généralement d’identifier le propriétaire, la clé verro
 
 Supprimer un verrou ne restaure pas la cohérence des données. Le programme propriétaire peut encore poursuivre et écrire comme s’il détenait le verrou. La suppression manuelle est une opération d’administration, pas une solution applicative normale.
 
-## 🌺 CAS D’USAGE
-
-Dans un contexte où plusieurs modifications liées doivent être validées ensemble et protégées contre les accès concurrents, le besoin consiste à **identifier un verrou actif avant d’envisager une suppression administrative**. Cette notion est pertinente lorsque la modification ne doit intervenir qu’après identification du bon objet et de son impact.
-
 ## 🌺 PROCÉDURE PAS À PAS
 
 1. Saisir `/nSM12`.
@@ -79,12 +75,6 @@ Ordre de transport  :
 - [ROLLBACK WORK](<../└─ 🧩 00 - LEXIQUE SAP ET ABAP/08 - 🍧 EXECUTION EXPLOITATION ET ADMINISTRATION.md#rollback-work>)
 - [Enqueue server](<../└─ 🧩 00 - LEXIQUE SAP ET ABAP/08 - 🍧 EXECUTION EXPLOITATION ET ADMINISTRATION.md#enqueue-server>)
 - [Update task](<../└─ 🧩 00 - LEXIQUE SAP ET ABAP/08 - 🍧 EXECUTION EXPLOITATION ET ADMINISTRATION.md#update-task>)
-
-## 🌺 À RETENIR
-
-- À l’issue du chapitre, le lecteur sait **identifier un verrou actif avant d’envisager une suppression administrative**.
-- Toujours tester sur un objet Z ou un jeu de données sans impact avant d’intervenir sur un traitement réel.
-- La documentation `F1` du système reste la référence pour la syntaxe disponible dans sa release.
 
 ## 🌺 RÉFÉRENCES OFFICIELLES SAP
 

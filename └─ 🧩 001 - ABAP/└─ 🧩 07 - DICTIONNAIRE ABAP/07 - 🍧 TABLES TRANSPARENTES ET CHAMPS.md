@@ -91,10 +91,6 @@ Avant de choisir la classe de livraison, déterminer :
 - La classe de livraison et les paramètres techniques ne sont pas accessoires.
 - La création n’est terminée qu’après contrôle et activation.
 
-## 🌺 CAS D’USAGE
-
-Dans un contexte où une application Z nécessite un modèle de données partagé, cohérent et réutilisable dans plusieurs programmes, le besoin consiste à **définir une table Z cohérente, transportable et correctement paramétrée**. Cette notion est pertinente lorsque le lecteur doit pouvoir relier la syntaxe ou l’outil à une situation professionnelle concrète.
-
 ## 🌺 PROCÉDURE PAS À PAS
 
 1. Saisir `/nSE11`.

@@ -82,10 +82,6 @@ Les définitions CDS et leur édition dans ADT ne sont pas détaillées ici. Ell
 - Les tables transparentes définissent également des objets persistants en base.
 - Les dépendances doivent être analysées avant toute modification.
 
-## 🌺 CAS D’USAGE
-
-Dans un contexte où une application Z nécessite un modèle de données partagé, cohérent et réutilisable dans plusieurs programmes, le besoin consiste à **analyser ou modéliser principes du dictionnaire abap dans l’ABAP Dictionary avec des dépendances cohérentes**. Cette notion est pertinente lorsque le choix technique doit être compris avant d’appliquer une procédure.
-
 ## 🌺 PROCÉDURE PAS À PAS
 
 1. Saisir `/nSE11`.

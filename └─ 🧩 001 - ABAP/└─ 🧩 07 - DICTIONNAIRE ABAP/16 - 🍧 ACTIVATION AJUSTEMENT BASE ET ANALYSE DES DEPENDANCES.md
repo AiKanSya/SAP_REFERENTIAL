@@ -106,10 +106,6 @@ Après l’activation :
 - SE14 est un outil technique puissant et potentiellement destructif.
 - La liste d’utilisation et les tests de non-régression sont obligatoires avant une modification structurante.
 
-## 🌺 CAS D’USAGE
-
-Dans un contexte où une application Z nécessite un modèle de données partagé, cohérent et réutilisable dans plusieurs programmes, le besoin consiste à **analyser ou modéliser activation, ajustement base et analyse des dépendances dans l’ABAP Dictionary avec des dépendances cohérentes**. Cette notion est pertinente lorsque le lecteur doit pouvoir relier la syntaxe ou l’outil à une situation professionnelle concrète.
-
 ## 🌺 PROCÉDURE PAS À PAS
 
 1. Saisir `/nSE11`.

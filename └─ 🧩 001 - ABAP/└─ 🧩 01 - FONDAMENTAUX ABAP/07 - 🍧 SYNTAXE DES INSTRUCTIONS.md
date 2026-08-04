@@ -211,10 +211,6 @@ START-OF-SELECTION.
 - `IF ... ENDIF` forme une structure de contrôle ;
 - chaque instruction se termine par un point.
 
-## 🌺 CAS D’USAGE
-
-Dans un contexte où une intervention de correction doit être réalisée dans le bon système et sur le bon objet sans affecter un environnement non autorisé, le besoin consiste à **écrire des instructions valides et exploiter l’aide contextuelle de la release**. Cette notion est pertinente lorsque le lecteur doit pouvoir relier la syntaxe ou l’outil à une situation professionnelle concrète.
-
 ## 🌺 PROCÉDURE PAS À PAS
 
 1. Ouvrir un report Z de démonstration dans `SE38`.
@@ -264,12 +260,6 @@ START-OF-SELECTION.
 - [Transaction](<../└─ 🧩 00 - LEXIQUE SAP ET ABAP/02 - 🍧 SAP GUI NAVIGATION ET TRANSACTIONS.md#transaction>)
 - [Repository ABAP](<../└─ 🧩 00 - LEXIQUE SAP ET ABAP/03 - 🍧 REPOSITORY PACKAGES ET TRANSPORTS.md#repository-abap>)
 - [Package](<../└─ 🧩 00 - LEXIQUE SAP ET ABAP/03 - 🍧 REPOSITORY PACKAGES ET TRANSPORTS.md#package>)
-
-## 🌺 À RETENIR
-
-- À l’issue du chapitre, le lecteur sait **écrire des instructions valides et exploiter l’aide contextuelle de la release**.
-- Toujours tester sur un objet Z ou un jeu de données sans impact avant d’intervenir sur un traitement réel.
-- La documentation `F1` du système reste la référence pour la syntaxe disponible dans sa release.
 
 ## 🌺 RÉFÉRENCES OFFICIELLES SAP
 

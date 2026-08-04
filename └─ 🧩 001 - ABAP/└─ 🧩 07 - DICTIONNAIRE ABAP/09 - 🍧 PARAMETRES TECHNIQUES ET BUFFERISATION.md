@@ -86,10 +86,6 @@ La journalisation technique ne remplace pas une traçabilité applicative compl�
 - La catégorie de taille est une estimation, pas une limite fonctionnelle.
 - La journalisation doit être activée de manière ciblée.
 
-## 🌺 CAS D’USAGE
-
-Dans un contexte où une application Z nécessite un modèle de données partagé, cohérent et réutilisable dans plusieurs programmes, le besoin consiste à **mesurer le temps d’exécution d’un scénario reproductible**. Cette notion est pertinente lorsque le lecteur doit pouvoir relier la syntaxe ou l’outil à une situation professionnelle concrète.
-
 ## 🌺 PROCÉDURE PAS À PAS
 
 1. Saisir `/nSAT`.

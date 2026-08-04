@@ -1,6 +1,6 @@
 # 🌸 POLYMORPHISME PAR INTERFACE
 
-## 🌺 OBJECTIFS
+## 🌺 RÉSULTAT ATTENDU
 
 - Utiliser une référence d’interface.
 - Substituer plusieurs implémentations.
@@ -21,7 +21,7 @@ flowchart TD
 
 Une extraction doit produire du CSV ou du JSON selon une configuration. Au lieu de placer un `CASE` dans chaque appelant, deux classes implémentent `ZIF_DEV_EXPORTER`.
 
-## 🌺 SNIPPET À ADAPTER
+## 🌺 CODE À ADAPTER
 
 ```abap
 DATA lo_exporter TYPE REF TO zif_dev_exporter.
@@ -53,7 +53,7 @@ Le `CASE` reste ici au point de composition. Le traitement métier utilise ensui
 
 Un up-cast vers une interface est généralement implicite et sûr. Un down-cast vers une classe concrète avec `CAST` ou `?=` doit rester exceptionnel : il révèle souvent que le contrat de l’interface est insuffisant ou que l’appelant connaît trop l’implémentation.
 
-## 🌺 VÉRIFICATION
+## 🌺 CONTRÔLE
 
 Le code métier ne doit contenir aucun nom de classe d’implémentation après la phase de composition.
 
@@ -62,6 +62,12 @@ Le code métier ne doit contenir aucun nom de classe d’implémentation après 
 - Tester la classe dynamique avec `INSTANCE OF` pour choisir le comportement.
 - Ajouter des méthodes spécifiques à l’interface uniquement pour satisfaire une classe.
 - Répéter la création des implémentations partout au lieu de centraliser la composition.
+
+## 🌺 COMPATIBILITÉ S/4HANA
+
+- Statut : compatible avec le développement ABAP classique sur SAP S/4HANA.
+- Vérifier la syntaxe exacte avec l’aide `F1` du système cible lorsque plusieurs versions d’ABAP Platform sont prises en charge.
+- Les objets globaux doivent être créés dans le package et l’ordre de transport du projet.
 
 ## 🌺 RÉFÉRENCES OFFICIELLES SAP
 
