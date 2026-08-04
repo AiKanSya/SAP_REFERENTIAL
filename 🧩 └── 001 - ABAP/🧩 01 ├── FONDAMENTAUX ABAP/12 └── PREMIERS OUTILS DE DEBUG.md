@@ -1,6 +1,6 @@
-# PREMIERS OUTILS DE DEBUG
+# 12. PREMIERS OUTILS DE DEBUG
 
-## RÉSULTAT ATTENDU
+## 12.A RÉSULTAT ATTENDU
 
 - Démarrer le Debugger ABAP depuis SAP GUI
 - Distinguer point d’arrêt de session et point d’arrêt externe
@@ -9,7 +9,7 @@
 - Utiliser un watchpoint pour arrêter le programme sur une condition
 - Déboguer sans modifier involontairement les données
 
-## VUE D’ENSEMBLE
+## 12.B VUE D’ENSEMBLE
 
 ```mermaid
 flowchart LR
@@ -21,7 +21,7 @@ flowchart LR
     C --> G["Breakpoints et watchpoints"]
 ```
 
-## RÔLE DU DEBUGGER
+## 12.C RÔLE DU DEBUGGER
 
 Le Debugger ABAP est un outil intégré au Workbench. Il permet d’arrêter un programme en cours d’exécution puis de :
 
@@ -35,9 +35,9 @@ Le Debugger ABAP est un outil intégré au Workbench. Il permet d’arrêter un 
 
 Le débogage nécessite des autorisations spécifiques.
 
-## DÉMARRAGE
+## 12.D DÉMARRAGE
 
-### DEPUIS `SE38` OU `SE80`
+### 12.D.1 DEPUIS `SE38` OU `SE80`
 
 Pour un programme exécutable :
 
@@ -45,7 +45,7 @@ Pour un programme exécutable :
 - sélectionner l’exécution en mode Debugging dans le menu de test ;
 - le Debugger prend le contrôle dès le début du traitement prévu.
 
-### AVEC UN POINT D’ARRÊT
+### 12.D.2 AVEC UN POINT D’ARRÊT
 
 Dans l’éditeur :
 
@@ -54,7 +54,7 @@ Dans l’éditeur :
 3. lancer le scénario ;
 4. le Debugger s’ouvre lorsque l’instruction est atteinte.
 
-### AVEC `/h`
+### 12.D.3 AVEC `/h`
 
 Dans le champ de commande SAP GUI :
 
@@ -67,9 +67,9 @@ Après validation, exécuter l’action à analyser. Le programme s’arrête à
 > [!NOTE]
 > `/h` est adapté à un flux déclenché dans la session SAP GUI courante. Il ne remplace pas les points d’arrêt externes pour les appels HTTP ou RFC.
 
-## TYPES DE POINTS D’ARRÊT
+## 12.E TYPES DE POINTS D’ARRÊT
 
-### POINT D’ARRÊT DE SESSION
+### 12.E.1 POINT D’ARRÊT DE SESSION
 
 Il concerne les traitements exécutés dans la session utilisateur SAP GUI correspondante.
 
@@ -79,7 +79,7 @@ Usage :
 - transaction exécutée dans la même session utilisateur ;
 - analyse locale classique.
 
-### POINT D’ARRÊT EXTERNE
+### 12.E.2 POINT D’ARRÊT EXTERNE
 
 Il permet d’intercepter des traitements exécutés dans une nouvelle session utilisateur, notamment certains appels :
 
@@ -92,7 +92,7 @@ Son efficacité dépend de l’utilisateur, de la durée de validité, du serveu
 > [!IMPORTANT]
 > Un breakpoint externe doit être posé pour l’utilisateur qui exécutera réellement la requête.
 
-## NAVIGATION DANS LE CODE
+## 12.F NAVIGATION DANS LE CODE
 
 | Touche | Fonction    | Effet                                                                |
 | ------ | ----------- | -------------------------------------------------------------------- |
@@ -116,7 +116,7 @@ flowchart TD
 > [!CAUTION]
 > `F8` peut terminer le programme si aucun autre point d’arrêt n’est rencontré.
 
-## INSPECTION DES DONNÉES
+## 12.G INSPECTION DES DONNÉES
 
 Le Debugger permet d’afficher :
 
@@ -139,7 +139,7 @@ Contrôles essentiels :
 - référence liée ou initiale ;
 - valeur de `sy-subrc` après une instruction qui la renseigne.
 
-## PILE D’APPELS
+## 12.H PILE D’APPELS
 
 La pile d’appels indique le chemin suivi jusqu’au point courant.
 
@@ -159,7 +159,7 @@ Elle permet de déterminer :
 - dans quel programme se trouve chaque niveau ;
 - où reprendre l’analyse lorsque l’erreur est déclenchée loin de sa cause.
 
-## WATCHPOINT
+## 12.I WATCHPOINT
 
 Un watchpoint arrête le programme lorsque la valeur d’un objet de données change ou lorsqu’une condition devient vraie.
 
@@ -176,7 +176,7 @@ Condition de watchpoint : gv_count > 100
 
 Le watchpoint est souvent plus efficace qu’un breakpoint dans une boucle très volumineuse.
 
-## MODIFICATION DE VALEURS
+## 12.J MODIFICATION DE VALEURS
 
 Le Debugger peut autoriser la modification de certaines valeurs selon le contexte et les autorisations.
 
@@ -189,7 +189,7 @@ Cette fonction sert à :
 > [!CAUTION]
 > Modifier une valeur dans le Debugger change le comportement réel de l’exécution en cours. Sur un traitement mettant à jour des données, cela peut produire des résultats incohérents ou irréversibles.
 
-## MÉTHODE D’ANALYSE
+## 12.K MÉTHODE D’ANALYSE
 
 1. reproduire le problème avec un cas minimal ;
 2. identifier le point d’entrée ;
@@ -202,7 +202,7 @@ Cette fonction sert à :
 9. identifier la première instruction où l’état devient incorrect ;
 10. corriger la cause, puis reproduire le scénario sans modification manuelle de valeurs.
 
-## LIMITES ET PRÉCAUTIONS
+## 12.L LIMITES ET PRÉCAUTIONS
 
 - un breakpoint dans une branche non exécutée ne sera jamais atteint ;
 - un breakpoint de session ne capture pas automatiquement un appel externe ;
@@ -212,40 +212,40 @@ Cette fonction sert à :
 - ne pas déboguer un traitement productif sensible sans procédure validée ;
 - supprimer les breakpoints devenus inutiles.
 
-## PROCESS
+## 12.M PROCESS
 
-### Étape 1 — Déclencher le débogueur
+### 12.M.1 Étape 1 — Déclencher le débogueur
 
 Ouvrir un report Z de démonstration, placer un breakpoint sur une instruction exécutable, activer puis lancer avec `F8`. Si l’arrêt ne se produit pas, vérifier que la ligne appartient au chemin réellement exécuté et que le breakpoint est actif pour l’utilisateur courant.
 
-### Étape 2 — Contrôler le déplacement
+### 12.M.2 Étape 2 — Contrôler le déplacement
 
 Sur un appel connu, utiliser `F5` pour entrer puis recommencer avec `F6` pour exécuter sans entrer. Utiliser `F7` pour sortir du contexte courant et `F8` pour atteindre le prochain breakpoint. Observer la pile d’appels après chaque action.
 
-### Étape 3 — Examiner les données
+### 12.M.3 Étape 3 — Examiner les données
 
 Ajouter une variable, une structure et une table interne dans les outils de données. Vérifier type, contenu courant et modifications après l’instruction suivante ; ne pas confondre une valeur initiale avec une donnée absente en base.
 
-### Étape 4 — Arrêter sur une modification
+### 12.M.4 Étape 4 — Arrêter sur une modification
 
 Créer un watchpoint sur une variable dont la valeur change. Continuer avec `F8` et vérifier que l’arrêt se produit sur l’instruction responsable, avec l’ancienne et la nouvelle valeur disponibles.
 
-### Étape 5 — Terminer
+### 12.M.5 Étape 5 — Terminer
 
 Quitter ou poursuivre proprement l’exécution puis supprimer les breakpoints devenus inutiles. Le chapitre est validé lorsque l’utilisateur sait reproduire un arrêt, choisir le bon mode de pas, examiner les données et localiser une modification par watchpoint.
 
-## VÉRIFICATION
+## 12.N VÉRIFICATION
 
 - Le lecteur peut expliquer la différence entre cette notion et les concepts proches.
 - Le choix technique est justifié par un besoin concret, pas uniquement par habitude.
 - Les limites liées à la release, aux autorisations et au contexte d’exécution sont identifiées.
 
-## ERREURS FRÉQUENTES
+## 12.O ERREURS FRÉQUENTES
 
 - Intervenir dans le mauvais système ou mandant.
 - Confondre sauvegarde et activation.
 
-## FICHE DE CONTRÔLE À COPIER
+## 12.P FICHE DE CONTRÔLE À COPIER
 
 ```text
 Système / SID       :
@@ -260,7 +260,7 @@ Horodatage          :
 Ordre de transport  :
 ```
 
-## TERMES DU LEXIQUE
+## 12.Q TERMES DU LEXIQUE
 
 - [Système SAP](<../🧩 00 ├── LEXIQUE SAP ET ABAP/01 ├── SYSTEMES ENVIRONNEMENTS ET MANDANTS.md#systeme-sap>)
 - [Mandant](<../🧩 00 ├── LEXIQUE SAP ET ABAP/01 ├── SYSTEMES ENVIRONNEMENTS ET MANDANTS.md#mandant>)
@@ -269,7 +269,7 @@ Ordre de transport  :
 - [Repository ABAP](<../🧩 00 ├── LEXIQUE SAP ET ABAP/03 ├── REPOSITORY PACKAGES ET TRANSPORTS.md#repository-abap>)
 - [Package](<../🧩 00 ├── LEXIQUE SAP ET ABAP/03 ├── REPOSITORY PACKAGES ET TRANSPORTS.md#package>)
 
-## RÉFÉRENCES OFFICIELLES SAP
+## 12.R RÉFÉRENCES OFFICIELLES SAP
 
 - [ABAP Debugger](https://help.sap.com/docs/ABAP_PLATFORM_NEW/ba879a6e2ea04d9bb94c7ccd7cdac446/492170194ab514cde10000000a42189b.html)
 - [Starting ABAP Debugger](https://help.sap.com/docs/ABAP_PLATFORM_NEW/ba879a6e2ea04d9bb94c7ccd7cdac446/a419aa9c58c2473bb4e3ae3c2a00b7b8.html)

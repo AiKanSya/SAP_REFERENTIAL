@@ -1,6 +1,6 @@
-# CALCULS ARITHMÉTIQUES
+# 3. CALCULS ARITHMÉTIQUES
 
-## RÉSULTAT ATTENDU
+## 3.A RÉSULTAT ATTENDU
 
 - Utiliser les opérateurs arithmétiques ABAP
 - Comprendre la priorité des opérations
@@ -8,7 +8,7 @@
 - Gérer division entière, reste et puissance
 - Détecter les risques de division par zéro et de dépassement
 
-## OPÉRATEURS PRINCIPAUX
+## 3.B OPÉRATEURS PRINCIPAUX
 
 | Opérateur | Rôle                      | Exemple   |
 | --------- | ------------------------- | --------- |
@@ -30,7 +30,7 @@ DATA lv_total      TYPE p LENGTH 10 DECIMALS 2.
 lv_total = lv_quantity * lv_unit_price.
 ```
 
-## PRIORITÉ DES OPÉRATIONS
+## 3.C PRIORITÉ DES OPÉRATIONS
 
 L’ordre général est :
 
@@ -46,7 +46,7 @@ DATA(lv_result_2) = ( 2 + 3 ) * 4.   " 20
 
 Utiliser des parenthèses lorsque l’intention métier ne doit pas dépendre de la lecture des priorités.
 
-## DIVISION CLASSIQUE ET DIVISION ENTIÈRE
+## 3.D DIVISION CLASSIQUE ET DIVISION ENTIÈRE
 
 ```abap
 DATA lv_dividend TYPE i VALUE 17.
@@ -73,7 +73,7 @@ DATA lv_ratio TYPE decfloat34.
 lv_ratio = CONV decfloat34( lv_dividend ) / lv_divisor.
 ```
 
-## SIGNE UNAIRE
+## 3.E SIGNE UNAIRE
 
 Les opérateurs `+` et `-` peuvent s’appliquer à un seul opérande :
 
@@ -84,7 +84,7 @@ DATA lv_reverse TYPE i.
 lv_reverse = - lv_amount.
 ```
 
-## DÉPASSEMENT ET DIVISION PAR ZÉRO
+## 3.F DÉPASSEMENT ET DIVISION PAR ZÉRO
 
 Une opération peut produire une exception d’exécution :
 
@@ -103,7 +103,7 @@ ENDTRY.
 
 Le traitement des exceptions sera détaillé dans un dossier dédié.
 
-## TYPES ADAPTÉS AUX CALCULS
+## 3.G TYPES ADAPTÉS AUX CALCULS
 
 | Besoin                                | Type habituel                | Point d’attention                    |
 | ------------------------------------- | ---------------------------- | ------------------------------------ |
@@ -115,7 +115,7 @@ Le traitement des exceptions sera détaillé dans un dossier dédié.
 > [!IMPORTANT]
 > Pour les montants et quantités SAP, utiliser de préférence les types métier du Dictionnaire ABAP, avec leurs champs de référence pour devise ou unité.
 
-## EXEMPLE MÉTIER
+## 3.H EXEMPLE MÉTIER
 
 ```abap
 DATA lv_net_amount   TYPE p LENGTH 8 DECIMALS 2 VALUE '149.90'.
@@ -130,21 +130,21 @@ lv_gross_amount = lv_discounted * ( 1 + lv_tax_rate / 100 ).
 
 Chaque étape métier est conservée dans une variable distincte afin de faciliter le contrôle du résultat.
 
-## VÉRIFICATION
+## 3.I VÉRIFICATION
 
 - Le contrôle syntaxique réussit.
 - La version active correspond au code sauvegardé.
 - L’exécution produit le résultat décrit dans le chapitre.
 - Les cas vide, limite et erreur sont testés séparément lorsque la syntaxe le permet.
 
-## ERREURS FRÉQUENTES
+## 3.J ERREURS FRÉQUENTES
 
 - Copier un exemple sans adapter les types, noms d’objets et données disponibles dans le système.
 - Tester uniquement le cas nominal et ignorer les valeurs initiales, absentes ou invalides.
 - S’appuyer sur une conversion implicite pouvant tronquer ou arrondir.
 - Ignorer l’encodage et les formats externes.
 
-## SNIPPET À RÉUTILISER
+## 3.K SNIPPET À RÉUTILISER
 
 > [!NOTE]
 > Adapter les noms `Z*`, les types DDIC, les données et les autorisations au système cible. Effectuer un contrôle syntaxique avant activation.
@@ -157,13 +157,13 @@ TRY.
 ENDTRY.
 ```
 
-## TERMES DU LEXIQUE
+## 3.L TERMES DU LEXIQUE
 
 - [Instruction ABAP](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#instruction-abap>)
 - [Expression](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#expression>)
 - [Type de données](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#type-donnees>)
 
-## RÉFÉRENCES OFFICIELLES SAP
+## 3.M RÉFÉRENCES OFFICIELLES SAP
 
 - [Arithmetic Expressions — ABAP Keyword Documentation](https://help.sap.com/doc/abapdocu_latest_index_htm/latest/en-US/ABENARITHMETIC_EXPRESSION_GLOSRY.html)
 - [Processing Data — SAP Learning](https://learning.sap.com/courses/basic-abap-programming/processing-data_b025c9e3-697d-423f-977a-43b9051a7c15)

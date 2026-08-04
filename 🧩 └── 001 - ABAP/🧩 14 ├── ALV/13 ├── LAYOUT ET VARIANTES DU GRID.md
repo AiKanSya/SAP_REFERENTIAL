@@ -1,12 +1,12 @@
-# LAYOUT ET VARIANTES DU GRID
+# 13. LAYOUT ET VARIANTES DU GRID
 
-## RÉSULTAT ATTENDU
+## 13.A RÉSULTAT ATTENDU
 
 - Configurer `LVC_S_LAYO`
 - Activer la sauvegarde des variantes
 - Distinguer layout applicatif et variante utilisateur
 
-## LAYOUT
+## 13.B LAYOUT
 
 ```abap
 DATA gs_layout TYPE lvc_s_layo.
@@ -28,7 +28,7 @@ Propriétés fréquentes :
 | `CTAB_FNAME` | Table de couleurs au niveau cellule |
 | `INFO_FNAME` | Couleur de ligne                    |
 
-## VARIANTE
+## 13.C VARIANTE
 
 ```abap
 DATA gs_variant TYPE disvariant.
@@ -51,50 +51,50 @@ go_grid->set_table_for_first_display(
 
 `I_SAVE = 'A'` autorise généralement les variantes utilisateur et globales, sous réserve des autorisations et du comportement de la version utilisée.
 
-## BONNES PRATIQUES
+## 13.D BONNES PRATIQUES
 
 - Toujours renseigner `DISVARIANT-REPORT`.
 - Ne pas modifier la clé de variante entre deux exécutions équivalentes.
 - Ne pas rendre une colonne technique accessible via une variante.
 - Tester l’impact d’une évolution de structure sur les variantes déjà sauvegardées.
 
-## PROCESS
+## 13.E PROCESS
 
-### Étape 1 — Définir les propriétés du layout
+### 13.E.1 Étape 1 — Définir les propriétés du layout
 
 Remplir une structure `LVC_S_LAYO` avec les seules options nécessaires : sélection, lignes alternées, largeur, styles ou couleurs pilotés par la table de sortie.
 
-### Étape 2 — Préparer une identité de variante stable
+### 13.E.2 Étape 2 — Préparer une identité de variante stable
 
 Remplir `DISVARIANT` avec un identifiant de rapport stable et, si le projet l’exige, un handle distinct pour chaque grille du même programme.
 
-### Étape 3 — Transmettre layout et variante au premier affichage
+### 13.E.3 Étape 3 — Transmettre layout et variante au premier affichage
 
 Fournir `IS_LAYOUT`, `IS_VARIANT` et la valeur de sauvegarde attendue à `SET_TABLE_FOR_FIRST_DISPLAY`. Ces paramètres doivent être fixés avant que l’utilisateur modifie la disposition.
 
-### Étape 4 — Appliquer la politique de sauvegarde
+### 13.E.4 Étape 4 — Appliquer la politique de sauvegarde
 
 Déterminer si les variantes utilisateur, globales ou aucune sauvegarde sont autorisées. Ne pas donner une capacité de variante globale à un utilisateur qui ne doit gérer que son affichage personnel.
 
-### Étape 5 — Tester la persistance
+### 13.E.5 Étape 5 — Tester la persistance
 
 Enregistrer une variante, quitter le programme puis la recharger. Tester également une variante obsolète après modification du catalogue de champs.
 
-## VÉRIFICATION
+## 13.F VÉRIFICATION
 
 - Le contrôle syntaxique réussit.
 - La version active correspond au code sauvegardé.
 - L’exécution produit le résultat décrit dans le chapitre.
 - Les cas vide, limite et erreur sont testés séparément lorsque la syntaxe le permet.
 
-## ERREURS FRÉQUENTES
+## 13.G ERREURS FRÉQUENTES
 
 - Copier un exemple sans adapter les types, noms d’objets et données disponibles dans le système.
 - Tester uniquement le cas nominal et ignorer les valeurs initiales, absentes ou invalides.
 - Afficher un volume non borné dans l’ALV.
 - Rendre une cellule éditable sans validation ni sauvegarde transactionnelle.
 
-## SNIPPET À RÉUTILISER
+## 13.H SNIPPET À RÉUTILISER
 
 > [!NOTE]
 > Adapter les noms `Z*`, les types DDIC, les données et les autorisations au système cible. Effectuer un contrôle syntaxique avant activation.
@@ -105,14 +105,14 @@ DATA gs_variant TYPE disvariant.
 gs_variant-report = sy-repid.
 ```
 
-## TERMES DU LEXIQUE
+## 13.I TERMES DU LEXIQUE
 
 - [Variante](<../🧩 00 ├── LEXIQUE SAP ET ABAP/06 ├── PROGRAMMES CLASSES ET OBJETS TECHNIQUES.md#variante>)
 - [ALV](<../🧩 00 ├── LEXIQUE SAP ET ABAP/10 └── ACRONYMES SAP.md#acro-alv>)
 - [SALV](<../🧩 00 ├── LEXIQUE SAP ET ABAP/10 └── ACRONYMES SAP.md#acro-salv>)
 - [Table interne](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#table-interne>)
 
-## RÉFÉRENCES OFFICIELLES SAP
+## 13.J RÉFÉRENCES OFFICIELLES SAP
 
 - [Methods of Class CL_GUI_ALV_GRID — SAP Help Portal](https://help.sap.com/docs/ABAP_PLATFORM_NEW/70396d7dec4c4f19b9ca3b2e47559d12/22a3f5ecd2fe11d2b467006094192fe3.html)
 - [Working with the ALV Grid Control — SAP Help Portal](https://help.sap.com/docs/ABAP_PLATFORM_NEW/70396d7dec4c4f19b9ca3b2e47559d12/4ebd16291041389ee10000000a421937.html)

@@ -1,6 +1,6 @@
-# SYSTÈME DE TYPES ABAP
+# 1. SYSTÈME DE TYPES ABAP
 
-## RÉSULTAT ATTENDU
+## 1.A RÉSULTAT ATTENDU
 
 - Distinguer un type de données d’un objet de données
 - Comprendre le rôle du typage dans l’exécution d’un programme ABAP
@@ -8,7 +8,7 @@
 - Distinguer les définitions locales des types globaux du Dictionnaire ABAP
 - Choisir un type adapté à la donnée métier manipulée
 
-## TYPE ET OBJET DE DONNÉES
+## 1.B TYPE ET OBJET DE DONNÉES
 
 Un **type de données** décrit les propriétés d’une valeur :
 
@@ -39,7 +39,7 @@ DATA lv_quantity TYPE i VALUE 10.
 | `lv_quantity` | Objet de données variable             |
 | `10`          | Valeur initiale explicitement fournie |
 
-## TYPOLOGIE GÉNÉRALE
+## 1.C TYPOLOGIE GÉNÉRALE
 
 ```mermaid
 flowchart TD
@@ -65,7 +65,7 @@ Ce dossier traite :
 
 Les tables internes et les références d’objets seront détaillées dans leurs dossiers respectifs.
 
-## SOURCES DES TYPES
+## 1.D SOURCES DES TYPES
 
 Un objet de données peut être typé à partir de plusieurs sources.
 
@@ -80,7 +80,7 @@ Un objet de données peut être typé à partir de plusieurs sources.
 > [!NOTE]
 > Le Dictionnaire ABAP sera traité dans un dossier dédié. Ici, ses objets sont uniquement utilisés comme sources de typage.
 
-## TYPE COMPLET ET TYPE GÉNÉRIQUE
+## 1.E TYPE COMPLET ET TYPE GÉNÉRIQUE
 
 Un **type complet** détermine entièrement les propriétés techniques d’un objet. Il peut servir à déclarer une variable autonome.
 
@@ -96,7 +96,7 @@ FIELD-SYMBOLS <lv_value> TYPE any.
 
 Il n’est pas possible de créer une variable autonome de type générique `any` avec une déclaration classique `DATA`.
 
-## TYPE LIÉ ET TYPE AUTONOME
+## 1.F TYPE LIÉ ET TYPE AUTONOME
 
 Un type créé avec `TYPES` est un type autonome réutilisable dans sa zone de visibilité.
 
@@ -115,7 +115,7 @@ DATA lv_copy LIKE lv_customer_id.
 
 Pour une donnée métier réutilisée, un type nommé ou un type global du Dictionnaire est généralement plus explicite qu’une succession de déclarations dépendantes avec `LIKE`.
 
-## CHOIX DU TYPE
+## 1.G CHOIX DU TYPE
 
 Le type doit refléter la **sémantique** de la donnée, pas uniquement son apparence.
 
@@ -130,7 +130,7 @@ Le type doit refléter la **sémantique** de la donnée, pas uniquement son appa
 > [!IMPORTANT]
 > Deux champs techniquement compatibles ne sont pas nécessairement sémantiquement interchangeables. Une société, une division et un numéro de document peuvent avoir la même longueur sans représenter la même donnée métier.
 
-## EXEMPLE DE SYNTHÈSE
+## 1.H EXEMPLE DE SYNTHÈSE
 
 ```abap
 REPORT zdemo_types_abap.
@@ -152,21 +152,21 @@ Dans cet exemple :
 3. `lv_rate` est une variable du même type ;
 4. `lv_label` est une chaîne de caractères variable.
 
-## VÉRIFICATION
+## 1.I VÉRIFICATION
 
 - Le contrôle syntaxique réussit.
 - La version active correspond au code sauvegardé.
 - L’exécution produit le résultat décrit dans le chapitre.
 - Les cas vide, limite et erreur sont testés séparément lorsque la syntaxe le permet.
 
-## ERREURS FRÉQUENTES
+## 1.J ERREURS FRÉQUENTES
 
 - Copier un exemple sans adapter les types, noms d’objets et données disponibles dans le système.
 - Tester uniquement le cas nominal et ignorer les valeurs initiales, absentes ou invalides.
 - Choisir un type trop générique ou dépendant d’une variable existante sans justification.
 - Utiliser une référence ou un field-symbol non lié.
 
-## SNIPPET À RÉUTILISER
+## 1.K SNIPPET À RÉUTILISER
 
 > [!NOTE]
 > Adapter les noms `Z*`, les types DDIC, les données et les autorisations au système cible. Effectuer un contrôle syntaxique avant activation.
@@ -184,7 +184,7 @@ DATA lv_label TYPE string  VALUE `Taux appliqué`.
 WRITE: / lv_label, lv_rate.
 ```
 
-## TERMES DU LEXIQUE
+## 1.L TERMES DU LEXIQUE
 
 - [ABAP](<../🧩 00 ├── LEXIQUE SAP ET ABAP/10 └── ACRONYMES SAP.md#acro-abap>)
 - [Type de données](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#type-donnees>)
@@ -193,7 +193,7 @@ WRITE: / lv_label, lv_rate.
 - [Table interne](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#table-interne>)
 - [Field-symbol](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#field-symbol>)
 
-## RÉFÉRENCES OFFICIELLES SAP
+## 1.M RÉFÉRENCES OFFICIELLES SAP
 
 - [Working With Basic Data Objects and Data Types](https://learning.sap.com/courses/basic-abap-programming/working-with-basic-data-objects-and-data-types_cf92dee2-85ec-4b9f-a778-1a7cfef70dad)
 - [Data Types — SAP Help Portal](https://help.sap.com/docs/abap-cloud/abap-concepts/data-types)

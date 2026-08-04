@@ -1,6 +1,6 @@
-# DÉCLARATION DES TYPES ET TABLES INTERNES
+# 2. DÉCLARATION DES TYPES ET TABLES INTERNES
 
-## RÉSULTAT ATTENDU
+## 2.A RÉSULTAT ATTENDU
 
 - Déclarer un type de ligne et un type de table
 - Déclarer directement une table interne avec `DATA`
@@ -8,7 +8,7 @@
 - Utiliser `LIKE LINE OF` et `TYPE LINE OF`
 - Distinguer définition de type et création d’objet de données
 
-## DÉCLARER LE TYPE DE LIGNE
+## 2.B DÉCLARER LE TYPE DE LIGNE
 
 Le type de ligne peut être élémentaire, structuré, tabulaire ou une référence. Dans la majorité des traitements métier, il s’agit d’une structure.
 
@@ -20,7 +20,7 @@ TYPES: BEGIN OF ty_order,
        END OF ty_order.
 ```
 
-## DÉCLARER UN TYPE DE TABLE
+## 2.C DÉCLARER UN TYPE DE TABLE
 
 ```abap
 TYPES ty_t_orders TYPE STANDARD TABLE OF ty_order
@@ -42,7 +42,7 @@ flowchart LR
     C --> D["Objet de données tabulaire"]
 ```
 
-## DÉCLARATION DIRECTE
+## 2.D DÉCLARATION DIRECTE
 
 Un type de table local intermédiaire n’est pas obligatoire.
 
@@ -53,7 +53,7 @@ DATA lt_orders TYPE STANDARD TABLE OF ty_order
 
 Créer un type nommé reste utile lorsque plusieurs variables, paramètres ou attributs doivent partager exactement le même type.
 
-## ZONE DE TRAVAIL
+## 2.E ZONE DE TRAVAIL
 
 Une zone de travail est une structure compatible avec une ligne de la table.
 
@@ -73,7 +73,7 @@ Pour définir un type correspondant au type de ligne :
 TYPES ty_order_line TYPE LINE OF ty_t_orders.
 ```
 
-## TYPE LINE OF ET LIKE LINE OF
+## 2.F TYPE LINE OF ET LIKE LINE OF
 
 | Syntaxe                  | Résultat                                                  |
 | ------------------------ | --------------------------------------------------------- |
@@ -87,7 +87,7 @@ DATA ls_order_a TYPE LINE OF ty_t_orders.
 DATA ls_order_b LIKE LINE OF lt_orders.
 ```
 
-## TABLES À LIGNE ÉLÉMENTAIRE
+## 2.G TABLES À LIGNE ÉLÉMENTAIRE
 
 Une table interne peut contenir des valeurs simples.
 
@@ -106,7 +106,7 @@ DATA lt_unique_numbers TYPE SORTED TABLE OF i
                        WITH UNIQUE KEY table_line.
 ```
 
-## DÉCLARATIONS ANONYMES ET LISIBILITÉ
+## 2.H DÉCLARATIONS ANONYMES ET LISIBILITÉ
 
 Une déclaration directe est concise :
 
@@ -125,7 +125,7 @@ DATA lt_errors   TYPE ty_t_messages.
 DATA lt_warnings TYPE ty_t_messages.
 ```
 
-## RÈGLE DE CONCEPTION
+## 2.I RÈGLE DE CONCEPTION
 
 Définir dans cet ordre :
 
@@ -134,21 +134,21 @@ Définir dans cet ordre :
 3. objets de données ;
 4. zones de travail, symboles de champ ou références seulement lorsqu’ils sont utiles.
 
-## VÉRIFICATION
+## 2.J VÉRIFICATION
 
 - Le contrôle syntaxique réussit.
 - La version active correspond au code sauvegardé.
 - L’exécution produit le résultat décrit dans le chapitre.
 - Les cas vide, limite et erreur sont testés séparément lorsque la syntaxe le permet.
 
-## ERREURS FRÉQUENTES
+## 2.K ERREURS FRÉQUENTES
 
 - Copier un exemple sans adapter les types, noms d’objets et données disponibles dans le système.
 - Tester uniquement le cas nominal et ignorer les valeurs initiales, absentes ou invalides.
 - Utiliser une table standard pour des recherches massives par clé sans mesure.
 - Modifier une copie de ligne alors que la table devait être mise à jour.
 
-## SNIPPET À RÉUTILISER
+## 2.L SNIPPET À RÉUTILISER
 
 > [!NOTE]
 > Adapter les noms `Z*`, les types DDIC, les données et les autorisations au système cible. Effectuer un contrôle syntaxique avant activation.
@@ -161,14 +161,14 @@ TYPES: BEGIN OF ty_order,
        END OF ty_order.
 ```
 
-## TERMES DU LEXIQUE
+## 2.M TERMES DU LEXIQUE
 
 - [Table interne](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#table-interne>)
 - [Structure](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#structure-abap>)
 - [Field-symbol](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#field-symbol>)
 - [Référence](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#reference>)
 
-## RÉFÉRENCES OFFICIELLES SAP
+## 2.N RÉFÉRENCES OFFICIELLES SAP
 
 - [Creating Internal Tables — SAP Help Portal](https://help.sap.com/docs/abap-cloud/abap-concepts/how-to-create-internal-tables-locally)
 - [Working with Complex Internal Tables — SAP Learning](https://learning.sap.com/courses/basic-abap-programming/working-with-complex-internal-tables_f8c923f3-6f95-4b47-960f-557001f13977)

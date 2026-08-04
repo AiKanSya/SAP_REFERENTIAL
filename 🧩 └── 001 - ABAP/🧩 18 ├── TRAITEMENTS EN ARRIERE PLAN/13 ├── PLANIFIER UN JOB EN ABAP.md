@@ -1,12 +1,12 @@
-# PLANIFIER UN JOB EN ABAP
+# 13. PLANIFIER UN JOB EN ABAP
 
-## RÉSULTAT ATTENDU
+## 13.A RÉSULTAT ATTENDU
 
 - Créer un job depuis un programme
 - Ajouter une étape ABAP
 - Libérer le job avec une condition de démarrage
 
-## CYCLE COMPLET
+## 13.B CYCLE COMPLET
 
 ```mermaid
 flowchart LR
@@ -15,7 +15,7 @@ flowchart LR
     C --> D["Système batch"]
 ```
 
-## EXEMPLE AVEC `SUBMIT ... VIA JOB`
+## 13.C EXEMPLE AVEC `SUBMIT ... VIA JOB`
 
 ```abap
 DATA lv_jobname  TYPE btcjob VALUE 'Z_DEV_DEMO_JOB'.
@@ -63,11 +63,11 @@ IF sy-subrc <> 0.
 ENDIF.
 ```
 
-## `JOB_SUBMIT`
+## 13.D `JOB_SUBMIT`
 
 `JOB_SUBMIT` permet également d’ajouter une étape. `SUBMIT ... VIA JOB` est une alternative ABAP documentée. Le choix dépend du besoin de contrôle sur la variante, le spool, la langue et l’utilisateur d’exécution.
 
-## ROBUSTESSE
+## 13.E ROBUSTESSE
 
 - générer un nom permettant la recherche ;
 - conserver le numéro du job ;
@@ -76,47 +76,47 @@ ENDIF.
 - journaliser le job créé ;
 - ne pas exécuter de `COMMIT WORK` caché dans une API appelante sans contrat clair.
 
-## PROCESS
+## 13.F PROCESS
 
-### ÉTAPE 1 — DÉFINIR UNE CLÉ D’IDEMPOTENCE DE PLANIFICATION
+### 13.F.1 ÉTAPE 1 — DÉFINIR UNE CLÉ D’IDEMPOTENCE DE PLANIFICATION
 
 Construire un nom et un identifiant métier permettant de reconnaître une demande déjà créée. Avant de planifier, rechercher ou consulter une table de pilotage afin qu’une relance du programme ne crée pas plusieurs jobs équivalents.
 
-### ÉTAPE 2 — OUVRIR LE JOB AVEC `JOB_OPEN`
+### 13.F.2 ÉTAPE 2 — OUVRIR LE JOB AVEC `JOB_OPEN`
 
 Préparer `jobname`, appeler `JOB_OPEN` et récupérer `jobcount`. Contrôler `sy-subrc` immédiatement. Conserver le couple nom/numéro dans le journal ; le nom seul peut correspondre à plusieurs exécutions.
 
-### ÉTAPE 3 — AJOUTER L’ÉTAPE
+### 13.F.3 ÉTAPE 3 — AJOUTER L’ÉTAPE
 
 Utiliser `SUBMIT ... VIA JOB ... AND RETURN` ou `JOB_SUBMIT` selon les paramètres requis. Fournir programme, variante ou valeurs de sélection, utilisateur et attributs de spool de manière explicite. Contrôler le retour avant de fermer le job.
 
-### ÉTAPE 4 — FERMER ET LIBÉRER AVEC `JOB_CLOSE`
+### 13.F.4 ÉTAPE 4 — FERMER ET LIBÉRER AVEC `JOB_CLOSE`
 
 Définir une condition de démarrage cohérente : immédiate, date/heure ou autre option supportée par la signature. Appeler `JOB_CLOSE` avec le même nom et numéro, puis traiter chaque code d’erreur. Un job ouvert mais non fermé doit être signalé pour nettoyage.
 
-### ÉTAPE 5 — PERSISTER LE RÉSULTAT DE PLANIFICATION
+### 13.F.5 ÉTAPE 5 — PERSISTER LE RÉSULTAT DE PLANIFICATION
 
 Enregistrer le nom, le numéro, l’étape, les paramètres, le créateur et la date. Restituer ces informations à l’appelant. Ne pas masquer un échec de fermeture après un `JOB_OPEN` réussi.
 
-### ÉTAPE 6 — CONTRÔLER DANS `SM37`
+### 13.F.6 ÉTAPE 6 — CONTRÔLER DANS `SM37`
 
 Rechercher le couple créé, vérifier le statut libéré, le programme, la variante, l’utilisateur et la condition. Tester le succès, un programme ou une variante invalide, un `JOB_CLOSE` en échec et une relance de la demande initiale.
 
-## VÉRIFICATION
+## 13.G VÉRIFICATION
 
 - Le job apparaît dans `SM37` avec le statut attendu.
 - Le journal ne contient pas de message d’erreur non traité.
 - Le spool, le fichier ou le journal applicatif contient le résultat attendu.
 - Une relance contrôlée ne crée pas de doublon métier.
 
-## ERREURS FRÉQUENTES
+## 13.H ERREURS FRÉQUENTES
 
 - Copier un exemple sans adapter les types, noms d’objets et données disponibles dans le système.
 - Tester uniquement le cas nominal et ignorer les valeurs initiales, absentes ou invalides.
 - Planifier un job avec l’utilisateur personnel d’un développeur.
 - Relancer un job non idempotent après un échec partiel.
 
-## SNIPPET À RÉUTILISER
+## 13.I SNIPPET À RÉUTILISER
 
 > [!NOTE]
 > Adapter les noms `Z*`, les types DDIC, les données et les autorisations au système cible. Effectuer un contrôle syntaxique avant activation.
@@ -167,7 +167,7 @@ IF sy-subrc <> 0.
 ENDIF.
 ```
 
-## TERMES DU LEXIQUE
+## 13.J TERMES DU LEXIQUE
 
 - [ABAP](<../🧩 00 ├── LEXIQUE SAP ET ABAP/10 └── ACRONYMES SAP.md#acro-abap>)
 - [Job](<../🧩 00 ├── LEXIQUE SAP ET ABAP/06 ├── PROGRAMMES CLASSES ET OBJETS TECHNIQUES.md#job>)
@@ -175,7 +175,7 @@ ENDIF.
 - [Processus background](<../🧩 00 ├── LEXIQUE SAP ET ABAP/08 ├── EXECUTION EXPLOITATION ET ADMINISTRATION.md#processus-background>)
 - [Variante](<../🧩 00 ├── LEXIQUE SAP ET ABAP/06 ├── PROGRAMMES CLASSES ET OBJETS TECHNIQUES.md#variante>)
 
-## RÉFÉRENCES OFFICIELLES SAP
+## 13.K RÉFÉRENCES OFFICIELLES SAP
 
 - [JOB_OPEN — SAP Help Portal](https://help.sap.com/docs/SAP_NETWEAVER_701/6f4638486c4b10149ac3feef935d92ad/4d9140abe637497fe10000000a15822b.html)
 - [JOB_SUBMIT — SAP Help Portal](https://help.sap.com/docs/SAP_NETWEAVER_700/12acb4f96c531014b9dad87356daf3a3/4d914143e637497fe10000000a15822b.html)

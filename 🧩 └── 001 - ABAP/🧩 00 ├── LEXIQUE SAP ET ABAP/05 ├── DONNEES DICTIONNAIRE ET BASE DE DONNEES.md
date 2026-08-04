@@ -1,11 +1,11 @@
-# DONNÉES, DICTIONNAIRE ET BASE DE DONNÉES
+# 5. DONNÉES, DICTIONNAIRE ET BASE DE DONNÉES
 
 Définitions liées au Dictionnaire ABAP, aux tables et à la représentation technique des données.
 
 Chaque entrée présente une définition concise, un exemple, un repère pratique et, lorsque nécessaire, une distinction avec une notion proche.
 
 <a id="abap-dictionary"></a>
-## ABAP DICTIONARY
+## 5.A ABAP DICTIONARY
 
 **Définition.** Référentiel central des définitions de données utilisées par les programmes ABAP et la base de données.
 
@@ -19,7 +19,7 @@ Chaque entrée présente une définition concise, un exemple, un repère pratiqu
 ---
 
 <a id="buffer-table"></a>
-## BUFFER DE TABLE
+## 5.B BUFFER DE TABLE
 
 **Définition.** Mécanisme mettant en mémoire applicative certaines données de table afin de réduire les accès base.
 
@@ -33,7 +33,7 @@ Chaque entrée présente une définition concise, un exemple, un repère pratiqu
 ---
 
 <a id="cle-etrangere"></a>
-## CLÉ ÉTRANGÈRE
+## 5.C CLÉ ÉTRANGÈRE
 
 **Définition.** Relation DDIC entre des champs d’une table et une table de contrôle.
 
@@ -47,7 +47,7 @@ Chaque entrée présente une définition concise, un exemple, un repère pratiqu
 ---
 
 <a id="cle-primaire"></a>
-## CLÉ PRIMAIRE
+## 5.D CLÉ PRIMAIRE
 
 **Définition.** Ensemble minimal de champs identifiant de manière unique une ligne de table.
 
@@ -61,7 +61,7 @@ Chaque entrée présente une définition concise, un exemple, un repère pratiqu
 ---
 
 <a id="domaine"></a>
-## DOMAINE
+## 5.E DOMAINE
 
 **Définition.** Objet DDIC définissant les caractéristiques techniques élémentaires et éventuellement des valeurs fixes.
 
@@ -75,7 +75,7 @@ Chaque entrée présente une définition concise, un exemple, un repère pratiqu
 ---
 
 <a id="element-donnees"></a>
-## ÉLÉMENT DE DONNÉES
+## 5.F ÉLÉMENT DE DONNÉES
 
 **Définition.** Objet DDIC qui attribue une signification métier, des libellés et une documentation à un type élémentaire ou à un domaine.
 
@@ -89,7 +89,7 @@ Chaque entrée présente une définition concise, un exemple, un repère pratiqu
 ---
 
 <a id="index-secondaire"></a>
-## INDEX SECONDAIRE
+## 5.G INDEX SECONDAIRE
 
 **Définition.** Structure de base de données supplémentaire accélérant certains accès au prix d’un coût de stockage et de maintenance.
 
@@ -103,7 +103,7 @@ Chaque entrée présente une définition concise, un exemple, un repère pratiqu
 ---
 
 <a id="mandt"></a>
-## MANDT
+## 5.H MANDT
 
 **Définition.** Champ technique de type mandant, généralement placé en première position de clé dans les tables dépendantes du mandant.
 
@@ -117,7 +117,7 @@ Chaque entrée présente une définition concise, un exemple, un repère pratiqu
 ---
 
 <a id="routine-conversion"></a>
-## ROUTINE DE CONVERSION
+## 5.I ROUTINE DE CONVERSION
 
 **Définition.** Mécanisme DDIC convertissant une valeur entre représentation interne et affichage externe.
 
@@ -131,7 +131,7 @@ Chaque entrée présente une définition concise, un exemple, un repère pratiqu
 ---
 
 <a id="table-controle"></a>
-## TABLE DE CONTRÔLE
+## 5.J TABLE DE CONTRÔLE
 
 **Définition.** Table contenant les valeurs de référence autorisées pour une relation de clé étrangère.
 
@@ -145,7 +145,7 @@ Chaque entrée présente une définition concise, un exemple, un repère pratiqu
 ---
 
 <a id="table-texte"></a>
-## TABLE DE TEXTE
+## 5.K TABLE DE TEXTE
 
 **Définition.** Table dépendante de la langue contenant les descriptions associées à une table principale.
 
@@ -159,7 +159,7 @@ Chaque entrée présente une définition concise, un exemple, un repère pratiqu
 ---
 
 <a id="table-transparente"></a>
-## TABLE TRANSPARENTE
+## 5.L TABLE TRANSPARENTE
 
 **Définition.** Table DDIC correspondant directement à une table physique de la base de données.
 
@@ -171,7 +171,7 @@ Chaque entrée présente une définition concise, un exemple, un repère pratiqu
 
 ---
 
-## Références SAP
+## 5.M Références SAP
 
 - [ABAP Programming Language — SAP Help Portal](https://help.sap.com/docs/ABAP_PLATFORM/66906ae3920c4fc684cf588290fb9267/d3d5c132973b404db980ba6ae0889be7.html)
 - [SAP GUI for Windows — SAP Help Portal](https://help.sap.com/docs/r/product/sap_gui_for_windows)

@@ -1,38 +1,38 @@
-# IMPLÉMENTER UNE BAdI AVEC `SE19`
+# 15. IMPLÉMENTER UNE BAdI AVEC `SE19`
 
-## RÉSULTAT ATTENDU
+## 15.A RÉSULTAT ATTENDU
 
 - Créer une implémentation BAdI client
 - Générer ou affecter la classe d’implémentation
 - Activer et tester l’ensemble des objets
 
-## PROCESS
+## 15.B PROCESS
 
-### ÉTAPE 1 — PARTIR D’UNE DÉFINITION VALIDÉE
+### 15.B.1 ÉTAPE 1 — PARTIR D’UNE DÉFINITION VALIDÉE
 
 Conserver le nom, la méthode, le point d’appel, les filtres et les implémentations existantes analysés dans `SE18`. Définir le cas métier sélectionné et les cas qui doivent rester sans effet.
 
-### ÉTAPE 2 — CRÉER L’IMPLÉMENTATION DANS `SE19`
+### 15.B.2 ÉTAPE 2 — CRÉER L’IMPLÉMENTATION DANS `SE19`
 
 Saisir `/nSE19`, choisir le mode de BAdI approprié puis créer une implémentation Z pour la définition ou l’enhancement spot. Renseigner une description explicite, le package et la demande de transport.
 
-### ÉTAPE 3 — MAINTENIR LES FILTRES
+### 15.B.3 ÉTAPE 3 — MAINTENIR LES FILTRES
 
 Saisir uniquement les valeurs nécessaires au périmètre convenu et contrôler leur type. Comparer avec les implémentations actives afin d’éviter un chevauchement involontaire. Documenter le comportement attendu lorsque aucune valeur ne correspond.
 
-### ÉTAPE 4 — IMPLÉMENTER LES MÉTHODES
+### 15.B.4 ÉTAPE 4 — IMPLÉMENTER LES MÉTHODES
 
 Ouvrir la classe générée ou affectée. Dans chaque méthode nécessaire, valider le contexte puis déléguer à une classe de service Z. Respecter la direction des paramètres, les exceptions et la LUW du standard. Laisser les méthodes non utilisées sans effet explicite.
 
-### ÉTAPE 5 — ACTIVER TOUS LES NIVEAUX
+### 15.B.5 ÉTAPE 5 — ACTIVER TOUS LES NIVEAUX
 
 Contrôler et activer la classe de service, la classe d’implémentation et l’implémentation BAdI. Vérifier le statut actif dans `SE19` et l’apparition de l’implémentation dans `SE18`. Contrôler les dépendances de transport.
 
-### ÉTAPE 6 — TESTER LA SÉLECTION RUNTIME
+### 15.B.6 ÉTAPE 6 — TESTER LA SÉLECTION RUNTIME
 
 Placer un breakpoint dans la méthode BAdI. Tester une valeur de filtre incluse, une valeur exclue, un cas d’erreur et les scénarios couverts par d’autres implémentations. Vérifier le résultat après le retour au standard et l’absence d’effet hors périmètre.
 
-## DÉLÉGATION
+## 15.C DÉLÉGATION
 
 Conserver une classe d’implémentation légère :
 
@@ -48,7 +48,7 @@ ENDMETHOD.
 
 Cette délégation facilite les tests, la réutilisation et la séparation entre contrat SAP et logique client.
 
-## ACTIVATION
+## 15.D ACTIVATION
 
 ```mermaid
 flowchart TD
@@ -58,21 +58,21 @@ flowchart TD
     C -->|"Non"| E["Implémentation ignorée"]
 ```
 
-## VÉRIFICATION
+## 15.E VÉRIFICATION
 
 - L’implémentation ou le projet est actif et transporté dans le bon ordre.
 - Un breakpoint confirme que le point d’extension est appelé dans le scénario visé.
 - Le comportement standard reste inchangé hors du périmètre fonctionnel prévu.
 - Aucune modification directe d’un objet SAP standard n’a été créée.
 
-## ERREURS FRÉQUENTES
+## 15.F ERREURS FRÉQUENTES
 
 - Copier un exemple sans adapter les types, noms d’objets et données disponibles dans le système.
 - Tester uniquement le cas nominal et ignorer les valeurs initiales, absentes ou invalides.
 - Choisir le premier exit trouvé sans vérifier le moment exact de l’appel.
 - Créer plusieurs implémentations concurrentes sans règles de filtre.
 
-## SNIPPET À RÉUTILISER
+## 15.G SNIPPET À RÉUTILISER
 
 > [!NOTE]
 > Adapter les noms `Z*`, les types DDIC, les données et les autorisations au système cible. Effectuer un contrôle syntaxique avant activation.
@@ -87,13 +87,13 @@ METHOD if_ex_zbadi_demo~change_data.
 ENDMETHOD.
 ```
 
-## TERMES DU LEXIQUE
+## 15.H TERMES DU LEXIQUE
 
 - [BAdI](<../🧩 00 ├── LEXIQUE SAP ET ABAP/10 └── ACRONYMES SAP.md#acro-badi>)
 - [BTE](<../🧩 00 ├── LEXIQUE SAP ET ABAP/10 └── ACRONYMES SAP.md#acro-bte>)
 - [Objet Repository](<../🧩 00 ├── LEXIQUE SAP ET ABAP/03 ├── REPOSITORY PACKAGES ET TRANSPORTS.md#objet-repository>)
 
-## RÉFÉRENCES OFFICIELLES SAP
+## 15.I RÉFÉRENCES OFFICIELLES SAP
 
 - [Implementation of BAdIs in the Enhancement Builder — SAP Help Portal](https://help.sap.com/docs/SAP_NETWEAVER_700/12a713d06c531014903e876ccc9a0b0d27/b2873842134bad04e10000000a1550b0.html)
 - [How to Implement a BAdI — SAP Help Portal](https://help.sap.com/docs/ABAP_PLATFORM_NEW/46a2cfc13d25463b8b9a3d2a3c3ba0d9/44f518d884056c30e10000000a114a6b.html)

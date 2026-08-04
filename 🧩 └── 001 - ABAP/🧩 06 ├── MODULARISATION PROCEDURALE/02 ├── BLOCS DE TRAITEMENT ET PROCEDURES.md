@@ -1,6 +1,6 @@
-# BLOCS DE TRAITEMENT ET PROCÉDURES
+# 2. BLOCS DE TRAITEMENT ET PROCÉDURES
 
-## RÉSULTAT ATTENDU
+## 2.A RÉSULTAT ATTENDU
 
 - Distinguer bloc d’événement et procédure
 - Comprendre qui déclenche chaque bloc de traitement
@@ -8,7 +8,7 @@
 - Situer les sous-programmes dans un programme exécutable
 - Éviter de confondre séquence source et séquence d’exécution
 
-## BLOC DE TRAITEMENT
+## 2.B BLOC DE TRAITEMENT
 
 Un programme ABAP est composé de blocs de traitement. Chaque bloc possède un point d’entrée et une fin déterminée par sa syntaxe.
 
@@ -25,7 +25,7 @@ flowchart TD
     C --> E["Appelées par le programme"]
 ```
 
-## BLOC D’ÉVÉNEMENT
+## 2.C BLOC D’ÉVÉNEMENT
 
 Exemple :
 
@@ -36,7 +36,7 @@ START-OF-SELECTION.
 
 Le programme ne contient pas d’instruction qui appelle directement `START-OF-SELECTION`. Le runtime déclenche cet événement selon le type de programme et son cycle d’exécution.
 
-## PROCÉDURE
+## 2.D PROCÉDURE
 
 Exemple :
 
@@ -51,7 +51,7 @@ ENDFORM.
 
 Le sous-programme n’est exécuté que lorsque `PERFORM display_title` est atteint.
 
-## ORDRE SOURCE ET ORDRE D’EXÉCUTION
+## 2.E ORDRE SOURCE ET ORDRE D’EXÉCUTION
 
 La position d’un `FORM` dans le fichier source ne signifie pas qu’il est exécuté à cet endroit.
 
@@ -78,7 +78,7 @@ Résultat :
 Étape 1
 ```
 
-## VARIABLES LOCALES ET GLOBALES
+## 2.F VARIABLES LOCALES ET GLOBALES
 
 Les données déclarées hors d’une procédure sont globales au programme concerné.
 
@@ -97,7 +97,7 @@ ENDFORM.
 
 `gv_counter` est accessible depuis le sous-programme. `lv_previous` ne l’est pas en dehors du `FORM`.
 
-## TABLEAU DE SYNTHÈSE
+## 2.G TABLEAU DE SYNTHÈSE
 
 | Élément          | Déclenchement            | Interface explicite | Exemple               |
 | ---------------- | ------------------------ | ------------------- | --------------------- |
@@ -106,7 +106,7 @@ ENDFORM.
 | Module fonction  | `CALL FUNCTION`          | Oui                 | Dossier dédié         |
 | Méthode          | Appel de méthode         | Oui                 | Dossier ABAP Objects  |
 
-## POINTS À RETENIR
+## 2.H POINTS À RETENIR
 
 - Un bloc d’événement est déclenché par le runtime.
 - Une procédure est appelée explicitement.
@@ -114,21 +114,21 @@ ENDFORM.
 - Les variables locales limitent les dépendances et les effets de bord.
 - Les sous-programmes sont des procédures classiques, principalement rencontrées dans du code ABAP historique ou procédural.
 
-## VÉRIFICATION
+## 2.I VÉRIFICATION
 
 - Le contrôle syntaxique réussit.
 - La version active correspond au code sauvegardé.
 - L’exécution produit le résultat décrit dans le chapitre.
 - Les cas vide, limite et erreur sont testés séparément lorsque la syntaxe le permet.
 
-## ERREURS FRÉQUENTES
+## 2.J ERREURS FRÉQUENTES
 
 - Copier un exemple sans adapter les types, noms d’objets et données disponibles dans le système.
 - Tester uniquement le cas nominal et ignorer les valeurs initiales, absentes ou invalides.
 - Créer des sous-programmes avec trop de paramètres globaux.
 - Utiliser des appels externes ou dynamiques sans contrôle du nom et de l’existence.
 
-## SNIPPET À RÉUTILISER
+## 2.K SNIPPET À RÉUTILISER
 
 > [!NOTE]
 > Adapter les noms `Z*`, les types DDIC, les données et les autorisations au système cible. Effectuer un contrôle syntaxique avant activation.
@@ -149,13 +149,13 @@ FORM second_step.
 ENDFORM.
 ```
 
-## TERMES DU LEXIQUE
+## 2.L TERMES DU LEXIQUE
 
 - [Programme exécutable](<../🧩 00 ├── LEXIQUE SAP ET ABAP/06 ├── PROGRAMMES CLASSES ET OBJETS TECHNIQUES.md#programme-executable>)
 - [Module fonction](<../🧩 00 ├── LEXIQUE SAP ET ABAP/06 ├── PROGRAMMES CLASSES ET OBJETS TECHNIQUES.md#module-fonction>)
 - [ABAP](<../🧩 00 ├── LEXIQUE SAP ET ABAP/10 └── ACRONYMES SAP.md#acro-abap>)
 
-## RÉFÉRENCES OFFICIELLES SAP
+## 2.M RÉFÉRENCES OFFICIELLES SAP
 
 - [Source Code Modularization — ABAP Keyword Documentation](https://help.sap.com/doc/abapdocu_latest_index_htm/latest/en-US/ABENSOURCE_CODE_MODULAR_GUIDL.html)
 - [FORM — ABAP Keyword Documentation](https://help.sap.com/doc/abapdocu_latest_index_htm/latest/en-US/ABAPFORM.html)

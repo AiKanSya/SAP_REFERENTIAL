@@ -1,6 +1,6 @@
-# PRINCIPES ET STRUCTURE D’UNE TABLE INTERNE
+# 1. PRINCIPES ET STRUCTURE D’UNE TABLE INTERNE
 
-## RÉSULTAT ATTENDU
+## 1.A RÉSULTAT ATTENDU
 
 - Comprendre le rôle d’une table interne en ABAP
 - Distinguer table interne, structure et table de base de données
@@ -8,7 +8,7 @@
 - Comprendre le caractère dynamique de son nombre de lignes
 - Choisir une représentation adaptée au traitement attendu
 
-## DÉFINITION
+## 1.B DÉFINITION
 
 Une table interne est un objet de données ABAP qui contient zéro, une ou plusieurs lignes de même type.
 
@@ -30,7 +30,7 @@ Une table interne est définie par trois propriétés principales :
 | Catégorie     | Définit l’organisation et les accès possibles                                  |
 | Clé           | Définit les composants utilisés pour les accès par clé et l’unicité éventuelle |
 
-## TABLE INTERNE ET STRUCTURE
+## 1.C TABLE INTERNE ET STRUCTURE
 
 Une structure représente une seule occurrence.
 
@@ -59,7 +59,7 @@ Convention fréquemment utilisée :
 
 Ces préfixes sont des conventions de nommage, pas des mots-clés ABAP.
 
-## TABLE INTERNE ET TABLE DE BASE DE DONNÉES
+## 1.D TABLE INTERNE ET TABLE DE BASE DE DONNÉES
 
 | Table interne                                                    | Table de base de données              |
 | ---------------------------------------------------------------- | ------------------------------------- |
@@ -71,7 +71,7 @@ Ces préfixes sont des conventions de nommage, pas des mots-clés ABAP.
 > [!IMPORTANT]
 > Une table interne peut recevoir des données issues d’ABAP SQL, mais elle reste distincte de la table de base de données qui a servi de source.
 
-## CYCLE DE VIE SIMPLIFIÉ
+## 1.E CYCLE DE VIE SIMPLIFIÉ
 
 ```mermaid
 flowchart TD
@@ -81,7 +81,7 @@ flowchart TD
     D --> E["Vider ou libérer la table"]
 ```
 
-## PREMIER EXEMPLE
+## 1.F PREMIER EXEMPLE
 
 ```abap
 " Traiter la collection sans lecture SQL dans la boucle.
@@ -104,7 +104,7 @@ LOOP AT lt_products INTO DATA(ls_product).
 ENDLOOP.
 ```
 
-## POINTS À RETENIR
+## 1.G POINTS À RETENIR
 
 - Une table interne ne contient que des lignes compatibles avec son type de ligne.
 - Son nombre de lignes est dynamique.
@@ -112,21 +112,21 @@ ENDLOOP.
 - Une table interne n’est pas une table de base de données.
 - Le contenu est généralement temporaire et propre à la session ABAP.
 
-## VÉRIFICATION
+## 1.H VÉRIFICATION
 
 - Le contrôle syntaxique réussit.
 - La version active correspond au code sauvegardé.
 - L’exécution produit le résultat décrit dans le chapitre.
 - Les cas vide, limite et erreur sont testés séparément lorsque la syntaxe le permet.
 
-## ERREURS FRÉQUENTES
+## 1.I ERREURS FRÉQUENTES
 
 - Copier un exemple sans adapter les types, noms d’objets et données disponibles dans le système.
 - Tester uniquement le cas nominal et ignorer les valeurs initiales, absentes ou invalides.
 - Utiliser une table standard pour des recherches massives par clé sans mesure.
 - Modifier une copie de ligne alors que la table devait être mise à jour.
 
-## SNIPPET À RÉUTILISER
+## 1.J SNIPPET À RÉUTILISER
 
 > [!NOTE]
 > Adapter les noms `Z*`, les types DDIC, les données et les autorisations au système cible. Effectuer un contrôle syntaxique avant activation.
@@ -152,14 +152,14 @@ LOOP AT lt_products INTO DATA(ls_product).
 ENDLOOP.
 ```
 
-## TERMES DU LEXIQUE
+## 1.K TERMES DU LEXIQUE
 
 - [Structure](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#structure-abap>)
 - [Table interne](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#table-interne>)
 - [Field-symbol](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#field-symbol>)
 - [Référence](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#reference>)
 
-## RÉFÉRENCES OFFICIELLES SAP
+## 1.L RÉFÉRENCES OFFICIELLES SAP
 
 - [Working with Simple Internal Tables — SAP Learning](https://learning.sap.com/courses/basic-abap-programming/working-with-simple-internal-tables_a4beb937-0c7b-45b9-92be-ff26a5159fad)
 - [Working with Complex Internal Tables — SAP Learning](https://learning.sap.com/courses/basic-abap-programming/working-with-complex-internal-tables_f8c923f3-6f95-4b47-960f-557001f13977)

@@ -1,6 +1,6 @@
-# STRATÉGIE ET BONNES PRATIQUES
+# 16. STRATÉGIE ET BONNES PRATIQUES
 
-## RÉSULTAT ATTENDU
+## 16.A RÉSULTAT ATTENDU
 
 - Construire une stratégie homogène de gestion des erreurs
 - Choisir le mécanisme selon la couche
@@ -8,7 +8,7 @@
 - Produire des messages exploitables
 - Vérifier le traitement avant livraison
 
-## STRATÉGIE PAR COUCHE
+## 16.B STRATÉGIE PAR COUCHE
 
 | Couche                     | Mécanisme principal                           |
 | -------------------------- | --------------------------------------------- |
@@ -28,7 +28,7 @@ flowchart TD
     E --> F["Message utilisateur"]
 ```
 
-## RÈGLES DE CONCEPTION
+## 16.C RÈGLES DE CONCEPTION
 
 - détecter l’erreur au plus près de sa cause ;
 - ne traiter localement que ce qui peut réellement être corrigé ;
@@ -41,7 +41,7 @@ flowchart TD
 - ne pas utiliser `MESSAGE X` pour une erreur fonctionnelle ;
 - ne pas utiliser `ASSERT` pour une saisie utilisateur invalide.
 
-## MESSAGE UTILISATEUR
+## 16.D MESSAGE UTILISATEUR
 
 Un bon message indique :
 
@@ -58,7 +58,7 @@ Un bon message indique :
 - données sensibles ;
 - textes génériques sans cause.
 
-## TRAITEMENT PARTIEL
+## 16.E TRAITEMENT PARTIEL
 
 Un traitement de masse ne doit pas nécessairement s’arrêter au premier rejet. Définir explicitement si l’unité de traitement est :
 
@@ -71,7 +71,7 @@ Collecter les erreurs avec leur contexte, puis produire un résultat global clai
 
 La journalisation applicative détaillée sera traitée dans son dossier dédié.
 
-## FRONTIÈRE TRANSACTIONNELLE
+## 16.F FRONTIÈRE TRANSACTIONNELLE
 
 Une exception n’effectue pas automatiquement un `ROLLBACK WORK`. Un message n’effectue pas automatiquement un `COMMIT WORK`.
 
@@ -82,7 +82,7 @@ La stratégie d’erreur doit être cohérente avec la SAP LUW :
 - quelles opérations sont déjà persistées ;
 - quelles mises à jour sont encore en attente.
 
-## CHECKLIST
+## 16.G CHECKLIST
 
 - [ ] Chaque code retour est-il contrôlé immédiatement ?
 - [ ] Les valeurs de `sy-subrc` sont-elles interprétées selon la documentation de l’instruction ?
@@ -99,7 +99,7 @@ La stratégie d’erreur doit être cohérente avec la SAP LUW :
 - [ ] Les erreurs d’un traitement partiel sont-elles restituées avec leur contexte ?
 - [ ] Les contrôles syntaxiques et étendus ont-ils été exécutés ?
 
-## CONTRÔLES AVANT LIVRAISON
+## 16.H CONTRÔLES AVANT LIVRAISON
 
 Exécuter au minimum :
 
@@ -111,45 +111,45 @@ Exécuter au minimum :
 - tests en arrière-plan si le programme est concerné ;
 - analyse d’un éventuel dump dans `ST22`.
 
-## PROCESS
+## 16.I PROCESS
 
-### Étape 1 — Cartographier les frontières
+### 16.I.1 Étape 1 — Cartographier les frontières
 
 Identifier interface utilisateur, service métier, accès technique et appel distant. Pour chaque frontière, définir quelles erreurs peuvent être corrigées localement et lesquelles doivent remonter.
 
-### Étape 2 — Choisir le mécanisme par couche
+### 16.I.2 Étape 2 — Choisir le mécanisme par couche
 
 Utiliser une exception pour transporter une erreur entre unités de code, un message pour informer l’utilisateur au bord de l’application et un journal pour conserver le diagnostic d’un traitement différé. Ne pas afficher un `MESSAGE` profond dans un service réutilisable.
 
-### Étape 3 — Définir les informations conservées
+### 16.I.3 Étape 3 — Définir les informations conservées
 
 Conserver classe d’erreur, contexte fonctionnel minimal, clé de corrélation et cause précédente. Exclure mots de passe, jetons et données personnelles non nécessaires.
 
-### Étape 4 — Définir la responsabilité transactionnelle
+### 16.I.4 Étape 4 — Définir la responsabilité transactionnelle
 
 Nommer la couche qui décide `COMMIT WORK` ou `ROLLBACK WORK`. Les couches inférieures signalent l’échec mais ne valident pas une LUW qu’elles ne possèdent pas.
 
-### Étape 5 — Tester la matrice d’erreurs
+### 16.I.5 Étape 5 — Tester la matrice d’erreurs
 
 Pour chaque erreur recensée, exécuter un test et vérifier mécanisme, texte utilisateur, journal, cause technique et état des données. La stratégie est validée lorsque chaque cas possède un propriétaire et qu’aucune erreur ne disparaît entre les couches.
 
-## VÉRIFICATION
+## 16.J VÉRIFICATION
 
 - Le lecteur peut expliquer la différence entre cette notion et les concepts proches.
 - Le choix technique est justifié par un besoin concret, pas uniquement par habitude.
 - Les limites liées à la release, aux autorisations et au contexte d’exécution sont identifiées.
 
-## ERREURS FRÉQUENTES
+## 16.K ERREURS FRÉQUENTES
 
 - Afficher un message technique incompréhensible à l’utilisateur.
 - Attraper une exception sans action ni propagation.
 
-## TERMES DU LEXIQUE
+## 16.L TERMES DU LEXIQUE
 
 - [Exception](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#exception>)
 - [Dump ABAP](<../🧩 00 ├── LEXIQUE SAP ET ABAP/08 ├── EXECUTION EXPLOITATION ET ADMINISTRATION.md#dump-abap>)
 
-## RÉFÉRENCES OFFICIELLES SAP
+## 16.M RÉFÉRENCES OFFICIELLES SAP
 
 - [Handling and Propagating Exceptions — ABAP Programming Guideline](https://help.sap.com/doc/abapdocu_latest_index_htm/latest/en-US/ABENHANDL_PROP_EXCEPT_GUIDL.html)
 - [Return Code — ABAP Programming Guideline](https://help.sap.com/doc/abapdocu_latest_index_htm/latest/en-US/ABENRETURN_CODE_GUIDL.html)

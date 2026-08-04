@@ -1,12 +1,12 @@
-# COMMANDES ET PROGRAMMES EXTERNES
+# 21. COMMANDES ET PROGRAMMES EXTERNES
 
-## RÉSULTAT ATTENDU
+## 21.A RÉSULTAT ATTENDU
 
 - Distinguer commande externe et programme externe
 - Utiliser `SM69` et `SM49` de manière sécurisée
 - Diagnostiquer les erreurs SAPXPG
 
-## DISTINCTION
+## 21.B DISTINCTION
 
 Une **commande externe** est prédéfinie et administrée dans SAP, généralement avec `SM69`. Un **programme externe** peut être spécifié plus directement et nécessite des autorisations d’administration plus fortes.
 
@@ -19,7 +19,7 @@ flowchart TD
     B -->|"Non"| F["Revoir l architecture"]
 ```
 
-## SÉCURITÉ
+## 21.C SÉCURITÉ
 
 Une commande externe peut donner accès au système d’exploitation. Elle doit imposer :
 
@@ -31,14 +31,14 @@ Une commande externe peut donner accès au système d’exploitation. Elle doit 
 - restrictions d’autorisation ;
 - validation par l’administration Basis et sécurité.
 
-## OUTILS
+## 21.D OUTILS
 
 - `SM69` : définition des commandes externes ;
 - `SM49` : test d’une commande définie ;
 - `SM37` : journal de l’étape ;
 - trace SAPXPG : diagnostic des exécutions externes selon la configuration.
 
-## ERREURS COURANTES
+## 21.E ERREURS COURANTES
 
 - exécutable absent sur le serveur cible ;
 - droits OS insuffisants ;
@@ -48,45 +48,45 @@ Une commande externe peut donner accès au système d’exploitation. Elle doit 
 - sortie d’erreur dans le journal ;
 - serveur cible incompatible.
 
-## PROCESS
+## 21.F PROCESS
 
-### ÉTAPE 1 — DÉFINIR LE BESOIN AVEC BASIS
+### 21.F.1 ÉTAPE 1 — DÉFINIR LE BESOIN AVEC BASIS
 
 Documenter la commande, l’hôte, le compte système, les paramètres autorisés, le répertoire et les codes retour. Écarter tout appel construit librement à partir d’une saisie utilisateur. Une commande externe étend le périmètre de sécurité au système d’exploitation.
 
-### ÉTAPE 2 — CRÉER OU ANALYSER LA DÉFINITION DANS `SM69`
+### 21.F.2 ÉTAPE 2 — CRÉER OU ANALYSER LA DÉFINITION DANS `SM69`
 
 Utiliser une définition existante validée ou faire créer une commande Z par l’administration. Vérifier le programme externe, les paramètres, les restrictions d’hôte et les contrôles de sécurité. Ne placer aucun secret dans une ligne de commande ou un journal.
 
-### ÉTAPE 3 — TESTER DE MANIÈRE CONTRÔLÉE
+### 21.F.3 ÉTAPE 3 — TESTER DE MANIÈRE CONTRÔLÉE
 
 Exécuter la commande avec l’outil d’administration autorisé, notamment `SM49` selon le scénario. Utiliser des paramètres non destructifs et relever sortie, erreur et code retour. Confirmer l’utilisateur système et le répertoire de travail effectifs.
 
-### ÉTAPE 4 — AJOUTER L’ÉTAPE AU JOB
+### 21.F.4 ÉTAPE 4 — AJOUTER L’ÉTAPE AU JOB
 
 Dans `SM36`, créer une étape de commande ou programme externe en sélectionnant uniquement l’objet défini. Renseigner les paramètres validés, l’utilisateur SAP et la condition de démarrage. Enregistrer puis contrôler le détail de l’étape dans `SM37`.
 
-### ÉTAPE 5 — TRAITER LE CODE RETOUR ET LES SORTIES
+### 21.F.5 ÉTAPE 5 — TRAITER LE CODE RETOUR ET LES SORTIES
 
 Définir quels codes représentent succès, avertissement ou échec. Conserver la sortie utile dans le journal prévu sans exposer de secret. Un processus lancé avec succès mais retournant une erreur métier ne doit pas être annoncé comme réussi.
 
-### ÉTAPE 6 — TESTER ÉCHEC ET REPRISE
+### 21.F.6 ÉTAPE 6 — TESTER ÉCHEC ET REPRISE
 
 Simuler un exécutable absent, un droit insuffisant, un paramètre invalide et un timeout. Vérifier l’état métier externe avant relance. La répétition doit être sûre ou protégée par un identifiant transmis au programme externe.
 
-## VÉRIFICATION
+## 21.G VÉRIFICATION
 
 - Le job apparaît dans `SM37` avec le statut attendu.
 - Le journal ne contient pas de message d’erreur non traité.
 - Le spool, le fichier ou le journal applicatif contient le résultat attendu.
 - Une relance contrôlée ne crée pas de doublon métier.
 
-## ERREURS FRÉQUENTES
+## 21.H ERREURS FRÉQUENTES
 
 - Planifier un job avec l’utilisateur personnel d’un développeur.
 - Relancer un job non idempotent après un échec partiel.
 
-## FICHE DE CONTRÔLE À COPIER
+## 21.I FICHE DE CONTRÔLE À COPIER
 
 ```text
 Système / SID       :
@@ -101,14 +101,14 @@ Horodatage          :
 Ordre de transport  :
 ```
 
-## TERMES DU LEXIQUE
+## 21.J TERMES DU LEXIQUE
 
 - [Job](<../🧩 00 ├── LEXIQUE SAP ET ABAP/06 ├── PROGRAMMES CLASSES ET OBJETS TECHNIQUES.md#job>)
 - [Spool](<../🧩 00 ├── LEXIQUE SAP ET ABAP/06 ├── PROGRAMMES CLASSES ET OBJETS TECHNIQUES.md#spool>)
 - [Processus background](<../🧩 00 ├── LEXIQUE SAP ET ABAP/08 ├── EXECUTION EXPLOITATION ET ADMINISTRATION.md#processus-background>)
 - [Variante](<../🧩 00 ├── LEXIQUE SAP ET ABAP/06 ├── PROGRAMMES CLASSES ET OBJETS TECHNIQUES.md#variante>)
 
-## RÉFÉRENCES OFFICIELLES SAP
+## 21.K RÉFÉRENCES OFFICIELLES SAP
 
 - [External Commands and External Programs — SAP Help Portal](https://help.sap.com/docs/ABAP_PLATFORM_NEW/b07e7195f03f438b8e7ed273099d74f3/4b2bbe5e4c594ba2e10000000a42189c.html)
 - [Defining External Commands — SAP Help Portal](https://help.sap.com/docs/ABAP_PLATFORM_NEW/b07e7195f03f438b8e7ed273099d74f3/4b2b3e958eb51780e10000000a42189c.html)

@@ -1,6 +1,6 @@
-# FLUX D’EXÉCUTION ET STRUCTURES DE CONTRÔLE
+# 1. FLUX D’EXÉCUTION ET STRUCTURES DE CONTRÔLE
 
-## RÉSULTAT ATTENDU
+## 1.A RÉSULTAT ATTENDU
 
 - Comprendre l’exécution séquentielle d’un bloc ABAP
 - Identifier les structures de branchement et d’itération
@@ -8,7 +8,7 @@
 - Choisir entre exécution conditionnelle, répétition et interruption
 - Préparer un code lisible et vérifiable dans le Debugger ABAP
 
-## EXÉCUTION SÉQUENTIELLE
+## 1.B EXÉCUTION SÉQUENTIELLE
 
 Dans un bloc de traitement ABAP, les instructions sont normalement exécutées de haut en bas.
 
@@ -38,7 +38,7 @@ flowchart TD
     D --> F["Fin du bloc de traitement"]
 ```
 
-## DEUX FAMILLES PRINCIPALES
+## 1.C DEUX FAMILLES PRINCIPALES
 
 | Famille                  | Instructions principales | Finalité                                           |
 | ------------------------ | ------------------------ | -------------------------------------------------- |
@@ -54,7 +54,7 @@ Des instructions complémentaires agissent sur le flux :
 | `EXIT`      | Quitte la boucle active                                                      |
 | `RETURN`    | Quitte le bloc de traitement courant                                         |
 
-## STRUCTURE DE CONTRÔLE ET BLOC DE TRAITEMENT
+## 1.D STRUCTURE DE CONTRÔLE ET BLOC DE TRAITEMENT
 
 Une structure de contrôle est **imbriquée dans un bloc de traitement**. Elle ne crée pas une nouvelle procédure.
 
@@ -74,7 +74,7 @@ Dans cet exemple :
 > [!IMPORTANT]
 > Les structures `IF`, `CASE`, `DO` et `WHILE` peuvent être imbriquées. Les blocs de traitement ABAP, tels que les événements et les procédures, obéissent à d’autres règles et seront étudiés dans les dossiers dédiés.
 
-## DÉLIMITATION EXPLICITE
+## 1.E DÉLIMITATION EXPLICITE
 
 Chaque structure est fermée par un mot-clé spécifique :
 
@@ -93,7 +93,7 @@ IF lv_quantity > 0.
 ENDIF.
 ```
 
-## CHOISIR LE BON MÉCANISME
+## 1.F CHOISIR LE BON MÉCANISME
 
 ```mermaid
 flowchart TD
@@ -106,7 +106,7 @@ flowchart TD
     F -->|""Non""| H["WHILE"]
 ```
 
-## PÉRIMÈTRE DU DOSSIER
+## 1.G PÉRIMÈTRE DU DOSSIER
 
 Ce dossier couvre :
 
@@ -124,21 +124,21 @@ Les sujets suivants seront traités ailleurs :
 - `TRY ... CATCH ... ENDTRY` : dossier **MESSAGES ET GESTION DES ERREURS** ;
 - appels de méthodes, modules fonction et sous-programmes : dossiers de modularisation.
 
-## VÉRIFICATION
+## 1.H VÉRIFICATION
 
 - Le contrôle syntaxique réussit.
 - La version active correspond au code sauvegardé.
 - L’exécution produit le résultat décrit dans le chapitre.
 - Les cas vide, limite et erreur sont testés séparément lorsque la syntaxe le permet.
 
-## ERREURS FRÉQUENTES
+## 1.I ERREURS FRÉQUENTES
 
 - Copier un exemple sans adapter les types, noms d’objets et données disponibles dans le système.
 - Tester uniquement le cas nominal et ignorer les valeurs initiales, absentes ou invalides.
 - Créer une boucle sans condition de sortie fiable.
 - Utiliser `CHECK`, `CONTINUE`, `EXIT` ou `RETURN` sans rendre le flux lisible.
 
-## SNIPPET À RÉUTILISER
+## 1.J SNIPPET À RÉUTILISER
 
 > [!NOTE]
 > Adapter les noms `Z*`, les types DDIC, les données et les autorisations au système cible. Effectuer un contrôle syntaxique avant activation.
@@ -151,13 +151,13 @@ START-OF-SELECTION.
   ENDIF.
 ```
 
-## TERMES DU LEXIQUE
+## 1.K TERMES DU LEXIQUE
 
 - [Structure](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#structure-abap>)
 - [Instruction ABAP](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#instruction-abap>)
 - [Expression](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#expression>)
 
-## RÉFÉRENCES OFFICIELLES SAP
+## 1.L RÉFÉRENCES OFFICIELLES SAP
 
 - [Using Control Structures in ABAP — SAP Learning](https://learning.sap.com/courses/basic-abap-programming/using-control-structures-in-abap_a4d7803e-eac2-458e-acf9-8628289f3701)
 - [Control Flow — SAP Help Portal](https://help.sap.com/docs/ABAP_PLATFORM_NEW/8132142fd1a144a59303663a03a7c2d4/94e1b1978adf45c1a72bd9d8075436d3.html)

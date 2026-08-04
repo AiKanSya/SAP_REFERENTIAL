@@ -1,6 +1,6 @@
-# OBJETS DE DONNÉES ET VALEURS INITIALES
+# 3. OBJETS DE DONNÉES ET VALEURS INITIALES
 
-## RÉSULTAT ATTENDU
+## 3.A RÉSULTAT ATTENDU
 
 - Identifier les différentes formes d’objets de données
 - Distinguer objet nommé, littéral et objet anonyme
@@ -8,7 +8,7 @@
 - Réinitialiser proprement un objet avec `CLEAR`
 - Éviter les tests basés sur une représentation externe trompeuse
 
-## DÉFINITION
+## 3.B DÉFINITION
 
 Un objet de données contient ou représente une valeur pendant l’exécution d’un programme ABAP. Son type définit les valeurs possibles et les opérations applicables.
 
@@ -22,7 +22,7 @@ flowchart TD
     D --> G["Créés dynamiquement"]
 ```
 
-## OBJETS NOMMÉS
+## 3.C OBJETS NOMMÉS
 
 Les variables et les constantes possèdent un nom utilisable dans le code.
 
@@ -36,7 +36,7 @@ CONSTANTS lc_active TYPE c LENGTH 1 VALUE 'A'.
 
 Les paramètres d’interface, les paramètres d’écran de sélection et les attributs de classes sont également des objets de données nommés, mais ils seront détaillés dans leurs contextes respectifs.
 
-## LITTÉRAUX
+## 3.D LITTÉRAUX
 
 Un littéral représente une valeur directement écrite dans le code.
 
@@ -54,7 +54,7 @@ Dans cet exemple :
 
 Les littéraux ne doivent pas remplacer les constantes lorsque la valeur porte une signification fonctionnelle ou technique réutilisée.
 
-## OBJETS ANONYMES
+## 3.E OBJETS ANONYMES
 
 Un objet anonyme est créé dynamiquement et n’est pas identifié directement par un nom de variable métier. Il est accessible par une référence de données.
 
@@ -67,7 +67,7 @@ lr_value->* = 25.
 
 L’objet entier créé par `CREATE DATA` est anonyme. `lr_value` contient la référence permettant d’y accéder.
 
-## VALEUR INITIALE
+## 3.F VALEUR INITIALE
 
 Chaque type possède une valeur initiale déterminée par le langage.
 
@@ -87,7 +87,7 @@ Sans addition `VALUE`, les objets reçoivent leur valeur initiale :
 
 Une structure est initiale lorsque chacun de ses composants est initial. Une référence initiale ne pointe vers aucun objet.
 
-## TEST AVEC `IS INITIAL`
+## 3.G TEST AVEC `IS INITIAL`
 
 ```abap
 IF lv_date IS INITIAL.
@@ -103,7 +103,7 @@ IF lv_date = '00000000'.
 
 Le test typé exprime plus clairement l’intention.
 
-## RÉINITIALISATION AVEC `CLEAR`
+## 3.H RÉINITIALISATION AVEC `CLEAR`
 
 ```abap
 DATA lv_quantity TYPE i VALUE 12.
@@ -130,7 +130,7 @@ CLEAR ls_result.
 
 `CLEAR ls_result` remet tous les composants de la structure à leur valeur initiale.
 
-## `VALUE` À LA DÉCLARATION
+## 3.I `VALUE` À LA DÉCLARATION
 
 ```abap
 DATA lv_retries TYPE i VALUE 3.
@@ -146,7 +146,7 @@ Cette affectation reste autorisée.
 
 Pour imposer l’absence de modification, utiliser `CONSTANTS` lorsque la valeur est connue statiquement.
 
-## ÉTAT INITIAL ET VALEUR MÉTIER
+## 3.J ÉTAT INITIAL ET VALEUR MÉTIER
 
 Une valeur initiale technique ne signifie pas toujours « donnée absente » au niveau fonctionnel.
 
@@ -159,7 +159,7 @@ Exemples :
 
 Le contrôle métier doit donc être défini explicitement.
 
-## EXEMPLE COMPLET
+## 3.K EXEMPLE COMPLET
 
 ```abap
 REPORT zdemo_data_objects.
@@ -182,21 +182,21 @@ CLEAR: lv_retry_count, lv_message.
 
 La forme chaînée de `CLEAR` est valide. Dans du code professionnel, des instructions séparées peuvent être préférées lorsqu’elles facilitent la lecture ou le débogage.
 
-## VÉRIFICATION
+## 3.L VÉRIFICATION
 
 - Le contrôle syntaxique réussit.
 - La version active correspond au code sauvegardé.
 - L’exécution produit le résultat décrit dans le chapitre.
 - Les cas vide, limite et erreur sont testés séparément lorsque la syntaxe le permet.
 
-## ERREURS FRÉQUENTES
+## 3.M ERREURS FRÉQUENTES
 
 - Copier un exemple sans adapter les types, noms d’objets et données disponibles dans le système.
 - Tester uniquement le cas nominal et ignorer les valeurs initiales, absentes ou invalides.
 - Choisir un type trop générique ou dépendant d’une variable existante sans justification.
 - Utiliser une référence ou un field-symbol non lié.
 
-## SNIPPET À RÉUTILISER
+## 3.N SNIPPET À RÉUTILISER
 
 > [!NOTE]
 > Adapter les noms `Z*`, les types DDIC, les données et les autorisations au système cible. Effectuer un contrôle syntaxique avant activation.
@@ -220,7 +220,7 @@ WRITE: / lv_message,
 CLEAR: lv_retry_count, lv_message.
 ```
 
-## TERMES DU LEXIQUE
+## 3.O TERMES DU LEXIQUE
 
 - [Type de données](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#type-donnees>)
 - [Objet de données](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#objet-donnees>)
@@ -229,7 +229,7 @@ CLEAR: lv_retry_count, lv_message.
 - [Field-symbol](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#field-symbol>)
 - [Référence](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#reference>)
 
-## RÉFÉRENCES OFFICIELLES SAP
+## 3.P RÉFÉRENCES OFFICIELLES SAP
 
 - [Data Objects — ABAP Keyword Documentation](https://help.sap.com/doc/abapdocu_latest_index_htm/latest/en-US/ABENDATA_OBJECTS.html)
 - [Initial Values — ABAP Keyword Documentation](https://help.sap.com/doc/abapdocu_latest_index_htm/latest/en-US/ABENINITIAL_VALUES.html)

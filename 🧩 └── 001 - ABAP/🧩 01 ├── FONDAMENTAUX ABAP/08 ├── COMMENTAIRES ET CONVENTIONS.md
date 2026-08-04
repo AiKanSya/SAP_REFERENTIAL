@@ -1,6 +1,6 @@
-# COMMENTAIRES ET CONVENTIONS
+# 8. COMMENTAIRES ET CONVENTIONS
 
-## RÉSULTAT ATTENDU
+## 8.A RÉSULTAT ATTENDU
 
 - Utiliser les différentes formes de commentaires ABAP
 - Distinguer commentaire, ABAP Doc, pseudo-commentaire et pragma
@@ -8,7 +8,7 @@
 - Appliquer des conventions cohérentes sans les confondre avec la syntaxe ABAP
 - Éviter les cartouches et commentaires devenus faux
 
-## VUE D’ENSEMBLE
+## 8.B VUE D’ENSEMBLE
 
 ```mermaid
 flowchart TD
@@ -18,7 +18,7 @@ flowchart TD
     A --> E["Directive de contrôle"]
 ```
 
-## COMMENTAIRE DE LIGNE
+## 8.C COMMENTAIRE DE LIGNE
 
 Un astérisque placé en première position transforme la ligne en commentaire.
 
@@ -29,7 +29,7 @@ WRITE / 'Exemple'.
 
 Cette forme existe dans les programmes classiques, mais elle est moins flexible pour l’indentation.
 
-## COMMENTAIRE AVEC GUILLEMET
+## 8.D COMMENTAIRE AVEC GUILLEMET
 
 Le guillemet double commence un commentaire jusqu’à la fin de la ligne.
 
@@ -40,7 +40,7 @@ DATA gv_count TYPE i. " Commentaire de fin de ligne
 
 Cette forme permet d’aligner le commentaire avec le bloc concerné.
 
-## ABAP DOC
+## 8.E ABAP DOC
 
 Une ligne commençant par `"!` est un commentaire ABAP Doc lorsqu’elle est placée devant un élément déclaratif compatible.
 
@@ -64,7 +64,7 @@ ENDCLASS.
 
 ABAP Doc est destiné à documenter des éléments d’API ou de déclaration. Il ne remplace pas une documentation fonctionnelle ou d’architecture.
 
-## PSEUDO-COMMENTAIRES ET PRAGMAS
+## 8.F PSEUDO-COMMENTAIRES ET PRAGMAS
 
 Certains commentaires spéciaux ou pragmas influencent les contrôles statiques.
 
@@ -86,7 +86,7 @@ Ils ne doivent être utilisés que lorsque :
 > [!CAUTION]
 > Ne jamais ajouter une directive uniquement pour faire disparaître un avertissement sans analyser sa cause.
 
-## QUOI COMMENTER
+## 8.G QUOI COMMENTER
 
 Un commentaire utile explique principalement :
 
@@ -112,7 +112,7 @@ Exemple inutile :
 gv_end_date = gv_requested_end_date + 1.
 ```
 
-## COMMENTAIRE OBSOLÈTE
+## 8.H COMMENTAIRE OBSOLÈTE
 
 Un commentaire faux est plus dangereux qu’une absence de commentaire.
 
@@ -123,7 +123,7 @@ Lors d’une modification :
 - ne pas conserver du code mort commenté ;
 - utiliser la gestion de versions pour retrouver l’ancien code.
 
-## CONVENTIONS DE NOMMAGE
+## 8.I CONVENTIONS DE NOMMAGE
 
 ABAP n’impose pas une convention universelle telle que `lv_`, `gv_`, `lt_` ou `ls_`.
 
@@ -142,7 +142,7 @@ Ces préfixes sont des conventions de projet fréquemment rencontrées :
 > [!IMPORTANT]
 > Ces préfixes ne font pas partie du langage. Appliquer la convention réellement retenue par le projet et éviter de mélanger plusieurs systèmes de nommage dans un même objet.
 
-## CARTOUCHE DE PROGRAMME
+## 8.J CARTOUCHE DE PROGRAMME
 
 Un cartouche en début de programme est une convention documentaire, pas une exigence ABAP.
 
@@ -171,7 +171,7 @@ Exemple minimal :
 REPORT zdemo_comments.
 ```
 
-## PRINCIPES DE LISIBILITÉ
+## 8.K PRINCIPES DE LISIBILITÉ
 
 - choisir des noms qui décrivent le rôle métier ou technique ;
 - limiter les abréviations ambiguës ;
@@ -182,43 +182,43 @@ REPORT zdemo_comments.
 - retirer le code commenté ;
 - conserver les messages et textes destinés aux utilisateurs dans les mécanismes adaptés.
 
-## PROCESS
+## 8.L PROCESS
 
-### Étape 1 — Choisir un code de travail
+### 8.L.1 Étape 1 — Choisir un code de travail
 
 Ouvrir un programme Z autorisé en modification et sélectionner un bloc dont l’intention n’est pas évidente. Ne pas utiliser un objet standard pour cet exercice.
 
-### Étape 2 — Commenter la décision
+### 8.L.2 Étape 2 — Commenter la décision
 
 Ajouter un commentaire avec `"` au-dessus de la décision technique ou métier. Décrire la raison, la contrainte ou l’effet non visible ; ne pas reformuler littéralement l’instruction suivante.
 
-### Étape 3 — Normaliser les noms
+### 8.L.3 Étape 3 — Normaliser les noms
 
 Comparer variables, constantes, types et références avec les conventions du projet. Renommer uniquement dans un périmètre dont les utilisations ont été identifiées, puis relancer la liste d’utilisation si l’objet est partagé.
 
-### Étape 4 — Formater et relire
+### 8.L.4 Étape 4 — Formater et relire
 
 Appliquer le Pretty Printer configuré par l’équipe. Examiner le diff : seules les lignes utiles doivent changer. Retirer les commentaires sans valeur et vérifier que le code reste compréhensible sans connaissance implicite.
 
-### Étape 5 — Valider
+### 8.L.5 Étape 5 — Valider
 
 Exécuter contrôle syntaxique et contrôles statiques. Pour une logique sensible, faire relire la décision commentée. Le chapitre est validé lorsque noms, formatage et commentaires expliquent le code sans masquer une complexité évitable.
 
-## VÉRIFICATION
+## 8.M VÉRIFICATION
 
 - Le contrôle syntaxique réussit.
 - La version active correspond au code sauvegardé.
 - L’exécution produit le résultat décrit dans le chapitre.
 - Les cas vide, limite et erreur sont testés séparément lorsque la syntaxe le permet.
 
-## ERREURS FRÉQUENTES
+## 8.N ERREURS FRÉQUENTES
 
 - Copier un exemple sans adapter les types, noms d’objets et données disponibles dans le système.
 - Tester uniquement le cas nominal et ignorer les valeurs initiales, absentes ou invalides.
 - Intervenir dans le mauvais système ou mandant.
 - Confondre sauvegarde et activation.
 
-## SNIPPET À RÉUTILISER
+## 8.O SNIPPET À RÉUTILISER
 
 > [!NOTE]
 > Adapter les noms `Z*`, les types DDIC, les données et les autorisations au système cible. Effectuer un contrôle syntaxique avant activation.
@@ -239,7 +239,7 @@ CLASS lcl_calculator DEFINITION.
 ENDCLASS.
 ```
 
-## TERMES DU LEXIQUE
+## 8.P TERMES DU LEXIQUE
 
 - [Système SAP](<../🧩 00 ├── LEXIQUE SAP ET ABAP/01 ├── SYSTEMES ENVIRONNEMENTS ET MANDANTS.md#systeme-sap>)
 - [Mandant](<../🧩 00 ├── LEXIQUE SAP ET ABAP/01 ├── SYSTEMES ENVIRONNEMENTS ET MANDANTS.md#mandant>)
@@ -248,7 +248,7 @@ ENDCLASS.
 - [Repository ABAP](<../🧩 00 ├── LEXIQUE SAP ET ABAP/03 ├── REPOSITORY PACKAGES ET TRANSPORTS.md#repository-abap>)
 - [Package](<../🧩 00 ├── LEXIQUE SAP ET ABAP/03 ├── REPOSITORY PACKAGES ET TRANSPORTS.md#package>)
 
-## RÉFÉRENCES OFFICIELLES SAP
+## 8.Q RÉFÉRENCES OFFICIELLES SAP
 
 - [Comments — SAP Help Portal](https://help.sap.com/docs/abap-cloud/abap-concepts/comments)
 - [Adding ABAP Doc Comments](https://help.sap.com/doc/c238d694b825421f940829321ffa326a/7.40.25/en-US/17e98e1c1ff545cea3f95b85a0539322.html)

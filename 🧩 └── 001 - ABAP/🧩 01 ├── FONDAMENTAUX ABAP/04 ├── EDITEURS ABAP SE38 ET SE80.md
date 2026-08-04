@@ -1,6 +1,6 @@
-# ÉDITEURS ABAP `SE38` ET `SE80`
+# 4. ÉDITEURS ABAP `SE38` ET `SE80`
 
-## RÉSULTAT ATTENDU
+## 4.A RÉSULTAT ATTENDU
 
 - Distinguer les rôles de `SE38` et `SE80`
 - Ouvrir, modifier, contrôler et activer un programme
@@ -8,7 +8,7 @@
 - Utiliser les principales fonctions de l’éditeur ABAP dans SAP GUI
 - Choisir l’outil adapté au contexte
 
-## VUE D’ENSEMBLE
+## 4.B VUE D’ENSEMBLE
 
 ```mermaid
 flowchart LR
@@ -19,7 +19,7 @@ flowchart LR
     D --> E
 ```
 
-## TRANSACTION `SE38`
+## 4.C TRANSACTION `SE38`
 
 `SE38` ouvre l’ABAP Editor avec une approche centrée sur un programme.
 
@@ -34,7 +34,7 @@ Utilisations courantes :
 
 `SE38` est adaptée lorsqu’on connaît déjà le nom du programme à traiter.
 
-## TRANSACTION `SE80`
+## 4.D TRANSACTION `SE80`
 
 `SE80` ouvre l’Object Navigator et permet de travailler dans le contexte du Repository.
 
@@ -49,7 +49,7 @@ Utilisations courantes :
 
 `SE80` est généralement plus efficace pour analyser une application classique composée de plusieurs objets.
 
-## COMPARAISON
+## 4.E COMPARAISON
 
 | Besoin                                      |                     `SE38` |     `SE80` |
 | ------------------------------------------- | -------------------------: | ---------: |
@@ -60,7 +60,7 @@ Utilisations courantes :
 | Créer plusieurs catégories d’objets         |                        Non |        Oui |
 | Analyser une application classique complète | Possible mais peu pratique | Recommandé |
 
-## ÉDITEUR DE CODE SOURCE
+## 4.F ÉDITEUR DE CODE SOURCE
 
 L’éditeur de code source ABAP est intégré à plusieurs outils du Workbench, notamment `SE38`, `SE80`, `SE24` et `SE37`.
 
@@ -75,7 +75,7 @@ Fonctions principales :
 - gestion des points d’arrêt ;
 - navigation vers les définitions et utilisations selon le contexte.
 
-## ACTIONS ESSENTIELLES
+## 4.G ACTIONS ESSENTIELLES
 
 | Action               | Effet                                                           |
 | -------------------- | --------------------------------------------------------------- |
@@ -86,7 +86,7 @@ Fonctions principales :
 | Afficher/Modifier    | Bascule entre consultation et édition selon les autorisations   |
 | Liste d’utilisations | Recherche les consommateurs identifiables de l’objet            |
 
-### RACCOURCIS CLASSIQUES
+### 4.G.1 RACCOURCIS CLASSIQUES
 
 | Raccourci     | Action courante                  |
 | ------------- | -------------------------------- |
@@ -97,15 +97,15 @@ Fonctions principales :
 
 Les raccourcis peuvent dépendre du contexte de l’écran et des paramètres du frontend.
 
-## AIDE SUR LE CODE
+## 4.H AIDE SUR LE CODE
 
-### DOCUMENTATION D’UN MOT-CLÉ
+### 4.H.1 DOCUMENTATION D’UN MOT-CLÉ
 
 Placer le curseur sur un mot-clé ABAP puis utiliser l’aide permet d’ouvrir la documentation correspondante disponible dans le système.
 
 La documentation locale du système est particulièrement utile pour vérifier la syntaxe compatible avec sa version ABAP.
 
-### COMPLÉTION ET MODÈLES
+### 4.H.2 COMPLÉTION ET MODÈLES
 
 L’éditeur de code source peut proposer :
 
@@ -116,7 +116,7 @@ L’éditeur de code source peut proposer :
 
 Ces fonctions aident à saisir du code, mais ne remplacent ni le contrôle syntaxique ni la vérification fonctionnelle.
 
-## VERROU ET MODE MODIFICATION
+## 4.I VERROU ET MODE MODIFICATION
 
 L’ouverture en modification peut échouer lorsque :
 
@@ -129,7 +129,7 @@ L’ouverture en modification peut échouer lorsque :
 > [!CAUTION]
 > Ne jamais contourner un verrou ou une restriction sans comprendre son origine et sans validation du responsable technique.
 
-## MÉTHODE DE TRAVAIL
+## 4.J MÉTHODE DE TRAVAIL
 
 ```mermaid
 flowchart TD
@@ -149,9 +149,9 @@ flowchart TD
 - comparer la version active et inactive en cas de doute ;
 - ne pas confondre enregistrement et activation.
 
-## PROCESS
+## 4.K PROCESS
 
-### Étape 1 — Ouvrir un programme connu dans SE38
+### 4.K.1 Étape 1 — Ouvrir un programme connu dans SE38
 
 1. Saisir `/nSE38`.
 2. Entrer le nom technique exact du programme.
@@ -159,13 +159,13 @@ flowchart TD
 
 Si le programme est introuvable, vérifier son nom et son type. Une classe, un groupe de fonctions ou un include ne doit pas être créé comme report pour contourner une recherche incorrecte.
 
-### Étape 2 — Déterminer si SE38 suffit
+### 4.K.2 Étape 2 — Déterminer si SE38 suffit
 
 Utiliser SE38 pour consulter, modifier, contrôler, activer ou exécuter directement un programme connu. Relever ses includes et objets associés lorsque le changement dépasse le source principal.
 
 Si l’analyse exige des écrans, GUI status, includes nombreux ou objets d’un package, poursuivre dans SE80.
 
-### Étape 3 — Retrouver le même objet dans SE80
+### 4.K.3 Étape 3 — Retrouver le même objet dans SE80
 
 1. Ouvrir `/nSE80`.
 2. Choisir le type **Programme**.
@@ -174,7 +174,7 @@ Si l’analyse exige des écrans, GUI status, includes nombreux ou objets d’un
 
 L’objet ouvert dans les deux transactions doit porter le même nom et le même statut d’activation. SE80 ajoute la vue structurée ; il ne crée pas une copie distincte.
 
-### Étape 4 — Contrôler et activer
+### 4.K.4 Étape 4 — Contrôler et activer
 
 1. Enregistrer la modification.
 2. Exécuter `Ctrl+F2` et traiter chaque erreur syntaxique.
@@ -183,24 +183,24 @@ L’objet ouvert dans les deux transactions doit porter le même nom et le même
 
 Un contrôle syntaxique réussi ne remplace pas l’activation. Une version enregistrée mais inactive n’est pas celle exécutée normalement.
 
-### Étape 5 — Consulter l’aide de la release
+### 4.K.5 Étape 5 — Consulter l’aide de la release
 
 Positionner le curseur sur une instruction ou une addition ABAP puis appuyer sur `F1`. Vérifier la syntaxe, les prérequis de release, les exceptions et les exemples applicables au système connecté.
 
 Le chapitre est validé lorsque le lecteur sait choisir SE38 pour l’accès direct et SE80 pour la navigation structurée, puis contrôler et activer le même objet sans ambiguïté.
 
-## VÉRIFICATION
+## 4.L VÉRIFICATION
 
 - Le lecteur peut expliquer la différence entre cette notion et les concepts proches.
 - Le choix technique est justifié par un besoin concret, pas uniquement par habitude.
 - Les limites liées à la release, aux autorisations et au contexte d’exécution sont identifiées.
 
-## ERREURS FRÉQUENTES
+## 4.M ERREURS FRÉQUENTES
 
 - Intervenir dans le mauvais système ou mandant.
 - Confondre sauvegarde et activation.
 
-## FICHE DE CONTRÔLE À COPIER
+## 4.N FICHE DE CONTRÔLE À COPIER
 
 ```text
 Système / SID       :
@@ -215,7 +215,7 @@ Horodatage          :
 Ordre de transport  :
 ```
 
-## TERMES DU LEXIQUE
+## 4.O TERMES DU LEXIQUE
 
 - [ABAP](<../🧩 00 ├── LEXIQUE SAP ET ABAP/10 └── ACRONYMES SAP.md#acro-abap>)
 - [Système SAP](<../🧩 00 ├── LEXIQUE SAP ET ABAP/01 ├── SYSTEMES ENVIRONNEMENTS ET MANDANTS.md#systeme-sap>)
@@ -224,7 +224,7 @@ Ordre de transport  :
 - [Transaction](<../🧩 00 ├── LEXIQUE SAP ET ABAP/02 ├── SAP GUI NAVIGATION ET TRANSACTIONS.md#transaction>)
 - [Repository ABAP](<../🧩 00 ├── LEXIQUE SAP ET ABAP/03 ├── REPOSITORY PACKAGES ET TRANSPORTS.md#repository-abap>)
 
-## RÉFÉRENCES OFFICIELLES SAP
+## 4.P RÉFÉRENCES OFFICIELLES SAP
 
 - [Object Navigator](https://help.sap.com/docs/ABAP_PLATFORM_NEW/bd833c8355f34e96a6e83096b38bf192/efd94b7bebf811d295b100a0c94260a5.html)
 - [Source Code-Based Editor](https://help.sap.com/docs/ABAP_PLATFORM_NEW/bd833c8355f34e96a6e83096b38bf192/4b2015f1ec4f0120e10000000a42189c.html)

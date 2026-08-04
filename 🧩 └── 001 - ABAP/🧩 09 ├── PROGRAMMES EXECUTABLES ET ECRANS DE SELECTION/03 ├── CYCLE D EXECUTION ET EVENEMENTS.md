@@ -1,6 +1,6 @@
-# CYCLE D’EXÉCUTION ET ÉVÉNEMENTS
+# 3. CYCLE D’EXÉCUTION ET ÉVÉNEMENTS
 
-## RÉSULTAT ATTENDU
+## 3.A RÉSULTAT ATTENDU
 
 - Comprendre le cycle d’un programme exécutable
 - Identifier les principaux blocs événementiels
@@ -8,7 +8,7 @@
 - Éviter le code implicite avant `START-OF-SELECTION`
 - Distinguer événements de sélection et événements de liste
 
-## PRINCIPE
+## 3.B PRINCIPE
 
 Le runtime ABAP appelle certains blocs selon le type du programme et les actions de l’utilisateur.
 
@@ -25,7 +25,7 @@ flowchart TD
 
 Ce diagramme représente le parcours principal. Des événements supplémentaires peuvent être déclenchés pendant la saisie ou le traitement d’une liste.
 
-## PRINCIPAUX ÉVÉNEMENTS
+## 3.C PRINCIPAUX ÉVÉNEMENTS
 
 | Événement                    | Usage                                                           |
 | ---------------------------- | --------------------------------------------------------------- |
@@ -37,7 +37,7 @@ Ce diagramme représente le parcours principal. Des événements supplémentaire
 | `END-OF-SELECTION`           | Traitement final, notamment dans certains scénarios historiques |
 | `TOP-OF-PAGE`                | Construire l’en-tête d’une liste classique                      |
 
-## START-OF-SELECTION EXPLICITE
+## 3.D START-OF-SELECTION EXPLICITE
 
 ```abap
 START-OF-SELECTION.
@@ -60,33 +60,33 @@ START-OF-SELECTION.
 
 Placer explicitement le point d’entrée facilite l’analyse et le débogage.
 
-## END-OF-SELECTION
+## 3.E END-OF-SELECTION
 
 `END-OF-SELECTION` n’est pas une fin obligatoire de tout report. Dans un programme sans base de données logique, le traitement principal peut être entièrement orchestré depuis `START-OF-SELECTION`.
 
 Ne pas ajouter cet événement par convention sans besoin réel.
 
-## ÉVÉNEMENTS DE LISTE
+## 3.F ÉVÉNEMENTS DE LISTE
 
 Les événements comme `TOP-OF-PAGE` ou `AT LINE-SELECTION` appartiennent au traitement des listes classiques. Ils ne sont pas déclenchés comme une séquence systématique après `START-OF-SELECTION`.
 
 Pour les restitutions tabulaires professionnelles, un ALV est généralement préférable à une liste interactive classique.
 
-## VÉRIFICATION
+## 3.G VÉRIFICATION
 
 - Le contrôle syntaxique réussit.
 - La version active correspond au code sauvegardé.
 - L’exécution produit le résultat décrit dans le chapitre.
 - Les cas vide, limite et erreur sont testés séparément lorsque la syntaxe le permet.
 
-## ERREURS FRÉQUENTES
+## 3.H ERREURS FRÉQUENTES
 
 - Copier un exemple sans adapter les types, noms d’objets et données disponibles dans le système.
 - Tester uniquement le cas nominal et ignorer les valeurs initiales, absentes ou invalides.
 - Mettre une logique lourde dans les événements de validation de l’écran.
 - Créer une variante contenant des valeurs obsolètes ou sensibles.
 
-## SNIPPET À RÉUTILISER
+## 3.I SNIPPET À RÉUTILISER
 
 > [!NOTE]
 > Adapter les noms `Z*`, les types DDIC, les données et les autorisations au système cible. Effectuer un contrôle syntaxique avant activation.
@@ -102,14 +102,14 @@ START-OF-SELECTION.
   WRITE gv_text.
 ```
 
-## TERMES DU LEXIQUE
+## 3.J TERMES DU LEXIQUE
 
 - [Programme exécutable](<../🧩 00 ├── LEXIQUE SAP ET ABAP/06 ├── PROGRAMMES CLASSES ET OBJETS TECHNIQUES.md#programme-executable>)
 - [Variante](<../🧩 00 ├── LEXIQUE SAP ET ABAP/06 ├── PROGRAMMES CLASSES ET OBJETS TECHNIQUES.md#variante>)
 - [Transaction](<../🧩 00 ├── LEXIQUE SAP ET ABAP/02 ├── SAP GUI NAVIGATION ET TRANSACTIONS.md#transaction>)
 - [Dynpro](<../🧩 00 ├── LEXIQUE SAP ET ABAP/02 ├── SAP GUI NAVIGATION ET TRANSACTIONS.md#dynpro>)
 
-## RÉFÉRENCES OFFICIELLES SAP
+## 3.K RÉFÉRENCES OFFICIELLES SAP
 
 - [Event Control — SAP Help Portal](https://help.sap.com/docs/ABAP_PLATFORM_NEW/7bfe8cdcfbb040dcb6702dada8c3e2f0/0b32146b63054bb293de32877a6ebfe9.html)
 - [START-OF-SELECTION — ABAP Keyword Documentation](https://help.sap.com/doc/abapdocu_latest_index_htm/latest/en-US/abapstart-of-selection.htm)

@@ -1,6 +1,6 @@
-# VARIABLES AVEC `DATA`
+# 4. VARIABLES AVEC `DATA`
 
-## RÉSULTAT ATTENDU
+## 4.A RÉSULTAT ATTENDU
 
 - Déclarer une variable avec l’instruction `DATA`
 - Choisir entre un type intégré, local ou global
@@ -8,7 +8,7 @@
 - Comprendre la différence entre déclaration et affectation
 - Appliquer des conventions de nommage utiles sans les confondre avec la syntaxe ABAP
 
-## DÉCLARATION DE BASE
+## 4.B DÉCLARATION DE BASE
 
 ```abap
 DATA lv_counter TYPE i.
@@ -26,7 +26,7 @@ La syntaxe générale est :
 DATA variable TYPE type.
 ```
 
-## INITIALISATION
+## 4.C INITIALISATION
 
 ```abap
 DATA lv_counter TYPE i VALUE 1.
@@ -42,16 +42,16 @@ lv_counter = lv_counter + 1.
 lv_text    = `Traitement terminé`.
 ```
 
-## SOURCES DE TYPAGE
+## 4.D SOURCES DE TYPAGE
 
-### TYPE INTÉGRÉ
+### 4.D.1 TYPE INTÉGRÉ
 
 ```abap
 DATA lv_index TYPE i.
 DATA lv_name  TYPE c LENGTH 40.
 ```
 
-### TYPE LOCAL
+### 4.D.2 TYPE LOCAL
 
 ```abap
 TYPES ty_status TYPE c LENGTH 1.
@@ -59,7 +59,7 @@ TYPES ty_status TYPE c LENGTH 1.
 DATA lv_status TYPE ty_status.
 ```
 
-### TYPE DU DICTIONNAIRE ABAP
+### 4.D.3 TYPE DU DICTIONNAIRE ABAP
 
 ```abap
 DATA lv_company_code TYPE bukrs.
@@ -67,7 +67,7 @@ DATA lv_company_code TYPE bukrs.
 
 `bukrs` est un exemple de type global fourni par le Dictionnaire ABAP. Son utilisation doit correspondre à la sémantique réelle de la variable.
 
-### TYPE PUBLIC D’UNE CLASSE
+### 4.D.4 TYPE PUBLIC D’UNE CLASSE
 
 ```abap
 DATA ls_result TYPE zcl_demo_service=>ty_result.
@@ -75,7 +75,7 @@ DATA ls_result TYPE zcl_demo_service=>ty_result.
 
 Ce type n’est accessible que si la classe existe et si le type est déclaré dans une section visible.
 
-## PLUSIEURS VARIABLES
+## 4.E PLUSIEURS VARIABLES
 
 La syntaxe chaînée est possible :
 
@@ -94,7 +94,7 @@ DATA lv_text  TYPE string.
 
 La convention retenue dépend du projet. La syntaxe chaînée n’apporte aucune différence fonctionnelle aux objets créés.
 
-## AFFECTATION
+## 4.F AFFECTATION
 
 L’opérateur `=` affecte une valeur compatible à une variable.
 
@@ -115,7 +115,7 @@ Une conversion peut être effectuée implicitement lorsque les types sont compat
 
 Les conversions explicites seront détaillées dans le dossier consacré aux expressions et traitements de données.
 
-## NOMMAGE
+## 4.G NOMMAGE
 
 Les préfixes tels que `lv_`, `ls_` ou `lr_` sont des conventions fréquentes, pas des mots-clés ABAP.
 
@@ -130,7 +130,7 @@ Les préfixes tels que `lv_`, `ls_` ou `lr_` sont des conventions fréquentes, p
 > [!IMPORTANT]
 > Le nom doit d’abord exprimer la responsabilité métier ou technique. Un préfixe ne compense pas un nom vague comme `lv_data`, `lv_var` ou `lv_temp`.
 
-## DÉCLARATION AU PLUS PRÈS DE L’USAGE
+## 4.H DÉCLARATION AU PLUS PRÈS DE L’USAGE
 
 Dans une procédure, déclarer une variable au plus près de son premier usage réduit la zone de code dans laquelle elle doit être comprise.
 
@@ -145,7 +145,7 @@ ENDMETHOD.
 
 Dans les programmes classiques, une déclaration placée dans la partie globale augmente la portée de la variable et les risques de dépendance entre blocs de traitement.
 
-## EXEMPLE COMPLET
+## 4.I EXEMPLE COMPLET
 
 ```abap
 REPORT zdemo_data_statement.
@@ -167,7 +167,7 @@ WRITE: / 'Montant net :', lv_net_amount,
 
 Dans une application réelle, les montants et devises doivent être typés avec les objets métier adaptés du Dictionnaire ABAP.
 
-## ERREURS FRÉQUENTES
+## 4.J ERREURS FRÉQUENTES
 
 | Erreur                                                | Correction                                        |
 | ----------------------------------------------------- | ------------------------------------------------- |
@@ -177,14 +177,14 @@ Dans une application réelle, les montants et devises doivent être typés avec 
 | Réutiliser une variable pour plusieurs significations | Créer des variables distinctes et explicites      |
 | Confondre `VALUE` et constante                        | Utiliser `CONSTANTS` pour une valeur immuable     |
 
-## VÉRIFICATION
+## 4.K VÉRIFICATION
 
 - Le contrôle syntaxique réussit.
 - La version active correspond au code sauvegardé.
 - L’exécution produit le résultat décrit dans le chapitre.
 - Les cas vide, limite et erreur sont testés séparément lorsque la syntaxe le permet.
 
-## SNIPPET À RÉUTILISER
+## 4.L SNIPPET À RÉUTILISER
 
 > [!NOTE]
 > Adapter les noms `Z*`, les types DDIC, les données et les autorisations au système cible. Effectuer un contrôle syntaxique avant activation.
@@ -207,7 +207,7 @@ WRITE: / 'Montant net :', lv_net_amount,
        / 'Total       :', lv_total.
 ```
 
-## TERMES DU LEXIQUE
+## 4.M TERMES DU LEXIQUE
 
 - [Type de données](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#type-donnees>)
 - [Objet de données](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#objet-donnees>)
@@ -216,7 +216,7 @@ WRITE: / 'Montant net :', lv_net_amount,
 - [Field-symbol](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#field-symbol>)
 - [Référence](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#reference>)
 
-## RÉFÉRENCES OFFICIELLES SAP
+## 4.N RÉFÉRENCES OFFICIELLES SAP
 
 - [DATA — ABAP Keyword Documentation](https://help.sap.com/doc/abapdocu_latest_index_htm/latest/en-US/ABAPDATA.html)
 - [DATA, TYPE — ABAP Keyword Documentation](https://help.sap.com/doc/abapdocu_latest_index_htm/latest/en-US/ABAPDATA_SIMPLE.html)

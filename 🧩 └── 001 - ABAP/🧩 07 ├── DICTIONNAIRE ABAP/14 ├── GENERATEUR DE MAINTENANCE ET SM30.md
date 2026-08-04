@@ -1,6 +1,6 @@
-# GÉNÉRATEUR DE MAINTENANCE ET SM30
+# 14. GÉNÉRATEUR DE MAINTENANCE ET SM30
 
-## RÉSULTAT ATTENDU
+## 14.A RÉSULTAT ATTENDU
 
 - Générer un dialogue standard de maintenance
 - Distinguer SE54 et SM30
@@ -8,7 +8,7 @@
 - Configurer le groupe de fonctions et l’autorisation
 - Identifier les limites d’un dialogue généré
 
-## PRINCIPE
+## 14.B PRINCIPE
 
 Le générateur de maintenance crée un programme standard permettant d’afficher, créer, modifier ou supprimer les entrées d’une table ou d’une vue de maintenance.
 
@@ -19,7 +19,7 @@ flowchart LR
     C --> D["Exécution avec SM30"]
 ```
 
-## PRÉREQUIS
+## 14.C PRÉREQUIS
 
 Avant la génération :
 
@@ -29,7 +29,7 @@ Avant la génération :
 - les relations et textes doivent être définis ;
 - le besoin d’autorisation et de transport des données doit être clarifié.
 
-## GÉNÉRATION
+## 14.D GÉNÉRATION
 
 Le générateur est accessible :
 
@@ -46,7 +46,7 @@ Les paramètres principaux sont :
 | Numéros d’écrans         | Identifier les dynpros générés                         |
 | Routine d’enregistrement | Gérer le transport éventuel des données de paramétrage |
 
-## UNE ÉTAPE OU DEUX ÉTAPES
+## 14.E UNE ÉTAPE OU DEUX ÉTAPES
 
 | Mode        | Fonctionnement                          |
 | ----------- | --------------------------------------- |
@@ -55,31 +55,31 @@ Les paramètres principaux sont :
 
 Le mode une étape convient aux tables simples comportant peu de champs. Le mode deux étapes est plus adapté lorsque la ligne contient de nombreux champs ou nécessite un écran détaillé.
 
-## PROCESS
+## 14.F PROCESS
 
 Dans `SM30` :
 
-### Étape 1 — Ouvrir le bon objet de maintenance
+### 14.F.1 Étape 1 — Ouvrir le bon objet de maintenance
 
 Saisir la table ou la vue dans `SM30`, puis choisir **Afficher** avant **Gérer**. Vérifier le titre, les champs et le nombre d’entrées afin d’exclure une homonymie ou un mauvais mandant.
 
-### Étape 2 — Déterminer le mode de transport
+### 14.F.2 Étape 2 — Déterminer le mode de transport
 
 Contrôler la classe de livraison, le paramétrage du générateur et la procédure du projet. Déterminer si les entrées sont transportées, saisies dans chaque système ou considérées comme données applicatives.
 
-### Étape 3 — Créer ou modifier une entrée
+### 14.F.3 Étape 3 — Créer ou modifier une entrée
 
 Choisir **Nouvelles entrées** ou sélectionner une ligne existante. Renseigner la clé en premier, puis les valeurs contrôlées. Ne modifier jamais la clé d’une ligne existante pour simuler une suppression/création sans vérifier les dépendances.
 
-### Étape 4 — Enregistrer et traiter la demande
+### 14.F.4 Étape 4 — Enregistrer et traiter la demande
 
 Enregistrer. Si une demande Customizing est proposée, sélectionner l’ordre autorisé et contrôler son contenu dans `SE10`. Si aucune demande n’est proposée alors qu’elle est attendue, arrêter et vérifier le paramétrage avant de poursuivre.
 
-### Étape 5 — Relire et tester
+### 14.F.5 Étape 5 — Relire et tester
 
 Quitter puis rouvrir la vue avec les mêmes critères. Vérifier la ligne enregistrée et exécuter le processus consommateur. La maintenance est validée lorsque la valeur est persistée dans le bon mandant et rattachée au transport prévu.
 
-## ÉVÉNEMENTS DU GÉNÉRATEUR
+## 14.G ÉVÉNEMENTS DU GÉNÉRATEUR
 
 Le générateur propose des événements permettant d’ajouter des contrôles ou traitements spécifiques.
 
@@ -92,7 +92,7 @@ Exemples :
 
 Ces extensions sont du code spécifique attaché à un objet généré. Elles doivent être documentées et testées après toute régénération.
 
-## LIMITES
+## 14.H LIMITES
 
 Un dialogue SM30 convient à la maintenance technique ou de paramétrage simple.
 
@@ -104,7 +104,7 @@ Il est insuffisant lorsque le processus exige :
 - des pièces jointes ou traitements annexes ;
 - une expérience utilisateur spécifique.
 
-## POINTS À RETENIR
+## 14.I POINTS À RETENIR
 
 - SE54 génère ; SM30 exécute le dialogue de maintenance.
 - Le choix une ou deux étapes dépend de la structure des données.
@@ -112,39 +112,39 @@ Il est insuffisant lorsque le processus exige :
 - Les événements permettent des adaptations, mais augmentent la maintenance.
 - SM30 ne remplace pas une application métier complexe.
 
-## PROCESS
+## 14.J PROCESS
 
-### Étape 1 — Préparer la table ou la vue
+### 14.J.1 Étape 1 — Préparer la table ou la vue
 
 Vérifier dans `SE11` qu’elle est active, possède une clé cohérente et autorise le type de maintenance voulu. Définir les clés étrangères et textes avant de générer les écrans.
 
-### Étape 2 — Générer le dialogue de maintenance
+### 14.J.2 Étape 2 — Générer le dialogue de maintenance
 
 Ouvrir le générateur depuis `SE11`, renseigner groupe de fonctions, groupe d’autorisations, type une ou deux étapes et numéros d’écrans. Utiliser un groupe de fonctions client dédié ou explicitement partagé.
 
-### Étape 3 — Contrôler la génération
+### 14.J.3 Étape 3 — Contrôler la génération
 
 Générer puis lire tous les messages. Ouvrir le groupe de fonctions dans `SE80` et vérifier les écrans créés. Ne modifier le code généré directement que si la technique d’événements prévue ne couvre pas le besoin.
 
-### Étape 4 — Tester les autorisations et opérations
+### 14.J.4 Étape 4 — Tester les autorisations et opérations
 
 Tester affichage, création, modification et suppression avec les rôles représentatifs. Vérifier les contrôles de domaine, clés étrangères, doublons et transport.
 
 La génération est validée lorsque `SM30` applique les règles de saisie et d’autorisation sans permettre une modification hors périmètre.
 
-## VÉRIFICATION
+## 14.K VÉRIFICATION
 
 - Le contrôle de cohérence ne retourne aucune erreur bloquante.
 - L’objet est actif et son entrée de répertoire pointe vers le package attendu.
 - La liste d’utilisation et les dépendances correspondent au périmètre prévu.
 - Pour une table Z, la structure active et la structure de base sont cohérentes.
 
-## ERREURS FRÉQUENTES
+## 14.L ERREURS FRÉQUENTES
 
 - Modifier un objet standard au lieu d’utiliser une extension.
 - Activer une table sans vérifier clé, paramètres techniques et impact base.
 
-## FICHE DE CONTRÔLE À COPIER
+## 14.M FICHE DE CONTRÔLE À COPIER
 
 ```text
 Système / SID       :
@@ -159,7 +159,7 @@ Horodatage          :
 Ordre de transport  :
 ```
 
-## TERMES DU LEXIQUE
+## 14.N TERMES DU LEXIQUE
 
 - [ABAP Dictionary](<../🧩 00 ├── LEXIQUE SAP ET ABAP/05 ├── DONNEES DICTIONNAIRE ET BASE DE DONNEES.md#abap-dictionary>)
 - [Domaine](<../🧩 00 ├── LEXIQUE SAP ET ABAP/05 ├── DONNEES DICTIONNAIRE ET BASE DE DONNEES.md#domaine>)
@@ -167,7 +167,7 @@ Ordre de transport  :
 - [Table transparente](<../🧩 00 ├── LEXIQUE SAP ET ABAP/05 ├── DONNEES DICTIONNAIRE ET BASE DE DONNEES.md#table-transparente>)
 - [MANDT](<../🧩 00 ├── LEXIQUE SAP ET ABAP/05 ├── DONNEES DICTIONNAIRE ET BASE DE DONNEES.md#mandt>)
 
-## RÉFÉRENCES OFFICIELLES SAP
+## 14.O RÉFÉRENCES OFFICIELLES SAP
 
 - [Table Maintenance Generator — SAP Help Portal](https://help.sap.com/docs/SUPPORT_CONTENT/abap/3353525944.html)
 - [Maintenance Views — SAP Help Portal](https://help.sap.com/docs/SAP_NETWEAVER_731_BW_ABAP/ec1c9c8191b74de98feb94001a95dd76/cf21ecdf446011d189700000e8322d00.html)

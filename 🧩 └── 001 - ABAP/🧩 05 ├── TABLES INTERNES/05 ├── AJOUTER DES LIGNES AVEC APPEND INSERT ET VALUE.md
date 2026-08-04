@@ -1,6 +1,6 @@
-# AJOUTER DES LIGNES AVEC APPEND, INSERT ET VALUE
+# 5. AJOUTER DES LIGNES AVEC APPEND, INSERT ET VALUE
 
-## RÉSULTAT ATTENDU
+## 5.A RÉSULTAT ATTENDU
 
 - Ajouter une ligne à une table interne
 - Distinguer `APPEND` et `INSERT`
@@ -8,7 +8,7 @@
 - Construire plusieurs lignes avec `VALUE`
 - Contrôler les violations de clé unique
 
-## APPEND
+## 5.B APPEND
 
 `APPEND` ajoute une ligne à la fin d’une table d’index.
 
@@ -30,7 +30,7 @@ ls_product-maktx = 'Produit 1'.
 APPEND ls_product TO lt_products.
 ```
 
-## APPEND VALUE
+## 5.C APPEND VALUE
 
 ```abap
 APPEND VALUE #( matnr = 'MAT-002'
@@ -40,7 +40,7 @@ APPEND VALUE #( matnr = 'MAT-002'
 
 Cette forme évite une zone de travail lorsque la ligne n’est utilisée qu’une fois.
 
-## APPEND INITIAL LINE
+## 5.D APPEND INITIAL LINE
 
 ```abap
 APPEND INITIAL LINE TO lt_products ASSIGNING FIELD-SYMBOL(<ls_product>).
@@ -51,7 +51,7 @@ APPEND INITIAL LINE TO lt_products ASSIGNING FIELD-SYMBOL(<ls_product>).
 
 La ligne est créée dans la table puis affectée directement au symbole de champ.
 
-## INSERT
+## 5.E INSERT
 
 `INSERT ... INTO TABLE` respecte la catégorie et la clé de la table.
 
@@ -66,7 +66,7 @@ Cette forme convient aux tables standard, triées et hachées.
 > [!TIP]
 > Lorsque le code doit rester indépendant de la catégorie de table, préférer `INSERT ... INTO TABLE` à `APPEND`.
 
-## CONTRÔLER SY-SUBRC
+## 5.F CONTRÔLER SY-SUBRC
 
 Pour une table à clé unique, une insertion en doublon échoue.
 
@@ -82,7 +82,7 @@ ELSE.
 ENDIF.
 ```
 
-## CONSTRUIRE LA TABLE AVEC VALUE
+## 5.G CONSTRUIRE LA TABLE AVEC VALUE
 
 ```abap
 lt_products = VALUE #(
@@ -93,7 +93,7 @@ lt_products = VALUE #(
 
 Cette affectation remplace le contenu antérieur de la table cible.
 
-## CONSERVER LE CONTENU EXISTANT AVEC BASE
+## 5.H CONSERVER LE CONTENU EXISTANT AVEC BASE
 
 ```abap
 lt_products = VALUE #(
@@ -101,7 +101,7 @@ lt_products = VALUE #(
   ( matnr = 'MAT-004' maktx = 'Produit 4' ) ).
 ```
 
-## APPEND LINES OF ET INSERT LINES OF
+## 5.I APPEND LINES OF ET INSERT LINES OF
 
 ```abap
 APPEND LINES OF lt_new_products TO lt_products.
@@ -113,7 +113,7 @@ INSERT LINES OF lt_new_products INTO TABLE lt_sorted_products.
 
 La seconde syntaxe respecte les règles de clé de la table cible.
 
-## COMPARAISON
+## 5.J COMPARAISON
 
 | Besoin                                 | Syntaxe adaptée                        |
 | -------------------------------------- | -------------------------------------- |
@@ -123,21 +123,21 @@ La seconde syntaxe respecte les règles de clé de la table cible.
 | Ajouter plusieurs lignes existantes    | `APPEND LINES OF` ou `INSERT LINES OF` |
 | Modifier immédiatement la ligne créée  | `ASSIGNING` ou `REFERENCE INTO`        |
 
-## VÉRIFICATION
+## 5.K VÉRIFICATION
 
 - Le contrôle syntaxique réussit.
 - La version active correspond au code sauvegardé.
 - L’exécution produit le résultat décrit dans le chapitre.
 - Les cas vide, limite et erreur sont testés séparément lorsque la syntaxe le permet.
 
-## ERREURS FRÉQUENTES
+## 5.L ERREURS FRÉQUENTES
 
 - Copier un exemple sans adapter les types, noms d’objets et données disponibles dans le système.
 - Tester uniquement le cas nominal et ignorer les valeurs initiales, absentes ou invalides.
 - Utiliser une table standard pour des recherches massives par clé sans mesure.
 - Modifier une copie de ligne alors que la table devait être mise à jour.
 
-## SNIPPET À RÉUTILISER
+## 5.M SNIPPET À RÉUTILISER
 
 > [!NOTE]
 > Adapter les noms `Z*`, les types DDIC, les données et les autorisations au système cible. Effectuer un contrôle syntaxique avant activation.
@@ -154,14 +154,14 @@ ELSE.
 ENDIF.
 ```
 
-## TERMES DU LEXIQUE
+## 5.N TERMES DU LEXIQUE
 
 - [Table interne](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#table-interne>)
 - [Structure](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#structure-abap>)
 - [Field-symbol](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#field-symbol>)
 - [Référence](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#reference>)
 
-## RÉFÉRENCES OFFICIELLES SAP
+## 5.O RÉFÉRENCES OFFICIELLES SAP
 
 - [Populating Internal Tables — SAP Help Portal](https://help.sap.com/docs/abap-cloud/abap-concepts/populating-internal-tables)
 - [Working with Simple Internal Tables — SAP Learning](https://learning.sap.com/courses/basic-abap-programming/working-with-simple-internal-tables_a4beb937-0c7b-45b9-92be-ff26a5159fad)

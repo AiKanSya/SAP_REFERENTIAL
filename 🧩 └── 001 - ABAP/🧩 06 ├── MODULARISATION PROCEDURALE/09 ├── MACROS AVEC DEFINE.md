@@ -1,6 +1,6 @@
-# MACROS AVEC DEFINE
+# 9. MACROS AVEC DEFINE
 
-## RÉSULTAT ATTENDU
+## 9.A RÉSULTAT ATTENDU
 
 - Comprendre le fonctionnement d’une macro ABAP
 - Définir une macro avec `DEFINE`
@@ -8,7 +8,7 @@
 - Identifier les limites de ce mécanisme
 - Choisir une procédure lorsque l’interface doit être robuste
 
-## DÉFINITION
+## 9.B DÉFINITION
 
 Une macro est un bloc source défini avec `DEFINE ... END-OF-DEFINITION`.
 
@@ -21,7 +21,7 @@ flowchart LR
     C --> D["Code développé dans le programme"]
 ```
 
-## SYNTAXE
+## 9.C SYNTAXE
 
 ```abap
 DEFINE macro_name.
@@ -29,7 +29,7 @@ DEFINE macro_name.
 END-OF-DEFINITION.
 ```
 
-## EXEMPLE
+## 9.D EXEMPLE
 
 ```abap
 REPORT z_demo_macro_01.
@@ -50,7 +50,7 @@ START-OF-SELECTION.
   ENDLOOP.
 ```
 
-## PLUSIEURS PARAMÈTRES
+## 9.E PLUSIEURS PARAMÈTRES
 
 ```abap
 DEFINE write_pair.
@@ -62,7 +62,7 @@ write_pair 'Utilisateur' sy-uname.
 
 Les paramètres sont positionnels et ne possèdent pas d’interface typée propre à la macro.
 
-## DIFFÉRENCE AVEC UN SOUS-PROGRAMME
+## 9.F DIFFÉRENCE AVEC UN SOUS-PROGRAMME
 
 | Macro                                    | Sous-programme               |
 | ---------------------------------------- | ---------------------------- |
@@ -72,7 +72,7 @@ Les paramètres sont positionnels et ne possèdent pas d’interface typée prop
 | Débogage moins direct                    | Pile d’appels visible        |
 | Forte dépendance au contexte             | Interface explicite possible |
 
-## RISQUES
+## 9.G RISQUES
 
 Une macro peut dépendre d’objets qui ne sont pas visibles dans son appel :
 
@@ -92,7 +92,7 @@ Autres risques :
 - absence de typage des paramètres ;
 - duplication du code généré à chaque utilisation.
 
-## QUAND EN RENCONTRER
+## 9.H QUAND EN RENCONTRER
 
 Les macros existent dans du code classique, des frameworks historiques et certaines constructions techniques. Elles doivent être comprises pour maintenir ce code.
 
@@ -102,7 +102,7 @@ Pour du nouveau code métier, préférer :
 - un sous-programme local dans un programme procédural existant ;
 - un module fonction lorsqu’une interface globale est réellement requise.
 
-## POINTS À RETENIR
+## 9.I POINTS À RETENIR
 
 - Une macro est développée par substitution textuelle.
 - Elle accepte jusqu’à neuf paramètres positionnels `&1` à `&9`.
@@ -110,21 +110,21 @@ Pour du nouveau code métier, préférer :
 - Son comportement dépend du contexte source.
 - Les macros doivent rester rares, courtes et parfaitement explicites.
 
-## VÉRIFICATION
+## 9.J VÉRIFICATION
 
 - Le contrôle syntaxique réussit.
 - La version active correspond au code sauvegardé.
 - L’exécution produit le résultat décrit dans le chapitre.
 - Les cas vide, limite et erreur sont testés séparément lorsque la syntaxe le permet.
 
-## ERREURS FRÉQUENTES
+## 9.K ERREURS FRÉQUENTES
 
 - Copier un exemple sans adapter les types, noms d’objets et données disponibles dans le système.
 - Tester uniquement le cas nominal et ignorer les valeurs initiales, absentes ou invalides.
 - Créer des sous-programmes avec trop de paramètres globaux.
 - Utiliser des appels externes ou dynamiques sans contrôle du nom et de l’existence.
 
-## SNIPPET À RÉUTILISER
+## 9.L SNIPPET À RÉUTILISER
 
 > [!NOTE]
 > Adapter les noms `Z*`, les types DDIC, les données et les autorisations au système cible. Effectuer un contrôle syntaxique avant activation.
@@ -148,13 +148,13 @@ START-OF-SELECTION.
   ENDLOOP.
 ```
 
-## TERMES DU LEXIQUE
+## 9.M TERMES DU LEXIQUE
 
 - [Programme exécutable](<../🧩 00 ├── LEXIQUE SAP ET ABAP/06 ├── PROGRAMMES CLASSES ET OBJETS TECHNIQUES.md#programme-executable>)
 - [Module fonction](<../🧩 00 ├── LEXIQUE SAP ET ABAP/06 ├── PROGRAMMES CLASSES ET OBJETS TECHNIQUES.md#module-fonction>)
 - [ABAP](<../🧩 00 ├── LEXIQUE SAP ET ABAP/10 └── ACRONYMES SAP.md#acro-abap>)
 
-## RÉFÉRENCES OFFICIELLES SAP
+## 9.N RÉFÉRENCES OFFICIELLES SAP
 
 - [DEFINE — ABAP Keyword Documentation](https://help.sap.com/doc/abapdocu_latest_index_htm/latest/en-US/ABAPDEFINE.html)
 - [Macros — ABAP Programming Guidelines](https://help.sap.com/doc/abapdocu_latest_index_htm/latest/en-US/ABENMACROS_GUIDL.html)

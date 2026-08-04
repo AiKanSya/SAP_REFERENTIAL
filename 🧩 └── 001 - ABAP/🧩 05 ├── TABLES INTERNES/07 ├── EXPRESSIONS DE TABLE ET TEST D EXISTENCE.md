@@ -1,6 +1,6 @@
-# EXPRESSIONS DE TABLE ET TEST D’EXISTENCE
+# 7. EXPRESSIONS DE TABLE ET TEST D’EXISTENCE
 
-## RÉSULTAT ATTENDU
+## 7.A RÉSULTAT ATTENDU
 
 - Lire une ligne avec une expression de table
 - Comprendre le risque d’exception en cas de ligne absente
@@ -8,7 +8,7 @@
 - Fournir une valeur de remplacement avec `OPTIONAL` ou `DEFAULT`
 - Choisir entre expression de table et `READ TABLE`
 
-## EXPRESSION DE TABLE
+## 7.B EXPRESSION DE TABLE
 
 Une expression de table permet d’utiliser une ligne dans une position opérande.
 
@@ -33,7 +33,7 @@ DATA(ls_product) = lt_products[
   COMPONENTS matnr = 'MAT-001' ].
 ```
 
-## LIGNE ABSENTE
+## 7.C LIGNE ABSENTE
 
 Une expression de table utilisée seule lève normalement l’exception de classe `CX_SY_ITAB_LINE_NOT_FOUND` lorsque la ligne n’existe pas.
 
@@ -46,7 +46,7 @@ TRY.
 ENDTRY.
 ```
 
-## LINE_EXISTS
+## 7.D LINE_EXISTS
 
 Lorsque seule l’existence est nécessaire :
 
@@ -59,7 +59,7 @@ ENDIF.
 
 `line_exists` évite de récupérer la ligne.
 
-## LINE_INDEX
+## 7.E LINE_INDEX
 
 ```abap
 " Accéder à la ligne par une clé adaptée au besoin.
@@ -72,7 +72,7 @@ ENDIF.
 
 Pour une table ou une clé sans index exploitable, la fonction ne fournit pas un numéro de ligne utilisable comme pour une table d’index.
 
-## OPTIONAL
+## 7.F OPTIONAL
 
 ```abap
 " Accéder à la ligne par une clé adaptée au besoin.
@@ -82,7 +82,7 @@ DATA(ls_product) = VALUE ty_product(
 
 Si la ligne est absente, `ls_product` reçoit sa valeur initiale.
 
-## DEFAULT
+## 7.G DEFAULT
 
 ```abap
 " Accéder à la ligne par une clé adaptée au besoin.
@@ -92,7 +92,7 @@ DATA(ls_product) = VALUE ty_product(
                    maktx = 'Produit inconnu' ) ).
 ```
 
-## MODIFIER PAR EXPRESSION DE TABLE
+## 7.H MODIFIER PAR EXPRESSION DE TABLE
 
 Une expression de table peut être placée à gauche d’une affectation.
 
@@ -103,7 +103,7 @@ lt_products[ matnr = 'MAT-001' ]-stock = 50.
 
 Cette instruction lève également une exception si la ligne n’existe pas.
 
-## CHOISIR ENTRE READ TABLE ET EXPRESSION
+## 7.I CHOISIR ENTRE READ TABLE ET EXPRESSION
 
 | Besoin                                             | Mécanisme adapté                                |
 | -------------------------------------------------- | ----------------------------------------------- |
@@ -116,21 +116,21 @@ Cette instruction lève également une exception si la ligne n’existe pas.
 > [!NOTE]
 > La disponibilité des expressions de table et de certaines additions dépend de la version ABAP du système. Utiliser l’aide syntaxique intégrée du système pour confirmer la syntaxe disponible.
 
-## VÉRIFICATION
+## 7.J VÉRIFICATION
 
 - Le contrôle syntaxique réussit.
 - La version active correspond au code sauvegardé.
 - L’exécution produit le résultat décrit dans le chapitre.
 - Les cas vide, limite et erreur sont testés séparément lorsque la syntaxe le permet.
 
-## ERREURS FRÉQUENTES
+## 7.K ERREURS FRÉQUENTES
 
 - Copier un exemple sans adapter les types, noms d’objets et données disponibles dans le système.
 - Tester uniquement le cas nominal et ignorer les valeurs initiales, absentes ou invalides.
 - Utiliser une table standard pour des recherches massives par clé sans mesure.
 - Modifier une copie de ligne alors que la table devait être mise à jour.
 
-## SNIPPET À RÉUTILISER
+## 7.L SNIPPET À RÉUTILISER
 
 > [!NOTE]
 > Adapter les noms `Z*`, les types DDIC, les données et les autorisations au système cible. Effectuer un contrôle syntaxique avant activation.
@@ -144,7 +144,7 @@ TRY.
 ENDTRY.
 ```
 
-## TERMES DU LEXIQUE
+## 7.M TERMES DU LEXIQUE
 
 - [Expression](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#expression>)
 - [Table interne](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#table-interne>)
@@ -152,7 +152,7 @@ ENDTRY.
 - [Field-symbol](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#field-symbol>)
 - [Référence](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#reference>)
 
-## RÉFÉRENCES OFFICIELLES SAP
+## 7.N RÉFÉRENCES OFFICIELLES SAP
 
 - [Table Expressions — ABAP Keyword Documentation](https://help.sap.com/doc/abapdocu_latest_index_htm/latest/en-US/ABENTABLE_EXPRESSIONS.html)
 - [Table Functions — ABAP Keyword Documentation](https://help.sap.com/doc/abapdocu_latest_index_htm/latest/en-US/ABENTABLE_FUNCTIONS.html)

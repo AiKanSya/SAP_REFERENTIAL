@@ -1,10 +1,6 @@
-# JOINTU" Rapprocher et filtrer les données directement dans la requête.
-" Rapprocher et filtrer les données directement dans la requête.
-" Rapprocher et filtrer les données directement dans la requête.
-" Rapprocher et filtrer les données directement dans la requête.
-RES
+# 8. JOINTURES
 
-## RÉSULTAT ATTENDU
+## 8.A RÉSULTAT ATTENDU
 
 - Combiner plusieurs sources dans une seule requête
 - Utiliser `INNER JOIN` et `LEFT OUTER JOIN`
@@ -12,7 +8,7 @@ RES
 - Employer des alias de sources
 - Éviter les lectures imbriquées inutiles
 
-## INNER JOIN
+## 8.B INNER JOIN
 
 Un `INNER JOIN` conserve seulement les combinaisons pour lesquelles la condition `ON` est satisfaite des deux côtés.
 
@@ -31,7 +27,7 @@ SELECT a~carrid,
 
 Le séparateur entre alias de source et colonne est `~` en ABAP SQL.
 
-## LEFT OUTER JOIN
+## 8.C LEFT OUTER JOIN
 
 Un `LEFT OUTER JOIN` conserve toutes les lignes de la source gauche, même lorsqu’aucune ligne correspondante n’existe à droite.
 
@@ -48,7 +44,7 @@ SELECT a~carrid,
 
 Pour une ligne gauche sans correspondance, les colonnes provenant de la droite résultent de valeurs nulles en base, ensuite converties ou gérées selon la cible ABAP SQL.
 
-## ALIAS DE SOURCES
+## 8.D ALIAS DE SOURCES
 
 Les alias :
 
@@ -56,7 +52,7 @@ Les alias :
 - rendent les colonnes non ambiguës ;
 - sont obligatoires pour distinguer deux utilisations de la même source.
 
-## AUTO-JOINTURE
+## 8.E AUTO-JOINTURE
 
 ```abap
 " Rapprocher et filtrer les données directement dans la requête.
@@ -69,7 +65,7 @@ SELECT first~carrid,
   INTO TABLE @DATA(lt_routes).
 ```
 
-## JOINTURE OU SELECT DANS UNE BOUCLE
+## 8.F JOINTURE OU SELECT DANS UNE BOUCLE
 
 Éviter :
 
@@ -84,28 +80,28 @@ ENDLOOP.
 
 Préférer une jointure ou une lecture groupée afin de réduire le nombre d’allers-retours vers la base.
 
-## CONDITION ON ET FILTRE WHERE
+## 8.G CONDITION ON ET FILTRE WHERE
 
 - `ON` définit la relation entre les sources ;
 - `WHERE` filtre le résultat produit par cette relation.
 
 Dans une jointure externe, déplacer une condition de `ON` vers `WHERE` peut supprimer les lignes sans correspondance et modifier le résultat métier.
 
-## VÉRIFICATION
+## 8.H VÉRIFICATION
 
 - Le contrôle syntaxique réussit.
 - La version active correspond au code sauvegardé.
 - L’exécution produit le résultat décrit dans le chapitre.
 - Les cas vide, limite et erreur sont testés séparément lorsque la syntaxe le permet.
 
-## ERREURS FRÉQUENTES
+## 8.I ERREURS FRÉQUENTES
 
 - Copier un exemple sans adapter les types, noms d’objets et données disponibles dans le système.
 - Tester uniquement le cas nominal et ignorer les valeurs initiales, absentes ou invalides.
 - Lire toutes les colonnes ou toutes les lignes par défaut.
 - Effectuer des commits dans une méthode réutilisable sans contrat explicite.
 
-## SNIPPET À RÉUTILISER
+## 8.J SNIPPET À RÉUTILISER
 
 > [!NOTE]
 > Adapter les noms `Z*`, les types DDIC, les données et les autorisations au système cible. Effectuer un contrôle syntaxique avant activation.
@@ -121,19 +117,19 @@ SELECT a~carrid,
   INTO TABLE @DATA(lt_carriers_connections).
 ```
 
-## TERMES DU LEXIQUE
+## 8.K TERMES DU LEXIQUE
 
 - [SQL](<../🧩 00 ├── LEXIQUE SAP ET ABAP/10 └── ACRONYMES SAP.md#acro-sql>)
 - [MANDT](<../🧩 00 ├── LEXIQUE SAP ET ABAP/05 ├── DONNEES DICTIONNAIRE ET BASE DE DONNEES.md#mandt>)
 - [Table transparente](<../🧩 00 ├── LEXIQUE SAP ET ABAP/05 ├── DONNEES DICTIONNAIRE ET BASE DE DONNEES.md#table-transparente>)
 - [LUW base de données](<../🧩 00 ├── LEXIQUE SAP ET ABAP/08 ├── EXECUTION EXPLOITATION ET ADMINISTRATION.md#luw-base>)
 
-## MODÈLE DE DÉMONSTRATION SFLIGHT
+## 8.L MODÈLE DE DÉMONSTRATION SFLIGHT
 
 > [!NOTE]
 > Les tables `SCARR`, `SPFLI` et `SFLIGHT` appartiennent au modèle de démonstration SAP et peuvent être absentes ou non alimentées dans certains systèmes. Dans ce cas, remplacer les exemples par une table Z de démonstration ou par une source en lecture seule autorisée, sans modifier une table applicative standard.
 
-## RÉFÉRENCES OFFICIELLES SAP
+## 8.M RÉFÉRENCES OFFICIELLES SAP
 
 - [Implementing Joins — SAP Learning](https://learning.sap.com/courses/deepening-your-abap-programming-knowledge/implementing-joins_a053e03d-f11e-4bee-8f63-5129b0590029)
 - [FROM Clause — ABAP Keyword Documentation](https://help.sap.com/doc/abapdocu_latest_index_htm/latest/en-US/ABAPFROM_CLAUSE.html)

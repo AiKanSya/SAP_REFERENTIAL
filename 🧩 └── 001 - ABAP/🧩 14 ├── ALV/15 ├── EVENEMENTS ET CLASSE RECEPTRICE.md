@@ -1,12 +1,12 @@
-# ÉVÉNEMENTS ET CLASSE RÉCEPTRICE
+# 15. ÉVÉNEMENTS ET CLASSE RÉCEPTRICE
 
-## RÉSULTAT ATTENDU
+## 15.A RÉSULTAT ATTENDU
 
 - Créer une classe de gestion des événements
 - Enregistrer les handlers avant l’affichage
 - Organiser le traitement des interactions
 
-## DÉFINITION
+## 15.B DÉFINITION
 
 ```abap
 CLASS lcl_event_receiver DEFINITION FINAL.
@@ -21,7 +21,7 @@ CLASS lcl_event_receiver DEFINITION FINAL.
 ENDCLASS.
 ```
 
-## IMPLÉMENTATION
+## 15.C IMPLÉMENTATION
 
 ```abap
 CLASS lcl_event_receiver IMPLEMENTATION.
@@ -41,7 +41,7 @@ CLASS lcl_event_receiver IMPLEMENTATION.
 ENDCLASS.
 ```
 
-## ENREGISTREMENT
+## 15.D ENREGISTREMENT
 
 ```abap
 DATA(go_receiver) = NEW lcl_event_receiver( ).
@@ -51,7 +51,7 @@ SET HANDLER go_receiver->handle_user_command FOR go_grid.
 
 Conserver la référence `GO_RECEIVER`. Une instance locale détruite à la fin d’une procédure ne doit pas être utilisée comme gestionnaire permanent.
 
-## ORGANISATION
+## 15.E ORGANISATION
 
 Le handler doit :
 
@@ -60,47 +60,47 @@ Le handler doit :
 3. déléguer la règle métier à une procédure ou une classe dédiée ;
 4. actualiser l’affichage si nécessaire.
 
-## PROCESS
+## 15.F PROCESS
 
-### Étape 1 — Sélectionner les événements nécessaires
+### 15.F.1 Étape 1 — Sélectionner les événements nécessaires
 
 Lister les interactions réellement gérées : double-clic, hotspot, commande, modification de données ou menu contextuel. Ne pas enregistrer un événement sans traitement fonctionnel défini.
 
-### Étape 2 — Déclarer la classe réceptrice
+### 15.F.2 Étape 2 — Déclarer la classe réceptrice
 
 Pour chaque événement, déclarer une méthode `FOR EVENT ... OF CL_GUI_ALV_GRID` avec sa signature exacte. Conserver les règles métier hors de cette méthode lorsque le traitement devient complexe.
 
-### Étape 3 — Implémenter les validations d’entrée
+### 15.F.3 Étape 3 — Implémenter les validations d’entrée
 
 Contrôler les indices de ligne et de colonne reçus avant de lire la table. Résoudre ensuite la clé métier et vérifier les autorisations avant l’action.
 
-### Étape 4 — Instancier la classe avec une durée de vie suffisante
+### 15.F.4 Étape 4 — Instancier la classe avec une durée de vie suffisante
 
 Stocker la référence du gestionnaire avec les références du conteneur et de la grille. Une instance locale détruite à la fin du PBO ne doit pas porter les événements de l’écran.
 
-### Étape 5 — Enregistrer les méthodes avant l’affichage
+### 15.F.5 Étape 5 — Enregistrer les méthodes avant l’affichage
 
 Exécuter `SET HANDLER ... FOR go_grid` après la création de la grille et avant l’interaction utilisateur. Ne pas répéter cet enregistrement à chaque PBO.
 
-### Étape 6 — Tester chaque événement isolément
+### 15.F.6 Étape 6 — Tester chaque événement isolément
 
 Tester les lignes valides, une table vide, les commandes inconnues et les interactions après tri ou filtre. Vérifier qu’une action n’est déclenchée qu’une seule fois.
 
-## VÉRIFICATION
+## 15.G VÉRIFICATION
 
 - Le contrôle syntaxique réussit.
 - La version active correspond au code sauvegardé.
 - L’exécution produit le résultat décrit dans le chapitre.
 - Les cas vide, limite et erreur sont testés séparément lorsque la syntaxe le permet.
 
-## ERREURS FRÉQUENTES
+## 15.H ERREURS FRÉQUENTES
 
 - Copier un exemple sans adapter les types, noms d’objets et données disponibles dans le système.
 - Tester uniquement le cas nominal et ignorer les valeurs initiales, absentes ou invalides.
 - Afficher un volume non borné dans l’ALV.
 - Rendre une cellule éditable sans validation ni sauvegarde transactionnelle.
 
-## SNIPPET À RÉUTILISER
+## 15.I SNIPPET À RÉUTILISER
 
 > [!NOTE]
 > Adapter les noms `Z*`, les types DDIC, les données et les autorisations au système cible. Effectuer un contrôle syntaxique avant activation.
@@ -123,14 +123,14 @@ CLASS lcl_event_receiver IMPLEMENTATION.
 ENDCLASS.
 ```
 
-## TERMES DU LEXIQUE
+## 15.J TERMES DU LEXIQUE
 
 - [Classe](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#classe>)
 - [ALV](<../🧩 00 ├── LEXIQUE SAP ET ABAP/10 └── ACRONYMES SAP.md#acro-alv>)
 - [SALV](<../🧩 00 ├── LEXIQUE SAP ET ABAP/10 └── ACRONYMES SAP.md#acro-salv>)
 - [Table interne](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#table-interne>)
 
-## RÉFÉRENCES OFFICIELLES SAP
+## 15.K RÉFÉRENCES OFFICIELLES SAP
 
 - [Events of Class CL_GUI_ALV_GRID — SAP Help Portal](https://help.sap.com/docs/ABAP_PLATFORM_NEW/70396d7dec4c4f19b9ca3b2e47559d12/22a3f5f5d2fe11d2b467006094192fe3.html)
 - [Working with the ALV Grid Control — SAP Help Portal](https://help.sap.com/docs/ABAP_PLATFORM_NEW/70396d7dec4c4f19b9ca3b2e47559d12/4ebd16291041389ee10000000a421937.html)

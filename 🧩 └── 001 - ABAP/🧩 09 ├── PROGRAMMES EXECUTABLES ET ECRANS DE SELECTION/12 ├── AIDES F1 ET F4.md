@@ -1,6 +1,6 @@
-# AIDES F1 ET F4
+# 12. AIDES F1 ET F4
 
-## RÉSULTAT ATTENDU
+## 12.A RÉSULTAT ATTENDU
 
 - Exploiter les aides issues du Dictionary ABAP
 - Comprendre les événements d’aide personnalisée
@@ -8,7 +8,7 @@
 - Fournir une aide F1 utile
 - Éviter les listes de valeurs codées en dur
 
-## AIDE AUTOMATIQUE DU DDIC
+## 12.B AIDE AUTOMATIQUE DU DDIC
 
 Un paramètre typé avec un élément de données peut hériter :
 
@@ -23,7 +23,7 @@ PARAMETERS p_carr TYPE scarr-carrid.
 
 La première solution doit être de modéliser correctement l’objet DDIC.
 
-## AIDE F4 PERSONNALISÉE
+## 12.C AIDE F4 PERSONNALISÉE
 
 ```abap
 AT SELECTION-SCREEN ON VALUE-REQUEST FOR p_file.
@@ -39,7 +39,7 @@ La procédure peut appeler une API standard adaptée au contexte. Vérifier sa c
 - type du champ ;
 - sécurité du poste utilisateur.
 
-## AIDE F1 PERSONNALISÉE
+## 12.D AIDE F1 PERSONNALISÉE
 
 ```abap
 AT SELECTION-SCREEN ON HELP-REQUEST FOR p_mode.
@@ -48,7 +48,7 @@ AT SELECTION-SCREEN ON HELP-REQUEST FOR p_mode.
 
 Cette solution convient à une aide courte. Pour une explication durable, maintenir la documentation DDIC ou la documentation du programme.
 
-## PRIORITÉ DES SOLUTIONS
+## 12.E PRIORITÉ DES SOLUTIONS
 
 ```mermaid
 flowchart TD
@@ -59,7 +59,7 @@ flowchart TD
     D -->|"Non"| F["Implémenter un événement personnalisé"]
 ```
 
-## ERREURS À ÉVITER
+## 12.F ERREURS À ÉVITER
 
 - présenter une valeur techniquement valide mais fonctionnellement interdite ;
 - charger des milliers de valeurs sans filtre ;
@@ -68,21 +68,21 @@ flowchart TD
 - appeler une fonction frontend dans un traitement destiné au background ;
 - afficher des données sans contrôle d’autorisation.
 
-## VÉRIFICATION
+## 12.G VÉRIFICATION
 
 - Le contrôle syntaxique réussit.
 - La version active correspond au code sauvegardé.
 - L’exécution produit le résultat décrit dans le chapitre.
 - Les cas vide, limite et erreur sont testés séparément lorsque la syntaxe le permet.
 
-## ERREURS FRÉQUENTES
+## 12.H ERREURS FRÉQUENTES
 
 - Copier un exemple sans adapter les types, noms d’objets et données disponibles dans le système.
 - Tester uniquement le cas nominal et ignorer les valeurs initiales, absentes ou invalides.
 - Mettre une logique lourde dans les événements de validation de l’écran.
 - Créer une variante contenant des valeurs obsolètes ou sensibles.
 
-## SNIPPET À RÉUTILISER
+## 12.I SNIPPET À RÉUTILISER
 
 > [!NOTE]
 > Adapter les noms `Z*`, les types DDIC, les données et les autorisations au système cible. Effectuer un contrôle syntaxique avant activation.
@@ -92,19 +92,19 @@ AT SELECTION-SCREEN ON VALUE-REQUEST FOR p_file.
   PERFORM request_file CHANGING p_file.
 ```
 
-## TERMES DU LEXIQUE
+## 12.J TERMES DU LEXIQUE
 
 - [Programme exécutable](<../🧩 00 ├── LEXIQUE SAP ET ABAP/06 ├── PROGRAMMES CLASSES ET OBJETS TECHNIQUES.md#programme-executable>)
 - [Variante](<../🧩 00 ├── LEXIQUE SAP ET ABAP/06 ├── PROGRAMMES CLASSES ET OBJETS TECHNIQUES.md#variante>)
 - [Transaction](<../🧩 00 ├── LEXIQUE SAP ET ABAP/02 ├── SAP GUI NAVIGATION ET TRANSACTIONS.md#transaction>)
 - [Dynpro](<../🧩 00 ├── LEXIQUE SAP ET ABAP/02 ├── SAP GUI NAVIGATION ET TRANSACTIONS.md#dynpro>)
 
-## MODÈLE DE DÉMONSTRATION SFLIGHT
+## 12.K MODÈLE DE DÉMONSTRATION SFLIGHT
 
 > [!NOTE]
 > Les tables `SCARR`, `SPFLI` et `SFLIGHT` appartiennent au modèle de démonstration SAP et peuvent être absentes ou non alimentées dans certains systèmes. Dans ce cas, remplacer les exemples par une table Z de démonstration ou par une source en lecture seule autorisée, sans modifier une table applicative standard.
 
-## RÉFÉRENCES OFFICIELLES SAP
+## 12.L RÉFÉRENCES OFFICIELLES SAP
 
 - [PARAMETERS — ABAP Keyword Documentation](https://help.sap.com/doc/abapdocu_816_index_htm/8.16/en-US/ABAPPARAMETERS.html)
 - [SELECT-OPTIONS, Value Options — ABAP Keyword Documentation](https://help.sap.com/doc/abapdocu_latest_index_htm/latest/en-US/abapselect-options_value.htm)

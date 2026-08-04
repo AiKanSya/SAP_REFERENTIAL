@@ -1,6 +1,6 @@
-# ENVIRONNEMENT SAP GUI
+# 1. ENVIRONNEMENT SAP GUI
 
-## RÉSULTAT ATTENDU
+## 1.A RÉSULTAT ATTENDU
 
 - Distinguer le client SAP GUI du système ABAP auquel il se connecte
 - Identifier le système, le mandant, l’utilisateur et la transaction en cours
@@ -8,7 +8,7 @@
 - Utiliser les aides standard `F1` et `F4`
 - Éviter les erreurs d’intervention sur un mauvais environnement
 
-## VUE D’ENSEMBLE
+## 1.B VUE D’ENSEMBLE
 
 ```mermaid
 flowchart LR
@@ -19,7 +19,7 @@ flowchart LR
     E --> F["Transactions et objets ABAP"]
 ```
 
-## SAP GUI ET SYSTÈME ABAP
+## 1.C SAP GUI ET SYSTÈME ABAP
 
 `SAP GUI` est le client graphique utilisé pour accéder à un système SAP reposant sur un serveur d’applications ABAP.
 
@@ -36,7 +36,7 @@ Il faut distinguer :
 > [!IMPORTANT]
 > Un même poste peut contenir plusieurs connexions vers des environnements différents : développement, qualité, recette ou production. Le nom visuel de la connexion ne suffit pas toujours pour confirmer l’environnement réellement ouvert.
 
-## QU’EST-CE QU’UN MANDANT ?
+## 1.D QU’EST-CE QU’UN MANDANT ?
 
 Un **mandant** est une subdivision logique d’un système SAP. Il est identifié par un numéro à trois chiffres, par exemple `100`, `200` ou `300`.
 
@@ -52,7 +52,7 @@ Un même système peut contenir plusieurs mandants. Ils partagent le même Repos
 
 Dans une table dépendante du mandant, le premier champ de clé est généralement `MANDT`. ABAP SQL applique normalement automatiquement le mandant courant. Les accès inter-mandants sont des cas particuliers qui exigent une justification et des autorisations adaptées.
 
-### COMMENT IDENTIFIER LE MANDANT COURANT
+### 1.D.1 COMMENT IDENTIFIER LE MANDANT COURANT
 
 1. ouvrir le menu **Système** ;
 2. choisir **Statut** ;
@@ -62,7 +62,7 @@ Dans une table dépendante du mandant, le premier champ de clé est généraleme
 > [!IMPORTANT]
 > Un programme activé dans un système ABAP est généralement visible dans tous les mandants du système. Modifier le code dans le « bon mandant » ne protège donc pas les autres mandants du même système.
 
-## CONNEXION
+## 1.E CONNEXION
 
 Une connexion SAP demande généralement :
 
@@ -73,7 +73,7 @@ Une connexion SAP demande généralement :
 
 La combinaison système, mandant et utilisateur détermine le contexte de travail.
 
-### CONTRÔLE DU CONTEXTE
+### 1.E.1 CONTRÔLE DU CONTEXTE
 
 Avant toute modification :
 
@@ -86,7 +86,7 @@ Avant toute modification :
 > [!CAUTION]
 > Ne jamais déduire qu’un système est un environnement de développement uniquement à partir de sa couleur SAP GUI ou du texte affiché dans SAP Logon. Ces éléments sont configurables.
 
-## SAP EASY ACCESS
+## 1.F SAP EASY ACCESS
 
 SAP Easy Access constitue le point d’entrée classique de SAP GUI. Il permet notamment d’utiliser :
 
@@ -98,7 +98,7 @@ SAP Easy Access constitue le point d’entrée classique de SAP GUI. Il permet n
 
 L’affichage des noms techniques peut être activé afin de faire apparaître les codes de transaction dans l’arborescence.
 
-## CHAMP DE COMMANDE
+## 1.G CHAMP DE COMMANDE
 
 Le champ de commande permet d’appeler directement une transaction.
 
@@ -113,9 +113,9 @@ Le champ de commande permet d’appeler directement une transaction.
 > [!NOTE]
 > L’ouverture de nouvelles sessions peut être limitée par la configuration du système.
 
-## AIDES STANDARD
+## 1.H AIDES STANDARD
 
-### AIDE F1
+### 1.H.1 AIDE F1
 
 `F1` affiche l’aide associée à un champ ou à un élément de l’interface.
 
@@ -129,7 +129,7 @@ Dans de nombreux écrans, l’aide permet aussi d’accéder aux **informations 
 
 Ces informations sont essentielles pour analyser un écran standard ou préparer une recherche dans le Repository.
 
-### AIDE F4
+### 1.H.2 AIDE F4
 
 `F4` ouvre l’aide à la saisie lorsqu’elle existe. Elle peut présenter :
 
@@ -141,7 +141,7 @@ Ces informations sont essentielles pour analyser un écran standard ou préparer
 > [!TIP]
 > Utiliser `F1` pour comprendre un champ et `F4` pour rechercher une valeur autorisée.
 
-## RÉFLEXES AVANT INTERVENTION
+## 1.I RÉFLEXES AVANT INTERVENTION
 
 ```mermaid
 flowchart TD
@@ -159,9 +159,9 @@ flowchart TD
 - fermer les sessions devenues inutiles ;
 - utiliser les transactions techniques uniquement avec les autorisations adaptées.
 
-## PROCESS
+## 1.J PROCESS
 
-### Étape 1 — Sélectionner la connexion SAP
+### 1.J.1 Étape 1 — Sélectionner la connexion SAP
 
 1. Ouvrir SAP Logon.
 2. Repérer la connexion indiquée dans le ticket ou la documentation du paysage.
@@ -170,7 +170,7 @@ flowchart TD
 
 Le libellé SAP Logon ne constitue pas une preuve suffisante : il peut être personnalisé localement. La vérification doit continuer dans le système connecté.
 
-### Étape 2 — Identifier le système réellement ouvert
+### 1.J.2 Étape 2 — Identifier le système réellement ouvert
 
 1. Dans SAP GUI, ouvrir **Système → Statut**.
 2. Relever au minimum le SID, le mandant, l’utilisateur, le serveur d’application et la version du composant ABAP lorsque celle-ci est nécessaire au diagnostic.
@@ -178,7 +178,7 @@ Le libellé SAP Logon ne constitue pas une preuve suffisante : il peut être per
 
 Le SID identifie le système, le mandant sépare les données dépendantes du client et l’utilisateur détermine le contexte d’autorisation. Un résultat dans un autre mandant ne prouve rien pour le mandant demandé.
 
-### Étape 3 — Comparer le contexte avec la demande
+### 1.J.3 Étape 3 — Comparer le contexte avec la demande
 
 1. Comparer le SID et le mandant avec les valeurs explicitement indiquées dans la demande.
 2. Vérifier que l’utilisateur utilisé est celui autorisé pour l’action.
@@ -186,7 +186,7 @@ Le SID identifie le système, le mandant sépare les données dépendantes du cl
 
 Si une seule valeur diffère, arrêter l’action. Revenir à SAP Logon et sélectionner la bonne connexion ; ne pas tenter de compenser une erreur de contexte en poursuivant dans le mauvais système.
 
-### Étape 4 — Ouvrir la transaction sans perdre le contexte
+### 1.J.4 Étape 4 — Ouvrir la transaction sans perdre le contexte
 
 1. Utiliser `/n<code>` pour remplacer la transaction de la session courante, par exemple `/nSE80`.
 2. Utiliser `/o<code>` pour ouvrir une nouvelle session, par exemple `/oST22`, lorsque la comparaison avec l’écran courant doit être conservée.
@@ -194,25 +194,25 @@ Si une seule valeur diffère, arrêter l’action. Revenir à SAP Logon et séle
 
 Si SAP refuse la transaction, relever le message exact. Distinguer un code inexistant, une transaction verrouillée et un refus d’autorisation avant de choisir le chapitre de diagnostic approprié.
 
-### Étape 5 — Revalider avant une action sensible
+### 1.J.5 Étape 5 — Revalider avant une action sensible
 
 Avant une modification, une activation, une suppression, un retraitement ou une exécution volumique, rouvrir **Système → Statut** et confirmer SID, mandant et utilisateur.
 
 Le contrôle est terminé lorsque le contexte affiché correspond intégralement à la demande et que la transaction cible est ouverte dans ce même contexte.
 
-## VÉRIFICATION
+## 1.K VÉRIFICATION
 
 - Le SID, le mandant et l’utilisateur relevés correspondent au contexte demandé.
 - Le lecteur sait expliquer pourquoi deux mandants d’un même système partagent généralement le même programme actif mais pas nécessairement les mêmes données.
 - La transaction ouverte est bien celle attendue et l’action est autorisée dans l’environnement.
 - La fiche de contrôle contient un horodatage et peut être jointe au diagnostic.
 
-## ERREURS FRÉQUENTES
+## 1.L ERREURS FRÉQUENTES
 
 - Intervenir dans le mauvais système ou mandant.
 - Confondre sauvegarde et activation.
 
-## FICHE DE CONTRÔLE À COPIER
+## 1.M FICHE DE CONTRÔLE À COPIER
 
 ```text
 Système / SID       :
@@ -227,7 +227,7 @@ Horodatage          :
 Ordre de transport  :
 ```
 
-## TERMES DU LEXIQUE
+## 1.N TERMES DU LEXIQUE
 
 - [Environnement](<../🧩 00 ├── LEXIQUE SAP ET ABAP/01 ├── SYSTEMES ENVIRONNEMENTS ET MANDANTS.md#environnement>)
 - [SAP GUI](<../🧩 00 ├── LEXIQUE SAP ET ABAP/02 ├── SAP GUI NAVIGATION ET TRANSACTIONS.md#sap-gui>)
@@ -236,7 +236,7 @@ Ordre de transport  :
 - [Transaction](<../🧩 00 ├── LEXIQUE SAP ET ABAP/02 ├── SAP GUI NAVIGATION ET TRANSACTIONS.md#transaction>)
 - [Repository ABAP](<../🧩 00 ├── LEXIQUE SAP ET ABAP/03 ├── REPOSITORY PACKAGES ET TRANSPORTS.md#repository-abap>)
 
-## RÉFÉRENCES OFFICIELLES SAP
+## 1.O RÉFÉRENCES OFFICIELLES SAP
 
 - [SAP GUI for Windows — Command Field](https://help.sap.com/docs/sap_gui_for_windows/63bd20104af84112973ad59590645513/d1a516153a4d438691ecee7f83a5d77b.html)
 - [SAP GUI — SAP Easy Access](https://help.sap.com/docs/ABAP_PLATFORM_1909/b1c834a22d05483b8a75710743b5ff26/cb11a43814a54af19c4bcf0221c24eb7.html)

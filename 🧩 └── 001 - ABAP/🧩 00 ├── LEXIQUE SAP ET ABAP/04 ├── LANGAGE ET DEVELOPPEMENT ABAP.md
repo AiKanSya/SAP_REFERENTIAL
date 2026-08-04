@@ -1,11 +1,11 @@
-# LANGAGE ET DÉVELOPPEMENT ABAP
+# 4. LANGAGE ET DÉVELOPPEMENT ABAP
 
 Définitions fondamentales du langage ABAP et de la programmation orientée objet sur la plateforme ABAP.
 
 Chaque entrée présente une définition concise, un exemple, un repère pratique et, lorsque nécessaire, une distinction avec une notion proche.
 
 <a id="abap"></a>
-## ABAP
+## 4.A ABAP
 
 **Définition.** Langage de programmation de la plateforme ABAP, conçu pour développer des applications métier et techniques SAP.
 
@@ -19,7 +19,7 @@ Chaque entrée présente une définition concise, un exemple, un repère pratiqu
 ---
 
 <a id="abap-objects"></a>
-## ABAP OBJECTS
+## 4.B ABAP OBJECTS
 
 **Définition.** Extension orientée objet du langage ABAP fournissant classes, interfaces, héritage, événements et exceptions de classe.
 
@@ -33,7 +33,7 @@ Chaque entrée présente une définition concise, un exemple, un repère pratiqu
 ---
 
 <a id="adapter"></a>
-## ADAPTER
+## 4.C ADAPTER
 
 **Définition.** Pattern structurel qui adapte l’interface d’un composant existant à l’interface attendue par le code appelant.
 
@@ -47,7 +47,7 @@ Chaque entrée présente une définition concise, un exemple, un repère pratiqu
 ---
 
 <a id="api-publique"></a>
-## API PUBLIQUE
+## 4.D API PUBLIQUE
 
 **Définition.** Ensemble des composants publics qu’une classe expose à ses consommateurs : méthodes, événements, types, constantes et attributs publics.
 
@@ -61,7 +61,7 @@ Chaque entrée présente une définition concise, un exemple, un repère pratiqu
 ---
 
 <a id="attribut"></a>
-## ATTRIBUT
+## 4.E ATTRIBUT
 
 **Définition.** Composant de données déclaré dans une classe et appartenant soit à chaque instance, soit à la classe elle-même.
 
@@ -75,7 +75,7 @@ Chaque entrée présente une définition concise, un exemple, un repère pratiqu
 ---
 
 <a id="classe"></a>
-## CLASSE
+## 4.F CLASSE
 
 **Définition.** Modèle orienté objet définissant état et comportements.
 
@@ -89,7 +89,7 @@ Chaque entrée présente une définition concise, un exemple, un repère pratiqu
 ---
 
 <a id="classe-abstraite"></a>
-## CLASSE ABSTRAITE
+## 4.G CLASSE ABSTRAITE
 
 **Définition.** Classe déclarée `ABSTRACT` qui ne peut pas être instanciée directement et qui sert de base à des sous-classes.
 
@@ -103,7 +103,7 @@ Chaque entrée présente une définition concise, un exemple, un repère pratiqu
 ---
 
 <a id="classe-finale"></a>
-## CLASSE FINALE
+## 4.H CLASSE FINALE
 
 **Définition.** Classe déclarée `FINAL` qui ne peut pas être utilisée comme super-classe.
 
@@ -117,7 +117,7 @@ Chaque entrée présente une définition concise, un exemple, un repère pratiqu
 ---
 
 <a id="composition"></a>
-## COMPOSITION
+## 4.I COMPOSITION
 
 **Définition.** Relation dans laquelle une classe réalise son comportement en contenant ou en utilisant d’autres objets spécialisés.
 
@@ -131,7 +131,7 @@ Chaque entrée présente une définition concise, un exemple, un repère pratiqu
 ---
 
 <a id="constructeur-classe"></a>
-## CONSTRUCTEUR DE CLASSE
+## 4.J CONSTRUCTEUR DE CLASSE
 
 **Définition.** Méthode statique spéciale `CLASS_CONSTRUCTOR`, appelée automatiquement une seule fois avant le premier accès actif à la classe dans une session interne.
 
@@ -145,7 +145,7 @@ Chaque entrée présente une définition concise, un exemple, un repère pratiqu
 ---
 
 <a id="constructeur-instance"></a>
-## CONSTRUCTEUR D’INSTANCE
+## 4.K CONSTRUCTEUR D’INSTANCE
 
 **Définition.** Méthode spéciale `CONSTRUCTOR`, exécutée automatiquement lors de la création d’un objet avec `NEW` ou `CREATE OBJECT`.
 
@@ -159,7 +159,7 @@ Chaque entrée présente une définition concise, un exemple, un repère pratiqu
 ---
 
 <a id="delegation"></a>
-## DÉLÉGATION
+## 4.L DÉLÉGATION
 
 **Définition.** Technique par laquelle une méthode transmet tout ou partie d’un traitement à un objet collaborateur.
 
@@ -173,7 +173,7 @@ Chaque entrée présente une définition concise, un exemple, un repère pratiqu
 ---
 
 <a id="dependance-objet"></a>
-## DÉPENDANCE OBJET
+## 4.M DÉPENDANCE OBJET
 
 **Définition.** Objet ou service dont une classe a besoin pour exécuter sa responsabilité.
 
@@ -187,7 +187,7 @@ Chaque entrée présente une définition concise, un exemple, un repère pratiqu
 ---
 
 <a id="down-cast"></a>
-## DOWN CAST
+## 4.N DOWN CAST
 
 **Définition.** Conversion contrôlée d’une référence de type général vers un type plus spécifique compatible avec l’objet réel.
 
@@ -201,7 +201,7 @@ Chaque entrée présente une définition concise, un exemple, un repère pratiqu
 ---
 
 <a id="encapsulation"></a>
-## ENCAPSULATION
+## 4.O ENCAPSULATION
 
 **Définition.** Principe consistant à protéger l’état interne d’un objet et à imposer son utilisation par une API contrôlée.
 
@@ -215,7 +215,7 @@ Chaque entrée présente une définition concise, un exemple, un repère pratiqu
 ---
 
 <a id="evenement-objet"></a>
-## ÉVÉNEMENT OBJET
+## 4.P ÉVÉNEMENT OBJET
 
 **Définition.** Notification déclarée par une classe ou une interface et déclenchée avec `RAISE EVENT` afin d’informer des gestionnaires enregistrés.
 
@@ -229,7 +229,7 @@ Chaque entrée présente une définition concise, un exemple, un repère pratiqu
 ---
 
 <a id="exception"></a>
-## EXCEPTION
+## 4.Q EXCEPTION
 
 **Définition.** Objet ou signal représentant une situation anormale qu’un appelant peut traiter.
 
@@ -243,7 +243,7 @@ Chaque entrée présente une définition concise, un exemple, un repère pratiqu
 ---
 
 <a id="expression"></a>
-## EXPRESSION
+## 4.R EXPRESSION
 
 **Définition.** Construction qui produit une valeur à partir d’opérandes et d’opérateurs.
 
@@ -257,7 +257,7 @@ Chaque entrée présente une définition concise, un exemple, un repère pratiqu
 ---
 
 <a id="facade"></a>
-## FAÇADE
+## 4.S FAÇADE
 
 **Définition.** Pattern fournissant une interface simplifiée devant plusieurs composants ou sous-systèmes.
 
@@ -271,7 +271,7 @@ Chaque entrée présente une définition concise, un exemple, un repère pratiqu
 ---
 
 <a id="factory-method"></a>
-## FACTORY METHOD
+## 4.T FACTORY METHOD
 
 **Définition.** Méthode, souvent statique, qui centralise et contrôle la création d’objets.
 
@@ -285,7 +285,7 @@ Chaque entrée présente une définition concise, un exemple, un repère pratiqu
 ---
 
 <a id="field-symbol"></a>
-## FIELD-SYMBOL
+## 4.U FIELD-SYMBOL
 
 **Définition.** Alias dynamique vers une zone de mémoire existante.
 
@@ -299,7 +299,7 @@ Chaque entrée présente une définition concise, un exemple, un repère pratiqu
 ---
 
 <a id="gestionnaire-evenement"></a>
-## GESTIONNAIRE D’ÉVÉNEMENT
+## 4.V GESTIONNAIRE D’ÉVÉNEMENT
 
 **Définition.** Méthode déclarée `FOR EVENT` qui est appelée lorsqu’un événement auquel elle est enregistrée est déclenché.
 
@@ -313,7 +313,7 @@ Chaque entrée présente une définition concise, un exemple, un repère pratiqu
 ---
 
 <a id="heritage"></a>
-## HÉRITAGE
+## 4.W HÉRITAGE
 
 **Définition.** Relation permettant à une sous-classe de reprendre les composants accessibles d’une super-classe et de spécialiser son comportement.
 
@@ -327,7 +327,7 @@ Chaque entrée présente une définition concise, un exemple, un repère pratiqu
 ---
 
 <a id="injection-dependances"></a>
-## INJECTION DE DÉPENDANCES
+## 4.X INJECTION DE DÉPENDANCES
 
 **Définition.** Fourniture des collaborateurs d’un objet depuis l’extérieur au lieu de les créer directement dans son implémentation.
 
@@ -341,7 +341,7 @@ Chaque entrée présente une définition concise, un exemple, un repère pratiqu
 ---
 
 <a id="instance-objet"></a>
-## INSTANCE D’OBJET
+## 4.Y INSTANCE D’OBJET
 
 **Définition.** Objet concret créé à l’exécution à partir de la définition d’une classe.
 
@@ -355,7 +355,7 @@ Chaque entrée présente une définition concise, un exemple, un repère pratiqu
 ---
 
 <a id="instruction-abap"></a>
-## INSTRUCTION ABAP
+## 4.Z INSTRUCTION ABAP
 
 **Définition.** Unité syntaxique terminée par un point.
 
@@ -369,7 +369,7 @@ Chaque entrée présente une définition concise, un exemple, un repère pratiqu
 ---
 
 <a id="interface-abap-objects"></a>
-## INTERFACE ABAP OBJECTS
+## 4.AA INTERFACE ABAP OBJECTS
 
 **Définition.** Contrat de méthodes, événements et types qu’une classe peut implémenter.
 
@@ -383,7 +383,7 @@ Chaque entrée présente une définition concise, un exemple, un repère pratiqu
 ---
 
 <a id="invariant"></a>
-## INVARIANT
+## 4.AB INVARIANT
 
 **Définition.** Condition qui doit rester vraie pendant toute la durée de vie valide d’un objet.
 
@@ -397,7 +397,7 @@ Chaque entrée présente une définition concise, un exemple, un repère pratiqu
 ---
 
 <a id="methode"></a>
-## MÉTHODE
+## 4.AC MÉTHODE
 
 **Définition.** Comportement déclaré dans une classe ou une interface et appelé avec une liste de paramètres définie.
 
@@ -411,7 +411,7 @@ Chaque entrée présente une définition concise, un exemple, un repère pratiqu
 ---
 
 <a id="methode-abstraite"></a>
-## MÉTHODE ABSTRAITE
+## 4.AD MÉTHODE ABSTRAITE
 
 **Définition.** Méthode déclarée `ABSTRACT` sans implémentation dans la classe qui la déclare.
 
@@ -425,7 +425,7 @@ Chaque entrée présente une définition concise, un exemple, un repère pratiqu
 ---
 
 <a id="methode-instance"></a>
-## MÉTHODE D’INSTANCE
+## 4.AE MÉTHODE D’INSTANCE
 
 **Définition.** Méthode appelée sur une instance avec l’opérateur `->` et pouvant accéder à son état.
 
@@ -439,7 +439,7 @@ Chaque entrée présente une définition concise, un exemple, un repère pratiqu
 ---
 
 <a id="methode-statique"></a>
-## MÉTHODE STATIQUE
+## 4.AF MÉTHODE STATIQUE
 
 **Définition.** Méthode déclarée `CLASS-METHODS`, appelée sur la classe avec `=>` sans créer d’instance.
 
@@ -453,7 +453,7 @@ Chaque entrée présente une définition concise, un exemple, un repère pratiqu
 ---
 
 <a id="objet-donnees"></a>
-## OBJET DE DONNÉES
+## 4.AG OBJET DE DONNÉES
 
 **Définition.** Zone de mémoire typée contenant une valeur pendant l’exécution.
 
@@ -467,7 +467,7 @@ Chaque entrée présente une définition concise, un exemple, un repère pratiqu
 ---
 
 <a id="polymorphisme"></a>
-## POLYMORPHISME
+## 4.AH POLYMORPHISME
 
 **Définition.** Capacité à utiliser plusieurs classes concrètes au travers d’un même type de référence abstrait.
 
@@ -481,7 +481,7 @@ Chaque entrée présente une définition concise, un exemple, un repère pratiqu
 ---
 
 <a id="redefinition"></a>
-## REDÉFINITION
+## 4.AI REDÉFINITION
 
 **Définition.** Nouvelle implémentation, dans une sous-classe, d’une méthode héritée déclarée redéfinissable.
 
@@ -495,7 +495,7 @@ Chaque entrée présente une définition concise, un exemple, un repère pratiqu
 ---
 
 <a id="reference"></a>
-## RÉFÉRENCE
+## 4.AJ RÉFÉRENCE
 
 **Définition.** Valeur qui pointe vers un objet de données ou une instance de classe.
 
@@ -509,7 +509,7 @@ Chaque entrée présente une définition concise, un exemple, un repère pratiqu
 ---
 
 <a id="simple-factory"></a>
-## SIMPLE FACTORY
+## 4.AK SIMPLE FACTORY
 
 **Définition.** Objet ou méthode qui choisit une classe concrète parmi plusieurs implémentations selon un critère fourni.
 
@@ -523,7 +523,7 @@ Chaque entrée présente une définition concise, un exemple, un repère pratiqu
 ---
 
 <a id="singleton"></a>
-## SINGLETON
+## 4.AL SINGLETON
 
 **Définition.** Pattern limitant la création à une seule instance accessible dans une session interne ABAP.
 
@@ -537,7 +537,7 @@ Chaque entrée présente une définition concise, un exemple, un repère pratiqu
 ---
 
 <a id="strategy"></a>
-## STRATEGY
+## 4.AM STRATEGY
 
 **Définition.** Pattern qui encapsule plusieurs algorithmes interchangeables derrière une même interface.
 
@@ -551,7 +551,7 @@ Chaque entrée présente une définition concise, un exemple, un repère pratiqu
 ---
 
 <a id="structure-abap"></a>
-## STRUCTURE
+## 4.AN STRUCTURE
 
 **Définition.** Objet ou type composé de plusieurs composants nommés.
 
@@ -565,7 +565,7 @@ Chaque entrée présente une définition concise, un exemple, un repère pratiqu
 ---
 
 <a id="super-reference"></a>
-## SUPER
+## 4.AO SUPER
 
 **Définition.** Pseudo-référence permettant à une sous-classe d’accéder à l’implémentation héritée de sa super-classe.
 
@@ -579,7 +579,7 @@ Chaque entrée présente une définition concise, un exemple, un repère pratiqu
 ---
 
 <a id="table-interne"></a>
-## TABLE INTERNE
+## 4.AP TABLE INTERNE
 
 **Définition.** Collection dynamique de lignes stockée en mémoire dans le programme ABAP.
 
@@ -593,7 +593,7 @@ Chaque entrée présente une définition concise, un exemple, un repère pratiqu
 ---
 
 <a id="type-donnees"></a>
-## TYPE DE DONNÉES
+## 4.AQ TYPE DE DONNÉES
 
 **Définition.** Définition des propriétés d’une valeur : nature, longueur, précision et opérations autorisées.
 
@@ -607,7 +607,7 @@ Chaque entrée présente une définition concise, un exemple, un repère pratiqu
 ---
 
 <a id="up-cast"></a>
-## UP CAST
+## 4.AR UP CAST
 
 **Définition.** Affectation d’une référence d’un type plus spécifique vers un type plus général compatible.
 
@@ -621,7 +621,7 @@ Chaque entrée présente une définition concise, un exemple, un repère pratiqu
 ---
 
 <a id="visibilite"></a>
-## VISIBILITÉ
+## 4.AS VISIBILITÉ
 
 **Définition.** Règle déterminant où un composant de classe peut être utilisé : `PUBLIC`, `PROTECTED` ou `PRIVATE`.
 
@@ -633,7 +633,7 @@ Chaque entrée présente une définition concise, un exemple, un repère pratiqu
 
 ---
 
-## Références SAP
+## 4.AT Références SAP
 
 - [ABAP Programming Language — SAP Help Portal](https://help.sap.com/docs/ABAP_PLATFORM/66906ae3920c4fc684cf588290fb9267/d3d5c132973b404db980ba6ae0889be7.html)
 - [SAP GUI for Windows — SAP Help Portal](https://help.sap.com/docs/r/product/sap_gui_for_windows)

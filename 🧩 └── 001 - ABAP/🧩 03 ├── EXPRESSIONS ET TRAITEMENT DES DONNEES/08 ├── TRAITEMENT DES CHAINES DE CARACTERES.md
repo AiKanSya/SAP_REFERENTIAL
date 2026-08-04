@@ -1,6 +1,6 @@
-# TRAITEMENT DES CHAÎNES DE CARACTÈRES
+# 8. TRAITEMENT DES CHAÎNES DE CARACTÈRES
 
-## RÉSULTAT ATTENDU
+## 8.A RÉSULTAT ATTENDU
 
 - Distinguer champs caractère fixes et chaînes variables
 - Nettoyer et normaliser un texte
@@ -8,7 +8,7 @@
 - Utiliser des fonctions intégrées dans une expression
 - Choisir entre modification directe et production d’une nouvelle valeur
 
-## TYPES CARACTÈRE
+## 8.B TYPES CARACTÈRE
 
 | Type     | Longueur | Comportement principal             |
 | -------- | -------- | ---------------------------------- |
@@ -25,7 +25,7 @@ DATA lv_string TYPE string      VALUE `ABAP`.
 
 `lv_fixed` occupe dix caractères. `lv_string` contient quatre caractères utiles.
 
-## LONGUEUR D’UN TEXTE
+## 8.C LONGUEUR D’UN TEXTE
 
 ```abap
 DATA lv_text TYPE string VALUE `ABAP SAP GUI`.
@@ -34,7 +34,7 @@ DATA(lv_length) = strlen( lv_text ).
 
 Pour les champs de longueur fixe, les espaces de fin peuvent influencer le résultat selon la fonction utilisée et le type de l’argument. Vérifier la fonction adaptée au besoin.
 
-## CONDENSE
+## 8.D CONDENSE
 
 `CONDENSE` réduit les suites d’espaces et supprime les espaces de début et de fin.
 
@@ -56,7 +56,7 @@ Pour supprimer tous les espaces :
 CONDENSE lv_text NO-GAPS.
 ```
 
-## TRANSLATE
+## 8.E TRANSLATE
 
 ```abap
 TRANSLATE lv_text TO UPPER CASE.
@@ -75,7 +75,7 @@ La différence principale :
 - `TRANSLATE` modifie l’objet fourni ;
 - `to_upper( )` et `to_lower( )` retournent une valeur.
 
-## SHIFT
+## 8.F SHIFT
 
 `SHIFT` déplace le contenu d’un objet caractère.
 
@@ -95,7 +95,7 @@ SHIFT lv_text BY 3 PLACES LEFT.
 
 Pour un identifiant SAP avec conversion exit, ne pas remplacer systématiquement la conversion ALPHA par une suppression manuelle de zéros.
 
-## FONCTIONS DE TRANSFORMATION
+## 8.G FONCTIONS DE TRANSFORMATION
 
 Exemples usuels :
 
@@ -114,7 +114,7 @@ DATA(lv_normalized) = to_upper( condense( val = lv_text ) ).
 
 Ne pas imbriquer trop de fonctions lorsque le traitement devient difficile à tester.
 
-## NORMALISATION D’UNE SAISIE
+## 8.H NORMALISATION D’UNE SAISIE
 
 ```abap
 PARAMETERS p_code TYPE c LENGTH 20.
@@ -131,7 +131,7 @@ Ce traitement :
 2. normalise les espaces ;
 3. convertit le texte en majuscules.
 
-## INSTRUCTIONS OU FONCTIONS
+## 8.I INSTRUCTIONS OU FONCTIONS
 
 | Besoin                                           | Forme adaptée                                       |
 | ------------------------------------------------ | --------------------------------------------------- |
@@ -140,21 +140,21 @@ Ce traitement :
 | Enchaîner plusieurs transformations lisibles     | Fonctions avec variables intermédiaires             |
 | Maintenir du code ancien                         | Respecter la forme existante si elle reste correcte |
 
-## VÉRIFICATION
+## 8.J VÉRIFICATION
 
 - Le contrôle syntaxique réussit.
 - La version active correspond au code sauvegardé.
 - L’exécution produit le résultat décrit dans le chapitre.
 - Les cas vide, limite et erreur sont testés séparément lorsque la syntaxe le permet.
 
-## ERREURS FRÉQUENTES
+## 8.K ERREURS FRÉQUENTES
 
 - Copier un exemple sans adapter les types, noms d’objets et données disponibles dans le système.
 - Tester uniquement le cas nominal et ignorer les valeurs initiales, absentes ou invalides.
 - S’appuyer sur une conversion implicite pouvant tronquer ou arrondir.
 - Ignorer l’encodage et les formats externes.
 
-## SNIPPET À RÉUTILISER
+## 8.L SNIPPET À RÉUTILISER
 
 > [!NOTE]
 > Adapter les noms `Z*`, les types DDIC, les données et les autorisations au système cible. Effectuer un contrôle syntaxique avant activation.
@@ -168,13 +168,13 @@ START-OF-SELECTION.
   WRITE / lv_code.
 ```
 
-## TERMES DU LEXIQUE
+## 8.M TERMES DU LEXIQUE
 
 - [Instruction ABAP](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#instruction-abap>)
 - [Expression](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#expression>)
 - [Type de données](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#type-donnees>)
 
-## RÉFÉRENCES OFFICIELLES SAP
+## 8.N RÉFÉRENCES OFFICIELLES SAP
 
 - [Character String and Byte String Processing — ABAP Keyword Documentation](https://help.sap.com/doc/abapdocu_latest_index_htm/latest/en-US/ABENSTRING_FUNCTIONS.html)
 - [Processing Functions for Character-Like Arguments — ABAP Keyword Documentation](https://help.sap.com/doc/abapdocu_latest_index_htm/latest/en-US/ABENPROCESS_FUNCTIONS.html)

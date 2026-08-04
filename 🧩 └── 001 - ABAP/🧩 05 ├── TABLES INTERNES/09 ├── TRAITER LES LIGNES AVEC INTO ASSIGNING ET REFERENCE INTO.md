@@ -1,6 +1,6 @@
-# TRAITER LES LIGNES AVEC INTO, ASSIGNING ET REFERENCE INTO
+# 9. TRAITER LES LIGNES AVEC INTO, ASSIGNING ET REFERENCE INTO
 
-## RÉSULTAT ATTENDU
+## 9.A RÉSULTAT ATTENDU
 
 - Comprendre les trois modes principaux d’accès à une ligne
 - Distinguer copie, affectation directe et référence
@@ -8,7 +8,7 @@
 - Éviter les modifications involontaires
 - Choisir le mode adapté au traitement
 
-## INTO : COPIER LA LIGNE
+## 9.B INTO : COPIER LA LIGNE
 
 ```abap
 " Exemple à éviter : comparer avec la correction décrite après le bloc.
@@ -29,7 +29,7 @@ LOOP AT lt_products INTO DATA(ls_product).
 ENDLOOP.
 ```
 
-## ASSIGNING : ACCÈS DIRECT
+## 9.C ASSIGNING : ACCÈS DIRECT
 
 ```abap
 " Traiter la collection sans lecture SQL dans la boucle.
@@ -47,7 +47,7 @@ flowchart LR
     A -->|"REFERENCE INTO"| D["Référence vers la ligne"]
 ```
 
-## REFERENCE INTO
+## 9.D REFERENCE INTO
 
 ```abap
 " Traiter la collection sans lecture SQL dans la boucle.
@@ -58,7 +58,7 @@ ENDLOOP.
 
 La variable de référence pointe vers la ligne de la table.
 
-## COMPARAISON
+## 9.E COMPARAISON
 
 | Mode             | Copie de la ligne | Modification directe | Usage principal                              |
 | ---------------- | ----------------: | -------------------: | -------------------------------------------- |
@@ -66,7 +66,7 @@ La variable de référence pointe vers la ligne de la table.
 | `ASSIGNING`      |               Non |                  Oui | Parcours et modification directe             |
 | `REFERENCE INTO` |               Non |                  Oui | Conserver ou transmettre une référence typée |
 
-## COMPOSANTS DE CLÉ
+## 9.F COMPOSANTS DE CLÉ
 
 Modifier un composant appartenant à une clé triée ou hachée peut invalider l’organisation de la table. ABAP interdit ou limite ces modifications selon le contexte.
 
@@ -78,7 +78,7 @@ Approche sûre :
 4. réinsérer la ligne ;
 5. contrôler le résultat de l’insertion.
 
-## DÉSASSIGNATION
+## 9.G DÉSASSIGNATION
 
 Après la fin du parcours, ne pas supposer qu’un symbole de champ reste utilisable pour représenter une ligne métier courante.
 
@@ -88,7 +88,7 @@ UNASSIGN <ls_product>.
 
 Cette instruction rend explicite la fin de l’utilisation du symbole.
 
-## EXEMPLE COMPLET
+## 9.H EXEMPLE COMPLET
 
 ```abap
 " Traiter la collection sans lecture SQL dans la boucle.
@@ -99,7 +99,7 @@ LOOP AT lt_products ASSIGNING FIELD-SYMBOL(<ls_product>)
 ENDLOOP.
 ```
 
-## CRITÈRE DE CHOIX
+## 9.I CRITÈRE DE CHOIX
 
 ```mermaid
 flowchart TD
@@ -110,21 +110,21 @@ flowchart TD
     D -->|""Oui""| F["REFERENCE INTO"]
 ```
 
-## VÉRIFICATION
+## 9.J VÉRIFICATION
 
 - Le contrôle syntaxique réussit.
 - La version active correspond au code sauvegardé.
 - L’exécution produit le résultat décrit dans le chapitre.
 - Les cas vide, limite et erreur sont testés séparément lorsque la syntaxe le permet.
 
-## ERREURS FRÉQUENTES
+## 9.K ERREURS FRÉQUENTES
 
 - Copier un exemple sans adapter les types, noms d’objets et données disponibles dans le système.
 - Tester uniquement le cas nominal et ignorer les valeurs initiales, absentes ou invalides.
 - Utiliser une table standard pour des recherches massives par clé sans mesure.
 - Modifier une copie de ligne alors que la table devait être mise à jour.
 
-## SNIPPET À RÉUTILISER
+## 9.L SNIPPET À RÉUTILISER
 
 > [!NOTE]
 > Adapter les noms `Z*`, les types DDIC, les données et les autorisations au système cible. Effectuer un contrôle syntaxique avant activation.
@@ -137,14 +137,14 @@ LOOP AT lt_products INTO DATA(ls_product).
 ENDLOOP.
 ```
 
-## TERMES DU LEXIQUE
+## 9.M TERMES DU LEXIQUE
 
 - [Table interne](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#table-interne>)
 - [Structure](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#structure-abap>)
 - [Field-symbol](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#field-symbol>)
 - [Référence](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#reference>)
 
-## RÉFÉRENCES OFFICIELLES SAP
+## 9.N RÉFÉRENCES OFFICIELLES SAP
 
 - [Using Field Symbols to Process Internal Tables — SAP Learning](https://learning.sap.com/courses/deepening-your-abap-programming-knowledge/using-field-symbols-to-process-internal-tables_f1855f41-00d3-4f8d-9a2c-663a321c6637)
 - [LOOP AT itab, result — ABAP Keyword Documentation](https://help.sap.com/doc/abapdocu_latest_index_htm/latest/en-US/ABAPLOOP_AT_ITAB_RESULT.html)

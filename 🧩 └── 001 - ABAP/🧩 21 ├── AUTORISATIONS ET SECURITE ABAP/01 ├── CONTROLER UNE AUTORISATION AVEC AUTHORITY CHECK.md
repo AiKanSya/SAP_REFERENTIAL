@@ -1,16 +1,16 @@
-# CONTRÔLER UNE AUTORISATION AVEC `AUTHORITY-CHECK`
+# 1. CONTRÔLER UNE AUTORISATION AVEC `AUTHORITY-CHECK`
 
-## RÉSULTAT ATTENDU
+## 1.A RÉSULTAT ATTENDU
 
 Interrompre une action lorsque l’utilisateur ne possède pas l’activité requise pour l’objet d’autorisation contrôlé.
 
-## PRÉREQUIS
+## 1.B PRÉREQUIS
 
 - Objet d’autorisation existant et validé avec l’équipe sécurité.
 - Valeurs fonctionnelles à contrôler identifiées.
 - Rôle attribué à l’utilisateur de test.
 
-## CODE PRÊT À ADAPTER
+## 1.C CODE PRÊT À ADAPTER
 
 Cet exemple contrôle l’autorisation d’affichage sur un objet client fictif.
 
@@ -31,7 +31,7 @@ ENDIF.
 
 `ACTVT = '03'` représente habituellement l’affichage. Les activités autorisées doivent être confirmées dans la documentation de l’objet et avec l’équipe chargée des rôles.
 
-## POINTS À REMPLACER
+## 1.D POINTS À REMPLACER
 
 | Élément         | Remplacement attendu           |
 | --------------- | ------------------------------ |
@@ -41,15 +41,15 @@ ENDIF.
 | `'03'`          | Activité requise               |
 | `ZDEV_SECURITY` | Classe de messages du projet   |
 
-## PROCESS
+## 1.E PROCESS
 
-### Étape 1 — Définir précisément l’action protégée
+### 1.E.1 Étape 1 — Définir précisément l’action protégée
 
 Identifier l’opération à autoriser : affichage, modification, suppression, validation ou exécution. Déterminer aussi les dimensions métier qui restreignent cette opération, par exemple la société, l’organisation commerciale ou le type de document.
 
 Le contrôle doit répondre à une décision explicite : « cet utilisateur peut-il exécuter cette activité sur cette valeur métier ? »
 
-### Étape 2 — Examiner l’objet dans `SU21`
+### 1.E.2 Étape 2 — Examiner l’objet dans `SU21`
 
 Ouvrir l’objet d’autorisation et relever :
 
@@ -60,19 +60,19 @@ Ouvrir l’objet d’autorisation et relever :
 
 Ne pas inventer un identifiant de champ ou une valeur d’activité à partir d’un exemple. Le code doit correspondre à la définition réelle de l’objet.
 
-### Étape 3 — Préparer les valeurs contrôlées
+### 1.E.3 Étape 3 — Préparer les valeurs contrôlées
 
 Utiliser des variables typées avec les éléments de données fonctionnels appropriés. Convertir les valeurs dans le format attendu avant le contrôle, notamment en majuscules lorsque le domaine l’exige.
 
 Ne pas remplacer une valeur métier connue par `DUMMY` ou `*`. Ces valeurs élargissent ou neutralisent une partie de la décision d’autorisation.
 
-### Étape 4 — Placer le contrôle avant l’opération sensible
+### 1.E.4 Étape 4 — Placer le contrôle avant l’opération sensible
 
 Exécuter `AUTHORITY-CHECK` avant la lecture de données sensibles, la modification ou l’appel protégé. Tous les champs nécessaires à la décision doivent apparaître dans le contrôle.
 
 Un contrôle placé après la lecture ou la modification ne protège pas l’opération déjà exécutée.
 
-### Étape 5 — Traiter immédiatement `SY-SUBRC`
+### 1.E.5 Étape 5 — Traiter immédiatement `SY-SUBRC`
 
 Tester `SY-SUBRC` juste après `AUTHORITY-CHECK`, avant toute autre instruction susceptible de le modifier.
 
@@ -81,7 +81,7 @@ Tester `SY-SUBRC` juste après `AUTHORITY-CHECK`, avant toute autre instruction 
 
 Le message utilisateur ne doit pas divulguer inutilement le contenu du rôle. Les détails techniques nécessaires au support doivent être conservés dans un journal protégé.
 
-### Étape 6 — Tester les cas positifs et négatifs
+### 1.E.6 Étape 6 — Tester les cas positifs et négatifs
 
 Exécuter au minimum les scénarios suivants avec des utilisateurs représentatifs :
 
@@ -92,14 +92,14 @@ Exécuter au minimum les scénarios suivants avec des utilisateurs représentati
 
 Après chaque refus, utiliser immédiatement `SU53` ou une trace ciblée `STAUTHTRACE` pour confirmer l’objet, les champs et les valeurs réellement contrôlés.
 
-## CONTRÔLE
+## 1.F CONTRÔLE
 
 - `SY-SUBRC = 0` : l’autorisation demandée a été trouvée dans le contexte utilisateur.
 - `SY-SUBRC <> 0` : le contrôle a échoué.
 - L’opération protégée ne doit jamais continuer après un échec.
 - `SU53` ou `STAUTHTRACE` permet de confirmer l’objet et les valeurs testées.
 
-## ERREURS FRÉQUENTES
+## 1.G ERREURS FRÉQUENTES
 
 | Symptôme                                            | Cause probable                                    | Correction                                                        |
 | --------------------------------------------------- | ------------------------------------------------- | ----------------------------------------------------------------- |
@@ -109,13 +109,13 @@ Après chaque refus, utiliser immédiatement `SU53` ou une trace ciblée `STAUTH
 | Autorisation codée en dur dans plusieurs programmes | Contrôles dupliqués                               | Centraliser la politique dans une API du projet lorsque pertinent |
 | Données sensibles lues avant le contrôle            | Contrôle placé trop tard                          | Contrôler avant la lecture ou l’action protégée                   |
 
-## COMPATIBILITÉ S/4HANA
+## 1.H COMPATIBILITÉ S/4HANA
 
 - Statut : mécanisme standard du développement ABAP classique.
 - Le contrôle technique doit correspondre au concept d’autorisation fonctionnel de l’application.
 - Ne pas remplacer un contrôle fin par la seule autorisation de lancer une transaction.
 
-## RÉFÉRENCES OFFICIELLES SAP
+## 1.I RÉFÉRENCES OFFICIELLES SAP
 
 - [Authorization Checks in Your Own Developments — SAP Help Portal](https://help.sap.com/docs/ABAP_PLATFORM_NEW/88c6b8647c8d40b39eb554e2d7b6bda1/5267167f439b11d1896f0000e8322d00.html)
 - [Programming Authorization Checks — SAP Help Portal](https://help.sap.com/docs/ABAP_PLATFORM_NEW/c6e6d078ab99452db94ed7b3b7bbcccf/526712ac439b11d1896f0000e8322d00.html)

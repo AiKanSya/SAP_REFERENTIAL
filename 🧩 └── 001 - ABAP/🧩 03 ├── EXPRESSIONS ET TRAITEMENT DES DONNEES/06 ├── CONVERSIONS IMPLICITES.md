@@ -1,6 +1,6 @@
-# CONVERSIONS IMPLICITES
+# 6. CONVERSIONS IMPLICITES
 
-## RÉSULTAT ATTENDU
+## 6.A RÉSULTAT ATTENDU
 
 - Comprendre pourquoi ABAP convertit certaines valeurs automatiquement
 - Identifier les principaux contextes de conversion
@@ -8,7 +8,7 @@
 - Éviter les conversions dépendantes d’un type cible mal choisi
 - Savoir quand rendre une conversion explicite
 
-## PRINCIPE
+## 6.B PRINCIPE
 
 Une conversion implicite intervient lorsqu’une valeur doit être utilisée avec un type différent et qu’ABAP possède une règle de conversion applicable.
 
@@ -28,7 +28,7 @@ Contextes fréquents :
 - concaténation ou formatage ;
 - écriture dans un composant de structure.
 
-## CONVERSION LORS D’UNE AFFECTATION
+## 6.C CONVERSION LORS D’UNE AFFECTATION
 
 ```abap
 DATA lv_number TYPE i VALUE 125.
@@ -50,7 +50,7 @@ lv_target = lv_source.
 
 La chaîne doit représenter une valeur convertible en nombre.
 
-## RISQUE DE TRONCATURE
+## 6.D RISQUE DE TRONCATURE
 
 ```abap
 DATA lv_source TYPE string VALUE `ABCDEFGHIJ`.
@@ -64,7 +64,7 @@ La cible ne peut conserver que cinq caractères. Le résultat est `ABCDE`.
 > [!WARNING]
 > Une perte de caractères peut être techniquement autorisée. Vérifier les longueurs avant l’affectation lorsque la donnée ne doit pas être tronquée.
 
-## TEXTE NUMÉRIQUE DE TYPE N
+## 6.E TEXTE NUMÉRIQUE DE TYPE N
 
 Le type `n` représente un texte numérique, pas un nombre destiné au calcul.
 
@@ -77,7 +77,7 @@ lv_numc = lv_input.
 
 Les conversions vers `n` possèdent des règles particulières. Elles peuvent supprimer les caractères non numériques et compléter avec des zéros à gauche. Ce comportement ne doit pas servir à valider une donnée métier.
 
-## DATES ET HEURES
+## 6.F DATES ET HEURES
 
 Les types `d` et `t` sont techniquement caractère-like, mais certaines opérations leur donnent une sémantique de date ou d’heure.
 
@@ -91,7 +91,7 @@ Cette affectation peut placer une représentation techniquement conforme à la l
 
 Pour valider ou convertir une date externe, utiliser les mécanismes adaptés plutôt qu’une simple affectation de chaîne.
 
-## CONVERSION DANS UN CALCUL
+## 6.G CONVERSION DANS UN CALCUL
 
 ```abap
 DATA lv_integer TYPE i VALUE 5.
@@ -103,7 +103,7 @@ lv_result = lv_integer * lv_decimal.
 
 ABAP détermine un type de calcul à partir des opérandes et du contexte. Le résultat intermédiaire peut avoir des propriétés différentes du type final.
 
-## CONVERSION DANS UNE COMPARAISON
+## 6.H CONVERSION DANS UNE COMPARAISON
 
 ```abap
 DATA lv_number TYPE i VALUE 10.
@@ -122,7 +122,7 @@ IF lv_number = CONV i( lv_text ).
 ENDIF.
 ```
 
-## CAS OÙ LA CONVERSION DOIT ÊTRE EXPLICITE
+## 6.I CAS OÙ LA CONVERSION DOIT ÊTRE EXPLICITE
 
 Rendre la conversion visible lorsque :
 
@@ -134,21 +134,21 @@ Rendre la conversion visible lorsque :
 - une erreur de conversion doit être interceptée ;
 - le code doit expliquer une règle métier.
 
-## VÉRIFICATION
+## 6.J VÉRIFICATION
 
 - Le contrôle syntaxique réussit.
 - La version active correspond au code sauvegardé.
 - L’exécution produit le résultat décrit dans le chapitre.
 - Les cas vide, limite et erreur sont testés séparément lorsque la syntaxe le permet.
 
-## ERREURS FRÉQUENTES
+## 6.K ERREURS FRÉQUENTES
 
 - Copier un exemple sans adapter les types, noms d’objets et données disponibles dans le système.
 - Tester uniquement le cas nominal et ignorer les valeurs initiales, absentes ou invalides.
 - S’appuyer sur une conversion implicite pouvant tronquer ou arrondir.
 - Ignorer l’encodage et les formats externes.
 
-## SNIPPET À RÉUTILISER
+## 6.L SNIPPET À RÉUTILISER
 
 > [!NOTE]
 > Adapter les noms `Z*`, les types DDIC, les données et les autorisations au système cible. Effectuer un contrôle syntaxique avant activation.
@@ -162,13 +162,13 @@ IF lv_number = lv_text.
 ENDIF.
 ```
 
-## TERMES DU LEXIQUE
+## 6.M TERMES DU LEXIQUE
 
 - [Instruction ABAP](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#instruction-abap>)
 - [Expression](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#expression>)
 - [Type de données](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#type-donnees>)
 
-## RÉFÉRENCES OFFICIELLES SAP
+## 6.N RÉFÉRENCES OFFICIELLES SAP
 
 - [Conversion Rules for Elementary Data Objects — ABAP Keyword Documentation](https://help.sap.com/doc/abapdocu_latest_index_htm/latest/en-US/ABENCONVERSION_RULES.html)
 - [Avoiding the Pitfalls of Type Conversions — SAP Learning](https://learning.sap.com/courses/deepening-your-abap-programming-knowledge/avoiding-the-pitfalls-of-type-conversions_e1feca3f-d704-4cd4-aa4e-3072af1659c6)

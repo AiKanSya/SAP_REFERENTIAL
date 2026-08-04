@@ -1,6 +1,6 @@
-# PRINCIPES DE GESTION DES ERREURS
+# 1. PRINCIPES DE GESTION DES ERREURS
 
-## RÉSULTAT ATTENDU
+## 1.A RÉSULTAT ATTENDU
 
 - Distinguer message, code retour, exception et erreur d’exécution
 - Choisir un mécanisme adapté au contexte
@@ -8,7 +8,7 @@
 - Éviter les erreurs silencieuses
 - Construire un traitement exploitable en dialogue et en arrière-plan
 
-## QUATRE MÉCANISMES À NE PAS CONFONDRE
+## 1.B QUATRE MÉCANISMES À NE PAS CONFONDRE
 
 | Mécanisme              | Usage principal                                       |
 | ---------------------- | ----------------------------------------------------- |
@@ -27,7 +27,7 @@ flowchart LR
     C --> E["Journal technique"]
 ```
 
-## DÉTECTION
+## 1.C DÉTECTION
 
 Une erreur doit être détectée au plus près de sa cause :
 
@@ -40,7 +40,7 @@ Une erreur doit être détectée au plus près de sa cause :
 
 La détection ne doit pas être retardée jusqu’à une ligne de code qui ne connaît plus la cause réelle.
 
-## PROPAGATION
+## 1.D PROPAGATION
 
 La couche qui détecte l’erreur ne sait pas toujours comment la présenter. Elle doit alors transmettre une information structurée au niveau supérieur.
 
@@ -55,7 +55,7 @@ ENDMETHOD.
 
 L’appelant décide ensuite de poursuivre, corriger, annuler ou présenter un message.
 
-## PRÉSENTATION
+## 1.E PRÉSENTATION
 
 Une couche métier réutilisable ne doit pas dépendre inutilement d’un écran SAP GUI. Éviter d’y placer directement des messages modaux ou des interactions utilisateur.
 
@@ -70,7 +70,7 @@ ENDTRY.
 
 La classe métier fournit l’erreur. Le programme exécutable choisit le type de message adapté à son contexte.
 
-## ERREUR ATTENDUE ET DÉFAUT DE PROGRAMMATION
+## 1.F ERREUR ATTENDUE ET DÉFAUT DE PROGRAMMATION
 
 | Situation                            | Traitement adapté                                            |
 | ------------------------------------ | ------------------------------------------------------------ |
@@ -82,7 +82,7 @@ La classe métier fournit l’erreur. Le programme exécutable choisit le type d
 
 Ne pas utiliser un dump pour une erreur fonctionnelle prévisible. Ne pas masquer un défaut de programmation sous un message générique.
 
-## RÈGLE DE BASE
+## 1.G RÈGLE DE BASE
 
 Une erreur doit toujours produire au moins un résultat exploitable :
 
@@ -94,17 +94,17 @@ Une erreur doit toujours produire au moins un résultat exploitable :
 
 Une instruction échouée suivie d’une poursuite silencieuse est généralement plus dangereuse qu’un arrêt clair.
 
-## PROCESS
+## 1.H PROCESS
 
-### Étape 1 — Reproduire et horodater l’erreur
+### 1.H.1 Étape 1 — Reproduire et horodater l’erreur
 
 Noter système, mandant, utilisateur, transaction, date, heure, saisie et dernière action effectuée. Si l’erreur est reproductible sans effet métier supplémentaire, la reproduire une seule fois pour obtenir un horodatage précis.
 
-### Étape 2 — Déterminer le canal d’erreur
+### 1.H.2 Étape 2 — Déterminer le canal d’erreur
 
 Rechercher d’abord le résultat observable : message applicatif, exception interceptée, journal `SLG1`, échec de job, erreur RFC ou dump. Ouvrir `ST22` uniquement lorsqu’un arrêt d’exécution non intercepté est plausible.
 
-### Étape 3 — Rechercher le dump dans ST22
+### 1.H.3 Étape 3 — Rechercher le dump dans ST22
 
 1. Saisir `/nST22`.
 2. Choisir la date et l’intervalle correspondant à la reproduction.
@@ -113,33 +113,33 @@ Rechercher d’abord le résultat observable : message applicatif, exception int
 
 Plusieurs dumps du même nom peuvent avoir des causes fonctionnelles différentes. Ne pas analyser un dump uniquement parce que son titre ressemble au symptôme.
 
-### Étape 4 — Relever la cause technique
+### 1.H.4 Étape 4 — Relever la cause technique
 
 Lire **Error analysis**, **How to correct the error**, exception, programme actif, include, ligne et extrait source. Examiner ensuite la pile d’appels pour trouver le premier objet client ou point d’extension responsable.
 
-### Étape 5 — Corréler avec les données et la version
+### 1.H.5 Étape 5 — Corréler avec les données et la version
 
 Comparer les variables ou clés mentionnées avec la saisie du test. Ouvrir la version active de la ligne source et vérifier qu’elle correspond à l’extrait du dump.
 
-### Étape 6 — Corriger puis tester les deux chemins
+### 1.H.6 Étape 6 — Corriger puis tester les deux chemins
 
 Corriger la cause dans l’objet responsable, puis exécuter le cas ayant échoué et un cas nominal. Le diagnostic est terminé lorsque le dump ne réapparaît pas et que l’erreur fonctionnelle est désormais traitée par un message, une exception ou un résultat contrôlé.
 
-## VÉRIFICATION
+## 1.I VÉRIFICATION
 
 - Le scénario reproduit correspond au même utilisateur, mandant, transaction et jeu de données.
 - L’horodatage et l’identifiant de l’analyse sont conservés.
 - La cause retenue est soutenue par une ligne source, une trace ou une valeur observée.
 - Après correction, le même scénario ne reproduit plus le défaut et le résultat métier reste identique.
 
-## ERREURS FRÉQUENTES
+## 1.J ERREURS FRÉQUENTES
 
 - Copier un exemple sans adapter les types, noms d’objets et données disponibles dans le système.
 - Tester uniquement le cas nominal et ignorer les valeurs initiales, absentes ou invalides.
 - Afficher un message technique incompréhensible à l’utilisateur.
 - Attraper une exception sans action ni propagation.
 
-## SNIPPET À RÉUTILISER
+## 1.K SNIPPET À RÉUTILISER
 
 > [!NOTE]
 > Adapter les noms `Z*`, les types DDIC, les données et les autorisations au système cible. Effectuer un contrôle syntaxique avant activation.
@@ -153,12 +153,12 @@ METHOD read_product.
 ENDMETHOD.
 ```
 
-## TERMES DU LEXIQUE
+## 1.L TERMES DU LEXIQUE
 
 - [Exception](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#exception>)
 - [Dump ABAP](<../🧩 00 ├── LEXIQUE SAP ET ABAP/08 ├── EXECUTION EXPLOITATION ET ADMINISTRATION.md#dump-abap>)
 
-## RÉFÉRENCES OFFICIELLES SAP
+## 1.M RÉFÉRENCES OFFICIELLES SAP
 
 - [MESSAGE — ABAP Keyword Documentation](https://help.sap.com/doc/abapdocu_latest_index_htm/latest/en-US/ABAPMESSAGE_SHORTREF.html)
 - [Return Code — ABAP Programming Guideline](https://help.sap.com/doc/abapdocu_latest_index_htm/latest/en-US/ABENRETURN_CODE_GUIDL.html)

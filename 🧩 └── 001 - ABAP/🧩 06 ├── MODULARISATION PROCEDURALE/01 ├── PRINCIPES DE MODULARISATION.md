@@ -1,6 +1,6 @@
-# PRINCIPES DE MODULARISATION
+# 1. PRINCIPES DE MODULARISATION
 
-## RÉSULTAT ATTENDU
+## 1.A RÉSULTAT ATTENDU
 
 - Comprendre pourquoi découper un programme ABAP
 - Distinguer organisation du code et modularisation fonctionnelle
@@ -8,7 +8,7 @@
 - Réduire la duplication et les dépendances implicites
 - Choisir un niveau de découpage adapté au traitement
 
-## POURQUOI MODULARISER
+## 1.B POURQUOI MODULARISER
 
 Un programme monolithique concentre les déclarations, les contrôles, les calculs et les sorties dans un même bloc. Cette organisation rend les modifications risquées et les tests difficiles.
 
@@ -22,7 +22,7 @@ flowchart LR
     D --> E["Réutiliser et tester plus facilement"]
 ```
 
-## BÉNÉFICES ATTENDUS
+## 1.C BÉNÉFICES ATTENDUS
 
 | Bénéfice      | Effet concret                                           |
 | ------------- | ------------------------------------------------------- |
@@ -32,7 +32,7 @@ flowchart LR
 | Testabilité   | Les entrées et sorties sont identifiables               |
 | Débogage      | La pile d’appels permet de suivre le chemin d’exécution |
 
-## UNITÉS DISPONIBLES EN ABAP
+## 1.D UNITÉS DISPONIBLES EN ABAP
 
 ABAP propose plusieurs mécanismes :
 
@@ -44,7 +44,7 @@ ABAP propose plusieurs mécanismes :
 
 Ce dossier traite uniquement la modularisation procédurale locale avec les sous-programmes, les includes et les macros. Les modules fonction et les méthodes seront abordés dans des dossiers dédiés.
 
-## ORGANISATION ET MODULARISATION
+## 1.E ORGANISATION ET MODULARISATION
 
 Un `INCLUDE` sépare physiquement le code source, mais ne crée pas d’interface d’appel.
 
@@ -56,7 +56,7 @@ Un sous-programme crée une unité appelée avec `PERFORM` et peut exposer des p
 | `FORM` / `PERFORM` |           Éventuellement |                   Oui |                  Oui |
 | Macro `DEFINE`     |       Non nécessairement |             Non typée | Remplacement textuel |
 
-## EXEMPLE AVANT MODULARISATION
+## 1.F EXEMPLE AVANT MODULARISATION
 
 ```abap
 REPORT z_demo_modular_01.
@@ -84,7 +84,7 @@ START-OF-SELECTION.
   PERFORM display_result USING lv_total.
 ```
 
-## RÈGLE DE BASE
+## 1.G RÈGLE DE BASE
 
 Une unité doit répondre à une responsabilité clairement nommée. Un nom vague comme `process_data` masque généralement plusieurs traitements.
 
@@ -95,7 +95,7 @@ Préférer :
 - `build_output` ;
 - `display_result`.
 
-## POINTS À RETENIR
+## 1.H POINTS À RETENIR
 
 - Modulariser signifie isoler une responsabilité derrière une interface.
 - Un include organise le code sans créer de véritable abstraction.
@@ -103,47 +103,47 @@ Préférer :
 - Les dépendances globales réduisent l’intérêt de la modularisation.
 - Pour du nouveau développement, les méthodes offrent généralement une interface plus robuste ; elles seront étudiées dans le dossier ABAP Objects.
 
-## PROCESS
+## 1.I PROCESS
 
-### Étape 1 — Identifier les responsabilités du bloc
+### 1.I.1 Étape 1 — Identifier les responsabilités du bloc
 
 Ouvrir le traitement et séparer sur papier ses actions : validation, lecture, calcul, mise à jour, journalisation et présentation. Une responsabilité doit pouvoir être nommée par un verbe précis.
 
 Si un bloc mélange plusieurs actions, ne choisir pas encore le mécanisme ABAP ; définir d’abord les frontières métier.
 
-### Étape 2 — Définir les entrées et sorties
+### 1.I.2 Étape 2 — Définir les entrées et sorties
 
 Pour chaque responsabilité, relever les données réellement lues, les valeurs produites et les erreurs possibles. Distinguer une entrée nécessaire d’une variable globale accessible par facilité.
 
 Une unité dont les entrées ou sorties ne peuvent pas être listées reste trop couplée pour être extraite proprement.
 
-### Étape 3 — Choisir l’unité adaptée
+### 1.I.3 Étape 3 — Choisir l’unité adaptée
 
 Dans du code procédural existant, utiliser un `FORM` local uniquement pour maintenir ce modèle. Pour un nouveau service réutilisable et testable, préférer une méthode. Un `INCLUDE` organise le source mais ne définit pas d’interface.
 
-### Étape 4 — Extraire une responsabilité à la fois
+### 1.I.4 Étape 4 — Extraire une responsabilité à la fois
 
 Créer l’unité avec un nom orienté action, déclarer ses paramètres et déplacer uniquement le bloc correspondant. Remplacer l’ancien bloc par l’appel puis exécuter contrôle syntaxique et test ciblé.
 
-### Étape 5 — Vérifier le découpage
+### 1.I.5 Étape 5 — Vérifier le découpage
 
 Comparer le résultat avant/après, rechercher la duplication supprimée et examiner les accès globaux restants. Le découpage est valide lorsque le programme principal exprime l’enchaînement métier et que chaque unité possède un contrat identifiable.
 
-## VÉRIFICATION
+## 1.J VÉRIFICATION
 
 - Le scénario reproduit correspond au même utilisateur, mandant, transaction et jeu de données.
 - L’horodatage et l’identifiant de l’analyse sont conservés.
 - La cause retenue est soutenue par une ligne source, une trace ou une valeur observée.
 - Après correction, le même scénario ne reproduit plus le défaut et le résultat métier reste identique.
 
-## ERREURS FRÉQUENTES
+## 1.K ERREURS FRÉQUENTES
 
 - Copier un exemple sans adapter les types, noms d’objets et données disponibles dans le système.
 - Tester uniquement le cas nominal et ignorer les valeurs initiales, absentes ou invalides.
 - Créer des sous-programmes avec trop de paramètres globaux.
 - Utiliser des appels externes ou dynamiques sans contrôle du nom et de l’existence.
 
-## SNIPPET À RÉUTILISER
+## 1.L SNIPPET À RÉUTILISER
 
 > [!NOTE]
 > Adapter les noms `Z*`, les types DDIC, les données et les autorisations au système cible. Effectuer un contrôle syntaxique avant activation.
@@ -165,13 +165,13 @@ START-OF-SELECTION.
   WRITE: / 'Total :', lv_total.
 ```
 
-## TERMES DU LEXIQUE
+## 1.M TERMES DU LEXIQUE
 
 - [Programme exécutable](<../🧩 00 ├── LEXIQUE SAP ET ABAP/06 ├── PROGRAMMES CLASSES ET OBJETS TECHNIQUES.md#programme-executable>)
 - [Module fonction](<../🧩 00 ├── LEXIQUE SAP ET ABAP/06 ├── PROGRAMMES CLASSES ET OBJETS TECHNIQUES.md#module-fonction>)
 - [ABAP](<../🧩 00 ├── LEXIQUE SAP ET ABAP/10 └── ACRONYMES SAP.md#acro-abap>)
 
-## RÉFÉRENCES OFFICIELLES SAP
+## 1.N RÉFÉRENCES OFFICIELLES SAP
 
 - [Source Code Modularization — ABAP Keyword Documentation](https://help.sap.com/doc/abapdocu_latest_index_htm/latest/en-US/ABENSOURCE_CODE_MODULAR_GUIDL.html)
 - [Source Code Organization — ABAP Keyword Documentation](https://help.sap.com/doc/abapdocu_latest_index_htm/latest/en-US/ABENSOURCE_CODE_ORGA_GDL.html)

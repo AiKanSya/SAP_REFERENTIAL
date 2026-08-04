@@ -1,6 +1,6 @@
-# DEBUG ET ANALYSE DES APPELS
+# 11. DEBUG ET ANALYSE DES APPELS
 
-## RÉSULTAT ATTENDU
+## 11.A RÉSULTAT ATTENDU
 
 - Poser un point d’arrêt dans un sous-programme
 - Entrer dans un appel `PERFORM`
@@ -8,7 +8,7 @@
 - Comparer paramètres formels et réels
 - Diagnostiquer un effet de bord
 
-## POINT D’ARRÊT DANS UN FORM
+## 11.B POINT D’ARRÊT DANS UN FORM
 
 Placer un point d’arrêt sur une instruction du sous-programme :
 
@@ -25,37 +25,37 @@ ENDFORM.
 
 `BREAK-POINT` ne doit pas rester dans le code productif. Utiliser de préférence un point d’arrêt de session ou externe depuis l’éditeur ou le débogueur.
 
-## PROCESS
+## 11.C PROCESS
 
-### ÉTAPE 1 — PLACER UN POINT D’ARRÊT NON PERSISTANT
+### 11.C.1 ÉTAPE 1 — PLACER UN POINT D’ARRÊT NON PERSISTANT
 
 Poser un point d’arrêt de session sur la première instruction du `FORM` ou sur le `PERFORM` appelant. Ne pas ajouter durablement `BREAK-POINT` au code destiné à être transporté.
 
-### ÉTAPE 2 — REPRODUIRE LE SCÉNARIO EXACT
+### 11.C.2 ÉTAPE 2 — REPRODUIRE LE SCÉNARIO EXACT
 
 Exécuter le programme avec les mêmes paramètres et données que le défaut. Lorsque le débogueur s’arrête, relever le nom du programme, le sous-programme appelé et les valeurs des paramètres réels.
 
-### ÉTAPE 3 — ENTRER DANS LE PERFORM
+### 11.C.3 ÉTAPE 3 — ENTRER DANS LE PERFORM
 
 Utiliser **Entrer dans** pour exécuter la première instruction du sous-programme. **Exécuter** traite l’appel comme une seule étape et s’arrête après son retour ; **Retour** poursuit jusqu’à la sortie du bloc courant selon le débogueur utilisé.
 
-### ÉTAPE 4 — COMPARER PARAMÈTRES RÉELS ET FORMELS
+### 11.C.4 ÉTAPE 4 — COMPARER PARAMÈTRES RÉELS ET FORMELS
 
 À l’entrée, comparer l’ordre, le type et la valeur des paramètres `USING` et `CHANGING`. Après chaque instruction sensible, vérifier si un passage par référence modifie immédiatement la donnée de l’appelant ou si `VALUE(...)` utilise une copie locale.
 
-### ÉTAPE 5 — LOCALISER LES EFFETS DE BORD
+### 11.C.5 ÉTAPE 5 — LOCALISER LES EFFETS DE BORD
 
 Si une globale change sans apparaître dans l’interface, poser un watchpoint sur cette donnée puis relancer. À l’arrêt, lire la pile d’appels et identifier l’instruction exacte qui effectue la modification.
 
-### ÉTAPE 6 — CONTRÔLER LES APPELS DYNAMIQUES
+### 11.C.6 ÉTAPE 6 — CONTRÔLER LES APPELS DYNAMIQUES
 
 Pour `PERFORM (lv_form_name)`, relever le nom construit, le programme cible et les paramètres. Vérifier que la valeur provient d’une liste maîtrisée et correspond à une routine réellement prévue par le programme.
 
-### ÉTAPE 7 — VALIDER LA CORRECTION
+### 11.C.7 ÉTAPE 7 — VALIDER LA CORRECTION
 
 Corriger l’ordre des paramètres, la portée des données ou la dépendance globale identifiée. Rejouer le scénario nominal et un cas limite, puis supprimer les breakpoints et watchpoints créés pour l’analyse.
 
-## PILE D’APPELS
+## 11.D PILE D’APPELS
 
 La pile montre l’enchaînement des blocs actifs.
 
@@ -70,7 +70,7 @@ Elle permet de répondre à deux questions :
 - quel bloc a appelé le sous-programme courant ;
 - par quels appels successifs l’exécution est arrivée ici.
 
-## PARAMÈTRES FORMELS ET RÉELS
+## 11.E PARAMÈTRES FORMELS ET RÉELS
 
 Dans le débogueur, comparer :
 
@@ -83,7 +83,7 @@ Pour un passage par référence, le paramètre formel désigne la donnée réell
 
 Pour `VALUE(...)`, une copie locale est visible dans la procédure.
 
-## DIAGNOSTIQUER UNE MODIFICATION INATTENDUE
+## 11.F DIAGNOSTIQUER UNE MODIFICATION INATTENDUE
 
 Scénario : une globale change alors qu’elle ne figure pas dans l’appel.
 
@@ -95,7 +95,7 @@ Méthode :
 4. identifier le sous-programme responsable ;
 5. vérifier si cette dépendance doit devenir un paramètre explicite.
 
-## APPELS DYNAMIQUES
+## 11.G APPELS DYNAMIQUES
 
 Pour un `PERFORM (lv_form_name)`, contrôler avant l’appel :
 
@@ -105,7 +105,7 @@ Pour un `PERFORM (lv_form_name)`, contrôler avant l’appel :
 - le nombre et le type des paramètres ;
 - le chemin qui a construit cette valeur.
 
-## ANALYSE STATIQUE
+## 11.H ANALYSE STATIQUE
 
 Selon les outils installés sur le système SAP GUI :
 
@@ -117,7 +117,7 @@ Selon les outils installés sur le système SAP GUI :
 
 Ces outils seront approfondis dans le dossier consacré au débogage et à l’analyse.
 
-## CHECKLIST
+## 11.I CHECKLIST
 
 - [ ] La cible du `PERFORM` est-elle celle attendue ?
 - [ ] L’ordre des paramètres réels correspond-il à la définition ?
@@ -127,7 +127,7 @@ Ces outils seront approfondis dans le dossier consacré au débogage et à l’a
 - [ ] Un appel dynamique dépend-il d’un nom incorrect ?
 - [ ] La pile d’appels confirme-t-elle le chemin supposé ?
 
-## POINTS À RETENIR
+## 11.J POINTS À RETENIR
 
 - Entrer dans le `PERFORM` permet d’observer l’interface réelle.
 - La pile d’appels montre le chemin d’exécution.
@@ -135,21 +135,21 @@ Ces outils seront approfondis dans le dossier consacré au débogage et à l’a
 - Le passage par référence et `VALUE(...)` produisent des comportements distincts dans le débogueur.
 - Les appels dynamiques exigent une vérification des noms au runtime.
 
-## VÉRIFICATION
+## 11.K VÉRIFICATION
 
 - Le contrôle syntaxique réussit.
 - La version active correspond au code sauvegardé.
 - L’exécution produit le résultat décrit dans le chapitre.
 - Les cas vide, limite et erreur sont testés séparément lorsque la syntaxe le permet.
 
-## ERREURS FRÉQUENTES
+## 11.L ERREURS FRÉQUENTES
 
 - Copier un exemple sans adapter les types, noms d’objets et données disponibles dans le système.
 - Tester uniquement le cas nominal et ignorer les valeurs initiales, absentes ou invalides.
 - Créer des sous-programmes avec trop de paramètres globaux.
 - Utiliser des appels externes ou dynamiques sans contrôle du nom et de l’existence.
 
-## SNIPPET À RÉUTILISER
+## 11.M SNIPPET À RÉUTILISER
 
 > [!NOTE]
 > Adapter les noms `Z*`, les types DDIC, les données et les autorisations au système cible. Effectuer un contrôle syntaxique avant activation.
@@ -165,13 +165,13 @@ FORM calculate_total
 ENDFORM.
 ```
 
-## TERMES DU LEXIQUE
+## 11.N TERMES DU LEXIQUE
 
 - [Programme exécutable](<../🧩 00 ├── LEXIQUE SAP ET ABAP/06 ├── PROGRAMMES CLASSES ET OBJETS TECHNIQUES.md#programme-executable>)
 - [Module fonction](<../🧩 00 ├── LEXIQUE SAP ET ABAP/06 ├── PROGRAMMES CLASSES ET OBJETS TECHNIQUES.md#module-fonction>)
 - [ABAP](<../🧩 00 ├── LEXIQUE SAP ET ABAP/10 └── ACRONYMES SAP.md#acro-abap>)
 
-## RÉFÉRENCES OFFICIELLES SAP
+## 11.O RÉFÉRENCES OFFICIELLES SAP
 
 - [PERFORM — ABAP Keyword Documentation](https://help.sap.com/doc/abapdocu_latest_index_htm/latest/en-US/ABAPPERFORM.html)
 - [Source Code Organization — ABAP Keyword Documentation](https://help.sap.com/doc/abapdocu_latest_index_htm/latest/en-US/ABENSOURCE_CODE_ORGA_GDL.html)

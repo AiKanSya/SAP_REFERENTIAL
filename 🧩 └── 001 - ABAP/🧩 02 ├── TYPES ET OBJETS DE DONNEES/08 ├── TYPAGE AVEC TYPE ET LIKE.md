@@ -1,6 +1,6 @@
-# TYPAGE AVEC `TYPE` ET `LIKE`
+# 8. TYPAGE AVEC `TYPE` ET `LIKE`
 
-## RÉSULTAT ATTENDU
+## 8.A RÉSULTAT ATTENDU
 
 - Distinguer `TYPE` de `LIKE`
 - Choisir une source de typage explicite
@@ -8,7 +8,7 @@
 - Utiliser `LENGTH` et `DECIMALS` avec les types compatibles
 - Éviter les déclarations techniquement valides mais sémantiquement faibles
 
-## `TYPE`
+## 8.B `TYPE`
 
 `TYPE` référence un type de données.
 
@@ -31,7 +31,7 @@ Dans ces exemples, la source de typage est respectivement :
 - un type local ;
 - un type global du Dictionnaire ABAP.
 
-## `LIKE`
+## 8.C `LIKE`
 
 `LIKE` reprend le type d’un objet de données visible.
 
@@ -48,7 +48,7 @@ flowchart LR
     A -. valeur indépendante .- B
 ```
 
-## DIFFÉRENCE PRINCIPALE
+## 8.D DIFFÉRENCE PRINCIPALE
 
 | Critère       | `TYPE`                  | `LIKE`                                            |
 | ------------- | ----------------------- | ------------------------------------------------- |
@@ -71,7 +71,7 @@ DATA lv_company_code TYPE bukrs.
 DATA lv_paying_code  TYPE bukrs.
 ```
 
-## `LENGTH`
+## 8.E `LENGTH`
 
 `LENGTH` complète certains types intégrés dont la longueur doit être indiquée.
 
@@ -82,7 +82,7 @@ DATA lv_raw  TYPE x LENGTH 16.
 
 La longueur doit être compatible avec le type. Elle ne s’ajoute pas aux types dont les propriétés sont déjà entièrement définies par un type global ou local complet.
 
-## `DECIMALS`
+## 8.F `DECIMALS`
 
 ```abap
 DATA lv_amount TYPE p LENGTH 8 DECIMALS 2.
@@ -98,7 +98,7 @@ La longueur doit permettre de contenir :
 
 Un choix insuffisant peut entraîner un dépassement arithmétique.
 
-## `TYPE LINE OF`
+## 8.G `TYPE LINE OF`
 
 Pour une table interne visible, `TYPE LINE OF` permet de reprendre le type de ligne :
 
@@ -109,7 +109,7 @@ DATA lv_message  TYPE LINE OF lt_messages.
 
 Cette forme sera reprise dans le dossier consacré aux tables internes.
 
-## `LIKE LINE OF`
+## 8.H `LIKE LINE OF`
 
 ```abap
 DATA lt_messages TYPE STANDARD TABLE OF string WITH EMPTY KEY.
@@ -118,7 +118,7 @@ DATA lv_message  LIKE LINE OF lt_messages.
 
 La déclaration est liée à l’objet table `lt_messages`, alors que `TYPE LINE OF` s’appuie sur son type de ligne déterminé à la déclaration.
 
-## CHOIX PRATIQUE
+## 8.I CHOIX PRATIQUE
 
 Utiliser préférentiellement `TYPE` lorsque :
 
@@ -132,7 +132,7 @@ Utiliser `LIKE` lorsque :
 - cette dépendance est volontaire et améliore la maintenance ;
 - aucun type nommé plus explicite n’est disponible ou nécessaire.
 
-## EXEMPLE
+## 8.J EXEMPLE
 
 ```abap
 REPORT zdemo_type_like.
@@ -152,7 +152,7 @@ WRITE: / lv_total_amount, lv_copy.
 
 `lv_total_amount` exprime explicitement le contrat `ty_amount`. `lv_copy` indique volontairement qu’il reprend le type exact de `lv_total_amount`.
 
-## ERREURS FRÉQUENTES
+## 8.K ERREURS FRÉQUENTES
 
 | Erreur                                       | Risque                                     |
 | -------------------------------------------- | ------------------------------------------ |
@@ -162,14 +162,14 @@ WRITE: / lv_total_amount, lv_copy.
 | Sous-dimensionner un type `p`                | Débordement                                |
 | Croire que `LIKE` partage la valeur          | Confusion : seul le type est repris        |
 
-## VÉRIFICATION
+## 8.L VÉRIFICATION
 
 - Le contrôle syntaxique réussit.
 - La version active correspond au code sauvegardé.
 - L’exécution produit le résultat décrit dans le chapitre.
 - Les cas vide, limite et erreur sont testés séparément lorsque la syntaxe le permet.
 
-## SNIPPET À RÉUTILISER
+## 8.M SNIPPET À RÉUTILISER
 
 > [!NOTE]
 > Adapter les noms `Z*`, les types DDIC, les données et les autorisations au système cible. Effectuer un contrôle syntaxique avant activation.
@@ -190,7 +190,7 @@ lv_copy         = lv_total_amount.
 WRITE: / lv_total_amount, lv_copy.
 ```
 
-## TERMES DU LEXIQUE
+## 8.N TERMES DU LEXIQUE
 
 - [Type de données](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#type-donnees>)
 - [Objet de données](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#objet-donnees>)
@@ -199,7 +199,7 @@ WRITE: / lv_total_amount, lv_copy.
 - [Field-symbol](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#field-symbol>)
 - [Référence](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#reference>)
 
-## RÉFÉRENCES OFFICIELLES SAP
+## 8.O RÉFÉRENCES OFFICIELLES SAP
 
 - [Typing with TYPE and LIKE — ABAP Keyword Documentation](https://help.sap.com/doc/abapdocu_latest_index_htm/latest/en-US/ABENTYPE_LIKE.html)
 - [DATA, TYPE — ABAP Keyword Documentation](https://help.sap.com/doc/abapdocu_latest_index_htm/latest/en-US/ABAPDATA_SIMPLE.html)

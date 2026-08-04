@@ -1,6 +1,6 @@
-# TEXTES D’EXCEPTION ET INTERFACES T100
+# 12. TEXTES D’EXCEPTION ET INTERFACES T100
 
-## RÉSULTAT ATTENDU
+## 12.A RÉSULTAT ATTENDU
 
 - Associer une exception à une classe de messages
 - Comprendre `IF_T100_MESSAGE`
@@ -8,7 +8,7 @@
 - Récupérer un texte traduit
 - Réutiliser un message intercepté
 
-## POURQUOI UTILISER T100
+## 12.B POURQUOI UTILISER T100
 
 Une exception doit fournir un texte compréhensible, stable et traduisible. Les messages T100 répondent à ce besoin.
 
@@ -19,7 +19,7 @@ flowchart LR
     C --> D["Texte traduit"]
 ```
 
-## IF_T100_MESSAGE
+## 12.C IF_T100_MESSAGE
 
 L’interface `IF_T100_MESSAGE` permet d’associer des identifiants de texte définis dans la classe d’exception à des messages T100.
 
@@ -33,7 +33,7 @@ CATCH zcx_dev_product_not_found INTO DATA(lx_not_found).
   DATA(lv_text) = lx_not_found->get_text( ).
 ```
 
-## IF_T100_DYN_MSG
+## 12.D IF_T100_DYN_MSG
 
 L’interface `IF_T100_DYN_MSG` étend le mécanisme pour permettre l’association dynamique d’un message T100 à l’exception.
 
@@ -50,7 +50,7 @@ RAISE EXCEPTION TYPE zcx_dev_error
 
 La disponibilité exacte de certaines formes syntaxiques dépend de la version ABAP. Vérifier la documentation du système cible.
 
-## RÉUTILISER UN MESSAGE EXISTANT
+## 12.E RÉUTILISER UN MESSAGE EXISTANT
 
 Une couche peut intercepter un message ou une erreur provenant d’une API, puis la représenter sous forme d’exception sans perdre :
 
@@ -62,7 +62,7 @@ Une couche peut intercepter un message ou une erreur provenant d’une API, puis
 
 Cette conservation est préférable à la création d’un texte générique comme `Erreur technique`.
 
-## TEXTID
+## 12.F TEXTID
 
 Une classe d’exception peut définir plusieurs constantes `TEXTID`, chaque constante représentant une situation précise.
 
@@ -76,7 +76,7 @@ RAISE EXCEPTION TYPE zcx_dev_product
 
 Le `TEXTID` rend l’erreur identifiable sans analyser son texte.
 
-## GET_TEXT ET GET_LONGTEXT
+## 12.G GET_TEXT ET GET_LONGTEXT
 
 Les exceptions héritent de fonctionnalités permettant d’obtenir leur texte. Le texte court sert à la restitution immédiate. Un texte long peut fournir des informations complémentaires si la classe et son référentiel le prévoient.
 
@@ -90,21 +90,21 @@ IF lx_error->get_text( ) CS 'introuvable'.
 
 Correct : intercepter une classe ou analyser un identifiant stable.
 
-## VÉRIFICATION
+## 12.H VÉRIFICATION
 
 - Le contrôle syntaxique réussit.
 - La version active correspond au code sauvegardé.
 - L’exécution produit le résultat décrit dans le chapitre.
 - Les cas vide, limite et erreur sont testés séparément lorsque la syntaxe le permet.
 
-## ERREURS FRÉQUENTES
+## 12.I ERREURS FRÉQUENTES
 
 - Copier un exemple sans adapter les types, noms d’objets et données disponibles dans le système.
 - Tester uniquement le cas nominal et ignorer les valeurs initiales, absentes ou invalides.
 - Afficher un message technique incompréhensible à l’utilisateur.
 - Attraper une exception sans action ni propagation.
 
-## SNIPPET À RÉUTILISER
+## 12.J SNIPPET À RÉUTILISER
 
 > [!NOTE]
 > Adapter les noms `Z*`, les types DDIC, les données et les autorisations au système cible. Effectuer un contrôle syntaxique avant activation.
@@ -115,13 +115,13 @@ CATCH zcx_dev_product_not_found INTO DATA(lx_not_found).
   DATA(lv_text) = lx_not_found->get_text( ).
 ```
 
-## TERMES DU LEXIQUE
+## 12.K TERMES DU LEXIQUE
 
 - [Exception](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#exception>)
 - [Interface](<../🧩 00 ├── LEXIQUE SAP ET ABAP/07 ├── INTERFACES ET INTEGRATION.md#interface-integration>)
 - [Dump ABAP](<../🧩 00 ├── LEXIQUE SAP ET ABAP/08 ├── EXECUTION EXPLOITATION ET ADMINISTRATION.md#dump-abap>)
 
-## RÉFÉRENCES OFFICIELLES SAP
+## 12.L RÉFÉRENCES OFFICIELLES SAP
 
 - [Exception Classes for Messages — ABAP Keyword Documentation](https://help.sap.com/doc/abapdocu_latest_index_htm/latest/en-US/ABENMESSAGE_EXCEPTIONS.html)
 - [Message Interface Reuse Example — ABAP Keyword Documentation](https://help.sap.com/doc/abapdocu_latest_index_htm/latest/en-US/ABENMESSAGE_INTERFACE_REUSE_ABEXA.html)

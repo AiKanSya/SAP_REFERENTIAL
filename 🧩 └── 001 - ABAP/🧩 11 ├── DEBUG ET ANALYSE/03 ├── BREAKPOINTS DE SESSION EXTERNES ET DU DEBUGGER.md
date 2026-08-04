@@ -1,13 +1,13 @@
-# BREAKPOINTS DE SESSION, EXTERNES ET DU DÉBOGUEUR
+# 3. BREAKPOINTS DE SESSION, EXTERNES ET DU DÉBOGUEUR
 
-## RÉSULTAT ATTENDU
+## 3.A RÉSULTAT ATTENDU
 
 - Choisir le bon type de breakpoint
 - Comprendre sa portée et sa durée de validité
 - Arrêter un traitement dialogué ou externe
 - Éviter les breakpoints placés sur le mauvais utilisateur
 
-## PRINCIPE
+## 3.B PRINCIPE
 
 Un breakpoint demande au processeur ABAP de suspendre l’exécution à un emplacement déterminé.
 
@@ -18,7 +18,7 @@ flowchart LR
     C --> D["Ouverture du débogueur"]
 ```
 
-## BREAKPOINT DE SESSION
+## 3.C BREAKPOINT DE SESSION
 
 Le breakpoint de session concerne normalement les traitements exécutés par le même utilisateur dans la session SAP GUI correspondante.
 
@@ -30,7 +30,7 @@ Utilisation typique :
 
 Il convient aux tests manuels réalisés directement dans SAP GUI.
 
-## BREAKPOINT EXTERNE
+## 3.D BREAKPOINT EXTERNE
 
 Le breakpoint externe est destiné aux traitements dont l’appel arrive depuis un autre canal ou une autre session, par exemple :
 
@@ -42,7 +42,7 @@ Le breakpoint externe est destiné aux traitements dont l’appel arrive depuis 
 
 Le traitement doit généralement s’exécuter avec l’utilisateur pour lequel le breakpoint externe est défini. Certains contextes techniques utilisent un autre utilisateur que celui attendu.
 
-## BREAKPOINT DU DÉBOGUEUR
+## 3.E BREAKPOINT DU DÉBOGUEUR
 
 Un breakpoint créé pendant une session de débogage est géré dans cette session. Il permet de préparer plusieurs arrêts après avoir déjà interrompu le programme.
 
@@ -52,7 +52,7 @@ Le Breakpoints Tool permet de lister et gérer :
 - watchpoints ;
 - checkpoints.
 
-## BREAKPOINT DANS LE CODE
+## 3.F BREAKPOINT DANS LE CODE
 
 L’instruction suivante inscrit un breakpoint dans le source :
 
@@ -64,7 +64,7 @@ Un breakpoint codé ne doit pas être livré sans justification. Il peut interro
 
 Pour un besoin temporaire, préférer un breakpoint défini dans l’éditeur ou le débogueur.
 
-## CHOIX RAPIDE
+## 3.G CHOIX RAPIDE
 
 | Contexte                                  | Breakpoint conseillé               |
 | ----------------------------------------- | ---------------------------------- |
@@ -75,7 +75,7 @@ Pour un besoin temporaire, préférer un breakpoint défini dans l’éditeur ou
 | Analyse après entrée dans le débogueur    | Débogueur                          |
 | Point permanent contrôlé par le code      | Instruction seulement si justifiée |
 
-## DIAGNOSTIC D UN BREAKPOINT IGNORÉ
+## 3.H DIAGNOSTIC D UN BREAKPOINT IGNORÉ
 
 Contrôler :
 
@@ -87,21 +87,21 @@ Contrôler :
 6. contexte système ou mise à jour ;
 7. autorisations.
 
-## VÉRIFICATION
+## 3.I VÉRIFICATION
 
 - Le scénario reproduit correspond au même utilisateur, mandant, transaction et jeu de données.
 - L’horodatage et l’identifiant de l’analyse sont conservés.
 - La cause retenue est soutenue par une ligne source, une trace ou une valeur observée.
 - Après correction, le même scénario ne reproduit plus le défaut et le résultat métier reste identique.
 
-## ERREURS FRÉQUENTES
+## 3.J ERREURS FRÉQUENTES
 
 - Copier un exemple sans adapter les types, noms d’objets et données disponibles dans le système.
 - Tester uniquement le cas nominal et ignorer les valeurs initiales, absentes ou invalides.
 - Modifier les données dans le débogueur puis considérer le résultat comme reproductible.
 - Laisser une trace active trop longtemps.
 
-## SNIPPET À RÉUTILISER
+## 3.K SNIPPET À RÉUTILISER
 
 > [!NOTE]
 > Adapter les noms `Z*`, les types DDIC, les données et les autorisations au système cible. Effectuer un contrôle syntaxique avant activation.
@@ -110,14 +110,14 @@ Contrôler :
 BREAK-POINT.
 ```
 
-## TERMES DU LEXIQUE
+## 3.L TERMES DU LEXIQUE
 
 - [Breakpoint](<../🧩 00 ├── LEXIQUE SAP ET ABAP/08 ├── EXECUTION EXPLOITATION ET ADMINISTRATION.md#breakpoint>)
 - [Watchpoint](<../🧩 00 ├── LEXIQUE SAP ET ABAP/08 ├── EXECUTION EXPLOITATION ET ADMINISTRATION.md#watchpoint>)
 - [Dump ABAP](<../🧩 00 ├── LEXIQUE SAP ET ABAP/08 ├── EXECUTION EXPLOITATION ET ADMINISTRATION.md#dump-abap>)
 - [Trace](<../🧩 00 ├── LEXIQUE SAP ET ABAP/08 ├── EXECUTION EXPLOITATION ET ADMINISTRATION.md#trace>)
 
-## RÉFÉRENCES OFFICIELLES SAP
+## 3.M RÉFÉRENCES OFFICIELLES SAP
 
 - [Breakpoints — SAP Help Portal](https://help.sap.com/docs/ABAP_PLATFORM_NEW/ba879a6e2ea04d9bb94c7ccd7cdac446/491e9433f3ee6492e10000000a42189b.html)
 - [Breakpoints Tool — SAP Help Portal](https://help.sap.com/docs/ABAP_PLATFORM_NEW/ba879a6e2ea04d9bb94c7ccd7cdac446/492535784d7216b5e10000000a42189d.html)

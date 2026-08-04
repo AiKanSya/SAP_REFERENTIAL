@@ -1,6 +1,6 @@
-# QUITTER UN BLOC AVEC RETURN
+# 11. QUITTER UN BLOC AVEC RETURN
 
-## RÉSULTAT ATTENDU
+## 11.A RÉSULTAT ATTENDU
 
 - Quitter le bloc de traitement courant
 - Utiliser `RETURN` comme garde
@@ -8,7 +8,7 @@
 - Préserver la lisibilité d’un traitement
 - Comprendre l’effet dans un événement ou une procédure
 
-## PRINCIPE
+## 11.B PRINCIPE
 
 `RETURN` termine le bloc de traitement courant. Le contrôle revient au point prévu par le contexte d’exécution.
 
@@ -29,7 +29,7 @@ START-OF-SELECTION.
 
 La seconde instruction `WRITE` n’est pas exécutée lorsque la valeur est invalide.
 
-## RETURN COMME GARDE
+## 11.C RETURN COMME GARDE
 
 Une garde traite immédiatement un prérequis non satisfait.
 
@@ -56,7 +56,7 @@ flowchart TD
     E --> F["Fin normale du bloc"]
 ```
 
-## DIFFÉRENCE AVEC LES AUTRES INSTRUCTIONS
+## 11.D DIFFÉRENCE AVEC LES AUTRES INSTRUCTIONS
 
 | Instruction             | Effet attendu                                           |
 | ----------------------- | ------------------------------------------------------- |
@@ -66,7 +66,7 @@ flowchart TD
 | `CHECK` dans une boucle | Passe à l’itération suivante si la condition est fausse |
 | `CHECK` hors boucle     | Quitte le bloc si la condition est fausse               |
 
-## RETURN DANS UNE BOUCLE
+## 11.E RETURN DANS UNE BOUCLE
 
 `RETURN` ne quitte pas seulement la boucle : il quitte le bloc de traitement qui contient la boucle.
 
@@ -86,7 +86,7 @@ START-OF-SELECTION.
 
 Utiliser `EXIT` lorsque seule la boucle doit être interrompue.
 
-## ÉVITER UN RETURN CACHÉ
+## 11.F ÉVITER UN RETURN CACHÉ
 
 Un `RETURN` placé au milieu d’un long bloc peut surprendre le lecteur.
 
@@ -97,13 +97,13 @@ Préférer :
 - une journalisation ou un message avant la sortie lorsque nécessaire ;
 - des blocs courts grâce à la modularisation.
 
-## NE PAS CONFONDRE RETURN ET FIN DE PROGRAMME
+## 11.G NE PAS CONFONDRE RETURN ET FIN DE PROGRAMME
 
 `RETURN` termine le bloc courant. Il ne doit pas être présenté comme une instruction générique d’arrêt technique de toute session SAP.
 
 Les instructions de navigation ou de terminaison spécifiques aux programmes de dialogue et aux transactions seront traitées dans les dossiers correspondants.
 
-## RETOUR DE VALEUR
+## 11.H RETOUR DE VALEUR
 
 Dans une méthode fonctionnelle, la valeur de retour est affectée à un paramètre `RETURNING`, puis `RETURN` peut terminer le traitement de manière anticipée. La déclaration et l’appel des méthodes seront étudiés dans le dossier **ABAP OBJECTS**.
 
@@ -121,21 +121,21 @@ METHOD is_valid.
 ENDMETHOD.
 ```
 
-## VÉRIFICATION
+## 11.I VÉRIFICATION
 
 - Le contrôle syntaxique réussit.
 - La version active correspond au code sauvegardé.
 - L’exécution produit le résultat décrit dans le chapitre.
 - Les cas vide, limite et erreur sont testés séparément lorsque la syntaxe le permet.
 
-## ERREURS FRÉQUENTES
+## 11.J ERREURS FRÉQUENTES
 
 - Copier un exemple sans adapter les types, noms d’objets et données disponibles dans le système.
 - Tester uniquement le cas nominal et ignorer les valeurs initiales, absentes ou invalides.
 - Créer une boucle sans condition de sortie fiable.
 - Utiliser `CHECK`, `CONTINUE`, `EXIT` ou `RETURN` sans rendre le flux lisible.
 
-## SNIPPET À RÉUTILISER
+## 11.K SNIPPET À RÉUTILISER
 
 > [!NOTE]
 > Adapter les noms `Z*`, les types DDIC, les données et les autorisations au système cible. Effectuer un contrôle syntaxique avant activation.
@@ -153,12 +153,12 @@ START-OF-SELECTION.
   WRITE: / 'Traitement de la valeur :', p_value.
 ```
 
-## TERMES DU LEXIQUE
+## 11.L TERMES DU LEXIQUE
 
 - [Instruction ABAP](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#instruction-abap>)
 - [Expression](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#expression>)
 
-## RÉFÉRENCES OFFICIELLES SAP
+## 11.M RÉFÉRENCES OFFICIELLES SAP
 
 - [RETURN — ABAP Keyword Documentation](https://help.sap.com/doc/abapdocu_latest_index_htm/latest/en-US/index.htm?file=abapreturn.htm)
 - [Calling and Exiting Program Units — ABAP Keyword Documentation](https://help.sap.com/doc/abapdocu_latest_index_htm/latest/en-US/index.htm?file=abencalling_processing_blocks.htm)

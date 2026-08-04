@@ -1,36 +1,36 @@
-# APPELER UN SMART FORM
+# 1. APPELER UN SMART FORM
 
-## RÉSULTAT ATTENDU
+## 1.A RÉSULTAT ATTENDU
 
 Résoudre dynamiquement le module généré d’un Smart Form puis l’appeler sans coder son nom technique généré en dur.
 
-## PROCESS
+## 1.B PROCESS
 
-### ÉTAPE 1 — ACTIVER ET TESTER LE SMART FORM
+### 1.B.1 ÉTAPE 1 — ACTIVER ET TESTER LE SMART FORM
 
 Dans `SMARTFORMS`, activer le formulaire et exécuter son test avec des données contrôlées. Relever son interface réelle, ses exceptions et les paramètres de contrôle ou de sortie utilisés par le scénario.
 
-### ÉTAPE 2 — RÉSOUDRE LE MODULE GÉNÉRÉ
+### 1.B.2 ÉTAPE 2 — RÉSOUDRE LE MODULE GÉNÉRÉ
 
 Appeler `SSF_FUNCTION_MODULE_NAME` avec le nom fonctionnel du formulaire. Tester immédiatement `SY-SUBRC` et interrompre le traitement si le formulaire ou le module généré est introuvable.
 
-### ÉTAPE 3 — INSÉRER LA SIGNATURE RÉELLE
+### 1.B.3 ÉTAPE 3 — INSÉRER LA SIGNATURE RÉELLE
 
 Ouvrir le module résolu ou insérer son modèle d’appel depuis l’éditeur. Ajouter les paramètres métier exacts générés pour ce formulaire ; ne pas inventer une signature générique.
 
-### ÉTAPE 4 — PRÉPARER LES PARAMÈTRES DE SORTIE
+### 1.B.4 ÉTAPE 4 — PRÉPARER LES PARAMÈTRES DE SORTIE
 
 Définir le périphérique, le mode de prévisualisation, la boîte de dialogue et la création de spool selon le contexte interactif ou batch. Ne pas dépendre d’une valeur utilisateur implicite non contrôlée.
 
-### ÉTAPE 5 — APPELER LE MODULE DYNAMIQUEMENT
+### 1.B.5 ÉTAPE 5 — APPELER LE MODULE DYNAMIQUEMENT
 
 Transmettre les structures de contrôle, les options de sortie et les données métier, puis traiter chaque exception du module généré.
 
-### ÉTAPE 6 — CONTRÔLER LE RÉSULTAT
+### 1.B.6 ÉTAPE 6 — CONTRÔLER LE RÉSULTAT
 
 Vérifier la prévisualisation ou la requête spool dans `SP01`, les pages produites, le périphérique et les données affichées. Tester aussi l’annulation utilisateur et une erreur de formatage.
 
-## CODE PRÊT À ADAPTER
+## 1.C CODE PRÊT À ADAPTER
 
 ```abap
 DATA lv_function_name TYPE rs38l_fnam.
@@ -63,7 +63,7 @@ IF sy-subrc <> 0.
 ENDIF.
 ```
 
-## CONTRÔLE
+## 1.D CONTRÔLE
 
 - Le nom généré n’est jamais persisté dans le code.
 - Les paramètres métier doivent provenir de la signature réelle du formulaire.

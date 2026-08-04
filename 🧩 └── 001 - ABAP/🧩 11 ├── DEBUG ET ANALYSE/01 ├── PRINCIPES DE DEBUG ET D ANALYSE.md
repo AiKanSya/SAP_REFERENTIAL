@@ -1,6 +1,6 @@
-# PRINCIPES DE DEBUG ET D’ANALYSE
+# 1. PRINCIPES DE DEBUG ET D’ANALYSE
 
-## RÉSULTAT ATTENDU
+## 1.A RÉSULTAT ATTENDU
 
 - Distinguer observation, débogage, trace et analyse postérieure
 - Choisir l’outil adapté au symptôme
@@ -8,7 +8,7 @@
 - Collecter des preuves avant de corriger le code
 - Limiter l’impact des outils techniques sur le système
 
-## FINALITÉ
+## 1.B FINALITÉ
 
 Le débogage ne consiste pas à parcourir le programme au hasard. Il sert à vérifier une hypothèse précise sur :
 
@@ -27,7 +27,7 @@ flowchart LR
     E --> F["Test de non-régression"]
 ```
 
-## OUTILS PRINCIPAUX
+## 1.C OUTILS PRINCIPAUX
 
 | Besoin                                             | Outil principal  |
 | -------------------------------------------------- | ---------------- |
@@ -40,7 +40,7 @@ flowchart LR
 | Corréler une exécution et plusieurs traces         | `ST12`           |
 | Comparer des consommations mémoire                 | Memory Inspector |
 
-## OBSERVATION AVANT MODIFICATION
+## 1.D OBSERVATION AVANT MODIFICATION
 
 Avant toute correction :
 
@@ -53,7 +53,7 @@ Avant toute correction :
 
 Modifier une variable dans le débogueur peut aider à tester une hypothèse, mais ne prouve pas que le programme fonctionne normalement.
 
-## REPRODUCTIBILITÉ
+## 1.E REPRODUCTIBILITÉ
 
 Une anomalie exploitable doit décrire :
 
@@ -67,7 +67,7 @@ Une anomalie exploitable doit décrire :
 
 Un problème intermittent nécessite souvent une trace ou un point d’arrêt conditionnel plutôt qu’un pas-à-pas complet.
 
-## IMPACT SUR LE SYSTÈME
+## 1.F IMPACT SUR LE SYSTÈME
 
 Le débogage et les traces peuvent :
 
@@ -79,7 +79,7 @@ Le débogage et les traces peuvent :
 
 Activer l’outil le plus tard possible, limiter son périmètre, puis le désactiver immédiatement après la reproduction.
 
-## RÈGLE DE DIAGNOSTIC
+## 1.G RÈGLE DE DIAGNOSTIC
 
 Toujours répondre séparément à quatre questions :
 
@@ -88,41 +88,41 @@ Toujours répondre séparément à quatre questions :
 3. **Pourquoi** cette donnée ou ce chemin est-il obtenu ?
 4. **Quelle correction minimale** rétablit la règle attendue ?
 
-## PROCESS
+## 1.H PROCESS
 
-### Étape 1 — Définir le symptôme
+### 1.H.1 Étape 1 — Définir le symptôme
 
 Relever système, mandant, utilisateur, transaction, données d’entrée et résultat attendu. Distinguer résultat faux, message, blocage, lenteur et dump afin de choisir l’outil adapté.
 
-### Étape 2 — Réduire le scénario
+### 1.H.2 Étape 2 — Réduire le scénario
 
 Reproduire avec le plus petit jeu de données qui conserve le défaut. Noter l’horodatage et vérifier le symptôme une fois sans débogueur.
 
-### Étape 3 — Placer le premier arrêt utile
+### 1.H.3 Étape 3 — Placer le premier arrêt utile
 
 Positionner le breakpoint avant la première décision pouvant expliquer l’écart. Confirmer que la ligne appartient au chemin réellement exécuté par l’utilisateur concerné.
 
-### Étape 4 — Chercher la première divergence
+### 1.H.4 Étape 4 — Chercher la première divergence
 
 Comparer à chaque décision les entrées, valeurs calculées, branche choisie et sortie. La première différence entre attendu et réel localise la cause ; les suivantes peuvent n’être que des conséquences.
 
-### Étape 5 — Corriger et rejouer
+### 1.H.5 Étape 5 — Corriger et rejouer
 
 Modifier uniquement la cause prouvée, activer puis rejouer le cas fautif et un cas nominal. Le diagnostic est terminé lorsque les deux résultats sont corrects.
 
-## VÉRIFICATION
+## 1.I VÉRIFICATION
 
 - Le scénario reproduit correspond au même utilisateur, mandant, transaction et jeu de données.
 - L’horodatage et l’identifiant de l’analyse sont conservés.
 - La cause retenue est soutenue par une ligne source, une trace ou une valeur observée.
 - Après correction, le même scénario ne reproduit plus le défaut et le résultat métier reste identique.
 
-## ERREURS FRÉQUENTES
+## 1.J ERREURS FRÉQUENTES
 
 - Modifier les données dans le débogueur puis considérer le résultat comme reproductible.
 - Laisser une trace active trop longtemps.
 
-## FICHE DE CONTRÔLE À COPIER
+## 1.K FICHE DE CONTRÔLE À COPIER
 
 ```text
 Système / SID       :
@@ -137,14 +137,14 @@ Horodatage          :
 Ordre de transport  :
 ```
 
-## TERMES DU LEXIQUE
+## 1.L TERMES DU LEXIQUE
 
 - [Breakpoint](<../🧩 00 ├── LEXIQUE SAP ET ABAP/08 ├── EXECUTION EXPLOITATION ET ADMINISTRATION.md#breakpoint>)
 - [Watchpoint](<../🧩 00 ├── LEXIQUE SAP ET ABAP/08 ├── EXECUTION EXPLOITATION ET ADMINISTRATION.md#watchpoint>)
 - [Dump ABAP](<../🧩 00 ├── LEXIQUE SAP ET ABAP/08 ├── EXECUTION EXPLOITATION ET ADMINISTRATION.md#dump-abap>)
 - [Trace](<../🧩 00 ├── LEXIQUE SAP ET ABAP/08 ├── EXECUTION EXPLOITATION ET ADMINISTRATION.md#trace>)
 
-## RÉFÉRENCES OFFICIELLES SAP
+## 1.M RÉFÉRENCES OFFICIELLES SAP
 
 - [ABAP Test and Analysis Tools — SAP Help Portal](https://help.sap.com/docs/ABAP_PLATFORM_NEW/ba879a6e2ea04d9bb94c7ccd7cdac446/491aa66f87041903e10000000a42189c.html)
 - [Standard ABAP Debugger — SAP Help Portal](https://help.sap.com/docs/SAP_NETWEAVER_AS_ABAP_751_IP/ba879a6e2ea04d9bb94c7ccd7cdac446/49250c884d7216b5e10000000a42189d.html)

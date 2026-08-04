@@ -1,41 +1,39 @@
-# ÉVÉNEM" Définir le contrat et limiter l’API publique au besoin réel.
+# 16. ÉVÉNEMENTS ET GESTIONNAIRES
 
-ENTS ET GESTIONNAIRES
-
-## RÉSULTAT ATTENDU
+## 16.A RÉSULTAT ATTENDU
 
 - Déclarer un événement dans une classe globale.
 - Lever l’événement.
 - Enregistrer un gestionnaire avec `SET HANDLER`.
 - Maîtriser la durée de vie des émetteurs et récepteurs.
 
-## CAS D’USAGE
+## 16.B CAS D’USAGE
 
 Un traitement long publie sa progression. Plusieurs consommateurs peuvent réagir : affichage, journal applicatif ou mesure de performance, sans modifier la classe productrice.
 
-## PROCESS
+## 16.C PROCESS
 
-### Étape 1 — Définir le fait publié
+### 16.C.1 Étape 1 — Définir le fait publié
 
 Décrire `PROGRESS_CHANGED` comme un fait déjà survenu et définir les données minimales nécessaires aux récepteurs.
 
-### Étape 2 — Déclarer l’événement
+### 16.C.2 Étape 2 — Déclarer l’événement
 
 Dans la classe émettrice, créer l’événement et ses paramètres typés. Activer la définition avant d’implémenter l’émission.
 
-### Étape 3 — Lever au point exact
+### 16.C.3 Étape 3 — Lever au point exact
 
 Utiliser `RAISE EVENT` après la mise à jour réussie de la progression. Ne lever pas l’événement avant une validation susceptible d’échouer.
 
-### Étape 4 — Créer le gestionnaire
+### 16.C.4 Étape 4 — Créer le gestionnaire
 
 Dans la classe réceptrice, déclarer une méthode `FOR EVENT progress_changed OF ...` avec les paramètres générés, puis implémenter un traitement sans modifier l’émetteur de façon récursive.
 
-### Étape 5 — Enregistrer et tester
+### 16.C.5 Étape 5 — Enregistrer et tester
 
 Exécuter `SET HANDLER`, déclencher l’événement, puis tester sans gestionnaire et après désenregistrement. La mise en place est validée lorsque chaque émission appelle exactement les récepteurs attendus une seule fois.
 
-## CODE ÉMETTEUR À ADAPTER
+## 16.D CODE ÉMETTEUR À ADAPTER
 
 ```abap
 EVENTS progress_changed
@@ -53,7 +51,7 @@ METHOD execute.
 ENDMETHOD.
 ```
 
-## CODE GESTIONNAIRE À ADAPTER
+## 16.E CODE GESTIONNAIRE À ADAPTER
 
 Signature à déclarer dans la classe réceptrice :
 
@@ -73,32 +71,32 @@ SET HANDLER lo_receiver->on_progress_changed FOR lo_service.
 lo_service->execute( ).
 ```
 
-## PRÉCAUTIONS
+## 16.F PRÉCAUTIONS
 
 - Le récepteur doit exister au moment où l’événement est levé.
 - Le gestionnaire ne doit pas provoquer de dépendance circulaire incontrôlée.
 - Une exception dans un gestionnaire suit les règles spécifiques des événements et doit être conçue avec prudence.
 - Les événements ne remplacent pas un résultat de méthode requis immédiatement.
 
-## CONTRÔLE
+## 16.G CONTRÔLE
 
 - Le gestionnaire est appelé exactement le nombre attendu de fois.
 - Aucun appel n’a lieu avant `SET HANDLER`.
 - Le désenregistrement est traité si la durée de vie est longue.
 
-## ERREURS FRÉQUENTES
+## 16.H ERREURS FRÉQUENTES
 
 - Utiliser un événement pour un simple appel direct connu.
 - Enregistrer plusieurs fois le même gestionnaire sans le savoir.
 - Modifier lourdement l’état métier dans un gestionnaire de notification.
 
-## COMPATIBILITÉ S/4HANA
+## 16.I COMPATIBILITÉ S/4HANA
 
 - Statut : compatible avec le développement ABAP classique sur SAP S/4HANA.
 - Vérifier la syntaxe exacte avec l’aide `F1` du système cible lorsque plusieurs versions d’ABAP Platform sont prises en charge.
 - Les objets globaux doivent être créés dans le package et l’ordre de transport du projet.
 
-## RÉFÉRENCES OFFICIELLES SAP
+## 16.J RÉFÉRENCES OFFICIELLES SAP
 
 - [Events Overview — ABAP Keyword Documentation](https://help.sap.com/doc/abapdocu_latest_index_htm/latest/en-US/ABENEVENTS_OVERVIEW.html)
 - [Inheritance and Events — ABAP Keyword Documentation](https://help.sap.com/doc/abapdocu_latest_index_htm/latest/en-US/ABENINHERITANCE_EVENTS.html)

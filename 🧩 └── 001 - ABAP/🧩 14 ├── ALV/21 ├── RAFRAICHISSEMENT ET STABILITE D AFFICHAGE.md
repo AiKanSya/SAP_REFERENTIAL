@@ -1,12 +1,12 @@
-# RAFRAÎCHISSEMENT ET STABILITÉ D’AFFICHAGE
+# 21. RAFRAÎCHISSEMENT ET STABILITÉ D’AFFICHAGE
 
-## RÉSULTAT ATTENDU
+## 21.A RÉSULTAT ATTENDU
 
 - Actualiser les données sans recréer la grille
 - Conserver la position de défilement
 - Comprendre le rafraîchissement logiciel
 
-## RAFRAÎCHIR
+## 21.B RAFRAÎCHIR
 
 ```abap
 DATA ls_stable TYPE lvc_s_stbl.
@@ -22,11 +22,11 @@ go_grid->refresh_table_display(
 
 `IS_STABLE` demande au contrôle de conserver autant que possible la position des lignes et colonnes.
 
-## SOFT REFRESH
+## 21.C SOFT REFRESH
 
 Un rafraîchissement logiciel conserve certains réglages frontend comme les tris, filtres et totalisations. L’utiliser seulement lorsque les changements apportés sont compatibles avec la conservation de cet état.
 
-## CHARGER DE NOUVELLES DONNÉES
+## 21.D CHARGER DE NOUVELLES DONNÉES
 
 ```abap
 PERFORM select_data CHANGING gt_output.
@@ -35,51 +35,51 @@ go_grid->refresh_table_display( is_stable = ls_stable ).
 
 Ne pas rappeler `SET_TABLE_FOR_FIRST_DISPLAY` pour chaque rechargement standard.
 
-## FLUSH
+## 21.E FLUSH
 
 Le Control Framework gère normalement les échanges frontend. `CL_GUI_CFW=>FLUSH` peut être nécessaire dans certains scénarios documentés ou pour faire remonter immédiatement une erreur frontend, mais ne doit pas être appelé sans raison à chaque instruction.
 
-## ERREURS FRÉQUENTES
+## 21.F ERREURS FRÉQUENTES
 
 - remplacer la table interne par une nouvelle référence incompatible ;
 - modifier la structure du catalogue sans réinitialisation adaptée ;
 - rafraîchir avant `CHECK_CHANGED_DATA` sur une grille éditable ;
 - perdre la sélection utilisateur après reconstruction complète du contrôle.
 
-## PROCESS
+## 21.G PROCESS
 
-### Étape 1 — Mettre à jour la table déjà liée à la grille
+### 21.G.1 Étape 1 — Mettre à jour la table déjà liée à la grille
 
 Modifier ou recharger la table de sortie transmise lors du premier affichage. Ne pas remplacer sans nécessité son contrat de structure.
 
-### Étape 2 — Finaliser une saisie active
+### 21.G.2 Étape 2 — Finaliser une saisie active
 
 Pour une grille éditable, appeler `CHECK_CHANGED_DATA` avant de relire ou remplacer les données. Arrêter le rafraîchissement si la validation signale une erreur bloquante.
 
-### Étape 3 — Préparer la stabilité de l’affichage
+### 21.G.3 Étape 3 — Préparer la stabilité de l’affichage
 
 Remplir `LVC_S_STBL` pour conserver la ligne et la colonne visibles lorsque le scénario l’exige. La stabilité visuelle ne garantit pas que la sélection métier reste valide après rechargement.
 
-### Étape 4 — Appeler `REFRESH_TABLE_DISPLAY`
+### 21.G.4 Étape 4 — Appeler `REFRESH_TABLE_DISPLAY`
 
 Transmettre la structure de stabilité. Utiliser le rafraîchissement léger uniquement lorsque la structure et le catalogue ne changent pas.
 
-### Étape 5 — Synchroniser le frontend si nécessaire
+### 21.G.5 Étape 5 — Synchroniser le frontend si nécessaire
 
 Appeler `CL_GUI_CFW=>FLUSH` uniquement lorsqu’une synchronisation explicite du Control Framework est requise par le scénario. Traiter les exceptions au lieu de multiplier les appels systématiques.
 
-### Étape 6 — Tester la conservation du contexte
+### 21.G.6 Étape 6 — Tester la conservation du contexte
 
 Vérifier le curseur, le défilement, la sélection, les filtres et les tris après ajout, suppression et modification de lignes.
 
-## VÉRIFICATION
+## 21.H VÉRIFICATION
 
 - Le contrôle syntaxique réussit.
 - La version active correspond au code sauvegardé.
 - L’exécution produit le résultat décrit dans le chapitre.
 - Les cas vide, limite et erreur sont testés séparément lorsque la syntaxe le permet.
 
-## SNIPPET À RÉUTILISER
+## 21.I SNIPPET À RÉUTILISER
 
 > [!NOTE]
 > Adapter les noms `Z*`, les types DDIC, les données et les autorisations au système cible. Effectuer un contrôle syntaxique avant activation.
@@ -96,13 +96,13 @@ go_grid->refresh_table_display(
     i_soft_refresh = abap_false ).
 ```
 
-## TERMES DU LEXIQUE
+## 21.J TERMES DU LEXIQUE
 
 - [ALV](<../🧩 00 ├── LEXIQUE SAP ET ABAP/10 └── ACRONYMES SAP.md#acro-alv>)
 - [SALV](<../🧩 00 ├── LEXIQUE SAP ET ABAP/10 └── ACRONYMES SAP.md#acro-salv>)
 - [Table interne](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#table-interne>)
 
-## RÉFÉRENCES OFFICIELLES SAP
+## 21.K RÉFÉRENCES OFFICIELLES SAP
 
 - [refresh_table_display — SAP Help Portal](https://help.sap.com/docs/ABAP_PLATFORM_NEW/70396d7dec4c4f19b9ca3b2e47559d12/0ab5531ed30911d2b467006094192fe3.html)
 - [Methods of Class CL_GUI_ALV_GRID — SAP Help Portal](https://help.sap.com/docs/ABAP_PLATFORM_NEW/70396d7dec4c4f19b9ca3b2e47559d12/22a3f5ecd2fe11d2b467006094192fe3.html)

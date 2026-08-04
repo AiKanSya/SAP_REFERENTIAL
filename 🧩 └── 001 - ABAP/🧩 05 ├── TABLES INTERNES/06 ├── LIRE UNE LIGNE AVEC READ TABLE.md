@@ -1,6 +1,6 @@
-# LIRE UNE LIGNE AVEC READ TABLE
+# 6. LIRE UNE LIGNE AVEC READ TABLE
 
-## RÉSULTAT ATTENDU
+## 6.A RÉSULTAT ATTENDU
 
 - Lire une ligne par index ou par clé
 - Utiliser `INTO`, `ASSIGNING` et `REFERENCE INTO`
@@ -8,7 +8,7 @@
 - Distinguer `WITH KEY` et `WITH TABLE KEY`
 - Éviter les lectures ambiguës
 
-## LECTURE PAR INDEX
+## 6.B LECTURE PAR INDEX
 
 ```abap
 " Exemple à éviter : comparer avec la correction décrite après le bloc.
@@ -23,7 +23,7 @@ ENDIF.
 
 L’accès par index est disponible pour les tables standard et triées, pas pour l’index primaire d’une table hachée.
 
-## LECTURE PAR CLÉ LIBRE
+## 6.C LECTURE PAR CLÉ LIBRE
 
 ```abap
 " Accéder à la ligne par une clé adaptée au besoin.
@@ -34,7 +34,7 @@ READ TABLE lt_products
 
 `WITH KEY` décrit une clé de recherche libre. La stratégie utilisée dépend de la catégorie, de la clé de table et des composants fournis.
 
-## LECTURE AVEC LA CLÉ DE TABLE
+## 6.D LECTURE AVEC LA CLÉ DE TABLE
 
 ```abap
 " Accéder à la ligne par une clé adaptée au besoin.
@@ -55,7 +55,7 @@ READ TABLE lt_products
   COMPONENTS matnr = 'MAT-001'.
 ```
 
-## CONTRÔLE DU RÉSULTAT
+## 6.E CONTRÔLE DU RÉSULTAT
 
 Après `READ TABLE` :
 
@@ -76,7 +76,7 @@ IF sy-subrc <> 0.
 ENDIF.
 ```
 
-## TRANSPORTING NO FIELDS
+## 6.F TRANSPORTING NO FIELDS
 
 Lorsque seule l’existence ou la position est nécessaire, éviter de copier la ligne.
 
@@ -91,7 +91,7 @@ IF sy-subrc = 0.
 ENDIF.
 ```
 
-## LECTURE PAR ASSIGNING
+## 6.G LECTURE PAR ASSIGNING
 
 ```abap
 " Exemple à éviter : comparer avec la correction décrite après le bloc.
@@ -106,7 +106,7 @@ ENDIF.
 
 Le symbole de champ désigne directement la ligne trouvée.
 
-## LECTURE PAR RÉFÉRENCE
+## 6.H LECTURE PAR RÉFÉRENCE
 
 ```abap
 " Accéder à la ligne par une clé adaptée au besoin.
@@ -119,7 +119,7 @@ IF sy-subrc = 0.
 ENDIF.
 ```
 
-## CHOIX DE LA VARIANTE
+## 6.I CHOIX DE LA VARIANTE
 
 ```mermaid
 flowchart TD
@@ -130,7 +130,7 @@ flowchart TD
     D -->|""Non""| F["REFERENCE INTO"]
 ```
 
-## ERREUR FRÉQUENTE
+## 6.J ERREUR FRÉQUENTE
 
 Ne pas utiliser la zone de travail sans contrôler le résultat.
 
@@ -142,21 +142,21 @@ IF sy-subrc = 0.
 ENDIF.
 ```
 
-## VÉRIFICATION
+## 6.K VÉRIFICATION
 
 - Le contrôle syntaxique réussit.
 - La version active correspond au code sauvegardé.
 - L’exécution produit le résultat décrit dans le chapitre.
 - Les cas vide, limite et erreur sont testés séparément lorsque la syntaxe le permet.
 
-## ERREURS FRÉQUENTES
+## 6.L ERREURS FRÉQUENTES
 
 - Copier un exemple sans adapter les types, noms d’objets et données disponibles dans le système.
 - Tester uniquement le cas nominal et ignorer les valeurs initiales, absentes ou invalides.
 - Utiliser une table standard pour des recherches massives par clé sans mesure.
 - Modifier une copie de ligne alors que la table devait être mise à jour.
 
-## SNIPPET À RÉUTILISER
+## 6.M SNIPPET À RÉUTILISER
 
 > [!NOTE]
 > Adapter les noms `Z*`, les types DDIC, les données et les autorisations au système cible. Effectuer un contrôle syntaxique avant activation.
@@ -173,14 +173,14 @@ IF sy-subrc <> 0.
 ENDIF.
 ```
 
-## TERMES DU LEXIQUE
+## 6.N TERMES DU LEXIQUE
 
 - [Table interne](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#table-interne>)
 - [Structure](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#structure-abap>)
 - [Field-symbol](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#field-symbol>)
 - [Référence](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#reference>)
 
-## RÉFÉRENCES OFFICIELLES SAP
+## 6.O RÉFÉRENCES OFFICIELLES SAP
 
 - [Working with Complex Internal Tables — SAP Learning](https://learning.sap.com/courses/basic-abap-programming/working-with-complex-internal-tables_f8c923f3-6f95-4b47-960f-557001f13977)
 - [READ TABLE — ABAP Keyword Documentation](https://help.sap.com/doc/abapdocu_latest_index_htm/latest/en-US/ABAPREAD_TABLE.html)

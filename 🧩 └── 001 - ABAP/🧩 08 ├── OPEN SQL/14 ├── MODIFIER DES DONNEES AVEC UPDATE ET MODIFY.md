@@ -1,10 +1,6 @@
-# MODIFI" Modifier uniquement les données de la table cible maîtrisée.
-" Modifier uniquement les données de la table cible maîtrisée.
-" Modifier uniquement les données de la table cible maîtrisée.
-" Modifier uniquement les données de la table cible maîtrisée.
-ER DES DONNÉES AVEC UPDATE ET MODIFY
+# 14. MODIFIER DES DONNÉES AVEC UPDATE ET MODIFY
 
-## RÉSULTAT ATTENDU
+## 14.A RÉSULTAT ATTENDU
 
 - Modifier des lignes avec `UPDATE`
 - Comprendre la différence entre `UPDATE` et `MODIFY`
@@ -12,7 +8,7 @@ ER DES DONNÉES AVEC UPDATE ET MODIFY
 - Contrôler strictement la condition `WHERE`
 - Éviter les modifications directes des données métier SAP
 
-## UPDATE PAR CLÉ
+## 14.B UPDATE PAR CLÉ
 
 ```abap
 " Exemple à éviter : identifier le défaut avant de choisir la correction.
@@ -24,7 +20,7 @@ UPDATE zdev_product
 
 Après l’instruction, `sy-dbcnt` indique le nombre de lignes traitées.
 
-## DANGER D’UN WHERE ABSENT
+## 14.C DANGER D’UN WHERE ABSENT
 
 ```abap
 " Modifier uniquement les données de la table cible maîtrisée.
@@ -37,7 +33,7 @@ Cette instruction modifie toutes les lignes accessibles de la table.
 > [!CAUTION]
 > Pour une modification de masse, la condition doit être relue, testée et limitée explicitement. Prévoir une simulation ou une sélection préalable lorsque l’impact est important.
 
-## UPDATE DEPUIS UNE STRUCTURE
+## 14.D UPDATE DEPUIS UNE STRUCTURE
 
 ```abap
 " Modifier uniquement les données de la table cible maîtrisée.
@@ -52,7 +48,7 @@ UPDATE zdev_product FROM @ls_product.
 
 Selon la variante, les composants de la structure sont utilisés pour identifier et remplacer la ligne correspondante.
 
-## MODIFY
+## 14.E MODIFY
 
 `MODIFY` combine deux comportements :
 
@@ -66,7 +62,7 @@ MODIFY zdev_product FROM @ls_product.
 
 Ce comportement est parfois pratique, mais il peut masquer une erreur fonctionnelle : une ligne attendue comme existante est créée silencieusement.
 
-## CHOIX ENTRE UPDATE ET MODIFY
+## 14.F CHOIX ENTRE UPDATE ET MODIFY
 
 | Besoin                                             | Instruction |
 | -------------------------------------------------- | ----------- |
@@ -74,7 +70,7 @@ Ce comportement est parfois pratique, mais il peut masquer une erreur fonctionne
 | Insérer ou remplacer explicitement selon la clé    | `MODIFY`    |
 | Une nouvelle ligne doit obligatoirement être créée | `INSERT`    |
 
-## API MÉTIER
+## 14.G API MÉTIER
 
 Pour une donnée applicative SAP, une mise à jour SQL directe peut contourner :
 
@@ -88,21 +84,21 @@ Pour une donnée applicative SAP, une mise à jour SQL directe peut contourner :
 
 Utiliser l’API officielle du domaine.
 
-## VÉRIFICATION
+## 14.H VÉRIFICATION
 
 - Le contrôle syntaxique réussit.
 - La version active correspond au code sauvegardé.
 - L’exécution produit le résultat décrit dans le chapitre.
 - Les cas vide, limite et erreur sont testés séparément lorsque la syntaxe le permet.
 
-## ERREURS FRÉQUENTES
+## 14.I ERREURS FRÉQUENTES
 
 - Copier un exemple sans adapter les types, noms d’objets et données disponibles dans le système.
 - Tester uniquement le cas nominal et ignorer les valeurs initiales, absentes ou invalides.
 - Lire toutes les colonnes ou toutes les lignes par défaut.
 - Effectuer des commits dans une méthode réutilisable sans contrat explicite.
 
-## SNIPPET À RÉUTILISER
+## 14.J SNIPPET À RÉUTILISER
 
 > [!NOTE]
 > Adapter les noms `Z*`, les types DDIC, les données et les autorisations au système cible. Effectuer un contrôle syntaxique avant activation.
@@ -118,14 +114,14 @@ ls_product-active = abap_true.
 UPDATE zdev_product FROM @ls_product.
 ```
 
-## TERMES DU LEXIQUE
+## 14.K TERMES DU LEXIQUE
 
 - [SQL](<../🧩 00 ├── LEXIQUE SAP ET ABAP/10 └── ACRONYMES SAP.md#acro-sql>)
 - [MANDT](<../🧩 00 ├── LEXIQUE SAP ET ABAP/05 ├── DONNEES DICTIONNAIRE ET BASE DE DONNEES.md#mandt>)
 - [Table transparente](<../🧩 00 ├── LEXIQUE SAP ET ABAP/05 ├── DONNEES DICTIONNAIRE ET BASE DE DONNEES.md#table-transparente>)
 - [LUW base de données](<../🧩 00 ├── LEXIQUE SAP ET ABAP/08 ├── EXECUTION EXPLOITATION ET ADMINISTRATION.md#luw-base>)
 
-## RÉFÉRENCES OFFICIELLES SAP
+## 14.L RÉFÉRENCES OFFICIELLES SAP
 
 - [UPDATE — ABAP Keyword Documentation](https://help.sap.com/doc/abapdocu_latest_index_htm/latest/en-US/ABAPUPDATE_DB_TAB.html)
 - [MODIFY — ABAP Keyword Documentation](https://help.sap.com/doc/abapdocu_latest_index_htm/latest/en-US/ABAPMODIFY_DB_TAB.html)

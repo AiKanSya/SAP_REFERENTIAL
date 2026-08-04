@@ -1,6 +1,6 @@
-# EXPRESSIONS CONDITIONNELLES COND ET SWITCH
+# 5. EXPRESSIONS CONDITIONNELLES COND ET SWITCH
 
-## RÉSULTAT ATTENDU
+## 5.A RÉSULTAT ATTENDU
 
 - Distinguer une expression conditionnelle d’une structure de contrôle
 - Produire directement une valeur avec `COND`
@@ -8,7 +8,7 @@
 - Connaître les limites de lisibilité de ces expressions
 - Vérifier leur compatibilité avec la version ABAP du système
 
-## STRUCTURE DE CONTRÔLE OU EXPRESSION
+## 5.B STRUCTURE DE CONTRÔLE OU EXPRESSION
 
 `IF` et `CASE` pilotent l’exécution de blocs d’instructions.
 
@@ -24,7 +24,7 @@ flowchart LR
 > [!IMPORTANT]
 > La disponibilité de `COND` et `SWITCH` dépend de la version ABAP. Vérifier la syntaxe sur le système cible et respecter les règles de compatibilité du projet.
 
-## EXPRESSION COND
+## 5.C EXPRESSION COND
 
 `COND` produit une valeur selon une ou plusieurs conditions logiques.
 
@@ -56,7 +56,7 @@ ELSE.
 ENDIF.
 ```
 
-## EXPRESSION SWITCH
+## 5.D EXPRESSION SWITCH
 
 `SWITCH` produit une valeur en comparant une expression à plusieurs valeurs.
 
@@ -87,7 +87,7 @@ CASE lv_status.
 ENDCASE.
 ```
 
-## TYPE DU RÉSULTAT
+## 5.E TYPE DU RÉSULTAT
 
 Le type peut être indiqué explicitement :
 
@@ -101,7 +101,7 @@ lv_flag = COND abap_bool(
 
 Le type explicite facilite la lecture et évite une inférence inadéquate.
 
-## QUAND LES UTILISER
+## 5.F QUAND LES UTILISER
 
 Utiliser `COND` ou `SWITCH` lorsque :
 
@@ -117,7 +117,7 @@ Préférer `IF` ou `CASE` lorsque :
 - l’expression devient longue ou profondément imbriquée ;
 - le code doit rester compatible avec une version ABAP plus ancienne.
 
-## ÉVITER L’IMBRICATION D’EXPRESSIONS
+## 5.G ÉVITER L’IMBRICATION D’EXPRESSIONS
 
 À éviter :
 
@@ -148,21 +148,21 @@ ELSE.
 ENDIF.
 ```
 
-## VÉRIFICATION
+## 5.H VÉRIFICATION
 
 - Le contrôle syntaxique réussit.
 - La version active correspond au code sauvegardé.
 - L’exécution produit le résultat décrit dans le chapitre.
 - Les cas vide, limite et erreur sont testés séparément lorsque la syntaxe le permet.
 
-## ERREURS FRÉQUENTES
+## 5.I ERREURS FRÉQUENTES
 
 - Copier un exemple sans adapter les types, noms d’objets et données disponibles dans le système.
 - Tester uniquement le cas nominal et ignorer les valeurs initiales, absentes ou invalides.
 - Créer une boucle sans condition de sortie fiable.
 - Utiliser `CHECK`, `CONTINUE`, `EXIT` ou `RETURN` sans rendre le flux lisible.
 
-## SNIPPET À RÉUTILISER
+## 5.J SNIPPET À RÉUTILISER
 
 > [!NOTE]
 > Adapter les noms `Z*`, les types DDIC, les données et les autorisations au système cible. Effectuer un contrôle syntaxique avant activation.
@@ -179,12 +179,12 @@ DATA(lv_category) = COND string(
 WRITE: / lv_category.
 ```
 
-## TERMES DU LEXIQUE
+## 5.K TERMES DU LEXIQUE
 
 - [Expression](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#expression>)
 - [Instruction ABAP](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#instruction-abap>)
 
-## RÉFÉRENCES OFFICIELLES SAP
+## 5.L RÉFÉRENCES OFFICIELLES SAP
 
 - [Conditional Expressions — ABAP Keyword Documentation](https://help.sap.com/doc/abapdocu_latest_index_htm/latest/en-US/index.htm?file=abenconditional_expressions.htm)
 - [COND Conditional Operator — ABAP Keyword Documentation](https://help.sap.com/doc/abapdocu_latest_index_htm/latest/en-US/index.htm?file=abenconditional_expression_cond.htm)

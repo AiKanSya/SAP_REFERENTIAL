@@ -1,40 +1,40 @@
-# APPELER UN PROXY SOAP
+# 1. APPELER UN PROXY SOAP
 
-## RÉSULTAT ATTENDU
+## 1.A RÉSULTAT ATTENDU
 
 Instancier une classe proxy générée et appeler son opération en traitant la faute système.
 
-## PROCESS
+## 1.B PROCESS
 
-### ÉTAPE 1 — IDENTIFIER LE PROXY GÉNÉRÉ
+### 1.B.1 ÉTAPE 1 — IDENTIFIER LE PROXY GÉNÉRÉ
 
 Dans `SPROXY`, ouvrir le consumer proxy et relever la classe générée, l’opération, les types de requête et réponse ainsi que les exceptions déclarées. Ces noms constituent l’interface réelle du code appelant.
 
-### ÉTAPE 2 — CONFIGURER LE PORT LOGIQUE
+### 1.B.2 ÉTAPE 2 — CONFIGURER LE PORT LOGIQUE
 
 Créer ou vérifier le port logique avec l’outil de configuration prévu par le système, généralement `SOAMANAGER`. Contrôler l’endpoint, l’authentification, le transport TLS et les timeouts avec l’équipe d’administration.
 
-### ÉTAPE 3 — CONSTRUIRE LA REQUÊTE
+### 1.B.3 ÉTAPE 3 — CONSTRUIRE LA REQUÊTE
 
 Remplir la structure générée avec les données obligatoires et valider les longueurs, domaines et cardinalités. Ne pas journaliser un payload complet contenant des secrets ou des données personnelles.
 
-### ÉTAPE 4 — INSTANCIER LE PROXY
+### 1.B.4 ÉTAPE 4 — INSTANCIER LE PROXY
 
 Créer la classe proxy avec le nom exact du port logique. Traiter immédiatement une erreur de configuration ou d’instanciation avant d’appeler l’opération.
 
-### ÉTAPE 5 — APPELER L’OPÉRATION
+### 1.B.5 ÉTAPE 5 — APPELER L’OPÉRATION
 
 Utiliser la signature générée dans `SPROXY`. Intercepter `CX_AI_SYSTEM_FAULT` et toute faute applicative déclarée par le proxy ; ne pas inventer un type d’exception absent de cette signature.
 
-### ÉTAPE 6 — CONTRÔLER LA RÉPONSE OU LE MESSAGE
+### 1.B.6 ÉTAPE 6 — CONTRÔLER LA RÉPONSE OU LE MESSAGE
 
 Pour un appel synchrone, valider la réponse avant la suite du traitement. Pour un appel asynchrone, relever l’identifiant de message et utiliser le moniteur prévu par la configuration pour vérifier la persistance et la transmission.
 
-### ÉTAPE 7 — TESTER LES ÉCHECS
+### 1.B.7 ÉTAPE 7 — TESTER LES ÉCHECS
 
 Tester un port inconnu, une indisponibilité distante, un refus d’authentification, une faute applicative et une réponse invalide. Vérifier que chaque cas produit un diagnostic exploitable sans exposer le contenu sensible.
 
-## CODE PRÊT À ADAPTER
+## 1.C CODE PRÊT À ADAPTER
 
 Le type de requête et la méthode dépendent obligatoirement de la génération `SPROXY` :
 
@@ -49,7 +49,7 @@ TRY.
 ENDTRY.
 ```
 
-## CONTRÔLE
+## 1.D CONTRÔLE
 
 - Remplacer la classe, l’opération, la signature et le port logique par ceux du proxy généré.
 - Pour une opération asynchrone, contrôler aussi la persistance et le moniteur de messages prévu par la configuration.

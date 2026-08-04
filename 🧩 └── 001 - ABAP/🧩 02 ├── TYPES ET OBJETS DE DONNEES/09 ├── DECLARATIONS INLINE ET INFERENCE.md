@@ -1,6 +1,6 @@
-# DÉCLARATIONS INLINE ET INFÉRENCE
+# 9. DÉCLARATIONS INLINE ET INFÉRENCE
 
-## RÉSULTAT ATTENDU
+## 9.A RÉSULTAT ATTENDU
 
 - Comprendre le principe d’une déclaration inline
 - Déclarer une variable avec `DATA(...)`
@@ -8,7 +8,7 @@
 - Comprendre les limites de l’inférence de type
 - Choisir entre déclaration explicite et inline
 
-## PRINCIPE
+## 9.B PRINCIPE
 
 Une déclaration inline crée un objet directement à une position où son type peut être déterminé par le contexte.
 
@@ -28,7 +28,7 @@ flowchart LR
 > [!IMPORTANT]
 > La syntaxe disponible dépend de la version du serveur ABAP et du niveau de syntaxe configuré. SAP GUI n’impose pas la version du langage : il ne fait qu’éditer du code exécuté par le système ABAP.
 
-## DÉCLARATION EXPLICITE
+## 9.C DÉCLARATION EXPLICITE
 
 ```abap
 DATA lv_total TYPE i.
@@ -36,7 +36,7 @@ DATA lv_total TYPE i.
 lv_total = 10 + 20.
 ```
 
-## DÉCLARATION INLINE
+## 9.D DÉCLARATION INLINE
 
 ```abap
 DATA(lv_total) = 10 + 20.
@@ -44,7 +44,7 @@ DATA(lv_total) = 10 + 20.
 
 La version inline est concise et place la déclaration au premier usage.
 
-## INFÉRENCE À PARTIR D’UN OBJET
+## 9.E INFÉRENCE À PARTIR D’UN OBJET
 
 ```abap
 DATA lv_source TYPE string VALUE `ABAP`.
@@ -53,7 +53,7 @@ DATA(lv_copy) = lv_source.
 
 Le type de `lv_copy` est déterminé à partir de l’expression à droite.
 
-## INFÉRENCE À PARTIR D’UN LITTÉRAL
+## 9.F INFÉRENCE À PARTIR D’UN LITTÉRAL
 
 ```abap
 DATA(lv_code) = 'ABC'.
@@ -70,7 +70,7 @@ DATA lv_code TYPE string VALUE `ABC`.
 > [!CAUTION]
 > Ne déduire pas qu’une déclaration inline produit automatiquement un `string`. Le type dépend du contexte et de l’expression.
 
-## POSITIONS DE DÉCLARATION
+## 9.G POSITIONS DE DÉCLARATION
 
 Les déclarations inline sont possibles uniquement aux positions prévues par la syntaxe ABAP.
 
@@ -92,7 +92,7 @@ ASSIGN lv_value TO FIELD-SYMBOL(<lv_alias>).
 
 Les déclarations inline dans les instructions SQL, les boucles et les appels de méthodes seront présentées dans les dossiers correspondants.
 
-## PORTÉE
+## 9.H PORTÉE
 
 Une déclaration inline ne crée pas automatiquement une portée limitée au bloc `IF`, `LOOP` ou `TRY` qui la contient.
 
@@ -110,7 +110,7 @@ rv_message = lv_message.
 
 Le code est syntaxiquement possible lorsque la déclaration est visible dans le contexte. Cette forme peut néanmoins être moins lisible qu’une déclaration explicite avant la condition.
 
-## QUAND UTILISER `DATA(...)`
+## 9.I QUAND UTILISER `DATA(...)`
 
 Approprié lorsque :
 
@@ -127,7 +127,7 @@ Préférer une déclaration explicite lorsque :
 - une conversion ou un arrondi implicite serait difficile à identifier ;
 - le système cible ne supporte pas la syntaxe.
 
-## EXEMPLE COMPARATIF
+## 9.J EXEMPLE COMPARATIF
 
 ```abap
 REPORT zdemo_inline_data.
@@ -142,7 +142,7 @@ WRITE / lv_total_amount.
 
 Le type de `lv_total_amount` est déterminé à partir de l’expression arithmétique. Pour un traitement financier réel, un type métier explicite peut rester préférable afin de maîtriser la précision et la sémantique.
 
-## ERREURS FRÉQUENTES
+## 9.K ERREURS FRÉQUENTES
 
 | Erreur                                                  | Risque                                    |
 | ------------------------------------------------------- | ----------------------------------------- |
@@ -152,14 +152,14 @@ Le type de `lv_total_amount` est déterminé à partir de l’expression arithm�
 | Employer une syntaxe non supportée par la version cible | Erreur syntaxique                         |
 | Déclarer la même variable dans plusieurs branches       | Conflit ou code difficile à comprendre    |
 
-## VÉRIFICATION
+## 9.L VÉRIFICATION
 
 - Le contrôle syntaxique réussit.
 - La version active correspond au code sauvegardé.
 - L’exécution produit le résultat décrit dans le chapitre.
 - Les cas vide, limite et erreur sont testés séparément lorsque la syntaxe le permet.
 
-## SNIPPET À RÉUTILISER
+## 9.M SNIPPET À RÉUTILISER
 
 > [!NOTE]
 > Adapter les noms `Z*`, les types DDIC, les données et les autorisations au système cible. Effectuer un contrôle syntaxique avant activation.
@@ -175,7 +175,7 @@ DATA(lv_total_amount) = lv_net_amount + lv_tax_amount.
 WRITE / lv_total_amount.
 ```
 
-## TERMES DU LEXIQUE
+## 9.N TERMES DU LEXIQUE
 
 - [Type de données](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#type-donnees>)
 - [Objet de données](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#objet-donnees>)
@@ -184,7 +184,7 @@ WRITE / lv_total_amount.
 - [Field-symbol](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#field-symbol>)
 - [Référence](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#reference>)
 
-## RÉFÉRENCES OFFICIELLES SAP
+## 9.O RÉFÉRENCES OFFICIELLES SAP
 
 - [Inline Declarations — ABAP Keyword Documentation](https://help.sap.com/doc/abapdocu_latest_index_htm/latest/en-US/ABENDECLARATION_INLINE.html)
 - [Declaration Expressions — ABAP Keyword Documentation](https://help.sap.com/doc/abapdocu_latest_index_htm/latest/en-US/ABENDECLARATION_EXPRESSIONS.html)

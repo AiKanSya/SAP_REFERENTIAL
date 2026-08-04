@@ -1,6 +1,6 @@
-# ACCÈS PAR OFFSET ET LONGUEUR
+# 10. ACCÈS PAR OFFSET ET LONGUEUR
 
-## RÉSULTAT ATTENDU
+## 10.A RÉSULTAT ATTENDU
 
 - Extraire une partie d’un objet caractère
 - Comprendre l’indexation à partir de zéro
@@ -8,7 +8,7 @@
 - Modifier une sous-zone lorsque le type l’autorise
 - Prévenir les accès hors limites
 
-## SYNTAXE
+## 10.B SYNTAXE
 
 ```abap
 source+offset(length)
@@ -35,7 +35,7 @@ Forme abrégée lorsque l’offset vaut zéro :
 lv_year = lv_date(4).
 ```
 
-## REPRÉSENTATION
+## 10.C REPRÉSENTATION
 
 ```mermaid
 flowchart LR
@@ -57,7 +57,7 @@ Pour la valeur `20260731` :
 | Mois      | `lv_date+4(2)` | `07`     |
 | Jour      | `lv_date+6(2)` | `31`     |
 
-## OFFSET DYNAMIQUE
+## 10.D OFFSET DYNAMIQUE
 
 ```abap
 DATA lv_text   TYPE string VALUE `SAP-ABAP`.
@@ -70,7 +70,7 @@ lv_part = lv_text+lv_offset(lv_length).
 
 Le programme doit vérifier que l’offset et la longueur restent dans les limites de la valeur.
 
-## MODIFICATION D’UNE SOUS-ZONE
+## 10.E MODIFICATION D’UNE SOUS-ZONE
 
 Pour un objet modifiable compatible :
 
@@ -85,7 +85,7 @@ La valeur devient `20260831`.
 > [!WARNING]
 > Modifier directement les composantes textuelles d’une date peut produire une date invalide. Cette technique convient à l’extraction ; les calculs de calendrier doivent utiliser les mécanismes de date adaptés.
 
-## RISQUES D’ACCÈS HORS LIMITES
+## 10.F RISQUES D’ACCÈS HORS LIMITES
 
 Un offset négatif ou une sous-zone dépassant la longueur disponible peut produire une exception d’exécution.
 
@@ -101,7 +101,7 @@ IF lv_offset >= 0
 ENDIF.
 ```
 
-## FONCTION SUBSTRING
+## 10.G FONCTION SUBSTRING
 
 Une autre forme consiste à utiliser `substring( )` :
 
@@ -121,7 +121,7 @@ Choix :
 | Paramètres dynamiques nommés         | `substring( )`                                         |
 | Modification directe d’une sous-zone | Offset/longueur dans une position d’écriture autorisée |
 
-## EXEMPLE AVEC UN IDENTIFIANT STRUCTURÉ
+## 10.H EXEMPLE AVEC UN IDENTIFIANT STRUCTURÉ
 
 ```abap
 DATA lv_reference TYPE string VALUE `FR-2026-000123`.
@@ -136,21 +136,21 @@ lv_number  = lv_reference+8(6).
 
 Cette technique suppose que le format a été validé avant l’extraction.
 
-## VÉRIFICATION
+## 10.I VÉRIFICATION
 
 - Le contrôle syntaxique réussit.
 - La version active correspond au code sauvegardé.
 - L’exécution produit le résultat décrit dans le chapitre.
 - Les cas vide, limite et erreur sont testés séparément lorsque la syntaxe le permet.
 
-## ERREURS FRÉQUENTES
+## 10.J ERREURS FRÉQUENTES
 
 - Copier un exemple sans adapter les types, noms d’objets et données disponibles dans le système.
 - Tester uniquement le cas nominal et ignorer les valeurs initiales, absentes ou invalides.
 - S’appuyer sur une conversion implicite pouvant tronquer ou arrondir.
 - Ignorer l’encodage et les formats externes.
 
-## SNIPPET À RÉUTILISER
+## 10.K SNIPPET À RÉUTILISER
 
 > [!NOTE]
 > Adapter les noms `Z*`, les types DDIC, les données et les autorisations au système cible. Effectuer un contrôle syntaxique avant activation.
@@ -165,13 +165,13 @@ IF lv_offset >= 0
 ENDIF.
 ```
 
-## TERMES DU LEXIQUE
+## 10.L TERMES DU LEXIQUE
 
 - [Instruction ABAP](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#instruction-abap>)
 - [Expression](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#expression>)
 - [Type de données](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#type-donnees>)
 
-## RÉFÉRENCES OFFICIELLES SAP
+## 10.M RÉFÉRENCES OFFICIELLES SAP
 
 - [Substring Access — ABAP Keyword Documentation](https://help.sap.com/doc/abapdocu_latest_index_htm/latest/en-US/ABENOFFSET_LENGTH.html)
 - [substring — ABAP Keyword Documentation](https://help.sap.com/doc/abapdocu_latest_index_htm/latest/en-US/ABENSUBSTRING_FUNCTIONS.html)

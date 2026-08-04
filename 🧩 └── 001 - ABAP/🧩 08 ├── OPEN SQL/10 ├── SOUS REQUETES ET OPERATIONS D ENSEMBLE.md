@@ -1,9 +1,6 @@
-# SOUS-R" Lire uniquement les colonnes et les lignes nécessaires.
-" Lire uniquement les colonnes et les lignes nécessaires.
-" Lire uniquement les colonnes et les lignes nécessaires.
-EQUÊTES ET OPÉRATIONS D’ENSEMBLE
+# 10. SOUS-REQUÊTES ET OPÉRATIONS D’ENSEMBLE
 
-## RÉSULTAT ATTENDU
+## 10.A RÉSULTAT ATTENDU
 
 - Utiliser une sous-requête pour filtrer un résultat
 - Employer `EXISTS` pour tester une existence
@@ -11,7 +8,7 @@ EQUÊTES ET OPÉRATIONS D’ENSEMBLE
 - Connaître les contraintes de compatibilité des colonnes
 - Choisir une construction lisible et performante
 
-## SOUS-REQUÊTE AVEC IN
+## 10.B SOUS-REQUÊTE AVEC IN
 
 ```abap
 " Lire uniquement les colonnes et les lignes nécessaires.
@@ -26,7 +23,7 @@ SELECT carrid, carrname
 
 La sous-requête produit un ensemble utilisé par la requête principale.
 
-## TEST D’EXISTENCE
+## 10.C TEST D’EXISTENCE
 
 ```abap
 " Lire uniquement les colonnes et les lignes nécessaires.
@@ -41,7 +38,7 @@ SELECT carrid, carrname
 
 `EXISTS` est adapté lorsque seule l’existence d’au moins une ligne correspondante importe.
 
-## UNION ET UNION ALL
+## 10.D UNION ET UNION ALL
 
 `UNION` combine plusieurs résultats et élimine les doublons complets. `UNION ALL` conserve les doublons.
 
@@ -61,35 +58,35 @@ Conditions principales :
 - types compatibles pour les colonnes de même position ;
 - ordre et clauses finales conformes à la syntaxe de la release.
 
-## CHOIX ENTRE JOIN ET SOUS-REQUÊTE
+## 10.E CHOIX ENTRE JOIN ET SOUS-REQUÊTE
 
 - une jointure est adaptée lorsqu’il faut retourner des colonnes des deux sources ;
 - `EXISTS` est adapté pour un test d’existence ;
 - une sous-requête scalaire peut produire une valeur ;
 - la lisibilité et le plan d’exécution doivent être vérifiés sur le cas réel.
 
-## COMPATIBILITÉ DE VERSION
+## 10.F COMPATIBILITÉ DE VERSION
 
 Les opérations `INTERSECT`, `EXCEPT`, les expressions de table communes et certaines formes avancées dépendent de la version ABAP.
 
 > [!IMPORTANT]
 > Vérifier la documentation de la release et le contrôle de syntaxe SAP GUI avant intégration.
 
-## VÉRIFICATION
+## 10.G VÉRIFICATION
 
 - Le contrôle syntaxique réussit.
 - La version active correspond au code sauvegardé.
 - L’exécution produit le résultat décrit dans le chapitre.
 - Les cas vide, limite et erreur sont testés séparément lorsque la syntaxe le permet.
 
-## ERREURS FRÉQUENTES
+## 10.H ERREURS FRÉQUENTES
 
 - Copier un exemple sans adapter les types, noms d’objets et données disponibles dans le système.
 - Tester uniquement le cas nominal et ignorer les valeurs initiales, absentes ou invalides.
 - Lire toutes les colonnes ou toutes les lignes par défaut.
 - Effectuer des commits dans une méthode réutilisable sans contrat explicite.
 
-## SNIPPET À RÉUTILISER
+## 10.I SNIPPET À RÉUTILISER
 
 > [!NOTE]
 > Adapter les noms `Z*`, les types DDIC, les données et les autorisations au système cible. Effectuer un contrôle syntaxique avant activation.
@@ -105,19 +102,19 @@ SELECT carrid, carrname
   INTO TABLE @DATA(lt_carriers).
 ```
 
-## TERMES DU LEXIQUE
+## 10.J TERMES DU LEXIQUE
 
 - [SQL](<../🧩 00 ├── LEXIQUE SAP ET ABAP/10 └── ACRONYMES SAP.md#acro-sql>)
 - [MANDT](<../🧩 00 ├── LEXIQUE SAP ET ABAP/05 ├── DONNEES DICTIONNAIRE ET BASE DE DONNEES.md#mandt>)
 - [Table transparente](<../🧩 00 ├── LEXIQUE SAP ET ABAP/05 ├── DONNEES DICTIONNAIRE ET BASE DE DONNEES.md#table-transparente>)
 - [LUW base de données](<../🧩 00 ├── LEXIQUE SAP ET ABAP/08 ├── EXECUTION EXPLOITATION ET ADMINISTRATION.md#luw-base>)
 
-## MODÈLE DE DÉMONSTRATION SFLIGHT
+## 10.K MODÈLE DE DÉMONSTRATION SFLIGHT
 
 > [!NOTE]
 > Les tables `SCARR`, `SPFLI` et `SFLIGHT` appartiennent au modèle de démonstration SAP et peuvent être absentes ou non alimentées dans certains systèmes. Dans ce cas, remplacer les exemples par une table Z de démonstration ou par une source en lecture seule autorisée, sans modifier une table applicative standard.
 
-## RÉFÉRENCES OFFICIELLES SAP
+## 10.L RÉFÉRENCES OFFICIELLES SAP
 
 - [Subqueries — ABAP Keyword Documentation](https://help.sap.com/doc/abapdocu_latest_index_htm/latest/en-US/ABENSUBQUERY_SHORTREF.html)
 - [UNION, INTERSECT and EXCEPT — ABAP Keyword Documentation](https://help.sap.com/doc/abapdocu_latest_index_htm/latest/en-US/ABAPUNION.html)

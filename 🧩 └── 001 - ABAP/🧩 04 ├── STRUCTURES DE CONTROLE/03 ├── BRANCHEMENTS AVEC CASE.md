@@ -1,6 +1,6 @@
-# BRANCHEMENTS AVEC CASE
+# 3. BRANCHEMENTS AVEC CASE
 
-## RÉSULTAT ATTENDU
+## 3.A RÉSULTAT ATTENDU
 
 - Sélectionner un traitement selon la valeur d’un opérande
 - Utiliser `WHEN` et `WHEN OTHERS`
@@ -8,7 +8,7 @@
 - Comprendre la différence entre `CASE` et `IF`
 - Éviter les branches silencieusement ignorées
 
-## STRUCTURE GÉNÉRALE
+## 3.B STRUCTURE GÉNÉRALE
 
 `CASE` compare un opérande à plusieurs valeurs possibles.
 
@@ -39,7 +39,7 @@ flowchart TD
 
 Une seule branche est exécutée.
 
-## TRAITEMENT PAR DÉFAUT
+## 3.C TRAITEMENT PAR DÉFAUT
 
 `WHEN OTHERS` intercepte toutes les valeurs non traitées auparavant.
 
@@ -57,7 +57,7 @@ ENDCASE.
 > [!IMPORTANT]
 > L’absence de `WHEN OTHERS` est valide. Dans ce cas, aucune branche n’est exécutée lorsqu’aucune valeur ne correspond. Ce comportement doit être intentionnel.
 
-## REGROUPER PLUSIEURS VALEURS
+## 3.D REGROUPER PLUSIEURS VALEURS
 
 Plusieurs valeurs peuvent déclencher le même bloc avec `OR`.
 
@@ -74,7 +74,7 @@ ENDCASE.
 
 `OR` dans une branche `WHEN` regroupe des valeurs d’égalité. Il ne remplace pas une expression logique générale.
 
-## CASE AVEC CONSTANTES
+## 3.E CASE AVEC CONSTANTES
 
 Les constantes rendent les branches plus explicites.
 
@@ -93,7 +93,7 @@ CASE lv_status.
 ENDCASE.
 ```
 
-## CASE N’EST PAS UN TEST DE PLAGE
+## 3.F CASE N’EST PAS UN TEST DE PLAGE
 
 Pour des intervalles, des comparaisons complexes ou plusieurs objets de données, utiliser `IF`.
 
@@ -109,7 +109,7 @@ ENDIF.
 
 Un `CASE` est adapté lorsqu’un même opérande est comparé par égalité à une liste de valeurs.
 
-## BRANCHES VIDES
+## 3.G BRANCHES VIDES
 
 Ne pas conserver une branche vide sans explication.
 
@@ -126,21 +126,21 @@ ENDCASE.
 
 Une branche vide peut masquer un oubli. Un commentaire doit justifier l’absence volontaire de traitement.
 
-## VÉRIFICATION
+## 3.H VÉRIFICATION
 
 - Le contrôle syntaxique réussit.
 - La version active correspond au code sauvegardé.
 - L’exécution produit le résultat décrit dans le chapitre.
 - Les cas vide, limite et erreur sont testés séparément lorsque la syntaxe le permet.
 
-## ERREURS FRÉQUENTES
+## 3.I ERREURS FRÉQUENTES
 
 - Copier un exemple sans adapter les types, noms d’objets et données disponibles dans le système.
 - Tester uniquement le cas nominal et ignorer les valeurs initiales, absentes ou invalides.
 - Créer une boucle sans condition de sortie fiable.
 - Utiliser `CHECK`, `CONTINUE`, `EXIT` ou `RETURN` sans rendre le flux lisible.
 
-## SNIPPET À RÉUTILISER
+## 3.J SNIPPET À RÉUTILISER
 
 > [!NOTE]
 > Adapter les noms `Z*`, les types DDIC, les données et les autorisations au système cible. Effectuer un contrôle syntaxique avant activation.
@@ -155,12 +155,12 @@ ELSE.
 ENDIF.
 ```
 
-## TERMES DU LEXIQUE
+## 3.K TERMES DU LEXIQUE
 
 - [Instruction ABAP](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#instruction-abap>)
 - [Expression](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#expression>)
 
-## RÉFÉRENCES OFFICIELLES SAP
+## 3.L RÉFÉRENCES OFFICIELLES SAP
 
 - [Using Control Structures in ABAP — SAP Learning](https://learning.sap.com/courses/basic-abap-programming/using-control-structures-in-abap_a4d7803e-eac2-458e-acf9-8628289f3701)
 - [Control Flow — SAP Help Portal](https://help.sap.com/docs/ABAP_PLATFORM_NEW/8132142fd1a144a59303663a03a7c2d4/94e1b1978adf45c1a72bd9d8075436d3.html)

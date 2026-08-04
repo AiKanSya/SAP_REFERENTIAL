@@ -1,6 +1,6 @@
-# CONCATÉNATION ET MODÈLES DE CHAÎNES
+# 9. CONCATÉNATION ET MODÈLES DE CHAÎNES
 
-## RÉSULTAT ATTENDU
+## 9.A RÉSULTAT ATTENDU
 
 - Concaténer plusieurs valeurs
 - Utiliser `CONCATENATE` et l’opérateur `&&`
@@ -8,7 +8,7 @@
 - Formater une valeur intégrée dans un texte
 - Choisir une forme lisible et compatible avec la version ABAP
 
-## INSTRUCTION CONCATENATE
+## 9.B INSTRUCTION CONCATENATE
 
 ```abap
 DATA lv_first_name TYPE string VALUE `Ada`.
@@ -28,7 +28,7 @@ Ada Lovelace
 
 `CONCATENATE` reste utile dans le code classique et permet une séparation explicite.
 
-## OPÉRATEUR &&
+## 9.C OPÉRATEUR &&
 
 ```abap
 lv_full_name = lv_first_name && ` ` && lv_last_name.
@@ -38,7 +38,7 @@ L’opérateur `&&` produit une expression de chaîne.
 
 Pour une concaténation simple, cette forme est compacte. Pour une phrase comportant plusieurs valeurs et formats, utiliser un modèle de chaîne.
 
-## MODÈLES DE CHAÎNES
+## 9.D MODÈLES DE CHAÎNES
 
 Un modèle de chaîne est délimité par `|`.
 
@@ -59,7 +59,7 @@ flowchart LR
     D --> E["Valeur string"]
 ```
 
-## EXPRESSIONS EMBARQUÉES
+## 9.E EXPRESSIONS EMBARQUÉES
 
 ```abap
 DATA lv_quantity TYPE i VALUE 3.
@@ -76,7 +76,7 @@ DATA(lv_total_text) = |Total : { lv_quantity * lv_price }|.
 
 Pour un calcul métier important, conserver le résultat dans une variable avant le formatage.
 
-## FORMATAGE
+## 9.F FORMATAGE
 
 Exemples d’options :
 
@@ -91,7 +91,7 @@ Les options d’affichage ne modifient pas la valeur source.
 > [!IMPORTANT]
 > Une chaîne formatée pour l’utilisateur ne doit pas être réutilisée comme valeur technique destinée à une interface ou à un calcul.
 
-## CARACTÈRES DE CONTRÔLE
+## 9.G CARACTÈRES DE CONTRÔLE
 
 Les modèles de chaînes permettent d’insérer des caractères de contrôle :
 
@@ -105,7 +105,7 @@ Selon le contexte de sortie, préférer les constantes prévues par les API util
 DATA(lv_multiline) = |Ligne 1{ cl_abap_char_utilities=>newline }Ligne 2|.
 ```
 
-## CONVERSION ALPHA DANS UN MODÈLE
+## 9.H CONVERSION ALPHA DANS UN MODÈLE
 
 Pour un champ utilisant la conversion ALPHA :
 
@@ -116,7 +116,7 @@ DATA(lv_external) = |{ lv_customer ALPHA = OUT }|.
 
 La conversion inverse peut être appliquée avec `ALPHA = IN` lorsque le contexte le justifie.
 
-## CHOIX DE LA TECHNIQUE
+## 9.I CHOIX DE LA TECHNIQUE
 
 | Cas                                         | Technique                                                   |
 | ------------------------------------------- | ----------------------------------------------------------- |
@@ -126,21 +126,21 @@ La conversion inverse peut être appliquée avec `ALPHA = IN` lorsque le context
 | Formatage de date, nombre ou identifiant    | Modèle de chaîne avec option                                |
 | Construction d’un format d’interface strict | API ou sérialiseur adapté, pas une concaténation improvisée |
 
-## VÉRIFICATION
+## 9.J VÉRIFICATION
 
 - Le contrôle syntaxique réussit.
 - La version active correspond au code sauvegardé.
 - L’exécution produit le résultat décrit dans le chapitre.
 - Les cas vide, limite et erreur sont testés séparément lorsque la syntaxe le permet.
 
-## ERREURS FRÉQUENTES
+## 9.K ERREURS FRÉQUENTES
 
 - Copier un exemple sans adapter les types, noms d’objets et données disponibles dans le système.
 - Tester uniquement le cas nominal et ignorer les valeurs initiales, absentes ou invalides.
 - S’appuyer sur une conversion implicite pouvant tronquer ou arrondir.
 - Ignorer l’encodage et les formats externes.
 
-## SNIPPET À RÉUTILISER
+## 9.L SNIPPET À RÉUTILISER
 
 > [!NOTE]
 > Adapter les noms `Z*`, les types DDIC, les données et les autorisations au système cible. Effectuer un contrôle syntaxique avant activation.
@@ -152,13 +152,13 @@ DATA lv_price    TYPE p LENGTH 8 DECIMALS 2 VALUE '12.50'.
 DATA(lv_message) = |Quantité : { lv_quantity }, prix : { lv_price }|.
 ```
 
-## TERMES DU LEXIQUE
+## 9.M TERMES DU LEXIQUE
 
 - [Instruction ABAP](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#instruction-abap>)
 - [Expression](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#expression>)
 - [Type de données](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#type-donnees>)
 
-## RÉFÉRENCES OFFICIELLES SAP
+## 9.N RÉFÉRENCES OFFICIELLES SAP
 
 - [String Expressions — ABAP Keyword Documentation](https://help.sap.com/doc/abapdocu_latest_index_htm/latest/en-US/ABENSTRING_EXPRESSIONS.html)
 - [String Templates — ABAP Keyword Documentation](https://help.sap.com/doc/abapdocu_latest_index_htm/latest/en-US/ABENSTRING_TEMPLATES.html)

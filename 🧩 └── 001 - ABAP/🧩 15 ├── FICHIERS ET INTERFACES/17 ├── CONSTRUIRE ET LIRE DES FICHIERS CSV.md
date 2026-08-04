@@ -1,14 +1,12 @@
-# CONSTR" Définir le contrat et limiter l’API publique au besoin réel.
+# 17. CONSTRUIRE ET LIRE DES FICHIERS CSV
 
-UIRE ET LIRE DES FICHIERS CSV
-
-## RÉSULTAT ATTENDU
+## 17.A RÉSULTAT ATTENDU
 
 - Comprendre les règles d’échappement
 - Produire un format non ambigu
 - Éviter les découpages naïfs
 
-## CONTRAT CSV
+## 17.B CONTRAT CSV
 
 CSV n’impose pas un séparateur unique dans tous les usages. Le contrat doit préciser :
 
@@ -20,7 +18,7 @@ CSV n’impose pas un séparateur unique dans tous les usages. Le contrat doit p
 - format des dates et nombres ;
 - représentation des valeurs vides.
 
-## ÉCHAPPEMENT
+## 17.C ÉCHAPPEMENT
 
 ```abap
 " Définir le contrat et limiter l’API publique au besoin réel.
@@ -47,7 +45,7 @@ ENDCLASS.
 
 Une valeur `Produit; spécial` devient `"Produit; spécial"`. Une citation interne est doublée.
 
-## LECTURE
+## 17.D LECTURE
 
 `SPLIT line AT ';'` est insuffisant dès qu’un champ cité contient le séparateur ou une fin de ligne. Pour un CSV complet :
 
@@ -55,55 +53,55 @@ Une valeur `Produit; spécial` devient `"Produit; spécial"`. Une citation inter
 - ou implémenter une machine à états tenant compte des citations ;
 - ou imposer contractuellement un format plus simple sans champs multiligne.
 
-## DONNÉES MÉTIER
+## 17.E DONNÉES MÉTIER
 
 Écrire les nombres avec un séparateur décimal invariant et les dates dans un format non ambigu, par exemple `YYYY-MM-DD`. Ne pas utiliser directement la présentation locale de l’utilisateur.
 
-## PROCESS
+## 17.F PROCESS
 
-### Étape 1 — Fixer le dialecte CSV
+### 17.F.1 Étape 1 — Fixer le dialecte CSV
 
 Documenter le séparateur, le caractère d’encadrement, la règle d’échappement, l’encodage, la présence d’un en-tête et la convention de fin de ligne.
 
-### Étape 2 — Sérialiser chaque champ
+### 17.F.2 Étape 2 — Sérialiser chaque champ
 
 Convertir la valeur métier dans son format d’échange. Encadrer un champ lorsque son contenu contient le séparateur, un guillemet ou une fin de ligne, puis doubler les guillemets selon le dialecte retenu.
 
-### Étape 3 — Construire la ligne complète
+### 17.F.3 Étape 3 — Construire la ligne complète
 
 Assembler les champs déjà échappés avec le séparateur. Ne pas concaténer des valeurs brutes directement dans la ligne finale.
 
-### Étape 4 — Écrire avec l’encodage convenu
+### 17.F.4 Étape 4 — Écrire avec l’encodage convenu
 
 Ouvrir le dataset en mode texte avec l’encodage contractuel, transférer l’en-tête puis les lignes, traiter les erreurs et fermer le fichier.
 
-### Étape 5 — Analyser avec un parseur adapté
+### 17.F.5 Étape 5 — Analyser avec un parseur adapté
 
 En lecture, ne pas utiliser un simple `SPLIT` si les champs peuvent contenir le séparateur ou des retours à la ligne. Utiliser une API disponible sur le système ou implémenter un analyseur à états conforme au dialecte.
 
-### Étape 6 — Valider la structure importée
+### 17.F.6 Étape 6 — Valider la structure importée
 
 Contrôler le nombre de colonnes, les noms d’en-tête, les conversions de types et le volume avant d’appeler la logique métier.
 
-### Étape 7 — Exécuter les cas de test discriminants
+### 17.F.7 Étape 7 — Exécuter les cas de test discriminants
 
 Tester un champ vide, un séparateur dans une valeur, un guillemet, une fin de ligne intégrée, des caractères non ASCII et une ligne mal formée.
 
-## VÉRIFICATION
+## 17.G VÉRIFICATION
 
 - Le fichier est créé ou lu dans l’emplacement attendu.
 - Le nombre de lignes, la taille et l’encodage correspondent au contrat.
 - Les caractères accentués, séparateurs, guillemets et fins de ligne sont testés.
 - Le traitement journalise les rejets et permet une reprise sans doublon.
 
-## ERREURS FRÉQUENTES
+## 17.H ERREURS FRÉQUENTES
 
 - Copier un exemple sans adapter les types, noms d’objets et données disponibles dans le système.
 - Tester uniquement le cas nominal et ignorer les valeurs initiales, absentes ou invalides.
 - Mélanger fichiers frontend et serveur dans un même scénario.
 - Parser un CSV par simple séparation alors que les champs peuvent être échappés.
 
-## SNIPPET À RÉUTILISER
+## 17.I SNIPPET À RÉUTILISER
 
 > [!NOTE]
 > Adapter les noms `Z*`, les types DDIC, les données et les autorisations au système cible. Effectuer un contrôle syntaxique avant activation.
@@ -131,7 +129,7 @@ CLASS lcl_csv IMPLEMENTATION.
 ENDCLASS.
 ```
 
-## TERMES DU LEXIQUE
+## 17.J TERMES DU LEXIQUE
 
 - [Interface](<../🧩 00 ├── LEXIQUE SAP ET ABAP/07 ├── INTERFACES ET INTEGRATION.md#interface-integration>)
 - [Flux entrant](<../🧩 00 ├── LEXIQUE SAP ET ABAP/07 ├── INTERFACES ET INTEGRATION.md#flux-entrant>)
@@ -140,7 +138,7 @@ ENDCLASS.
 - [Encodage](<../🧩 00 ├── LEXIQUE SAP ET ABAP/07 ├── INTERFACES ET INTEGRATION.md#encodage>)
 - [Serveur d’application](<../🧩 00 ├── LEXIQUE SAP ET ABAP/07 ├── INTERFACES ET INTEGRATION.md#fichier-serveur-application>)
 
-## RÉFÉRENCES OFFICIELLES SAP
+## 17.K RÉFÉRENCES OFFICIELLES SAP
 
 - [ABAP File Interface — SAP Help Portal](https://help.sap.com/docs/ABAP_PLATFORM_NEW/7bfe8cdcfbb040dcb6702dada8c3e2f0/fa2fd3be291f469f862c4c8215e0549b.html)
 - [Character Set and File Interface Guidelines — ABAP Keyword Documentation](https://help.sap.com/doc/abapdocu_latest_index_htm/latest/en-US/ABENCODEPAGE_FILE_GUIDL.html)

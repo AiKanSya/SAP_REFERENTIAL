@@ -1,6 +1,6 @@
-# CRÉATION D’UN PREMIER PROGRAMME
+# 5. CRÉATION D’UN PREMIER PROGRAMME
 
-## RÉSULTAT ATTENDU
+## 5.A RÉSULTAT ATTENDU
 
 - Créer un programme exécutable dans SAP GUI
 - L’affecter au bon package et au bon ordre de transport
@@ -8,7 +8,7 @@
 - Contrôler, activer et exécuter le programme
 - Identifier les artefacts créés autour du programme
 
-## VUE D’ENSEMBLE
+## 5.B VUE D’ENSEMBLE
 
 ```mermaid
 flowchart LR
@@ -21,7 +21,7 @@ flowchart LR
     G --> H["Exécution"]
 ```
 
-## PRÉREQUIS
+## 5.C PRÉREQUIS
 
 Avant de créer le programme, disposer de :
 
@@ -32,7 +32,7 @@ Avant de créer le programme, disposer de :
 - une requête Workbench adaptée ;
 - un objectif de test clairement défini.
 
-## NOM DU PROGRAMME
+## 5.D NOM DU PROGRAMME
 
 Un développement client utilise généralement un nom commençant par `Z` ou `Y`, sauf utilisation d’un espace de noms enregistré.
 
@@ -50,7 +50,7 @@ Le nom doit être :
 - conforme aux règles internes ;
 - suffisamment spécifique pour éviter les collisions.
 
-## CRÉATION AVEC `SE38`
+## 5.E CRÉATION AVEC `SE38`
 
 1. ouvrir la transaction `SE38` ;
 2. saisir le nom du programme ;
@@ -65,7 +65,7 @@ Le nom doit être :
 
 Les libellés exacts peuvent varier selon la version du système et la langue de connexion.
 
-## CRÉATION AVEC `SE80`
+## 5.F CRÉATION AVEC `SE80`
 
 1. ouvrir la transaction `SE80` ;
 2. sélectionner le Repository Browser ;
@@ -78,7 +78,7 @@ Les libellés exacts peuvent varier selon la version du système et la langue de
 
 Cette approche permet de créer directement l’objet dans son contexte applicatif.
 
-## CODE MINIMAL
+## 5.G CODE MINIMAL
 
 ```abap
 REPORT zdemo_fondamentaux_abap.
@@ -86,7 +86,7 @@ REPORT zdemo_fondamentaux_abap.
 WRITE / 'Premier programme ABAP'.
 ```
 
-### ANALYSE
+### 5.G.1 ANALYSE
 
 ```abap
 REPORT zdemo_fondamentaux_abap.
@@ -107,7 +107,7 @@ WRITE / 'Premier programme ABAP'.
 > [!NOTE]
 > Ce programme utilise volontairement une sortie de liste classique. Les technologies d’interface utilisateur et de restitution structurée seront traitées séparément.
 
-## VERSION AVEC PARAMÈTRE
+## 5.H VERSION AVEC PARAMÈTRE
 
 ```abap
 REPORT zdemo_fondamentaux_abap.
@@ -125,7 +125,7 @@ Ce programme :
 3. exécute le bloc `START-OF-SELECTION` ;
 4. affiche le résultat dans une liste classique.
 
-## CONTRÔLE, ACTIVATION ET EXÉCUTION
+## 5.I CONTRÔLE, ACTIVATION ET EXÉCUTION
 
 ```mermaid
 flowchart TD
@@ -141,7 +141,7 @@ flowchart TD
 
 L’exécution n’est pas une preuve de conformité fonctionnelle. Elle confirme uniquement que le scénario testé a pu atteindre un résultat sans erreur bloquante visible.
 
-## OBJETS ET INFORMATIONS À CONTRÔLER
+## 5.J OBJETS ET INFORMATIONS À CONTRÔLER
 
 Après création :
 
@@ -154,7 +154,7 @@ Après création :
 - documentation technique si le projet l’exige ;
 - autorisations nécessaires à l’exécution.
 
-## ERREURS FRÉQUENTES
+## 5.K ERREURS FRÉQUENTES
 
 | Situation                           | Cause probable                                     |
 | ----------------------------------- | -------------------------------------------------- |
@@ -164,9 +164,9 @@ Après création :
 | Le texte du paramètre est technique | Texte de sélection non maintenu                    |
 | La création est refusée             | Autorisation, verrou ou client non modifiable      |
 
-## PROCESS
+## 5.L PROCESS
 
-### Étape 1 — Créer le report
+### 5.L.1 Étape 1 — Créer le report
 
 1. Saisir `/nSE38`.
 2. Entrer `ZREF_HELLO_WORLD` puis choisir **Créer**.
@@ -175,7 +175,7 @@ Après création :
 
 Le type exécutable permet un lancement direct avec `F8`. Un include ou un module pool ne répond pas à ce scénario.
 
-### Étape 2 — Affecter le package et le transport
+### 5.L.2 Étape 2 — Affecter le package et le transport
 
 1. Utiliser `$TMP` seulement si l’exercice doit rester local.
 2. Pour un développement transportable, saisir le package fourni par le projet.
@@ -183,13 +183,13 @@ Le type exécutable permet un lancement direct avec `F8`. Un include ou un modul
 
 Avant de poursuivre, vérifier dans les attributs que le package affiché est celui choisi. Une mauvaise affectation doit être corrigée avant la livraison.
 
-### Étape 3 — Saisir un programme minimal
+### 5.L.3 Étape 3 — Saisir un programme minimal
 
 Copier le snippet du chapitre en conservant la déclaration `REPORT` et l’instruction de sortie. Remplacer le nom du report dans le code s’il diffère du nom créé.
 
 Après la saisie, enregistrer. Le système doit conserver une version inactive tant que l’activation n’a pas été exécutée.
 
-### Étape 4 — Contrôler la syntaxe
+### 5.L.4 Étape 4 — Contrôler la syntaxe
 
 1. Exécuter `Ctrl+F2`.
 2. Si une erreur apparaît, double-cliquer sur le message pour atteindre la ligne.
@@ -198,7 +198,7 @@ Après la saisie, enregistrer. Le système doit conserver une version inactive t
 
 Ne pas activer en ignorant une erreur. Les avertissements doivent également être lus et justifiés.
 
-### Étape 5 — Activer et exécuter
+### 5.L.5 Étape 5 — Activer et exécuter
 
 1. Exécuter `Ctrl+F3`.
 2. Vérifier que le statut de l’objet devient actif.
@@ -207,20 +207,20 @@ Ne pas activer en ignorant une erreur. Les avertissements doivent également êt
 
 Si l’ancienne sortie apparaît, revenir à l’éditeur et contrôler que la dernière version a été activée dans le même système.
 
-### Étape 6 — Prouver le cycle de modification
+### 5.L.6 Étape 6 — Prouver le cycle de modification
 
 Modifier une valeur visible, enregistrer, contrôler, réactiver puis relancer avec `F8`. La sortie doit refléter la nouvelle valeur.
 
 Le chapitre est terminé lorsque le programme existe dans le bon package, est actif, s’exécute sans erreur et produit la valeur correspondant exactement au dernier source activé.
 
-## VÉRIFICATION
+## 5.M VÉRIFICATION
 
 - Le contrôle syntaxique réussit.
 - La version active correspond au code sauvegardé.
 - L’exécution produit le résultat décrit dans le chapitre.
 - Les cas vide, limite et erreur sont testés séparément lorsque la syntaxe le permet.
 
-## SNIPPET À RÉUTILISER
+## 5.N SNIPPET À RÉUTILISER
 
 > [!NOTE]
 > Adapter les noms `Z*`, les types DDIC, les données et les autorisations au système cible. Effectuer un contrôle syntaxique avant activation.
@@ -234,7 +234,7 @@ START-OF-SELECTION.
   WRITE: / 'Bonjour', p_name.
 ```
 
-## TERMES DU LEXIQUE
+## 5.O TERMES DU LEXIQUE
 
 - [Système SAP](<../🧩 00 ├── LEXIQUE SAP ET ABAP/01 ├── SYSTEMES ENVIRONNEMENTS ET MANDANTS.md#systeme-sap>)
 - [Mandant](<../🧩 00 ├── LEXIQUE SAP ET ABAP/01 ├── SYSTEMES ENVIRONNEMENTS ET MANDANTS.md#mandant>)
@@ -243,7 +243,7 @@ START-OF-SELECTION.
 - [Repository ABAP](<../🧩 00 ├── LEXIQUE SAP ET ABAP/03 ├── REPOSITORY PACKAGES ET TRANSPORTS.md#repository-abap>)
 - [Package](<../🧩 00 ├── LEXIQUE SAP ET ABAP/03 ├── REPOSITORY PACKAGES ET TRANSPORTS.md#package>)
 
-## RÉFÉRENCES OFFICIELLES SAP
+## 5.P RÉFÉRENCES OFFICIELLES SAP
 
 - [Creating a Program](https://help.sap.com/docs/ABAP_PLATFORM_NEW/bd833c8355f34e96a6e83096b38bf192/d1801a47454211d189710000e8322d00-65.html)
 - [REPORT — ABAP Keyword Documentation](https://help.sap.com/doc/abapdocu_latest_index_htm/latest/en-US/ABAPREPORT.html)

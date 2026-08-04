@@ -1,6 +1,6 @@
-# OPTIONS D’AFFICHAGE ET DE SAISIE
+# 8. OPTIONS D’AFFICHAGE ET DE SAISIE
 
-## RÉSULTAT ATTENDU
+## 8.A RÉSULTAT ATTENDU
 
 - Configurer le comportement des champs de sélection
 - Utiliser les additions sans dégrader l’ergonomie
@@ -8,7 +8,7 @@
 - Déclencher un rafraîchissement par commande utilisateur
 - Distinguer contrainte technique et règle métier
 
-## OPTIONS COURANTES DE PARAMETERS
+## 8.B OPTIONS COURANTES DE PARAMETERS
 
 ```abap
 PARAMETERS:
@@ -26,7 +26,7 @@ PARAMETERS:
 | `NO-DISPLAY`     | Ne pas afficher le champ                      |
 | `MODIF ID`       | Affecter le champ à un groupe de modification |
 
-## OPTIONS DE SELECT-OPTIONS
+## 8.C OPTIONS DE SELECT-OPTIONS
 
 ```abap
 SELECT-OPTIONS s_date FOR sy-datum
@@ -36,7 +36,7 @@ SELECT-OPTIONS s_date FOR sy-datum
 
 `NO INTERVALS` modifie principalement la présentation de la borne haute. `NO-EXTENSION` empêche la saisie multiple.
 
-## COMMANDE UTILISATEUR
+## 8.D COMMANDE UTILISATEUR
 
 ```abap
 PARAMETERS:
@@ -48,7 +48,7 @@ PARAMETERS:
 
 Cette technique est utile pour afficher ou masquer des groupes de champs.
 
-## MÉMOIRE UTILISATEUR
+## 8.E MÉMOIRE UTILISATEUR
 
 Les additions `MEMORY ID` peuvent associer un champ à un paramètre SPA/GPA.
 
@@ -58,7 +58,7 @@ PARAMETERS p_bukrs TYPE bukrs MEMORY ID buk.
 
 Utiliser ce mécanisme seulement lorsque l’identifiant est officiellement défini et que la pré-alimentation est pertinente. Une valeur mémorisée ne doit jamais contourner une validation ou une autorisation.
 
-## AIDE À LA RECHERCHE EXPLICITE
+## 8.F AIDE À LA RECHERCHE EXPLICITE
 
 ```abap
 PARAMETERS p_carr TYPE scarr-carrid
@@ -67,7 +67,7 @@ PARAMETERS p_carr TYPE scarr-carrid
 
 Privilégier l’aide à la recherche portée par le type DDIC. Une aide explicitement imposée doit correspondre exactement au besoin du champ.
 
-## RÈGLE D’ERGONOMIE
+## 8.G RÈGLE D’ERGONOMIE
 
 Ne pas multiplier les options techniques pour compenser un écran mal conçu. Un écran de sélection doit rester :
 
@@ -77,21 +77,21 @@ Ne pas multiplier les options techniques pour compenser un écran mal conçu. Un
 - exploitable par variante ;
 - utilisable au clavier.
 
-## VÉRIFICATION
+## 8.H VÉRIFICATION
 
 - Le contrôle syntaxique réussit.
 - La version active correspond au code sauvegardé.
 - L’exécution produit le résultat décrit dans le chapitre.
 - Les cas vide, limite et erreur sont testés séparément lorsque la syntaxe le permet.
 
-## ERREURS FRÉQUENTES
+## 8.I ERREURS FRÉQUENTES
 
 - Copier un exemple sans adapter les types, noms d’objets et données disponibles dans le système.
 - Tester uniquement le cas nominal et ignorer les valeurs initiales, absentes ou invalides.
 - Mettre une logique lourde dans les événements de validation de l’écran.
 - Créer une variante contenant des valeurs obsolètes ou sensibles.
 
-## SNIPPET À RÉUTILISER
+## 8.J SNIPPET À RÉUTILISER
 
 > [!NOTE]
 > Adapter les noms `Z*`, les types DDIC, les données et les autorisations au système cible. Effectuer un contrôle syntaxique avant activation.
@@ -103,19 +103,19 @@ PARAMETERS:
   p_code  TYPE c LENGTH 20 VISIBLE LENGTH 10.
 ```
 
-## TERMES DU LEXIQUE
+## 8.K TERMES DU LEXIQUE
 
 - [Programme exécutable](<../🧩 00 ├── LEXIQUE SAP ET ABAP/06 ├── PROGRAMMES CLASSES ET OBJETS TECHNIQUES.md#programme-executable>)
 - [Variante](<../🧩 00 ├── LEXIQUE SAP ET ABAP/06 ├── PROGRAMMES CLASSES ET OBJETS TECHNIQUES.md#variante>)
 - [Transaction](<../🧩 00 ├── LEXIQUE SAP ET ABAP/02 ├── SAP GUI NAVIGATION ET TRANSACTIONS.md#transaction>)
 - [Dynpro](<../🧩 00 ├── LEXIQUE SAP ET ABAP/02 ├── SAP GUI NAVIGATION ET TRANSACTIONS.md#dynpro>)
 
-## MODÈLE DE DÉMONSTRATION SFLIGHT
+## 8.L MODÈLE DE DÉMONSTRATION SFLIGHT
 
 > [!NOTE]
 > Les tables `SCARR`, `SPFLI` et `SFLIGHT` appartiennent au modèle de démonstration SAP et peuvent être absentes ou non alimentées dans certains systèmes. Dans ce cas, remplacer les exemples par une table Z de démonstration ou par une source en lecture seule autorisée, sans modifier une table applicative standard.
 
-## RÉFÉRENCES OFFICIELLES SAP
+## 8.M RÉFÉRENCES OFFICIELLES SAP
 
 - [PARAMETERS — ABAP Keyword Documentation](https://help.sap.com/doc/abapdocu_816_index_htm/8.16/en-US/ABAPPARAMETERS.html)
 - [SELECT-OPTIONS, Value Options — ABAP Keyword Documentation](https://help.sap.com/doc/abapdocu_latest_index_htm/latest/en-US/abapselect-options_value.htm)

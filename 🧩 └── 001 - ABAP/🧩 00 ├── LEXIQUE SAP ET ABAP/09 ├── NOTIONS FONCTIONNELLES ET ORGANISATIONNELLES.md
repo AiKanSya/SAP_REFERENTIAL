@@ -1,11 +1,11 @@
-# NOTIONS FONCTIONNELLES ET ORGANISATIONNELLES
+# 9. NOTIONS FONCTIONNELLES ET ORGANISATIONNELLES
 
 Définitions fonctionnelles et organisationnelles fréquemment rencontrées dans les projets SAP.
 
 Chaque entrée présente une définition concise, un exemple, un repère pratique et, lorsque nécessaire, une distinction avec une notion proche.
 
 <a id="business-object"></a>
-## BUSINESS OBJECT
+## 9.A BUSINESS OBJECT
 
 **Définition.** Représentation métier d’une entité avec données, opérations et cycle de vie.
 
@@ -19,7 +19,7 @@ Chaque entrée présente une définition concise, un exemple, un repère pratiqu
 ---
 
 <a id="customizing"></a>
-## CUSTOMIZING
+## 9.B CUSTOMIZING
 
 **Définition.** Paramétrage permettant d’adapter le comportement standard SAP à l’organisation.
 
@@ -33,7 +33,7 @@ Chaque entrée présente une définition concise, un exemple, un repère pratiqu
 ---
 
 <a id="division"></a>
-## DIVISION
+## 9.C DIVISION
 
 **Définition.** Unité organisationnelle logistique couramment appelée plant dans les modèles SAP.
 
@@ -47,7 +47,7 @@ Chaque entrée présente une définition concise, un exemple, un repère pratiqu
 ---
 
 <a id="document-sap"></a>
-## DOCUMENT SAP
+## 9.D DOCUMENT SAP
 
 **Définition.** Objet transactionnel enregistré avec en-tête, postes, statuts et références.
 
@@ -61,7 +61,7 @@ Chaque entrée présente une définition concise, un exemple, un repère pratiqu
 ---
 
 <a id="donnee-base"></a>
-## DONNÉE DE BASE
+## 9.E DONNÉE DE BASE
 
 **Définition.** Donnée relativement stable réutilisée par plusieurs processus métier.
 
@@ -75,7 +75,7 @@ Chaque entrée présente une définition concise, un exemple, un repère pratiqu
 ---
 
 <a id="donnee-transactionnelle"></a>
-## DONNÉE TRANSACTIONNELLE
+## 9.F DONNÉE TRANSACTIONNELLE
 
 **Définition.** Donnée créée par l’exécution d’un processus métier.
 
@@ -89,7 +89,7 @@ Chaque entrée présente une définition concise, un exemple, un repère pratiqu
 ---
 
 <a id="objet-autorisation"></a>
-## OBJET D’AUTORISATION
+## 9.G OBJET D’AUTORISATION
 
 **Définition.** Structure de contrôle contenant des champs vérifiés lors d’une action.
 
@@ -103,7 +103,7 @@ Chaque entrée présente une définition concise, un exemple, un repère pratiqu
 ---
 
 <a id="organisation-commerciale"></a>
-## ORGANISATION COMMERCIALE
+## 9.H ORGANISATION COMMERCIALE
 
 **Définition.** Unité responsable de la vente et de la distribution dans le modèle SD.
 
@@ -117,7 +117,7 @@ Chaque entrée présente une définition concise, un exemple, un repère pratiqu
 ---
 
 <a id="organisation-achats"></a>
-## ORGANISATION D’ACHATS
+## 9.I ORGANISATION D’ACHATS
 
 **Définition.** Unité responsable des activités d’approvisionnement.
 
@@ -131,7 +131,7 @@ Chaque entrée présente une définition concise, un exemple, un repère pratiqu
 ---
 
 <a id="regle-metier"></a>
-## RÈGLE MÉTIER
+## 9.J RÈGLE MÉTIER
 
 **Définition.** Condition ou calcul imposé par le processus fonctionnel.
 
@@ -145,7 +145,7 @@ Chaque entrée présente une définition concise, un exemple, un repère pratiqu
 ---
 
 <a id="role-utilisateur"></a>
-## RÔLE UTILISATEUR
+## 9.K RÔLE UTILISATEUR
 
 **Définition.** Regroupement d’autorisations et de menus attribué à un utilisateur.
 
@@ -159,7 +159,7 @@ Chaque entrée présente une définition concise, un exemple, un repère pratiqu
 ---
 
 <a id="societe"></a>
-## SOCIÉTÉ
+## 9.L SOCIÉTÉ
 
 **Définition.** Unité comptable légale souvent représentée par le company code.
 
@@ -173,7 +173,7 @@ Chaque entrée présente une définition concise, un exemple, un repère pratiqu
 ---
 
 <a id="unite-organisationnelle"></a>
-## UNITÉ ORGANISATIONNELLE
+## 9.M UNITÉ ORGANISATIONNELLE
 
 **Définition.** Élément structurant l’entreprise dans SAP.
 
@@ -185,7 +185,7 @@ Chaque entrée présente une définition concise, un exemple, un repère pratiqu
 
 ---
 
-## Références SAP
+## 9.N Références SAP
 
 - [ABAP Programming Language — SAP Help Portal](https://help.sap.com/docs/ABAP_PLATFORM/66906ae3920c4fc684cf588290fb9267/d3d5c132973b404db980ba6ae0889be7.html)
 - [SAP GUI for Windows — SAP Help Portal](https://help.sap.com/docs/r/product/sap_gui_for_windows)

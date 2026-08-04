@@ -1,11 +1,11 @@
-# SAP GUI, NAVIGATION ET TRANSACTIONS
+# 2. SAP GUI, NAVIGATION ET TRANSACTIONS
 
 Définitions utiles pour se connecter, naviguer dans SAP GUI et utiliser les transactions classiques.
 
 Chaque entrée présente une définition concise, un exemple, un repère pratique et, lorsque nécessaire, une distinction avec une notion proche.
 
 <a id="aide-f1"></a>
-## AIDE F1
+## 2.A AIDE F1
 
 **Définition.** Aide contextuelle expliquant un champ, une fonction ou un mot-clé.
 
@@ -19,7 +19,7 @@ Chaque entrée présente une définition concise, un exemple, un repère pratiqu
 ---
 
 <a id="aide-f4"></a>
-## AIDE F4
+## 2.B AIDE F4
 
 **Définition.** Aide à la saisie proposant des valeurs autorisées ou recherchables.
 
@@ -33,7 +33,7 @@ Chaque entrée présente une définition concise, un exemple, un repère pratiqu
 ---
 
 <a id="barre-statut"></a>
-## BARRE DE STATUT
+## 2.C BARRE DE STATUT
 
 **Définition.** Zone inférieure de SAP GUI affichant messages et informations de session.
 
@@ -47,7 +47,7 @@ Chaque entrée présente une définition concise, un exemple, un repère pratiqu
 ---
 
 <a id="champ-commande"></a>
-## CHAMP DE COMMANDE
+## 2.D CHAMP DE COMMANDE
 
 **Définition.** Zone de SAP GUI utilisée pour saisir des codes de transaction et des commandes système.
 
@@ -61,7 +61,7 @@ Chaque entrée présente une définition concise, un exemple, un repère pratiqu
 ---
 
 <a id="code-transaction"></a>
-## CODE DE TRANSACTION
+## 2.E CODE DE TRANSACTION
 
 **Définition.** Identifiant court utilisé pour démarrer une transaction SAP.
 
@@ -75,7 +75,7 @@ Chaque entrée présente une définition concise, un exemple, un repère pratiqu
 ---
 
 <a id="dynpro"></a>
-## DYNPRO
+## 2.F DYNPRO
 
 **Définition.** Écran classique SAP composé d’une définition d’écran et d’une logique PBO/PAI.
 
@@ -89,7 +89,7 @@ Chaque entrée présente une définition concise, un exemple, un repère pratiqu
 ---
 
 <a id="sap-easy-access"></a>
-## SAP EASY ACCESS
+## 2.G SAP EASY ACCESS
 
 **Définition.** Écran d’accueil classique de SAP GUI contenant menus, favoris et champ de commande.
 
@@ -103,7 +103,7 @@ Chaque entrée présente une définition concise, un exemple, un repère pratiqu
 ---
 
 <a id="sap-gui"></a>
-## SAP GUI
+## 2.H SAP GUI
 
 **Définition.** Client graphique permettant d’utiliser les transactions et écrans d’un système SAP.
 
@@ -117,7 +117,7 @@ Chaque entrée présente une définition concise, un exemple, un repère pratiqu
 ---
 
 <a id="sap-logon"></a>
-## SAP LOGON
+## 2.I SAP LOGON
 
 **Définition.** Application qui répertorie les connexions SAP disponibles sur le poste utilisateur.
 
@@ -131,7 +131,7 @@ Chaque entrée présente une définition concise, un exemple, un repère pratiqu
 ---
 
 <a id="session-sap-gui"></a>
-## SESSION SAP GUI
+## 2.J SESSION SAP GUI
 
 **Définition.** Fenêtre de travail indépendante ouverte pour un même utilisateur et un même système.
 
@@ -145,7 +145,7 @@ Chaque entrée présente une définition concise, un exemple, un repère pratiqu
 ---
 
 <a id="transaction"></a>
-## TRANSACTION
+## 2.K TRANSACTION
 
 **Définition.** Point d’entrée SAP associé à un code et à un objet de démarrage : programme, dynpro, méthode ou autre type pris en charge.
 
@@ -157,7 +157,7 @@ Chaque entrée présente une définition concise, un exemple, un repère pratiqu
 
 ---
 
-## Références SAP
+## 2.L Références SAP
 
 - [ABAP Programming Language — SAP Help Portal](https://help.sap.com/docs/ABAP_PLATFORM/66906ae3920c4fc684cf588290fb9267/d3d5c132973b404db980ba6ae0889be7.html)
 - [SAP GUI for Windows — SAP Help Portal](https://help.sap.com/docs/r/product/sap_gui_for_windows)

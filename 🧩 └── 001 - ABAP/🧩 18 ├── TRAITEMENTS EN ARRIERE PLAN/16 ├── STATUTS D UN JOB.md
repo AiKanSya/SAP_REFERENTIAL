@@ -1,12 +1,12 @@
-# STATUTS D’UN JOB
+# 16. STATUTS D’UN JOB
 
-## RÉSULTAT ATTENDU
+## 16.A RÉSULTAT ATTENDU
 
 - Interpréter le cycle de vie d’un job
 - Distinguer attente normale et anomalie
 - Choisir l’action compatible avec le statut
 
-## CYCLE PRINCIPAL
+## 16.B CYCLE PRINCIPAL
 
 ```mermaid
 stateDiagram-v2
@@ -20,7 +20,7 @@ stateDiagram-v2
 
 Les libellés peuvent varier légèrement selon la langue et la version du système.
 
-## SIGNIFICATION
+## 16.C SIGNIFICATION
 
 | Statut   | Interprétation                                                  |
 | -------- | --------------------------------------------------------------- |
@@ -31,7 +31,7 @@ Les libellés peuvent varier légèrement selon la langue et la version du syst�
 | Terminé  | Toutes les étapes se sont terminées normalement                 |
 | Annulé   | Le job a été interrompu ou une étape a provoqué une terminaison |
 
-## « TERMINÉ » NE SIGNIFIE PAS TOUJOURS « MÉTIER RÉUSSI »
+## 16.D « TERMINÉ » NE SIGNIFIE PAS TOUJOURS « MÉTIER RÉUSSI »
 
 Un programme peut finir techniquement sans erreur tout en ayant rejeté toutes les données. Le statut du job doit être complété par :
 
@@ -41,49 +41,49 @@ Un programme peut finir techniquement sans erreur tout en ayant rejeté toutes l
 - contrôle des données produites ;
 - alerte métier.
 
-## JOB PRÊT TROP LONGTEMPS
+## 16.E JOB PRÊT TROP LONGTEMPS
 
 Contrôler les processus batch, la classe, le serveur cible, les modes d’exploitation et la charge système.
 
-## PROCESS
+## 16.F PROCESS
 
-### ÉTAPE 1 — IDENTIFIER LE STATUT ET L’HORODATAGE
+### 16.F.1 ÉTAPE 1 — IDENTIFIER LE STATUT ET L’HORODATAGE
 
 Dans `SM37`, sélectionner l’occurrence exacte et relever statut, heure prévue, début et fin. Comparer ces valeurs avant d’interpréter l’état. Un job libéré en attente et un job actif depuis longtemps nécessitent des diagnostics différents.
 
-### ÉTAPE 2 — INTERPRÉTER « PLANIFIÉ » OU « LIBÉRÉ »
+### 16.F.2 ÉTAPE 2 — INTERPRÉTER « PLANIFIÉ » OU « LIBÉRÉ »
 
 Pour un job planifié, vérifier qu’une condition de démarrage complète existe. Pour un job libéré, contrôler la date, l’événement, le prédécesseur et la disponibilité des processus batch. Ne pas relancer une copie tant que la cause de l’attente n’est pas connue.
 
-### ÉTAPE 3 — INTERPRÉTER « PRÊT » OU « ACTIF »
+### 16.F.3 ÉTAPE 3 — INTERPRÉTER « PRÊT » OU « ACTIF »
 
 Pour un job prêt, vérifier la capacité et le ciblage serveur. Pour un job actif, ouvrir les étapes et identifier le programme courant, le serveur et la durée. Corréler avec le journal avant de conclure à un blocage.
 
-### ÉTAPE 4 — INTERPRÉTER « TERMINÉ »
+### 16.F.4 ÉTAPE 4 — INTERPRÉTER « TERMINÉ »
 
 Lire le journal, le spool et les compteurs métier. Vérifier le résultat persistant. Un programme peut se terminer sans erreur système tout en journalisant des rejets ou en ne sélectionnant aucune donnée.
 
-### ÉTAPE 5 — INTERPRÉTER « ANNULÉ »
+### 16.F.5 ÉTAPE 5 — INTERPRÉTER « ANNULÉ »
 
 Relever le premier message d’erreur, l’étape, le programme et l’heure. Rechercher un dump `ST22`, une erreur d’autorisation, une annulation opérateur ou un défaut externe correspondant. Distinguer la cause initiale des messages secondaires de fin.
 
-### ÉTAPE 6 — AGIR SELON L’ÉTAT MÉTIER
+### 16.F.6 ÉTAPE 6 — AGIR SELON L’ÉTAT MÉTIER
 
 Contrôler les unités déjà validées et la stratégie de reprise avant modification du job. Documenter l’action : attendre, corriger la condition, résoudre la capacité, réparer le code ou relancer une unité idempotente. Le statut seul n’autorise jamais une répétition aveugle.
 
-## VÉRIFICATION
+## 16.G VÉRIFICATION
 
 - Le job apparaît dans `SM37` avec le statut attendu.
 - Le journal ne contient pas de message d’erreur non traité.
 - Le spool, le fichier ou le journal applicatif contient le résultat attendu.
 - Une relance contrôlée ne crée pas de doublon métier.
 
-## ERREURS FRÉQUENTES
+## 16.H ERREURS FRÉQUENTES
 
 - Planifier un job avec l’utilisateur personnel d’un développeur.
 - Relancer un job non idempotent après un échec partiel.
 
-## FICHE DE CONTRÔLE À COPIER
+## 16.I FICHE DE CONTRÔLE À COPIER
 
 ```text
 Système / SID       :
@@ -98,14 +98,14 @@ Horodatage          :
 Ordre de transport  :
 ```
 
-## TERMES DU LEXIQUE
+## 16.J TERMES DU LEXIQUE
 
 - [Job](<../🧩 00 ├── LEXIQUE SAP ET ABAP/06 ├── PROGRAMMES CLASSES ET OBJETS TECHNIQUES.md#job>)
 - [Spool](<../🧩 00 ├── LEXIQUE SAP ET ABAP/06 ├── PROGRAMMES CLASSES ET OBJETS TECHNIQUES.md#spool>)
 - [Processus background](<../🧩 00 ├── LEXIQUE SAP ET ABAP/08 ├── EXECUTION EXPLOITATION ET ADMINISTRATION.md#processus-background>)
 - [Variante](<../🧩 00 ├── LEXIQUE SAP ET ABAP/06 ├── PROGRAMMES CLASSES ET OBJETS TECHNIQUES.md#variante>)
 
-## RÉFÉRENCES OFFICIELLES SAP
+## 16.K RÉFÉRENCES OFFICIELLES SAP
 
 - [Possible Status of Background Jobs — SAP Help Portal](https://help.sap.com/docs/ABAP_PLATFORM_NEW/b07e7195f03f438b8e7ed273099d74f3/4b308aa91dd90a93e10000000a421937.html)
 - [Job Was Not Started — SAP Help Portal](https://help.sap.com/docs/ABAP_PLATFORM_NEW/b07e7195f03f438b8e7ed273099d74f3/4b272c13d1341780e10000000a42189c.html)

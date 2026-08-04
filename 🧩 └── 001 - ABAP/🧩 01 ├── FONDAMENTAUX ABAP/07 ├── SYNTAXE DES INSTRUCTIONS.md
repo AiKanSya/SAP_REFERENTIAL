@@ -1,6 +1,6 @@
-# SYNTAXE DES INSTRUCTIONS
+# 7. SYNTAXE DES INSTRUCTIONS
 
-## RÉSULTAT ATTENDU
+## 7.A RÉSULTAT ATTENDU
 
 - Comprendre la structure d’une instruction ABAP
 - Utiliser correctement les points, espaces, littéraux et opérateurs
@@ -8,7 +8,7 @@
 - Reconnaître les instructions chaînées
 - Utiliser la documentation des mots-clés compatible avec le système
 
-## VUE D’ENSEMBLE
+## 7.B VUE D’ENSEMBLE
 
 ```mermaid
 flowchart LR
@@ -17,7 +17,7 @@ flowchart LR
     C --> D["Point final"]
 ```
 
-## INSTRUCTION ABAP
+## 7.C INSTRUCTION ABAP
 
 Une instruction ABAP est composée de jetons syntaxiques :
 
@@ -43,7 +43,7 @@ Dans cet exemple :
 - `=` et `+` sont des opérateurs ;
 - `.` termine l’instruction.
 
-## ESPACES ET LIGNES
+## 7.D ESPACES ET LIGNES
 
 Les mots d’une instruction sont séparés par au moins un espace lorsqu’aucun caractère syntaxique ne joue ce rôle.
 
@@ -68,7 +68,7 @@ DATA gv_a TYPE i.
 DATA gv_b TYPE i.
 ```
 
-## CASSE
+## 7.E CASSE
 
 Les mots-clés et identifiants ABAP ne sont généralement pas sensibles à la casse.
 
@@ -89,9 +89,9 @@ DATA(gv_lower) = 'sap'.
 > [!NOTE]
 > La déclaration inline ci-dessus dépend de la version ABAP. Elle est utilisée uniquement pour illustrer la différence de contenu entre deux littéraux.
 
-## LITTÉRAUX
+## 7.F LITTÉRAUX
 
-### LITTÉRAL CARACTÈRE
+### 7.F.1 LITTÉRAL CARACTÈRE
 
 ```abap
 WRITE 'Texte'.
@@ -99,7 +99,7 @@ WRITE 'Texte'.
 
 Les espaces finaux d’un littéral de type texte peuvent être traités selon les règles du type cible.
 
-### LITTÉRAL CHAÎNE
+### 7.F.2 LITTÉRAL CHAÎNE
 
 ```abap
 DATA gv_text TYPE string.
@@ -108,7 +108,7 @@ gv_text = `Texte avec espaces finaux  `.
 
 Les accents graves délimitent un littéral de type chaîne.
 
-### MODÈLE DE CHAÎNE
+### 7.F.3 MODÈLE DE CHAÎNE
 
 ```abap
 DATA gv_name TYPE string VALUE `SAP`.
@@ -117,7 +117,7 @@ WRITE |Nom : { gv_name }|.
 
 Les modèles de chaîne permettent d’insérer des expressions entre accolades. Leur disponibilité dépend de la version ABAP du système.
 
-## INSTRUCTIONS CHAÎNÉES
+## 7.G INSTRUCTIONS CHAÎNÉES
 
 Le caractère `:` permet de factoriser le début de plusieurs instructions, séparées par des virgules.
 
@@ -143,7 +143,7 @@ WRITE: / 'A',
 > [!CAUTION]
 > Ne pas chaîner des instructions complexes uniquement pour réduire le nombre de lignes. La lisibilité prime sur la compacité.
 
-## PONCTUATION ET SÉLECTEURS
+## 7.H PONCTUATION ET SÉLECTEURS
 
 | Élément | Usage courant                                                   |
 | ------- | --------------------------------------------------------------- |
@@ -158,7 +158,7 @@ WRITE: / 'A',
 
 Les sélecteurs orientés objet et les expressions de table seront développés dans leurs dossiers dédiés.
 
-## CONTRÔLE SYNTAXIQUE
+## 7.I CONTRÔLE SYNTAXIQUE
 
 Le contrôle syntaxique vérifie notamment :
 
@@ -176,7 +176,7 @@ Il ne garantit pas :
 - la couverture de tous les cas de données ;
 - la sécurité du traitement.
 
-## DOCUMENTATION DES MOTS-CLÉS
+## 7.J DOCUMENTATION DES MOTS-CLÉS
 
 La documentation accessible depuis le système doit être privilégiée pour vérifier la syntaxe disponible sur sa version ABAP.
 
@@ -190,7 +190,7 @@ Méthode :
 
 La transaction `ABAPHELP` peut également donner accès à la documentation des mots-clés selon le système.
 
-## EXEMPLE ANALYSÉ
+## 7.K EXEMPLE ANALYSÉ
 
 ```abap
 REPORT zdemo_syntaxe.
@@ -211,43 +211,43 @@ START-OF-SELECTION.
 - `IF ... ENDIF` forme une structure de contrôle ;
 - chaque instruction se termine par un point.
 
-## PROCESS
+## 7.L PROCESS
 
-### Étape 1 — Préparer le report de test
+### 7.L.1 Étape 1 — Préparer le report de test
 
 Ouvrir dans `SE38` un report Z réservé aux exercices. Confirmer son nom et son package avant de passer en modification afin de ne pas utiliser un programme applicatif.
 
-### Étape 2 — Vérifier la terminaison d’une instruction
+### 7.L.2 Étape 2 — Vérifier la terminaison d’une instruction
 
 Saisir une instruction simple terminée par un point, enregistrer puis exécuter `Ctrl+F2`. Retirer ensuite le point et relancer le contrôle : le message doit localiser l’instruction incomplète. Restaurer le point avant de poursuivre.
 
-### Étape 3 — Tester la mise en forme multiligne
+### 7.L.3 Étape 3 — Tester la mise en forme multiligne
 
 Répartir la même instruction sur plusieurs lignes sans ajouter de point intermédiaire. Le contrôle doit rester positif, car le point et non le retour à la ligne termine l’instruction.
 
-### Étape 4 — Lire la syntaxe de la release
+### 7.L.4 Étape 4 — Lire la syntaxe de la release
 
 Positionner le curseur sur le mot-clé, appuyer sur `F1` puis comparer la forme de base, les additions et les exemples. Si une addition documentée ailleurs est absente, ne pas l’utiliser avant d’avoir confirmé sa disponibilité sur cette release.
 
-### Étape 5 — Valider
+### 7.L.5 Étape 5 — Valider
 
 Relancer `Ctrl+F2`, traiter chaque erreur puis activer avec `Ctrl+F3`. Le contrôle est terminé lorsque la version active ne contient aucune erreur et que chaque addition utilisée apparaît dans l’aide du système.
 
-## VÉRIFICATION
+## 7.M VÉRIFICATION
 
 - Le contrôle syntaxique réussit.
 - La version active correspond au code sauvegardé.
 - L’exécution produit le résultat décrit dans le chapitre.
 - Les cas vide, limite et erreur sont testés séparément lorsque la syntaxe le permet.
 
-## ERREURS FRÉQUENTES
+## 7.N ERREURS FRÉQUENTES
 
 - Copier un exemple sans adapter les types, noms d’objets et données disponibles dans le système.
 - Tester uniquement le cas nominal et ignorer les valeurs initiales, absentes ou invalides.
 - Intervenir dans le mauvais système ou mandant.
 - Confondre sauvegarde et activation.
 
-## SNIPPET À RÉUTILISER
+## 7.O SNIPPET À RÉUTILISER
 
 > [!NOTE]
 > Adapter les noms `Z*`, les types DDIC, les données et les autorisations au système cible. Effectuer un contrôle syntaxique avant activation.
@@ -265,7 +265,7 @@ START-OF-SELECTION.
   ENDIF.
 ```
 
-## TERMES DU LEXIQUE
+## 7.P TERMES DU LEXIQUE
 
 - [Système SAP](<../🧩 00 ├── LEXIQUE SAP ET ABAP/01 ├── SYSTEMES ENVIRONNEMENTS ET MANDANTS.md#systeme-sap>)
 - [Mandant](<../🧩 00 ├── LEXIQUE SAP ET ABAP/01 ├── SYSTEMES ENVIRONNEMENTS ET MANDANTS.md#mandant>)
@@ -274,7 +274,7 @@ START-OF-SELECTION.
 - [Repository ABAP](<../🧩 00 ├── LEXIQUE SAP ET ABAP/03 ├── REPOSITORY PACKAGES ET TRANSPORTS.md#repository-abap>)
 - [Package](<../🧩 00 ├── LEXIQUE SAP ET ABAP/03 ├── REPOSITORY PACKAGES ET TRANSPORTS.md#package>)
 
-## RÉFÉRENCES OFFICIELLES SAP
+## 7.Q RÉFÉRENCES OFFICIELLES SAP
 
 - [ABAP Syntax Overview](https://help.sap.com/docs/ABAP_PLATFORM_NEW/8132142fd1a144a59303663a03a7c2d4/4352eee7c454433cb926bd2b567e9f16.html)
 - [Statements](https://help.sap.com/docs/ABAP_PLATFORM_NEW/8132142fd1a144a59303663a03a7c2d4/3a12ce73d4d445eca8143bd4cef92761.html)

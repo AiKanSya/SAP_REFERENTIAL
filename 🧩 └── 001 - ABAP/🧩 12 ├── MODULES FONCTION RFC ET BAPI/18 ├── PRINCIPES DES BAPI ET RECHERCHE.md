@@ -1,13 +1,13 @@
-# PRINCIPES DES BAPI ET RECHERCHE
+# 18. PRINCIPES DES BAPI ET RECHERCHE
 
-## RÉSULTAT ATTENDU
+## 18.A RÉSULTAT ATTENDU
 
 - Définir une BAPI
 - Distinguer BAPI et module RFC générique
 - Rechercher une BAPI existante
 - Vérifier son contrat et sa documentation
 
-## DÉFINITION
+## 18.B DÉFINITION
 
 Une **Business Application Programming Interface** est une interface métier standardisée exposant une opération sur un objet ou un processus SAP. Elle est généralement implémentée par un module fonction distant.
 
@@ -18,7 +18,7 @@ flowchart LR
     C --> D["Logique applicative SAP"]
 ```
 
-## BAPI ET RFC
+## 18.C BAPI ET RFC
 
 | Module RFC                     | BAPI                                                       |
 | ------------------------------ | ---------------------------------------------------------- |
@@ -29,7 +29,7 @@ flowchart LR
 
 Toute BAPI est liée à la technologie RFC classique, mais tout module RFC n’est pas une BAPI.
 
-## RECHERCHE
+## 18.D RECHERCHE
 
 Outils classiques selon le système :
 
@@ -39,7 +39,7 @@ Outils classiques selon le système :
 - documentation de l’application SAP ;
 - Repository Information System.
 
-## ANALYSE
+## 18.E ANALYSE
 
 Avant d’utiliser une BAPI, lire :
 
@@ -53,7 +53,7 @@ Avant d’utiliser une BAPI, lire :
 - séquence d’appels ;
 - notes et documentation du composant.
 
-## TEST
+## 18.F TEST
 
 Une BAPI peut être testée dans `SE37`, mais le test isolé peut être incomplet. Certaines BAPI nécessitent :
 
@@ -63,44 +63,44 @@ Une BAPI peut être testée dans `SE37`, mais le test isolé peut être incomple
 - rollback en cas d’erreur ;
 - contexte métier valide.
 
-## CHOIX D API
+## 18.G CHOIX D API
 
 Lorsqu’une API officielle plus récente existe pour le scénario, suivre la recommandation du produit SAP. Ne pas choisir une BAPI uniquement parce qu’elle est connue ou facile à appeler.
 
-## PROCESS
+## 18.H PROCESS
 
-### Étape 1 — Partir de l’objet métier
+### 18.H.1 Étape 1 — Partir de l’objet métier
 
 Définir l’opération et l’objet : créer, modifier, lire ou annuler. Rechercher dans le BAPI Explorer ou les outils Repository disponibles plutôt que déduire le nom du module.
 
-### Étape 2 — Vérifier le statut de la BAPI
+### 18.H.2 Étape 2 — Vérifier le statut de la BAPI
 
 Lire documentation, méthode métier, statut de publication et restrictions S/4HANA. Écarter un module interne ressemblant à une BAPI mais non publié pour le scénario.
 
-### Étape 3 — Étudier l’interface complète
+### 18.H.3 Étape 3 — Étudier l’interface complète
 
 Ouvrir le module dans `SE37`. Relever clés, structures principales, structures `X`, tables, `RETURN` et comportement transactionnel documenté.
 
-### Étape 4 — Chercher un exemple fiable
+### 18.H.4 Étape 4 — Chercher un exemple fiable
 
 Examiner les appelants SAP ou programmes de test livrés. Vérifier que l’exemple correspond à la même opération et release, notamment pour les indicateurs de mise à jour.
 
-### Étape 5 — Tester sans commit initial
+### 18.H.5 Étape 5 — Tester sans commit initial
 
 Exécuter avec une donnée de test, lire toutes les lignes `RETURN` et rechercher le document avant commit. La BAPI est comprise lorsque validation, commit/rollback et clé retournée sont explicitement identifiés.
 
-## VÉRIFICATION
+## 18.I VÉRIFICATION
 
 - Le lecteur peut expliquer la différence entre cette notion et les concepts proches.
 - Le choix technique est justifié par un besoin concret, pas uniquement par habitude.
 - Les limites liées à la release, aux autorisations et au contexte d’exécution sont identifiées.
 
-## ERREURS FRÉQUENTES
+## 18.J ERREURS FRÉQUENTES
 
 - Appeler un module fonction sans lire sa documentation et ses exceptions.
 - Supposer qu’une BAPI effectue automatiquement le commit.
 
-## FICHE DE CONTRÔLE À COPIER
+## 18.K FICHE DE CONTRÔLE À COPIER
 
 ```text
 Système / SID       :
@@ -115,7 +115,7 @@ Horodatage          :
 Ordre de transport  :
 ```
 
-## TERMES DU LEXIQUE
+## 18.L TERMES DU LEXIQUE
 
 - [BAPI](<../🧩 00 ├── LEXIQUE SAP ET ABAP/10 └── ACRONYMES SAP.md#acro-bapi>)
 - [Module fonction](<../🧩 00 ├── LEXIQUE SAP ET ABAP/06 ├── PROGRAMMES CLASSES ET OBJETS TECHNIQUES.md#module-fonction>)
@@ -123,7 +123,7 @@ Ordre de transport  :
 - [RFC](<../🧩 00 ├── LEXIQUE SAP ET ABAP/10 └── ACRONYMES SAP.md#acro-rfc>)
 - [Destination RFC](<../🧩 00 ├── LEXIQUE SAP ET ABAP/07 ├── INTERFACES ET INTEGRATION.md#destination-rfc>)
 
-## RÉFÉRENCES OFFICIELLES SAP
+## 18.M RÉFÉRENCES OFFICIELLES SAP
 
 - [Describing Remote Function Calls and BAPIs — SAP Learning](https://learning.sap.com/courses/technical-implementation-and-operation-i-of-sap-s-4hana-and-sap-business-suite/describing-remote-function-calls-and-bapis)
 - [Explaining the Integration Technology Based on BAPIs and IDocs — SAP Learning](https://learning.sap.com/courses/developing-integration-scenarios-using-idoc-rfc-adapter-of-sap-process-orchestration/explaining-the-integration-technology-based-on-bapis-and-idocs-basics_db458c59-a70f-480d-b139-65065be1b9e9)

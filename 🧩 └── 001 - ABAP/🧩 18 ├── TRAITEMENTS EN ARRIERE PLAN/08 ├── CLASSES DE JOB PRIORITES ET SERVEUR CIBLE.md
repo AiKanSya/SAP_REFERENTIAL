@@ -1,12 +1,12 @@
-# CLASSES DE JOB, PRIORITÉS ET SERVEUR CIBLE
+# 8. CLASSES DE JOB, PRIORITÉS ET SERVEUR CIBLE
 
-## RÉSULTAT ATTENDU
+## 8.A RÉSULTAT ATTENDU
 
 - Comprendre les classes `A`, `B` et `C`
 - Éviter l’usage abusif des priorités élevées
 - Savoir quand fixer un serveur cible
 
-## CLASSES
+## 8.B CLASSES
 
 | Classe | Positionnement                                                |
 | ------ | ------------------------------------------------------------- |
@@ -16,11 +16,11 @@
 
 La classe influence l’ordre de prise en charge, mais elle ne corrige pas un programme lent ni une infrastructure insuffisante.
 
-## RÈGLE DE GOUVERNANCE
+## 8.C RÈGLE DE GOUVERNANCE
 
 La classe `A` doit être attribuée selon une règle d’exploitation formalisée. Une multiplication de jobs `A` annule l’intérêt de la priorisation et peut pénaliser les traitements normaux.
 
-## SERVEUR CIBLE
+## 8.D SERVEUR CIBLE
 
 Laisser le système répartir la charge est généralement préférable. Fixer un serveur seulement si une contrainte vérifiée l’exige.
 
@@ -31,7 +31,7 @@ flowchart TD
     B -->|"Oui"| D["Serveur cible documenté"]
 ```
 
-## DIAGNOSTIC
+## 8.E DIAGNOSTIC
 
 Si un job reste prêt :
 
@@ -41,45 +41,45 @@ Si un job reste prêt :
 - rechercher une saturation ou un arrêt d’instance ;
 - analyser les modes d’exploitation.
 
-## PROCESS
+## 8.F PROCESS
 
-### ÉTAPE 1 — CLASSER LE BESOIN D’EXPLOITATION
+### 8.F.1 ÉTAPE 1 — CLASSER LE BESOIN D’EXPLOITATION
 
 Documenter la criticité, l’heure limite, la durée habituelle, le volume et l’impact d’un retard. Faire valider la classe de job par l’exploitation. Une classe élevée ne corrige ni un programme lent ni une planification surchargée.
 
-### ÉTAPE 2 — VÉRIFIER LA CAPACITÉ DISPONIBLE
+### 8.F.2 ÉTAPE 2 — VÉRIFIER LA CAPACITÉ DISPONIBLE
 
 Identifier les serveurs ou groupes disposant de processus batch pendant la fenêtre prévue. Examiner avec Basis les autres charges concurrentes. Déterminer si le programme nécessite une proximité particulière avec une ressource ou un fichier local au serveur.
 
-### ÉTAPE 3 — CONFIGURER CLASSE ET CIBLAGE
+### 8.F.3 ÉTAPE 3 — CONFIGURER CLASSE ET CIBLAGE
 
 Dans `SM36`, affecter la classe autorisée. Laisser le système choisir la ressource lorsque aucune contrainte n’existe. Si un serveur ou groupe est requis, renseigner le ciblage validé et documenter la raison technique.
 
-### ÉTAPE 4 — CONTRÔLER LE JOB LIBÉRÉ
+### 8.F.4 ÉTAPE 4 — CONTRÔLER LE JOB LIBÉRÉ
 
 Dans `SM37`, ouvrir les détails et vérifier classe, serveur cible, condition de démarrage et étapes. Comparer au contrat d’exploitation. Corriger avant la fenêtre si le job dépend d’un serveur indisponible.
 
-### ÉTAPE 5 — MESURER LE DÉMARRAGE RÉEL
+### 8.F.5 ÉTAPE 5 — MESURER LE DÉMARRAGE RÉEL
 
 Après exécution, relever heure prévue, heure de début, serveur d’exécution et durée. Distinguer un retard d’ordonnancement d’une durée programme excessive. Conserver plusieurs exécutions comparables avant de conclure à un problème de capacité.
 
-### ÉTAPE 6 — RÉÉVALUER SANS CONTOURNER LA GOUVERNANCE
+### 8.F.6 ÉTAPE 6 — RÉÉVALUER SANS CONTOURNER LA GOUVERNANCE
 
 Si l’objectif n’est pas tenu, ajuster avec Basis la fenêtre, la classe, le groupe ou la capacité, puis mesurer à nouveau. Ne pas forcer durablement une classe prioritaire ou un serveur cible depuis un programme Z sans décision d’exploitation.
 
-## VÉRIFICATION
+## 8.G VÉRIFICATION
 
 - Le job apparaît dans `SM37` avec le statut attendu.
 - Le journal ne contient pas de message d’erreur non traité.
 - Le spool, le fichier ou le journal applicatif contient le résultat attendu.
 - Une relance contrôlée ne crée pas de doublon métier.
 
-## ERREURS FRÉQUENTES
+## 8.H ERREURS FRÉQUENTES
 
 - Planifier un job avec l’utilisateur personnel d’un développeur.
 - Relancer un job non idempotent après un échec partiel.
 
-## FICHE DE CONTRÔLE À COPIER
+## 8.I FICHE DE CONTRÔLE À COPIER
 
 ```text
 Système / SID       :
@@ -94,7 +94,7 @@ Horodatage          :
 Ordre de transport  :
 ```
 
-## TERMES DU LEXIQUE
+## 8.J TERMES DU LEXIQUE
 
 - [Classe](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#classe>)
 - [Job](<../🧩 00 ├── LEXIQUE SAP ET ABAP/06 ├── PROGRAMMES CLASSES ET OBJETS TECHNIQUES.md#job>)
@@ -102,7 +102,7 @@ Ordre de transport  :
 - [Processus background](<../🧩 00 ├── LEXIQUE SAP ET ABAP/08 ├── EXECUTION EXPLOITATION ET ADMINISTRATION.md#processus-background>)
 - [Variante](<../🧩 00 ├── LEXIQUE SAP ET ABAP/06 ├── PROGRAMMES CLASSES ET OBJETS TECHNIQUES.md#variante>)
 
-## RÉFÉRENCES OFFICIELLES SAP
+## 8.K RÉFÉRENCES OFFICIELLES SAP
 
 - [Scheduling Background Jobs — SAP Help Portal](https://help.sap.com/docs/ABAP_PLATFORM_NEW/b07e7195f03f438b8e7ed273099d74f3/4b2b2954365474fee10000000a421937.html)
 - [Background Work Processes — SAP Help Portal](https://help.sap.com/docs/ABAP_PLATFORM_NEW/b07e7195f03f438b8e7ed273099d74f3/4b2b3c3e8eb51780e10000000a42189c.html)

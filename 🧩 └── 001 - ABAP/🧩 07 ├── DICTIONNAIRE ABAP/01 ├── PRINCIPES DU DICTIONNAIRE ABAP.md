@@ -1,6 +1,6 @@
-# PRINCIPES DU DICTIONNAIRE ABAP
+# 1. PRINCIPES DU DICTIONNAIRE ABAP
 
-## RÉSULTAT ATTENDU
+## 1.A RÉSULTAT ATTENDU
 
 - Comprendre le rôle du Dictionary ABAP
 - Identifier les principales catégories d’objets DDIC
@@ -8,7 +8,7 @@
 - Comprendre les dépendances entre les objets
 - Délimiter le périmètre du Dictionary classique dans SAP GUI
 
-## RÔLE DU DICTIONNAIRE ABAP
+## 1.B RÔLE DU DICTIONNAIRE ABAP
 
 Le Dictionary ABAP, souvent abrégé **DDIC**, centralise les métadonnées utilisées par le système ABAP.
 
@@ -28,7 +28,7 @@ flowchart LR
     D --> G["Libellés, contrôles de saisie et aides F4"]
 ```
 
-## PRINCIPAUX OBJETS
+## 1.C PRINCIPAUX OBJETS
 
 | Objet                 | Fonction principale                                            | Objet physique en base |
 | --------------------- | -------------------------------------------------------------- | ---------------------: |
@@ -41,7 +41,7 @@ flowchart LR
 | Aide à la recherche   | Définir une aide à la saisie F4                                |                    Non |
 | Objet de verrouillage | Définir un verrou logique SAP                                  |                    Non |
 
-## DÉPENDANCES ENTRE OBJETS
+## 1.D DÉPENDANCES ENTRE OBJETS
 
 Les objets DDIC sont généralement construits par couches.
 
@@ -55,7 +55,7 @@ flowchart LR
 
 Une modification d’un domaine peut donc rendre inactifs plusieurs éléments de données, structures, tables et programmes dépendants.
 
-## OBJETS GLOBAUX ET TYPES LOCAUX
+## 1.E OBJETS GLOBAUX ET TYPES LOCAUX
 
 Un type déclaré avec `TYPES` dans un programme est local à ce programme ou à son contexte de déclaration.
 
@@ -68,13 +68,13 @@ DATA ls_bapiret TYPE bapiret2.
 
 Dans cet exemple, `VBELN_VA` est un élément de données et `BAPIRET2` une structure du Dictionary.
 
-## PÉRIMÈTRE DU DOSSIER
+## 1.F PÉRIMÈTRE DU DOSSIER
 
 Ce dossier traite des objets classiques accessibles depuis SAP GUI, principalement avec les transactions `SE11`, `SE14`, `SE54` et `SM30`.
 
 Les définitions CDS et leur édition dans ADT ne sont pas détaillées ici. Elles feront partie d’un dossier distinct consacré aux développements sous Eclipse.
 
-## POINTS À RETENIR
+## 1.G POINTS À RETENIR
 
 - Le Dictionary est le référentiel central des métadonnées ABAP.
 - Les domaines ne sont pas des types ABAP directement utilisables.
@@ -82,13 +82,13 @@ Les définitions CDS et leur édition dans ADT ne sont pas détaillées ici. Ell
 - Les tables transparentes définissent également des objets persistants en base.
 - Les dépendances doivent être analysées avant toute modification.
 
-## PROCESS
+## 1.H PROCESS
 
-### Étape 1 — Identifier le besoin sémantique
+### 1.H.1 Étape 1 — Identifier le besoin sémantique
 
 Décrire la donnée à modéliser, son format, ses valeurs autorisées, son libellé et les objets qui la réutiliseront. Ne commencer aucune création tant qu’il est impossible de distinguer domaine, élément de données, structure, type de table et table persistante.
 
-### Étape 2 — Rechercher une définition existante
+### 1.H.2 Étape 2 — Rechercher une définition existante
 
 1. Ouvrir `/nSE11`.
 2. Rechercher par nom connu, puis utiliser les aides de recherche et les objets applicatifs proches.
@@ -97,7 +97,7 @@ Décrire la donnée à modéliser, son format, ses valeurs autorisées, son libe
 
 Réutiliser un objet uniquement si sa sémantique et ses règles de valeur correspondent exactement au besoin, pas seulement sa longueur technique.
 
-### Étape 3 — Choisir l’objet DDIC à créer
+### 1.H.3 Étape 3 — Choisir l’objet DDIC à créer
 
 - créer un domaine pour mutualiser format et valeurs autorisées ;
 - créer un élément de données pour porter la signification et les libellés ;
@@ -105,29 +105,29 @@ Réutiliser un objet uniquement si sa sémantique et ses règles de valeur corre
 - créer un type de table pour une interface partagée ;
 - créer une table transparente uniquement lorsqu’une persistance propre est nécessaire.
 
-### Étape 4 — Construire puis activer du bas vers le haut
+### 1.H.4 Étape 4 — Construire puis activer du bas vers le haut
 
 Créer et activer d’abord les dépendances : domaine, élément de données, structure, puis objet consommateur. Après chaque activation, lire tous les messages avant de poursuivre.
 
-### Étape 5 — Vérifier l’utilisation réelle
+### 1.H.5 Étape 5 — Vérifier l’utilisation réelle
 
 Déclarer un petit objet ABAP consommateur ou examiner l’objet applicatif cible. Contrôler type, aide F1/F4, libellés et valeurs autorisées. La modélisation est validée lorsque l’objet DDIC apporte la même sémantique partout où il est réutilisé.
 
-## VÉRIFICATION
+## 1.I VÉRIFICATION
 
 - Le contrôle de cohérence ne retourne aucune erreur bloquante.
 - L’objet est actif et son entrée de répertoire pointe vers le package attendu.
 - La liste d’utilisation et les dépendances correspondent au périmètre prévu.
 - Pour une table Z, la structure active et la structure de base sont cohérentes.
 
-## ERREURS FRÉQUENTES
+## 1.J ERREURS FRÉQUENTES
 
 - Copier un exemple sans adapter les types, noms d’objets et données disponibles dans le système.
 - Tester uniquement le cas nominal et ignorer les valeurs initiales, absentes ou invalides.
 - Modifier un objet standard au lieu d’utiliser une extension.
 - Activer une table sans vérifier clé, paramètres techniques et impact base.
 
-## SNIPPET À RÉUTILISER
+## 1.K SNIPPET À RÉUTILISER
 
 > [!NOTE]
 > Adapter les noms `Z*`, les types DDIC, les données et les autorisations au système cible. Effectuer un contrôle syntaxique avant activation.
@@ -137,7 +137,7 @@ DATA lv_vbeln TYPE vbeln_va.
 DATA ls_bapiret TYPE bapiret2.
 ```
 
-## TERMES DU LEXIQUE
+## 1.L TERMES DU LEXIQUE
 
 - [ABAP](<../🧩 00 ├── LEXIQUE SAP ET ABAP/10 └── ACRONYMES SAP.md#acro-abap>)
 - [ABAP Dictionary](<../🧩 00 ├── LEXIQUE SAP ET ABAP/05 ├── DONNEES DICTIONNAIRE ET BASE DE DONNEES.md#abap-dictionary>)
@@ -146,7 +146,7 @@ DATA ls_bapiret TYPE bapiret2.
 - [Table transparente](<../🧩 00 ├── LEXIQUE SAP ET ABAP/05 ├── DONNEES DICTIONNAIRE ET BASE DE DONNEES.md#table-transparente>)
 - [MANDT](<../🧩 00 ├── LEXIQUE SAP ET ABAP/05 ├── DONNEES DICTIONNAIRE ET BASE DE DONNEES.md#mandt>)
 
-## RÉFÉRENCES OFFICIELLES SAP
+## 1.M RÉFÉRENCES OFFICIELLES SAP
 
 - [Exploring ABAP Dictionary — SAP Learning](https://learning.sap.com/courses/building-data-models-with-the-abap-dictionary-and-abap-core-data-services/exploring-abap-dictionary_af8fdedf-0a10-43ab-aa1b-20abbece9d8b)
 - [ABAP Dictionary — SAP Help Portal](https://help.sap.com/docs/SAP_NETWEAVER_740/ec1c9c8191b74de98feb94001a95dd76/cf21ea0b446011d189700000e8322d00.html)

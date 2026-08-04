@@ -1,6 +1,6 @@
-# INSTRUCTION MESSAGE
+# 3. INSTRUCTION MESSAGE
 
-## RÉSULTAT ATTENDU
+## 3.A RÉSULTAT ATTENDU
 
 - Utiliser la syntaxe statique de `MESSAGE`
 - Appeler une classe explicitement ou avec `MESSAGE-ID`
@@ -8,7 +8,7 @@
 - Passer des variables au texte
 - Comprendre les champs système renseignés
 
-## SYNTAXE STATIQUE
+## 3.B SYNTAXE STATIQUE
 
 ```abap
 MESSAGE e001(zdev_msg) WITH lv_matnr.
@@ -21,7 +21,7 @@ Cette instruction appelle :
 - la classe `ZDEV_MSG` ;
 - la variable `lv_matnr` pour remplacer le premier `&`.
 
-## CLASSE DÉCLARÉE DANS REPORT
+## 3.C CLASSE DÉCLARÉE DANS REPORT
 
 La classe peut être définie dans l’instruction `REPORT`.
 
@@ -38,7 +38,7 @@ START-OF-SELECTION.
 
 Cette forme raccourcit les appels, mais rend la dépendance moins visible au niveau de chaque instruction. Une classe explicite reste souvent plus claire dans un code réparti entre plusieurs composants.
 
-## MESSAGE AVEC PLUSIEURS VARIABLES
+## 3.D MESSAGE AVEC PLUSIEURS VARIABLES
 
 ```abap
 MESSAGE e002(zdev_msg)
@@ -47,7 +47,7 @@ MESSAGE e002(zdev_msg)
 
 Les valeurs sont associées aux `&` dans leur ordre d’apparition. Au maximum quatre variables peuvent être transmises.
 
-## SYNTAXE DYNAMIQUE
+## 3.E SYNTAXE DYNAMIQUE
 
 ```abap
 MESSAGE ID lv_msgid
@@ -60,7 +60,7 @@ Cette forme est utile lorsque les composantes du message proviennent d’une API
 
 Elle ne doit pas être utilisée lorsque la classe, le numéro et le type sont connus à la conception. La syntaxe statique est alors plus lisible et mieux contrôlée.
 
-## CHAMPS SYSTÈME DE MESSAGE
+## 3.F CHAMPS SYSTÈME DE MESSAGE
 
 Après la construction d’un message, les champs système suivants peuvent être renseignés :
 
@@ -73,7 +73,7 @@ Après la construction d’un message, les champs système suivants peuvent êtr
 
 Ces champs sont volatils. Copier leurs valeurs immédiatement lorsqu’elles doivent être conservées.
 
-## MESSAGE LITTÉRAL
+## 3.G MESSAGE LITTÉRAL
 
 ```abap
 MESSAGE 'Traitement terminé' TYPE 'S'.
@@ -81,7 +81,7 @@ MESSAGE 'Traitement terminé' TYPE 'S'.
 
 Cette forme existe, mais elle ne fournit pas la gestion centralisée et multilingue d’une classe de messages. Elle doit rester limitée à des usages techniques ponctuels ou à des démonstrations.
 
-## BONNES PRATIQUES
+## 3.H BONNES PRATIQUES
 
 - préférer une classe de messages pour les textes destinés aux utilisateurs ;
 - utiliser un numéro stable et documenté ;
@@ -89,21 +89,21 @@ Cette forme existe, mais elle ne fournit pas la gestion centralisée et multilin
 - ne pas assembler un message traduit par concaténation ;
 - ne pas choisir le type uniquement pour obtenir une couleur visuelle.
 
-## VÉRIFICATION
+## 3.I VÉRIFICATION
 
 - Le contrôle syntaxique réussit.
 - La version active correspond au code sauvegardé.
 - L’exécution produit le résultat décrit dans le chapitre.
 - Les cas vide, limite et erreur sont testés séparément lorsque la syntaxe le permet.
 
-## ERREURS FRÉQUENTES
+## 3.J ERREURS FRÉQUENTES
 
 - Copier un exemple sans adapter les types, noms d’objets et données disponibles dans le système.
 - Tester uniquement le cas nominal et ignorer les valeurs initiales, absentes ou invalides.
 - Afficher un message technique incompréhensible à l’utilisateur.
 - Attraper une exception sans action ni propagation.
 
-## SNIPPET À RÉUTILISER
+## 3.K SNIPPET À RÉUTILISER
 
 > [!NOTE]
 > Adapter les noms `Z*`, les types DDIC, les données et les autorisations au système cible. Effectuer un contrôle syntaxique avant activation.
@@ -119,12 +119,12 @@ START-OF-SELECTION.
   ENDIF.
 ```
 
-## TERMES DU LEXIQUE
+## 3.L TERMES DU LEXIQUE
 
 - [Exception](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#exception>)
 - [Dump ABAP](<../🧩 00 ├── LEXIQUE SAP ET ABAP/08 ├── EXECUTION EXPLOITATION ET ADMINISTRATION.md#dump-abap>)
 
-## RÉFÉRENCES OFFICIELLES SAP
+## 3.M RÉFÉRENCES OFFICIELLES SAP
 
 - [MESSAGE — ABAP Keyword Documentation](https://help.sap.com/doc/abapdocu_latest_index_htm/latest/en-US/ABAPMESSAGE_SHORTREF.html)
 - [Messages and Message Classes — SAP Help Portal](https://help.sap.com/docs/ABAP_PLATFORM_NEW/c238d694b825421f940829321ffa326a/4ec242f66e391014adc9fffe4e204223.html)

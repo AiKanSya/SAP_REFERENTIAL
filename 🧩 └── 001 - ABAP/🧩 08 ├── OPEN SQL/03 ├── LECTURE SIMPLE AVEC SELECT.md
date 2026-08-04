@@ -1,13 +1,10 @@
-# LIRE D" Lire uniquement les colonnes et les lignes nécessaires.
+# 3. LIRE DES DONNÉES AVEC `SELECT`
 
-" Lire uniquement les colonnes et les lignes nécessaires.
-ES DONNÉES AVEC `SELECT`
-
-## RÉSULTAT ATTENDU
+## 3.A RÉSULTAT ATTENDU
 
 Créer et exécuter un programme qui lit les compagnies aériennes d’une devise donnée, puis affiche uniquement les colonnes utiles.
 
-## PRÉREQUIS
+## 3.B PRÉREQUIS
 
 - Accès à `SE38` ou `SE80` dans un système de développement S/4HANA.
 - Autorisation de créer ou modifier un programme `Z`.
@@ -16,35 +13,35 @@ Créer et exécuter un programme qui lit les compagnies aériennes d’une devis
 > [!NOTE]
 > Si `SCARR` est absente ou vide, utiliser une table `Z` de démonstration ou une source autorisée en lecture seule. Ne pas remplacer l’exemple par une table applicative standard destinée à être modifiée.
 
-## PROCESS
+## 3.C PROCESS
 
-### Étape 1 — Vérifier les données de test
+### 3.C.1 Étape 1 — Vérifier les données de test
 
 Afficher `SCARR` dans `SE11` ou un outil de consultation autorisé. Relever une devise réellement présente et au moins un transporteur associé. Ne retenir `EUR` que si cette valeur existe dans le système courant.
 
-### Étape 2 — Créer le programme
+### 3.C.2 Étape 2 — Créer le programme
 
 Ouvrir `SE38`, saisir `ZDEMO_SELECT_CARRIERS` et choisir **Créer**. Utiliser `$TMP` pour un exercice local ou le package et la tâche imposés par le projet. Si le nom existe, ne pas écraser le programme : choisir un nom libre.
 
-### Étape 3 — Insérer et vérifier le code
+### 3.C.3 Étape 3 — Insérer et vérifier le code
 
 Coller le programme complet du chapitre. Vérifier que la déclaration `REPORT` correspond au nom créé et que les variables hôtes de la requête sont précédées de `@`.
 
-### Étape 4 — Contrôler puis activer
+### 3.C.4 Étape 4 — Contrôler puis activer
 
 Exécuter `Ctrl+F2`, corriger chaque erreur, puis `Ctrl+F3`. Si `SCARR` ou un champ est inconnu, confirmer que le système cible contient le modèle de démonstration utilisé par le chapitre.
 
-### Étape 5 — Exécuter le cas positif
+### 3.C.5 Étape 5 — Exécuter le cas positif
 
 Lancer avec `F8`, saisir la devise relevée à l’étape 1 puis exécuter. Comparer nombre de lignes, identifiants et devises avec la source.
 
-### Étape 6 — Exécuter le cas sans résultat
+### 3.C.6 Étape 6 — Exécuter le cas sans résultat
 
 Relancer avec une valeur valide techniquement mais absente des données. Le programme doit afficher ou traiter explicitement l’absence de transporteur, sans conserver le résultat de l’exécution précédente.
 
 Le test est terminé lorsque les cas présent et absent produisent deux résultats distincts et contrôlés.
 
-## CODE PRÊT À ADAPTER
+## 3.D CODE PRÊT À ADAPTER
 
 ```abap
 " Lire uniquement les colonnes et les lignes nécessaires.
@@ -77,7 +74,7 @@ La variable ABAP `p_curr` est préfixée par `@` parce qu’elle est utilisée c
 
 `INTO TABLE` remplace le contenu de la table interne cible. `APPENDING TABLE` ajoute les lignes au contenu existant et ne doit être utilisé que si cette accumulation est voulue.
 
-## POINTS À REMPLACER
+## 3.E POINTS À REMPLACER
 
 | Élément                          | Remplacement attendu                      |
 | -------------------------------- | ----------------------------------------- |
@@ -87,9 +84,9 @@ La variable ABAP `p_curr` est préfixée par `@` parce qu’elle est utilisée c
 | `P_CURR`                         | Critère de sélection adapté au besoin     |
 | `ORDER BY CARRID`                | Ordre déterministe requis par l’affichage |
 
-## VARIANTES UTILES
+## 3.F VARIANTES UTILES
 
-### LIRE UNE SEULE LIGNE PAR CLÉ
+### 3.F.1 LIRE UNE SEULE LIGNE PAR CLÉ
 
 ```abap
 " Lire uniquement les colonnes et les lignes nécessaires.
@@ -110,7 +107,7 @@ ENDIF.
 
 Utiliser cette forme lorsque la condition identifie une ligne unique. Le choix entre `SELECT SINGLE` et `UP TO 1 ROWS` est détaillé dans le chapitre suivant consacré à ce sujet.
 
-### AJOUTER À UNE TABLE INTERNE EXISTANTE
+### 3.F.2 AJOUTER À UNE TABLE INTERNE EXISTANTE
 
 ```abap
 " Lire uniquement les colonnes et les lignes nécessaires.
@@ -124,7 +121,7 @@ SELECT carrid,
 
 Contrôler les doublons avant d’employer `APPENDING TABLE` dans plusieurs lectures successives.
 
-## CONTRÔLE
+## 3.G CONTRÔLE
 
 - `Ctrl+F2` ne retourne aucune erreur de syntaxe.
 - Une devise existante produit une liste triée par `CARRID`.
@@ -133,7 +130,7 @@ Contrôler les doublons avant d’employer `APPENDING TABLE` dans plusieurs lect
 - `SY-SUBRC = 4` lorsqu’aucune ligne n’est trouvée.
 - La liste `SELECT` ne contient que les colonnes utilisées.
 
-## ERREURS FRÉQUENTES
+## 3.H ERREURS FRÉQUENTES
 
 | Symptôme                        | Cause probable                                    | Correction                                                      |
 | ------------------------------- | ------------------------------------------------- | --------------------------------------------------------------- |
@@ -144,20 +141,20 @@ Contrôler les doublons avant d’employer `APPENDING TABLE` dans plusieurs lect
 | Structure cible incompatible    | Colonnes et cible ne correspondent pas            | Utiliser une cible inline ou adapter explicitement le type      |
 | Doublons inattendus             | Usage successif de `APPENDING TABLE`              | Vider la cible ou utiliser `INTO TABLE`                         |
 
-## COMPATIBILITÉ S/4HANA
+## 3.I COMPATIBILITÉ S/4HANA
 
 - Statut : recommandé pour le développement ABAP classique.
 - Employer la syntaxe ABAP SQL avec variables hôte `@`.
 - Préférer une lecture ensembliste dans une table interne à une succession de lectures SQL dans une boucle ABAP.
 - La disponibilité de la syntaxe exacte dépend de la version d’ABAP Platform ; la documentation `F1` du système reste la référence exécutable.
 
-## TERMES DU LEXIQUE
+## 3.J TERMES DU LEXIQUE
 
 - [SQL](<../🧩 00 ├── LEXIQUE SAP ET ABAP/10 └── ACRONYMES SAP.md#acro-sql>)
 - [MANDT](<../🧩 00 ├── LEXIQUE SAP ET ABAP/05 ├── DONNEES DICTIONNAIRE ET BASE DE DONNEES.md#mandt>)
 - [Table transparente](<../🧩 00 ├── LEXIQUE SAP ET ABAP/05 ├── DONNEES DICTIONNAIRE ET BASE DE DONNEES.md#table-transparente>)
 
-## RÉFÉRENCES OFFICIELLES SAP
+## 3.K RÉFÉRENCES OFFICIELLES SAP
 
 - [Implementing Basic SELECT Statements — SAP Learning](https://learning.sap.com/courses/basic-abap-programming/implementing-basic-select-statements_a6d4effa-f6b0-4ef8-96c8-b79baa2da157)
 - [SELECT — ABAP Keyword Documentation](https://help.sap.com/doc/abapdocu_latest_index_htm/latest/en-US/ABAPSELECT_SHORTREF.html)

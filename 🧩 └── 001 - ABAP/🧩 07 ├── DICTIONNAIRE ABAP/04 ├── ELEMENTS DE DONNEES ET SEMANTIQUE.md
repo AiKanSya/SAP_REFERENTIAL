@@ -1,6 +1,6 @@
-# ÉLÉMENTS DE DONNÉES ET SÉMANTIQUE
+# 4. ÉLÉMENTS DE DONNÉES ET SÉMANTIQUE
 
-## RÉSULTAT ATTENDU
+## 4.A RÉSULTAT ATTENDU
 
 - Comprendre le rôle d’un élément de données
 - Séparer caractéristiques techniques et signification métier
@@ -8,7 +8,7 @@
 - Réutiliser un élément de données dans les objets DDIC et le code ABAP
 - Choisir entre domaine et type prédéfini
 
-## DÉFINITION
+## 4.B DÉFINITION
 
 Un élément de données définit un type élémentaire global et lui associe une signification fonctionnelle.
 
@@ -19,7 +19,7 @@ Il peut être basé :
 
 Pour les champs de tables persistantes, l’utilisation d’un élément de données basé sur un domaine favorise la cohérence et la réutilisation.
 
-## CONTENU D’UN ÉLÉMENT DE DONNÉES
+## 4.C CONTENU D’UN ÉLÉMENT DE DONNÉES
 
 | Information                            | Fonction                                                 |
 | -------------------------------------- | -------------------------------------------------------- |
@@ -39,7 +39,7 @@ flowchart LR
     C --> F["Variable ABAP"]
 ```
 
-## DOMAINE ET ÉLÉMENT DE DONNÉES
+## 4.D DOMAINE ET ÉLÉMENT DE DONNÉES
 
 | Question                           | Domaine |             Élément de données |
 | ---------------------------------- | ------: | -----------------------------: |
@@ -51,7 +51,7 @@ flowchart LR
 
 Deux données peuvent partager le même format sans avoir la même signification. Elles utilisent alors le même domaine, mais des éléments de données distincts.
 
-## EXEMPLE
+## 4.E EXEMPLE
 
 Le domaine `ZDM_ID_10` définit un identifiant alphanumérique de dix caractères.
 
@@ -68,7 +68,7 @@ DATA lv_customer_id TYPE zde_customer_id.
 DATA lv_contract_id TYPE zde_contract_id.
 ```
 
-## LIBELLÉS
+## 4.F LIBELLÉS
 
 Les quatre longueurs de libellés permettent aux écrans et listes classiques de choisir un texte adapté à l’espace disponible.
 
@@ -81,7 +81,7 @@ Les libellés doivent rester cohérents entre eux et décrire la donnée, pas le
 | Long    | Identifiant du client |
 | En-tête | ID client             |
 
-## DOCUMENTATION
+## 4.G DOCUMENTATION
 
 La documentation doit préciser, lorsque nécessaire :
 
@@ -93,7 +93,7 @@ La documentation doit préciser, lorsque nécessaire :
 
 Elle ne doit pas reproduire uniquement le nom technique.
 
-## POINTS À RETENIR
+## 4.H POINTS À RETENIR
 
 - L’élément de données est un type global élémentaire.
 - Le domaine porte le format ; l’élément de données porte la sémantique.
@@ -101,48 +101,48 @@ Elle ne doit pas reproduire uniquement le nom technique.
 - Un même domaine peut alimenter plusieurs éléments de données métier.
 - Un élément de données peut être utilisé directement avec `TYPE` en ABAP.
 
-## PROCESS
+## 4.I PROCESS
 
-### Étape 1 — Définir la signification du champ
+### 4.I.1 Étape 1 — Définir la signification du champ
 
 Nommer la donnée métier indépendamment de la table qui l’utilisera. Définir ses libellés court, moyen et long ainsi que la documentation F1 nécessaire.
 
 Si deux champs ont le même format mais des significations différentes, ils ne doivent pas partager automatiquement le même élément de données.
 
-### Étape 2 — Créer l’élément de données
+### 4.I.2 Étape 2 — Créer l’élément de données
 
 1. Ouvrir `SE11`, choisir **Type de données** et saisir un nom `Z...`.
 2. Choisir **Élément de données**.
 3. Référencer le domaine correspondant à la même sémantique technique.
 4. Utiliser un type prédéfini uniquement si aucun domaine partagé n’est requis et si la règle du projet l’autorise.
 
-### Étape 3 — Maintenir les textes et propriétés
+### 4.I.3 Étape 3 — Maintenir les textes et propriétés
 
 Renseigner la désignation et les libellés selon les longueurs d’écran. Ajouter la documentation F1 utile. Activer l’indicateur de document de modification uniquement si le champ doit participer au mécanisme SCDO et si le scénario est conçu pour cela.
 
-### Étape 4 — Contrôler et activer
+### 4.I.4 Étape 4 — Contrôler et activer
 
 Exécuter le contrôle, traiter les messages puis activer. Si le domaine est inactif, l’activer d’abord au lieu de forcer l’objet supérieur.
 
-### Étape 5 — Tester dans un consommateur
+### 4.I.5 Étape 5 — Tester dans un consommateur
 
 Utiliser l’élément dans une structure ou un écran de test. Vérifier type, libellés, aide F1 et comportement F4. La création est terminée lorsque l’utilisateur comprend la donnée affichée sans dépendre du nom technique du champ.
 
-## VÉRIFICATION
+## 4.J VÉRIFICATION
 
 - Le contrôle de cohérence ne retourne aucune erreur bloquante.
 - L’objet est actif et son entrée de répertoire pointe vers le package attendu.
 - La liste d’utilisation et les dépendances correspondent au périmètre prévu.
 - Pour une table Z, la structure active et la structure de base sont cohérentes.
 
-## ERREURS FRÉQUENTES
+## 4.K ERREURS FRÉQUENTES
 
 - Copier un exemple sans adapter les types, noms d’objets et données disponibles dans le système.
 - Tester uniquement le cas nominal et ignorer les valeurs initiales, absentes ou invalides.
 - Modifier un objet standard au lieu d’utiliser une extension.
 - Activer une table sans vérifier clé, paramètres techniques et impact base.
 
-## SNIPPET À RÉUTILISER
+## 4.L SNIPPET À RÉUTILISER
 
 > [!NOTE]
 > Adapter les noms `Z*`, les types DDIC, les données et les autorisations au système cible. Effectuer un contrôle syntaxique avant activation.
@@ -152,7 +152,7 @@ DATA lv_customer_id TYPE zde_customer_id.
 DATA lv_contract_id TYPE zde_contract_id.
 ```
 
-## TERMES DU LEXIQUE
+## 4.M TERMES DU LEXIQUE
 
 - [ABAP Dictionary](<../🧩 00 ├── LEXIQUE SAP ET ABAP/05 ├── DONNEES DICTIONNAIRE ET BASE DE DONNEES.md#abap-dictionary>)
 - [Domaine](<../🧩 00 ├── LEXIQUE SAP ET ABAP/05 ├── DONNEES DICTIONNAIRE ET BASE DE DONNEES.md#domaine>)
@@ -160,7 +160,7 @@ DATA lv_contract_id TYPE zde_contract_id.
 - [Table transparente](<../🧩 00 ├── LEXIQUE SAP ET ABAP/05 ├── DONNEES DICTIONNAIRE ET BASE DE DONNEES.md#table-transparente>)
 - [MANDT](<../🧩 00 ├── LEXIQUE SAP ET ABAP/05 ├── DONNEES DICTIONNAIRE ET BASE DE DONNEES.md#mandt>)
 
-## RÉFÉRENCES OFFICIELLES SAP
+## 4.N RÉFÉRENCES OFFICIELLES SAP
 
 - [Data Elements — SAP Help Portal](https://help.sap.com/docs/SAP_NETWEAVER_740/ec1c9c8191b74de98feb94001a95dd76/908d72feb1af11d194f600a0c929b3c3.html)
 - [Using Dictionary Objects as Data Types — SAP Learning](https://learning.sap.com/courses/building-data-models-with-the-abap-dictionary-and-abap-core-data-services/using-dictionary-objects-as-data-types_e28df7c3-7686-414e-9827-673dceeb21fb)

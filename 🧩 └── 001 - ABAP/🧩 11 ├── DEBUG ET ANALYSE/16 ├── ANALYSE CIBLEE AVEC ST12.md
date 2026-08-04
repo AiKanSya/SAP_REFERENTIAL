@@ -1,6 +1,6 @@
-# ANALYSE CIBLÉE AVEC ST12
+# 16. ANALYSE CIBLÉE AVEC ST12
 
-## RÉSULTAT ATTENDU
+## 16.A RÉSULTAT ATTENDU
 
 - Comprendre le rôle d’une analyse de transaction unique
 - Corréler trace ABAP et trace SQL
@@ -8,13 +8,13 @@
 - Identifier le chemin d’appel responsable d’un coût
 - Savoir quand préférer `SAT` ou `ST05`
 
-## RÔLE
+## 16.B RÔLE
 
 `ST12` est couramment utilisé pour une analyse ciblée d’une transaction ou d’un traitement en combinant des informations d’exécution ABAP et SQL dans un même scénario.
 
 L’outil peut varier selon la version et les composants installés. Les fonctions disponibles et les autorisations doivent être vérifiées sur le système concerné.
 
-## QUAND L UTILISER
+## 16.C QUAND L UTILISER
 
 Utiliser une analyse ciblée lorsque :
 
@@ -23,7 +23,7 @@ Utiliser une analyse ciblée lorsque :
 - il faut relier un accès SQL au chemin d’appel ;
 - le scénario est suffisamment court pour être enregistré.
 
-## DÉMARCHE
+## 16.D DÉMARCHE
 
 ```mermaid
 flowchart TD
@@ -34,7 +34,7 @@ flowchart TD
     E --> F["Comparer avec le résultat attendu"]
 ```
 
-## CHOIX ENTRE OUTILS
+## 16.E CHOIX ENTRE OUTILS
 
 | Besoin                         | Outil privilégié |
 | ------------------------------ | ---------------- |
@@ -44,7 +44,7 @@ flowchart TD
 | Détail des accès SQL           | `ST05`           |
 | Corrélation ciblée ABAP et SQL | `ST12`           |
 
-## ANALYSE
+## 16.F ANALYSE
 
 Chercher :
 
@@ -57,7 +57,7 @@ Chercher :
 
 Une trace ne remplace pas la compréhension fonctionnelle. Une requête coûteuse peut être nécessaire, tandis qu’une requête rapide répétée un million de fois constitue le vrai problème.
 
-## PRÉCAUTIONS
+## 16.G PRÉCAUTIONS
 
 - limiter la durée ;
 - cibler l’utilisateur ;
@@ -66,41 +66,41 @@ Une trace ne remplace pas la compréhension fonctionnelle. Une requête coûteus
 - conserver l’identifiant du résultat ;
 - protéger les données techniques exportées.
 
-## PROCESS
+## 16.H PROCESS
 
-### Étape 1 — Choisir ST12 pour une analyse combinée
+### 16.H.1 Étape 1 — Choisir ST12 pour une analyse combinée
 
 Utiliser `ST12` lorsque le défaut nécessite de corréler temps ABAP et accès SQL dans une même reproduction. Fixer utilisateur, transaction, données et intervalle.
 
-### Étape 2 — Configurer les traces
+### 16.H.2 Étape 2 — Configurer les traces
 
 Ouvrir `ST12`, sélectionner trace ABAP, SQL ou les deux, puis définir le contexte d’exécution. Limiter la durée et le périmètre afin de ne pas enregistrer des traitements étrangers.
 
-### Étape 3 — Capturer le scénario
+### 16.H.3 Étape 3 — Capturer le scénario
 
 Démarrer les traces juste avant l’action, reproduire le scénario une seule fois puis arrêter immédiatement l’enregistrement. Conserver l’identifiant de trace, l’horodatage, l’utilisateur, la transaction et les données utilisées afin de pouvoir répéter exactement la mesure.
 
-### Étape 4 — Analyser les deux axes
+### 16.H.4 Étape 4 — Analyser les deux axes
 
 Lire d’abord la distribution globale, puis la trace ABAP pour les unités coûteuses et la trace SQL pour les instructions dominantes. Utiliser les horodatages et appels pour relier une méthode à ses accès.
 
-### Étape 5 — Comparer
+### 16.H.5 Étape 5 — Comparer
 
 Après correction, créer une nouvelle trace avec le même contexte. Comparer les identifiants et résultats. Le diagnostic est validé lorsque la cause dominante diminue sans déplacement injustifié du coût vers un autre axe.
 
-## VÉRIFICATION
+## 16.I VÉRIFICATION
 
 - Le scénario reproduit correspond au même utilisateur, mandant, transaction et jeu de données.
 - L’horodatage et l’identifiant de l’analyse sont conservés.
 - La cause retenue est soutenue par une ligne source, une trace ou une valeur observée.
 - Après correction, le même scénario ne reproduit plus le défaut et le résultat métier reste identique.
 
-## ERREURS FRÉQUENTES
+## 16.J ERREURS FRÉQUENTES
 
 - Modifier les données dans le débogueur puis considérer le résultat comme reproductible.
 - Laisser une trace active trop longtemps.
 
-## FICHE DE CONTRÔLE À COPIER
+## 16.K FICHE DE CONTRÔLE À COPIER
 
 ```text
 Système / SID       :
@@ -115,14 +115,14 @@ Horodatage          :
 Ordre de transport  :
 ```
 
-## TERMES DU LEXIQUE
+## 16.L TERMES DU LEXIQUE
 
 - [Breakpoint](<../🧩 00 ├── LEXIQUE SAP ET ABAP/08 ├── EXECUTION EXPLOITATION ET ADMINISTRATION.md#breakpoint>)
 - [Watchpoint](<../🧩 00 ├── LEXIQUE SAP ET ABAP/08 ├── EXECUTION EXPLOITATION ET ADMINISTRATION.md#watchpoint>)
 - [Dump ABAP](<../🧩 00 ├── LEXIQUE SAP ET ABAP/08 ├── EXECUTION EXPLOITATION ET ADMINISTRATION.md#dump-abap>)
 - [Trace](<../🧩 00 ├── LEXIQUE SAP ET ABAP/08 ├── EXECUTION EXPLOITATION ET ADMINISTRATION.md#trace>)
 
-## RÉFÉRENCES OFFICIELLES SAP
+## 16.M RÉFÉRENCES OFFICIELLES SAP
 
 - [ST12 Single Transaction Analysis — SAP Help Portal](https://help.sap.com/docs/SAP_TRADE_MANAGEMENT/d0043d28a55b45a1814735ecb296be7d/b6432c3277ba4f3187625524f58f338d.html)
 - [How to Create an ST12 Performance Trace — SAP Help Portal](https://help.sap.com/docs/SUPPORT_CONTENT/abap/3353523507.html)

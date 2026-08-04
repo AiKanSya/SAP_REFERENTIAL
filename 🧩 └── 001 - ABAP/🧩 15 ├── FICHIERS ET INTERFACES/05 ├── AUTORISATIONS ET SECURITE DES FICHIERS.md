@@ -1,12 +1,12 @@
-# AUTORISATIONS ET SÉCURITÉ DES FICHIERS
+# 5. AUTORISATIONS ET SÉCURITÉ DES FICHIERS
 
-## RÉSULTAT ATTENDU
+## 5.A RÉSULTAT ATTENDU
 
 - Comprendre les contrôles appliqués aux accès fichiers
 - Réduire les risques d’injection de chemin
 - Protéger les données échangées
 
-## NIVEAUX DE CONTRÔLE
+## 5.B NIVEAUX DE CONTRÔLE
 
 L’accès à un fichier du serveur dépend de plusieurs niveaux :
 
@@ -22,7 +22,7 @@ flowchart TD
 - `S_PATH` permet un contrôle indépendant du programme sur les chemins enregistrés.
 - Le système d’exploitation doit également autoriser le compte de l’instance AS ABAP.
 
-## RISQUES
+## 5.C RISQUES
 
 Un nom de fichier fourni depuis l’extérieur et utilisé directement dans `OPEN DATASET` crée un risque sérieux :
 
@@ -32,7 +32,7 @@ Un nom de fichier fourni depuis l’extérieur et utilisé directement dans `OPE
 - divulgation de données ;
 - exécution d’un filtre de système d’exploitation si `FILTER` est utilisé.
 
-## MESURES
+## 5.D MESURES
 
 - Résoudre les noms par `FILE`.
 - Utiliser une liste blanche d’identifiants, pas une liste noire de caractères.
@@ -42,45 +42,45 @@ Un nom de fichier fourni depuis l’extérieur et utilisé directement dans `OPE
 - Chiffrer ou protéger les zones d’échange selon la classification des données.
 - Séparer les répertoires d’entrée, de travail, d’archive et d’erreur.
 
-## CONTRÔLE EXPLICITE
+## 5.E CONTRÔLE EXPLICITE
 
 Selon le contexte et la politique du système, un contrôle explicite avec `AUTHORITY_CHECK_DATASET` peut compléter les contrôles automatiques. Le résultat doit être traité avant toute ouverture du fichier.
 
-## PROCESS
+## 5.F PROCESS
 
-### Étape 1 — Restreindre le chemin
+### 5.F.1 Étape 1 — Restreindre le chemin
 
 Utiliser un nom logique `FILE` ou une liste blanche. Refuser traversée et séparateur non attendu avant résolution.
 
-### Étape 2 — Contrôler l’autorisation
+### 5.F.2 Étape 2 — Contrôler l’autorisation
 
 Exécuter les contrôles métier avant lecture ou écriture. Vérifier avec la sécurité les objets techniques appliqués par le système cible.
 
-### Étape 3 — Ouvrir dans le mode minimal
+### 5.F.3 Étape 3 — Ouvrir dans le mode minimal
 
 Choisir lecture, écriture ou ajout selon le besoin, avec encodage explicite. Tester immédiatement `SY-SUBRC`.
 
-### Étape 4 — Protéger le diagnostic
+### 5.F.4 Étape 4 — Protéger le diagnostic
 
 Journaliser numéro de ligne, clé de corrélation et erreur, sans secret ni contenu personnel complet.
 
-### Étape 5 — Tester succès et refus
+### 5.F.5 Étape 5 — Tester succès et refus
 
 Exécuter avec utilisateur autorisé, chemin interdit et fichier inaccessible. La sécurité est validée lorsque chaque refus bloque avant modification et conserve une preuve contrôlée.
 
-## VÉRIFICATION
+## 5.G VÉRIFICATION
 
 - Le scénario reproduit correspond au même utilisateur, mandant, transaction et jeu de données.
 - L’horodatage et l’identifiant de l’analyse sont conservés.
 - La cause retenue est soutenue par une ligne source, une trace ou une valeur observée.
 - Après correction, le même scénario ne reproduit plus le défaut et le résultat métier reste identique.
 
-## ERREURS FRÉQUENTES
+## 5.H ERREURS FRÉQUENTES
 
 - Mélanger fichiers frontend et serveur dans un même scénario.
 - Parser un CSV par simple séparation alors que les champs peuvent être échappés.
 
-## FICHE DE CONTRÔLE À COPIER
+## 5.I FICHE DE CONTRÔLE À COPIER
 
 ```text
 Système / SID       :
@@ -95,7 +95,7 @@ Horodatage          :
 Ordre de transport  :
 ```
 
-## TERMES DU LEXIQUE
+## 5.J TERMES DU LEXIQUE
 
 - [Interface](<../🧩 00 ├── LEXIQUE SAP ET ABAP/07 ├── INTERFACES ET INTEGRATION.md#interface-integration>)
 - [Flux entrant](<../🧩 00 ├── LEXIQUE SAP ET ABAP/07 ├── INTERFACES ET INTEGRATION.md#flux-entrant>)
@@ -104,7 +104,7 @@ Ordre de transport  :
 - [Encodage](<../🧩 00 ├── LEXIQUE SAP ET ABAP/07 ├── INTERFACES ET INTEGRATION.md#encodage>)
 - [Serveur d’application](<../🧩 00 ├── LEXIQUE SAP ET ABAP/07 ├── INTERFACES ET INTEGRATION.md#fichier-serveur-application>)
 
-## RÉFÉRENCES OFFICIELLES SAP
+## 5.K RÉFÉRENCES OFFICIELLES SAP
 
 - [Authorization for File Access — SAP Help Portal](https://help.sap.com/docs/ABAP_PLATFORM_NEW/7bfe8cdcfbb040dcb6702dada8c3e2f0/dc545b5a743047b6b468bbadd0085ce2.html)
 - [OPEN DATASET Security Notes — ABAP Keyword Documentation](https://help.sap.com/doc/abapdocu_latest_index_htm/latest/en-US/ABAPOPEN_DATASET.html)

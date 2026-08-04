@@ -1,6 +1,6 @@
-# VALIDATION AVEC AT SELECTION-SCREEN
+# 11. VALIDATION AVEC AT SELECTION-SCREEN
 
-## RÉSULTAT ATTENDU
+## 11.A RÉSULTAT ATTENDU
 
 - Valider les entrées avant le traitement principal
 - Cibler un paramètre, un critère ou un bloc
@@ -8,7 +8,7 @@
 - Maintenir l’utilisateur sur l’écran en cas d’erreur
 - Éviter les traitements lourds pendant la validation
 
-## VALIDATION GLOBALE
+## 11.B VALIDATION GLOBALE
 
 ```abap
 AT SELECTION-SCREEN.
@@ -21,7 +21,7 @@ Une erreur de type `E` dans ce contexte empêche la poursuite et ramène l’uti
 
 Le dossier consacré aux messages détaillera les classes de messages et les bonnes pratiques de traduction.
 
-## VALIDATION D’UN PARAMÈTRE
+## 11.C VALIDATION D’UN PARAMÈTRE
 
 ```abap
 AT SELECTION-SCREEN ON p_bukrs.
@@ -32,7 +32,7 @@ AT SELECTION-SCREEN ON p_bukrs.
 
 Cette forme cible le champ concerné.
 
-## VALIDATION D’UN SELECT-OPTIONS
+## 11.D VALIDATION D’UN SELECT-OPTIONS
 
 ```abap
 AT SELECTION-SCREEN ON END OF s_date.
@@ -44,7 +44,7 @@ AT SELECTION-SCREEN ON END OF s_date.
   ENDLOOP.
 ```
 
-## VALIDATION D’UN BLOC
+## 11.E VALIDATION D’UN BLOC
 
 ```abap
 SELECTION-SCREEN BEGIN OF BLOCK b_period WITH FRAME TITLE text-t01.
@@ -61,7 +61,7 @@ AT SELECTION-SCREEN ON BLOCK b_period.
   ENDIF.
 ```
 
-## ORDRE DES CONTRÔLES
+## 11.F ORDRE DES CONTRÔLES
 
 ```mermaid
 flowchart LR
@@ -72,7 +72,7 @@ flowchart LR
 
 La séquence exacte dépend des éléments et de l’action utilisateur. Ne pas répartir une même règle sur plusieurs événements sans nécessité.
 
-## ACCÈS BASE PENDANT LA VALIDATION
+## 11.G ACCÈS BASE PENDANT LA VALIDATION
 
 Une lecture courte peut être nécessaire pour vérifier l’existence d’une valeur. Éviter :
 
@@ -84,21 +84,21 @@ Une lecture courte peut être nécessaire pour vérifier l’existence d’une v
 
 La validation doit rester réactive et sans effet métier durable.
 
-## VÉRIFICATION
+## 11.H VÉRIFICATION
 
 - Le contrôle syntaxique réussit.
 - La version active correspond au code sauvegardé.
 - L’exécution produit le résultat décrit dans le chapitre.
 - Les cas vide, limite et erreur sont testés séparément lorsque la syntaxe le permet.
 
-## ERREURS FRÉQUENTES
+## 11.I ERREURS FRÉQUENTES
 
 - Copier un exemple sans adapter les types, noms d’objets et données disponibles dans le système.
 - Tester uniquement le cas nominal et ignorer les valeurs initiales, absentes ou invalides.
 - Mettre une logique lourde dans les événements de validation de l’écran.
 - Créer une variante contenant des valeurs obsolètes ou sensibles.
 
-## SNIPPET À RÉUTILISER
+## 11.J SNIPPET À RÉUTILISER
 
 > [!NOTE]
 > Adapter les noms `Z*`, les types DDIC, les données et les autorisations au système cible. Effectuer un contrôle syntaxique avant activation.
@@ -118,14 +118,14 @@ AT SELECTION-SCREEN ON BLOCK b_period.
   ENDIF.
 ```
 
-## TERMES DU LEXIQUE
+## 11.K TERMES DU LEXIQUE
 
 - [Programme exécutable](<../🧩 00 ├── LEXIQUE SAP ET ABAP/06 ├── PROGRAMMES CLASSES ET OBJETS TECHNIQUES.md#programme-executable>)
 - [Variante](<../🧩 00 ├── LEXIQUE SAP ET ABAP/06 ├── PROGRAMMES CLASSES ET OBJETS TECHNIQUES.md#variante>)
 - [Transaction](<../🧩 00 ├── LEXIQUE SAP ET ABAP/02 ├── SAP GUI NAVIGATION ET TRANSACTIONS.md#transaction>)
 - [Dynpro](<../🧩 00 ├── LEXIQUE SAP ET ABAP/02 ├── SAP GUI NAVIGATION ET TRANSACTIONS.md#dynpro>)
 
-## RÉFÉRENCES OFFICIELLES SAP
+## 11.L RÉFÉRENCES OFFICIELLES SAP
 
 - [Selection Screen Processing — SAP Help Portal](https://help.sap.com/docs/SAP_NETWEAVER_700/a85596deeb19418982bee031d1fd1427/4a43c40d5a503f04e10000000a421937.html)
 - [Selection Screens — Overview — ABAP Keyword Documentation](https://help.sap.com/doc/abapdocu_latest_index_htm/latest/en-US/ABENSELECTION_SCREEN_OVERVIEW.html)

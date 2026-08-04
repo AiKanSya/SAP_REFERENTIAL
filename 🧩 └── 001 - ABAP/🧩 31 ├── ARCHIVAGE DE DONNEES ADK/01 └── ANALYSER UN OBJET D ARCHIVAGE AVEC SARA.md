@@ -1,17 +1,17 @@
-# ANALYSER UN OBJET D’ARCHIVAGE AVEC `SARA`
+# 1. ANALYSER UN OBJET D’ARCHIVAGE AVEC `SARA`
 
-## RÉSULTAT ATTENDU
+## 1.A RÉSULTAT ATTENDU
 
 Déterminer comment un objet d’archivage sélectionne, écrit, vérifie puis supprime les données avant toute exécution productive.
 
-## PRÉREQUIS
+## 1.B PRÉREQUIS
 
 - Nom exact de l’objet d’archivage.
 - Règles métier de résidence et de conservation validées.
 - Accès à `SARA` et aux journaux de jobs/spool.
 - Environnement de test contenant des données vérifiables.
 
-## ÉLÉMENTS À RELEVER DANS SARA
+## 1.C ÉLÉMENTS À RELEVER DANS SARA
 
 | Élément | Question à résoudre |
 |---|---|
@@ -24,45 +24,45 @@ Déterminer comment un objet d’archivage sélectionne, écrit, vérifie puis s
 | Lecture | Comment l’utilisateur retrouve-t-il une donnée archivée ? |
 | Information structure | Quelle recherche Archive Information System est disponible ? |
 
-## PROCESS
+## 1.D PROCESS
 
-### ÉTAPE 1 — LIRE LE CONTRAT DE L’OBJET
+### 1.D.1 ÉTAPE 1 — LIRE LE CONTRAT DE L’OBJET
 
 Ouvrir l’objet dans `SARA` et lire sa documentation complète. Relever les tables couvertes, les dépendances, les règles de résidence, les statuts métier et l’ordre des programmes.
 
-### ÉTAPE 2 — EXAMINER LE CUSTOMIZING
+### 1.D.2 ÉTAPE 2 — EXAMINER LE CUSTOMIZING
 
 Contrôler les paramètres, les variantes, le stockage, les structures d’information et les objets dépendants. Ne pas réutiliser une variante existante sans vérifier sa sélection et son propriétaire.
 
-### ÉTAPE 3 — ANALYSER LES SESSIONS ANTÉRIEURES
+### 1.D.3 ÉTAPE 3 — ANALYSER LES SESSIONS ANTÉRIEURES
 
 Relever pour les dernières sessions le statut, le fichier d’archive, le job, le spool, les journaux et l’état de suppression. Une écriture terminée ne signifie pas que les données ont déjà été supprimées.
 
-### ÉTAPE 4 — DÉFINIR UN ÉCHANTILLON TRAÇABLE
+### 1.D.4 ÉTAPE 4 — DÉFINIR UN ÉCHANTILLON TRAÇABLE
 
 Choisir un petit ensemble de clés métier dont l’état en base et les dépendances sont connus. Documenter le nombre attendu avant toute exécution.
 
-### ÉTAPE 5 — EXÉCUTER LE TEST D’ÉCRITURE
+### 1.D.5 ÉTAPE 5 — EXÉCUTER LE TEST D’ÉCRITURE
 
 Lancer le mode test lorsqu’il existe et analyser chaque objet sélectionné ou rejeté. Corriger les règles de résidence, statuts ou dépendances avant l’écriture réelle.
 
-### ÉTAPE 6 — CRÉER LE FICHIER D’ARCHIVE
+### 1.D.6 ÉTAPE 6 — CRÉER LE FICHIER D’ARCHIVE
 
 Exécuter le programme d’écriture en environnement de test. Vérifier le job, le journal, le nombre d’objets et le stockage effectif du fichier.
 
-### ÉTAPE 7 — TESTER LA LECTURE AVANT SUPPRESSION
+### 1.D.7 ÉTAPE 7 — TESTER LA LECTURE AVANT SUPPRESSION
 
 Utiliser l’outil de lecture ou l’Archive Information System prévu par l’objet. Confirmer que les clés de l’échantillon sont consultables dans le fichier produit.
 
-### ÉTAPE 8 — AUTORISER ET EXÉCUTER LA SUPPRESSION
+### 1.D.8 ÉTAPE 8 — AUTORISER ET EXÉCUTER LA SUPPRESSION
 
 Lancer le programme de suppression uniquement après validation formelle du fichier, de la lecture et du journal. Conserver la variante et la preuve d’autorisation selon la gouvernance du système.
 
-### ÉTAPE 9 — CONTRÔLER L’ÉTAT FINAL
+### 1.D.9 ÉTAPE 9 — CONTRÔLER L’ÉTAT FINAL
 
 Vérifier l’absence des données dans les tables actives, leur présence dans l’archive, leur accessibilité fonctionnelle et l’absence d’objet dépendant incohérent.
 
-## CONTRÔLE AVANT SUPPRESSION
+## 1.E CONTRÔLE AVANT SUPPRESSION
 
 - job d’écriture terminé sans erreur ;
 - nombre d’objets attendu cohérent avec la sélection ;
@@ -71,7 +71,7 @@ Vérifier l’absence des données dans les tables actives, leur présence dans 
 - aucun objet dépendant bloquant oublié ;
 - autorisation d’exécuter la suppression obtenue selon la gouvernance du système.
 
-## ERREURS FRÉQUENTES
+## 1.F ERREURS FRÉQUENTES
 
 | Symptôme | Cause probable | Correction |
 |---|---|---|
@@ -81,10 +81,10 @@ Vérifier l’absence des données dans les tables actives, leur présence dans 
 | Suppression non lancée | Fichier non validé ou job non planifié | Contrôler le statut de session et les variantes |
 | Données métier encore visibles | Lecture transparente des archives | Vérifier physiquement la source de lecture avant de conclure |
 
-## SÉCURITÉ
+## 1.G SÉCURITÉ
 
 Ne jamais supprimer directement les tables métier pour reproduire le programme de suppression. L’objet d’archivage porte les contrôles de cohérence et l’ordre de traitement.
 
-## COMPATIBILITÉ S/4HANA
+## 1.H COMPATIBILITÉ S/4HANA
 
 Statut : compatible pour les objets d’archivage disponibles dans la version S/4HANA cible. Vérifier la documentation spécifique de chaque objet et les éventuels changements de modèle de données.

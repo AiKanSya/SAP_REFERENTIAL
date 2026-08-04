@@ -1,6 +1,6 @@
-# ÉVÉNEMENTS D’UN PROGRAMME EXÉCUTABLE
+# 10. ÉVÉNEMENTS D’UN PROGRAMME EXÉCUTABLE
 
-## RÉSULTAT ATTENDU
+## 10.A RÉSULTAT ATTENDU
 
 - Comprendre le pilotage événementiel d’un programme exécutable classique
 - Connaître l’ordre principal des événements liés à l’écran de sélection
@@ -8,7 +8,7 @@
 - Comprendre le rôle limité de `END-OF-SELECTION`
 - Éviter les blocs implicites et les validations placées au mauvais endroit
 
-## VUE D’ENSEMBLE
+## 10.B VUE D’ENSEMBLE
 
 ```mermaid
 flowchart TD
@@ -22,7 +22,7 @@ flowchart TD
     G --> H["END-OF-SELECTION"]
 ```
 
-## BLOC D’ÉVÉNEMENT
+## 10.C BLOC D’ÉVÉNEMENT
 
 Un bloc d’événement commence par un mot-clé événementiel et se termine au début du bloc de traitement suivant.
 
@@ -33,7 +33,7 @@ START-OF-SELECTION.
 
 Le mot-clé n’est pas un appel explicite. L’environnement d’exécution déclenche l’événement au moment prévu.
 
-## `LOAD-OF-PROGRAM`
+## 10.D `LOAD-OF-PROGRAM`
 
 `LOAD-OF-PROGRAM` est déclenché après le chargement du programme dans une session interne.
 
@@ -44,7 +44,7 @@ LOAD-OF-PROGRAM.
 
 Son usage explicite est rare dans un programme exécutable simple. Ne pas l’utiliser comme emplacement par défaut pour le traitement métier.
 
-## `INITIALIZATION`
+## 10.E `INITIALIZATION`
 
 `INITIALIZATION` est déclenché avant l’affichage initial de l’écran de sélection standard.
 
@@ -64,7 +64,7 @@ INITIALIZATION.
 > [!CAUTION]
 > Ne pas effectuer ici un traitement métier lourd. L’événement peut être redéclenché dans certains scénarios d’appel du programme.
 
-## `AT SELECTION-SCREEN OUTPUT`
+## 10.F `AT SELECTION-SCREEN OUTPUT`
 
 Cet événement intervient avant l’affichage de l’écran de sélection.
 
@@ -86,11 +86,11 @@ AT SELECTION-SCREEN OUTPUT.
 
 La modification dynamique de l’écran doit rester limitée et compréhensible.
 
-## `AT SELECTION-SCREEN`
+## 10.G `AT SELECTION-SCREEN`
 
 Cet événement sert à valider les saisies de l’écran de sélection.
 
-### VALIDATION D’UN CHAMP
+### 10.G.1 VALIDATION D’UN CHAMP
 
 ```abap
 PARAMETERS p_limit TYPE i.
@@ -101,7 +101,7 @@ AT SELECTION-SCREEN ON p_limit.
   ENDIF.
 ```
 
-### VALIDATION GLOBALE
+### 10.G.2 VALIDATION GLOBALE
 
 ```abap
 AT SELECTION-SCREEN.
@@ -110,7 +110,7 @@ AT SELECTION-SCREEN.
 
 Un message de type erreur renvoie généralement l’utilisateur sur l’écran de sélection afin qu’il corrige la saisie.
 
-## `START-OF-SELECTION`
+## 10.H `START-OF-SELECTION`
 
 `START-OF-SELECTION` est le point d’entrée principal du traitement d’un programme exécutable après validation de l’écran de sélection.
 
@@ -124,7 +124,7 @@ Dans un programme structuré, ce bloc orchestre le traitement au lieu de conteni
 > [!IMPORTANT]
 > Les instructions exécutables placées avant le premier bloc d’événement peuvent former un bloc implicite `START-OF-SELECTION`. Utiliser un bloc explicite améliore la lisibilité.
 
-## `END-OF-SELECTION`
+## 10.I `END-OF-SELECTION`
 
 `END-OF-SELECTION` est déclenché après le traitement de `START-OF-SELECTION` et après les événements d’une éventuelle base de données logique.
 
@@ -137,7 +137,7 @@ Il n’est pas obligatoire et ne doit pas être ajouté systématiquement comme 
 
 Dans un programme sans base de données logique, la séparation entre `START-OF-SELECTION` et `END-OF-SELECTION` est souvent inutile.
 
-## ÉVÉNEMENTS DE LISTE CLASSIQUE
+## 10.J ÉVÉNEMENTS DE LISTE CLASSIQUE
 
 Les programmes de liste classique peuvent également réagir à des événements tels que :
 
@@ -148,7 +148,7 @@ Les programmes de liste classique peuvent également réagir à des événements
 
 Ces mécanismes concernent les listes classiques interactives. Ils ne doivent pas être confondus avec les événements d’un écran de sélection.
 
-## EXEMPLE COMPLET
+## 10.K EXEMPLE COMPLET
 
 ```abap
 REPORT zdemo_events.
@@ -175,7 +175,7 @@ Flux :
 4. en cas d’erreur, l’écran est réaffiché ;
 5. en cas de succès, le traitement principal s’exécute.
 
-## RÈGLES DE CONCEPTION
+## 10.L RÈGLES DE CONCEPTION
 
 - utiliser `INITIALIZATION` pour les valeurs initiales ;
 - utiliser `AT SELECTION-SCREEN` pour les validations ;
@@ -185,41 +185,41 @@ Flux :
 - ne pas utiliser `END-OF-SELECTION` sans besoin réel ;
 - garder le flux visible et testable.
 
-## PROCESS
+## 10.M PROCESS
 
-### Étape 1 — Construire le scénario
+### 10.M.1 Étape 1 — Construire le scénario
 
 Créer un report Z avec un `PARAMETERS` simple. Ajouter `INITIALIZATION`, `AT SELECTION-SCREEN` et `START-OF-SELECTION`, chacun contenant une instruction exécutable identifiable.
 
-### Étape 2 — Instrumenter l’ordre d’exécution
+### 10.M.2 Étape 2 — Instrumenter l’ordre d’exécution
 
 Placer un breakpoint dans chaque bloc, activer puis exécuter. Noter l’ordre réel : initialisation avant affichage, validation après action sur l’écran, puis traitement principal après validation réussie.
 
-### Étape 3 — Tester le chemin valide
+### 10.M.3 Étape 3 — Tester le chemin valide
 
 Saisir une valeur acceptée et exécuter. Le débogueur doit atteindre `START-OF-SELECTION`. Si ce bloc n’est pas atteint, examiner le message ou la logique de validation exécutée auparavant.
 
-### Étape 4 — Tester le chemin refusé
+### 10.M.4 Étape 4 — Tester le chemin refusé
 
 Saisir une valeur que `AT SELECTION-SCREEN` rejette. Vérifier que l’écran reste affiché et que `START-OF-SELECTION` n’est pas exécuté.
 
 Le chapitre est validé lorsque les deux chemins prouvent l’ordre des événements et l’arrêt du traitement principal après une validation en erreur.
 
-## VÉRIFICATION
+## 10.N VÉRIFICATION
 
 - Le contrôle syntaxique réussit.
 - La version active correspond au code sauvegardé.
 - L’exécution produit le résultat décrit dans le chapitre.
 - Les cas vide, limite et erreur sont testés séparément lorsque la syntaxe le permet.
 
-## ERREURS FRÉQUENTES
+## 10.O ERREURS FRÉQUENTES
 
 - Copier un exemple sans adapter les types, noms d’objets et données disponibles dans le système.
 - Tester uniquement le cas nominal et ignorer les valeurs initiales, absentes ou invalides.
 - Intervenir dans le mauvais système ou mandant.
 - Confondre sauvegarde et activation.
 
-## SNIPPET À RÉUTILISER
+## 10.P SNIPPET À RÉUTILISER
 
 > [!NOTE]
 > Adapter les noms `Z*`, les types DDIC, les données et les autorisations au système cible. Effectuer un contrôle syntaxique avant activation.
@@ -241,7 +241,7 @@ START-OF-SELECTION.
   WRITE: / 'Valeur validée :', p_limit.
 ```
 
-## TERMES DU LEXIQUE
+## 10.Q TERMES DU LEXIQUE
 
 - [Programme exécutable](<../🧩 00 ├── LEXIQUE SAP ET ABAP/06 ├── PROGRAMMES CLASSES ET OBJETS TECHNIQUES.md#programme-executable>)
 - [Système SAP](<../🧩 00 ├── LEXIQUE SAP ET ABAP/01 ├── SYSTEMES ENVIRONNEMENTS ET MANDANTS.md#systeme-sap>)
@@ -250,7 +250,7 @@ START-OF-SELECTION.
 - [Transaction](<../🧩 00 ├── LEXIQUE SAP ET ABAP/02 ├── SAP GUI NAVIGATION ET TRANSACTIONS.md#transaction>)
 - [Repository ABAP](<../🧩 00 ├── LEXIQUE SAP ET ABAP/03 ├── REPOSITORY PACKAGES ET TRANSPORTS.md#repository-abap>)
 
-## RÉFÉRENCES OFFICIELLES SAP
+## 10.R RÉFÉRENCES OFFICIELLES SAP
 
 - [Event Control](https://help.sap.com/docs/ABAP_PLATFORM_NEW/7bfe8cdcfbb040dcb6702dada8c3e2f0/0b32146b63054bb293de32877a6ebfe9.html)
 - [START-OF-SELECTION — ABAP Keyword Documentation](https://help.sap.com/doc/abapdocu_latest_index_htm/latest/en-US/abapstart-of-selection.htm)

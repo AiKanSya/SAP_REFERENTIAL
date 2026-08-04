@@ -1,13 +1,13 @@
-# CRÉER UN GROUPE ET UN MODULE FONCTION
+# 4. CRÉER UN GROUPE ET UN MODULE FONCTION
 
-## RÉSULTAT ATTENDU
+## 4.A RÉSULTAT ATTENDU
 
 - Créer un groupe de fonctions dans le namespace client
 - Créer un module fonction dans `SE37`
 - Affecter les objets au package et à l’ordre de transport
 - Respecter les étapes d’activation
 
-## PRÉREQUIS
+## 4.B PRÉREQUIS
 
 Définir avant la création :
 
@@ -19,7 +19,7 @@ Définir avant la création :
 - stratégie d’erreur ;
 - type de traitement.
 
-## CRÉATION DU GROUPE
+## 4.C CRÉATION DU GROUPE
 
 Le groupe peut être créé depuis `SE80` ou lors de la création du module selon le système.
 
@@ -31,7 +31,7 @@ Description          : Services classiques sur les produits
 Package              : ZDEV_ABAP
 ```
 
-## CRÉATION DU MODULE
+## 4.D CRÉATION DU MODULE
 
 Dans `SE37` :
 
@@ -54,7 +54,7 @@ flowchart TD
     E --> F["Tester et activer"]
 ```
 
-## NOMMAGE
+## 4.E NOMMAGE
 
 Le nom doit exprimer une action et un périmètre. Exemples :
 
@@ -69,7 +69,7 @@ Le nom doit exprimer une action et un périmètre. Exemples :
 - noms dépendant d’un écran ou d’un utilisateur ;
 - abréviations incompréhensibles.
 
-## TRANSPORT
+## 4.F TRANSPORT
 
 Le groupe de fonctions et les modules sont des objets Repository. Vérifier que :
 
@@ -78,40 +78,40 @@ Le groupe de fonctions et les modules sont des objets Repository. Vérifier que 
 - les types DDIC requis sont transportés avant ou avec le module ;
 - l’activation est complète dans le système source.
 
-## PROCESS
+## 4.G PROCESS
 
-### Étape 1 — Définir le périmètre du groupe
+### 4.G.1 Étape 1 — Définir le périmètre du groupe
 
 Regrouper uniquement des modules partageant un même domaine et, si nécessaire, des données globales maîtrisées. Définir package, préfixe et responsable avant la création.
 
-### Étape 2 — Créer le groupe dans SE80
+### 4.G.2 Étape 2 — Créer le groupe dans SE80
 
 Ouvrir `SE80`, sélectionner **Groupe de fonctions**, saisir le nom client et choisir **Créer**. Renseigner description, package et tâche de transport.
 
-### Étape 3 — Créer le module
+### 4.G.3 Étape 3 — Créer le module
 
 Depuis le groupe, créer le module `Z...`, renseigner texte court et type de traitement. Ne cocher RFC ou update que si le scénario impose réellement ces contraintes.
 
-### Étape 4 — Définir signature et code minimal
+### 4.G.4 Étape 4 — Définir signature et code minimal
 
 Créer les paramètres avec des types DDIC stables, ajouter les exceptions puis implémenter un traitement sans commit implicite. Contrôler chaque objet dépendant.
 
-### Étape 5 — Activer et tester
+### 4.G.5 Étape 5 — Activer et tester
 
 Activer le groupe et le module, tester cas nominal et erreur dans `SE37`, puis vérifier l’ordre de transport. La création est terminée lorsque l’appel ne dépend d’aucune initialisation cachée.
 
-## VÉRIFICATION
+## 4.H VÉRIFICATION
 
 - Le lecteur peut expliquer la différence entre cette notion et les concepts proches.
 - Le choix technique est justifié par un besoin concret, pas uniquement par habitude.
 - Les limites liées à la release, aux autorisations et au contexte d’exécution sont identifiées.
 
-## ERREURS FRÉQUENTES
+## 4.I ERREURS FRÉQUENTES
 
 - Appeler un module fonction sans lire sa documentation et ses exceptions.
 - Supposer qu’une BAPI effectue automatiquement le commit.
 
-## FICHE DE CONTRÔLE À COPIER
+## 4.J FICHE DE CONTRÔLE À COPIER
 
 ```text
 Système / SID       :
@@ -126,7 +126,7 @@ Horodatage          :
 Ordre de transport  :
 ```
 
-## TERMES DU LEXIQUE
+## 4.K TERMES DU LEXIQUE
 
 - [Module fonction](<../🧩 00 ├── LEXIQUE SAP ET ABAP/06 ├── PROGRAMMES CLASSES ET OBJETS TECHNIQUES.md#module-fonction>)
 - [Function group](<../🧩 00 ├── LEXIQUE SAP ET ABAP/06 ├── PROGRAMMES CLASSES ET OBJETS TECHNIQUES.md#function-group>)
@@ -134,7 +134,7 @@ Ordre de transport  :
 - [BAPI](<../🧩 00 ├── LEXIQUE SAP ET ABAP/10 └── ACRONYMES SAP.md#acro-bapi>)
 - [Destination RFC](<../🧩 00 ├── LEXIQUE SAP ET ABAP/07 ├── INTERFACES ET INTEGRATION.md#destination-rfc>)
 
-## RÉFÉRENCES OFFICIELLES SAP
+## 4.L RÉFÉRENCES OFFICIELLES SAP
 
 - [Creating New Function Modules — SAP Help Portal](https://help.sap.com/docs/ABAP_PLATFORM_NEW/bd833c8355f34e96a6e83096b38bf192/d1801ee8454211d189710000e8322d00.html)
 - [Working with ABAP Function Groups and Modules — SAP Help Portal](https://help.sap.com/docs/ABAP_PLATFORM_NEW/c238d694b825421f940829321ffa326a/5b3370ee088a4e2b9579da3f6e994456.html)

@@ -1,13 +1,13 @@
-# APPELS RFC SYNCHRONES ET ASYNCHRONES
+# 15. APPELS RFC SYNCHRONES ET ASYNCHRONES
 
-## RÉSULTAT ATTENDU
+## 15.A RÉSULTAT ATTENDU
 
 - Implémenter un appel RFC synchrone
 - Comprendre `STARTING NEW TASK`
 - Recevoir un résultat asynchrone
 - Choisir le mode adapté au besoin
 
-## RFC SYNCHRONE
+## 15.B RFC SYNCHRONE
 
 L’appelant attend la fin du module distant :
 
@@ -26,7 +26,7 @@ CALL FUNCTION 'Z_DEV_READ_REMOTE'
 
 Utiliser ce mode lorsqu’un résultat est requis avant de poursuivre.
 
-## RFC ASYNCHRONE
+## 15.C RFC ASYNCHRONE
 
 `STARTING NEW TASK` démarre un appel asynchrone :
 
@@ -41,7 +41,7 @@ CALL FUNCTION 'Z_DEV_READ_REMOTE'
 
 La forme exacte de callback dépend du style procédural ou objet et de la version ABAP.
 
-## RÉCEPTION
+## 15.D RÉCEPTION
 
 Dans le callback, utiliser `RECEIVE RESULTS FROM FUNCTION` :
 
@@ -55,7 +55,7 @@ RECEIVE RESULTS FROM FUNCTION 'Z_DEV_READ_REMOTE'
     OTHERS                = 3.
 ```
 
-## FLUX
+## 15.E FLUX
 
 ```mermaid
 sequenceDiagram
@@ -70,7 +70,7 @@ sequenceDiagram
     A->>R: RECEIVE RESULTS
 ```
 
-## ATTENTE ET PARALLÉLISME
+## 15.F ATTENTE ET PARALLÉLISME
 
 Un aRFC peut servir au traitement parallèle, notamment avec des groupes de serveurs. Ce mode exige :
 
@@ -82,7 +82,7 @@ Un aRFC peut servir au traitement parallèle, notamment avec des groupes de serv
 
 Ne pas paralléliser un traitement sans mesurer la charge globale du système.
 
-## CHOIX
+## 15.G CHOIX
 
 | Besoin                        | Mode probable |
 | ----------------------------- | ------------- |
@@ -91,43 +91,43 @@ Ne pas paralléliser un traitement sans mesurer la charge globale du système.
 | Livraison fiable différée     | tRFC ou qRFC  |
 | Ordre strict entre unités     | qRFC          |
 
-## PROCESS
+## 15.H PROCESS
 
-### Étape 1 — Choisir le modèle d’appel
+### 15.H.1 Étape 1 — Choisir le modèle d’appel
 
 Utiliser un appel synchrone lorsque le résultat est requis immédiatement. Choisir un appel asynchrone uniquement si l’appelant peut continuer et si la collecte du résultat ou de l’erreur est explicitement conçue.
 
-### Étape 2 — Vérifier destination et contrat
+### 15.H.2 Étape 2 — Vérifier destination et contrat
 
 Tester la destination dans `SM59`, puis contrôler dans le système cible la signature RFC, les autorisations et les effets métier du module.
 
-### Étape 3 — Implémenter l’appel synchrone
+### 15.H.3 Étape 3 — Implémenter l’appel synchrone
 
 Utiliser `DESTINATION`, mapper les paramètres et traiter séparément `COMMUNICATION_FAILURE`, `SYSTEM_FAILURE` et les erreurs métier. Ne considérer les sorties valides qu’après succès.
 
-### Étape 4 — Implémenter l’asynchrone
+### 15.H.4 Étape 4 — Implémenter l’asynchrone
 
 Définir un nom de tâche unique, utiliser `STARTING NEW TASK` et fournir une routine ou méthode de callback si un résultat est attendu. Dans le callback, appeler `RECEIVE RESULTS FROM FUNCTION` et traiter ses erreurs.
 
-### Étape 5 — Tester les deux fins
+### 15.H.5 Étape 5 — Tester les deux fins
 
 Tester succès, cible indisponible et erreur métier. Pour l’asynchrone, prouver que l’appelant n’attend pas un résultat avant le callback. Le flux est validé lorsque chaque issue produit un état observable et corrélé à la tâche.
 
-## VÉRIFICATION
+## 15.I VÉRIFICATION
 
 - Le contrôle syntaxique réussit.
 - La version active correspond au code sauvegardé.
 - L’exécution produit le résultat décrit dans le chapitre.
 - Les cas vide, limite et erreur sont testés séparément lorsque la syntaxe le permet.
 
-## ERREURS FRÉQUENTES
+## 15.J ERREURS FRÉQUENTES
 
 - Copier un exemple sans adapter les types, noms d’objets et données disponibles dans le système.
 - Tester uniquement le cas nominal et ignorer les valeurs initiales, absentes ou invalides.
 - Appeler un module fonction sans lire sa documentation et ses exceptions.
 - Supposer qu’une BAPI effectue automatiquement le commit.
 
-## SNIPPET À RÉUTILISER
+## 15.K SNIPPET À RÉUTILISER
 
 > [!NOTE]
 > Adapter les noms `Z*`, les types DDIC, les données et les autorisations au système cible. Effectuer un contrôle syntaxique avant activation.
@@ -145,7 +145,7 @@ CALL FUNCTION 'Z_DEV_READ_REMOTE'
     OTHERS                = 3.
 ```
 
-## TERMES DU LEXIQUE
+## 15.L TERMES DU LEXIQUE
 
 - [Module fonction](<../🧩 00 ├── LEXIQUE SAP ET ABAP/06 ├── PROGRAMMES CLASSES ET OBJETS TECHNIQUES.md#module-fonction>)
 - [Function group](<../🧩 00 ├── LEXIQUE SAP ET ABAP/06 ├── PROGRAMMES CLASSES ET OBJETS TECHNIQUES.md#function-group>)
@@ -153,7 +153,7 @@ CALL FUNCTION 'Z_DEV_READ_REMOTE'
 - [BAPI](<../🧩 00 ├── LEXIQUE SAP ET ABAP/10 └── ACRONYMES SAP.md#acro-bapi>)
 - [Destination RFC](<../🧩 00 ├── LEXIQUE SAP ET ABAP/07 ├── INTERFACES ET INTEGRATION.md#destination-rfc>)
 
-## RÉFÉRENCES OFFICIELLES SAP
+## 15.M RÉFÉRENCES OFFICIELLES SAP
 
 - [CALL FUNCTION STARTING NEW TASK — ABAP Keyword Documentation](https://help.sap.com/doc/abapdocu_816_index_htm/8.16/en-US/ABAPCALL_FUNCTION_STARTING.html)
 - [Receiving Results from an Asynchronous RFC — SAP Help Portal](https://help.sap.com/docs/ABAP_PLATFORM_NEW/753088fc00704d0a80e7fbd6803c8adb/489bdeec0c1c73e7e10000000a42189b.html)

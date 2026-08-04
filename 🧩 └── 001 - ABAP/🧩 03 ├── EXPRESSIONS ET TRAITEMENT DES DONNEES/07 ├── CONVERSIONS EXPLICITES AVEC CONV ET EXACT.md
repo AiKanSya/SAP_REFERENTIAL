@@ -1,6 +1,6 @@
-# CONVERSIONS EXPLICITES AVEC CONV ET EXACT
+# 7. CONVERSIONS EXPLICITES AVEC CONV ET EXACT
 
-## RÉSULTAT ATTENDU
+## 7.A RÉSULTAT ATTENDU
 
 - Rendre une conversion visible avec `CONV`
 - Utiliser l’inférence de type avec `#`
@@ -8,7 +8,7 @@
 - Intercepter les erreurs de conversion
 - Choisir entre conversion permissive et conversion stricte
 
-## OPÉRATEUR CONV
+## 7.B OPÉRATEUR CONV
 
 `CONV` construit une valeur dans le type demandé.
 
@@ -27,7 +27,7 @@ CONV type( operand )
 
 Le résultat est une valeur temporaire du type indiqué.
 
-## INFÉRENCE AVEC
+## 7.C INFÉRENCE AVEC
 
 Lorsque le contexte détermine sans ambiguïté le type cible, `#` peut remplacer le type explicite.
 
@@ -45,7 +45,7 @@ Préférer le type explicite lorsque :
 - plusieurs conversions sont imbriquées ;
 - le type fait partie de l’intention métier.
 
-## FORCER LE TYPE D’UN CALCUL
+## 7.D FORCER LE TYPE D’UN CALCUL
 
 ```abap
 DATA lv_quantity TYPE i VALUE 5.
@@ -57,7 +57,7 @@ lv_ratio = CONV decfloat34( lv_quantity ) / lv_divisor.
 
 La conversion du premier opérande impose une arithmétique décimale adaptée au résultat attendu.
 
-## OPÉRATEUR EXACT
+## 7.E OPÉRATEUR EXACT
 
 `EXACT` effectue une conversion stricte. Une exception est levée lorsque la conversion ne peut pas être réalisée sans perte interdite par ses règles.
 
@@ -74,7 +74,7 @@ ENDTRY.
 
 La conversion vers un entier ne peut pas conserver la partie décimale `0.50`.
 
-## CONV OU EXACT
+## 7.F CONV OU EXACT
 
 | Besoin                                                              | Opérateur                        |
 | ------------------------------------------------------------------- | -------------------------------- |
@@ -91,7 +91,7 @@ flowchart TD
     D --> E["Gestion de l exception"]
 ```
 
-## CONVERSION D’UNE CHAÎNE EXTERNE
+## 7.G CONVERSION D’UNE CHAÎNE EXTERNE
 
 ```abap
 PARAMETERS p_value TYPE c LENGTH 20.
@@ -107,7 +107,7 @@ START-OF-SELECTION.
 
 Une saisie externe doit être validée avant utilisation dans un calcul métier.
 
-## CONVERSION ET FORMATAGE
+## 7.H CONVERSION ET FORMATAGE
 
 `CONV` modifie un type de données. Il ne remplace pas une règle d’affichage dépendante du format utilisateur, de la devise ou de l’unité.
 
@@ -125,28 +125,28 @@ DATA(lv_output) = |{ lv_number NUMBER = USER }|.
 
 Le premier produit une valeur `string`. Le second applique une option de formatage dans un modèle de chaîne.
 
-## BONNES PRATIQUES
+## 7.I BONNES PRATIQUES
 
 - Ne pas ajouter `CONV` si les types sont déjà identiques et que cela n’améliore pas la compréhension.
 - Utiliser `EXACT` aux frontières du système lorsque la donnée doit respecter strictement le contrat attendu.
 - Intercepter les exceptions au niveau capable de produire un message utile.
 - Ne pas remplacer une validation métier par une conversion technique.
 
-## VÉRIFICATION
+## 7.J VÉRIFICATION
 
 - Le contrôle syntaxique réussit.
 - La version active correspond au code sauvegardé.
 - L’exécution produit le résultat décrit dans le chapitre.
 - Les cas vide, limite et erreur sont testés séparément lorsque la syntaxe le permet.
 
-## ERREURS FRÉQUENTES
+## 7.K ERREURS FRÉQUENTES
 
 - Copier un exemple sans adapter les types, noms d’objets et données disponibles dans le système.
 - Tester uniquement le cas nominal et ignorer les valeurs initiales, absentes ou invalides.
 - S’appuyer sur une conversion implicite pouvant tronquer ou arrondir.
 - Ignorer l’encodage et les formats externes.
 
-## SNIPPET À RÉUTILISER
+## 7.L SNIPPET À RÉUTILISER
 
 > [!NOTE]
 > Adapter les noms `Z*`, les types DDIC, les données et les autorisations au système cible. Effectuer un contrôle syntaxique avant activation.
@@ -163,13 +163,13 @@ START-OF-SELECTION.
   ENDTRY.
 ```
 
-## TERMES DU LEXIQUE
+## 7.M TERMES DU LEXIQUE
 
 - [Instruction ABAP](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#instruction-abap>)
 - [Expression](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#expression>)
 - [Type de données](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#type-donnees>)
 
-## RÉFÉRENCES OFFICIELLES SAP
+## 7.N RÉFÉRENCES OFFICIELLES SAP
 
 - [CONV — Conversion Operator — ABAP Keyword Documentation](https://help.sap.com/doc/abapdocu_latest_index_htm/latest/en-US/ABENCONSTRUCTOR_EXPRESSION_CONV.html)
 - [EXACT — Conversion Operator — ABAP Keyword Documentation](https://help.sap.com/doc/abapdocu_latest_index_htm/latest/en-US/ABENCONSTRUCTOR_EXPRESSION_EXACT.html)

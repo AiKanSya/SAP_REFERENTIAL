@@ -1,6 +1,6 @@
-# RÉFÉRENCES DE DONNÉES
+# 11. RÉFÉRENCES DE DONNÉES
 
-## RÉSULTAT ATTENDU
+## 11.A RÉSULTAT ATTENDU
 
 - Déclarer une référence de données typée
 - Référencer un objet existant
@@ -9,7 +9,7 @@
 - Contrôler une référence avec `IS BOUND`
 - Distinguer référence et field-symbol
 
-## PRINCIPE
+## 11.B PRINCIPE
 
 Une variable de référence contient une référence vers un objet de données. Elle ne contient pas directement la valeur métier de cet objet.
 
@@ -19,7 +19,7 @@ flowchart LR
     B --> C["Valeur 10"]
 ```
 
-## DÉCLARATION
+## 11.C DÉCLARATION
 
 ```abap
 DATA lr_number TYPE REF TO i.
@@ -27,7 +27,7 @@ DATA lr_number TYPE REF TO i.
 
 Après la déclaration, `lr_number` est initiale et ne référence aucun objet.
 
-## RÉFÉRENCER UN OBJET EXISTANT
+## 11.D RÉFÉRENCER UN OBJET EXISTANT
 
 ```abap
 DATA lv_number TYPE i VALUE 10.
@@ -50,7 +50,7 @@ lr_number->* = 25.
 
 `lv_number` vaut alors `25`.
 
-## CRÉER UN OBJET ANONYME
+## 11.E CRÉER UN OBJET ANONYME
 
 ```abap
 DATA lr_number TYPE REF TO i.
@@ -61,7 +61,7 @@ lr_number->* = 10.
 
 `CREATE DATA` crée un objet de données anonyme du type référencé. La référence constitue le moyen d’accès à cet objet.
 
-## CONTRÔLE AVEC `IS BOUND`
+## 11.F CONTRÔLE AVEC `IS BOUND`
 
 ```abap
 IF lr_number IS BOUND.
@@ -74,7 +74,7 @@ Déréférencer une référence initiale ou non valide peut provoquer une erreur
 > [!IMPORTANT]
 > Tester `IS BOUND` lorsque le flux du programme ne garantit pas que la référence a été initialisée correctement.
 
-## OPÉRATEUR `REF`
+## 11.G OPÉRATEUR `REF`
 
 Sur les versions ABAP compatibles :
 
@@ -94,7 +94,7 @@ lr_number = REF #( lv_number ).
 
 La disponibilité de cette syntaxe dépend de la version du serveur ABAP.
 
-## RÉFÉRENCE GÉNÉRIQUE
+## 11.H RÉFÉRENCE GÉNÉRIQUE
 
 ```abap
 DATA lr_data TYPE REF TO data.
@@ -117,7 +117,7 @@ ENDIF.
 
 Le typage générique doit être limité aux mécanismes qui en ont réellement besoin.
 
-## RÉFÉRENCE ET FIELD-SYMBOL
+## 11.I RÉFÉRENCE ET FIELD-SYMBOL
 
 | Caractéristique | Référence de données          | Field-symbol             |
 | --------------- | ----------------------------- | ------------------------ |
@@ -128,13 +128,13 @@ Le typage générique doit être limité aux mécanismes qui en ont réellement 
 | Objet anonyme   | Peut le créer et le conserver | Ne crée pas l’objet      |
 | Réaffectation   | Possible                      | Possible avec `ASSIGN`   |
 
-## DURÉE DE VIE D’UN OBJET ANONYME
+## 11.J DURÉE DE VIE D’UN OBJET ANONYME
 
 Un objet anonyme reste accessible tant qu’une référence valide permet de l’atteindre. Lorsqu’il n’est plus référencé, l’environnement d’exécution peut récupérer sa mémoire.
 
 Il ne faut pas baser la logique fonctionnelle sur le moment exact de cette récupération mémoire.
 
-## EXEMPLE COMPLET
+## 11.K EXEMPLE COMPLET
 
 ```abap
 REPORT zdemo_data_references.
@@ -160,7 +160,7 @@ ENDIF.
 
 La syntaxe `lr_result->*-code` déréférence l’objet puis accède au composant `code`.
 
-## ERREURS FRÉQUENTES
+## 11.L ERREURS FRÉQUENTES
 
 | Erreur                                           | Conséquence              |
 | ------------------------------------------------ | ------------------------ |
@@ -170,14 +170,14 @@ La syntaxe `lr_result->*-code` déréférence l’objet puis accède au composan
 | Créer dynamiquement sans besoin                  | Complexité inutile       |
 | Conserver des références globales non maîtrisées | État difficile à suivre  |
 
-## VÉRIFICATION
+## 11.M VÉRIFICATION
 
 - Le contrôle syntaxique réussit.
 - La version active correspond au code sauvegardé.
 - L’exécution produit le résultat décrit dans le chapitre.
 - Les cas vide, limite et erreur sont testés séparément lorsque la syntaxe le permet.
 
-## SNIPPET À RÉUTILISER
+## 11.N SNIPPET À RÉUTILISER
 
 > [!NOTE]
 > Adapter les noms `Z*`, les types DDIC, les données et les autorisations au système cible. Effectuer un contrôle syntaxique avant activation.
@@ -204,7 +204,7 @@ IF lr_result IS BOUND.
 ENDIF.
 ```
 
-## TERMES DU LEXIQUE
+## 11.O TERMES DU LEXIQUE
 
 - [Référence](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#reference>)
 - [Type de données](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#type-donnees>)
@@ -213,7 +213,7 @@ ENDIF.
 - [Table interne](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#table-interne>)
 - [Field-symbol](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#field-symbol>)
 
-## RÉFÉRENCES OFFICIELLES SAP
+## 11.P RÉFÉRENCES OFFICIELLES SAP
 
 - [Data References — ABAP Keyword Documentation](https://help.sap.com/doc/abapdocu_latest_index_htm/latest/en-US/ABENREFERENCES_DATA.html)
 - [GET REFERENCE — ABAP Keyword Documentation](https://help.sap.com/doc/abapdocu_latest_index_htm/latest/en-US/ABAPGET_REFERENCE.html)

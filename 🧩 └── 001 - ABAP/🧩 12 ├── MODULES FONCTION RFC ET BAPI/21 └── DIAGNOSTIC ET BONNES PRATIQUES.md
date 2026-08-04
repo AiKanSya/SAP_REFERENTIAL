@@ -1,13 +1,13 @@
-# DIAGNOSTIC ET BONNES PRATIQUES
+# 21. DIAGNOSTIC ET BONNES PRATIQUES
 
-## RÉSULTAT ATTENDU
+## 21.A RÉSULTAT ATTENDU
 
 - Diagnostiquer un échec local, RFC ou BAPI
 - Utiliser les transactions adaptées
 - Vérifier le contrat avant de modifier le code
 - Appliquer une checklist de conception et d’exploitation
 
-## MÉTHODE DE DIAGNOSTIC
+## 21.B MÉTHODE DE DIAGNOSTIC
 
 ```mermaid
 flowchart TD
@@ -19,7 +19,7 @@ flowchart TD
     B -->|"BAPI"| G["RETURN, commit et données métier"]
 ```
 
-## QUESTIONS PRIORITAIRES
+## 21.C QUESTIONS PRIORITAIRES
 
 1. Le module appelé est-il le bon ?
 2. L’interface active correspond-elle à l’appel ?
@@ -32,7 +32,7 @@ flowchart TD
 9. Le commit attendu a-t-il été exécuté ?
 10. Le traitement est-il idempotent avant relance ?
 
-## OUTILS
+## 21.D OUTILS
 
 | Outil           | Usage                                                     |
 | --------------- | --------------------------------------------------------- |
@@ -47,7 +47,7 @@ flowchart TD
 | `STAUTHTRACE`   | Analyse d’autorisations selon les droits et procédures    |
 | `SLG1`          | Journal applicatif lorsqu’il est utilisé                  |
 
-## CHECKLIST DE CONCEPTION
+## 21.E CHECKLIST DE CONCEPTION
 
 - Le nom décrit l’action et le périmètre.
 - Le groupe de fonctions est cohérent.
@@ -61,7 +61,7 @@ flowchart TD
 - Les volumes et temps de réponse sont bornés.
 - La compatibilité des consommateurs est prise en compte.
 
-## CHECKLIST D APPEL
+## 21.F CHECKLIST D APPEL
 
 - Générer le modèle d’appel depuis l’interface active.
 - Contrôler `sy-subrc` immédiatement.
@@ -71,48 +71,48 @@ flowchart TD
 - Journaliser la clé métier et l’identifiant de corrélation.
 - Ne pas relancer une unité asynchrone sans analyse d’idempotence.
 
-## RÈGLE FINALE
+## 21.G RÈGLE FINALE
 
 Une fonction visible dans `SE37` n’est pas automatiquement une API stable. Une exécution réussie dans le système de développement ne prouve ni la sécurité, ni la compatibilité, ni la robustesse distribuée du scénario.
 
-## PROCESS
+## 21.H PROCESS
 
-### Étape 1 — Classer le défaut
+### 21.H.1 Étape 1 — Classer le défaut
 
 Distinguer recherche de module, erreur de signature, exception locale, destination, communication, autorisation, unité tRFC/qRFC, message BAPI ou transaction non validée.
 
-### Étape 2 — Tester au niveau le plus bas
+### 21.H.2 Étape 2 — Tester au niveau le plus bas
 
 Tester le module localement dans le système où il s’exécute. Si ce test échoue, corriger contrat ou données avant d’analyser RFC et réseau.
 
-### Étape 3 — Remonter les couches
+### 21.H.3 Étape 3 — Remonter les couches
 
 Tester destination `SM59`, appel distant minimal, puis appel applicatif complet. À chaque couche, conserver entrées, utilisateur, système et message exact.
 
-### Étape 4 — Contrôler les moniteurs
+### 21.H.4 Étape 4 — Contrôler les moniteurs
 
 Selon le modèle, examiner `SM13`, `SM58`, moniteurs qRFC, logs de job et `ST22`. Rechercher l’unité avec horodatage et identifiant de corrélation.
 
-### Étape 5 — Vérifier transaction et doublons
+### 21.H.5 Étape 5 — Vérifier transaction et doublons
 
 Avant toute reprise, rechercher l’objet métier. Corriger la première cause, relancer une seule unité puis contrôler commit ou rollback.
 
-### Étape 6 — Clôturer
+### 21.H.6 Étape 6 — Clôturer
 
 Documenter cause, couche, correction et preuve. Le diagnostic est terminé lorsque le cas nominal réussit, le cas d’erreur est contrôlé et aucune unité ni donnée partielle ne reste.
 
-## VÉRIFICATION
+## 21.I VÉRIFICATION
 
 - Le lecteur peut expliquer la différence entre cette notion et les concepts proches.
 - Le choix technique est justifié par un besoin concret, pas uniquement par habitude.
 - Les limites liées à la release, aux autorisations et au contexte d’exécution sont identifiées.
 
-## ERREURS FRÉQUENTES
+## 21.J ERREURS FRÉQUENTES
 
 - Appeler un module fonction sans lire sa documentation et ses exceptions.
 - Supposer qu’une BAPI effectue automatiquement le commit.
 
-## FICHE DE CONTRÔLE À COPIER
+## 21.K FICHE DE CONTRÔLE À COPIER
 
 ```text
 Système / SID       :
@@ -127,7 +127,7 @@ Horodatage          :
 Ordre de transport  :
 ```
 
-## TERMES DU LEXIQUE
+## 21.L TERMES DU LEXIQUE
 
 - [Module fonction](<../🧩 00 ├── LEXIQUE SAP ET ABAP/06 ├── PROGRAMMES CLASSES ET OBJETS TECHNIQUES.md#module-fonction>)
 - [Function group](<../🧩 00 ├── LEXIQUE SAP ET ABAP/06 ├── PROGRAMMES CLASSES ET OBJETS TECHNIQUES.md#function-group>)
@@ -135,7 +135,7 @@ Ordre de transport  :
 - [BAPI](<../🧩 00 ├── LEXIQUE SAP ET ABAP/10 └── ACRONYMES SAP.md#acro-bapi>)
 - [Destination RFC](<../🧩 00 ├── LEXIQUE SAP ET ABAP/07 ├── INTERFACES ET INTEGRATION.md#destination-rfc>)
 
-## RÉFÉRENCES OFFICIELLES SAP
+## 21.M RÉFÉRENCES OFFICIELLES SAP
 
 - [Looking Up Function Modules — SAP Help Portal](https://help.sap.com/docs/ABAP_PLATFORM_NEW/bd833c8355f34e96a6e83096b38bf192/d1801ec1454211d189710000e8322d00.html)
 - [Calling RFC Function Modules in ABAP — SAP Help Portal](https://help.sap.com/docs/ABAP_PLATFORM_NEW/753088fc00704d0a80e7fbd6803c8adb/48a0f18641bc062de10000000a42189d.html)

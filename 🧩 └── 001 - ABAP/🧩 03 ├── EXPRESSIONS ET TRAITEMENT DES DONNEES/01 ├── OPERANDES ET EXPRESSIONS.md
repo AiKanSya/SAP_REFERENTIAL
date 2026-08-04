@@ -1,6 +1,6 @@
-# OPÉRANDES ET EXPRESSIONS
+# 1. OPÉRANDES ET EXPRESSIONS
 
-## RÉSULTAT ATTENDU
+## 1.A RÉSULTAT ATTENDU
 
 - Distinguer une instruction, une expression et un opérande
 - Identifier les positions de lecture et d’écriture
@@ -8,7 +8,7 @@
 - Lire une expression complexe sans ambiguïté
 - Éviter les effets de bord inutiles dans les expressions
 
-## NOTIONS FONDAMENTALES
+## 1.B NOTIONS FONDAMENTALES
 
 Un **opérande** fournit une valeur à une instruction ou à une expression.
 
@@ -42,7 +42,7 @@ lv_gross_amount = lv_net_amount * ( 1 + lv_tax_rate / 100 ).
 | Partie droite de `=`        | Expression arithmétique complète |
 | `lv_gross_amount`           | Destination de l’affectation     |
 
-## POSITIONS DE LECTURE ET D’ÉCRITURE
+## 1.C POSITIONS DE LECTURE ET D’ÉCRITURE
 
 Une **position de lecture** utilise la valeur d’un objet de données.
 
@@ -66,7 +66,7 @@ Certaines positions sont à la fois lues et modifiées :
 lv_counter = lv_counter + 1.
 ```
 
-## CATÉGORIES D’EXPRESSIONS
+## 1.D CATÉGORIES D’EXPRESSIONS
 
 ```mermaid
 flowchart TD
@@ -90,7 +90,7 @@ Ce dossier traite principalement :
 
 Les expressions tabulaires seront traitées dans le dossier consacré aux tables internes.
 
-## TYPE DU RÉSULTAT
+## 1.E TYPE DU RÉSULTAT
 
 Le type d’une expression dépend notamment :
 
@@ -116,7 +116,7 @@ lv_decimal = CONV decfloat34( lv_integer_a ) / lv_integer_b.
 > [!IMPORTANT]
 > Une déclaration inline peut déduire un type inattendu lorsque tous les opérandes sont des littéraux entiers. Le type cible doit être rendu explicite lorsque la précision du calcul est importante.
 
-## PARENTHÈSES ET LISIBILITÉ
+## 1.F PARENTHÈSES ET LISIBILITÉ
 
 Les parenthèses permettent :
 
@@ -135,21 +135,21 @@ DATA(lv_unit_amount) = lv_base + lv_surcharge.
 lv_result = lv_unit_amount * lv_quantity.
 ```
 
-## VÉRIFICATION
+## 1.G VÉRIFICATION
 
 - Le contrôle syntaxique réussit.
 - La version active correspond au code sauvegardé.
 - L’exécution produit le résultat décrit dans le chapitre.
 - Les cas vide, limite et erreur sont testés séparément lorsque la syntaxe le permet.
 
-## ERREURS FRÉQUENTES
+## 1.H ERREURS FRÉQUENTES
 
 - Copier un exemple sans adapter les types, noms d’objets et données disponibles dans le système.
 - Tester uniquement le cas nominal et ignorer les valeurs initiales, absentes ou invalides.
 - S’appuyer sur une conversion implicite pouvant tronquer ou arrondir.
 - Ignorer l’encodage et les formats externes.
 
-## SNIPPET À RÉUTILISER
+## 1.I SNIPPET À RÉUTILISER
 
 > [!NOTE]
 > Adapter les noms `Z*`, les types DDIC, les données et les autorisations au système cible. Effectuer un contrôle syntaxique avant activation.
@@ -159,13 +159,13 @@ DATA(lv_unit_amount) = lv_base + lv_surcharge.
 lv_result = lv_unit_amount * lv_quantity.
 ```
 
-## TERMES DU LEXIQUE
+## 1.J TERMES DU LEXIQUE
 
 - [Expression](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#expression>)
 - [Instruction ABAP](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#instruction-abap>)
 - [Type de données](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#type-donnees>)
 
-## RÉFÉRENCES OFFICIELLES SAP
+## 1.K RÉFÉRENCES OFFICIELLES SAP
 
 - [Expressions and Functions — SAP Help Portal](https://help.sap.com/docs/ABAP_PLATFORM_NEW/7bfe8cdcfbb040dcb6702dada8c3e2f0/3175650fd7a54df89f2018150024db22.html)
 - [Extended Functional Operand Positions — ABAP Keyword Documentation](https://help.sap.com/doc/abapdocu_latest_index_htm/latest/en-US/ABENEXTENDED_FUNCTIONAL_POSITIONS.html)

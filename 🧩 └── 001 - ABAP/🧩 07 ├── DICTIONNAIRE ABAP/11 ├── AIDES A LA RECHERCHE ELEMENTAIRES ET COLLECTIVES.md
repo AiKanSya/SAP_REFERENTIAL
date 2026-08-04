@@ -1,6 +1,6 @@
-# AIDES À LA RECHERCHE ÉLÉMENTAIRES ET COLLECTIVES
+# 11. AIDES À LA RECHERCHE ÉLÉMENTAIRES ET COLLECTIVES
 
-## RÉSULTAT ATTENDU
+## 11.A RÉSULTAT ATTENDU
 
 - Comprendre le fonctionnement d’une aide F4 DDIC
 - Créer une aide élémentaire
@@ -8,7 +8,7 @@
 - Configurer les paramètres d’import et d’export
 - Choisir le niveau d’affectation approprié
 
-## FONCTION
+## 11.B FONCTION
 
 Une aide à la recherche définit un processus de sélection de valeurs pour un champ de saisie.
 
@@ -29,7 +29,7 @@ flowchart LR
     E --> F["Valeur retournée au champ"]
 ```
 
-## AIDE ÉLÉMENTAIRE
+## 11.C AIDE ÉLÉMENTAIRE
 
 Une aide élémentaire décrit un seul chemin de recherche.
 
@@ -42,7 +42,7 @@ Elle contient notamment :
 - un comportement de dialogue ;
 - éventuellement un exit d’aide à la recherche.
 
-## PARAMÈTRES
+## 11.D PARAMÈTRES
 
 | Indicateur            | Fonction                                                                  |
 | --------------------- | ------------------------------------------------------------------------- |
@@ -53,7 +53,7 @@ Elle contient notamment :
 
 Un paramètre peut être à la fois import et export.
 
-## AIDE COLLECTIVE
+## 11.E AIDE COLLECTIVE
 
 Une aide collective regroupe plusieurs aides élémentaires représentant des chemins alternatifs.
 
@@ -72,7 +72,7 @@ flowchart TD
 
 Les paramètres de l’aide collective doivent être affectés aux paramètres correspondants de chaque aide élémentaire incluse.
 
-## NIVEAUX D’AFFECTATION
+## 11.F NIVEAUX D’AFFECTATION
 
 Une aide peut être affectée :
 
@@ -83,7 +83,7 @@ Une aide peut être affectée :
 
 L’affectation la plus générale est généralement placée sur l’élément de données. Une affectation locale peut la remplacer pour un contexte spécifique.
 
-## EXIT D’AIDE À LA RECHERCHE
+## 11.G EXIT D’AIDE À LA RECHERCHE
 
 Un exit permet d’adapter dynamiquement le processus :
 
@@ -94,7 +94,7 @@ Un exit permet d’adapter dynamiquement le processus :
 
 Il doit rester réservé aux besoins impossibles à exprimer par la configuration DDIC, car il augmente la complexité de maintenance.
 
-## POINTS À RETENIR
+## 11.H POINTS À RETENIR
 
 - Une aide élémentaire définit un chemin de recherche.
 - Une aide collective regroupe plusieurs aides élémentaires.
@@ -102,13 +102,13 @@ Il doit rester réservé aux besoins impossibles à exprimer par la configuratio
 - Le niveau d’affectation détermine la portée de l’aide.
 - Un exit est une extension avancée, pas le mécanisme par défaut.
 
-## PROCESS
+## 11.I PROCESS
 
-### Étape 1 — Définir la valeur recherchée
+### 11.I.1 Étape 1 — Définir la valeur recherchée
 
 Identifier le champ retourné à l’écran, les critères que l’utilisateur peut saisir, les colonnes utiles dans la liste et la table ou vue qui fournit les données. Écarter les colonnes techniques sans utilité pour le choix.
 
-### Étape 2 — Créer l’aide élémentaire
+### 11.I.2 Étape 2 — Créer l’aide élémentaire
 
 1. Ouvrir `SE11`, choisir **Aide à la recherche** et saisir un nom client.
 2. Créer une aide élémentaire.
@@ -118,31 +118,31 @@ Identifier le champ retourné à l’écran, les critères que l’utilisateur p
 
 Le paramètre export doit restituer la valeur attendue par le champ appelant. Un mauvais sens import/export produit une aide visible qui ne retourne rien.
 
-### Étape 3 — Activer et tester isolément
+### 11.I.3 Étape 3 — Activer et tester isolément
 
 Utiliser la fonction de test de l’aide. Saisir un critère, exécuter, contrôler la liste puis sélectionner une ligne. Vérifier la valeur retournée avant de rattacher l’aide à un élément de données.
 
-### Étape 4 — Créer une aide collective si plusieurs stratégies existent
+### 11.I.4 Étape 4 — Créer une aide collective si plusieurs stratégies existent
 
 Créer l’aide collective, ajouter les aides élémentaires et affecter leurs paramètres communs. Tester chaque chemin de recherche séparément et vérifier que la même valeur de sortie est restituée.
 
-### Étape 5 — Rattacher et valider dans l’application
+### 11.I.5 Étape 5 — Rattacher et valider dans l’application
 
 Associer l’aide au champ ou à l’élément de données selon la portée voulue. Tester `F4` depuis le véritable écran avec un cas trouvé, un critère sans résultat et un volume représentatif. La mise en place est terminée lorsque la sélection retourne la bonne valeur sans exposer de données inutiles.
 
-## VÉRIFICATION
+## 11.J VÉRIFICATION
 
 - Le contrôle de cohérence ne retourne aucune erreur bloquante.
 - L’objet est actif et son entrée de répertoire pointe vers le package attendu.
 - La liste d’utilisation et les dépendances correspondent au périmètre prévu.
 - Pour une table Z, la structure active et la structure de base sont cohérentes.
 
-## ERREURS FRÉQUENTES
+## 11.K ERREURS FRÉQUENTES
 
 - Modifier un objet standard au lieu d’utiliser une extension.
 - Activer une table sans vérifier clé, paramètres techniques et impact base.
 
-## FICHE DE CONTRÔLE À COPIER
+## 11.L FICHE DE CONTRÔLE À COPIER
 
 ```text
 Système / SID       :
@@ -157,7 +157,7 @@ Horodatage          :
 Ordre de transport  :
 ```
 
-## TERMES DU LEXIQUE
+## 11.M TERMES DU LEXIQUE
 
 - [ABAP Dictionary](<../🧩 00 ├── LEXIQUE SAP ET ABAP/05 ├── DONNEES DICTIONNAIRE ET BASE DE DONNEES.md#abap-dictionary>)
 - [Domaine](<../🧩 00 ├── LEXIQUE SAP ET ABAP/05 ├── DONNEES DICTIONNAIRE ET BASE DE DONNEES.md#domaine>)
@@ -165,7 +165,7 @@ Ordre de transport  :
 - [Table transparente](<../🧩 00 ├── LEXIQUE SAP ET ABAP/05 ├── DONNEES DICTIONNAIRE ET BASE DE DONNEES.md#table-transparente>)
 - [MANDT](<../🧩 00 ├── LEXIQUE SAP ET ABAP/05 ├── DONNEES DICTIONNAIRE ET BASE DE DONNEES.md#mandt>)
 
-## RÉFÉRENCES OFFICIELLES SAP
+## 11.N RÉFÉRENCES OFFICIELLES SAP
 
 - [Search Helps — SAP Help Portal](https://help.sap.com/docs/ABAP_PLATFORM_NEW/ec1c9c8191b74de98feb94001a95dd76/cf21ee2b446011d189700000e8322d00.html?version=202310.latest)
 - [Input Help from the ABAP Dictionary — SAP Help Portal](https://help.sap.com/docs/SAP_NETWEAVER_731_BW_ABAP/f68e489816e043f1add91d69a6842931/4a439ebd5a503f04e10000000a421937.html)

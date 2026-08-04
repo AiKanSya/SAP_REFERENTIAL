@@ -1,12 +1,12 @@
-# AJOUTER DU TEXTE LIBRE ET DES MESSAGES SYSTÈME
+# 9. AJOUTER DU TEXTE LIBRE ET DES MESSAGES SYSTÈME
 
-## RÉSULTAT ATTENDU
+## 9.A RÉSULTAT ATTENDU
 
 - Ajouter un texte qui ne provient pas d’une classe de messages
 - Connaître les limites du texte libre
 - Choisir entre T100 et texte libre
 
-## TEXTE LIBRE
+## 9.B TEXTE LIBRE
 
 ```abap
 DATA lv_text TYPE c LENGTH 200.
@@ -26,7 +26,7 @@ CALL FUNCTION 'BAL_LOG_MSG_ADD_FREE_TEXT'
     OTHERS           = 4.
 ```
 
-## CHOIX
+## 9.C CHOIX
 
 | Critère            | Message T100                             | Texte libre                                  |
 | ------------------ | ---------------------------------------- | -------------------------------------------- |
@@ -36,7 +36,7 @@ CALL FUNCTION 'BAL_LOG_MSG_ADD_FREE_TEXT'
 | Données techniques | Classe et numéro                         | Principalement le texte                      |
 | Usage recommandé   | Messages fonctionnels et erreurs stables | Diagnostic ponctuel ou information dynamique |
 
-## RECOMMANDATION
+## 9.D RECOMMANDATION
 
 Utiliser T100 pour les messages susceptibles d’être montrés aux utilisateurs, documentés ou recherchés régulièrement. Réserver le texte libre aux informations techniques dont le contenu est fortement dynamique.
 
@@ -48,47 +48,47 @@ Ne jamais enregistrer directement :
 - données bancaires complètes ;
 - contenu métier sensible non nécessaire au diagnostic.
 
-## PROCESS
+## 9.E PROCESS
 
-### ÉTAPE 1 — CHOISIR ENTRE T100 ET TEXTE LIBRE
+### 9.E.1 ÉTAPE 1 — CHOISIR ENTRE T100 ET TEXTE LIBRE
 
 Utiliser T100 pour un message stable, traduisible et réutilisable. Réserver le texte libre à une information technique fortement dynamique. Vérifier qu’aucune variable ne contient de secret ou de donnée personnelle inutile.
 
-### ÉTAPE 2 — CONSTRUIRE UN TEXTE BORNÉ
+### 9.E.2 ÉTAPE 2 — CONSTRUIRE UN TEXTE BORNÉ
 
 Préparer le texte dans un champ compatible avec la signature de `BAL_LOG_MSG_ADD_FREE_TEXT`. Inclure la clé de corrélation utile et l’action réalisée, sans copier un payload complet. Contrôler la longueur afin d’éviter une troncature silencieuse.
 
-### ÉTAPE 3 — AJOUTER LE TEXTE AU HANDLE
+### 9.E.3 ÉTAPE 3 — AJOUTER LE TEXTE AU HANDLE
 
 Passer `I_LOG_HANDLE`, le type de message, la classe de problème et le texte. Traiter `LOG_NOT_FOUND`, `MSG_INCONSISTENT` et `LOG_IS_FULL`. Une erreur d’ajout doit suivre la politique de secours du composant.
 
-### ÉTAPE 4 — CAPTURER UN MESSAGE SYSTÈME IMMÉDIATEMENT
+### 9.E.4 ÉTAPE 4 — CAPTURER UN MESSAGE SYSTÈME IMMÉDIATEMENT
 
 Après une API renseignant `sy-msgid`, `sy-msgno`, `sy-msgty` et `sy-msgv1` à `sy-msgv4`, copier ces valeurs avant toute autre instruction susceptible de les écraser. Construire ensuite `BAL_S_MSG` et appeler `BAL_LOG_MSG_ADD`.
 
-### ÉTAPE 5 — SAUVEGARDER LE JOURNAL CIBLÉ
+### 9.E.5 ÉTAPE 5 — SAUVEGARDER LE JOURNAL CIBLÉ
 
 Passer uniquement le handle concerné à `BAL_DB_SAVE`. Contrôler le retour et respecter la stratégie de LUW. Ne pas exécuter un commit supplémentaire uniquement pour un texte de diagnostic.
 
-### ÉTAPE 6 — VÉRIFIER RENDU ET CONFIDENTIALITÉ
+### 9.E.6 ÉTAPE 6 — VÉRIFIER RENDU ET CONFIDENTIALITÉ
 
 Ouvrir le journal dans `SLG1` et vérifier texte, gravité, troncature et recherche. Tester des accents, une valeur longue et une erreur système réelle. Faire relire le contenu du journal du point de vue des autorisations et de la protection des données.
 
-## VÉRIFICATION
+## 9.F VÉRIFICATION
 
 - Le journal est retrouvable dans `SLG1` avec objet, sous-objet et période.
 - Chaque erreur contient un contexte permettant d’identifier l’enregistrement concerné.
 - Le log est sauvegardé même lorsque le traitement se termine avec des erreurs gérées.
 - Aucune donnée sensible inutile n’est enregistrée.
 
-## ERREURS FRÉQUENTES
+## 9.G ERREURS FRÉQUENTES
 
 - Copier un exemple sans adapter les types, noms d’objets et données disponibles dans le système.
 - Tester uniquement le cas nominal et ignorer les valeurs initiales, absentes ou invalides.
 - Enregistrer uniquement un texte générique sans clé métier.
 - Journaliser des mots de passe, tokens ou données personnelles inutiles.
 
-## SNIPPET À RÉUTILISER
+## 9.H SNIPPET À RÉUTILISER
 
 > [!NOTE]
 > Adapter les noms `Z*`, les types DDIC, les données et les autorisations au système cible. Effectuer un contrôle syntaxique avant activation.
@@ -111,13 +111,13 @@ CALL FUNCTION 'BAL_LOG_MSG_ADD_FREE_TEXT'
     OTHERS           = 4.
 ```
 
-## TERMES DU LEXIQUE
+## 9.I TERMES DU LEXIQUE
 
 - [Application Log](<../🧩 00 ├── LEXIQUE SAP ET ABAP/08 ├── EXECUTION EXPLOITATION ET ADMINISTRATION.md#application-log>)
 - [BAL](<../🧩 00 ├── LEXIQUE SAP ET ABAP/10 └── ACRONYMES SAP.md#acro-bal>)
 - [Job](<../🧩 00 ├── LEXIQUE SAP ET ABAP/06 ├── PROGRAMMES CLASSES ET OBJETS TECHNIQUES.md#job>)
 
-## RÉFÉRENCES OFFICIELLES SAP
+## 9.J RÉFÉRENCES OFFICIELLES SAP
 
 - [Basics — SAP Help Portal](https://help.sap.com/docs/ABAP_PLATFORM_NEW/addb96cd90c945dfb3182865363bbc47/4e21029235d44180e10000000a15822b.html)
 - [Function Module Overview — SAP Help Portal](https://help.sap.com/docs/ABAP_PLATFORM_NEW/addb96cd90c945dfb3182865363bbc47/4e23b1720771417fe10000000a15822b.html)

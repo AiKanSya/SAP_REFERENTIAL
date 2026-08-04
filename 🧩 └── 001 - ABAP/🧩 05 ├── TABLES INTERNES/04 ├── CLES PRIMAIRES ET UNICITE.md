@@ -1,6 +1,6 @@
-# CLÉS PRIMAIRES ET UNICITÉ
+# 4. CLÉS PRIMAIRES ET UNICITÉ
 
-## RÉSULTAT ATTENDU
+## 4.A RÉSULTAT ATTENDU
 
 - Comprendre le rôle de la clé primaire d’une table interne
 - Déclarer une clé standard, triée, hachée ou vide
@@ -8,7 +8,7 @@
 - Comprendre le pseudo-composant `table_line`
 - Éviter les clés par défaut involontaires
 
-## RÔLE DE LA CLÉ
+## 4.B RÔLE DE LA CLÉ
 
 La clé primaire participe à plusieurs comportements :
 
@@ -18,7 +18,7 @@ La clé primaire participe à plusieurs comportements :
 - contrôle de l’unicité ;
 - comportement de certaines instructions comme `COLLECT`.
 
-## CLÉ EXPLICITE
+## 4.C CLÉ EXPLICITE
 
 ```abap
 DATA lt_products TYPE SORTED TABLE OF ty_product
@@ -32,7 +32,7 @@ DATA lt_items TYPE SORTED TABLE OF ty_item
               WITH NON-UNIQUE KEY vbeln posnr.
 ```
 
-## UNIQUE ET NON-UNIQUE
+## 4.D UNIQUE ET NON-UNIQUE
 
 | Déclaration           | Conséquence                                                 |
 | --------------------- | ----------------------------------------------------------- |
@@ -46,7 +46,7 @@ DATA lt_by_material TYPE HASHED TABLE OF ty_product
                     WITH UNIQUE KEY matnr.
 ```
 
-## EMPTY KEY
+## 4.E EMPTY KEY
 
 `WITH EMPTY KEY` définit explicitement une clé primaire vide pour une table standard.
 
@@ -60,7 +60,7 @@ Utiliser cette syntaxe lorsqu’aucune recherche par clé primaire ni unicité n
 > [!IMPORTANT]
 > Une clé vide n’est pas une clé contenant tous les composants. Elle ne contient aucun composant.
 
-## DEFAULT KEY
+## 4.F DEFAULT KEY
 
 La clé standard par défaut dépend du type de ligne et peut exclure certains composants. Son comportement est moins explicite qu’une clé déclarée volontairement.
 
@@ -71,7 +71,7 @@ DATA lt_products TYPE STANDARD TABLE OF ty_product
 
 Pour du nouveau code, préférer une clé explicite ou `WITH EMPTY KEY` lorsque cela correspond au besoin.
 
-## TABLE_LINE
+## 4.G TABLE_LINE
 
 Pour une table à ligne élémentaire, la ligne complète est désignée par `table_line`.
 
@@ -85,7 +85,7 @@ INSERT 'A01' INTO TABLE lt_codes.
 INSERT 'B02' INTO TABLE lt_codes.
 ```
 
-## CLÉ COMPOSITE
+## 4.H CLÉ COMPOSITE
 
 ```abap
 TYPES: BEGIN OF ty_item,
@@ -100,7 +100,7 @@ DATA lt_items TYPE HASHED TABLE OF ty_item
 
 La ligne est identifiée par la combinaison `vbeln` + `posnr`.
 
-## CHOIX DE LA CLÉ
+## 4.I CHOIX DE LA CLÉ
 
 ```mermaid
 flowchart TD
@@ -112,7 +112,7 @@ flowchart TD
     E -->|""Non""| G["Clé triée possible"]
 ```
 
-## CONTRÔLER LES INSERTIONS
+## 4.J CONTRÔLER LES INSERTIONS
 
 Avec `INSERT ... INTO TABLE`, `sy-subrc` permet de détecter un doublon sur une clé unique.
 
@@ -126,21 +126,21 @@ IF sy-subrc <> 0.
 ENDIF.
 ```
 
-## VÉRIFICATION
+## 4.K VÉRIFICATION
 
 - Le contrôle syntaxique réussit.
 - La version active correspond au code sauvegardé.
 - L’exécution produit le résultat décrit dans le chapitre.
 - Les cas vide, limite et erreur sont testés séparément lorsque la syntaxe le permet.
 
-## ERREURS FRÉQUENTES
+## 4.L ERREURS FRÉQUENTES
 
 - Copier un exemple sans adapter les types, noms d’objets et données disponibles dans le système.
 - Tester uniquement le cas nominal et ignorer les valeurs initiales, absentes ou invalides.
 - Utiliser une table standard pour des recherches massives par clé sans mesure.
 - Modifier une copie de ligne alors que la table devait être mise à jour.
 
-## SNIPPET À RÉUTILISER
+## 4.M SNIPPET À RÉUTILISER
 
 > [!NOTE]
 > Adapter les noms `Z*`, les types DDIC, les données et les autorisations au système cible. Effectuer un contrôle syntaxique avant activation.
@@ -155,14 +155,14 @@ IF sy-subrc <> 0.
 ENDIF.
 ```
 
-## TERMES DU LEXIQUE
+## 4.N TERMES DU LEXIQUE
 
 - [Table interne](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#table-interne>)
 - [Structure](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#structure-abap>)
 - [Field-symbol](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#field-symbol>)
 - [Référence](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#reference>)
 
-## RÉFÉRENCES OFFICIELLES SAP
+## 4.O RÉFÉRENCES OFFICIELLES SAP
 
 - [Specifying Table Keys in Table Types and Internal Tables — SAP Help Portal](https://help.sap.com/docs/abap-cloud/abap-concepts/how-to-specify-table-keys-in-table-types-and-internal-tables)
 - [Specifying Table Keys — SAP Help Portal](https://help.sap.com/docs/abap-cloud/abap-concepts/specifying-table-keys)

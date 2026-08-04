@@ -1,6 +1,6 @@
-# FONCTIONS NUMÉRIQUES ET ARRONDIS
+# 4. FONCTIONS NUMÉRIQUES ET ARRONDIS
 
-## RÉSULTAT ATTENDU
+## 4.A RÉSULTAT ATTENDU
 
 - Utiliser les principales fonctions numériques intégrées
 - Distinguer troncature et arrondi
@@ -8,7 +8,7 @@
 - Comprendre l’influence du type cible
 - Éviter les arrondis implicites non maîtrisés
 
-## FONCTIONS COURANTES
+## 4.B FONCTIONS COURANTES
 
 | Fonction   | Rôle                                          |
 | ---------- | --------------------------------------------- |
@@ -32,7 +32,7 @@ DATA(lv_integer)  = trunc( lv_value ).
 DATA(lv_fraction) = frac( lv_value ).
 ```
 
-## TRONCATURE ET ARRONDI
+## 4.C TRONCATURE ET ARRONDI
 
 La troncature supprime la partie non conservée. L’arrondi décide de la valeur selon une règle.
 
@@ -51,7 +51,7 @@ DATA lv_rounded TYPE decfloat34.
 lv_rounded = round( val = lv_amount dec = 2 ).
 ```
 
-## ARRONDI PAR LE TYPE CIBLE
+## 4.D ARRONDI PAR LE TYPE CIBLE
 
 Une affectation vers un type possédant moins de décimales peut provoquer un arrondi ou une perte d’information selon les règles de conversion.
 
@@ -68,7 +68,7 @@ Cette affectation masque la décision d’arrondi dans la conversion. Pour une r
 lv_target = round( val = lv_source dec = 2 ).
 ```
 
-## SIGNE ET VALEUR ABSOLUE
+## 4.E SIGNE ET VALEUR ABSOLUE
 
 ```abap
 DATA lv_difference TYPE p LENGTH 8 DECIMALS 2 VALUE '-15.20'.
@@ -80,7 +80,7 @@ ENDIF.
 
 L’exemple utilise `IF` uniquement pour montrer l’exploitation du résultat. Les structures de contrôle seront détaillées dans le dossier suivant.
 
-## VALEURS POSITIVES ET NÉGATIVES
+## 4.F VALEURS POSITIVES ET NÉGATIVES
 
 Les fonctions `ceil`, `floor` et `trunc` produisent des résultats différents pour les valeurs négatives.
 
@@ -91,7 +91,7 @@ Les fonctions `ceil`, `floor` et `trunc` produisent des résultats différents p
 
 Ne pas utiliser ces fonctions comme synonymes.
 
-## EXEMPLE DE CALCUL DE CONDITIONNEMENT
+## 4.G EXEMPLE DE CALCUL DE CONDITIONNEMENT
 
 ```abap
 DATA lv_requested_qty TYPE decfloat34 VALUE '17'.
@@ -110,7 +110,7 @@ Le résultat permet de commander un nombre entier de conditionnements :
 - conditionnements nécessaires : `3` ;
 - quantité commandée : `18`.
 
-## BONNES PRATIQUES
+## 4.H BONNES PRATIQUES
 
 - Définir explicitement la règle d’arrondi métier.
 - Ne pas confondre arrondi d’affichage et arrondi de valeur.
@@ -118,21 +118,21 @@ Le résultat permet de commander un nombre entier de conditionnements :
 - N’arrondir qu’au moment prévu par la règle métier.
 - Tester les valeurs positives, négatives et proches de zéro.
 
-## VÉRIFICATION
+## 4.I VÉRIFICATION
 
 - Le contrôle syntaxique réussit.
 - La version active correspond au code sauvegardé.
 - L’exécution produit le résultat décrit dans le chapitre.
 - Les cas vide, limite et erreur sont testés séparément lorsque la syntaxe le permet.
 
-## ERREURS FRÉQUENTES
+## 4.J ERREURS FRÉQUENTES
 
 - Copier un exemple sans adapter les types, noms d’objets et données disponibles dans le système.
 - Tester uniquement le cas nominal et ignorer les valeurs initiales, absentes ou invalides.
 - S’appuyer sur une conversion implicite pouvant tronquer ou arrondir.
 - Ignorer l’encodage et les formats externes.
 
-## SNIPPET À RÉUTILISER
+## 4.K SNIPPET À RÉUTILISER
 
 > [!NOTE]
 > Adapter les noms `Z*`, les types DDIC, les données et les autorisations au système cible. Effectuer un contrôle syntaxique avant activation.
@@ -147,13 +147,13 @@ DATA(lv_integer)  = trunc( lv_value ).
 DATA(lv_fraction) = frac( lv_value ).
 ```
 
-## TERMES DU LEXIQUE
+## 4.L TERMES DU LEXIQUE
 
 - [Instruction ABAP](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#instruction-abap>)
 - [Expression](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#expression>)
 - [Type de données](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#type-donnees>)
 
-## RÉFÉRENCES OFFICIELLES SAP
+## 4.M RÉFÉRENCES OFFICIELLES SAP
 
 - [Numeric Functions — ABAP Keyword Documentation](https://help.sap.com/doc/abapdocu_latest_index_htm/latest/en-US/ABENNUMERICAL_FUNCTIONS.html)
 - [round — ABAP Keyword Documentation](https://help.sap.com/doc/abapdocu_latest_index_htm/latest/en-US/ABENDEC_FLOATING_POINT_FUNCTIONS.html)

@@ -1,6 +1,6 @@
-# CONSTANTES ET LITTÉRAUX
+# 5. CONSTANTES ET LITTÉRAUX
 
-## RÉSULTAT ATTENDU
+## 5.A RÉSULTAT ATTENDU
 
 - Déclarer une constante avec `CONSTANTS`
 - Distinguer une constante d’un littéral
@@ -8,7 +8,7 @@
 - Remplacer les valeurs significatives répétées par des constantes nommées
 - Éviter les constantes locales inutiles ou trompeuses
 
-## CONSTANTE
+## 5.B CONSTANTE
 
 Une constante est un objet de données nommé dont la valeur ne peut pas être modifiée après sa déclaration.
 
@@ -24,7 +24,7 @@ CONSTANTS constante TYPE type VALUE valeur.
 
 La valeur doit être compatible avec le type déclaré.
 
-## POURQUOI UTILISER UNE CONSTANTE
+## 5.C POURQUOI UTILISER UNE CONSTANTE
 
 ```abap
 IF lv_retry_count >= 3.
@@ -49,7 +49,7 @@ Une constante est utile lorsque la valeur :
 - ne doit pas être modifiée pendant l’exécution ;
 - améliore réellement la compréhension du code.
 
-## CONSTANTE INITIALE
+## 5.D CONSTANTE INITIALE
 
 Une constante peut être définie avec la valeur initiale de son type :
 
@@ -59,9 +59,9 @@ CONSTANTS lc_empty_status TYPE c LENGTH 1 VALUE IS INITIAL.
 
 Cette forme est rarement nécessaire. Un test `IS INITIAL` est généralement plus explicite lorsqu’il s’agit uniquement de contrôler l’absence de valeur.
 
-## LITTÉRAUX TEXTE
+## 5.E LITTÉRAUX TEXTE
 
-### LITTÉRAL CARACTÈRE
+### 5.E.1 LITTÉRAL CARACTÈRE
 
 ```abap
 DATA lv_text TYPE c LENGTH 20.
@@ -77,7 +77,7 @@ Pour inclure une apostrophe dans le texte, elle est doublée :
 WRITE / 'L''objet est actif'.
 ```
 
-### LITTÉRAL `string`
+### 5.E.2 LITTÉRAL `string`
 
 ```abap
 DATA lv_message TYPE string.
@@ -87,7 +87,7 @@ lv_message = `Traitement terminé`.
 
 Les accents graves délimitent un littéral de type `string`.
 
-### MODÈLE DE CHAÎNE
+### 5.E.3 MODÈLE DE CHAÎNE
 
 ```abap
 DATA lv_name TYPE string VALUE `SAP`.
@@ -98,7 +98,7 @@ lv_text = |Technologie : { lv_name }|.
 
 Les modèles de chaîne permettent d’insérer des expressions et d’appliquer des options de formatage. Ils seront détaillés avec les traitements de chaînes.
 
-## LITTÉRAUX NUMÉRIQUES
+## 5.F LITTÉRAUX NUMÉRIQUES
 
 ```abap
 DATA lv_count  TYPE i.
@@ -110,7 +110,7 @@ lv_amount = '12.50'.
 
 Le contexte de l’affectation détermine les conversions effectuées. Pour les valeurs décimales portables dans le code, la notation sous forme de texte est fréquente avec les nombres compactés.
 
-## LITTÉRAUX HEXADÉCIMAUX
+## 5.G LITTÉRAUX HEXADÉCIMAUX
 
 ```abap
 DATA lv_byte TYPE x LENGTH 1.
@@ -120,7 +120,7 @@ lv_byte = 'FF'.
 
 La chaîne fournie est convertie selon le type cible. Le contenu doit représenter une suite hexadécimale valide et respecter la capacité du champ.
 
-## CONSTANTES LOCALES ET GLOBALES
+## 5.H CONSTANTES LOCALES ET GLOBALES
 
 Une constante locale à une procédure limite les dépendances :
 
@@ -136,7 +136,7 @@ ENDMETHOD.
 
 Une constante globale peut être justifiée lorsqu’elle représente une règle commune à plusieurs procédures du même objet. Une constante publique de classe crée une dépendance d’interface et doit être stable.
 
-## ENUMÉRATIONS ET VALEURS CODÉES
+## 5.I ENUMÉRATIONS ET VALEURS CODÉES
 
 Pour plusieurs valeurs liées, regrouper les constantes de manière cohérente :
 
@@ -159,7 +159,7 @@ ENDIF.
 
 Cette construction fournit un regroupement lisible. Les types énumérés disponibles dans certaines versions ABAP ne sont pas abordés ici afin de conserver une compatibilité large avec les environnements SAP GUI classiques.
 
-## ERREURS FRÉQUENTES
+## 5.J ERREURS FRÉQUENTES
 
 | Erreur                                                | Conséquence                                |
 | ----------------------------------------------------- | ------------------------------------------ |
@@ -172,14 +172,14 @@ Cette construction fournit un regroupement lisible. Les types énumérés dispon
 > [!NOTE]
 > Les textes affichés à l’utilisateur doivent généralement être gérés avec les mécanismes de traduction adaptés : symboles de texte, classes de messages ou ressources de l’interface concernée.
 
-## VÉRIFICATION
+## 5.K VÉRIFICATION
 
 - Le contrôle syntaxique réussit.
 - La version active correspond au code sauvegardé.
 - L’exécution produit le résultat décrit dans le chapitre.
 - Les cas vide, limite et erreur sont testés séparément lorsque la syntaxe le permet.
 
-## SNIPPET À RÉUTILISER
+## 5.L SNIPPET À RÉUTILISER
 
 > [!NOTE]
 > Adapter les noms `Z*`, les types DDIC, les données et les autorisations au système cible. Effectuer un contrôle syntaxique avant activation.
@@ -194,7 +194,7 @@ METHOD validate_quantity.
 ENDMETHOD.
 ```
 
-## TERMES DU LEXIQUE
+## 5.M TERMES DU LEXIQUE
 
 - [Type de données](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#type-donnees>)
 - [Objet de données](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#objet-donnees>)
@@ -203,7 +203,7 @@ ENDMETHOD.
 - [Field-symbol](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#field-symbol>)
 - [Référence](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#reference>)
 
-## RÉFÉRENCES OFFICIELLES SAP
+## 5.N RÉFÉRENCES OFFICIELLES SAP
 
 - [CONSTANTS — ABAP Keyword Documentation](https://help.sap.com/doc/abapdocu_latest_index_htm/latest/en-US/ABAPCONSTANTS.html)
 - [Literals — ABAP Keyword Documentation](https://help.sap.com/doc/abapdocu_latest_index_htm/latest/en-US/ABENLITERALS.html)

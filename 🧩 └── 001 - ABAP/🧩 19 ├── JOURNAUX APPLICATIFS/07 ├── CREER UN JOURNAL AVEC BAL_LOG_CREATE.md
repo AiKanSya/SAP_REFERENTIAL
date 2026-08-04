@@ -1,12 +1,12 @@
-# CRÉER UN JOURNAL AVEC BAL_LOG_CREATE
+# 7. CRÉER UN JOURNAL AVEC BAL_LOG_CREATE
 
-## RÉSULTAT ATTENDU
+## 7.A RÉSULTAT ATTENDU
 
 - Créer un journal en mémoire
 - Récupérer son handle
 - Contrôler les erreurs de configuration
 
-## EXEMPLE
+## 7.B EXEMPLE
 
 ```abap
 DATA:
@@ -33,7 +33,7 @@ IF sy-subrc <> 0.
 ENDIF.
 ```
 
-## HANDLE
+## 7.C HANDLE
 
 Le type `BALLOGHNDL` identifie le journal créé. Il doit être conservé par le composant de journalisation et transmis à chaque ajout de message, affichage ou sauvegarde ciblée.
 
@@ -45,7 +45,7 @@ flowchart LR
     B --> E["BAL_DB_SAVE"]
 ```
 
-## ERREURS DE CRÉATION
+## 7.D ERREURS DE CRÉATION
 
 La création échoue notamment lorsque :
 
@@ -55,47 +55,47 @@ La création échoue notamment lorsque :
 
 Ne pas ignorer `sy-subrc`. Sans handle valide, les appels suivants ne produisent pas de journal exploitable.
 
-## PROCESS
+## 7.E PROCESS
 
-### ÉTAPE 1 — PRÉPARER LA CONFIGURATION
+### 7.E.1 ÉTAPE 1 — PRÉPARER LA CONFIGURATION
 
 Vérifier l’objet et le sous-objet dans `SLG0`. Définir l’identifiant externe et la politique de rétention. Exécuter le test avec un objet Z transporté dans le système courant.
 
-### ÉTAPE 2 — INITIALISER `BAL_S_LOG`
+### 7.E.2 ÉTAPE 2 — INITIALISER `BAL_S_LOG`
 
 Créer une structure neuve et renseigner objet, sous-objet, identifiant et programme. Contrôler la longueur et le contenu de chaque champ avant l’appel. Ne pas transmettre une structure issue d’un précédent traitement.
 
-### ÉTAPE 3 — APPELER `BAL_LOG_CREATE`
+### 7.E.3 ÉTAPE 3 — APPELER `BAL_LOG_CREATE`
 
 Passer l’en-tête dans `I_S_LOG` et récupérer `E_LOG_HANDLE`. Traiter `LOG_HEADER_INCONSISTENT` séparément des autres erreurs. Contrôler `sy-subrc` immédiatement après le module.
 
-### ÉTAPE 4 — CONSERVER LE HANDLE DANS LE BON COMPOSANT
+### 7.E.4 ÉTAPE 4 — CONSERVER LE HANDLE DANS LE BON COMPOSANT
 
 Stocker le handle dans l’objet responsable de l’exécution et le transmettre explicitement à chaque ajout, affichage et sauvegarde. Ne pas dépendre du journal par défaut de la mémoire globale BAL.
 
-### ÉTAPE 5 — TESTER LE PREMIER MESSAGE
+### 7.E.5 ÉTAPE 5 — TESTER LE PREMIER MESSAGE
 
 Ajouter un message d’information au handle et contrôler le retour. En cas de `LOG_NOT_FOUND`, vérifier que le handle n’a pas été écrasé ou retiré de la mémoire. Ne pas poursuivre silencieusement avec un autre journal.
 
-### ÉTAPE 6 — SAUVEGARDER ET RECHERCHER
+### 7.E.6 ÉTAPE 6 — SAUVEGARDER ET RECHERCHER
 
 Sauvegarder uniquement ce handle, puis rechercher dans `SLG1` par objet et identifiant externe. Tester aussi un objet inexistant, un sous-objet invalide et un handle initial pour confirmer la gestion des erreurs.
 
-## VÉRIFICATION
+## 7.F VÉRIFICATION
 
 - Le journal est retrouvable dans `SLG1` avec objet, sous-objet et période.
 - Chaque erreur contient un contexte permettant d’identifier l’enregistrement concerné.
 - Le log est sauvegardé même lorsque le traitement se termine avec des erreurs gérées.
 - Aucune donnée sensible inutile n’est enregistrée.
 
-## ERREURS FRÉQUENTES
+## 7.G ERREURS FRÉQUENTES
 
 - Copier un exemple sans adapter les types, noms d’objets et données disponibles dans le système.
 - Tester uniquement le cas nominal et ignorer les valeurs initiales, absentes ou invalides.
 - Enregistrer uniquement un texte générique sans clé métier.
 - Journaliser des mots de passe, tokens ou données personnelles inutiles.
 
-## SNIPPET À RÉUTILISER
+## 7.H SNIPPET À RÉUTILISER
 
 > [!NOTE]
 > Adapter les noms `Z*`, les types DDIC, les données et les autorisations au système cible. Effectuer un contrôle syntaxique avant activation.
@@ -125,13 +125,13 @@ IF sy-subrc <> 0.
 ENDIF.
 ```
 
-## TERMES DU LEXIQUE
+## 7.I TERMES DU LEXIQUE
 
 - [Application Log](<../🧩 00 ├── LEXIQUE SAP ET ABAP/08 ├── EXECUTION EXPLOITATION ET ADMINISTRATION.md#application-log>)
 - [BAL](<../🧩 00 ├── LEXIQUE SAP ET ABAP/10 └── ACRONYMES SAP.md#acro-bal>)
 - [Job](<../🧩 00 ├── LEXIQUE SAP ET ABAP/06 ├── PROGRAMMES CLASSES ET OBJETS TECHNIQUES.md#job>)
 
-## RÉFÉRENCES OFFICIELLES SAP
+## 7.J RÉFÉRENCES OFFICIELLES SAP
 
 - [Basics — SAP Help Portal](https://help.sap.com/docs/ABAP_PLATFORM_NEW/addb96cd90c945dfb3182865363bbc47/4e21029235d44180e10000000a15822b.html)
 - [Function Module Overview — SAP Help Portal](https://help.sap.com/docs/ABAP_PLATFORM_NEW/addb96cd90c945dfb3182865363bbc47/4e23b1720771417fe10000000a15822b.html)

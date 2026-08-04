@@ -1,6 +1,6 @@
-# APPELS AVEC PERFORM
+# 4. APPELS AVEC PERFORM
 
-## RÉSULTAT ATTENDU
+## 4.A RÉSULTAT ATTENDU
 
 - Appeler un sous-programme statiquement
 - Comprendre le transfert du contrôle
@@ -8,7 +8,7 @@
 - Identifier les erreurs d’appel courantes
 - Différencier appel interne et appel externe
 
-## APPEL INTERNE SIMPLE
+## 4.B APPEL INTERNE SIMPLE
 
 ```abap
 PERFORM form_name.
@@ -24,7 +24,7 @@ flowchart TD
     D --> E["Instruction suivant PERFORM"]
 ```
 
-## EXEMPLE COMPLET
+## 4.C EXEMPLE COMPLET
 
 ```abap
 REPORT z_demo_perform_01.
@@ -47,7 +47,7 @@ Dans le sous-programme
 Après
 ```
 
-## APPEL AVEC PARAMÈTRES
+## 4.D APPEL AVEC PARAMÈTRES
 
 ```abap
 DATA: lv_quantity TYPE i VALUE 4,
@@ -75,7 +75,7 @@ ENDFORM.
 > [!IMPORTANT]
 > Pour les types `p`, la longueur et le nombre de décimales doivent être définis par un type nommé lorsque la précision doit être strictement contrôlée. Un type générique peut entraîner des conversions selon le paramètre réel.
 
-## ORDRE POSITIONNEL
+## 4.E ORDRE POSITIONNEL
 
 Les paramètres d’un sous-programme sont positionnels. Les noms utilisés dans le `FORM` ne figurent pas dans l’appel.
 
@@ -87,7 +87,7 @@ PERFORM calculate_difference
 
 Inverser `lv_first` et `lv_second` change le résultat sans nécessairement produire d’erreur de syntaxe si les types restent compatibles.
 
-## APPELS EN CHAÎNE
+## 4.F APPELS EN CHAÎNE
 
 ```abap
 START-OF-SELECTION.
@@ -99,13 +99,13 @@ START-OF-SELECTION.
 
 Cette forme rend le scénario principal lisible, à condition que chaque sous-programme conserve une responsabilité unique.
 
-## RÉCURSIVITÉ
+## 4.G RÉCURSIVITÉ
 
 Un sous-programme peut techniquement rappeler un sous-programme, y compris lui-même selon le contexte. La récursivité doit disposer d’une condition d’arrêt certaine, sinon l’exécution finit par épuiser la pile disponible.
 
 Pour les traitements métier classiques, une boucle explicite est souvent plus simple à maintenir.
 
-## ERREURS COURANTES
+## 4.H ERREURS COURANTES
 
 - nom de sous-programme inexistant ;
 - nombre de paramètres différent ;
@@ -114,7 +114,7 @@ Pour les traitements métier classiques, une boucle explicite est souvent plus s
 - modification implicite d’un paramètre déclaré dans `USING` ;
 - appel dynamique inutile.
 
-## POINTS À RETENIR
+## 4.I POINTS À RETENIR
 
 - `PERFORM` appelle un sous-programme.
 - L’exécution reprend après l’appel lorsque `ENDFORM` est atteint.
@@ -122,21 +122,21 @@ Pour les traitements métier classiques, une boucle explicite est souvent plus s
 - L’ordre et les types doivent correspondre à la définition.
 - Les appels externes ou dynamiques sont à éviter et seront traités séparément.
 
-## VÉRIFICATION
+## 4.J VÉRIFICATION
 
 - Le contrôle syntaxique réussit.
 - La version active correspond au code sauvegardé.
 - L’exécution produit le résultat décrit dans le chapitre.
 - Les cas vide, limite et erreur sont testés séparément lorsque la syntaxe le permet.
 
-## ERREURS FRÉQUENTES
+## 4.K ERREURS FRÉQUENTES
 
 - Copier un exemple sans adapter les types, noms d’objets et données disponibles dans le système.
 - Tester uniquement le cas nominal et ignorer les valeurs initiales, absentes ou invalides.
 - Créer des sous-programmes avec trop de paramètres globaux.
 - Utiliser des appels externes ou dynamiques sans contrôle du nom et de l’existence.
 
-## SNIPPET À RÉUTILISER
+## 4.L SNIPPET À RÉUTILISER
 
 > [!NOTE]
 > Adapter les noms `Z*`, les types DDIC, les données et les autorisations au système cible. Effectuer un contrôle syntaxique avant activation.
@@ -154,13 +154,13 @@ FORM display_step.
 ENDFORM.
 ```
 
-## TERMES DU LEXIQUE
+## 4.M TERMES DU LEXIQUE
 
 - [Programme exécutable](<../🧩 00 ├── LEXIQUE SAP ET ABAP/06 ├── PROGRAMMES CLASSES ET OBJETS TECHNIQUES.md#programme-executable>)
 - [Module fonction](<../🧩 00 ├── LEXIQUE SAP ET ABAP/06 ├── PROGRAMMES CLASSES ET OBJETS TECHNIQUES.md#module-fonction>)
 - [ABAP](<../🧩 00 ├── LEXIQUE SAP ET ABAP/10 └── ACRONYMES SAP.md#acro-abap>)
 
-## RÉFÉRENCES OFFICIELLES SAP
+## 4.N RÉFÉRENCES OFFICIELLES SAP
 
 - [PERFORM — ABAP Keyword Documentation](https://help.sap.com/doc/abapdocu_latest_index_htm/latest/en-US/ABAPPERFORM.html)
 - [FORM — ABAP Keyword Documentation](https://help.sap.com/doc/abapdocu_latest_index_htm/latest/en-US/ABAPFORM.html)

@@ -1,65 +1,65 @@
-# EXÉCUTER UNE REQUÊTE PARAMÉTRÉE AVEC ADBC
+# 1. EXÉCUTER UNE REQUÊTE PARAMÉTRÉE AVEC ADBC
 
-## RÉSULTAT ATTENDU
+## 1.A RÉSULTAT ATTENDU
 
 Lire une donnée avec une instruction SQL native sans concaténer les valeurs dans le texte SQL, en gérant explicitement le mandant et les erreurs de base de données.
 
 L’exemple compte les sociétés de `T001` correspondant au mandant courant et à une société donnée.
 
-## QUAND UTILISER ADBC
+## 1.B QUAND UTILISER ADBC
 
 Utiliser ADBC uniquement lorsqu’ABAP SQL ne couvre pas le besoin technique, par exemple pour une fonction spécifique à SAP HANA validée par l’architecture.
 
 Ne pas utiliser ADBC pour une sélection ordinaire. L’équivalent ABAP SQL est plus portable, applique automatiquement les règles ABAP du mandant et s’intègre mieux aux contrôles statiques.
 
-## PRÉREQUIS
+## 1.C PRÉREQUIS
 
 - Système SAP S/4HANA avec accès à la classe `CL_SQL_STATEMENT`.
 - Autorisation de lecture de l’objet métier concerné ; ADBC ne remplace aucun `AUTHORITY-CHECK`.
 - Table et colonnes connues sur la base cible.
 - Justification documentée de l’emploi de SQL natif.
 
-## RISQUE À CONNAÎTRE
+## 1.D RISQUE À CONNAÎTRE
 
 ADBC exécute du SQL natif. Le traitement automatique du mandant d’ABAP SQL ne s’applique pas. Pour une table dépendante du mandant, la colonne `MANDT` doit donc être filtrée explicitement.
 
 Les noms de tables et de colonnes ne peuvent pas être remplacés par les marqueurs `?`. S’ils doivent être dynamiques, ils doivent provenir d’une liste blanche contrôlée.
 
-## PROCESS
+## 1.E PROCESS
 
-### ÉTAPE 1 — PROUVER LE BESOIN DE SQL NATIF
+### 1.E.1 ÉTAPE 1 — PROUVER LE BESOIN DE SQL NATIF
 
 Écrire d’abord l’équivalent en ABAP SQL. Conserver ADBC uniquement si une fonction native indispensable manque et si cette dépendance à SAP HANA est validée par l’architecture.
 
-### ÉTAPE 2 — IDENTIFIER LE PÉRIMÈTRE DE DONNÉES
+### 1.E.2 ÉTAPE 2 — IDENTIFIER LE PÉRIMÈTRE DE DONNÉES
 
 Relever la table, les colonnes, les types et la dépendance au mandant. Exécuter les contrôles d’autorisation métier avant la lecture ; ADBC ne reprend pas automatiquement les règles applicatives du programme.
 
-### ÉTAPE 3 — ÉCRIRE UNE INSTRUCTION PARAMÉTRÉE
+### 1.E.3 ÉTAPE 3 — ÉCRIRE UNE INSTRUCTION PARAMÉTRÉE
 
 Placer un marqueur `?` pour chaque valeur. Ne concaténer aucune saisie dans le texte SQL. Si un nom d’objet doit varier, le sélectionner dans une liste fermée avant de construire l’instruction.
 
-### ÉTAPE 4 — LIER LES PARAMÈTRES DANS L’ORDRE
+### 1.E.4 ÉTAPE 4 — LIER LES PARAMÈTRES DANS L’ORDRE
 
 Déclarer des variables dont les types correspondent aux colonnes, puis appeler `SET_PARAM` exactement dans l’ordre des marqueurs. Pour une table dépendante du mandant, lier explicitement `SY-MANDT` via une variable typée.
 
-### ÉTAPE 5 — EXÉCUTER ET LIRE LE RÉSULTAT
+### 1.E.5 ÉTAPE 5 — EXÉCUTER ET LIRE LE RÉSULTAT
 
 Appeler `EXECUTE_QUERY`, déclarer les paramètres de sortie du result set puis exécuter `NEXT`. Vérifier le code retourné avant d’utiliser les valeurs reçues.
 
-### ÉTAPE 6 — FERMER LA RESSOURCE
+### 1.E.6 ÉTAPE 6 — FERMER LA RESSOURCE
 
 Appeler `CLOSE` après la dernière ligne et dans le traitement d’erreur lorsque le result set est lié. Le premier défaut SQL doit rester le diagnostic principal si la fermeture échoue aussi.
 
-### ÉTAPE 7 — COMPARER AVEC ABAP SQL
+### 1.E.7 ÉTAPE 7 — COMPARER AVEC ABAP SQL
 
 Exécuter les deux variantes avec une valeur existante et une valeur absente. Comparer résultat et trace `ST05`; ne conserver ADBC que si le motif natif reste démontré.
 
-### ÉTAPE 8 — TESTER LES CAS DE SÉCURITÉ
+### 1.E.8 ÉTAPE 8 — TESTER LES CAS DE SÉCURITÉ
 
 Tester un ordre de paramètres incorrect en développement, une valeur contenant des caractères SQL, un nom dynamique refusé et un filtre de mandant explicite. Vérifier que chaque anomalie est interceptée ou rejetée avant l’exécution.
 
-## CODE PRÊT À ADAPTER
+## 1.F CODE PRÊT À ADAPTER
 
 ```abap
 REPORT zdemo_adbc_parameter.
@@ -115,7 +115,7 @@ START-OF-SELECTION.
   ENDTRY.
 ```
 
-## VERSION ABAP SQL À PRIVILÉGIER
+## 1.G VERSION ABAP SQL À PRIVILÉGIER
 
 Pour ce besoin précis, le code suivant suffit et doit être préféré :
 
@@ -128,7 +128,7 @@ SELECT COUNT(*)
 
 ABAP SQL ajoute le traitement du mandant selon les règles de la source concernée. Ne recopier la variante ADBC que si le besoin natif est réel.
 
-## POINTS À REMPLACER
+## 1.H POINTS À REMPLACER
 
 | Élément | Remplacement attendu |
 |---|---|
@@ -138,7 +138,7 @@ ABAP SQL ajoute le traitement du mandant selon les règles de la source concern�
 | `LV_MANDT`, `LV_BUKRS` | Variables dont les types correspondent aux colonnes |
 | Instruction SQL | Syntaxe native supportée par la base S/4HANA cible |
 
-## ORDRE DES PARAMÈTRES
+## 1.I ORDRE DES PARAMÈTRES
 
 Pour l’instruction suivante :
 
@@ -148,7 +148,7 @@ WHERE MANDT = ? AND BUKRS = ?
 
 le premier `SET_PARAM` lie `LV_MANDT` et le deuxième lie `LV_BUKRS`. Une inversion peut produire un résultat faux ou une erreur de conversion.
 
-## CONTRÔLE POSITIF
+## 1.J CONTRÔLE POSITIF
 
 1. Exécuter le programme avec une société existante dans le mandant courant.
 2. Vérifier que `LV_COUNT = 1` pour une clé unique existante.
@@ -156,13 +156,13 @@ le premier `SET_PARAM` lie `LV_MANDT` et le deuxième lie `LV_BUKRS`. Une invers
 4. Comparer les résultats.
 5. Mesurer avec `ST05` uniquement si ADBC répond à un motif de performance démontré.
 
-## CONTRÔLE NÉGATIF
+## 1.K CONTRÔLE NÉGATIF
 
 1. Tester une société inexistante : `LV_COUNT` doit valoir `0`.
 2. Remplacer temporairement un nom de colonne dans un système de développement : `CX_SQL_EXCEPTION` doit être interceptée.
 3. Vérifier qu’une valeur contenant des caractères SQL reste une valeur de paramètre et ne modifie pas l’instruction.
 
-## ERREURS FRÉQUENTES
+## 1.L ERREURS FRÉQUENTES
 
 | Symptôme | Cause probable | Correction |
 |---|---|---|
@@ -175,14 +175,14 @@ le premier `SET_PARAM` lie `LV_MANDT` et le deuxième lie `LV_BUKRS`. Une invers
 | Comportement différent selon la base | SQL natif spécifique au fournisseur | Documenter la dépendance et tester sur SAP HANA cible |
 | Autorisation métier contournée | ADBC considéré comme un contrôle d’accès | Exécuter les mêmes contrôles métier avant la lecture |
 
-## COMPATIBILITÉ S/4HANA
+## 1.M COMPATIBILITÉ S/4HANA
 
 - Statut : compatible mais spécialisé.
 - ADBC reste dépendant du dialecte de la base de données.
 - Sur SAP S/4HANA, valider la syntaxe avec SAP HANA et les règles du projet.
 - ABAP Cloud et Clean Core sont hors périmètre de ce chapitre et peuvent interdire ou restreindre cette API.
 
-## RÉFÉRENCES OFFICIELLES SAP
+## 1.N RÉFÉRENCES OFFICIELLES SAP
 
 - [ADBC — SAP Help Portal](https://help.sap.com/doc/abapdocu_latest_index_htm/latest/en-US/abenadbc.htm)
 - [CL_SQL_STATEMENT — SAP Help Portal](https://help.sap.com/doc/abapdocu_latest_index_htm/latest/en-US/abencl_sql_statement.htm)

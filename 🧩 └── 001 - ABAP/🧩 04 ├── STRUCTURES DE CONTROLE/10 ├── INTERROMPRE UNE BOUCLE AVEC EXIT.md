@@ -1,6 +1,6 @@
-# INTERROMPRE UNE BOUCLE AVEC EXIT
+# 10. INTERROMPRE UNE BOUCLE AVEC EXIT
 
-## RÉSULTAT ATTENDU
+## 10.A RÉSULTAT ATTENDU
 
 - Quitter immédiatement une boucle
 - Comprendre la portée de `EXIT`
@@ -8,7 +8,7 @@
 - Gérer les boucles imbriquées
 - Éviter les sorties dispersées dans le code
 
-## SORTIE D’UNE BOUCLE
+## 10.B SORTIE D’UNE BOUCLE
 
 Dans une boucle, `EXIT` arrête immédiatement la boucle active. L’exécution reprend après l’instruction de fermeture correspondante.
 
@@ -35,7 +35,7 @@ flowchart TD
     D --> E["Instruction après la boucle"]
 ```
 
-## RECHERCHE AVEC ARRÊT AU PREMIER RÉSULTAT
+## 10.C RECHERCHE AVEC ARRÊT AU PREMIER RÉSULTAT
 
 ```abap
 DATA lv_target TYPE i VALUE 7.
@@ -57,7 +57,7 @@ ENDIF.
 
 L’indicateur permet de distinguer une sortie causée par un succès de la fin normale de la boucle.
 
-## LIMITE DE SÉCURITÉ
+## 10.D LIMITE DE SÉCURITÉ
 
 ```abap
 CONSTANTS lc_max_attempts TYPE i VALUE 5.
@@ -76,7 +76,7 @@ IF lv_success = abap_false.
 ENDIF.
 ```
 
-## BOUCLES IMBRIQUÉES
+## 10.E BOUCLES IMBRIQUÉES
 
 `EXIT` quitte uniquement la boucle dans laquelle il est exécuté.
 
@@ -101,11 +101,11 @@ La boucle externe poursuit son exécution.
 
 Pour quitter plusieurs niveaux, restructurer le traitement, utiliser un indicateur contrôlé ou quitter le bloc courant avec `RETURN` lorsque cette sortie correspond réellement à l’intention fonctionnelle.
 
-## RÉSERVER EXIT AUX BOUCLES
+## 10.F RÉSERVER EXIT AUX BOUCLES
 
 Même lorsque certaines variantes syntaxiques permettent un effet hors boucle selon le contexte, utiliser `EXIT` comme instruction de sortie de boucle et `RETURN` pour quitter un bloc de traitement rend l’intention plus claire.
 
-## ÉVITER LES SORTIES MULTIPLES DISPERSÉES
+## 10.G ÉVITER LES SORTIES MULTIPLES DISPERSÉES
 
 À éviter :
 
@@ -130,21 +130,21 @@ Préférer :
 - un commentaire lorsque la sortie n’est pas évidente ;
 - une procédure plus courte si la boucle contient trop de responsabilités.
 
-## VÉRIFICATION
+## 10.H VÉRIFICATION
 
 - Le contrôle syntaxique réussit.
 - La version active correspond au code sauvegardé.
 - L’exécution produit le résultat décrit dans le chapitre.
 - Les cas vide, limite et erreur sont testés séparément lorsque la syntaxe le permet.
 
-## ERREURS FRÉQUENTES
+## 10.I ERREURS FRÉQUENTES
 
 - Copier un exemple sans adapter les types, noms d’objets et données disponibles dans le système.
 - Tester uniquement le cas nominal et ignorer les valeurs initiales, absentes ou invalides.
 - Créer une boucle sans condition de sortie fiable.
 - Utiliser `CHECK`, `CONTINUE`, `EXIT` ou `RETURN` sans rendre le flux lisible.
 
-## SNIPPET À RÉUTILISER
+## 10.J SNIPPET À RÉUTILISER
 
 > [!NOTE]
 > Adapter les noms `Z*`, les types DDIC, les données et les autorisations au système cible. Effectuer un contrôle syntaxique avant activation.
@@ -167,12 +167,12 @@ ELSE.
 ENDIF.
 ```
 
-## TERMES DU LEXIQUE
+## 10.K TERMES DU LEXIQUE
 
 - [Instruction ABAP](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#instruction-abap>)
 - [Expression](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#expression>)
 
-## RÉFÉRENCES OFFICIELLES SAP
+## 10.L RÉFÉRENCES OFFICIELLES SAP
 
 - [EXIT — ABAP Keyword Documentation](https://help.sap.com/doc/abapdocu_latest_index_htm/latest/en-US/index.htm?file=abapexit.htm)
 - [DO — ABAP Keyword Documentation](https://help.sap.com/doc/abapdocu_latest_index_htm/latest/en-US/index.htm?file=abapdo.htm)

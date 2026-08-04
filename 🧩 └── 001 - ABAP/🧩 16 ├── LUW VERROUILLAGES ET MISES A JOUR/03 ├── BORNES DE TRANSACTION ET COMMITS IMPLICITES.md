@@ -1,12 +1,12 @@
-# BORNES DE TRANSACTION ET COMMITS IMPLICITES
+# 3. BORNES DE TRANSACTION ET COMMITS IMPLICITES
 
-## RÉSULTAT ATTENDU
+## 3.A RÉSULTAT ATTENDU
 
 - Identifier les événements pouvant terminer une database LUW
 - Éviter les validations accidentelles au milieu d’un traitement
 - Protéger la phase de sauvegarde
 
-## COMMITS EXPLICITES ET IMPLICITES
+## 3.B COMMITS EXPLICITES ET IMPLICITES
 
 `COMMIT WORK` termine explicitement la SAP LUW. Le runtime ABAP peut également déclencher des commits de base de données lors de certains changements de contexte, par exemple lorsqu’un traitement quitte une étape de dialogue ou transfère le contrôle vers un autre processus.
 
@@ -18,7 +18,7 @@ flowchart LR
     C -->|"Non"| E["SAP LUW poursuivie"]
 ```
 
-## SITUATIONS À ANALYSER
+## 3.C SITUATIONS À ANALYSER
 
 - appel RFC synchrone ou asynchrone ;
 - `WAIT` ;
@@ -28,7 +28,7 @@ flowchart LR
 
 La liste exacte dépend du contexte et de la version. Vérifier la documentation de l’instruction utilisée au lieu de supposer qu’un appel est transactionnellement neutre.
 
-## RÈGLE DE CONCEPTION
+## 3.D RÈGLE DE CONCEPTION
 
 Pendant une phase de sauvegarde :
 
@@ -37,45 +37,45 @@ Pendant une phase de sauvegarde :
 - ne pas déléguer la validation à une méthode profonde ;
 - laisser le propriétaire de la transaction décider du commit ou du rollback.
 
-## PROCESS
+## 3.E PROCESS
 
-### ÉTAPE 1 — PARTIR DE LA BORNE MÉTIER ATTENDUE
+### 3.E.1 ÉTAPE 1 — PARTIR DE LA BORNE MÉTIER ATTENDUE
 
 Identifier les données qui doivent rester atomiques et l’endroit où leur validation est autorisée. Relever le programme ou la transaction qui possède cette décision. Toute borne technique trouvée avant ce point est potentiellement prématurée.
 
-### ÉTAPE 2 — RECHERCHER LES COMMITS EXPLICITES
+### 3.E.2 ÉTAPE 2 — RECHERCHER LES COMMITS EXPLICITES
 
 Utiliser la recherche de code pour localiser `COMMIT WORK`, `ROLLBACK WORK`, `BAPI_TRANSACTION_COMMIT` et `BAPI_TRANSACTION_ROLLBACK` dans le code Z appelé. Étendre l’analyse aux exits, BAdI, modules fonction et wrappers réellement traversés par le scénario.
 
-### ÉTAPE 3 — CONTRÔLER LES CHANGEMENTS DE CONTEXTE
+### 3.E.3 ÉTAPE 3 — CONTRÔLER LES CHANGEMENTS DE CONTEXTE
 
 Repérer les appels RFC, les traitements en update task, les étapes de dialogue et les API qui documentent une transaction propre. Pour chaque changement, noter quelles données sont déjà validées et quelles opérations restent en attente. Un appel dans une autre unité ne peut pas être annulé par le rollback local.
 
-### ÉTAPE 4 — VÉRIFIER PAR UNE TRACE CIBLÉE
+### 3.E.4 ÉTAPE 4 — VÉRIFIER PAR UNE TRACE CIBLÉE
 
 Exécuter un scénario minimal avec un identifiant de donnée unique et une trace SQL limitée à l’utilisateur concerné. Corréler les écritures et les fins de traitement avec le flux applicatif. La trace sert à confirmer une borne suspectée, pas à remplacer la lecture de la documentation de l’API.
 
-### ÉTAPE 5 — SUPPRIMER OU ENCADRER LA BORNE INCORRECTE
+### 3.E.5 ÉTAPE 5 — SUPPRIMER OU ENCADRER LA BORNE INCORRECTE
 
 Remonter le commit à l’orchestrateur lorsque le contrat de l’API le permet. Si une API impose sa propre transaction, isoler cet effet, documenter son irréversibilité et prévoir une compensation. Ne jamais neutraliser un commit standard sans analyser ses invariants.
 
-### ÉTAPE 6 — REJOUER UN ÉCHEC APRÈS CHAQUE BORNE
+### 3.E.6 ÉTAPE 6 — REJOUER UN ÉCHEC APRÈS CHAQUE BORNE
 
 Provoquer une erreur immédiatement après les points identifiés. Vérifier les tables, l’update task et les systèmes externes. Le scénario est maîtrisé seulement si chaque état intermédiaire est soit impossible, soit détectable et compensable.
 
-## VÉRIFICATION
+## 3.F VÉRIFICATION
 
 - Les données sont toutes validées ou toutes annulées selon le cas testé.
 - Les verrous sont libérés à la fin du traitement normal et après erreur.
 - Aucune update en erreur inattendue ne reste dans `SM13`.
 - Les collisions concurrentes produisent un message contrôlé, pas une incohérence.
 
-## ERREURS FRÉQUENTES
+## 3.G ERREURS FRÉQUENTES
 
 - Supprimer manuellement un verrou sans comprendre son propriétaire.
 - Relancer une update en erreur sans vérifier l’état métier.
 
-## TERMES DU LEXIQUE
+## 3.H TERMES DU LEXIQUE
 
 - [Transaction](<../🧩 00 ├── LEXIQUE SAP ET ABAP/02 ├── SAP GUI NAVIGATION ET TRANSACTIONS.md#transaction>)
 - [SAP LUW](<../🧩 00 ├── LEXIQUE SAP ET ABAP/08 ├── EXECUTION EXPLOITATION ET ADMINISTRATION.md#sap-luw>)
@@ -84,7 +84,7 @@ Provoquer une erreur immédiatement après les points identifiés. Vérifier les
 - [ROLLBACK WORK](<../🧩 00 ├── LEXIQUE SAP ET ABAP/08 ├── EXECUTION EXPLOITATION ET ADMINISTRATION.md#rollback-work>)
 - [Enqueue server](<../🧩 00 ├── LEXIQUE SAP ET ABAP/08 ├── EXECUTION EXPLOITATION ET ADMINISTRATION.md#enqueue-server>)
 
-## RÉFÉRENCES OFFICIELLES SAP
+## 3.I RÉFÉRENCES OFFICIELLES SAP
 
 - [LUWs in ABAP — SAP Help Portal](https://help.sap.com/docs/ABAP_PLATFORM_NEW/8132142fd1a144a59303663a03a7c2d4/54f5462a9604498382319304869a4280.html)
 - [Transactional Consistency Check — SAP Help Portal](https://help.sap.com/docs/ABAP_PLATFORM_NEW/753088fc00704d0a80e7fbd6803c8adb/89be29c77d1b4b5e80678e4d2da51345.html)

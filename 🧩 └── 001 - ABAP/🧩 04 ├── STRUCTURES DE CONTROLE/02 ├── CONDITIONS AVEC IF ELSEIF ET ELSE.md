@@ -1,6 +1,6 @@
-# CONDITIONS AVEC IF, ELSEIF ET ELSE
+# 2. CONDITIONS AVEC IF, ELSEIF ET ELSE
 
-## RÉSULTAT ATTENDU
+## 2.A RÉSULTAT ATTENDU
 
 - Exécuter un bloc selon une expression logique
 - Construire une chaîne de conditions exclusive
@@ -8,7 +8,7 @@
 - Utiliser `ELSE` comme traitement par défaut
 - Éviter les conditions redondantes et les imbrications inutiles
 
-## STRUCTURE MINIMALE
+## 2.B STRUCTURE MINIMALE
 
 La structure `IF ... ENDIF` exécute son bloc uniquement lorsque la condition est vraie.
 
@@ -31,7 +31,7 @@ flowchart TD
     D --> E
 ```
 
-## AJOUTER UNE BRANCHE ELSE
+## 2.C AJOUTER UNE BRANCHE ELSE
 
 `ELSE` définit le traitement exécuté lorsque la condition du `IF` est fausse.
 
@@ -45,7 +45,7 @@ ENDIF.
 
 Avec `ELSE`, exactement une des deux branches est exécutée.
 
-## AJOUTER DES BRANCHES ELSEIF
+## 2.D AJOUTER DES BRANCHES ELSEIF
 
 `ELSEIF` permet de tester plusieurs conditions dans un ordre précis.
 
@@ -74,7 +74,7 @@ flowchart TD
     E --> F
 ```
 
-## L’ORDRE DES CONDITIONS EST FONCTIONNEL
+## 2.E L’ORDRE DES CONDITIONS EST FONCTIONNEL
 
 Les conditions doivent être classées de la plus spécifique à la plus générale.
 
@@ -100,7 +100,7 @@ ELSEIF lv_stock < 10.
 ENDIF.
 ```
 
-## CONDITIONS COMBINÉES
+## 2.F CONDITIONS COMBINÉES
 
 Les opérateurs logiques permettent de combiner plusieurs critères.
 
@@ -122,7 +122,7 @@ IF ( lv_country = 'FR' OR lv_country = 'BE' )
 ENDIF.
 ```
 
-## TESTS DE VALEUR INITIALE
+## 2.G TESTS DE VALEUR INITIALE
 
 ```abap
 IF lv_customer IS INITIAL.
@@ -136,7 +136,7 @@ ENDIF.
 
 Préférer les prédicats adaptés à l’intention plutôt qu’une comparaison artificielle avec une valeur vide.
 
-## ÉVITER LES CONDITIONS INUTILEMENT IMBRIQUÉES
+## 2.H ÉVITER LES CONDITIONS INUTILEMENT IMBRIQUÉES
 
 Version difficile à lire :
 
@@ -158,21 +158,21 @@ ENDIF.
 
 L’imbrication reste pertinente lorsque les traitements intermédiaires ou les messages diffèrent.
 
-## VÉRIFICATION
+## 2.I VÉRIFICATION
 
 - Le contrôle syntaxique réussit.
 - La version active correspond au code sauvegardé.
 - L’exécution produit le résultat décrit dans le chapitre.
 - Les cas vide, limite et erreur sont testés séparément lorsque la syntaxe le permet.
 
-## ERREURS FRÉQUENTES
+## 2.J ERREURS FRÉQUENTES
 
 - Copier un exemple sans adapter les types, noms d’objets et données disponibles dans le système.
 - Tester uniquement le cas nominal et ignorer les valeurs initiales, absentes ou invalides.
 - Créer une boucle sans condition de sortie fiable.
 - Utiliser `CHECK`, `CONTINUE`, `EXIT` ou `RETURN` sans rendre le flux lisible.
 
-## SNIPPET À RÉUTILISER
+## 2.K SNIPPET À RÉUTILISER
 
 > [!NOTE]
 > Adapter les noms `Z*`, les types DDIC, les données et les autorisations au système cible. Effectuer un contrôle syntaxique avant activation.
@@ -189,12 +189,12 @@ ELSE.
 ENDIF.
 ```
 
-## TERMES DU LEXIQUE
+## 2.L TERMES DU LEXIQUE
 
 - [Instruction ABAP](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#instruction-abap>)
 - [Expression](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#expression>)
 
-## RÉFÉRENCES OFFICIELLES SAP
+## 2.M RÉFÉRENCES OFFICIELLES SAP
 
 - [Using Control Structures in ABAP — SAP Learning](https://learning.sap.com/courses/basic-abap-programming/using-control-structures-in-abap_a4d7803e-eac2-458e-acf9-8628289f3701)
 - [Control Flow — SAP Help Portal](https://help.sap.com/docs/ABAP_PLATFORM_NEW/8132142fd1a144a59303663a03a7c2d4/94e1b1978adf45c1a72bd9d8075436d3.html)

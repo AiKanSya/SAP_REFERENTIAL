@@ -1,6 +1,6 @@
-# ANALYSER LES DUMPS AVEC ST22
+# 13. ANALYSER LES DUMPS AVEC ST22
 
-## RÉSULTAT ATTENDU
+## 13.A RÉSULTAT ATTENDU
 
 - Comprendre ce qu’est un dump ABAP
 - Retrouver un dump avec `ST22`
@@ -8,13 +8,13 @@
 - Relier l’erreur d’exécution au code et aux données
 - Distinguer cause immédiate et cause initiale
 
-## PRINCIPE
+## 13.B PRINCIPE
 
 Lorsqu’une erreur d’exécution non gérée interrompt un programme ABAP, le système produit un **short dump** contenant le contexte technique disponible.
 
 `ST22` permet de lister et analyser les erreurs d’exécution enregistrées pour le système et le mandant accessibles à l’utilisateur autorisé.
 
-## SÉLECTION
+## 13.C SÉLECTION
 
 Rechercher avec :
 
@@ -27,7 +27,7 @@ Rechercher avec :
 
 L’heure exacte fournie par l’utilisateur réduit fortement le périmètre.
 
-## SECTIONS PRIORITAIRES
+## 13.D SECTIONS PRIORITAIRES
 
 | Section              | Utilité                                  |
 | -------------------- | ---------------------------------------- |
@@ -42,7 +42,7 @@ L’heure exacte fournie par l’utilisateur réduit fortement le périmètre.
 | Variables            | Valeurs disponibles au moment de l’arrêt |
 | Informations système | Contexte d’exécution                     |
 
-## MÉTHODE DE LECTURE
+## 13.E MÉTHODE DE LECTURE
 
 ```mermaid
 flowchart TD
@@ -53,7 +53,7 @@ flowchart TD
     E --> F["Reproduire et corriger"]
 ```
 
-## EXCEPTION NON GÉRÉE
+## 13.F EXCEPTION NON GÉRÉE
 
 Si le dump contient une classe `CX_*`, déterminer :
 
@@ -64,7 +64,7 @@ Si le dump contient une classe `CX_*`, déterminer :
 
 Ne pas ajouter systématiquement `CATCH cx_root`. Le traitement doit préserver le sens de l’erreur.
 
-## ERREURS DE MÉMOIRE OU DE TEMPS
+## 13.G ERREURS DE MÉMOIRE OU DE TEMPS
 
 Un dump de mémoire, de temps maximal ou de ressources requiert souvent des outils complémentaires :
 
@@ -74,45 +74,45 @@ Un dump de mémoire, de temps maximal ou de ressources requiert souvent des outi
 - analyse du volume ;
 - contrôle des boucles et lectures SQL.
 
-## AUTORISATION
+## 13.H AUTORISATION
 
 L’accès aux dumps est protégé. SAP documente notamment l’objet d’autorisation `S_ABAPDUMP` pour l’analyse des dumps.
 
-## PROCESS
+## 13.I PROCESS
 
-### Étape 1 — Fixer le contexte
+### 13.I.1 Étape 1 — Fixer le contexte
 
 Relever date, heure, utilisateur, transaction, saisie et action précédant l’arrêt. Sans ces valeurs, un dump du même type peut être attribué au mauvais scénario.
 
-### Étape 2 — Rechercher dans ST22
+### 13.I.2 Étape 2 — Rechercher dans ST22
 
 Ouvrir `ST22`, choisir la période et filtrer par utilisateur ou runtime error. Sélectionner l’entrée dont l’horodatage et le programme correspondent exactement.
 
-### Étape 3 — Lire dans l’ordre utile
+### 13.I.3 Étape 3 — Lire dans l’ordre utile
 
 Relever runtime error, exception, programme, include et ligne. Lire **Error analysis**, **How to correct the error**, extrait source puis pile d’appels.
 
-### Étape 4 — Localiser la responsabilité
+### 13.I.4 Étape 4 — Localiser la responsabilité
 
 Dans la pile, identifier le premier objet client, enhancement ou appel avec une valeur incorrecte. Vérifier que la version active du source correspond à l’extrait enregistré.
 
-### Étape 5 — Corréler les données
+### 13.I.5 Étape 5 — Corréler les données
 
 Comparer les variables du dump avec les entrées et données persistées. Corriger la première cause prouvée, puis rejouer le cas fautif et un cas nominal. Le diagnostic est terminé lorsqu’aucun nouveau dump n’est créé et que l’erreur est traitée de façon contrôlée.
 
-## VÉRIFICATION
+## 13.J VÉRIFICATION
 
 - Le scénario reproduit correspond au même utilisateur, mandant, transaction et jeu de données.
 - L’horodatage et l’identifiant de l’analyse sont conservés.
 - La cause retenue est soutenue par une ligne source, une trace ou une valeur observée.
 - Après correction, le même scénario ne reproduit plus le défaut et le résultat métier reste identique.
 
-## ERREURS FRÉQUENTES
+## 13.K ERREURS FRÉQUENTES
 
 - Modifier les données dans le débogueur puis considérer le résultat comme reproductible.
 - Laisser une trace active trop longtemps.
 
-## FICHE DE CONTRÔLE À COPIER
+## 13.L FICHE DE CONTRÔLE À COPIER
 
 ```text
 Système / SID       :
@@ -127,14 +127,14 @@ Horodatage          :
 Ordre de transport  :
 ```
 
-## TERMES DU LEXIQUE
+## 13.M TERMES DU LEXIQUE
 
 - [Breakpoint](<../🧩 00 ├── LEXIQUE SAP ET ABAP/08 ├── EXECUTION EXPLOITATION ET ADMINISTRATION.md#breakpoint>)
 - [Watchpoint](<../🧩 00 ├── LEXIQUE SAP ET ABAP/08 ├── EXECUTION EXPLOITATION ET ADMINISTRATION.md#watchpoint>)
 - [Dump ABAP](<../🧩 00 ├── LEXIQUE SAP ET ABAP/08 ├── EXECUTION EXPLOITATION ET ADMINISTRATION.md#dump-abap>)
 - [Trace](<../🧩 00 ├── LEXIQUE SAP ET ABAP/08 ├── EXECUTION EXPLOITATION ET ADMINISTRATION.md#trace>)
 
-## RÉFÉRENCES OFFICIELLES SAP
+## 13.N RÉFÉRENCES OFFICIELLES SAP
 
 - [ABAP Dump Analysis ST22 — SAP Help Portal](https://help.sap.com/docs/ABAP_PLATFORM_NEW/ba879a6e2ea04d9bb94c7ccd7cdac446/b134ab1cd8e44562b0fee9524c638cca.html)
 - [ABAP Test and Analysis Tools — SAP Help Portal](https://help.sap.com/docs/ABAP_PLATFORM_NEW/ba879a6e2ea04d9bb94c7ccd7cdac446/491aa66f87041903e10000000a42189c.html)

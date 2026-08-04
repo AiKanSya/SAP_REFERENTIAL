@@ -1,13 +1,13 @@
-# DESTINATIONS RFC AVEC SM59
+# 14. DESTINATIONS RFC AVEC SM59
 
-## RÉSULTAT ATTENDU
+## 14.A RÉSULTAT ATTENDU
 
 - Comprendre le rôle d’une destination RFC
 - Lire et tester une destination dans `SM59`
 - Identifier les principaux types de connexion
 - Séparer développement et administration
 
-## DESTINATION LOGIQUE
+## 14.B DESTINATION LOGIQUE
 
 Une destination RFC fournit au runtime les informations nécessaires pour atteindre une cible. Les destinations sont maintenues dans la transaction `SM59`.
 
@@ -26,7 +26,7 @@ CALL FUNCTION 'Z_DEV_PRODUCT_GET'
     OTHERS                = 3.
 ```
 
-## TYPES COURANTS
+## 14.C TYPES COURANTS
 
 Le type exact dépend du scénario. Parmi les types classiques :
 
@@ -38,7 +38,7 @@ Le type exact dépend du scénario. Parmi les types classiques :
 
 Ne pas choisir un type par analogie : utiliser l’architecture définie par l’équipe Basis ou intégration.
 
-## PARAMÈTRES
+## 14.D PARAMÈTRES
 
 Une destination peut contenir :
 
@@ -51,7 +51,7 @@ Une destination peut contenir :
 - options de sécurité ;
 - paramètres Unicode ou réseau selon le type.
 
-## TESTS
+## 14.E TESTS
 
 Dans `SM59`, les tests disponibles dépendent du type de destination :
 
@@ -70,7 +70,7 @@ flowchart TD
 
 Un test de connexion réussi ne prouve pas que l’utilisateur peut appeler le module métier.
 
-## RESPONSABILITÉS
+## 14.F RESPONSABILITÉS
 
 Le développeur :
 
@@ -86,43 +86,43 @@ L’administration système :
 - gère les certificats ou secrets ;
 - contrôle les autorisations et la disponibilité.
 
-## PROCESS
+## 14.G PROCESS
 
-### Étape 1 — Identifier la destination attendue
+### 14.G.1 Étape 1 — Identifier la destination attendue
 
 Ouvrir `SM59`, choisir le type de connexion puis la destination exacte. Relever description, système cible et propriétaire. Commencer en affichage.
 
-### Étape 2 — Contrôler les paramètres techniques
+### 14.G.2 Étape 2 — Contrôler les paramètres techniques
 
 Vérifier hôte, numéro de système ou gateway, options réseau et mandant selon le type. Comparer avec la documentation Basis ; ne corriger pas une valeur de production sur simple supposition.
 
-### Étape 3 — Exécuter le test de connexion
+### 14.G.3 Étape 3 — Exécuter le test de connexion
 
 Lancer le test et relever durée et message complet. Un échec à ce stade oriente vers résolution réseau, gateway ou disponibilité du système, pas vers le code ABAP appelant.
 
-### Étape 4 — Tester le logon et l’autorisation
+### 14.G.4 Étape 4 — Tester le logon et l’autorisation
 
 Utiliser les tests disponibles. Distinguer identifiants invalides, utilisateur verrouillé et autorisation RFC manquante. Vérifier avec l’équipe sécurité l’utilisateur réellement utilisé.
 
-### Étape 5 — Tester le module cible
+### 14.G.5 Étape 5 — Tester le module cible
 
 Après succès technique, appeler un module autorisé non destructif. La destination est validée lorsque connexion, logon et exécution fonctionnelle réussissent séparément, avec un diagnostic clair pour chaque échec.
 
-## VÉRIFICATION
+## 14.H VÉRIFICATION
 
 - Le contrôle syntaxique réussit.
 - La version active correspond au code sauvegardé.
 - L’exécution produit le résultat décrit dans le chapitre.
 - Les cas vide, limite et erreur sont testés séparément lorsque la syntaxe le permet.
 
-## ERREURS FRÉQUENTES
+## 14.I ERREURS FRÉQUENTES
 
 - Copier un exemple sans adapter les types, noms d’objets et données disponibles dans le système.
 - Tester uniquement le cas nominal et ignorer les valeurs initiales, absentes ou invalides.
 - Appeler un module fonction sans lire sa documentation et ses exceptions.
 - Supposer qu’une BAPI effectue automatiquement le commit.
 
-## SNIPPET À RÉUTILISER
+## 14.J SNIPPET À RÉUTILISER
 
 > [!NOTE]
 > Adapter les noms `Z*`, les types DDIC, les données et les autorisations au système cible. Effectuer un contrôle syntaxique avant activation.
@@ -140,7 +140,7 @@ CALL FUNCTION 'Z_DEV_PRODUCT_GET'
     OTHERS                = 3.
 ```
 
-## TERMES DU LEXIQUE
+## 14.K TERMES DU LEXIQUE
 
 - [Module fonction](<../🧩 00 ├── LEXIQUE SAP ET ABAP/06 ├── PROGRAMMES CLASSES ET OBJETS TECHNIQUES.md#module-fonction>)
 - [Function group](<../🧩 00 ├── LEXIQUE SAP ET ABAP/06 ├── PROGRAMMES CLASSES ET OBJETS TECHNIQUES.md#function-group>)
@@ -148,7 +148,7 @@ CALL FUNCTION 'Z_DEV_PRODUCT_GET'
 - [BAPI](<../🧩 00 ├── LEXIQUE SAP ET ABAP/10 └── ACRONYMES SAP.md#acro-bapi>)
 - [Destination RFC](<../🧩 00 ├── LEXIQUE SAP ET ABAP/07 ├── INTERFACES ET INTEGRATION.md#destination-rfc>)
 
-## RÉFÉRENCES OFFICIELLES SAP
+## 14.L RÉFÉRENCES OFFICIELLES SAP
 
 - [RFC Destinations — SAP Help Portal](https://help.sap.com/docs/ABAP_PLATFORM_NEW/753088fc00704d0a80e7fbd6803c8adb/4899b539ee2b73e7e10000000a42189b.html)
 - [Calling RFC Function Modules in ABAP — SAP Help Portal](https://help.sap.com/docs/ABAP_PLATFORM_NEW/753088fc00704d0a80e7fbd6803c8adb/48a0f18641bc062de10000000a42189d.html)

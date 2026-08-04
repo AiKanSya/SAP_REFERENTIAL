@@ -1,6 +1,6 @@
-# STRUCTURE D’UN PROGRAMME ABAP
+# 6. STRUCTURE D’UN PROGRAMME ABAP
 
-## RÉSULTAT ATTENDU
+## 6.A RÉSULTAT ATTENDU
 
 - Identifier les grandes parties d’un programme exécutable
 - Distinguer partie déclarative et blocs de traitement
@@ -8,7 +8,7 @@
 - Organiser le code dans un ordre lisible
 - Éviter les traitements implicites difficiles à maintenir
 
-## VUE D’ENSEMBLE
+## 6.B VUE D’ENSEMBLE
 
 ```mermaid
 flowchart TD
@@ -18,7 +18,7 @@ flowchart TD
     D --> E["Procédures et classes locales"]
 ```
 
-## INSTRUCTION D’INTRODUCTION
+## 6.C INSTRUCTION D’INTRODUCTION
 
 Un programme autonome commence par une instruction d’introduction correspondant à son type.
 
@@ -30,7 +30,7 @@ REPORT znom_du_programme.
 
 `REPORT` doit être la première instruction du programme autonome après résolution des éventuels includes.
 
-## PARTIE DÉCLARATIVE
+## 6.D PARTIE DÉCLARATIVE
 
 La partie déclarative définit les types et objets de données nécessaires au programme.
 
@@ -47,7 +47,7 @@ DATA gv_text    TYPE string.
 
 Les déclarations peuvent être globales au programme ou locales à une procédure. Les règles complètes de portée seront traitées dans le dossier consacré aux types et objets de données.
 
-## ÉCRAN DE SÉLECTION
+## 6.E ÉCRAN DE SÉLECTION
 
 Dans un programme exécutable, les instructions suivantes peuvent définir l’écran de sélection standard :
 
@@ -63,7 +63,7 @@ PARAMETERS p_limit TYPE i DEFAULT 10.
 
 Ces instructions appartiennent à la partie déclarative globale du programme.
 
-## BLOCS DE TRAITEMENT
+## 6.F BLOCS DE TRAITEMENT
 
 Le comportement d’un programme ABAP est organisé en blocs de traitement.
 
@@ -83,7 +83,7 @@ START-OF-SELECTION.
 
 Un bloc d’événement commence par un mot-clé d’événement et se termine au début du bloc suivant.
 
-## ORDRE RECOMMANDÉ
+## 6.G ORDRE RECOMMANDÉ
 
 ```abap
 REPORT zdemo_structure.
@@ -118,7 +118,7 @@ START-OF-SELECTION.
 
 Cette organisation rend le cycle d’exécution visible sans parcourir tout le programme.
 
-## TRAITEMENT IMPLICITE
+## 6.H TRAITEMENT IMPLICITE
 
 Dans un programme exécutable, des instructions exécutables placées avant le premier bloc d’événement peuvent être affectées à un bloc implicite `START-OF-SELECTION`.
 
@@ -150,7 +150,7 @@ START-OF-SELECTION.
 > [!IMPORTANT]
 > Le code explicite réduit les ambiguïtés sur l’ordre d’exécution.
 
-## INCLUDES
+## 6.I INCLUDES
 
 Une instruction `INCLUDE` insère le contenu d’un include dans le programme lors de la génération.
 
@@ -164,7 +164,7 @@ Les includes sont fréquents dans les développements classiques, notamment les 
 > [!CAUTION]
 > Un découpage excessif en includes peut masquer les dépendances globales et rendre le programme difficile à analyser.
 
-## PROGRAMME PRINCIPAL ET PROCÉDURES
+## 6.J PROGRAMME PRINCIPAL ET PROCÉDURES
 
 Un programme maintenable sépare :
 
@@ -184,7 +184,7 @@ flowchart LR
     D --> E["Restitution"]
 ```
 
-## RÈGLES D’ORGANISATION
+## 6.K RÈGLES D’ORGANISATION
 
 - placer les déclarations avant les blocs de traitement ;
 - rendre les événements principaux explicites ;
@@ -194,21 +194,21 @@ flowchart LR
 - ne pas utiliser un include pour contourner une conception insuffisante ;
 - préférer des noms techniques explicites.
 
-## VÉRIFICATION
+## 6.L VÉRIFICATION
 
 - Le contrôle syntaxique réussit.
 - La version active correspond au code sauvegardé.
 - L’exécution produit le résultat décrit dans le chapitre.
 - Les cas vide, limite et erreur sont testés séparément lorsque la syntaxe le permet.
 
-## ERREURS FRÉQUENTES
+## 6.M ERREURS FRÉQUENTES
 
 - Copier un exemple sans adapter les types, noms d’objets et données disponibles dans le système.
 - Tester uniquement le cas nominal et ignorer les valeurs initiales, absentes ou invalides.
 - Intervenir dans le mauvais système ou mandant.
 - Confondre sauvegarde et activation.
 
-## SNIPPET À RÉUTILISER
+## 6.N SNIPPET À RÉUTILISER
 
 > [!NOTE]
 > Adapter les noms `Z*`, les types DDIC, les données et les autorisations au système cible. Effectuer un contrôle syntaxique avant activation.
@@ -244,7 +244,7 @@ START-OF-SELECTION.
   WRITE: / 'Limite :', gv_count.
 ```
 
-## TERMES DU LEXIQUE
+## 6.O TERMES DU LEXIQUE
 
 - [ABAP](<../🧩 00 ├── LEXIQUE SAP ET ABAP/10 └── ACRONYMES SAP.md#acro-abap>)
 - [Structure](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#structure-abap>)
@@ -253,7 +253,7 @@ START-OF-SELECTION.
 - [SAP GUI](<../🧩 00 ├── LEXIQUE SAP ET ABAP/02 ├── SAP GUI NAVIGATION ET TRANSACTIONS.md#sap-gui>)
 - [Transaction](<../🧩 00 ├── LEXIQUE SAP ET ABAP/02 ├── SAP GUI NAVIGATION ET TRANSACTIONS.md#transaction>)
 
-## RÉFÉRENCES OFFICIELLES SAP
+## 6.P RÉFÉRENCES OFFICIELLES SAP
 
 - [Program Layout — ABAP Keyword Documentation](https://help.sap.com/doc/abapdocu_750_index_htm/7.50/en-US/abenabap_program_layout.htm)
 - [REPORT — ABAP Keyword Documentation](https://help.sap.com/doc/abapdocu_latest_index_htm/latest/en-US/ABAPREPORT.html)

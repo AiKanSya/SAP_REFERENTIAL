@@ -1,11 +1,11 @@
-# SYSTÈMES, ENVIRONNEMENTS ET MANDANTS
+# 1. SYSTÈMES, ENVIRONNEMENTS ET MANDANTS
 
 Définitions liées à l’architecture d’un paysage SAP, aux systèmes, aux mandants et aux composants d’exécution.
 
 Chaque entrée présente une définition concise, un exemple, un repère pratique et, lorsque nécessaire, une distinction avec une notion proche.
 
 <a id="backend"></a>
-## BACKEND
+## 1.A BACKEND
 
 **Définition.** Système serveur qui exécute la logique ABAP et accède aux données.
 
@@ -19,7 +19,7 @@ Chaque entrée présente une définition concise, un exemple, un repère pratiqu
 ---
 
 <a id="dependant-mandant"></a>
-## DÉPENDANT DU MANDANT
+## 1.B DÉPENDANT DU MANDANT
 
 **Définition.** Qualifie une donnée ou un objet dont le contenu est séparé par mandant.
 
@@ -33,7 +33,7 @@ Chaque entrée présente une définition concise, un exemple, un repère pratiqu
 ---
 
 <a id="environnement"></a>
-## ENVIRONNEMENT
+## 1.C ENVIRONNEMENT
 
 **Définition.** Rôle fonctionnel attribué à un système dans le cycle de vie : développement, test, recette, préproduction ou production.
 
@@ -47,7 +47,7 @@ Chaque entrée présente une définition concise, un exemple, un repère pratiqu
 ---
 
 <a id="frontend"></a>
-## FRONTEND
+## 1.D FRONTEND
 
 **Définition.** Poste ou couche cliente utilisée par l’utilisateur, par exemple SAP GUI for Windows.
 
@@ -61,7 +61,7 @@ Chaque entrée présente une définition concise, un exemple, un repère pratiqu
 ---
 
 <a id="instance"></a>
-## INSTANCE
+## 1.E INSTANCE
 
 **Définition.** Ensemble de processus SAP démarrant et s’arrêtant ensemble sur un hôte.
 
@@ -75,7 +75,7 @@ Chaque entrée présente une définition concise, un exemple, un repère pratiqu
 ---
 
 <a id="inter-mandants"></a>
-## INTER-MANDANTS
+## 1.F INTER-MANDANTS
 
 **Définition.** Qualifie une donnée ou une action commune à tous les mandants d’un même système.
 
@@ -89,7 +89,7 @@ Chaque entrée présente une définition concise, un exemple, un repère pratiqu
 ---
 
 <a id="mandant"></a>
-## MANDANT
+## 1.G MANDANT
 
 **Définition.** Subdivision logique d’un système SAP. Il est identifié par un numéro à trois chiffres et isole une partie des données, du paramétrage et des utilisateurs.
 
@@ -103,7 +103,7 @@ Chaque entrée présente une définition concise, un exemple, un repère pratiqu
 ---
 
 <a id="paysage-systeme"></a>
-## PAYSAGE SYSTÈME
+## 1.H PAYSAGE SYSTÈME
 
 **Définition.** Organisation des systèmes SAP et des routes de transport entre eux.
 
@@ -117,7 +117,7 @@ Chaque entrée présente une définition concise, un exemple, un repère pratiqu
 ---
 
 <a id="serveur-applications-abap"></a>
-## SERVEUR D’APPLICATIONS ABAP
+## 1.I SERVEUR D’APPLICATIONS ABAP
 
 **Définition.** Composant qui exécute les programmes ABAP au moyen de processus de travail.
 
@@ -131,7 +131,7 @@ Chaque entrée présente une définition concise, un exemple, un repère pratiqu
 ---
 
 <a id="sid"></a>
-## SID
+## 1.J SID
 
 **Définition.** Identifiant technique d’un système SAP, composé de trois caractères alphanumériques.
 
@@ -145,7 +145,7 @@ Chaque entrée présente une définition concise, un exemple, un repère pratiqu
 ---
 
 <a id="systeme-sap"></a>
-## SYSTÈME SAP
+## 1.K SYSTÈME SAP
 
 **Définition.** Ensemble technique cohérent comprenant au minimum une base de données et un ou plusieurs serveurs d’applications. Il est généralement identifié par un SID de trois caractères.
 
@@ -157,7 +157,7 @@ Chaque entrée présente une définition concise, un exemple, un repère pratiqu
 
 ---
 
-## Références SAP
+## 1.L Références SAP
 
 - [ABAP Programming Language — SAP Help Portal](https://help.sap.com/docs/ABAP_PLATFORM/66906ae3920c4fc684cf588290fb9267/d3d5c132973b404db980ba6ae0889be7.html)
 - [SAP GUI for Windows — SAP Help Portal](https://help.sap.com/docs/r/product/sap_gui_for_windows)

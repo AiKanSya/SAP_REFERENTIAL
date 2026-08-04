@@ -1,6 +1,6 @@
-# EXPRESSIONS RÉGULIÈRES
+# 12. EXPRESSIONS RÉGULIÈRES
 
-## RÉSULTAT ATTENDU
+## 12.A RÉSULTAT ATTENDU
 
 - Comprendre l’usage d’une expression régulière
 - Distinguer recherche littérale, motif `CP` et regex
@@ -8,7 +8,7 @@
 - Valider un format simple
 - Éviter les expressions trop complexes et difficiles à maintenir
 
-## PRINCIPE
+## 12.B PRINCIPE
 
 Une expression régulière décrit un ensemble de chaînes correspondant à un motif.
 
@@ -28,7 +28,7 @@ flowchart LR
     D --> E["Position et groupes"]
 ```
 
-## LITTÉRAL, CP OU REGEX
+## 12.C LITTÉRAL, CP OU REGEX
 
 | Besoin                                      | Technique                        |
 | ------------------------------------------- | -------------------------------- |
@@ -46,7 +46,7 @@ ENDIF.
 
 `CP` n’utilise pas la syntaxe des expressions régulières.
 
-## PCRE ET REGEX
+## 12.D PCRE ET REGEX
 
 Les versions ABAP récentes proposent la syntaxe `PCRE`, fondée sur les expressions régulières compatibles Perl.
 
@@ -65,7 +65,7 @@ FIND REGEX `^[[:alpha:]]+-[[:digit:]]{4}$` IN lv_code.
 > [!IMPORTANT]
 > La disponibilité de `PCRE` dépend de la version du serveur ABAP. Vérifier la documentation intégrée du système avec `F1` avant de remplacer une implémentation existante.
 
-## ANCRES ET QUANTIFICATEURS
+## 12.E ANCRES ET QUANTIFICATEURS
 
 | Élément | Signification courante en PCRE |
 | ------- | ------------------------------ |
@@ -85,7 +85,7 @@ Exemple de code client sur dix chiffres :
 FIND PCRE `^[0-9]{10}$` IN lv_customer.
 ```
 
-## CAPTURER DES SOUS-GROUPES
+## 12.F CAPTURER DES SOUS-GROUPES
 
 Pour des traitements avancés, les résultats de `FIND` ou les classes système de regex permettent de récupérer les correspondances et sous-groupes.
 
@@ -103,7 +103,7 @@ Groupes :
 
 Pour une extraction simple dans un format stable, un accès offset/longueur peut rester plus lisible après validation du format.
 
-## REMPLACEMENT PAR MOTIF
+## 12.G REMPLACEMENT PAR MOTIF
 
 ```abap
 DATA lv_text TYPE string VALUE `ABAP     SAP GUI`.
@@ -117,7 +117,7 @@ Cette opération remplace une ou plusieurs occurrences d’espacement par un esp
 
 Sur les versions ne prenant pas en charge `PCRE`, adapter la syntaxe au moteur disponible.
 
-## VALIDATION TECHNIQUE ET VALIDATION MÉTIER
+## 12.H VALIDATION TECHNIQUE ET VALIDATION MÉTIER
 
 Une regex peut valider une forme, mais pas nécessairement le sens métier.
 
@@ -136,7 +136,7 @@ La validation complète doit combiner :
 - règle métier ;
 - contrôle de référentiel si nécessaire.
 
-## BONNES PRATIQUES
+## 12.I BONNES PRATIQUES
 
 - Utiliser une recherche littérale lorsqu’elle suffit.
 - Commenter l’objectif du motif, pas chaque caractère.
@@ -145,21 +145,21 @@ La validation complète doit combiner :
 - Éviter une regex unique lorsqu’une décomposition en étapes est plus claire.
 - Vérifier la compatibilité avec la version ABAP cible.
 
-## VÉRIFICATION
+## 12.J VÉRIFICATION
 
 - Le contrôle syntaxique réussit.
 - La version active correspond au code sauvegardé.
 - L’exécution produit le résultat décrit dans le chapitre.
 - Les cas vide, limite et erreur sont testés séparément lorsque la syntaxe le permet.
 
-## ERREURS FRÉQUENTES
+## 12.K ERREURS FRÉQUENTES
 
 - Copier un exemple sans adapter les types, noms d’objets et données disponibles dans le système.
 - Tester uniquement le cas nominal et ignorer les valeurs initiales, absentes ou invalides.
 - S’appuyer sur une conversion implicite pouvant tronquer ou arrondir.
 - Ignorer l’encodage et les formats externes.
 
-## SNIPPET À RÉUTILISER
+## 12.L SNIPPET À RÉUTILISER
 
 > [!NOTE]
 > Adapter les noms `Z*`, les types DDIC, les données et les autorisations au système cible. Effectuer un contrôle syntaxique avant activation.
@@ -170,13 +170,13 @@ IF lv_code CP `Z*-2026`.
 ENDIF.
 ```
 
-## TERMES DU LEXIQUE
+## 12.M TERMES DU LEXIQUE
 
 - [Expression](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#expression>)
 - [Instruction ABAP](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#instruction-abap>)
 - [Type de données](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#type-donnees>)
 
-## RÉFÉRENCES OFFICIELLES SAP
+## 12.N RÉFÉRENCES OFFICIELLES SAP
 
 - [Regular Expressions — ABAP Keyword Documentation](https://help.sap.com/doc/abapdocu_latest_index_htm/latest/en-US/ABENREGEX_MTCH.html)
 - [Search Patterns — ABAP Keyword Documentation](https://help.sap.com/doc/abapdocu_latest_index_htm/latest/en-US/ABENREGEX_PCRE_SYNTAX.html)

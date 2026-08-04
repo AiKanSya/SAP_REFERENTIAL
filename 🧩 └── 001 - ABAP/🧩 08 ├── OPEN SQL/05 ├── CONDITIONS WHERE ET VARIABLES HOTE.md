@@ -1,10 +1,6 @@
-# CONDIT" Lire uniquement les colonnes et les lignes nécessaires.
-" Lire uniquement les colonnes et les lignes nécessaires.
-" Lire uniquement les colonnes et les lignes nécessaires.
-" Lire uniquement les colonnes et les lignes nécessaires.
-IONS WHERE ET VARIABLES HÔTE
+# 5. CONDITIONS WHERE ET VARIABLES HÔTE
 
-## RÉSULTAT ATTENDU
+## 5.A RÉSULTAT ATTENDU
 
 - Restreindre les lignes avec `WHERE`
 - Utiliser des comparaisons et opérateurs logiques
@@ -12,7 +8,7 @@ IONS WHERE ET VARIABLES HÔTE
 - Utiliser les variables hôte avec `@`
 - Construire des conditions sûres et lisibles
 
-## COMPARAISONS
+## 5.B COMPARAISONS
 
 ```abap
 " Lire uniquement les colonnes et les lignes nécessaires.
@@ -33,7 +29,7 @@ Opérateurs courants :
 - `IN` ;
 - `IS NULL` selon la source et la construction.
 
-## OPÉRATEURS LOGIQUES
+## 5.C OPÉRATEURS LOGIQUES
 
 ```abap
 " Lire uniquement les colonnes et les lignes nécessaires.
@@ -46,7 +42,7 @@ SELECT carrid, connid, cityfrom, cityto
 
 Utiliser des parenthèses dès qu’une combinaison de `AND`, `OR` et `NOT` pourrait être mal interprétée.
 
-## PLAGE DE VALEURS
+## 5.D PLAGE DE VALEURS
 
 Une table de sélection créée avec `SELECT-OPTIONS` peut être utilisée après `IN`.
 
@@ -62,7 +58,7 @@ SELECT carrid, carrname
 
 La table de sélection porte les composants `SIGN`, `OPTION`, `LOW` et `HIGH`.
 
-## RECHERCHE PAR MOTIF
+## 5.E RECHERCHE PAR MOTIF
 
 ```abap
 " Lire uniquement les colonnes et les lignes nécessaires.
@@ -79,27 +75,27 @@ Dans un motif SQL :
 - `%` représente une suite de caractères ;
 - `_` représente un caractère.
 
-## CONDITION DYNAMIQUE
+## 5.F CONDITION DYNAMIQUE
 
 ABAP SQL propose des variantes dynamiques, mais elles augmentent les risques de syntaxe invalide, d’erreur de sécurité et de perte de contrôle sur les performances.
 
 Préférer des conditions statiques et des paramètres liés. Ne jamais concaténer directement une saisie utilisateur dans une condition SQL dynamique sans validation stricte.
 
-## VÉRIFICATION
+## 5.G VÉRIFICATION
 
 - Le contrôle syntaxique réussit.
 - La version active correspond au code sauvegardé.
 - L’exécution produit le résultat décrit dans le chapitre.
 - Les cas vide, limite et erreur sont testés séparément lorsque la syntaxe le permet.
 
-## ERREURS FRÉQUENTES
+## 5.H ERREURS FRÉQUENTES
 
 - Copier un exemple sans adapter les types, noms d’objets et données disponibles dans le système.
 - Tester uniquement le cas nominal et ignorer les valeurs initiales, absentes ou invalides.
 - Lire toutes les colonnes ou toutes les lignes par défaut.
 - Effectuer des commits dans une méthode réutilisable sans contrat explicite.
 
-## SNIPPET À RÉUTILISER
+## 5.I SNIPPET À RÉUTILISER
 
 > [!NOTE]
 > Adapter les noms `Z*`, les types DDIC, les données et les autorisations au système cible. Effectuer un contrôle syntaxique avant activation.
@@ -114,19 +110,19 @@ SELECT carrid, carrname
   INTO TABLE @DATA(lt_carriers).
 ```
 
-## TERMES DU LEXIQUE
+## 5.J TERMES DU LEXIQUE
 
 - [SQL](<../🧩 00 ├── LEXIQUE SAP ET ABAP/10 └── ACRONYMES SAP.md#acro-sql>)
 - [MANDT](<../🧩 00 ├── LEXIQUE SAP ET ABAP/05 ├── DONNEES DICTIONNAIRE ET BASE DE DONNEES.md#mandt>)
 - [Table transparente](<../🧩 00 ├── LEXIQUE SAP ET ABAP/05 ├── DONNEES DICTIONNAIRE ET BASE DE DONNEES.md#table-transparente>)
 - [LUW base de données](<../🧩 00 ├── LEXIQUE SAP ET ABAP/08 ├── EXECUTION EXPLOITATION ET ADMINISTRATION.md#luw-base>)
 
-## MODÈLE DE DÉMONSTRATION SFLIGHT
+## 5.K MODÈLE DE DÉMONSTRATION SFLIGHT
 
 > [!NOTE]
 > Les tables `SCARR`, `SPFLI` et `SFLIGHT` appartiennent au modèle de démonstration SAP et peuvent être absentes ou non alimentées dans certains systèmes. Dans ce cas, remplacer les exemples par une table Z de démonstration ou par une source en lecture seule autorisée, sans modifier une table applicative standard.
 
-## RÉFÉRENCES OFFICIELLES SAP
+## 5.L RÉFÉRENCES OFFICIELLES SAP
 
 - [WHERE Clause — ABAP Keyword Documentation](https://help.sap.com/doc/abapdocu_752_index_htm/7.52/en-US/ABAPWHERE.html)
 - [Host Variables — ABAP Keyword Documentation](https://help.sap.com/doc/abapdocu_latest_index_htm/latest/en-US/ABENABAP_SQL_HOST_VARIABLES.html)

@@ -1,6 +1,6 @@
-# OBJETS DE VERROUILLAGE
+# 13. OBJETS DE VERROUILLAGE
 
-## RÉSULTAT ATTENDU
+## 13.A RÉSULTAT ATTENDU
 
 - Comprendre le verrouillage logique SAP
 - Créer un objet de verrouillage dans SE11
@@ -8,7 +8,7 @@
 - Choisir les champs de l’argument de verrouillage
 - Diagnostiquer les verrous avec prudence
 
-## POURQUOI UN VERROU LOGIQUE
+## 13.B POURQUOI UN VERROU LOGIQUE
 
 Une transaction métier peut durer plus longtemps qu’une opération de base de données unique.
 
@@ -26,7 +26,7 @@ sequenceDiagram
     U1->>E: Libération du verrou K
 ```
 
-## DÉFINITION DANS SE11
+## 13.C DÉFINITION DANS SE11
 
 Un objet de verrouillage indique :
 
@@ -40,7 +40,7 @@ Lors de l’activation, le système génère généralement deux modules fonctio
 - `ENQUEUE_<objet>` ;
 - `DEQUEUE_<objet>`.
 
-## MODES CLASSIQUES
+## 13.D MODES CLASSIQUES
 
 | Mode                   | Principe                                                     |
 | ---------------------- | ------------------------------------------------------------ |
@@ -51,7 +51,7 @@ Lors de l’activation, le système génère généralement deux modules fonctio
 
 Le mode exact doit correspondre au scénario métier et à l’architecture de l’application.
 
-## EXEMPLE D’APPEL
+## 13.E EXEMPLE D’APPEL
 
 Pour un objet `EZ_ORDER` générant `ENQUEUE_EZ_ORDER` :
 
@@ -74,7 +74,7 @@ La signature réelle dépend des champs de l’objet généré. Elle doit être 
 
 Le verrou doit ensuite être libéré au moment cohérent du traitement, explicitement ou selon la portée configurée.
 
-## ANALYSE AVEC SM12
+## 13.F ANALYSE AVEC SM12
 
 La transaction `SM12` permet d’analyser les entrées de verrouillage.
 
@@ -86,7 +86,7 @@ Supprimer manuellement un verrou peut permettre à deux traitements incompatible
 - l’état du traitement ;
 - l’absence réelle de session active.
 
-## POINTS À RETENIR
+## 13.G POINTS À RETENIR
 
 - Un objet de verrouillage protège une ressource métier au niveau SAP.
 - L’activation génère les modules `ENQUEUE_...` et `DEQUEUE_...`.
@@ -94,48 +94,48 @@ Supprimer manuellement un verrou peut permettre à deux traitements incompatible
 - La durée du verrou doit couvrir le traitement critique sans être excessive.
 - Un verrou ne doit pas être supprimé dans SM12 sans diagnostic.
 
-## PROCESS
+## 13.H PROCESS
 
-### Étape 1 — Définir l’unité logique verrouillée
+### 13.H.1 Étape 1 — Définir l’unité logique verrouillée
 
 Identifier la table racine et les champs qui représentent l’objet métier modifié simultanément. Le verrou doit couvrir l’unité de concurrence réelle : une clé trop large bloque inutilement, une clé trop étroite autorise des mises à jour concurrentes incohérentes.
 
-### Étape 2 — Créer l’objet de verrouillage
+### 13.H.2 Étape 2 — Créer l’objet de verrouillage
 
 1. Ouvrir `SE11`, choisir **Objet de verrouillage** et saisir un nom commençant par `EZ` ou `EY` selon la convention client.
 2. Ajouter la table primaire.
 3. Ajouter les tables secondaires uniquement lorsqu’elles appartiennent à la même unité verrouillée.
 4. Vérifier les relations proposées et les paramètres de clé générés.
 
-### Étape 3 — Choisir le mode de verrouillage
+### 13.H.3 Étape 3 — Choisir le mode de verrouillage
 
 Sélectionner le mode adapté au scénario de lecture/modification. Documenter la raison et la durée prévue du verrou. Ne pas conserver un verrou pendant une interaction utilisateur plus longue que nécessaire.
 
-### Étape 4 — Activer et contrôler les modules générés
+### 13.H.4 Étape 4 — Activer et contrôler les modules générés
 
 Activer l’objet puis ouvrir dans `SE37` les modules `ENQUEUE_...` et `DEQUEUE_...`. Relever leur signature exacte, notamment les champs clés, le mandant, le mode et les paramètres de portée.
 
-### Étape 5 — Tester la concurrence
+### 13.H.5 Étape 5 — Tester la concurrence
 
 Dans une première session, appeler le module ENQUEUE avec une clé de test et conserver le verrou. Dans une seconde session, tenter la même clé : l’appel doit signaler le conflit prévu. Libérer ensuite avec DEQUEUE et vérifier dans `SM12` qu’aucun verrou de test ne subsiste.
 
 La mise en place est validée lorsque deux clés différentes peuvent travailler indépendamment et que la même clé ne peut pas être modifiée simultanément.
 
-## VÉRIFICATION
+## 13.I VÉRIFICATION
 
 - Le contrôle de cohérence ne retourne aucune erreur bloquante.
 - L’objet est actif et son entrée de répertoire pointe vers le package attendu.
 - La liste d’utilisation et les dépendances correspondent au périmètre prévu.
 - Pour une table Z, la structure active et la structure de base sont cohérentes.
 
-## ERREURS FRÉQUENTES
+## 13.J ERREURS FRÉQUENTES
 
 - Copier un exemple sans adapter les types, noms d’objets et données disponibles dans le système.
 - Tester uniquement le cas nominal et ignorer les valeurs initiales, absentes ou invalides.
 - Modifier un objet standard au lieu d’utiliser une extension.
 - Activer une table sans vérifier clé, paramètres techniques et impact base.
 
-## SNIPPET À RÉUTILISER
+## 13.K SNIPPET À RÉUTILISER
 
 > [!NOTE]
 > Adapter les noms `Z*`, les types DDIC, les données et les autorisations au système cible. Effectuer un contrôle syntaxique avant activation.
@@ -155,7 +155,7 @@ IF sy-subrc <> 0.
 ENDIF.
 ```
 
-## TERMES DU LEXIQUE
+## 13.L TERMES DU LEXIQUE
 
 - [ABAP Dictionary](<../🧩 00 ├── LEXIQUE SAP ET ABAP/05 ├── DONNEES DICTIONNAIRE ET BASE DE DONNEES.md#abap-dictionary>)
 - [Domaine](<../🧩 00 ├── LEXIQUE SAP ET ABAP/05 ├── DONNEES DICTIONNAIRE ET BASE DE DONNEES.md#domaine>)
@@ -163,7 +163,7 @@ ENDIF.
 - [Table transparente](<../🧩 00 ├── LEXIQUE SAP ET ABAP/05 ├── DONNEES DICTIONNAIRE ET BASE DE DONNEES.md#table-transparente>)
 - [MANDT](<../🧩 00 ├── LEXIQUE SAP ET ABAP/05 ├── DONNEES DICTIONNAIRE ET BASE DE DONNEES.md#mandt>)
 
-## RÉFÉRENCES OFFICIELLES SAP
+## 13.M RÉFÉRENCES OFFICIELLES SAP
 
 - [Lock Objects — ABAP Dictionary — SAP Help Portal](https://help.sap.com/docs/SAP_NETWEAVER_731_BW_ABAP/ec1c9c8191b74de98feb94001a95dd76/cf21eea5446011d189700000e8322d00.html)
 - [SAP Lock Concept — SAP Help Portal](https://help.sap.com/docs/SAP_NETWEAVER_AS_ABAP_752/47df3d6f30fd4c9d8a91d99f6e2be3e5/4ec5c7196e391014adc9fffe4e204223.html)

@@ -1,6 +1,6 @@
-# CHOISIR ENTRE IF ET CASE
+# 4. CHOISIR ENTRE IF ET CASE
 
-## RÉSULTAT ATTENDU
+## 4.A RÉSULTAT ATTENDU
 
 - Identifier la structure la plus lisible pour un besoin donné
 - Distinguer comparaison de valeur et condition générale
@@ -8,7 +8,7 @@
 - Organiser les règles par priorité
 - Préparer des traitements faciles à tester
 
-## RÈGLE DE CHOIX
+## 4.B RÈGLE DE CHOIX
 
 Utiliser `CASE` lorsque :
 
@@ -30,7 +30,7 @@ Utiliser `IF` lorsque :
 | Traiter plusieurs commandes utilisateur | `CASE`                |
 | Combiner autorisation, état et quantité | `IF`                  |
 
-## EXEMPLE ADAPTÉ À CASE
+## 4.C EXEMPLE ADAPTÉ À CASE
 
 Version `IF` valide mais répétitive :
 
@@ -61,7 +61,7 @@ CASE lv_status.
 ENDCASE.
 ```
 
-## EXEMPLE ADAPTÉ À IF
+## 4.D EXEMPLE ADAPTÉ À IF
 
 ```abap
 IF lv_amount <= 0.
@@ -77,7 +77,7 @@ ENDIF.
 
 Un `CASE` ne rendrait pas cette décision plus claire, car plusieurs critères indépendants sont vérifiés.
 
-## PRIORISER LES RÈGLES
+## 4.E PRIORISER LES RÈGLES
 
 Dans une chaîne `IF ... ELSEIF`, la première condition vraie gagne.
 
@@ -102,7 +102,7 @@ ELSE.
 ENDIF.
 ```
 
-## ÉVITER LES DUPLICATIONS
+## 4.F ÉVITER LES DUPLICATIONS
 
 Si plusieurs branches exécutent le même traitement, regrouper la condition ou extraire le traitement commun.
 
@@ -135,7 +135,7 @@ CASE lv_country.
 ENDCASE.
 ```
 
-## TESTABILITÉ
+## 4.G TESTABILITÉ
 
 Chaque branche représente un chemin de traitement à tester.
 
@@ -147,21 +147,21 @@ Chaque branche représente un chemin de traitement à tester.
 
 La couverture de toutes les branches réduit les anomalies liées aux cas limites.
 
-## VÉRIFICATION
+## 4.H VÉRIFICATION
 
 - Le contrôle syntaxique réussit.
 - La version active correspond au code sauvegardé.
 - L’exécution produit le résultat décrit dans le chapitre.
 - Les cas vide, limite et erreur sont testés séparément lorsque la syntaxe le permet.
 
-## ERREURS FRÉQUENTES
+## 4.I ERREURS FRÉQUENTES
 
 - Copier un exemple sans adapter les types, noms d’objets et données disponibles dans le système.
 - Tester uniquement le cas nominal et ignorer les valeurs initiales, absentes ou invalides.
 - Créer une boucle sans condition de sortie fiable.
 - Utiliser `CHECK`, `CONTINUE`, `EXIT` ou `RETURN` sans rendre le flux lisible.
 
-## SNIPPET À RÉUTILISER
+## 4.J SNIPPET À RÉUTILISER
 
 > [!NOTE]
 > Adapter les noms `Z*`, les types DDIC, les données et les autorisations au système cible. Effectuer un contrôle syntaxique avant activation.
@@ -178,12 +178,12 @@ ELSE.
 ENDIF.
 ```
 
-## TERMES DU LEXIQUE
+## 4.K TERMES DU LEXIQUE
 
 - [Instruction ABAP](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#instruction-abap>)
 - [Expression](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#expression>)
 
-## RÉFÉRENCES OFFICIELLES SAP
+## 4.L RÉFÉRENCES OFFICIELLES SAP
 
 - [Using Control Structures in ABAP — SAP Learning](https://learning.sap.com/courses/basic-abap-programming/using-control-structures-in-abap_a4d7803e-eac2-458e-acf9-8628289f3701)
 - [Control Flow — SAP Help Portal](https://help.sap.com/docs/ABAP_PLATFORM_NEW/8132142fd1a144a59303663a03a7c2d4/94e1b1978adf45c1a72bd9d8075436d3.html)

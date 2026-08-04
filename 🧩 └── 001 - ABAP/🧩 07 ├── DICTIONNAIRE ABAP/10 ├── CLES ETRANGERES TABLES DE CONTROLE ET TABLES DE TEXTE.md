@@ -1,6 +1,6 @@
-# CLÉS ÉTRANGÈRES, TABLES DE CONTRÔLE ET TABLES DE TEXTE
+# 10. CLÉS ÉTRANGÈRES, TABLES DE CONTRÔLE ET TABLES DE TEXTE
 
-## RÉSULTAT ATTENDU
+## 10.A RÉSULTAT ATTENDU
 
 - Définir une relation entre deux tables DDIC
 - Distinguer table de valeurs et table de contrôle
@@ -8,7 +8,7 @@
 - Identifier une table de texte
 - Connaître les limites des contrôles DDIC
 
-## CLÉ ÉTRANGÈRE
+## 10.B CLÉ ÉTRANGÈRE
 
 Une clé étrangère DDIC relie les champs d’une table à la clé primaire d’une table de contrôle.
 
@@ -25,7 +25,7 @@ La définition contient :
 - la cardinalité ;
 - le type sémantique de la relation.
 
-## TABLE ÉTRANGÈRE ET TABLE DE CONTRÔLE
+## 10.C TABLE ÉTRANGÈRE ET TABLE DE CONTRÔLE
 
 | Rôle              | Description                                                                  |
 | ----------------- | ---------------------------------------------------------------------------- |
@@ -34,7 +34,7 @@ La définition contient :
 
 Exemple : une commande contient un identifiant client ; la table client fournit les identifiants valides.
 
-## TABLE DE VALEURS ET TABLE DE CONTRÔLE
+## 10.D TABLE DE VALEURS ET TABLE DE CONTRÔLE
 
 | Table de valeurs du domaine               | Table de contrôle de la clé étrangère      |
 | ----------------------------------------- | ------------------------------------------ |
@@ -42,7 +42,7 @@ Exemple : une commande contient un identifiant client ; la table client fournit 
 | Ne crée pas seule un contrôle             | Porte la relation et le contrôle classique |
 | Peut être réutilisée comme proposition    | Dépend du contexte de la table étrangère   |
 
-## CARDINALITÉ
+## 10.E CARDINALITÉ
 
 La cardinalité décrit le nombre possible d’occurrences entre les tables.
 
@@ -53,13 +53,13 @@ Elle précise notamment :
 
 La cardinalité doit refléter la règle métier réelle, pas seulement les données présentes au moment de la création.
 
-## CONTRÔLE EFFECTIF
+## 10.F CONTRÔLE EFFECTIF
 
 Une clé étrangère DDIC fournit des métadonnées utilisées par les écrans classiques, les aides F4, les vues de maintenance et divers générateurs.
 
 Elle ne garantit pas à elle seule que toute écriture effectuée par n’importe quel programme ABAP sera contrôlée. Le code applicatif et les interfaces d’écriture doivent respecter l’intégrité attendue.
 
-## TABLE DE TEXTE
+## 10.G TABLE DE TEXTE
 
 Une table de texte contient les libellés dépendants de la langue d’une table principale.
 
@@ -79,7 +79,7 @@ flowchart LR
 
 La relation doit être définie avec le type sémantique approprié pour que le Dictionary reconnaisse la table de texte.
 
-## POINTS À RETENIR
+## 10.H POINTS À RETENIR
 
 - Une clé étrangère relie une table étrangère à une table de contrôle.
 - La table de valeurs d’un domaine n’est qu’une proposition.
@@ -87,13 +87,13 @@ La relation doit être définie avec le type sémantique approprié pour que le 
 - Les métadonnées DDIC n’empêchent pas toutes les écritures incohérentes par elles-mêmes.
 - Une table de texte associe une clé métier à des libellés traduits.
 
-## PROCESS
+## 10.I PROCESS
 
-### Étape 1 — Identifier la relation à modéliser
+### 10.I.1 Étape 1 — Identifier la relation à modéliser
 
 Déterminer la table contenant la valeur saisie et la table de contrôle qui porte les valeurs autorisées. Comparer les champs de relation : domaine, type, longueur et rôle métier doivent être compatibles.
 
-### Étape 2 — Créer la clé étrangère
+### 10.I.2 Étape 2 — Créer la clé étrangère
 
 1. Ouvrir la table dépendante dans `SE11` et sélectionner le champ concerné.
 2. Ouvrir la définition de clé étrangère.
@@ -103,33 +103,33 @@ Déterminer la table contenant la valeur saisie et la table de contrôle qui por
 
 Si un champ clé ne peut pas être affecté, revoir le modèle plutôt que d’utiliser une correspondance artificielle.
 
-### Étape 3 — Tester le contrôle de saisie
+### 10.I.3 Étape 3 — Tester le contrôle de saisie
 
 Activer les deux tables puis tester le champ dans un écran ou une maintenance utilisant les contrôles DDIC. Une valeur présente dans la table de contrôle doit être acceptée ; une valeur absente doit produire le comportement prévu.
 
 La clé étrangère DDIC contribue aux aides et contrôles d’écran, mais ne remplace pas nécessairement une validation applicative lors d’une écriture ABAP directe.
 
-### Étape 4 — Créer une table de textes
+### 10.I.4 Étape 4 — Créer une table de textes
 
 Créer une table dont la clé reprend celle de la table de base et ajoute la langue `SPRAS`. Ajouter le champ texte, définir la relation vers la table de base puis déclarer cette table comme table de textes selon les fonctions de `SE11`.
 
-### Étape 5 — Valider les langues
+### 10.I.5 Étape 5 — Valider les langues
 
 Créer deux textes pour une même clé dans deux langues, puis vérifier leur restitution selon `SY-LANGU`. La modélisation est validée lorsque la relation empêche les clés orphelines dans les outils concernés et que chaque langue possède au maximum un texte par objet.
 
-## VÉRIFICATION
+## 10.J VÉRIFICATION
 
 - Le contrôle de cohérence ne retourne aucune erreur bloquante.
 - L’objet est actif et son entrée de répertoire pointe vers le package attendu.
 - La liste d’utilisation et les dépendances correspondent au périmètre prévu.
 - Pour une table Z, la structure active et la structure de base sont cohérentes.
 
-## ERREURS FRÉQUENTES
+## 10.K ERREURS FRÉQUENTES
 
 - Modifier un objet standard au lieu d’utiliser une extension.
 - Activer une table sans vérifier clé, paramètres techniques et impact base.
 
-## FICHE DE CONTRÔLE À COPIER
+## 10.L FICHE DE CONTRÔLE À COPIER
 
 ```text
 Système / SID       :
@@ -144,7 +144,7 @@ Horodatage          :
 Ordre de transport  :
 ```
 
-## TERMES DU LEXIQUE
+## 10.M TERMES DU LEXIQUE
 
 - [ABAP Dictionary](<../🧩 00 ├── LEXIQUE SAP ET ABAP/05 ├── DONNEES DICTIONNAIRE ET BASE DE DONNEES.md#abap-dictionary>)
 - [Domaine](<../🧩 00 ├── LEXIQUE SAP ET ABAP/05 ├── DONNEES DICTIONNAIRE ET BASE DE DONNEES.md#domaine>)
@@ -152,7 +152,7 @@ Ordre de transport  :
 - [Table transparente](<../🧩 00 ├── LEXIQUE SAP ET ABAP/05 ├── DONNEES DICTIONNAIRE ET BASE DE DONNEES.md#table-transparente>)
 - [MANDT](<../🧩 00 ├── LEXIQUE SAP ET ABAP/05 ├── DONNEES DICTIONNAIRE ET BASE DE DONNEES.md#mandt>)
 
-## RÉFÉRENCES OFFICIELLES SAP
+## 10.N RÉFÉRENCES OFFICIELLES SAP
 
 - [Foreign Keys — SAP Help Portal](https://help.sap.com/docs/SAP_NETWEAVER_702/ff5206fc6c551014a1d28b076487e7df/cf21ea77446011d189700000e8322d00.html)
 - [Generic and Constant Foreign Keys — SAP Help Portal](https://help.sap.com/docs/SAP_NETWEAVER_731_BW_ABAP/ec1c9c8191b74de98feb94001a95dd76/cf21ea84446011d189700000e8322d00.html)

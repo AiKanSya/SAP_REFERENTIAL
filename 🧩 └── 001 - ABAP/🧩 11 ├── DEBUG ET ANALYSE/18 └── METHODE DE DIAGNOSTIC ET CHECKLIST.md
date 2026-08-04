@@ -1,13 +1,13 @@
-# DIAGNOSTIC ET BONNES PRATIQUES
+# 18. DIAGNOSTIC ET BONNES PRATIQUES
 
-## RÉSULTAT ATTENDU
+## 18.A RÉSULTAT ATTENDU
 
 - Diagnostiquer un échec local, RFC ou BAPI
 - Utiliser les transactions adaptées
 - Vérifier le contrat avant de modifier le code
 - Appliquer une checklist de conception et d’exploitation
 
-## MÉTHODE DE DIAGNOSTIC
+## 18.B MÉTHODE DE DIAGNOSTIC
 
 ```mermaid
 flowchart TD
@@ -19,7 +19,7 @@ flowchart TD
     B -->|"BAPI"| G["RETURN, commit et données métier"]
 ```
 
-## QUESTIONS PRIORITAIRES
+## 18.C QUESTIONS PRIORITAIRES
 
 1. Le module appelé est-il le bon ?
 2. L’interface active correspond-elle à l’appel ?
@@ -32,7 +32,7 @@ flowchart TD
 9. Le commit attendu a-t-il été exécuté ?
 10. Le traitement est-il idempotent avant relance ?
 
-## OUTILS
+## 18.D OUTILS
 
 | Outil           | Usage                                                     |
 | --------------- | --------------------------------------------------------- |
@@ -47,7 +47,7 @@ flowchart TD
 | `STAUTHTRACE`   | Analyse d’autorisations selon les droits et procédures    |
 | `SLG1`          | Journal applicatif lorsqu’il est utilisé                  |
 
-## CHECKLIST DE CONCEPTION
+## 18.E CHECKLIST DE CONCEPTION
 
 - Le nom décrit l’action et le périmètre.
 - Le groupe de fonctions est cohérent.
@@ -61,7 +61,7 @@ flowchart TD
 - Les volumes et temps de réponse sont bornés.
 - La compatibilité des consommateurs est prise en compte.
 
-## CHECKLIST D APPEL
+## 18.F CHECKLIST D APPEL
 
 - Générer le modèle d’appel depuis l’interface active.
 - Contrôler `sy-subrc` immédiatement.
@@ -71,49 +71,49 @@ flowchart TD
 - Journaliser la clé métier et l’identifiant de corrélation.
 - Ne pas relancer une unité asynchrone sans analyse d’idempotence.
 
-## RÈGLE FINALE
+## 18.G RÈGLE FINALE
 
 Une fonction visible dans `SE37` n’est pas automatiquement une API stable. Une exécution réussie dans le système de développement ne prouve ni la sécurité, ni la compatibilité, ni la robustesse distribuée du scénario.
 
-## PROCESS
+## 18.H PROCESS
 
-### Étape 1 — Décrire sans interpréter
+### 18.H.1 Étape 1 — Décrire sans interpréter
 
 Noter contexte, données, résultat attendu et résultat observé. Classer le symptôme : erreur fonctionnelle, dump, performance, mémoire, job ou appel distant.
 
-### Étape 2 — Reproduire de façon minimale
+### 18.H.2 Étape 2 — Reproduire de façon minimale
 
 Réduire les données et reproduire une fois. Si le défaut disparaît, réintroduire un paramètre à la fois jusqu’à identifier la condition nécessaire.
 
-### Étape 3 — Choisir l’outil
+### 18.H.3 Étape 3 — Choisir l’outil
 
 Utiliser débogueur pour le flux, `ST22` pour un dump, `SAT` pour le temps ABAP, `ST05` pour SQL, `ST12` pour une corrélation, `SM37` pour un job et Memory Inspector pour les allocations.
 
-### Étape 4 — Chercher la première divergence
+### 18.H.4 Étape 4 — Chercher la première divergence
 
 Comparer le chemin attendu au chemin réel. Remonter pile, paramètres et valeurs jusqu’au dernier état correct, puis isoler l’instruction suivante.
 
-### Étape 5 — Corriger une cause
+### 18.H.5 Étape 5 — Corriger une cause
 
 Modifier uniquement la cause prouvée. Exécuter le contrôle syntaxique et les tests de l’objet réellement responsable, puis l’activer avec ses dépendances. Documenter le lien entre la preuve observée, la correction et le résultat attendu.
 
-### Étape 6 — Vérifier et clôturer
+### 18.H.6 Étape 6 — Vérifier et clôturer
 
 Rejouer le cas fautif, un cas nominal et une limite. Retirer traces et breakpoints. Le diagnostic est clos lorsque la preuve avant/après est conservée et qu’aucun effet de bord nouveau n’apparaît.
 
-## VÉRIFICATION
+## 18.I VÉRIFICATION
 
 - Le scénario reproduit correspond au même utilisateur, mandant, transaction et jeu de données.
 - L’horodatage et l’identifiant de l’analyse sont conservés.
 - La cause retenue est soutenue par une ligne source, une trace ou une valeur observée.
 - Après correction, le même scénario ne reproduit plus le défaut et le résultat métier reste identique.
 
-## ERREURS FRÉQUENTES
+## 18.J ERREURS FRÉQUENTES
 
 - Modifier les données dans le débogueur puis considérer le résultat comme reproductible.
 - Laisser une trace active trop longtemps.
 
-## FICHE DE CONTRÔLE À COPIER
+## 18.K FICHE DE CONTRÔLE À COPIER
 
 ```text
 Système / SID       :
@@ -128,14 +128,14 @@ Horodatage          :
 Ordre de transport  :
 ```
 
-## TERMES DU LEXIQUE
+## 18.L TERMES DU LEXIQUE
 
 - [Breakpoint](<../🧩 00 ├── LEXIQUE SAP ET ABAP/08 ├── EXECUTION EXPLOITATION ET ADMINISTRATION.md#breakpoint>)
 - [Watchpoint](<../🧩 00 ├── LEXIQUE SAP ET ABAP/08 ├── EXECUTION EXPLOITATION ET ADMINISTRATION.md#watchpoint>)
 - [Dump ABAP](<../🧩 00 ├── LEXIQUE SAP ET ABAP/08 ├── EXECUTION EXPLOITATION ET ADMINISTRATION.md#dump-abap>)
 - [Trace](<../🧩 00 ├── LEXIQUE SAP ET ABAP/08 ├── EXECUTION EXPLOITATION ET ADMINISTRATION.md#trace>)
 
-## RÉFÉRENCES OFFICIELLES SAP
+## 18.M RÉFÉRENCES OFFICIELLES SAP
 
 - [Looking Up Function Modules — SAP Help Portal](https://help.sap.com/docs/ABAP_PLATFORM_NEW/bd833c8355f34e96a6e83096b38bf192/d1801ec1454211d189710000e8322d00.html)
 - [Calling RFC Function Modules in ABAP — SAP Help Portal](https://help.sap.com/docs/ABAP_PLATFORM_NEW/753088fc00704d0a80e7fbd6803c8adb/48a0f18641bc062de10000000a42189d.html)

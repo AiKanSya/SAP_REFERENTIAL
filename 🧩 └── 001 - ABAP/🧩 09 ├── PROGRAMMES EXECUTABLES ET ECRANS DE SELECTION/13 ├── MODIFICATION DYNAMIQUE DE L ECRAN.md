@@ -1,6 +1,6 @@
-# MODIFICATION DYNAMIQUE DE L’ÉCRAN
+# 13. MODIFICATION DYNAMIQUE DE L’ÉCRAN
 
-## RÉSULTAT ATTENDU
+## 13.A RÉSULTAT ATTENDU
 
 - Grouper des champs avec `MODIF ID`
 - Modifier les propriétés avant affichage
@@ -8,7 +8,7 @@
 - Rafraîchir l’écran après une action utilisateur
 - Éviter les écrans incohérents ou inaccessibles
 
-## GROUPE DE MODIFICATION
+## 13.B GROUPE DE MODIFICATION
 
 ```abap
 PARAMETERS:
@@ -18,7 +18,7 @@ PARAMETERS:
 
 `MODIF ID det` affecte le champ au groupe `DET`. L’identifiant comporte au maximum trois caractères significatifs pour le groupe d’écran.
 
-## AT SELECTION-SCREEN OUTPUT
+## 13.C AT SELECTION-SCREEN OUTPUT
 
 ```abap
 AT SELECTION-SCREEN OUTPUT.
@@ -36,7 +36,7 @@ AT SELECTION-SCREEN OUTPUT.
 
 Cet événement correspond à la préparation de l’écran avant son affichage.
 
-## PROPRIÉTÉS COURANTES
+## 13.D PROPRIÉTÉS COURANTES
 
 | Composant `SCREEN` | Effet général                                    |
 | ------------------ | ------------------------------------------------ |
@@ -51,7 +51,7 @@ Cet événement correspond à la préparation de l’écran avant son affichage.
 
 Les interactions entre propriétés dépendent du type d’élément. Tester le comportement réel dans SAP GUI.
 
-## RAFRAÎCHISSEMENT
+## 13.E RAFRAÎCHISSEMENT
 
 `USER-COMMAND` sur une case à cocher ou un bouton radio déclenche un aller-retour vers le programme. Le prochain `AT SELECTION-SCREEN OUTPUT` peut alors reconstruire l’état des champs.
 
@@ -63,7 +63,7 @@ flowchart LR
     D --> E["Nouvel affichage"]
 ```
 
-## RÈGLES DE SÉCURITÉ
+## 13.F RÈGLES DE SÉCURITÉ
 
 - un champ masqué ne doit pas être considéré comme sécurisé ;
 - une valeur désactivée doit encore être validée avant traitement ;
@@ -72,21 +72,21 @@ flowchart LR
 - éviter de modifier les éléments par leur nom si un groupe suffit ;
 - ne pas réinitialiser les valeurs à chaque PBO.
 
-## VÉRIFICATION
+## 13.G VÉRIFICATION
 
 - Le contrôle syntaxique réussit.
 - La version active correspond au code sauvegardé.
 - L’exécution produit le résultat décrit dans le chapitre.
 - Les cas vide, limite et erreur sont testés séparément lorsque la syntaxe le permet.
 
-## ERREURS FRÉQUENTES
+## 13.H ERREURS FRÉQUENTES
 
 - Copier un exemple sans adapter les types, noms d’objets et données disponibles dans le système.
 - Tester uniquement le cas nominal et ignorer les valeurs initiales, absentes ou invalides.
 - Mettre une logique lourde dans les événements de validation de l’écran.
 - Créer une variante contenant des valeurs obsolètes ou sensibles.
 
-## SNIPPET À RÉUTILISER
+## 13.I SNIPPET À RÉUTILISER
 
 > [!NOTE]
 > Adapter les noms `Z*`, les types DDIC, les données et les autorisations au système cible. Effectuer un contrôle syntaxique avant activation.
@@ -105,14 +105,14 @@ AT SELECTION-SCREEN OUTPUT.
   ENDLOOP.
 ```
 
-## TERMES DU LEXIQUE
+## 13.J TERMES DU LEXIQUE
 
 - [Programme exécutable](<../🧩 00 ├── LEXIQUE SAP ET ABAP/06 ├── PROGRAMMES CLASSES ET OBJETS TECHNIQUES.md#programme-executable>)
 - [Variante](<../🧩 00 ├── LEXIQUE SAP ET ABAP/06 ├── PROGRAMMES CLASSES ET OBJETS TECHNIQUES.md#variante>)
 - [Transaction](<../🧩 00 ├── LEXIQUE SAP ET ABAP/02 ├── SAP GUI NAVIGATION ET TRANSACTIONS.md#transaction>)
 - [Dynpro](<../🧩 00 ├── LEXIQUE SAP ET ABAP/02 ├── SAP GUI NAVIGATION ET TRANSACTIONS.md#dynpro>)
 
-## RÉFÉRENCES OFFICIELLES SAP
+## 13.K RÉFÉRENCES OFFICIELLES SAP
 
 - [SELECTION-SCREEN, MODIF ID — ABAP Keyword Documentation](https://help.sap.com/doc/abapdocu_latest_index_htm/latest/en-US/ABAPSELECTION-SCREEN_MODIF_ID.html)
 - [Modifying Input Fields — SAP Help Portal](https://help.sap.com/saphelp_autoid2007/helpdata/EN/9f/dba70535c111d1829f0000e829fbfe/content.htm?no_cache=true)

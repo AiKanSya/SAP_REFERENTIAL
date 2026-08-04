@@ -1,6 +1,6 @@
-# PARCOURIR UNE TABLE AVEC LOOP AT
+# 8. PARCOURIR UNE TABLE AVEC LOOP AT
 
-## RÉSULTAT ATTENDU
+## 8.A RÉSULTAT ATTENDU
 
 - Parcourir toutes les lignes d’une table interne
 - Filtrer les lignes avec `WHERE`
@@ -8,7 +8,7 @@
 - Utiliser `sy-tabix` avec prudence
 - Choisir une clé de parcours adaptée
 
-## PARCOURS COMPLET
+## 8.B PARCOURS COMPLET
 
 ```abap
 " Traiter la collection sans lecture SQL dans la boucle.
@@ -29,7 +29,7 @@ flowchart TD
     C -->|""Non""| D["Continuer après ENDLOOP"]
 ```
 
-## FILTRER AVEC WHERE
+## 8.C FILTRER AVEC WHERE
 
 ```abap
 " Traiter la collection sans lecture SQL dans la boucle.
@@ -41,7 +41,7 @@ ENDLOOP.
 
 Le filtre est appliqué pendant le parcours.
 
-## PARCOURIR UNE PLAGE D’INDEX
+## 8.D PARCOURIR UNE PLAGE D’INDEX
 
 Pour une table d’index :
 
@@ -55,7 +55,7 @@ ENDLOOP.
 
 Cette variante n’est pas applicable à l’index primaire d’une table hachée.
 
-## SY-TABIX
+## 8.E SY-TABIX
 
 Dans un parcours utilisant un index, `sy-tabix` indique l’index de la ligne courante.
 
@@ -68,7 +68,7 @@ ENDLOOP.
 
 Ne pas mémoriser un index pour une utilisation ultérieure si la table peut être triée, alimentée ou vidée entre-temps.
 
-## UTILISER UNE CLÉ NOMMÉE
+## 8.F UTILISER UNE CLÉ NOMMÉE
 
 ```abap
 " Traiter la collection sans lecture SQL dans la boucle.
@@ -82,7 +82,7 @@ ENDLOOP.
 
 `USING KEY` permet d’imposer l’utilisation d’une clé primaire ou secondaire appropriée.
 
-## CHECK ET CONTINUE DANS LOOP
+## 8.G CHECK ET CONTINUE DANS LOOP
 
 ```abap
 " Traiter la collection sans lecture SQL dans la boucle.
@@ -99,7 +99,7 @@ ENDLOOP.
 
 Préférer un `WHERE` lorsqu’un critère simple peut être appliqué directement au parcours.
 
-## PARCOURS IMBRIQUÉS
+## 8.H PARCOURS IMBRIQUÉS
 
 ```abap
 LOOP AT lt_orders INTO DATA(ls_order).
@@ -112,7 +112,7 @@ ENDLOOP.
 
 Ce schéma peut devenir coûteux sur des volumes importants. Une clé adaptée sur la table interne ou une conception différente est alors nécessaire.
 
-## RÈGLES PRATIQUES
+## 8.I RÈGLES PRATIQUES
 
 - Utiliser `WHERE` pour réduire le nombre de passages.
 - Utiliser une clé cohérente avec les composants du filtre.
@@ -120,21 +120,21 @@ Ce schéma peut devenir coûteux sur des volumes importants. Une clé adaptée s
 - Ne pas modifier une composante de clé directement pendant un parcours utilisant cette clé.
 - Utiliser `ASSIGNING` pour modifier directement les composants non-clés.
 
-## VÉRIFICATION
+## 8.J VÉRIFICATION
 
 - Le contrôle syntaxique réussit.
 - La version active correspond au code sauvegardé.
 - L’exécution produit le résultat décrit dans le chapitre.
 - Les cas vide, limite et erreur sont testés séparément lorsque la syntaxe le permet.
 
-## ERREURS FRÉQUENTES
+## 8.K ERREURS FRÉQUENTES
 
 - Copier un exemple sans adapter les types, noms d’objets et données disponibles dans le système.
 - Tester uniquement le cas nominal et ignorer les valeurs initiales, absentes ou invalides.
 - Utiliser une table standard pour des recherches massives par clé sans mesure.
 - Modifier une copie de ligne alors que la table devait être mise à jour.
 
-## SNIPPET À RÉUTILISER
+## 8.L SNIPPET À RÉUTILISER
 
 > [!NOTE]
 > Adapter les noms `Z*`, les types DDIC, les données et les autorisations au système cible. Effectuer un contrôle syntaxique avant activation.
@@ -152,14 +152,14 @@ LOOP AT lt_products INTO DATA(ls_product).
 ENDLOOP.
 ```
 
-## TERMES DU LEXIQUE
+## 8.M TERMES DU LEXIQUE
 
 - [Table interne](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#table-interne>)
 - [Structure](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#structure-abap>)
 - [Field-symbol](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#field-symbol>)
 - [Référence](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#reference>)
 
-## RÉFÉRENCES OFFICIELLES SAP
+## 8.N RÉFÉRENCES OFFICIELLES SAP
 
 - [Reading Internal Tables Line by Line — SAP Help Portal](https://help.sap.com/docs/SUPPORT_CONTENT/abap/3353526149.html)
 - [LOOP AT itab — ABAP Keyword Documentation](https://help.sap.com/doc/abapdocu_latest_index_htm/latest/en-US/ABAPLOOP_AT_ITAB.html)

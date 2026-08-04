@@ -1,6 +1,6 @@
-# ASSERTIONS ET POINTS DE CONTRÔLE
+# 15. ASSERTIONS ET POINTS DE CONTRÔLE
 
-## RÉSULTAT ATTENDU
+## 15.A RÉSULTAT ATTENDU
 
 - Utiliser `ASSERT` pour vérifier un invariant
 - Distinguer assertion et validation métier
@@ -8,7 +8,7 @@
 - Utiliser la transaction `SAAB`
 - Éviter les assertions sur des erreurs utilisateur prévisibles
 
-## PRINCIPE
+## 15.B PRINCIPE
 
 Une assertion vérifie qu’une expression logique représente un état qui doit toujours être vrai à cet endroit du programme.
 
@@ -19,7 +19,7 @@ ASSERT lv_total >= 0.
 
 Si l’expression est fausse, le comportement dépend de la forme de l’assertion et de l’activation du point de contrôle.
 
-## INVARIANT TECHNIQUE
+## 15.C INVARIANT TECHNIQUE
 
 Exemple adapté :
 
@@ -30,7 +30,7 @@ ASSERT lines( lt_items ) = lv_expected_count.
 
 Le programme considère que son propre traitement garantit cette égalité. Une violation indique potentiellement un défaut de programmation.
 
-## VALIDATION MÉTIER
+## 15.D VALIDATION MÉTIER
 
 Mauvais :
 
@@ -49,7 +49,7 @@ IF p_quantity <= 0.
 ENDIF.
 ```
 
-## GROUPES DE POINTS DE CONTRÔLE
+## 15.E GROUPES DE POINTS DE CONTRÔLE
 
 ```abap
 " Vérifier un seul comportement observable avec une attente explicite.
@@ -63,7 +63,7 @@ L’ajout `ID` associe l’assertion à un groupe de points de contrôle. La tra
 
 Les ajouts disponibles dépendent de la syntaxe supportée par la version ABAP.
 
-## POINTS DE CONTRÔLE ACTIVABLES
+## 15.F POINTS DE CONTRÔLE ACTIVABLES
 
 Les groupes peuvent aussi être utilisés avec des instructions comme :
 
@@ -80,31 +80,31 @@ flowchart LR
     C --> D["Inactif, log ou arrêt selon configuration"]
 ```
 
-## DONNÉES SENSIBLES
+## 15.G DONNÉES SENSIBLES
 
 Ne pas journaliser avec `FIELDS` des données sensibles sans nécessité. Un point de contrôle peut enregistrer des valeurs consultables par des administrateurs ou développeurs autorisés.
 
-## ASSERTION ET ABAP UNIT
+## 15.H ASSERTION ET ABAP UNIT
 
 `ASSERT` dans le code productif ne remplace pas les méthodes d’assertion d’ABAP Unit. Les tests automatisés disposent de classes dédiées comme `CL_ABAP_UNIT_ASSERT`.
 
 Les tests seront traités dans le dossier qualité et tests.
 
-## VÉRIFICATION
+## 15.I VÉRIFICATION
 
 - Le contrôle syntaxique réussit.
 - La version active correspond au code sauvegardé.
 - L’exécution produit le résultat décrit dans le chapitre.
 - Les cas vide, limite et erreur sont testés séparément lorsque la syntaxe le permet.
 
-## ERREURS FRÉQUENTES
+## 15.J ERREURS FRÉQUENTES
 
 - Copier un exemple sans adapter les types, noms d’objets et données disponibles dans le système.
 - Tester uniquement le cas nominal et ignorer les valeurs initiales, absentes ou invalides.
 - Afficher un message technique incompréhensible à l’utilisateur.
 - Attraper une exception sans action ni propagation.
 
-## SNIPPET À RÉUTILISER
+## 15.K SNIPPET À RÉUTILISER
 
 > [!NOTE]
 > Adapter les noms `Z*`, les types DDIC, les données et les autorisations au système cible. Effectuer un contrôle syntaxique avant activation.
@@ -117,12 +117,12 @@ ASSERT ID zdev_check
   CONDITION lv_total = lv_expected_count.
 ```
 
-## TERMES DU LEXIQUE
+## 15.L TERMES DU LEXIQUE
 
 - [Exception](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#exception>)
 - [Dump ABAP](<../🧩 00 ├── LEXIQUE SAP ET ABAP/08 ├── EXECUTION EXPLOITATION ET ADMINISTRATION.md#dump-abap>)
 
-## RÉFÉRENCES OFFICIELLES SAP
+## 15.M RÉFÉRENCES OFFICIELLES SAP
 
 - [ASSERT — ABAP Keyword Documentation](https://help.sap.com/doc/abapdocu_latest_index_htm/latest/en-US/ABAPASSERT_SHORTREF.html)
 - [Activatable Checkpoints — SAP Help Portal](https://help.sap.com/docs/SAP_NETWEAVER_750/ba879a6e2ea04d9bb94c7ccd7cdac446/491c002326bc14cde10000000a42189b.html)

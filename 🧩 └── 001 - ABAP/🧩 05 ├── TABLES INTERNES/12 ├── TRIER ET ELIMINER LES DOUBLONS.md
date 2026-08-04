@@ -1,6 +1,6 @@
-# TRIER ET ÉLIMINER LES DOUBLONS
+# 12. TRIER ET ÉLIMINER LES DOUBLONS
 
-## RÉSULTAT ATTENDU
+## 12.A RÉSULTAT ATTENDU
 
 - Trier une table standard selon un ou plusieurs composants
 - Comprendre le comportement des tables triées
@@ -8,7 +8,7 @@
 - Supprimer les doublons adjacents
 - Éviter la suppression incorrecte de doublons non regroupés
 
-## SORT
+## 12.B SORT
 
 ```abap
 " Exemple à éviter : comparer avec la correction décrite après le bloc.
@@ -19,7 +19,7 @@ SORT lt_products BY category ASCENDING
 
 Pour une table standard, `SORT` réorganise les lignes selon les composants indiqués.
 
-## TRI PAR CLÉ
+## 12.C TRI PAR CLÉ
 
 ```abap
 " Exemple à éviter : comparer avec la correction décrite après le bloc.
@@ -28,7 +28,7 @@ SORT lt_products BY matnr.
 
 Une table triée est déjà maintenue selon sa clé primaire. Un `SORT` qui contredit cet ordre n’est pas le mécanisme normal de traitement de cette catégorie.
 
-## TRI STABLE
+## 12.D TRI STABLE
 
 ```abap
 SORT lt_products STABLE BY category.
@@ -36,7 +36,7 @@ SORT lt_products STABLE BY category.
 
 `STABLE` conserve l’ordre relatif des lignes ayant la même valeur pour les critères de tri.
 
-## SUPPRIMER LES DOUBLONS ADJACENTS
+## 12.E SUPPRIMER LES DOUBLONS ADJACENTS
 
 ```abap
 SORT lt_products BY matnr.
@@ -54,7 +54,7 @@ flowchart LR
     D --> E["Une occurrence conservée"]
 ```
 
-## COMPARING
+## 12.F COMPARING
 
 ```abap
 DELETE ADJACENT DUPLICATES FROM lt_products
@@ -65,7 +65,7 @@ Deux lignes sont considérées comme identiques pour cette opération lorsque le
 
 Sans liste explicite, la comparaison dépend de la variante de l’instruction et du type de table. Une liste `COMPARING` explicite rend l’intention plus claire.
 
-## EXEMPLE COMPLET
+## 12.G EXEMPLE COMPLET
 
 ```abap
 DATA lt_materials TYPE STANDARD TABLE OF string
@@ -83,7 +83,7 @@ DELETE ADJACENT DUPLICATES FROM lt_materials
   COMPARING table_line.
 ```
 
-## ALTERNATIVE PAR CLÉ UNIQUE
+## 12.H ALTERNATIVE PAR CLÉ UNIQUE
 
 Lorsque l’unicité doit être garantie dès l’alimentation, utiliser une table triée ou hachée à clé unique.
 
@@ -94,7 +94,7 @@ DATA lt_materials_unique TYPE SORTED TABLE OF string
 
 Cette conception évite de construire des doublons pour les supprimer ensuite.
 
-## CHOIX DE LA TECHNIQUE
+## 12.I CHOIX DE LA TECHNIQUE
 
 | Besoin                                 | Technique                                |
 | -------------------------------------- | ---------------------------------------- |
@@ -103,21 +103,21 @@ Cette conception évite de construire des doublons pour les supprimer ensuite.
 | Nettoyer une table existante           | `SORT` puis `DELETE ADJACENT DUPLICATES` |
 | Interdire les doublons dès l’origine   | Clé unique                               |
 
-## VÉRIFICATION
+## 12.J VÉRIFICATION
 
 - Le contrôle syntaxique réussit.
 - La version active correspond au code sauvegardé.
 - L’exécution produit le résultat décrit dans le chapitre.
 - Les cas vide, limite et erreur sont testés séparément lorsque la syntaxe le permet.
 
-## ERREURS FRÉQUENTES
+## 12.K ERREURS FRÉQUENTES
 
 - Copier un exemple sans adapter les types, noms d’objets et données disponibles dans le système.
 - Tester uniquement le cas nominal et ignorer les valeurs initiales, absentes ou invalides.
 - Utiliser une table standard pour des recherches massives par clé sans mesure.
 - Modifier une copie de ligne alors que la table devait être mise à jour.
 
-## SNIPPET À RÉUTILISER
+## 12.L SNIPPET À RÉUTILISER
 
 > [!NOTE]
 > Adapter les noms `Z*`, les types DDIC, les données et les autorisations au système cible. Effectuer un contrôle syntaxique avant activation.
@@ -138,14 +138,14 @@ DELETE ADJACENT DUPLICATES FROM lt_materials
   COMPARING table_line.
 ```
 
-## TERMES DU LEXIQUE
+## 12.M TERMES DU LEXIQUE
 
 - [Table interne](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#table-interne>)
 - [Structure](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#structure-abap>)
 - [Field-symbol](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#field-symbol>)
 - [Référence](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#reference>)
 
-## RÉFÉRENCES OFFICIELLES SAP
+## 12.N RÉFÉRENCES OFFICIELLES SAP
 
 - [Processing the Contents of Internal Tables — SAP Learning](https://learning.sap.com/courses/deepening-your-abap-programming-knowledge/processing-the-contents-of-internal-tables_b69864af-3b88-4887-83c8-7ac6701add94)
 - [Sorting Table Content — SAP Help Portal](https://help.sap.com/docs/abap-cloud/abap-concepts/sorting-table-content)

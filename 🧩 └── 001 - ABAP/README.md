@@ -79,16 +79,20 @@ Les pages de lexique et de référence ne doivent pas recevoir artificiellement 
 
 ## CONVENTION DES TITRES
 
-| Niveau Markdown | Usage |
-|---|---|
-| `#` | Titre unique de la page |
-| `##` | Section principale |
-| `###` | Sous-section opérationnelle |
-| `####` | Détail ponctuel, uniquement si nécessaire |
+| Niveau Markdown | Numérotation | Usage |
+|---|---|---|
+| `#` | `10.` | Titre unique du chapitre `10` |
+| `##` | `10.A`, `10.B`, ... | Section principale |
+| `###` | `10.A.1`, `10.A.2`, ... | Sous-section opérationnelle |
+| `####` | `10.A.1.A`, `10.A.1.B`, ... | Détail ponctuel, uniquement si nécessaire |
 
 Règles :
 
 - Un seul titre `#` par fichier.
+- Le numéro du titre `#` reprend le numéro placé au début du nom du fichier, sans zéro initial : `01` devient `1.`.
+- Chaque niveau supplémentaire alterne lettres majuscules et chiffres : `10.A`, `10.A.1`, `10.A.1.A`.
+- Les lettres continuent après `Z` avec `AA`, `AB`, `AC`, etc.
+- La numérotation recommence dans chaque fichier et suit l’ordre des titres dans le contenu.
 - Les sections principales utilisent `##`.
 - Les sous-sections utilisent `###` seulement lorsqu’elles structurent réellement une section principale.
 - Aucune icône décorative ne doit être utilisée dans les titres ou le corps du texte.
@@ -101,46 +105,50 @@ Règles :
 ## MODÈLE D’UN TUTORIEL PRATIQUE
 
 ```markdown
-# ACTION À RÉALISER
+# 10. ACTION À RÉALISER
 
-## RÉSULTAT ATTENDU
+## 10.A RÉSULTAT ATTENDU
 
 Description directe du résultat.
 
-## PRÉREQUIS
+## 10.B PRÉREQUIS
 
 - Version ou composant requis.
 - Autorisation ou objet nécessaire.
 
-## PROCESS
+## 10.C PROCESS
 
 1. Ouvrir la transaction.
 2. Renseigner les valeurs.
 3. Activer et exécuter.
 
-## CODE PRÊT À ADAPTER
+### 10.C.1 CONTRÔLER LE RÉSULTAT
+
+Décrire le résultat observable et le critère de sortie.
+
+## 10.D CODE PRÊT À ADAPTER
 
 Code minimal complet ou fragment explicitement identifié.
 
-## POINTS À REMPLACER
+## 10.E POINTS À REMPLACER
 
 | Élément | Remplacement attendu |
 | ------- | -------------------- |
 | `Z...`  | Objet client         |
 
-## CONTRÔLE
+## 10.F CONTRÔLE
 
 - Contrôle syntaxique.
 - Résultat fonctionnel attendu.
 - Valeurs de `SY-SUBRC` ou exceptions pertinentes.
 
-## ERREURS FRÉQUENTES
+## 10.G ERREURS FRÉQUENTES
 
 | Symptôme | Cause probable | Correction |
 | -------- | -------------- | ---------- |
 | ...      | ...            | ...        |
 
-## COMPATIBILITÉ S/4HANA
+## 10.H COMPATIBILITÉ S/4HANA
 
 - Statut : recommandé, compatible ou historique.
 - Limites connues.

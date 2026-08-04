@@ -1,6 +1,6 @@
-# MISE EN PAGE AVEC SELECTION-SCREEN
+# 9. MISE EN PAGE AVEC SELECTION-SCREEN
 
-## RÉSULTAT ATTENDU
+## 9.A RÉSULTAT ATTENDU
 
 - Organiser les champs en blocs
 - Ajouter titres, commentaires et séparateurs
@@ -8,7 +8,7 @@
 - Créer un bouton de commande simple
 - Maintenir une mise en page compatible SAP GUI
 
-## BLOC AVEC CADRE
+## 9.B BLOC AVEC CADRE
 
 ```abap
 SELECTION-SCREEN BEGIN OF BLOCK b_sel WITH FRAME TITLE text-t01.
@@ -19,7 +19,7 @@ SELECTION-SCREEN END OF BLOCK b_sel.
 
 Le texte `text-t01` est maintenu dans les éléments de texte du programme.
 
-## LIGNE ET COMMENTAIRE
+## 9.C LIGNE ET COMMENTAIRE
 
 ```abap
 SELECTION-SCREEN BEGIN OF LINE.
@@ -30,7 +30,7 @@ SELECTION-SCREEN END OF LINE.
 
 `FOR FIELD` associe le commentaire au champ, ce qui améliore le comportement d’aide et de navigation.
 
-## ESPACEMENT ET SÉPARATION
+## 9.D ESPACEMENT ET SÉPARATION
 
 ```abap
 SELECTION-SCREEN SKIP 1.
@@ -39,7 +39,7 @@ SELECTION-SCREEN ULINE.
 
 Utiliser ces instructions avec modération. Les blocs fonctionnels sont généralement plus lisibles qu’un positionnement manuel complexe.
 
-## POSITIONNEMENT
+## 9.E POSITIONNEMENT
 
 ```abap
 SELECTION-SCREEN BEGIN OF LINE.
@@ -50,7 +50,7 @@ SELECTION-SCREEN END OF LINE.
 
 Le positionnement absolu peut varier visuellement selon la longueur des textes et la langue. Éviter une mise en page dépendante d’un libellé français fixe.
 
-## BOUTON SUR L’ÉCRAN
+## 9.F BOUTON SUR L’ÉCRAN
 
 ```abap
 SELECTION-SCREEN PUSHBUTTON 2(20) text-b01 USER-COMMAND info.
@@ -64,7 +64,7 @@ AT SELECTION-SCREEN.
 
 Le code fonction est disponible dans `sy-ucomm`. Le traitement doit rester court et ne pas lancer silencieusement une opération métier lourde.
 
-## LIMITES
+## 9.G LIMITES
 
 Un écran de sélection n’est pas un formulaire applicatif complet. Lorsque l’interface exige :
 
@@ -76,21 +76,21 @@ Un écran de sélection n’est pas un formulaire applicatif complet. Lorsque l�
 
 utiliser une technologie d’interface adaptée plutôt que de détourner `SELECTION-SCREEN`.
 
-## VÉRIFICATION
+## 9.H VÉRIFICATION
 
 - Le contrôle syntaxique réussit.
 - La version active correspond au code sauvegardé.
 - L’exécution produit le résultat décrit dans le chapitre.
 - Les cas vide, limite et erreur sont testés séparément lorsque la syntaxe le permet.
 
-## ERREURS FRÉQUENTES
+## 9.I ERREURS FRÉQUENTES
 
 - Copier un exemple sans adapter les types, noms d’objets et données disponibles dans le système.
 - Tester uniquement le cas nominal et ignorer les valeurs initiales, absentes ou invalides.
 - Mettre une logique lourde dans les événements de validation de l’écran.
 - Créer une variante contenant des valeurs obsolètes ou sensibles.
 
-## SNIPPET À RÉUTILISER
+## 9.J SNIPPET À RÉUTILISER
 
 > [!NOTE]
 > Adapter les noms `Z*`, les types DDIC, les données et les autorisations au système cible. Effectuer un contrôle syntaxique avant activation.
@@ -102,19 +102,19 @@ SELECTION-SCREEN BEGIN OF BLOCK b_sel WITH FRAME TITLE text-t01.
 SELECTION-SCREEN END OF BLOCK b_sel.
 ```
 
-## TERMES DU LEXIQUE
+## 9.K TERMES DU LEXIQUE
 
 - [Programme exécutable](<../🧩 00 ├── LEXIQUE SAP ET ABAP/06 ├── PROGRAMMES CLASSES ET OBJETS TECHNIQUES.md#programme-executable>)
 - [Variante](<../🧩 00 ├── LEXIQUE SAP ET ABAP/06 ├── PROGRAMMES CLASSES ET OBJETS TECHNIQUES.md#variante>)
 - [Transaction](<../🧩 00 ├── LEXIQUE SAP ET ABAP/02 ├── SAP GUI NAVIGATION ET TRANSACTIONS.md#transaction>)
 - [Dynpro](<../🧩 00 ├── LEXIQUE SAP ET ABAP/02 ├── SAP GUI NAVIGATION ET TRANSACTIONS.md#dynpro>)
 
-## MODÈLE DE DÉMONSTRATION SFLIGHT
+## 9.L MODÈLE DE DÉMONSTRATION SFLIGHT
 
 > [!NOTE]
 > Les tables `SCARR`, `SPFLI` et `SFLIGHT` appartiennent au modèle de démonstration SAP et peuvent être absentes ou non alimentées dans certains systèmes. Dans ce cas, remplacer les exemples par une table Z de démonstration ou par une source en lecture seule autorisée, sans modifier une table applicative standard.
 
-## RÉFÉRENCES OFFICIELLES SAP
+## 9.M RÉFÉRENCES OFFICIELLES SAP
 
 - [SELECTION-SCREEN — ABAP Keyword Documentation](https://help.sap.com/doc/abapdocu_latest_index_htm/latest/en-US/ABAPSELECTION-SCREEN.html)
 - [SELECTION-SCREEN, COMMENT — ABAP Keyword Documentation](https://help.sap.com/doc/abapdocu_816_index_htm/8.16/en-US/ABAPSELECTION-SCREEN_COMMENT.html)

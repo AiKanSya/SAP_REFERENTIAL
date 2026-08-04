@@ -1,6 +1,6 @@
-# STRUCTURES
+# 7. STRUCTURES
 
-## RÉSULTAT ATTENDU
+## 7.A RÉSULTAT ATTENDU
 
 - Définir une structure locale
 - Déclarer une structure de travail
@@ -8,7 +8,7 @@
 - Construire des structures imbriquées
 - Comprendre les affectations entre structures compatibles
 
-## DÉFINITION
+## 7.B DÉFINITION
 
 Une structure regroupe plusieurs composants sous un même objet de données. Chaque composant possède son propre type.
 
@@ -21,7 +21,7 @@ flowchart TD
     D --> F["country"]
 ```
 
-## DÉFINITION DU TYPE
+## 7.C DÉFINITION DU TYPE
 
 ```abap
 TYPES:
@@ -39,7 +39,7 @@ Déclaration d’une structure :
 DATA ls_product TYPE ty_product.
 ```
 
-## ACCÈS AUX COMPOSANTS
+## 7.D ACCÈS AUX COMPOSANTS
 
 Le tiret sépare le nom de la structure de celui du composant.
 
@@ -59,7 +59,7 @@ WRITE: / ls_product-product_id,
          ls_product-unit.
 ```
 
-## VALEUR INITIALE
+## 7.E VALEUR INITIALE
 
 Lors de sa déclaration, chaque composant reçoit la valeur initiale de son type.
 
@@ -79,7 +79,7 @@ ENDIF.
 
 Une structure est initiale uniquement si tous ses composants sont initiaux.
 
-## STRUCTURE IMBRIQUÉE
+## 7.F STRUCTURE IMBRIQUÉE
 
 ```abap
 TYPES:
@@ -110,7 +110,7 @@ ls_supplier-address-country = 'FRA'.
 
 Chaque niveau est séparé par un tiret.
 
-## INCLUSION D’UNE STRUCTURE
+## 7.G INCLUSION D’UNE STRUCTURE
 
 Dans une définition structurée, `INCLUDE TYPE` permet d’insérer les composants d’un autre type structuré.
 
@@ -138,7 +138,7 @@ ls_document-created_by = sy-uname.
 
 Une structure imbriquée conserve au contraire un composant intermédiaire. Le choix dépend du modèle souhaité.
 
-## AFFECTATION ENTRE STRUCTURES
+## 7.H AFFECTATION ENTRE STRUCTURES
 
 Une affectation directe exige une compatibilité technique suffisante.
 
@@ -157,7 +157,7 @@ ls_target = CORRESPONDING #( ls_source ).
 
 L’instruction historique `MOVE-CORRESPONDING` reste disponible, mais `CORRESPONDING` s’intègre aux expressions et permet d’expliciter des règles de mapping. Vérifier les conversions et les composants réellement copiés.
 
-## STRUCTURE LOCALE OU GLOBALE
+## 7.I STRUCTURE LOCALE OU GLOBALE
 
 Une structure locale convient à un besoin interne au programme.
 
@@ -170,7 +170,7 @@ Une structure du Dictionnaire ABAP est adaptée lorsqu’elle doit notamment :
 
 Une structure locale ne doit pas reproduire arbitrairement un objet standard existant sans justification.
 
-## CONVENTIONS
+## 7.J CONVENTIONS
 
 | Préfixe courant | Signification habituelle       |
 | --------------- | ------------------------------ |
@@ -183,7 +183,7 @@ Une structure locale ne doit pas reproduire arbitrairement un objet standard exi
 
 Ces préfixes sont des conventions de projet.
 
-## EXEMPLE COMPLET
+## 7.K EXEMPLE COMPLET
 
 ```abap
 REPORT zdemo_structures.
@@ -208,21 +208,21 @@ ENDIF.
 
 Les constantes `abap_true` et `abap_false` sont couramment utilisées avec le type `abap_bool` lorsqu’il est disponible dans le système.
 
-## VÉRIFICATION
+## 7.L VÉRIFICATION
 
 - Le contrôle syntaxique réussit.
 - La version active correspond au code sauvegardé.
 - L’exécution produit le résultat décrit dans le chapitre.
 - Les cas vide, limite et erreur sont testés séparément lorsque la syntaxe le permet.
 
-## ERREURS FRÉQUENTES
+## 7.M ERREURS FRÉQUENTES
 
 - Copier un exemple sans adapter les types, noms d’objets et données disponibles dans le système.
 - Tester uniquement le cas nominal et ignorer les valeurs initiales, absentes ou invalides.
 - Choisir un type trop générique ou dépendant d’une variable existante sans justification.
 - Utiliser une référence ou un field-symbol non lié.
 
-## SNIPPET À RÉUTILISER
+## 7.N SNIPPET À RÉUTILISER
 
 > [!NOTE]
 > Adapter les noms `Z*`, les types DDIC, les données et les autorisations au système cible. Effectuer un contrôle syntaxique avant activation.
@@ -248,7 +248,7 @@ IF ls_result-successful = abap_true.
 ENDIF.
 ```
 
-## TERMES DU LEXIQUE
+## 7.O TERMES DU LEXIQUE
 
 - [Structure](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#structure-abap>)
 - [Type de données](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#type-donnees>)
@@ -257,7 +257,7 @@ ENDIF.
 - [Field-symbol](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#field-symbol>)
 - [Référence](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#reference>)
 
-## RÉFÉRENCES OFFICIELLES SAP
+## 7.P RÉFÉRENCES OFFICIELLES SAP
 
 - [Structured Data Types — ABAP Keyword Documentation](https://help.sap.com/doc/abapdocu_latest_index_htm/latest/en-US/ABENSTRUCTURED_TYPES.html)
 - [TYPES, BEGIN OF — ABAP Keyword Documentation](https://help.sap.com/doc/abapdocu_latest_index_htm/latest/en-US/ABAPTYPES_BEGIN_OF.html)

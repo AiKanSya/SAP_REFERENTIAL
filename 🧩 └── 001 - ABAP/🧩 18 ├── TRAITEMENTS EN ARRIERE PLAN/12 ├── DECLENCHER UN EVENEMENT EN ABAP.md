@@ -1,12 +1,12 @@
-# DÉCLENCHER UN ÉVÉNEMENT EN ABAP
+# 12. DÉCLENCHER UN ÉVÉNEMENT EN ABAP
 
-## RÉSULTAT ATTENDU
+## 12.A RÉSULTAT ATTENDU
 
 - Émettre un événement depuis un programme
 - Gérer les erreurs de déclenchement
 - Séparer validation métier et signal technique
 
-## API DISPONIBLES
+## 12.B API DISPONIBLES
 
 SAP documente deux mécanismes principaux selon la version du système :
 
@@ -32,7 +32,7 @@ IF sy-subrc <> 0.
 ENDIF.
 ```
 
-## ORDRE TRANSACTIONNEL
+## 12.C ORDRE TRANSACTIONNEL
 
 Ne pas émettre l’événement avant la validation des données que le job consommateur devra lire.
 
@@ -43,47 +43,47 @@ flowchart LR
     C --> D["Job consommateur"]
 ```
 
-## PROCESS
+## 12.D PROCESS
 
-### ÉTAPE 1 — VÉRIFIER L’ÉVÉNEMENT ET LES JOBS EN ATTENTE
+### 12.D.1 ÉTAPE 1 — VÉRIFIER L’ÉVÉNEMENT ET LES JOBS EN ATTENTE
 
 Dans `SM62`, confirmer l’identifiant et le contrat de l’argument. Dans `SM37`, vérifier qu’un job de test libéré attend cette combinaison. Ne développer l’émetteur qu’après avoir prouvé la configuration du consommateur.
 
-### ÉTAPE 2 — CHOISIR L’API DISPONIBLE
+### 12.D.2 ÉTAPE 2 — CHOISIR L’API DISPONIBLE
 
 Afficher `CL_BATCH_EVENT` dans `SE24` ou `BP_EVENT_RAISE` dans `SE37` et relever la signature active. Utiliser l’API retenue derrière une méthode Z afin d’isoler les différences de release et de faciliter les tests.
 
-### ÉTAPE 3 — CONSTRUIRE IDENTIFIANT ET ARGUMENT
+### 12.D.3 ÉTAPE 3 — CONSTRUIRE IDENTIFIANT ET ARGUMENT
 
 Utiliser des constantes ou une configuration validée pour l’identifiant. Construire l’argument selon le format documenté et vérifier longueur, casse et absence de données sensibles. Refuser une valeur initiale si le contrat la rend obligatoire.
 
-### ÉTAPE 4 — ÉMETTRE APRÈS LA VALIDATION DES DONNÉES
+### 12.D.4 ÉTAPE 4 — ÉMETTRE APRÈS LA VALIDATION DES DONNÉES
 
 Valider d’abord les données que le consommateur doit lire. Émettre l’événement seulement lorsque leur état persistant est disponible. Si l’événement est envoyé après un commit, traiter son échec comme une situation de reprise distincte, car les données sont déjà validées.
 
-### ÉTAPE 5 — TRAITER CHAQUE ERREUR DE L’API
+### 12.D.5 ÉTAPE 5 — TRAITER CHAQUE ERREUR DE L’API
 
 Pour `BP_EVENT_RAISE`, contrôler `sy-subrc` immédiatement et distinguer identifiant absent, événement inexistant et échec d’émission. Journaliser l’identifiant, l’argument et la cause. Ne pas annoncer le déclenchement si l’API a échoué.
 
-### ÉTAPE 6 — VÉRIFIER ET REJOUER
+### 12.D.6 ÉTAPE 6 — VÉRIFIER ET REJOUER
 
 Contrôler dans `SM37` le démarrage du job attendu et son résultat métier. Tester un événement invalide, un argument ne correspondant à aucun job et une émission répétée. La reprise de l’émetteur ne doit pas produire de traitement métier en double.
 
-## VÉRIFICATION
+## 12.E VÉRIFICATION
 
 - Le job apparaît dans `SM37` avec le statut attendu.
 - Le journal ne contient pas de message d’erreur non traité.
 - Le spool, le fichier ou le journal applicatif contient le résultat attendu.
 - Une relance contrôlée ne crée pas de doublon métier.
 
-## ERREURS FRÉQUENTES
+## 12.F ERREURS FRÉQUENTES
 
 - Copier un exemple sans adapter les types, noms d’objets et données disponibles dans le système.
 - Tester uniquement le cas nominal et ignorer les valeurs initiales, absentes ou invalides.
 - Planifier un job avec l’utilisateur personnel d’un développeur.
 - Relancer un job non idempotent après un échec partiel.
 
-## SNIPPET À RÉUTILISER
+## 12.G SNIPPET À RÉUTILISER
 
 > [!NOTE]
 > Adapter les noms `Z*`, les types DDIC, les données et les autorisations au système cible. Effectuer un contrôle syntaxique avant activation.
@@ -105,7 +105,7 @@ IF sy-subrc <> 0.
 ENDIF.
 ```
 
-## TERMES DU LEXIQUE
+## 12.H TERMES DU LEXIQUE
 
 - [ABAP](<../🧩 00 ├── LEXIQUE SAP ET ABAP/10 └── ACRONYMES SAP.md#acro-abap>)
 - [Job](<../🧩 00 ├── LEXIQUE SAP ET ABAP/06 ├── PROGRAMMES CLASSES ET OBJETS TECHNIQUES.md#job>)
@@ -113,7 +113,7 @@ ENDIF.
 - [Processus background](<../🧩 00 ├── LEXIQUE SAP ET ABAP/08 ├── EXECUTION EXPLOITATION ET ADMINISTRATION.md#processus-background>)
 - [Variante](<../🧩 00 ├── LEXIQUE SAP ET ABAP/06 ├── PROGRAMMES CLASSES ET OBJETS TECHNIQUES.md#variante>)
 
-## RÉFÉRENCES OFFICIELLES SAP
+## 12.I RÉFÉRENCES OFFICIELLES SAP
 
 - [Triggering Events from ABAP Programs — SAP Help Portal](https://help.sap.com/docs/SAP_NETWEAVER_AS_ABAP_752/b07e7195f03f438b8e7ed273099d74f3/4d983cd18e3d0b93e10000000a42189e.html)
 - [Background Processing Function Modules — SAP Help Portal](https://help.sap.com/docs/ABAP_PLATFORM_BW4HANA/7bfe8cdcfbb040dcb6702dada8c3e2f0/4d906689eba36e73e10000000a15822b.html)

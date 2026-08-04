@@ -1,10 +1,10 @@
-# CHECKLIST QUALITE AVANT LIVRAISON
+# 24. CHECKLIST QUALITE AVANT LIVRAISON
 
-## RÉSULTAT ATTENDU
+## 24.A RÉSULTAT ATTENDU
 
 Vérifier qu’un développement ABAP est techniquement prêt avant la libération de son transport.
 
-## Code et activation
+## 24.B Code et activation
 
 - [ ] Tous les objets sont actifs.
 - [ ] Aucun code temporaire, breakpoint ou donnée de test ne subsiste.
@@ -12,7 +12,7 @@ Vérifier qu’un développement ABAP est techniquement prêt avant la libérati
 - [ ] Les exceptions et codes retour sont traités.
 - [ ] Les autorisations et données sensibles ont été examinées.
 
-## Qualité statique
+## 24.C Qualité statique
 
 - [ ] Contrôle syntaxique sans erreur.
 - [ ] `SLIN` exécuté lorsque pertinent.
@@ -20,7 +20,7 @@ Vérifier qu’un développement ABAP est techniquement prêt avant la libérati
 - [ ] Findings prioritaires corrigés.
 - [ ] Exemptions limitées, justifiées et approuvées.
 
-## Tests
+## 24.D Tests
 
 - [ ] Tests unitaires exécutés avec succès.
 - [ ] Cas nominaux, erreurs et limites couverts.
@@ -28,7 +28,7 @@ Vérifier qu’un développement ABAP est techniquement prêt avant la libérati
 - [ ] Test de non-régression ajouté pour les défauts corrigés.
 - [ ] Données de test et nettoyage maîtrisés.
 
-## Performance
+## 24.E Performance
 
 - [ ] Volumétrie représentative utilisée.
 - [ ] Aucun accès SQL dans une boucle sans justification mesurée.
@@ -37,7 +37,7 @@ Vérifier qu’un développement ABAP est techniquement prêt avant la libérati
 - [ ] `SAT`, `ST05`, `SQLM` ou `SWLT` utilisés si le risque le justifie.
 - [ ] Mesure avant/après conservée pour toute optimisation.
 
-## Exploitation
+## 24.F Exploitation
 
 - [ ] Messages et journaux permettent le diagnostic.
 - [ ] Batch, reprise et idempotence validés si applicables.
@@ -45,56 +45,56 @@ Vérifier qu’un développement ABAP est techniquement prêt avant la libérati
 - [ ] Documentation technique et procédure de test mises à jour.
 - [ ] Contenu du transport contrôlé avant libération.
 
-## Critère final
+## 24.G Critère final
 
 La livraison ne repose pas sur « le programme fonctionne sur mon cas ». Elle repose sur des résultats reproductibles, des contrôles traçables et une compréhension explicite des risques résiduels.
 
-## Références SAP officielles
+## 24.H Références SAP officielles
 
 - [SAP Help Portal — ATC Quality Checking](https://help.sap.com/docs/ABAP_PLATFORM_NEW/c238d694b825421f940829321ffa326a/4ec1a1126e391014adc9fffe4e204223.html)
 - [SAP Help Portal — Code Inspector](https://help.sap.com/docs/ABAP_PLATFORM_NEW/ba879a6e2ea04d9bb94c7ccd7cdac446/49205531d0fc14cfe10000000a42189b.html)
 - [SAP Help Portal — ABAP Unit](https://help.sap.com/docs/ABAP_PLATFORM_NEW/ba879a6e2ea04d9bb94c7ccd7cdac446/491cfd8926bc14cde10000000a42189b.html)
 - [SAP Help Portal — ABAP Performance and Tuning](https://help.sap.com/docs/SUPPORT_CONTENT/ABAP/3353523595.html)
 
-## PROCESS
+## 24.I PROCESS
 
-### ÉTAPE 1 — FIGER LE PÉRIMÈTRE LIVRÉ
+### 24.I.1 ÉTAPE 1 — FIGER LE PÉRIMÈTRE LIVRÉ
 
 Lister tous les objets de la demande, dépendances DDIC, classes, programmes, messages et paramétrages. Vérifier qu’ils sont actifs et transportables. Comparer cette liste au besoin et aux objets réellement modifiés.
 
-### ÉTAPE 2 — EXÉCUTER LES CONTRÔLES STATIQUES
+### 24.I.2 ÉTAPE 2 — EXÉCUTER LES CONTRÔLES STATIQUES
 
 Lancer syntaxe, activation, SLIN et la variante ATC/SCI obligatoire sur le périmètre final. Corriger les findings bloquants. Vérifier les exemptions, leur approbation, leur propriétaire et leur échéance.
 
-### ÉTAPE 3 — EXÉCUTER LES TESTS AUTOMATIQUES
+### 24.I.3 ÉTAPE 3 — EXÉCUTER LES TESTS AUTOMATIQUES
 
 Lancer ABAP Unit au niveau de l’objet puis du package. Ouvrir chaque échec et éliminer les dépendances d’ordre ou de données. Contrôler la couverture des branches critiques avec SCOV lorsque requise.
 
-### ÉTAPE 4 — EXÉCUTER LA NON-RÉGRESSION FONCTIONNELLE
+### 24.I.4 ÉTAPE 4 — EXÉCUTER LA NON-RÉGRESSION FONCTIONNELLE
 
 Tester cas cible, cas hors périmètre, limites, erreurs, autorisations et rollback avec des données identifiées. Vérifier interfaces, jobs, journaux et spools concernés. Conserver les preuves et résultats attendus.
 
-### ÉTAPE 5 — VALIDER LA PERFORMANCE
+### 24.I.5 ÉTAPE 5 — VALIDER LA PERFORMANCE
 
 Pour tout scénario sensible, comparer la mesure finale à la référence avec le même volume et le même contexte. Contrôler SQL, mémoire et temps. Ne pas accepter une dégradation non expliquée parce que les tests fonctionnels sont verts.
 
-### ÉTAPE 6 — CONTRÔLER LE TRANSPORT ET LE RETOUR ARRIÈRE
+### 24.I.6 ÉTAPE 6 — CONTRÔLER LE TRANSPORT ET LE RETOUR ARRIÈRE
 
 Vérifier ordre d’import, prérequis, variantes et procédure de validation dans le système cible. Définir la remise en cohérence si le déploiement échoue après des changements non réversibles. Libérer uniquement lorsque les preuves sont rattachées au périmètre final.
 
-## VÉRIFICATION
+## 24.J VÉRIFICATION
 
 - Le scénario reproduit correspond au même utilisateur, mandant, transaction et jeu de données.
 - L’horodatage et l’identifiant de l’analyse sont conservés.
 - La cause retenue est soutenue par une ligne source, une trace ou une valeur observée.
 - Après correction, le même scénario ne reproduit plus le défaut et le résultat métier reste identique.
 
-## ERREURS FRÉQUENTES
+## 24.K ERREURS FRÉQUENTES
 
 - Optimiser sans mesure de référence.
 - Accepter un finding critique sans correction ni justification formelle.
 
-## FICHE DE CONTRÔLE À COPIER
+## 24.L FICHE DE CONTRÔLE À COPIER
 
 ```text
 Système / SID       :
@@ -109,7 +109,7 @@ Horodatage          :
 Ordre de transport  :
 ```
 
-## TERMES DU LEXIQUE
+## 24.M TERMES DU LEXIQUE
 
 - [ATC](<../🧩 00 ├── LEXIQUE SAP ET ABAP/10 └── ACRONYMES SAP.md#acro-atc>)
 - [ABAP](<../🧩 00 ├── LEXIQUE SAP ET ABAP/10 └── ACRONYMES SAP.md#acro-abap>)

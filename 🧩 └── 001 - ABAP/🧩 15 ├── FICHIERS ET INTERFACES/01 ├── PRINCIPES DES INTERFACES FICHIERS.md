@@ -1,13 +1,13 @@
-# PRINCIPES DES INTERFACES FICHIERS
+# 1. PRINCIPES DES INTERFACES FICHIERS
 
-## RÉSULTAT ATTENDU
+## 1.A RÉSULTAT ATTENDU
 
 - Identifier le rôle d’une interface fichier
 - Distinguer transport, format et traitement métier
 - Structurer un échange robuste et exploitable
 - Délimiter le périmètre par rapport aux RFC et BAPI
 
-## DÉFINITION
+## 1.B DÉFINITION
 
 Une **interface fichier** échange des données au moyen d’un fichier déposé ou récupéré dans un emplacement convenu. Le fichier constitue un contrat entre un producteur et un consommateur.
 
@@ -32,7 +32,7 @@ Une interface ne se limite pas à lire ou écrire des octets. Elle doit définir
 - la stratégie de reprise ;
 - la conservation et l’archivage.
 
-## COUCHES À SÉPARER
+## 1.C COUCHES À SÉPARER
 
 | Couche               | Responsabilité                                 |
 | -------------------- | ---------------------------------------------- |
@@ -43,11 +43,11 @@ Une interface ne se limite pas à lire ou écrire des octets. Elle doit définir
 | Traitement           | Création ou modification via API métier        |
 | Traçabilité          | Logs, statuts, compteurs et erreurs            |
 
-## PÉRIMÈTRE
+## 1.D PÉRIMÈTRE
 
 Ce dossier traite les fichiers du serveur d’application et du poste utilisateur dans SAP GUI. Les RFC, BAPI et appels distants sont traités dans le dossier précédent. Les IDoc, services web et technologies d’intégration pourront faire l’objet de dossiers dédiés.
 
-## RÈGLE DIRECTRICE
+## 1.E RÈGLE DIRECTRICE
 
 Le programme doit pouvoir expliquer précisément :
 
@@ -57,41 +57,41 @@ Le programme doit pouvoir expliquer précisément :
 4. quelles opérations SAP ont été exécutées ;
 5. comment reprendre sans créer de doublons.
 
-## PROCESS
+## 1.F PROCESS
 
-### Étape 1 — Définir le contrat du fichier
+### 1.F.1 Étape 1 — Définir le contrat du fichier
 
 Fixer producteur, consommateur, emplacement, encodage, séparateur, fin de ligne, formats, volume et fréquence. Définir aussi la règle de nommage et l’unicité.
 
-### Étape 2 — Définir la preuve de complétude
+### 1.F.2 Étape 2 — Définir la preuve de complétude
 
 Choisir comment le consommateur distingue un fichier terminé : renommage atomique, extension temporaire, témoin ou protocole externe.
 
-### Étape 3 — Définir validation et rejet
+### 1.F.3 Étape 3 — Définir validation et rejet
 
 Lister contrôles d’en-tête, colonnes, types, doublons et cohérence métier. Décider si une ligne invalide rejette tout le fichier ou alimente un rejet corrélé.
 
-### Étape 4 — Définir transaction et reprise
+### 1.F.4 Étape 4 — Définir transaction et reprise
 
 Choisir taille des lots, stratégie de commit, clé d’idempotence et reprise après interruption. Une relance ne doit pas créer de doublon.
 
-### Étape 5 — Tester le protocole
+### 1.F.5 Étape 5 — Tester le protocole
 
 Tester fichier valide, vide, tronqué, encodage invalide, doublon et reprise. L’interface est validée lorsque chaque cas produit un état, un journal et une reprise déterministes.
 
-## VÉRIFICATION
+## 1.G VÉRIFICATION
 
 - Le fichier est créé ou lu dans l’emplacement attendu.
 - Le nombre de lignes, la taille et l’encodage correspondent au contrat.
 - Les caractères accentués, séparateurs, guillemets et fins de ligne sont testés.
 - Le traitement journalise les rejets et permet une reprise sans doublon.
 
-## ERREURS FRÉQUENTES
+## 1.H ERREURS FRÉQUENTES
 
 - Mélanger fichiers frontend et serveur dans un même scénario.
 - Parser un CSV par simple séparation alors que les champs peuvent être échappés.
 
-## TERMES DU LEXIQUE
+## 1.I TERMES DU LEXIQUE
 
 - [Interface](<../🧩 00 ├── LEXIQUE SAP ET ABAP/07 ├── INTERFACES ET INTEGRATION.md#interface-integration>)
 - [Flux entrant](<../🧩 00 ├── LEXIQUE SAP ET ABAP/07 ├── INTERFACES ET INTEGRATION.md#flux-entrant>)
@@ -100,7 +100,7 @@ Tester fichier valide, vide, tronqué, encodage invalide, doublon et reprise. L�
 - [Encodage](<../🧩 00 ├── LEXIQUE SAP ET ABAP/07 ├── INTERFACES ET INTEGRATION.md#encodage>)
 - [Serveur d’application](<../🧩 00 ├── LEXIQUE SAP ET ABAP/07 ├── INTERFACES ET INTEGRATION.md#fichier-serveur-application>)
 
-## RÉFÉRENCES OFFICIELLES SAP
+## 1.J RÉFÉRENCES OFFICIELLES SAP
 
 - [ABAP File Interface — SAP Help Portal](https://help.sap.com/docs/ABAP_PLATFORM_NEW/7bfe8cdcfbb040dcb6702dada8c3e2f0/fa2fd3be291f469f862c4c8215e0549b.html)
 - [Physical and Logical File Names — SAP Help Portal](https://help.sap.com/docs/ABAP_PLATFORM_NEW/7bfe8cdcfbb040dcb6702dada8c3e2f0/9e49819d5b2a440fb508772494b9a473.html)

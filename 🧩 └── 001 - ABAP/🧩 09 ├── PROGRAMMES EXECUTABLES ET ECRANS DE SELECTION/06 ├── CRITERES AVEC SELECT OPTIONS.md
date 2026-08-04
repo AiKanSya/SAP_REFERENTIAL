@@ -1,6 +1,6 @@
-# CRITÈRES AVEC SELECT-OPTIONS
+# 6. CRITÈRES AVEC SELECT-OPTIONS
 
-## RÉSULTAT ATTENDU
+## 6.A RÉSULTAT ATTENDU
 
 - Déclarer un critère multivaleur
 - Comprendre les bornes basse et haute
@@ -8,7 +8,7 @@
 - Passer directement le critère à ABAP SQL
 - Choisir entre `PARAMETERS` et `SELECT-OPTIONS`
 
-## DÉCLARATION
+## 6.B DÉCLARATION
 
 ```abap
 SELECT-OPTIONS s_carr FOR scarr-carrid.
@@ -22,7 +22,7 @@ Cette instruction crée :
 
 La convention habituelle utilise le préfixe `s_`.
 
-## CRITÈRE SIMPLE OU MULTIPLE
+## 6.C CRITÈRE SIMPLE OU MULTIPLE
 
 L’utilisateur peut saisir :
 
@@ -40,7 +40,7 @@ flowchart LR
     A --> E["Exclusions"]
 ```
 
-## UTILISATION DANS ABAP SQL
+## 6.D UTILISATION DANS ABAP SQL
 
 ```abap
 SELECT carrid, carrname
@@ -51,7 +51,7 @@ SELECT carrid, carrname
 
 ABAP SQL interprète les lignes de la table de sélection selon `SIGN`, `OPTION`, `LOW` et `HIGH`.
 
-## LIMITER À UNE VALEUR UNIQUE
+## 6.E LIMITER À UNE VALEUR UNIQUE
 
 ```abap
 SELECT-OPTIONS s_carr FOR scarr-carrid NO INTERVALS NO-EXTENSION.
@@ -64,7 +64,7 @@ SELECT-OPTIONS s_carr FOR scarr-carrid NO INTERVALS NO-EXTENSION.
 
 Même avec `NO INTERVALS`, l’objet ABAP reste une table de sélection.
 
-## VALEUR PAR DÉFAUT
+## 6.F VALEUR PAR DÉFAUT
 
 ```abap
 SELECT-OPTIONS s_carr FOR scarr-carrid DEFAULT 'LH'.
@@ -72,7 +72,7 @@ SELECT-OPTIONS s_carr FOR scarr-carrid DEFAULT 'LH'.
 
 Pour plusieurs lignes initiales, alimenter la table dans `INITIALIZATION`.
 
-## CHOIX ENTRE PARAMETERS ET SELECT-OPTIONS
+## 6.G CHOIX ENTRE PARAMETERS ET SELECT-OPTIONS
 
 | Besoin                            | Instruction                  |
 | --------------------------------- | ---------------------------- |
@@ -83,21 +83,21 @@ Pour plusieurs lignes initiales, alimenter la table dans `INITIALIZATION`.
 
 Ne pas utiliser `SELECT-OPTIONS` par habitude lorsque le traitement exige réellement une seule valeur.
 
-## VÉRIFICATION
+## 6.H VÉRIFICATION
 
 - Le contrôle syntaxique réussit.
 - La version active correspond au code sauvegardé.
 - L’exécution produit le résultat décrit dans le chapitre.
 - Les cas vide, limite et erreur sont testés séparément lorsque la syntaxe le permet.
 
-## ERREURS FRÉQUENTES
+## 6.I ERREURS FRÉQUENTES
 
 - Copier un exemple sans adapter les types, noms d’objets et données disponibles dans le système.
 - Tester uniquement le cas nominal et ignorer les valeurs initiales, absentes ou invalides.
 - Mettre une logique lourde dans les événements de validation de l’écran.
 - Créer une variante contenant des valeurs obsolètes ou sensibles.
 
-## SNIPPET À RÉUTILISER
+## 6.J SNIPPET À RÉUTILISER
 
 > [!NOTE]
 > Adapter les noms `Z*`, les types DDIC, les données et les autorisations au système cible. Effectuer un contrôle syntaxique avant activation.
@@ -109,19 +109,19 @@ SELECT carrid, carrname
   INTO TABLE @DATA(lt_carriers).
 ```
 
-## TERMES DU LEXIQUE
+## 6.K TERMES DU LEXIQUE
 
 - [Programme exécutable](<../🧩 00 ├── LEXIQUE SAP ET ABAP/06 ├── PROGRAMMES CLASSES ET OBJETS TECHNIQUES.md#programme-executable>)
 - [Variante](<../🧩 00 ├── LEXIQUE SAP ET ABAP/06 ├── PROGRAMMES CLASSES ET OBJETS TECHNIQUES.md#variante>)
 - [Transaction](<../🧩 00 ├── LEXIQUE SAP ET ABAP/02 ├── SAP GUI NAVIGATION ET TRANSACTIONS.md#transaction>)
 - [Dynpro](<../🧩 00 ├── LEXIQUE SAP ET ABAP/02 ├── SAP GUI NAVIGATION ET TRANSACTIONS.md#dynpro>)
 
-## MODÈLE DE DÉMONSTRATION SFLIGHT
+## 6.L MODÈLE DE DÉMONSTRATION SFLIGHT
 
 > [!NOTE]
 > Les tables `SCARR`, `SPFLI` et `SFLIGHT` appartiennent au modèle de démonstration SAP et peuvent être absentes ou non alimentées dans certains systèmes. Dans ce cas, remplacer les exemples par une table Z de démonstration ou par une source en lecture seule autorisée, sans modifier une table applicative standard.
 
-## RÉFÉRENCES OFFICIELLES SAP
+## 6.M RÉFÉRENCES OFFICIELLES SAP
 
 - [SELECT-OPTIONS — ABAP Keyword Documentation](https://help.sap.com/doc/abapdocu_816_index_htm/8.16/en-US/ABAPSELECT-OPTIONS.html)
 - [SELECT-OPTIONS, Screen Options — ABAP Keyword Documentation](https://help.sap.com/doc/abapdocu_750_index_htm/7.50/en-US/ABAPSELECT-OPTIONS_SCREEN.html)

@@ -1,39 +1,39 @@
-# EXCEPTIONS ORIENTÉES OBJET
+# 15. EXCEPTIONS ORIENTÉES OBJET
 
-## RÉSULTAT ATTENDU
+## 15.A RÉSULTAT ATTENDU
 
 - Déclarer et lever une exception depuis une méthode.
 - Créer une classe d’exception globale.
 - Propager une cause précédente.
 - Fournir un contrat d’erreur exploitable.
 
-## CAS D’USAGE
+## 15.B CAS D’USAGE
 
 Une classe de repository ne trouve pas un objet demandé. Elle ne doit ni afficher un message, ni retourner silencieusement une structure vide si l’absence est une erreur métier. Elle lève `ZCX_DEV_NOT_FOUND`.
 
-## PROCESS
+## 15.C PROCESS
 
-### Étape 1 — Choisir la catégorie
+### 15.C.1 Étape 1 — Choisir la catégorie
 
 Utiliser `CX_STATIC_CHECK` si l’appelant doit traiter l’erreur, `CX_DYNAMIC_CHECK` pour un contrôle d’exécution non déclaré obligatoirement, et `CX_NO_CHECK` seulement si la gestion locale n’a pas de sens.
 
-### Étape 2 — Créer la classe ZCX
+### 15.C.2 Étape 2 — Créer la classe ZCX
 
 Dans `SE24`, créer la classe avec la superclasse choisie. Ajouter les attributs nécessaires au contexte sans stocker de donnée sensible inutile.
 
-### Étape 3 — Définir les textes
+### 15.C.3 Étape 3 — Définir les textes
 
 Créer les text IDs ou les rattacher à la classe de messages prévue. Vérifier la substitution des attributs et activer.
 
-### Étape 4 — Déclarer puis lever
+### 15.C.4 Étape 4 — Déclarer puis lever
 
 Ajouter la classe dans `RAISING` lorsque requis. Lever au point où la cause est connue ; lors d’une conversion, transmettre l’exception d’origine dans `PREVIOUS`.
 
-### Étape 5 — Intercepter à la frontière
+### 15.C.5 Étape 5 — Intercepter à la frontière
 
 Capturer dans le report, job, service ou contrôleur capable de décider message, journal ou reprise. Tester texte, attributs et cause précédente pour chaque branche.
 
-## CODE À ADAPTER
+## 15.D CODE À ADAPTER
 
 Signature publique du repository :
 
@@ -72,30 +72,30 @@ TRY.
 ENDTRY.
 ```
 
-## PROPAGER LA CAUSE
+## 15.E PROPAGER LA CAUSE
 
 Lorsqu’une exception technique est convertie en exception métier, conserver la cause précédente si la classe le permet. Cela facilite le diagnostic sans exposer toute la technique à l’appelant.
 
-## CONTRÔLE
+## 15.F CONTRÔLE
 
 - La méthode ne produit aucun message d’écran.
 - L’appelant sait quelles erreurs gérer grâce à la signature.
 - L’exception contient l’identifiant ou le contexte utile.
 - Le journal technique conserve la cause initiale lorsque nécessaire.
 
-## ERREURS FRÉQUENTES
+## 15.G ERREURS FRÉQUENTES
 
 - Capturer `CX_ROOT` puis ignorer l’erreur.
 - Lever une exception `NO_CHECK` pour toute validation métier.
 - Mélanger message utilisateur, journalisation et création de l’exception dans chaque couche.
 
-## COMPATIBILITÉ S/4HANA
+## 15.H COMPATIBILITÉ S/4HANA
 
 - Statut : compatible avec le développement ABAP classique sur SAP S/4HANA.
 - Vérifier la syntaxe exacte avec l’aide `F1` du système cible lorsque plusieurs versions d’ABAP Platform sont prises en charge.
 - Les objets globaux doivent être créés dans le package et l’ordre de transport du projet.
 
-## RÉFÉRENCES OFFICIELLES SAP
+## 15.I RÉFÉRENCES OFFICIELLES SAP
 
 - [Working with Exception Classes — SAP Learning](https://learning.sap.com/courses/deepening-your-abap-programming-knowledge/working-with-exception-classes_acd9568c-be4e-445a-a454-14c6f2cfcd2e)
 - [Exception Categories — ABAP Keyword Documentation](https://help.sap.com/doc/abapdocu_latest_index_htm/latest/en-US/ABENEXCEPTION_CATEGORIES.html)

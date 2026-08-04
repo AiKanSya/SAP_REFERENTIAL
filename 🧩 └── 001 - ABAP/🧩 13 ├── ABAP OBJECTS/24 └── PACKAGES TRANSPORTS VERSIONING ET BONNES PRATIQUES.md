@@ -1,17 +1,17 @@
-# PACKAGES, TRANSPORTS, VERSIONING ET BONNES PRATIQUES
+# 24. PACKAGES, TRANSPORTS, VERSIONING ET BONNES PRATIQUES
 
-## RÉSULTAT ATTENDU
+## 24.A RÉSULTAT ATTENDU
 
 - Intégrer les classes globales dans un package cohérent.
 - Transporter toutes les dépendances nécessaires.
 - Comparer les versions et limiter les ruptures d’API.
 - Appliquer une checklist avant livraison.
 
-## PACKAGE
+## 24.B PACKAGE
 
 Une classe globale doit appartenir au package du domaine qu’elle sert. Les interfaces, exceptions et classes concrètes associées doivent suivre une organisation cohérente. Les dépendances entre packages doivent être intentionnelles.
 
-## TRANSPORT
+## 24.C TRANSPORT
 
 Lors d’une modification :
 
@@ -23,7 +23,7 @@ Lors d’une modification :
 6. exécuter les tests avant libération ;
 7. vérifier l’import sur le système cible.
 
-## COMPATIBILITÉ DE L’API
+## 24.D COMPATIBILITÉ DE L’API
 
 Modifications à risque :
 
@@ -36,33 +36,33 @@ Modifications à risque :
 
 Préférer une évolution compatible lorsque cela est possible : nouveau paramètre optionnel, nouvelle méthode, nouvelle interface versionnée ou adaptateur.
 
-## PROCESS
+## 24.E PROCESS
 
-### Étape 1 — Stabiliser la version active
+### 24.E.1 Étape 1 — Stabiliser la version active
 
 Contrôler la syntaxe, activer la classe complète et vérifier qu’aucun composant local ou interface ne reste inactif.
 
-### Étape 2 — Exécuter les tests
+### 24.E.2 Étape 2 — Exécuter les tests
 
 Lancer ABAP Unit, puis cas manuels nécessaires. Toute erreur doit être corrigée ou explicitement hors périmètre avant de poursuivre.
 
-### Étape 3 — Exécuter les contrôles statiques
+### 24.E.3 Étape 3 — Exécuter les contrôles statiques
 
 Lancer ATC ou SCI avec la variante projet. Traiter les findings bloquants et documenter toute exemption avec responsable et échéance.
 
-### Étape 4 — Analyser l’impact
+### 24.E.4 Étape 4 — Analyser l’impact
 
 Consulter les utilisations des méthodes, types et attributs modifiés. Vérifier compatibilité des signatures, autorisations et données sensibles.
 
-### Étape 5 — Contrôler le transport
+### 24.E.5 Étape 5 — Contrôler le transport
 
 Dans `SE10`, vérifier classe, interfaces, exceptions, messages et types DDIC. Confirmer l’ordre d’import des dépendances.
 
-### Étape 6 — Documenter et rejouer
+### 24.E.6 Étape 6 — Documenter et rejouer
 
 Décrire changement, preuve et scénario de non-régression. La livraison est prête lorsque la version transportée correspond exactement à la version testée.
 
-## CHECKLIST À COPIER
+## 24.F CHECKLIST À COPIER
 
 ```text
 Classe / interface        :
@@ -78,7 +78,7 @@ Dépendances transportées  : Oui / Non
 Documentation mise à jour : Oui / Non
 ```
 
-## BONNES PRATIQUES SYNTHÉTIQUES
+## 24.G BONNES PRATIQUES SYNTHÉTIQUES
 
 - Concevoir d’abord le contrat, puis l’implémentation.
 - Préférer les classes globales pour les services réutilisables.
@@ -90,17 +90,17 @@ Documentation mise à jour : Oui / Non
 - Ne jamais masquer un `COMMIT WORK` dans une méthode métier sans contrat explicite.
 - Documenter les effets, exceptions et contraintes de version.
 
-## CRITÈRE DE FIN DE DOSSIER
+## 24.H CRITÈRE DE FIN DE DOSSIER
 
 Le lecteur doit être capable de créer dans `SE24` une classe globale transportable, définir son API, injecter ses dépendances, implémenter une interface, gérer ses exceptions, choisir un pattern adapté et fournir un test reproductible.
 
-## COMPATIBILITÉ S/4HANA
+## 24.I COMPATIBILITÉ S/4HANA
 
 - Statut : compatible avec le développement ABAP classique sur SAP S/4HANA.
 - Vérifier la syntaxe exacte avec l’aide `F1` du système cible lorsque plusieurs versions d’ABAP Platform sont prises en charge.
 - Les objets globaux doivent être créés dans le package et l’ordre de transport du projet.
 
-## RÉFÉRENCES OFFICIELLES SAP
+## 24.J RÉFÉRENCES OFFICIELLES SAP
 
 - [Class Builder — SAP Help Portal](https://help.sap.com/docs/ABAP_PLATFORM_BW4HANA/a602ff71a47c441bb3000504ec938fea/cac035baa6c611d1b4790000e8a52bed.html)
 - [ABAP Code Documentation — SAP Learning](https://learning.sap.com/courses/deepening-your-abap-programming-knowledge/documenting-abap-code_ad565c7e-6ac5-4a49-95e2-e4c33268dac6)

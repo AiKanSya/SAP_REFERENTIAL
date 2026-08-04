@@ -1,13 +1,13 @@
-# WATCHPOINTS
+# 5. WATCHPOINTS
 
-## RÉSULTAT ATTENDU
+## 5.A RÉSULTAT ATTENDU
 
 - Arrêter l’exécution lors de la modification d’une donnée
 - Distinguer watchpoint et breakpoint
 - Ajouter une condition de déclenchement
 - Retrouver l’instruction qui altère une valeur
 
-## PRINCIPE
+## 5.B PRINCIPE
 
 Un watchpoint surveille un objet de données pendant la session de débogage. Le débogueur s’arrête lorsque la valeur surveillée change ou lorsque la condition associée devient vraie.
 
@@ -18,7 +18,7 @@ flowchart LR
     C --> D["Watchpoint déclenché"]
 ```
 
-## DIFFÉRENCE AVEC UN BREAKPOINT
+## 5.C DIFFÉRENCE AVEC UN BREAKPOINT
 
 | Breakpoint                                 | Watchpoint                                            |
 | ------------------------------------------ | ----------------------------------------------------- |
@@ -26,7 +26,7 @@ flowchart LR
 | Arrête avant ou sur une instruction ciblée | Arrête après la modification détectée                 |
 | Requiert de connaître le point probable    | Utile lorsque l’auteur de la modification est inconnu |
 
-## EXEMPLE
+## 5.D EXEMPLE
 
 Une quantité devient négative, mais plusieurs procédures peuvent la modifier.
 
@@ -42,7 +42,7 @@ Condition possible :
 lv_quantity < 0
 ```
 
-## VALEUR AVANT ET APRÈS
+## 5.E VALEUR AVANT ET APRÈS
 
 L’outil de watchpoints peut afficher :
 
@@ -53,7 +53,7 @@ L’outil de watchpoints peut afficher :
 
 Comparer les deux valeurs permet de vérifier que l’arrêt correspond bien à la divergence recherchée.
 
-## LIMITES
+## 5.F LIMITES
 
 Un watchpoint peut perdre sa validité lorsque :
 
@@ -65,7 +65,7 @@ Un watchpoint peut perdre sa validité lorsque :
 
 Les détails varient selon la version du débogueur et le type de donnée.
 
-## BONNES PRATIQUES
+## 5.G BONNES PRATIQUES
 
 - surveiller une donnée précise plutôt qu’une structure complète ;
 - ajouter une condition restrictive ;
@@ -73,41 +73,41 @@ Les détails varient selon la version du débogueur et le type de donnée.
 - documenter la valeur attendue ;
 - vérifier la pile d’appels au déclenchement.
 
-## PROCESS
+## 5.H PROCESS
 
-### Étape 1 — Atteindre la portée de la donnée
+### 5.H.1 Étape 1 — Atteindre la portée de la donnée
 
 Arrêter le programme après la création de la variable. Afficher son type et sa valeur initiale ; un watchpoint ne peut pas suivre une donnée qui n’existe pas dans le contexte courant.
 
-### Étape 2 — Créer le watchpoint
+### 5.H.2 Étape 2 — Créer le watchpoint
 
 Sélectionner la variable dans le débogueur. Choisir un arrêt sur toute modification ou ajouter une condition sur la nouvelle valeur.
 
-### Étape 3 — Continuer jusqu’à l’écriture
+### 5.H.3 Étape 3 — Continuer jusqu’à l’écriture
 
 Utiliser `F8`. À l’arrêt, relever la ligne responsable, l’ancienne valeur, la nouvelle valeur et la pile d’appels.
 
-### Étape 4 — Isoler une modification indirecte
+### 5.H.4 Étape 4 — Isoler une modification indirecte
 
 Si l’arrêt suit un appel, répéter le scénario et entrer dans cet appel pour localiser l’affectation exacte. Pour une structure ou table, cibler le composant utile afin de limiter les arrêts.
 
 Le diagnostic est terminé lorsque l’instruction et son appelant sont identifiés. Supprimer ensuite le watchpoint.
 
-## VÉRIFICATION
+## 5.I VÉRIFICATION
 
 - Le scénario reproduit correspond au même utilisateur, mandant, transaction et jeu de données.
 - L’horodatage et l’identifiant de l’analyse sont conservés.
 - La cause retenue est soutenue par une ligne source, une trace ou une valeur observée.
 - Après correction, le même scénario ne reproduit plus le défaut et le résultat métier reste identique.
 
-## ERREURS FRÉQUENTES
+## 5.J ERREURS FRÉQUENTES
 
 - Copier un exemple sans adapter les types, noms d’objets et données disponibles dans le système.
 - Tester uniquement le cas nominal et ignorer les valeurs initiales, absentes ou invalides.
 - Modifier les données dans le débogueur puis considérer le résultat comme reproductible.
 - Laisser une trace active trop longtemps.
 
-## SNIPPET À RÉUTILISER
+## 5.K SNIPPET À RÉUTILISER
 
 > [!NOTE]
 > Adapter les noms `Z*`, les types DDIC, les données et les autorisations au système cible. Effectuer un contrôle syntaxique avant activation.
@@ -116,14 +116,14 @@ Le diagnostic est terminé lorsque l’instruction et son appelant sont identifi
 lv_quantity < 0
 ```
 
-## TERMES DU LEXIQUE
+## 5.L TERMES DU LEXIQUE
 
 - [Watchpoint](<../🧩 00 ├── LEXIQUE SAP ET ABAP/08 ├── EXECUTION EXPLOITATION ET ADMINISTRATION.md#watchpoint>)
 - [Breakpoint](<../🧩 00 ├── LEXIQUE SAP ET ABAP/08 ├── EXECUTION EXPLOITATION ET ADMINISTRATION.md#breakpoint>)
 - [Dump ABAP](<../🧩 00 ├── LEXIQUE SAP ET ABAP/08 ├── EXECUTION EXPLOITATION ET ADMINISTRATION.md#dump-abap>)
 - [Trace](<../🧩 00 ├── LEXIQUE SAP ET ABAP/08 ├── EXECUTION EXPLOITATION ET ADMINISTRATION.md#trace>)
 
-## RÉFÉRENCES OFFICIELLES SAP
+## 5.M RÉFÉRENCES OFFICIELLES SAP
 
 - [Watchpoints — SAP Help Portal](https://help.sap.com/docs/ABAP_PLATFORM_NEW/ba879a6e2ea04d9bb94c7ccd7cdac446/4926d933c93016b8e10000000a42189d.html)
 - [Breakpoints Tool — SAP Help Portal](https://help.sap.com/docs/ABAP_PLATFORM_NEW/ba879a6e2ea04d9bb94c7ccd7cdac446/492535784d7216b5e10000000a42189d.html)

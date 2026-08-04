@@ -1,6 +1,6 @@
-# INTERFACES USING ET CHANGING
+# 5. INTERFACES USING ET CHANGING
 
-## RÉSULTAT ATTENDU
+## 5.A RÉSULTAT ATTENDU
 
 - Définir les entrées et sorties d’un sous-programme
 - Utiliser `USING` pour les données d’entrée
@@ -8,7 +8,7 @@
 - Éviter l’ancienne addition `TABLES`
 - Concevoir une interface explicite
 
-## INTERFACE D’UN SOUS-PROGRAMME
+## 5.B INTERFACE D’UN SOUS-PROGRAMME
 
 L’interface décrit les données échangées entre l’appelant et le sous-programme.
 
@@ -25,7 +25,7 @@ flowchart LR
     B -->|"CHANGING : résultat modifiable"| A
 ```
 
-## USING
+## 5.C USING
 
 `USING` représente les paramètres d’entrée du point de vue fonctionnel.
 
@@ -45,7 +45,7 @@ PERFORM display_customer USING lv_customer_id.
 
 Par défaut, un paramètre de sous-programme peut être transmis par référence. La convention `USING` n’empêche donc pas techniquement toute modification. Le sous-programme doit traiter ces paramètres comme des entrées et ne pas les modifier.
 
-## CHANGING
+## 5.D CHANGING
 
 `CHANGING` indique qu’une donnée peut être lue puis modifiée.
 
@@ -65,7 +65,7 @@ PERFORM increase_quantity CHANGING lv_quantity.
 
 Après l’appel, `lv_quantity` contient la nouvelle valeur.
 
-## PLUSIEURS RÉSULTATS
+## 5.E PLUSIEURS RÉSULTATS
 
 ```abap
 FORM calculate_amounts
@@ -83,7 +83,7 @@ ENDFORM.
 
 Une longue liste de paramètres `CHANGING` signale souvent qu’une structure de résultat ou une autre unité de conception serait plus lisible.
 
-## PARAMÈTRES DE TABLES INTERNES
+## 5.F PARAMÈTRES DE TABLES INTERNES
 
 Utiliser un type de table explicite avec `USING` ou `CHANGING`.
 
@@ -101,7 +101,7 @@ FORM add_message
 ENDFORM.
 ```
 
-## ADDITION TABLES
+## 5.G ADDITION TABLES
 
 L’addition historique `TABLES` des sous-programmes est obsolète. Elle repose sur une interface particulière pour les tables internes et ne doit pas être utilisée dans du nouveau code.
 
@@ -120,7 +120,7 @@ FORM process_items
   CHANGING ct_items TYPE ty_t_items.
 ```
 
-## CONVENTIONS DE NOMMAGE
+## 5.H CONVENTIONS DE NOMMAGE
 
 Une convention fréquente distingue l’intention des paramètres :
 
@@ -135,7 +135,7 @@ Une convention fréquente distingue l’intention des paramètres :
 
 Ces préfixes ne font pas partie du langage ABAP. Ils doivent rester cohérents avec les règles du projet.
 
-## POINTS À RETENIR
+## 5.I POINTS À RETENIR
 
 - `USING` documente les entrées.
 - `CHANGING` documente les données modifiées par la procédure.
@@ -143,21 +143,21 @@ Ces préfixes ne font pas partie du langage ABAP. Ils doivent rester cohérents 
 - Une table interne doit être typée explicitement avec `USING` ou `CHANGING`.
 - L’addition `TABLES` est obsolète et doit être évitée dans le nouveau code.
 
-## VÉRIFICATION
+## 5.J VÉRIFICATION
 
 - Le contrôle syntaxique réussit.
 - La version active correspond au code sauvegardé.
 - L’exécution produit le résultat décrit dans le chapitre.
 - Les cas vide, limite et erreur sont testés séparément lorsque la syntaxe le permet.
 
-## ERREURS FRÉQUENTES
+## 5.K ERREURS FRÉQUENTES
 
 - Copier un exemple sans adapter les types, noms d’objets et données disponibles dans le système.
 - Tester uniquement le cas nominal et ignorer les valeurs initiales, absentes ou invalides.
 - Créer des sous-programmes avec trop de paramètres globaux.
 - Utiliser des appels externes ou dynamiques sans contrôle du nom et de l’existence.
 
-## SNIPPET À RÉUTILISER
+## 5.L SNIPPET À RÉUTILISER
 
 > [!NOTE]
 > Adapter les noms `Z*`, les types DDIC, les données et les autorisations au système cible. Effectuer un contrôle syntaxique avant activation.
@@ -176,14 +176,14 @@ FORM calculate_amounts
 ENDFORM.
 ```
 
-## TERMES DU LEXIQUE
+## 5.M TERMES DU LEXIQUE
 
 - [Interface](<../🧩 00 ├── LEXIQUE SAP ET ABAP/07 ├── INTERFACES ET INTEGRATION.md#interface-integration>)
 - [Programme exécutable](<../🧩 00 ├── LEXIQUE SAP ET ABAP/06 ├── PROGRAMMES CLASSES ET OBJETS TECHNIQUES.md#programme-executable>)
 - [Module fonction](<../🧩 00 ├── LEXIQUE SAP ET ABAP/06 ├── PROGRAMMES CLASSES ET OBJETS TECHNIQUES.md#module-fonction>)
 - [ABAP](<../🧩 00 ├── LEXIQUE SAP ET ABAP/10 └── ACRONYMES SAP.md#acro-abap>)
 
-## RÉFÉRENCES OFFICIELLES SAP
+## 5.N RÉFÉRENCES OFFICIELLES SAP
 
 - [FORM — ABAP Keyword Documentation](https://help.sap.com/doc/abapdocu_latest_index_htm/latest/en-US/ABAPFORM.html)
 - [PERFORM — ABAP Keyword Documentation](https://help.sap.com/doc/abapdocu_latest_index_htm/latest/en-US/ABAPPERFORM.html)

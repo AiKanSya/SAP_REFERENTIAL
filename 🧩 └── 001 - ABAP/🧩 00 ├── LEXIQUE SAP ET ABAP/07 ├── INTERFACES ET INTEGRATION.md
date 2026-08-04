@@ -1,11 +1,11 @@
-# INTERFACES ET INTÉGRATION
+# 7. INTERFACES ET INTÉGRATION
 
 Définitions liées aux échanges de données, aux fichiers et aux mécanismes d’intégration SAP.
 
 Chaque entrée présente une définition concise, un exemple, un repère pratique et, lorsque nécessaire, une distinction avec une notion proche.
 
 <a id="code-page"></a>
-## CODE PAGE
+## 7.A CODE PAGE
 
 **Définition.** Table de correspondance entre caractères et valeurs binaires utilisée pour un encodage.
 
@@ -19,7 +19,7 @@ Chaque entrée présente une définition concise, un exemple, un repère pratiqu
 ---
 
 <a id="csv"></a>
-## CSV
+## 7.B CSV
 
 **Définition.** Format texte tabulaire utilisant un séparateur de champs et des règles d’échappement.
 
@@ -33,7 +33,7 @@ Chaque entrée présente une définition concise, un exemple, un repère pratiqu
 ---
 
 <a id="destination-rfc"></a>
-## DESTINATION RFC
+## 7.C DESTINATION RFC
 
 **Définition.** Configuration `SM59` décrivant comment joindre une cible RFC.
 
@@ -47,7 +47,7 @@ Chaque entrée présente une définition concise, un exemple, un repère pratiqu
 ---
 
 <a id="encodage"></a>
-## ENCODAGE
+## 7.D ENCODAGE
 
 **Définition.** Règle transformant les caractères en octets et inversement.
 
@@ -61,7 +61,7 @@ Chaque entrée présente une définition concise, un exemple, un repère pratiqu
 ---
 
 <a id="fichier-frontend"></a>
-## FICHIER FRONTEND
+## 7.E FICHIER FRONTEND
 
 **Définition.** Fichier situé sur le poste utilisateur et manipulé via les services SAP GUI.
 
@@ -75,7 +75,7 @@ Chaque entrée présente une définition concise, un exemple, un repère pratiqu
 ---
 
 <a id="flux-entrant"></a>
-## FLUX ENTRANT
+## 7.F FLUX ENTRANT
 
 **Définition.** Échange dans lequel SAP reçoit des données ou une demande.
 
@@ -89,7 +89,7 @@ Chaque entrée présente une définition concise, un exemple, un repère pratiqu
 ---
 
 <a id="flux-sortant"></a>
-## FLUX SORTANT
+## 7.G FLUX SORTANT
 
 **Définition.** Échange dans lequel SAP produit des données à destination d’un autre système.
 
@@ -103,7 +103,7 @@ Chaque entrée présente une définition concise, un exemple, un repère pratiqu
 ---
 
 <a id="idoc"></a>
-## IDOC
+## 7.H IDOC
 
 **Définition.** Document intermédiaire SAP structuré en segments pour l’échange de messages métier.
 
@@ -117,7 +117,7 @@ Chaque entrée présente une définition concise, un exemple, un repère pratiqu
 ---
 
 <a id="interface-integration"></a>
-## INTERFACE
+## 7.I INTERFACE
 
 **Définition.** Mécanisme d’échange de données ou de fonctions entre composants.
 
@@ -131,7 +131,7 @@ Chaque entrée présente une définition concise, un exemple, un repère pratiqu
 ---
 
 <a id="json"></a>
-## JSON
+## 7.J JSON
 
 **Définition.** Format texte structuré utilisant objets, tableaux, chaînes, nombres, booléens et valeur null.
 
@@ -145,7 +145,7 @@ Chaque entrée présente une définition concise, un exemple, un repère pratiqu
 ---
 
 <a id="qrfc"></a>
-## QRFC
+## 7.K QRFC
 
 **Définition.** RFC transactionnel avec gestion de files afin de respecter un ordre de traitement.
 
@@ -159,7 +159,7 @@ Chaque entrée présente une définition concise, un exemple, un repère pratiqu
 ---
 
 <a id="fichier-serveur-application"></a>
-## SERVEUR D’APPLICATION
+## 7.L SERVEUR D’APPLICATION
 
 **Définition.** Emplacement du backend où un programme ABAP peut lire ou écrire avec `OPEN DATASET`.
 
@@ -173,7 +173,7 @@ Chaque entrée présente une définition concise, un exemple, un repère pratiqu
 ---
 
 <a id="trfc"></a>
-## TRFC
+## 7.M TRFC
 
 **Définition.** RFC transactionnel garantissant la répétition d’un appel jusqu’à son traitement unique côté protocole.
 
@@ -187,7 +187,7 @@ Chaque entrée présente une définition concise, un exemple, un repère pratiqu
 ---
 
 <a id="xml"></a>
-## XML
+## 7.N XML
 
 **Définition.** Format texte hiérarchique basé sur des balises.
 
@@ -199,7 +199,7 @@ Chaque entrée présente une définition concise, un exemple, un repère pratiqu
 
 ---
 
-## Références SAP
+## 7.O Références SAP
 
 - [ABAP Programming Language — SAP Help Portal](https://help.sap.com/docs/ABAP_PLATFORM/66906ae3920c4fc684cf588290fb9267/d3d5c132973b404db980ba6ae0889be7.html)
 - [SAP GUI for Windows — SAP Help Portal](https://help.sap.com/docs/r/product/sap_gui_for_windows)

@@ -1,6 +1,6 @@
-# ACTIVATION, EXÉCUTION ET VÉRIFICATION
+# 9. ACTIVATION, EXÉCUTION ET VÉRIFICATION
 
-## RÉSULTAT ATTENDU
+## 9.A RÉSULTAT ATTENDU
 
 - Distinguer enregistrement, contrôle syntaxique et activation
 - Comprendre quelle version est exécutée
@@ -8,7 +8,7 @@
 - Identifier les contrôles minimaux avant livraison
 - Localiser les principales sources d’erreur
 
-## VUE D’ENSEMBLE
+## 9.B VUE D’ENSEMBLE
 
 ```mermaid
 flowchart LR
@@ -20,7 +20,7 @@ flowchart LR
     F --> G["Contrôles qualité"]
 ```
 
-## ENREGISTREMENT
+## 9.C ENREGISTREMENT
 
 L’enregistrement conserve les modifications dans le système. Il ne signifie pas nécessairement que l’objet est actif.
 
@@ -29,7 +29,7 @@ Une version inactive peut donc exister en parallèle de la version active.
 > [!IMPORTANT]
 > Enregistrer protège le travail en cours. Activer rend la nouvelle version utilisable comme version active.
 
-## CONTRÔLE SYNTAXIQUE
+## 9.D CONTRÔLE SYNTAXIQUE
 
 Le contrôle syntaxique analyse le code sans exécuter le scénario fonctionnel.
 
@@ -55,7 +55,7 @@ Problèmes :
 - point manquant après la déclaration ;
 - affectation incompatible susceptible d’échouer ou d’être refusée selon le contexte.
 
-## ACTIVATION
+## 9.E ACTIVATION
 
 L’activation :
 
@@ -72,7 +72,7 @@ Une activation peut échouer si :
 - un verrou empêche une opération ;
 - une autorisation manque.
 
-## EXÉCUTION
+## 9.F EXÉCUTION
 
 Un programme exécutable peut être lancé depuis `SE38` ou `SE80`.
 
@@ -84,15 +84,15 @@ Séquence classique :
 4. le traitement produit un résultat ou un effet ;
 5. les erreurs non gérées peuvent provoquer un arrêt ou un dump.
 
-### EXÉCUTION DIRECTE
+### 9.F.1 EXÉCUTION DIRECTE
 
 `F8` exécute le programme dans le contexte courant.
 
-### EXÉCUTION EN MODE DEBUG
+### 9.F.2 EXÉCUTION EN MODE DEBUG
 
 Le menu de test permet de démarrer le programme directement sous contrôle du Debugger.
 
-## QUELLE VERSION EST UTILISÉE ?
+## 9.G QUELLE VERSION EST UTILISÉE ?
 
 L’exécution normale utilise la version active disponible.
 
@@ -105,7 +105,7 @@ flowchart TD
 
 C’est la cause classique d’un test qui semble ignorer une correction récente.
 
-## TEST TECHNIQUE MINIMAL
+## 9.H TEST TECHNIQUE MINIMAL
 
 Pour un programme simple :
 
@@ -120,7 +120,7 @@ Pour un programme simple :
 - contrôle des autorisations ;
 - contrôle de l’absence d’effet de bord non prévu.
 
-## CONTRÔLES COMPLÉMENTAIRES
+## 9.I CONTRÔLES COMPLÉMENTAIRES
 
 Selon le contexte :
 
@@ -135,13 +135,13 @@ Selon le contexte :
 
 Ces outils seront détaillés dans les dossiers consacrés à la qualité et à la performance.
 
-## ERREURS D’EXÉCUTION
+## 9.J ERREURS D’EXÉCUTION
 
-### MESSAGE APPLICATIF
+### 9.J.1 MESSAGE APPLICATIF
 
 Un message peut signaler une erreur gérée par le programme.
 
-### DUMP ABAP
+### 9.J.2 DUMP ABAP
 
 Une erreur d’exécution non gérée peut produire un dump analysable avec `ST22`.
 
@@ -154,7 +154,7 @@ Exemples de causes :
 - absence d’autorisation selon le traitement ;
 - incohérence technique.
 
-### JOURNAUX
+### 9.J.3 JOURNAUX
 
 Selon le programme, analyser également :
 
@@ -164,7 +164,7 @@ Selon le programme, analyser également :
 - messages système ;
 - traces techniques adaptées.
 
-## CHECKLIST AVANT TRANSPORT
+## 9.K CHECKLIST AVANT TRANSPORT
 
 - [ ] tous les objets modifiés sont activés ;
 - [ ] le programme s’exécute sur les cas prévus ;
@@ -175,43 +175,43 @@ Selon le programme, analyser également :
 - [ ] aucun objet sans rapport n’est présent dans la requête ;
 - [ ] le test après import est défini.
 
-## PROCESS
+## 9.L PROCESS
 
-### Étape 1 — Créer une version inactive observable
+### 9.L.1 Étape 1 — Créer une version inactive observable
 
 Ouvrir un report Z actif dans `SE38`, modifier une valeur visible puis enregistrer sans activer. Vérifier l’indicateur de statut : le source sauvegardé doit être inactif tandis que l’ancienne version reste active.
 
-### Étape 2 — Contrôler avant activation
+### 9.L.2 Étape 2 — Contrôler avant activation
 
 Exécuter `Ctrl+F2`. Corriger les erreurs dans l’ordre indiqué. Si une erreur vient d’un objet dépendant, ouvrir cet objet et déterminer s’il doit être activé dans la même livraison.
 
-### Étape 3 — Activer
+### 9.L.3 Étape 3 — Activer
 
 Exécuter `Ctrl+F3` et examiner la liste des objets proposée. Activer uniquement le périmètre cohérent. En cas d’échec, relever l’objet et le message qui bloquent l’activation au lieu de relancer sans correction.
 
-### Étape 4 — Prouver la version exécutée
+### 9.L.4 Étape 4 — Prouver la version exécutée
 
 Lancer avec `F8` et vérifier que la valeur modifiée apparaît. Si l’ancienne valeur persiste, confirmer le système, le programme et le statut actif.
 
-### Étape 5 — Comparer si nécessaire
+### 9.L.5 Étape 5 — Comparer si nécessaire
 
 Utiliser la gestion des versions pour comparer la version active avec une version antérieure. Le contrôle est terminé lorsque le source sauvegardé et la version active attendue correspondent et que l’exécution produit le résultat prévu.
 
-## VÉRIFICATION
+## 9.M VÉRIFICATION
 
 - Le contrôle syntaxique réussit.
 - La version active correspond au code sauvegardé.
 - L’exécution produit le résultat décrit dans le chapitre.
 - Les cas vide, limite et erreur sont testés séparément lorsque la syntaxe le permet.
 
-## ERREURS FRÉQUENTES
+## 9.N ERREURS FRÉQUENTES
 
 - Copier un exemple sans adapter les types, noms d’objets et données disponibles dans le système.
 - Tester uniquement le cas nominal et ignorer les valeurs initiales, absentes ou invalides.
 - Intervenir dans le mauvais système ou mandant.
 - Confondre sauvegarde et activation.
 
-## SNIPPET À RÉUTILISER
+## 9.O SNIPPET À RÉUTILISER
 
 > [!NOTE]
 > Adapter les noms `Z*`, les types DDIC, les données et les autorisations au système cible. Effectuer un contrôle syntaxique avant activation.
@@ -222,7 +222,7 @@ DATA gv_value TYPE i
 gv_value = 'ABC'.
 ```
 
-## TERMES DU LEXIQUE
+## 9.P TERMES DU LEXIQUE
 
 - [Système SAP](<../🧩 00 ├── LEXIQUE SAP ET ABAP/01 ├── SYSTEMES ENVIRONNEMENTS ET MANDANTS.md#systeme-sap>)
 - [Mandant](<../🧩 00 ├── LEXIQUE SAP ET ABAP/01 ├── SYSTEMES ENVIRONNEMENTS ET MANDANTS.md#mandant>)
@@ -231,7 +231,7 @@ gv_value = 'ABC'.
 - [Repository ABAP](<../🧩 00 ├── LEXIQUE SAP ET ABAP/03 ├── REPOSITORY PACKAGES ET TRANSPORTS.md#repository-abap>)
 - [Package](<../🧩 00 ├── LEXIQUE SAP ET ABAP/03 ├── REPOSITORY PACKAGES ET TRANSPORTS.md#package>)
 
-## RÉFÉRENCES OFFICIELLES SAP
+## 9.Q RÉFÉRENCES OFFICIELLES SAP
 
 - [ABAP Source Code Editor](https://help.sap.com/docs/ABAP_PLATFORM_NEW/c238d694b825421f940829321ffa326a/9ac600a0fad14967aaf2964be5a21963.html)
 - [Starting and Directly Debugging ABAP Programs](https://help.sap.com/docs/ABAP_PLATFORM_NEW/ba879a6e2ea04d9bb94c7ccd7cdac446/a95208086a6e448aa35f08357d958af5.html)

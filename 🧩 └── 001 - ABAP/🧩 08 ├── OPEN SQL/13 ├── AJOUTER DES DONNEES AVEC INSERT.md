@@ -1,9 +1,6 @@
-# AJOUTE" Modifier uniquement les données de la table cible maîtrisée.
-" Modifier uniquement les données de la table cible maîtrisée.
-" Modifier uniquement les données de la table cible maîtrisée.
-R DES DONNÉES AVEC INSERT
+# 13. AJOUTER DES DONNÉES AVEC INSERT
 
-## RÉSULTAT ATTENDU
+## 13.A RÉSULTAT ATTENDU
 
 - Insérer une ligne dans une table client
 - Insérer plusieurs lignes depuis une table interne
@@ -11,7 +8,7 @@ R DES DONNÉES AVEC INSERT
 - Comprendre `sy-subrc` et `sy-dbcnt`
 - Éviter les écritures directes dans les tables applicatives SAP
 
-## TABLE D’EXEMPLE
+## 13.B TABLE D’EXEMPLE
 
 Les exemples supposent une table client fictive `ZDEV_PRODUCT` contenant notamment :
 
@@ -26,7 +23,7 @@ Les exemples supposent une table client fictive `ZDEV_PRODUCT` contenant notamme
 > [!CAUTION]
 > Ne jamais transposer cet exemple à une table applicative SAP standard. Utiliser l’API métier, la BAPI ou l’objet de service prévu par SAP.
 
-## INSÉRER UNE LIGNE
+## 13.C INSÉRER UNE LIGNE
 
 ```abap
 " Modifier uniquement les données de la table cible maîtrisée.
@@ -48,7 +45,7 @@ ELSE.
 ENDIF.
 ```
 
-## INSÉRER PLUSIEURS LIGNES
+## 13.D INSÉRER PLUSIEURS LIGNES
 
 ```abap
 " Modifier uniquement les données de la table cible maîtrisée.
@@ -62,7 +59,7 @@ lt_products = VALUE #(
 INSERT zdev_product FROM TABLE @lt_products.
 ```
 
-## CLÉ EN DOUBLE
+## 13.E CLÉ EN DOUBLE
 
 Lorsqu’une clé primaire ou un index unique existe déjà :
 
@@ -78,25 +75,25 @@ INSERT zdev_product FROM TABLE @lt_products
 
 Cette addition ne met pas à jour les lignes existantes. Elle ignore seulement les doublons impossibles à insérer.
 
-## MANDANT
+## 13.F MANDANT
 
 Pour une table dépendante du mandant, la gestion implicite utilise le mandant courant. Une valeur de `MANDT` fournie dans la structure source n’est normalement pas utilisée comme un champ métier ordinaire.
 
-## VÉRIFICATION
+## 13.G VÉRIFICATION
 
 - Le contrôle syntaxique réussit.
 - La version active correspond au code sauvegardé.
 - L’exécution produit le résultat décrit dans le chapitre.
 - Les cas vide, limite et erreur sont testés séparément lorsque la syntaxe le permet.
 
-## ERREURS FRÉQUENTES
+## 13.H ERREURS FRÉQUENTES
 
 - Copier un exemple sans adapter les types, noms d’objets et données disponibles dans le système.
 - Tester uniquement le cas nominal et ignorer les valeurs initiales, absentes ou invalides.
 - Lire toutes les colonnes ou toutes les lignes par défaut.
 - Effectuer des commits dans une méthode réutilisable sans contrat explicite.
 
-## SNIPPET À RÉUTILISER
+## 13.I SNIPPET À RÉUTILISER
 
 > [!NOTE]
 > Adapter les noms `Z*`, les types DDIC, les données et les autorisations au système cible. Effectuer un contrôle syntaxique avant activation.
@@ -121,14 +118,14 @@ ELSE.
 ENDIF.
 ```
 
-## TERMES DU LEXIQUE
+## 13.J TERMES DU LEXIQUE
 
 - [SQL](<../🧩 00 ├── LEXIQUE SAP ET ABAP/10 └── ACRONYMES SAP.md#acro-sql>)
 - [MANDT](<../🧩 00 ├── LEXIQUE SAP ET ABAP/05 ├── DONNEES DICTIONNAIRE ET BASE DE DONNEES.md#mandt>)
 - [Table transparente](<../🧩 00 ├── LEXIQUE SAP ET ABAP/05 ├── DONNEES DICTIONNAIRE ET BASE DE DONNEES.md#table-transparente>)
 - [LUW base de données](<../🧩 00 ├── LEXIQUE SAP ET ABAP/08 ├── EXECUTION EXPLOITATION ET ADMINISTRATION.md#luw-base>)
 
-## RÉFÉRENCES OFFICIELLES SAP
+## 13.K RÉFÉRENCES OFFICIELLES SAP
 
 - [INSERT, Data Source — ABAP Keyword Documentation](https://help.sap.com/doc/abapdocu_latest_index_htm/latest/en-US/ABAPINSERT_SOURCE.html)
 - [ABAP SQL — ABAP Keyword Documentation](https://help.sap.com/doc/abapdocu_latest_index_htm/latest/en-US/ABENABAP_SQL_OVIEW.html)

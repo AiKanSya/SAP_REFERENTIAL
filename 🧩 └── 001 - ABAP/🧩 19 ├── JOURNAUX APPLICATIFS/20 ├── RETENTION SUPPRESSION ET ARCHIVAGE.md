@@ -1,12 +1,12 @@
-# RÉTENTION, SUPPRESSION ET ARCHIVAGE
+# 20. RÉTENTION, SUPPRESSION ET ARCHIVAGE
 
-## RÉSULTAT ATTENDU
+## 20.A RÉSULTAT ATTENDU
 
 - Définir une durée de conservation
 - Supprimer les journaux de façon contrôlée
 - Éviter la croissance illimitée des tables BAL
 
-## PRINCIPES
+## 20.B PRINCIPES
 
 Un journal applicatif est une donnée technique persistante. Sa durée de conservation doit être définie selon :
 
@@ -17,7 +17,7 @@ Un journal applicatif est une donnée technique persistante. Sa durée de conser
 - volumétrie ;
 - capacité de reprise.
 
-## SUPPRESSION AVEC SLG2
+## 20.C SUPPRESSION AVEC SLG2
 
 La transaction `SLG2` utilise le programme de suppression standard du BAL. La sélection doit cibler l’objet, le sous-objet, la période ou la date d’expiration.
 
@@ -31,11 +31,11 @@ flowchart LR
 
 Planifier la suppression en arrière-plan pour les volumes importants.
 
-## ARCHIVAGE
+## 20.D ARCHIVAGE
 
 L’objet d’archivage `BC_SBAL` permet d’archiver les journaux applicatifs. SAP fournit notamment des programmes pour écrire les données BAL dans les archives puis supprimer les données archivées des tables d’origine.
 
-## PRÉCAUTIONS
+## 20.E PRÉCAUTIONS
 
 - ne pas supprimer tous les objets sans filtre ;
 - tester la sélection en environnement non productif ;
@@ -43,45 +43,45 @@ L’objet d’archivage `BC_SBAL` permet d’archiver les journaux applicatifs. 
 - documenter la responsabilité du nettoyage ;
 - surveiller les tables techniques et les temps de sélection `SLG1`.
 
-## PROCESS
+## 20.F PROCESS
 
-### ÉTAPE 1 — DÉFINIR LA POLITIQUE PAR OBJET
+### 20.F.1 ÉTAPE 1 — DÉFINIR LA POLITIQUE PAR OBJET
 
 Pour chaque objet et sous-objet, fixer durée opérationnelle, obligation d’audit, données personnelles, volumétrie et besoin de reprise. Déterminer qui autorise la suppression et si l’archivage `BC_SBAL` est requis.
 
-### ÉTAPE 2 — ALIGNER LA DATE D’EXPIRATION
+### 20.F.2 ÉTAPE 2 — ALIGNER LA DATE D’EXPIRATION
 
 Lors de la création du log, renseigner la date de suppression uniquement selon cette politique. Vérifier plusieurs journaux dans `SLG1` et confirmer que leur expiration correspond au domaine. Corriger le producteur avant de planifier une purge incohérente.
 
-### ÉTAPE 3 — TESTER LA SÉLECTION DANS `SLG2`
+### 20.F.3 ÉTAPE 3 — TESTER LA SÉLECTION DANS `SLG2`
 
 Saisir `/nSLG2`, filtrer sur objet, sous-objet et période ou expiration. Commencer dans un environnement non productif et examiner le périmètre sélectionné. Ne jamais lancer une suppression sans filtre compris et validé.
 
-### ÉTAPE 4 — PLANIFIER LA SUPPRESSION EN BATCH
+### 20.F.4 ÉTAPE 4 — PLANIFIER LA SUPPRESSION EN BATCH
 
 Pour un volume important, sauvegarder la sélection dans une variante et planifier le programme standard via la procédure d’exploitation. Utiliser un utilisateur technique autorisé. Conserver le journal du job et les critères appliqués.
 
-### ÉTAPE 5 — UTILISER L’ARCHIVAGE SI NÉCESSAIRE
+### 20.F.5 ÉTAPE 5 — UTILISER L’ARCHIVAGE SI NÉCESSAIRE
 
 Avec l’équipe archivage, configurer l’objet `BC_SBAL`, exécuter d’abord l’écriture des archives puis la suppression des données archivées. Tester lecture et restitution selon les obligations avant la première purge productive.
 
-### ÉTAPE 6 — CONTRÔLER APRÈS TRAITEMENT
+### 20.F.6 ÉTAPE 6 — CONTRÔLER APRÈS TRAITEMENT
 
 Comparer nombre de journaux, période accessible et volumétrie avant/après. Vérifier dans `SLG1` qu’un log à conserver reste présent et qu’un log expiré est supprimé ou archivé. Surveiller régulièrement la durée des recherches et la croissance des tables BAL.
 
-## VÉRIFICATION
+## 20.G VÉRIFICATION
 
 - Le journal est retrouvable dans `SLG1` avec objet, sous-objet et période.
 - Chaque erreur contient un contexte permettant d’identifier l’enregistrement concerné.
 - Le log est sauvegardé même lorsque le traitement se termine avec des erreurs gérées.
 - Aucune donnée sensible inutile n’est enregistrée.
 
-## ERREURS FRÉQUENTES
+## 20.H ERREURS FRÉQUENTES
 
 - Enregistrer uniquement un texte générique sans clé métier.
 - Journaliser des mots de passe, tokens ou données personnelles inutiles.
 
-## FICHE DE CONTRÔLE À COPIER
+## 20.I FICHE DE CONTRÔLE À COPIER
 
 ```text
 Système / SID       :
@@ -96,13 +96,13 @@ Horodatage          :
 Ordre de transport  :
 ```
 
-## TERMES DU LEXIQUE
+## 20.J TERMES DU LEXIQUE
 
 - [Application Log](<../🧩 00 ├── LEXIQUE SAP ET ABAP/08 ├── EXECUTION EXPLOITATION ET ADMINISTRATION.md#application-log>)
 - [BAL](<../🧩 00 ├── LEXIQUE SAP ET ABAP/10 └── ACRONYMES SAP.md#acro-bal>)
 - [Job](<../🧩 00 ├── LEXIQUE SAP ET ABAP/06 ├── PROGRAMMES CLASSES ET OBJETS TECHNIQUES.md#job>)
 
-## RÉFÉRENCES OFFICIELLES SAP
+## 20.K RÉFÉRENCES OFFICIELLES SAP
 
 - [Archiving Object BC_SBAL — SAP Help Portal](https://help.sap.com/docs/ABAP_PLATFORM_NEW/addb96cd90c945dfb3182865363bbc47/4e4a2209872c3b0fe10000000a42189e.html)
 - [Deletion of Business Application Logs — SAP Help Portal](https://help.sap.com/docs/btc/security-guide/deletion-of-business-application-logs)

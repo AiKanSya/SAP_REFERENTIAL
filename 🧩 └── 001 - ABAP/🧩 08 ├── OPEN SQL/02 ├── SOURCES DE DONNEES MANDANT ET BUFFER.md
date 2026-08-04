@@ -1,8 +1,6 @@
-# SOURCE" Lire uniquement les colonnes et les lignes nécessaires.
-" Lire uniquement les colonnes et les lignes nécessaires.
-S DE DONNÉES, MANDANT ET BUFFER
+# 2. SOURCES DE DONNÉES, MANDANT ET BUFFER
 
-## RÉSULTAT ATTENDU
+## 2.A RÉSULTAT ATTENDU
 
 - Identifier les sources utilisables dans ABAP SQL
 - Comprendre la gestion implicite du mandant
@@ -10,7 +8,7 @@ S DE DONNÉES, MANDANT ET BUFFER
 - Éviter les accès inter-mandants non maîtrisés
 - Distinguer données persistantes et résultats calculés
 
-## SOURCES DE DONNÉES
+## 2.B SOURCES DE DONNÉES
 
 Une instruction `SELECT` peut lire notamment :
 
@@ -21,7 +19,7 @@ Une instruction `SELECT` peut lire notamment :
 
 Dans ce dossier SAP GUI, les exemples restent centrés sur les tables et vues classiques. La création de CDS relève du futur dossier ADT.
 
-## GESTION IMPLICITE DU MANDANT
+## 2.C GESTION IMPLICITE DU MANDANT
 
 Une table dépendante du mandant possède normalement le champ `MANDT` comme premier champ de clé, avec le type `CLNT`.
 
@@ -43,7 +41,7 @@ WHERE mandt = @sy-mandt
 > [!WARNING]
 > Un accès inter-mandants est une opération sensible. Ne pas utiliser les additions dédiées sans besoin explicite, autorisation et analyse de sécurité.
 
-## TABLES INDÉPENDANTES DU MANDANT
+## 2.D TABLES INDÉPENDANTES DU MANDANT
 
 Une table sans champ client est lue de la même manière dans tous les mandants du système.
 
@@ -55,7 +53,7 @@ Exemples possibles :
 
 La dépendance au mandant est définie dans le Dictionary et doit être comprise avant toute lecture ou écriture.
 
-## BUFFER DE TABLES
+## 2.E BUFFER DE TABLES
 
 Certaines tables DDIC peuvent être bufferisées sur les serveurs d’application ABAP.
 
@@ -70,7 +68,7 @@ Le buffer peut améliorer les lectures répétées de petites tables peu modifi�
 
 Certaines constructions SQL contournent le buffer ou empêchent son utilisation. Ne pas déduire qu’un `SELECT` est sans accès base uniquement parce que la table est déclarée bufferisée.
 
-## RÈGLE DE CONCEPTION
+## 2.F RÈGLE DE CONCEPTION
 
 Avant d’écrire une requête, vérifier :
 
@@ -80,21 +78,21 @@ Avant d’écrire une requête, vérifier :
 4. sa stratégie de bufferisation ;
 5. son API métier éventuelle.
 
-## VÉRIFICATION
+## 2.G VÉRIFICATION
 
 - Le contrôle syntaxique réussit.
 - La version active correspond au code sauvegardé.
 - L’exécution produit le résultat décrit dans le chapitre.
 - Les cas vide, limite et erreur sont testés séparément lorsque la syntaxe le permet.
 
-## ERREURS FRÉQUENTES
+## 2.H ERREURS FRÉQUENTES
 
 - Copier un exemple sans adapter les types, noms d’objets et données disponibles dans le système.
 - Tester uniquement le cas nominal et ignorer les valeurs initiales, absentes ou invalides.
 - Lire toutes les colonnes ou toutes les lignes par défaut.
 - Effectuer des commits dans une méthode réutilisable sans contrat explicite.
 
-## SNIPPET À RÉUTILISER
+## 2.I SNIPPET À RÉUTILISER
 
 > [!NOTE]
 > Adapter les noms `Z*`, les types DDIC, les données et les autorisations au système cible. Effectuer un contrôle syntaxique avant activation.
@@ -106,7 +104,7 @@ SELECT carrid, carrname
   INTO TABLE @DATA(lt_carriers).
 ```
 
-## TERMES DU LEXIQUE
+## 2.J TERMES DU LEXIQUE
 
 - [Mandant](<../🧩 00 ├── LEXIQUE SAP ET ABAP/01 ├── SYSTEMES ENVIRONNEMENTS ET MANDANTS.md#mandant>)
 - [SQL](<../🧩 00 ├── LEXIQUE SAP ET ABAP/10 └── ACRONYMES SAP.md#acro-sql>)
@@ -114,12 +112,12 @@ SELECT carrid, carrname
 - [Table transparente](<../🧩 00 ├── LEXIQUE SAP ET ABAP/05 ├── DONNEES DICTIONNAIRE ET BASE DE DONNEES.md#table-transparente>)
 - [LUW base de données](<../🧩 00 ├── LEXIQUE SAP ET ABAP/08 ├── EXECUTION EXPLOITATION ET ADMINISTRATION.md#luw-base>)
 
-## MODÈLE DE DÉMONSTRATION SFLIGHT
+## 2.K MODÈLE DE DÉMONSTRATION SFLIGHT
 
 > [!NOTE]
 > Les tables `SCARR`, `SPFLI` et `SFLIGHT` appartiennent au modèle de démonstration SAP et peuvent être absentes ou non alimentées dans certains systèmes. Dans ce cas, remplacer les exemples par une table Z de démonstration ou par une source en lecture seule autorisée, sans modifier une table applicative standard.
 
-## RÉFÉRENCES OFFICIELLES SAP
+## 2.L RÉFÉRENCES OFFICIELLES SAP
 
 - [ABAP SQL — ABAP Keyword Documentation](https://help.sap.com/doc/abapdocu_latest_index_htm/latest/en-US/ABENABAP_SQL_OVIEW.html)
 - [Client Handling and Table Buffering — SAP Help Portal](https://help.sap.com/docs/abap-cloud/abap-integration-connectivity/client-handling-and-table-buffering)

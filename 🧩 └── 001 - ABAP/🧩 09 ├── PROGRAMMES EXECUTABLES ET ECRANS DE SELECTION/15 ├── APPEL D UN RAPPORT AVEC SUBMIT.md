@@ -1,6 +1,6 @@
-# APPEL D’UN RAPPORT AVEC SUBMIT
+# 15. APPEL D’UN RAPPORT AVEC SUBMIT
 
-## RÉSULTAT ATTENDU
+## 15.A RÉSULTAT ATTENDU
 
 - Appeler un programme exécutable depuis ABAP
 - Transmettre des paramètres et critères
@@ -8,7 +8,7 @@
 - Utiliser une variante ou une table de sélection
 - Maîtriser les risques des appels dynamiques
 
-## APPEL SIMPLE
+## 15.B APPEL SIMPLE
 
 ```abap
 SUBMIT zdev_target
@@ -20,7 +20,7 @@ SUBMIT zdev_target
 
 Sans cette addition, l’appel se comporte comme un remplacement du programme courant dans la chaîne d’appel.
 
-## TRANSMETTRE UN SELECT-OPTIONS
+## 15.C TRANSMETTRE UN SELECT-OPTIONS
 
 ```abap
 SUBMIT zdev_target
@@ -30,7 +30,7 @@ SUBMIT zdev_target
 
 Les noms `p_carr` et `s_carr` à gauche correspondent aux éléments de sélection du programme cible.
 
-## UTILISER UNE VARIANTE
+## 15.D UTILISER UNE VARIANTE
 
 ```abap
 SUBMIT zdev_target
@@ -40,7 +40,7 @@ SUBMIT zdev_target
 
 La variante doit appartenir au programme appelé et rester compatible avec son écran de sélection.
 
-## TABLE DE SÉLECTION DYNAMIQUE
+## 15.E TABLE DE SÉLECTION DYNAMIQUE
 
 La structure standard `RSPARAMS` permet de construire une interface de sélection dynamique.
 
@@ -67,7 +67,7 @@ SUBMIT zdev_target
   AND RETURN.
 ```
 
-## AFFICHER L’ÉCRAN DU PROGRAMME CIBLE
+## 15.F AFFICHER L’ÉCRAN DU PROGRAMME CIBLE
 
 L’addition `VIA SELECTION-SCREEN` demande le traitement de l’écran de sélection du programme appelé.
 
@@ -79,13 +79,13 @@ SUBMIT zdev_target
 
 Cette forme impose une interaction utilisateur et n’est pas adaptée à tous les contextes.
 
-## SORTIE DE LISTE
+## 15.G SORTIE DE LISTE
 
 `SUBMIT` permet aussi d’exporter une liste classique vers la mémoire ABAP ou le spool avec des additions dédiées. Cette technique est spécifique aux listes classiques.
 
 Pour échanger des données structurées, préférer une interface de procédure ou de classe explicitement typée.
 
-## APPEL DYNAMIQUE
+## 15.H APPEL DYNAMIQUE
 
 Un nom de programme peut être déterminé dynamiquement. Ne jamais exécuter directement une valeur fournie par un utilisateur ou une source externe.
 
@@ -96,21 +96,21 @@ flowchart TD
     B -->|"Oui"| D["SUBMIT contrôlé"]
 ```
 
-## VÉRIFICATION
+## 15.I VÉRIFICATION
 
 - Le contrôle syntaxique réussit.
 - La version active correspond au code sauvegardé.
 - L’exécution produit le résultat décrit dans le chapitre.
 - Les cas vide, limite et erreur sont testés séparément lorsque la syntaxe le permet.
 
-## ERREURS FRÉQUENTES
+## 15.J ERREURS FRÉQUENTES
 
 - Copier un exemple sans adapter les types, noms d’objets et données disponibles dans le système.
 - Tester uniquement le cas nominal et ignorer les valeurs initiales, absentes ou invalides.
 - Mettre une logique lourde dans les événements de validation de l’écran.
 - Créer une variante contenant des valeurs obsolètes ou sensibles.
 
-## SNIPPET À RÉUTILISER
+## 15.K SNIPPET À RÉUTILISER
 
 > [!NOTE]
 > Adapter les noms `Z*`, les types DDIC, les données et les autorisations au système cible. Effectuer un contrôle syntaxique avant activation.
@@ -138,14 +138,14 @@ SUBMIT zdev_target
   AND RETURN.
 ```
 
-## TERMES DU LEXIQUE
+## 15.L TERMES DU LEXIQUE
 
 - [Programme exécutable](<../🧩 00 ├── LEXIQUE SAP ET ABAP/06 ├── PROGRAMMES CLASSES ET OBJETS TECHNIQUES.md#programme-executable>)
 - [Variante](<../🧩 00 ├── LEXIQUE SAP ET ABAP/06 ├── PROGRAMMES CLASSES ET OBJETS TECHNIQUES.md#variante>)
 - [Transaction](<../🧩 00 ├── LEXIQUE SAP ET ABAP/02 ├── SAP GUI NAVIGATION ET TRANSACTIONS.md#transaction>)
 - [Dynpro](<../🧩 00 ├── LEXIQUE SAP ET ABAP/02 ├── SAP GUI NAVIGATION ET TRANSACTIONS.md#dynpro>)
 
-## RÉFÉRENCES OFFICIELLES SAP
+## 15.M RÉFÉRENCES OFFICIELLES SAP
 
 - [SUBMIT — ABAP Keyword Documentation](https://help.sap.com/doc/abapdocu_latest_index_htm/latest/en-US/ABAPSUBMIT_SHORTREF.html)
 - [SUBMIT, Selection Screen Interface — ABAP Keyword Documentation](https://help.sap.com/doc/abapdocu_latest_index_htm/latest/en-US/ABAPSUBMIT_INTERFACE.html)

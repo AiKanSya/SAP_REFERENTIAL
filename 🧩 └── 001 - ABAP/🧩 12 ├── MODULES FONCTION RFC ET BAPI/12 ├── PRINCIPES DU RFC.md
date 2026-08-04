@@ -1,13 +1,13 @@
-# PRINCIPES DU RFC
+# 12. PRINCIPES DU RFC
 
-## RÉSULTAT ATTENDU
+## 12.A RÉSULTAT ATTENDU
 
 - Comprendre la frontière de communication RFC
 - Distinguer appel local et appel distant
 - Identifier client, serveur et destination
 - Connaître les principales variantes du RFC
 
-## DÉFINITION
+## 12.B DÉFINITION
 
 Le **Remote Function Call** permet d’appeler un module fonction distant depuis un système SAP, un autre système ou un programme externe compatible.
 
@@ -19,7 +19,7 @@ flowchart LR
     D --> E["Réponse ou statut"]
 ```
 
-## RÔLES
+## 12.C RÔLES
 
 | Rôle        | Description                                    |
 | ----------- | ---------------------------------------------- |
@@ -30,7 +30,7 @@ flowchart LR
 
 Le même système peut être client et serveur selon le scénario.
 
-## FRONTIÈRE DISTRIBUÉE
+## 12.D FRONTIÈRE DISTRIBUÉE
 
 Un appel RFC implique potentiellement :
 
@@ -45,7 +45,7 @@ Un appel RFC implique potentiellement :
 
 Ne pas traiter un RFC comme un simple appel local plus lent.
 
-## VARIANTES
+## 12.E VARIANTES
 
 | Variante | Caractéristique générale                                          |
 | -------- | ----------------------------------------------------------------- |
@@ -57,44 +57,44 @@ Ne pas traiter un RFC comme un simple appel local plus lent.
 
 Le choix dépend du besoin de réponse, d’ordre, de fiabilité et de reprise.
 
-## RFC ET BAPI
+## 12.F RFC ET BAPI
 
 Une BAPI est généralement implémentée par un module fonction compatible RFC, mais tout module RFC n’est pas une BAPI. La BAPI ajoute un contrat métier standardisé et une gouvernance d’API.
 
-## PROCESS
+## 12.G PROCESS
 
-### Étape 1 — Cartographier les deux systèmes
+### 12.G.1 Étape 1 — Cartographier les deux systèmes
 
 Relever système appelant, destination, système cible, mandant et utilisateur technique. Définir si l’appel doit être synchrone, asynchrone ou transactionnel.
 
-### Étape 2 — Identifier le contrat distant
+### 12.G.2 Étape 2 — Identifier le contrat distant
 
 Afficher le module cible dans son système et vérifier l’attribut RFC, les types compatibles, les autorisations métier et les effets transactionnels.
 
-### Étape 3 — Tester la destination séparément
+### 12.G.3 Étape 3 — Tester la destination séparément
 
 Dans `SM59`, effectuer test de connexion puis test d’autorisation disponible. Ne modifier pas le code tant qu’une erreur réseau ou de logon subsiste.
 
-### Étape 4 — Tester l’appel minimal
+### 12.G.4 Étape 4 — Tester l’appel minimal
 
 Appeler avec une entrée non destructive, traiter `SYSTEM_FAILURE` et `COMMUNICATION_FAILURE`, puis comparer la sortie au test local du système cible.
 
-### Étape 5 — Prouver la sécurité et la reprise
+### 12.G.5 Étape 5 — Prouver la sécurité et la reprise
 
 Tester avec l’utilisateur réellement configuré et un cas refusé. Le flux est validé lorsque connexion, autorisation, contrat fonctionnel et comportement après erreur sont connus.
 
-## VÉRIFICATION
+## 12.H VÉRIFICATION
 
 - Le lecteur peut expliquer la différence entre cette notion et les concepts proches.
 - Le choix technique est justifié par un besoin concret, pas uniquement par habitude.
 - Les limites liées à la release, aux autorisations et au contexte d’exécution sont identifiées.
 
-## ERREURS FRÉQUENTES
+## 12.I ERREURS FRÉQUENTES
 
 - Appeler un module fonction sans lire sa documentation et ses exceptions.
 - Supposer qu’une BAPI effectue automatiquement le commit.
 
-## TERMES DU LEXIQUE
+## 12.J TERMES DU LEXIQUE
 
 - [Module fonction](<../🧩 00 ├── LEXIQUE SAP ET ABAP/06 ├── PROGRAMMES CLASSES ET OBJETS TECHNIQUES.md#module-fonction>)
 - [Function group](<../🧩 00 ├── LEXIQUE SAP ET ABAP/06 ├── PROGRAMMES CLASSES ET OBJETS TECHNIQUES.md#function-group>)
@@ -102,7 +102,7 @@ Tester avec l’utilisateur réellement configuré et un cas refusé. Le flux es
 - [BAPI](<../🧩 00 ├── LEXIQUE SAP ET ABAP/10 └── ACRONYMES SAP.md#acro-bapi>)
 - [Destination RFC](<../🧩 00 ├── LEXIQUE SAP ET ABAP/07 ├── INTERFACES ET INTEGRATION.md#destination-rfc>)
 
-## RÉFÉRENCES OFFICIELLES SAP
+## 12.K RÉFÉRENCES OFFICIELLES SAP
 
 - [RFC Calls — SAP Help Portal](https://help.sap.com/docs/ABAP_PLATFORM_NEW/753088fc00704d0a80e7fbd6803c8adb/48920827feb35ed2e10000000a42189d.html)
 - [Calling RFC Function Modules in ABAP — SAP Help Portal](https://help.sap.com/docs/ABAP_PLATFORM_NEW/753088fc00704d0a80e7fbd6803c8adb/48a0f18641bc062de10000000a42189d.html)

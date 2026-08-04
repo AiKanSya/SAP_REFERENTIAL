@@ -1,6 +1,6 @@
-# PILE D’APPELS ET CONTEXTE D’EXÉCUTION
+# 9. PILE D’APPELS ET CONTEXTE D’EXÉCUTION
 
-## RÉSULTAT ATTENDU
+## 9.A RÉSULTAT ATTENDU
 
 - Comprendre comment le traitement a atteint la ligne courante
 - Naviguer entre appelants et appelés
@@ -8,7 +8,7 @@
 - Distinguer pile ABAP et pile Dynpro
 - Identifier le premier appel métier pertinent
 
-## PRINCIPE
+## 9.B PRINCIPE
 
 La pile d’appels représente les blocs actifs qui ont conduit à l’instruction courante.
 
@@ -20,7 +20,7 @@ flowchart TD
     D --> E["Instruction courante"]
 ```
 
-## INFORMATIONS DISPONIBLES
+## 9.C INFORMATIONS DISPONIBLES
 
 Selon la version, une entrée de pile peut indiquer :
 
@@ -32,7 +32,7 @@ Selon la version, une entrée de pile peut indiquer :
 - include ;
 - numéro de ligne.
 
-## NAVIGUER DANS LA PILE
+## 9.D NAVIGUER DANS LA PILE
 
 En sélectionnant un niveau, le débogueur repositionne le contexte visible :
 
@@ -43,7 +43,7 @@ En sélectionnant un niveau, le débogueur repositionne le contexte visible :
 
 La navigation dans la pile n’exécute pas le programme. Elle change uniquement le contexte d’analyse.
 
-## TROUVER LA CAUSE
+## 9.E TROUVER LA CAUSE
 
 Lorsqu’une erreur apparaît dans une routine générique standard, remonter la pile jusqu’au premier niveau qui :
 
@@ -54,7 +54,7 @@ Lorsqu’une erreur apparaît dans une routine générique standard, remonter la
 
 La ligne qui déclenche l’erreur n’est pas toujours la ligne qui crée sa cause.
 
-## PILE DYNPRO
+## 9.F PILE DYNPRO
 
 Dans une application classique, la pile peut inclure :
 
@@ -65,47 +65,47 @@ Dans une application classique, la pile peut inclure :
 
 Un contexte Dynpro expose principalement les données globales du programme d’écran. Les variables locales appartiennent aux procédures ABAP actives.
 
-## PROGRAMMES SYSTÈME
+## 9.G PROGRAMMES SYSTÈME
 
 Les programmes système peuvent être masqués ou affichés différemment. Leur analyse nécessite l’activation du débogage système et les autorisations appropriées.
 
 Activer ce mode uniquement lorsque le problème se situe réellement dans une couche système ou standard.
 
-## PROCESS
+## 9.H PROCESS
 
-### Étape 1 — Arrêter au point fautif
+### 9.H.1 Étape 1 — Arrêter au point fautif
 
 Placer un breakpoint où la donnée incorrecte est observée et reproduire avec le même utilisateur et le même mode d’exécution.
 
-### Étape 2 — Lire la pile du bas vers le haut
+### 9.H.2 Étape 2 — Lire la pile du bas vers le haut
 
 Identifier programme d’entrée et appels successifs. Relever le premier objet client ou point d’extension dans une pile standard.
 
-### Étape 3 — Examiner chaque frame
+### 9.H.3 Étape 3 — Examiner chaque frame
 
 Sélectionner les niveaux et comparer paramètres reçus, variables locales et valeurs retournées. Trouver le dernier niveau où la donnée était correcte.
 
-### Étape 4 — Isoler la frontière fautive
+### 9.H.4 Étape 4 — Isoler la frontière fautive
 
 Descendre d’un appel depuis ce dernier état correct. Cette frontière identifie l’interface ou la transformation responsable.
 
-### Étape 5 — Confirmer le contexte
+### 9.H.5 Étape 5 — Confirmer le contexte
 
 Relever utilisateur, transaction, programme principal, unité RFC ou job. Le diagnostic est terminé lorsque l’appelant, l’appelé et le paramètre divergent sont identifiés.
 
-## VÉRIFICATION
+## 9.I VÉRIFICATION
 
 - Le scénario reproduit correspond au même utilisateur, mandant, transaction et jeu de données.
 - L’horodatage et l’identifiant de l’analyse sont conservés.
 - La cause retenue est soutenue par une ligne source, une trace ou une valeur observée.
 - Après correction, le même scénario ne reproduit plus le défaut et le résultat métier reste identique.
 
-## ERREURS FRÉQUENTES
+## 9.J ERREURS FRÉQUENTES
 
 - Modifier les données dans le débogueur puis considérer le résultat comme reproductible.
 - Laisser une trace active trop longtemps.
 
-## FICHE DE CONTRÔLE À COPIER
+## 9.K FICHE DE CONTRÔLE À COPIER
 
 ```text
 Système / SID       :
@@ -120,14 +120,14 @@ Horodatage          :
 Ordre de transport  :
 ```
 
-## TERMES DU LEXIQUE
+## 9.L TERMES DU LEXIQUE
 
 - [Breakpoint](<../🧩 00 ├── LEXIQUE SAP ET ABAP/08 ├── EXECUTION EXPLOITATION ET ADMINISTRATION.md#breakpoint>)
 - [Watchpoint](<../🧩 00 ├── LEXIQUE SAP ET ABAP/08 ├── EXECUTION EXPLOITATION ET ADMINISTRATION.md#watchpoint>)
 - [Dump ABAP](<../🧩 00 ├── LEXIQUE SAP ET ABAP/08 ├── EXECUTION EXPLOITATION ET ADMINISTRATION.md#dump-abap>)
 - [Trace](<../🧩 00 ├── LEXIQUE SAP ET ABAP/08 ├── EXECUTION EXPLOITATION ET ADMINISTRATION.md#trace>)
 
-## RÉFÉRENCES OFFICIELLES SAP
+## 9.M RÉFÉRENCES OFFICIELLES SAP
 
 - [Call Stack — SAP Help Portal](https://help.sap.com/docs/ABAP_PLATFORM_NEW/ba879a6e2ea04d9bb94c7ccd7cdac446/88feb68f058446539bb51e8d95caac00.html)
 - [System Debugging — SAP Help Portal](https://help.sap.com/docs/ABAP_PLATFORM_NEW/ba879a6e2ea04d9bb94c7ccd7cdac446/4925636629ac16b7e10000000a42189d.html)

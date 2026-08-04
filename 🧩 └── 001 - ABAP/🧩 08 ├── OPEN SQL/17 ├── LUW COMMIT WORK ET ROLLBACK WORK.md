@@ -1,8 +1,6 @@
-# LUW, C" Modifier uniquement les données de la table cible maîtrisée.
-" Modifier uniquement les données de la table cible maîtrisée.
-OMMIT WORK ET ROLLBACK WORK
+# 17. LUW, COMMIT WORK ET ROLLBACK WORK
 
-## RÉSULTAT ATTENDU
+## 17.A RÉSULTAT ATTENDU
 
 - Comprendre la différence entre SAP LUW et database LUW
 - Savoir quand une modification devient persistante
@@ -10,7 +8,7 @@ OMMIT WORK ET ROLLBACK WORK
 - Éviter les validations techniques placées au mauvais niveau
 - Préparer le futur dossier transactionnel
 
-## DATABASE LUW ET SAP LUW
+## 17.B DATABASE LUW ET SAP LUW
 
 Une unité logique de travail de base de données est délimitée par un commit ou un rollback de la base.
 
@@ -24,7 +22,7 @@ flowchart LR
     D --> E["Fin de la SAP LUW"]
 ```
 
-## COMMIT WORK
+## 17.C COMMIT WORK
 
 `COMMIT WORK` termine la SAP LUW courante et déclenche notamment les traitements enregistrés en update task.
 
@@ -42,7 +40,7 @@ ENDIF.
 > [!WARNING]
 > Ne pas placer un `COMMIT WORK` dans une méthode technique réutilisable, un exit, une BAdI ou une fonction appelée au milieu d’un processus sans contrat explicite. Le niveau appelant doit généralement contrôler la transaction.
 
-## ROLLBACK WORK
+## 17.D ROLLBACK WORK
 
 `ROLLBACK WORK` annule les modifications non validées de la SAP LUW courante et supprime certains enregistrements différés associés.
 
@@ -53,31 +51,31 @@ IF lv_error = abap_true.
 ENDIF.
 ```
 
-## VALIDATION IMPLICITE
+## 17.E VALIDATION IMPLICITE
 
 Plusieurs événements du runtime SAP peuvent provoquer une fin de LUW ou un commit implicite selon le contexte. Il est donc incorrect de considérer qu’une transaction ABAP correspond toujours à une seule transaction de base de données du début à la fin de l’écran.
 
-## BAPI ET COMMIT
+## 17.F BAPI ET COMMIT
 
 De nombreuses BAPI de modification ne réalisent pas elles-mêmes le commit. L’appelant utilise généralement les mécanismes BAPI prévus pour valider ou annuler après analyse des messages retournés.
 
 Le sujet sera détaillé dans le dossier consacré aux modules fonction, RFC et BAPI.
 
-## VÉRIFICATION
+## 17.G VÉRIFICATION
 
 - Le contrôle syntaxique réussit.
 - La version active correspond au code sauvegardé.
 - L’exécution produit le résultat décrit dans le chapitre.
 - Les cas vide, limite et erreur sont testés séparément lorsque la syntaxe le permet.
 
-## ERREURS FRÉQUENTES
+## 17.H ERREURS FRÉQUENTES
 
 - Copier un exemple sans adapter les types, noms d’objets et données disponibles dans le système.
 - Tester uniquement le cas nominal et ignorer les valeurs initiales, absentes ou invalides.
 - Lire toutes les colonnes ou toutes les lignes par défaut.
 - Effectuer des commits dans une méthode réutilisable sans contrat explicite.
 
-## SNIPPET À RÉUTILISER
+## 17.I SNIPPET À RÉUTILISER
 
 > [!NOTE]
 > Adapter les noms `Z*`, les types DDIC, les données et les autorisations au système cible. Effectuer un contrôle syntaxique avant activation.
@@ -91,7 +89,7 @@ IF sy-subrc = 0.
 ENDIF.
 ```
 
-## TERMES DU LEXIQUE
+## 17.J TERMES DU LEXIQUE
 
 - [COMMIT WORK](<../🧩 00 ├── LEXIQUE SAP ET ABAP/08 ├── EXECUTION EXPLOITATION ET ADMINISTRATION.md#commit-work>)
 - [ROLLBACK WORK](<../🧩 00 ├── LEXIQUE SAP ET ABAP/08 ├── EXECUTION EXPLOITATION ET ADMINISTRATION.md#rollback-work>)
@@ -100,7 +98,7 @@ ENDIF.
 - [Table transparente](<../🧩 00 ├── LEXIQUE SAP ET ABAP/05 ├── DONNEES DICTIONNAIRE ET BASE DE DONNEES.md#table-transparente>)
 - [LUW base de données](<../🧩 00 ├── LEXIQUE SAP ET ABAP/08 ├── EXECUTION EXPLOITATION ET ADMINISTRATION.md#luw-base>)
 
-## RÉFÉRENCES OFFICIELLES SAP
+## 17.K RÉFÉRENCES OFFICIELLES SAP
 
 - [LUWs in ABAP — SAP Help Portal](https://help.sap.com/docs/ABAP_PLATFORM_NEW/8132142fd1a144a59303663a03a7c2d4/54f5462a9604498382319304869a4280.html)
 - [COMMIT WORK — ABAP Keyword Documentation](https://help.sap.com/doc/abapdocu_latest_index_htm/latest/en-US/ABAPCOMMIT.html)

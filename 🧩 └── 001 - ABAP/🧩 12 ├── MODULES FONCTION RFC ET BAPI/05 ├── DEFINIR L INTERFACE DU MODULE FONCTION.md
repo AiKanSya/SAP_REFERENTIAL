@@ -1,13 +1,13 @@
-# DÉFINIR L INTERFACE DU MODULE FONCTION
+# 5. DÉFINIR L INTERFACE DU MODULE FONCTION
 
-## RÉSULTAT ATTENDU
+## 5.A RÉSULTAT ATTENDU
 
 - Comprendre le sens des paramètres de l’interface
 - Choisir entre import, export, modification et tables
 - Définir les paramètres facultatifs et valeurs par défaut
 - Construire un contrat minimal et explicite
 
-## PERSPECTIVE DU MODULE
+## 5.B PERSPECTIVE DU MODULE
 
 Les directions sont définies du point de vue du module fonction.
 
@@ -26,7 +26,7 @@ flowchart LR
     D --> E["Appelant IMPORTING"]
 ```
 
-## EXEMPLE D INTERFACE
+## 5.C EXEMPLE D INTERFACE
 
 Module fictif `Z_DEV_PRODUCT_GET` :
 
@@ -44,15 +44,15 @@ EXCEPTIONS
 
 L’appelant fournit le numéro article et reçoit la structure uniquement lorsque la lecture réussit.
 
-## PARAMÈTRES CHANGING
+## 5.D PARAMÈTRES CHANGING
 
 Utiliser `CHANGING` seulement lorsqu’une donnée représente réellement un état d’entrée-sortie. Ne pas l’utiliser pour réduire artificiellement le nombre de paramètres.
 
-## PARAMÈTRES TABLES
+## 5.E PARAMÈTRES TABLES
 
 `TABLES` est une forme classique encore présente dans de nombreuses API. Pour un nouveau module non contraint par un framework, préférer généralement un paramètre tabulaire correctement typé dans `IMPORT`, `EXPORT` ou `CHANGING` lorsque la version le permet.
 
-## FACULTATIF ET VALEUR PAR DÉFAUT
+## 5.F FACULTATIF ET VALEUR PAR DÉFAUT
 
 Un paramètre facultatif doit avoir un comportement documenté lorsque l’appelant ne le fournit pas.
 
@@ -64,7 +64,7 @@ IV_LANGUAGE TYPE SYLANGU OPTIONAL
 
 Le code peut ensuite utiliser `sy-langu` si le paramètre est initial. Éviter les paramètres facultatifs dont l’absence produit un comportement ambigu.
 
-## CONTRAT MINIMAL
+## 5.G CONTRAT MINIMAL
 
 Une bonne interface :
 
@@ -75,40 +75,40 @@ Une bonne interface :
 - documente les unités, formats et règles ;
 - sépare résultat métier et diagnostic.
 
-## PROCESS
+## 5.H PROCESS
 
-### Étape 1 — Écrire le contrat avant les onglets
+### 5.H.1 Étape 1 — Écrire le contrat avant les onglets
 
 Lister données nécessaires, résultats, valeurs modifiées et erreurs. Une donnée uniquement lue appartient à Import ; un résultat à Export ; une valeur lue puis modifiée à Changing.
 
-### Étape 2 — Ajouter les paramètres
+### 5.H.2 Étape 2 — Ajouter les paramètres
 
 Dans `SE37`, ouvrir le module en modification et saisir les paramètres dans les onglets correspondants. Utiliser des types DDIC adaptés au partage et des noms décrivant le rôle métier.
 
-### Étape 3 — Définir obligation et passage
+### 5.H.3 Étape 3 — Définir obligation et passage
 
 Marquer les paramètres facultatifs uniquement si le code possède un comportement clair en leur absence. Choisir passage par valeur ou référence selon le contrat, sans utiliser Changing comme raccourci pour multiplier les sorties.
 
-### Étape 4 — Définir les erreurs
+### 5.H.4 Étape 4 — Définir les erreurs
 
 Ajouter exceptions classiques ou structure de retour selon le type d’API. Chaque erreur doit être déclenchée par une condition identifiable et documentée.
 
-### Étape 5 — Tester chaque combinaison
+### 5.H.5 Étape 5 — Tester chaque combinaison
 
 Exécuter tous les paramètres obligatoires, chaque option facultative et chaque exception. L’interface est validée lorsque l’appelant peut comprendre le résultat uniquement depuis la signature et la documentation.
 
-## VÉRIFICATION
+## 5.I VÉRIFICATION
 
 - Le lecteur peut expliquer la différence entre cette notion et les concepts proches.
 - Le choix technique est justifié par un besoin concret, pas uniquement par habitude.
 - Les limites liées à la release, aux autorisations et au contexte d’exécution sont identifiées.
 
-## ERREURS FRÉQUENTES
+## 5.J ERREURS FRÉQUENTES
 
 - Appeler un module fonction sans lire sa documentation et ses exceptions.
 - Supposer qu’une BAPI effectue automatiquement le commit.
 
-## FICHE DE CONTRÔLE À COPIER
+## 5.K FICHE DE CONTRÔLE À COPIER
 
 ```text
 Système / SID       :
@@ -123,7 +123,7 @@ Horodatage          :
 Ordre de transport  :
 ```
 
-## TERMES DU LEXIQUE
+## 5.L TERMES DU LEXIQUE
 
 - [Module fonction](<../🧩 00 ├── LEXIQUE SAP ET ABAP/06 ├── PROGRAMMES CLASSES ET OBJETS TECHNIQUES.md#module-fonction>)
 - [Interface](<../🧩 00 ├── LEXIQUE SAP ET ABAP/07 ├── INTERFACES ET INTEGRATION.md#interface-integration>)
@@ -132,7 +132,7 @@ Ordre de transport  :
 - [BAPI](<../🧩 00 ├── LEXIQUE SAP ET ABAP/10 └── ACRONYMES SAP.md#acro-bapi>)
 - [Destination RFC](<../🧩 00 ├── LEXIQUE SAP ET ABAP/07 ├── INTERFACES ET INTEGRATION.md#destination-rfc>)
 
-## RÉFÉRENCES OFFICIELLES SAP
+## 5.M RÉFÉRENCES OFFICIELLES SAP
 
 - [Specifying Parameters and Exceptions — SAP Help Portal](https://help.sap.com/docs/ABAP_PLATFORM_2021/bd833c8355f34e96a6e83096b38bf192/d1801f0f454211d189710000e8322d00.html)
 - [Interface Parameters of a Function Module — SAP Help Portal](https://help.sap.com/docs/SAP_NETWEAVER_702/ff59ad5d6c55101492f7f1c64dee0529/d1801ece454211d189710000e8322d00.html)

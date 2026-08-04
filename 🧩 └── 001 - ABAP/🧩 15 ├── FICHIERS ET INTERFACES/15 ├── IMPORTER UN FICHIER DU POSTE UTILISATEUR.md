@@ -1,12 +1,12 @@
-# IMPORTER UN FICHIER DU POSTE UTILISATEUR
+# 15. IMPORTER UN FICHIER DU POSTE UTILISATEUR
 
-## RÉSULTAT ATTENDU
+## 15.A RÉSULTAT ATTENDU
 
 - Charger un fichier local dans une table interne
 - Choisir le type de fichier adapté
 - Contrôler les erreurs de frontend
 
-## IMPORT TEXTE
+## 15.B IMPORT TEXTE
 
 ```abap
 DATA lt_lines    TYPE STANDARD TABLE OF string WITH EMPTY KEY.
@@ -32,7 +32,7 @@ ENDIF.
 
 Les exceptions exactes et les paramètres doivent être contrôlés dans `SE24`, car ils peuvent différer selon le niveau de composant.
 
-## TYPES DE FICHIER
+## 15.C TYPES DE FICHIER
 
 | Type  | Usage                                                   |
 | ----- | ------------------------------------------------------- |
@@ -42,58 +42,58 @@ Les exceptions exactes et les paramètres doivent être contrôlés dans `SE24`,
 
 Pour un contrat d’interface strict, importer des lignes texte puis effectuer soi-même le parsing évite de dépendre de comportements implicites.
 
-## LIMITES
+## 15.D LIMITES
 
 - Impossible en arrière-plan.
 - Le fichier traverse la connexion frontend vers le serveur ABAP.
 - Le volume doit rester compatible avec une interaction utilisateur.
 - La sélection locale ne dispense pas des contrôles métier.
 
-## ARCHITECTURE
+## 15.E ARCHITECTURE
 
 La méthode d’import doit retourner un contenu brut ou une table de lignes. Une méthode distincte transforme ce contenu en données métier. Le test du parsing devient alors indépendant de SAP GUI.
 
-## PROCESS
+## 15.F PROCESS
 
-### ÉTAPE 1 — CONTRÔLER LE CONTEXTE D’EXÉCUTION
+### 15.F.1 ÉTAPE 1 — CONTRÔLER LE CONTEXTE D’EXÉCUTION
 
 Réserver l’import local à une exécution en mode dialogue avec SAP GUI. Tester la disponibilité des services frontend avant d’afficher une boîte de dialogue. Si le même traitement doit fonctionner en job, prévoir une entrée serveur distincte et réutiliser uniquement le parseur et le traitement métier.
 
-### ÉTAPE 2 — FAIRE SÉLECTIONNER LE FICHIER
+### 15.F.2 ÉTAPE 2 — FAIRE SÉLECTIONNER LE FICHIER
 
 Appeler `CL_GUI_FRONTEND_SERVICES=>FILE_OPEN_DIALOG` avec un filtre correspondant au format accepté. Exploiter uniquement la sélection renvoyée par la méthode. Si l’utilisateur annule ou si aucun fichier n’est sélectionné, quitter sans appel à `GUI_UPLOAD` et sans produire de message d’erreur technique trompeur.
 
-### ÉTAPE 3 — CHARGER LE CONTENU BRUT
+### 15.F.3 ÉTAPE 3 — CHARGER LE CONTENU BRUT
 
 Appeler `CL_GUI_FRONTEND_SERVICES=>GUI_UPLOAD` avec le chemin validé et un type de fichier adapté. Charger un fichier texte dans une table de lignes et un fichier binaire dans une table de type compatible avec l’API. Conserver le contenu brut séparément des données métier afin de pouvoir diagnostiquer le parsing.
 
-### ÉTAPE 4 — VALIDER LE CONTRAT DE FICHIER
+### 15.F.4 ÉTAPE 4 — VALIDER LE CONTRAT DE FICHIER
 
 Contrôler l’extension autorisée, la taille, l’encodage, l’en-tête, le nombre de colonnes et les séparateurs avant toute mise à jour métier. Affecter un numéro à chaque ligne source. Une ligne invalide doit produire un rejet localisable indiquant la ligne, le champ, la valeur et la règle violée.
 
-### ÉTAPE 5 — TRANSFORMER ET TRAITER LES DONNÉES
+### 15.F.5 ÉTAPE 5 — TRANSFORMER ET TRAITER LES DONNÉES
 
 Convertir les lignes validées vers une structure typée. Exécuter ensuite les contrôles métier dans une méthode indépendante du frontend. Définir explicitement si une erreur annule tout le fichier ou seulement l’unité concernée ; aligner les `COMMIT WORK` et les reprises sur cette unité transactionnelle.
 
-### ÉTAPE 6 — VÉRIFIER LES RÉSULTATS ET LA REPRISE
+### 15.F.6 ÉTAPE 6 — VÉRIFIER LES RÉSULTATS ET LA REPRISE
 
 Comparer le nombre de lignes lues, acceptées, rejetées et enregistrées. Tester un fichier valide, vide, mal encodé, incomplet, dupliqué et partiellement incorrect. Rejouer le même fichier : le résultat doit respecter la règle d’idempotence documentée et ne pas créer de doublons silencieux.
 
-## VÉRIFICATION
+## 15.G VÉRIFICATION
 
 - Le scénario reproduit correspond au même utilisateur, mandant, transaction et jeu de données.
 - L’horodatage et l’identifiant de l’analyse sont conservés.
 - La cause retenue est soutenue par une ligne source, une trace ou une valeur observée.
 - Après correction, le même scénario ne reproduit plus le défaut et le résultat métier reste identique.
 
-## ERREURS FRÉQUENTES
+## 15.H ERREURS FRÉQUENTES
 
 - Copier un exemple sans adapter les types, noms d’objets et données disponibles dans le système.
 - Tester uniquement le cas nominal et ignorer les valeurs initiales, absentes ou invalides.
 - Mélanger fichiers frontend et serveur dans un même scénario.
 - Parser un CSV par simple séparation alors que les champs peuvent être échappés.
 
-## SNIPPET À RÉUTILISER
+## 15.I SNIPPET À RÉUTILISER
 
 > [!NOTE]
 > Adapter les noms `Z*`, les types DDIC, les données et les autorisations au système cible. Effectuer un contrôle syntaxique avant activation.
@@ -120,7 +120,7 @@ IF sy-subrc <> 0.
 ENDIF.
 ```
 
-## TERMES DU LEXIQUE
+## 15.J TERMES DU LEXIQUE
 
 - [Import](<../🧩 00 ├── LEXIQUE SAP ET ABAP/03 ├── REPOSITORY PACKAGES ET TRANSPORTS.md#import-transport>)
 - [Interface](<../🧩 00 ├── LEXIQUE SAP ET ABAP/07 ├── INTERFACES ET INTEGRATION.md#interface-integration>)
@@ -129,7 +129,7 @@ ENDIF.
 - [CSV](<../🧩 00 ├── LEXIQUE SAP ET ABAP/07 ├── INTERFACES ET INTEGRATION.md#csv>)
 - [Encodage](<../🧩 00 ├── LEXIQUE SAP ET ABAP/07 ├── INTERFACES ET INTEGRATION.md#encodage>)
 
-## RÉFÉRENCES OFFICIELLES SAP
+## 15.K RÉFÉRENCES OFFICIELLES SAP
 
 - [GUI_UPLOAD — SAP Help Portal](https://help.sap.com/docs/SAP_NETWEAVER_702/ff557c806c5510149761a0c32c810458/1dac0155370648569fe843170e07c4da.html)
 - [Files on the Presentation Server — ABAP Keyword Documentation](https://help.sap.com/doc/abapdocu_latest_index_htm/latest/en-US/ABENFRONTEND_FILES.html)

@@ -1,11 +1,6 @@
-# RÉCEPT" Lire uniquement les colonnes et les lignes nécessaires.
-" Lire uniquement les colonnes et les lignes nécessaires.
-" Lire uniquement les colonnes et les lignes nécessaires.
-" Lire uniquement les colonnes et les lignes nécessaires.
-" Lire uniquement les colonnes et les lignes nécessaires.
-ION DES RÉSULTATS AVEC INTO
+# 7. RÉCEPTION DES RÉSULTATS AVEC INTO
 
-## RÉSULTAT ATTENDU
+## 7.A RÉSULTAT ATTENDU
 
 - Recevoir une ligne dans une structure
 - Recevoir plusieurs lignes dans une table interne
@@ -13,7 +8,7 @@ ION DES RÉSULTATS AVEC INTO
 - Utiliser les déclarations inline
 - Éviter les incompatibilités de type
 
-## INTO POUR UNE LIGNE
+## 7.B INTO POUR UNE LIGNE
 
 ```abap
 " Exemple à éviter : identifier le défaut avant de choisir la correction.
@@ -27,7 +22,7 @@ SELECT SINGLE carrid, carrname, currcode
 
 La structure cible peut contenir plus de composants que la liste sélectionnée. Seuls les composants correspondants sont alimentés.
 
-## INTO TABLE POUR PLUSIEURS LIGNES
+## 7.C INTO TABLE POUR PLUSIEURS LIGNES
 
 ```abap
 " Lire uniquement les colonnes et les lignes nécessaires.
@@ -44,7 +39,7 @@ SELECT carrid, carrname
   INTO TABLE @lt_carriers.
 ```
 
-## DÉCLARATION INLINE
+## 7.D DÉCLARATION INLINE
 
 ```abap
 " Lire uniquement les colonnes et les lignes nécessaires.
@@ -57,13 +52,13 @@ Le type de `lt_carriers` est construit à partir de la liste de sélection.
 
 Cette forme est concise. Un type explicite reste préférable lorsque le résultat constitue une interface réutilisée ou doit rester stable malgré l’évolution de la requête.
 
-## AFFECTATION PAR POSITION
+## 7.E AFFECTATION PAR POSITION
 
 Sans variante `CORRESPONDING FIELDS`, l’affectation suit la structure attendue par la syntaxe et les positions des colonnes.
 
 Une modification de l’ordre des colonnes peut donc modifier l’affectation ou provoquer une incompatibilité.
 
-## AFFECTATION PAR NOM
+## 7.F AFFECTATION PAR NOM
 
 ```abap
 " Lire uniquement les colonnes et les lignes nécessaires.
@@ -77,7 +72,7 @@ Cette variante associe les colonnes aux composants de même nom.
 > [!IMPORTANT]
 > Un alias dans la liste de sélection change le nom utilisé pour la correspondance.
 
-## APPENDING TABLE
+## 7.G APPENDING TABLE
 
 ```abap
 " Lire uniquement les colonnes et les lignes nécessaires.
@@ -89,21 +84,21 @@ SELECT carrid, carrname
 
 Cette variante conserve les lignes déjà présentes. Elle doit être utilisée seulement lorsque l’accumulation est voulue et que la gestion des doublons est maîtrisée.
 
-## VÉRIFICATION
+## 7.H VÉRIFICATION
 
 - Le contrôle syntaxique réussit.
 - La version active correspond au code sauvegardé.
 - L’exécution produit le résultat décrit dans le chapitre.
 - Les cas vide, limite et erreur sont testés séparément lorsque la syntaxe le permet.
 
-## ERREURS FRÉQUENTES
+## 7.I ERREURS FRÉQUENTES
 
 - Copier un exemple sans adapter les types, noms d’objets et données disponibles dans le système.
 - Tester uniquement le cas nominal et ignorer les valeurs initiales, absentes ou invalides.
 - Lire toutes les colonnes ou toutes les lignes par défaut.
 - Effectuer des commits dans une méthode réutilisable sans contrat explicite.
 
-## SNIPPET À RÉUTILISER
+## 7.J SNIPPET À RÉUTILISER
 
 > [!NOTE]
 > Adapter les noms `Z*`, les types DDIC, les données et les autorisations au système cible. Effectuer un contrôle syntaxique avant activation.
@@ -123,19 +118,19 @@ SELECT carrid, carrname
   INTO TABLE @lt_carriers.
 ```
 
-## TERMES DU LEXIQUE
+## 7.K TERMES DU LEXIQUE
 
 - [SQL](<../🧩 00 ├── LEXIQUE SAP ET ABAP/10 └── ACRONYMES SAP.md#acro-sql>)
 - [MANDT](<../🧩 00 ├── LEXIQUE SAP ET ABAP/05 ├── DONNEES DICTIONNAIRE ET BASE DE DONNEES.md#mandt>)
 - [Table transparente](<../🧩 00 ├── LEXIQUE SAP ET ABAP/05 ├── DONNEES DICTIONNAIRE ET BASE DE DONNEES.md#table-transparente>)
 - [LUW base de données](<../🧩 00 ├── LEXIQUE SAP ET ABAP/08 ├── EXECUTION EXPLOITATION ET ADMINISTRATION.md#luw-base>)
 
-## MODÈLE DE DÉMONSTRATION SFLIGHT
+## 7.L MODÈLE DE DÉMONSTRATION SFLIGHT
 
 > [!NOTE]
 > Les tables `SCARR`, `SPFLI` et `SFLIGHT` appartiennent au modèle de démonstration SAP et peuvent être absentes ou non alimentées dans certains systèmes. Dans ce cas, remplacer les exemples par une table Z de démonstration ou par une source en lecture seule autorisée, sans modifier une table applicative standard.
 
-## RÉFÉRENCES OFFICIELLES SAP
+## 7.M RÉFÉRENCES OFFICIELLES SAP
 
 - [INTO Clause — ABAP Keyword Documentation](https://help.sap.com/doc/abapdocu_latest_index_htm/latest/en-US/ABAPINTO_CLAUSE.html)
 - [Working with Structured Data Objects — SAP Learning](https://learning.sap.com/courses/basic-abap-programming/working-with-structured-data-objects_ca4e0b14-57ad-4993-a83b-cca17980399c)

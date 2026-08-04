@@ -1,6 +1,6 @@
-# ÉCRAN DE SÉLECTION SIMPLE
+# 11. ÉCRAN DE SÉLECTION SIMPLE
 
-## RÉSULTAT ATTENDU
+## 11.A RÉSULTAT ATTENDU
 
 - Définir l’écran de sélection standard d’un programme exécutable
 - Utiliser `PARAMETERS`, `SELECT-OPTIONS` et `SELECTION-SCREEN`
@@ -8,7 +8,7 @@
 - Maintenir les textes affichés à l’utilisateur
 - Valider les saisies avant le traitement principal
 
-## VUE D’ENSEMBLE
+## 11.B VUE D’ENSEMBLE
 
 ```mermaid
 flowchart TD
@@ -21,7 +21,7 @@ flowchart TD
     E --> F["Événements AT SELECTION-SCREEN"]
 ```
 
-## ÉCRAN STANDARD
+## 11.C ÉCRAN STANDARD
 
 Un programme exécutable possède un écran de sélection standard généré automatiquement lorsqu’il contient des instructions de sélection.
 
@@ -33,7 +33,7 @@ Les éléments sont définis dans la partie déclarative globale avec :
 
 Le numéro technique de l’écran standard est généralement `1000`.
 
-## `PARAMETERS`
+## 11.D `PARAMETERS`
 
 `PARAMETERS` crée un objet de données global et un champ de saisie associé.
 
@@ -41,7 +41,7 @@ Le numéro technique de l’écran standard est généralement `1000`.
 PARAMETERS p_name TYPE c LENGTH 30.
 ```
 
-### OPTIONS COURANTES
+### 11.D.1 OPTIONS COURANTES
 
 ```abap
 PARAMETERS p_name   TYPE c LENGTH 30 LOWER CASE OBLIGATORY.
@@ -59,7 +59,7 @@ PARAMETERS p_mode_b RADIOBUTTON GROUP mod.
 | `AS CHECKBOX`       | Affiche une case à cocher                                                  |
 | `RADIOBUTTON GROUP` | Crée un groupe de boutons radio                                            |
 
-## `SELECT-OPTIONS`
+## 11.E `SELECT-OPTIONS`
 
 `SELECT-OPTIONS` crée un critère de sélection et une table interne de sélection.
 
@@ -87,9 +87,9 @@ Exemple de contenu :
 > [!IMPORTANT]
 > Un `SELECT-OPTIONS` ne contient pas simplement deux valeurs. Il représente un ensemble de conditions d’inclusion et d’exclusion.
 
-## ORGANISATION AVEC `SELECTION-SCREEN`
+## 11.F ORGANISATION AVEC `SELECTION-SCREEN`
 
-### BLOC AVEC CADRE
+### 11.F.1 BLOC AVEC CADRE
 
 ```abap
 SELECTION-SCREEN BEGIN OF BLOCK b_main WITH FRAME TITLE text-001.
@@ -98,7 +98,7 @@ SELECTION-SCREEN BEGIN OF BLOCK b_main WITH FRAME TITLE text-001.
 SELECTION-SCREEN END OF BLOCK b_main.
 ```
 
-### LIGNE ET COMMENTAIRE
+### 11.F.2 LIGNE ET COMMENTAIRE
 
 ```abap
 SELECTION-SCREEN BEGIN OF LINE.
@@ -109,7 +109,7 @@ SELECTION-SCREEN END OF LINE.
 
 Les constructions complexes doivent rester justifiées. Un écran surchargé augmente le risque de saisie incohérente.
 
-## TEXTES DE SÉLECTION
+## 11.G TEXTES DE SÉLECTION
 
 Sans texte maintenu, l’écran peut afficher le nom technique du paramètre.
 
@@ -130,7 +130,7 @@ Exemples :
 > [!IMPORTANT]
 > Les textes utilisateur ne doivent pas être codés en dur lorsqu’ils doivent être traduits ou maintenus comme éléments de texte.
 
-## INITIALISATION
+## 11.H INITIALISATION
 
 ```abap
 PARAMETERS p_date TYPE sy-datum.
@@ -153,9 +153,9 @@ INITIALIZATION.
 
 La syntaxe `VALUE #( )` nécessite une version ABAP compatible. Sur un système plus ancien, remplir une ligne puis utiliser `APPEND`.
 
-## VALIDATION
+## 11.I VALIDATION
 
-### CHAMP UNIQUE
+### 11.I.1 CHAMP UNIQUE
 
 ```abap
 AT SELECTION-SCREEN ON p_count.
@@ -164,7 +164,7 @@ AT SELECTION-SCREEN ON p_count.
   ENDIF.
 ```
 
-### COHÉRENCE ENTRE CHAMPS
+### 11.I.2 COHÉRENCE ENTRE CHAMPS
 
 ```abap
 AT SELECTION-SCREEN.
@@ -175,7 +175,7 @@ AT SELECTION-SCREEN.
 
 Les contrôles doivent être placés avant le traitement principal afin de ne pas lancer un traitement avec des critères invalides.
 
-## EXEMPLE COMPLET
+## 11.J EXEMPLE COMPLET
 
 ```abap
 REPORT zdemo_selection_screen.
@@ -208,7 +208,7 @@ START-OF-SELECTION.
 TEXT-001 = Critères principaux
 ```
 
-## POINTS DE VIGILANCE
+## 11.K POINTS DE VIGILANCE
 
 - utiliser des types cohérents avec les données métier ;
 - maintenir les textes de sélection ;
@@ -218,41 +218,41 @@ TEXT-001 = Critères principaux
 - ne pas construire une clause SQL dynamique non maîtrisée à partir des saisies ;
 - tester les inclusions, exclusions et intervalles d’un `SELECT-OPTIONS`.
 
-## PROCESS
+## 11.L PROCESS
 
-### Étape 1 — Déclarer les critères
+### 11.L.1 Étape 1 — Déclarer les critères
 
 Créer un report Z dans `SE38`. Déclarer un `PARAMETERS` pour une valeur unique et un `SELECT-OPTIONS` référencé à un champ DDIC. Vérifier que les libellés et aides de saisie proviennent des références attendues.
 
-### Étape 2 — Définir les valeurs initiales
+### 11.L.2 Étape 2 — Définir les valeurs initiales
 
 Ajouter une valeur par défaut uniquement si elle est sûre pour tous les utilisateurs concernés. Exécuter une première fois et confirmer visuellement la valeur affichée ; sinon supprimer la valeur par défaut.
 
-### Étape 3 — Tester les formes de sélection
+### 11.L.3 Étape 3 — Tester les formes de sélection
 
 Activer puis exécuter avec `F8`. Tester séparément une valeur unique, un intervalle, une exclusion et une sélection vide. À chaque exécution, afficher ou observer les lignes de la range table afin de contrôler `SIGN`, `OPTION`, `LOW` et `HIGH`.
 
-### Étape 4 — Valider une variante
+### 11.L.4 Étape 4 — Valider une variante
 
 Sauvegarder une variante de test avec un nom explicite, quitter le report puis le relancer avec cette variante. Comparer tous les critères restaurés avec ceux enregistrés.
 
 Le chapitre est terminé lorsque chaque forme de sélection produit les lignes attendues et que la variante restitue exactement les valeurs sauvegardées.
 
-## VÉRIFICATION
+## 11.M VÉRIFICATION
 
 - Le contrôle syntaxique réussit.
 - La version active correspond au code sauvegardé.
 - L’exécution produit le résultat décrit dans le chapitre.
 - Les cas vide, limite et erreur sont testés séparément lorsque la syntaxe le permet.
 
-## ERREURS FRÉQUENTES
+## 11.N ERREURS FRÉQUENTES
 
 - Copier un exemple sans adapter les types, noms d’objets et données disponibles dans le système.
 - Tester uniquement le cas nominal et ignorer les valeurs initiales, absentes ou invalides.
 - Intervenir dans le mauvais système ou mandant.
 - Confondre sauvegarde et activation.
 
-## SNIPPET À RÉUTILISER
+## 11.O SNIPPET À RÉUTILISER
 
 > [!NOTE]
 > Adapter les noms `Z*`, les types DDIC, les données et les autorisations au système cible. Effectuer un contrôle syntaxique avant activation.
@@ -282,7 +282,7 @@ START-OF-SELECTION.
          / 'Nombre :', p_count.
 ```
 
-## TERMES DU LEXIQUE
+## 11.P TERMES DU LEXIQUE
 
 - [Système SAP](<../🧩 00 ├── LEXIQUE SAP ET ABAP/01 ├── SYSTEMES ENVIRONNEMENTS ET MANDANTS.md#systeme-sap>)
 - [Mandant](<../🧩 00 ├── LEXIQUE SAP ET ABAP/01 ├── SYSTEMES ENVIRONNEMENTS ET MANDANTS.md#mandant>)
@@ -291,7 +291,7 @@ START-OF-SELECTION.
 - [Repository ABAP](<../🧩 00 ├── LEXIQUE SAP ET ABAP/03 ├── REPOSITORY PACKAGES ET TRANSPORTS.md#repository-abap>)
 - [Package](<../🧩 00 ├── LEXIQUE SAP ET ABAP/03 ├── REPOSITORY PACKAGES ET TRANSPORTS.md#package>)
 
-## RÉFÉRENCES OFFICIELLES SAP
+## 11.Q RÉFÉRENCES OFFICIELLES SAP
 
 - [Selection Screens — Overview](https://help.sap.com/doc/abapdocu_latest_index_htm/latest/en-US/ABENSELECTION_SCREEN_OVERVIEW.html)
 - [Selection Screens — Create](https://help.sap.com/doc/abapdocu_latest_index_htm/latest/en-US/ABENSELECTION_SCREEN_CREATE.html)

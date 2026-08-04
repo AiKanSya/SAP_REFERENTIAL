@@ -1,6 +1,6 @@
-# VARIANTES DE SÉLECTION
+# 14. VARIANTES DE SÉLECTION
 
-## RÉSULTAT ATTENDU
+## 14.A RÉSULTAT ATTENDU
 
 - Comprendre le rôle d’une variante
 - Enregistrer un jeu de valeurs réutilisable
@@ -8,7 +8,7 @@
 - Préparer une exécution récurrente ou en arrière-plan
 - Gérer l’évolution du programme sans casser les variantes
 
-## DÉFINITION
+## 14.B DÉFINITION
 
 Une variante de sélection enregistre des valeurs et propriétés de l’écran de sélection d’un programme exécutable.
 
@@ -21,27 +21,27 @@ flowchart LR
 
 Une variante de sélection ne doit pas être confondue avec une variante de mise en page ALV.
 
-## PROCESS
+## 14.C PROCESS
 
 Depuis l’écran de sélection :
 
-### Étape 1 — Préparer une sélection représentative
+### 14.C.1 Étape 1 — Préparer une sélection représentative
 
 Ouvrir le programme dans le système et le mandant cibles. Saisir toutes les valeurs à mémoriser, y compris intervalles et exclusions, puis vérifier le récapitulatif de sélection avant l’enregistrement.
 
-### Étape 2 — Enregistrer la variante
+### 14.C.2 Étape 2 — Enregistrer la variante
 
 Ouvrir la fonction **Variantes → Sauvegarder comme variante** depuis l’écran. Saisir un nom conforme à la convention, une description fonctionnelle et, si requis, le propriétaire ou le périmètre de protection.
 
-### Étape 3 — Définir les attributs des champs
+### 14.C.3 Étape 3 — Définir les attributs des champs
 
 Pour chaque champ, décider s’il doit être protégé, masqué, obligatoire ou alimenté dynamiquement. Ne protéger une valeur que si l’utilisateur ne doit réellement pas l’adapter.
 
-### Étape 4 — Sauvegarder et recharger
+### 14.C.4 Étape 4 — Sauvegarder et recharger
 
 Enregistrer, quitter le programme puis le relancer en choisissant la variante. Comparer chaque paramètre et chaque ligne de `SELECT-OPTIONS` avec les valeurs préparées.
 
-### Étape 5 — Tester l’exécution réelle
+### 14.C.5 Étape 5 — Tester l’exécution réelle
 
 Exécuter avec la variante et contrôler le périmètre traité. Pour une utilisation en job, tester la variante avec l’utilisateur d’exécution prévu et vérifier qu’aucune variable de sélection n’est résolue différemment.
 
@@ -49,7 +49,7 @@ La variante est validée lorsque son rechargement restitue exactement le périm�
 
 La maintenance est également accessible depuis les fonctions de variantes de `SE38` ou `SA38`.
 
-## USAGES
+## 14.D USAGES
 
 - exécutions manuelles répétitives ;
 - jobs d’arrière-plan ;
@@ -57,13 +57,13 @@ La maintenance est également accessible depuis les fonctions de variantes de `S
 - appels `SUBMIT USING SELECTION-SET` ;
 - jeux de test reproductibles.
 
-## VALEURS DYNAMIQUES
+## 14.E VALEURS DYNAMIQUES
 
 Selon les possibilités du système et les attributs de variante, certaines valeurs peuvent être calculées dynamiquement, notamment des dates.
 
 Ne pas remplacer une règle métier complexe par une configuration de variante incompréhensible. Documenter les variables utilisées.
 
-## ÉVOLUTION DU PROGRAMME
+## 14.F ÉVOLUTION DU PROGRAMME
 
 Une modification de l’écran peut affecter les variantes existantes :
 
@@ -75,7 +75,7 @@ Une modification de l’écran peut affecter les variantes existantes :
 
 Prévoir la compatibilité lors des évolutions productives.
 
-## SÉCURITÉ
+## 14.G SÉCURITÉ
 
 Ne jamais enregistrer dans une variante :
 
@@ -86,22 +86,22 @@ Ne jamais enregistrer dans une variante :
 
 Une variante facilite l’entrée de valeurs ; elle ne crée aucune autorisation.
 
-## TRANSPORT
+## 14.H TRANSPORT
 
 Les possibilités de transport des variantes dépendent du type de variante, de son propriétaire et des procédures du système. Utiliser les fonctions standard de maintenance et l’ordre de transport prévu par le projet.
 
-## VÉRIFICATION
+## 14.I VÉRIFICATION
 
 - Le lecteur peut expliquer la différence entre cette notion et les concepts proches.
 - Le choix technique est justifié par un besoin concret, pas uniquement par habitude.
 - Les limites liées à la release, aux autorisations et au contexte d’exécution sont identifiées.
 
-## ERREURS FRÉQUENTES
+## 14.J ERREURS FRÉQUENTES
 
 - Mettre une logique lourde dans les événements de validation de l’écran.
 - Créer une variante contenant des valeurs obsolètes ou sensibles.
 
-## FICHE DE CONTRÔLE À COPIER
+## 14.K FICHE DE CONTRÔLE À COPIER
 
 ```text
 Système / SID       :
@@ -116,14 +116,14 @@ Horodatage          :
 Ordre de transport  :
 ```
 
-## TERMES DU LEXIQUE
+## 14.L TERMES DU LEXIQUE
 
 - [Variante](<../🧩 00 ├── LEXIQUE SAP ET ABAP/06 ├── PROGRAMMES CLASSES ET OBJETS TECHNIQUES.md#variante>)
 - [Programme exécutable](<../🧩 00 ├── LEXIQUE SAP ET ABAP/06 ├── PROGRAMMES CLASSES ET OBJETS TECHNIQUES.md#programme-executable>)
 - [Transaction](<../🧩 00 ├── LEXIQUE SAP ET ABAP/02 ├── SAP GUI NAVIGATION ET TRANSACTIONS.md#transaction>)
 - [Dynpro](<../🧩 00 ├── LEXIQUE SAP ET ABAP/02 ├── SAP GUI NAVIGATION ET TRANSACTIONS.md#dynpro>)
 
-## RÉFÉRENCES OFFICIELLES SAP
+## 14.M RÉFÉRENCES OFFICIELLES SAP
 
 - [Variant Maintenance — SAP Help Portal](https://help.sap.com/saphelp_ewm900/helpdata/en/c0/980374e58611d194cc00a0c94260a5/content.htm)
 - [Understanding the Concept of Background Processing — SAP Learning](https://learning.sap.com/courses/technical-implementation-and-operation-ii-of-sap-s-4hana-and-sap-business-suite/understanding-the-concept-of-background-processing-1)

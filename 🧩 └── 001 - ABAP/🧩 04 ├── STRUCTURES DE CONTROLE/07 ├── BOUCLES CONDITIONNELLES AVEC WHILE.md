@@ -1,6 +1,6 @@
-# BOUCLES CONDITIONNELLES AVEC WHILE
+# 7. BOUCLES CONDITIONNELLES AVEC WHILE
 
-## RÉSULTAT ATTENDU
+## 7.A RÉSULTAT ATTENDU
 
 - Répéter un traitement tant qu’une condition est vraie
 - Comprendre l’évaluation avant la première itération
@@ -8,7 +8,7 @@
 - Ajouter une limite de sécurité
 - Choisir entre `WHILE` et `DO`
 
-## PRINCIPE
+## 7.B PRINCIPE
 
 `WHILE` évalue la condition avant chaque itération.
 
@@ -32,7 +32,7 @@ flowchart TD
 
 Si la condition est fausse dès le départ, le bloc n’est jamais exécuté.
 
-## ÉTAT DE BOUCLE EXPLICITE
+## 7.C ÉTAT DE BOUCLE EXPLICITE
 
 La condition doit dépendre d’une valeur susceptible d’évoluer.
 
@@ -55,7 +55,7 @@ ENDWHILE.
 
 Si `lv_remaining` n’est jamais modifié, la boucle peut être infinie.
 
-## WHILE AVEC INDICATEUR
+## 7.D WHILE AVEC INDICATEUR
 
 ```abap
 DATA lv_complete TYPE abap_bool VALUE abap_false.
@@ -72,7 +72,7 @@ ENDWHILE.
 
 Un indicateur doit représenter un état métier clair. Éviter les noms génériques comme `lv_flag` lorsque plusieurs états sont possibles.
 
-## AJOUTER UNE LIMITE TECHNIQUE
+## 7.E AJOUTER UNE LIMITE TECHNIQUE
 
 ```abap
 CONSTANTS lc_max_iterations TYPE i VALUE 100.
@@ -93,7 +93,7 @@ ENDIF.
 
 La limite protège le système contre un état fonctionnel qui ne progresse plus.
 
-## CHOISIR ENTRE DO ET WHILE
+## 7.F CHOISIR ENTRE DO ET WHILE
 
 | Situation                                         | Structure                                  |
 | ------------------------------------------------- | ------------------------------------------ |
@@ -102,7 +102,7 @@ La limite protège le système contre un état fonctionnel qui ne progresse plus
 | Boucle volontairement ouverte avec sortie interne | `DO` avec `EXIT`, à utiliser avec prudence |
 | Parcours d’une table interne                      | `LOOP AT`, traité ultérieurement           |
 
-## CONDITION TROP COMPLEXE
+## 7.G CONDITION TROP COMPLEXE
 
 Une condition de boucle très longue est difficile à vérifier.
 
@@ -139,21 +139,21 @@ WHILE lv_can_continue = abap_true.
 ENDWHILE.
 ```
 
-## VÉRIFICATION
+## 7.H VÉRIFICATION
 
 - Le contrôle syntaxique réussit.
 - La version active correspond au code sauvegardé.
 - L’exécution produit le résultat décrit dans le chapitre.
 - Les cas vide, limite et erreur sont testés séparément lorsque la syntaxe le permet.
 
-## ERREURS FRÉQUENTES
+## 7.I ERREURS FRÉQUENTES
 
 - Copier un exemple sans adapter les types, noms d’objets et données disponibles dans le système.
 - Tester uniquement le cas nominal et ignorer les valeurs initiales, absentes ou invalides.
 - Créer une boucle sans condition de sortie fiable.
 - Utiliser `CHECK`, `CONTINUE`, `EXIT` ou `RETURN` sans rendre le flux lisible.
 
-## SNIPPET À RÉUTILISER
+## 7.J SNIPPET À RÉUTILISER
 
 > [!NOTE]
 > Adapter les noms `Z*`, les types DDIC, les données et les autorisations au système cible. Effectuer un contrôle syntaxique avant activation.
@@ -178,12 +178,12 @@ WHILE lv_can_continue = abap_true.
 ENDWHILE.
 ```
 
-## TERMES DU LEXIQUE
+## 7.K TERMES DU LEXIQUE
 
 - [Instruction ABAP](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#instruction-abap>)
 - [Expression](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#expression>)
 
-## RÉFÉRENCES OFFICIELLES SAP
+## 7.L RÉFÉRENCES OFFICIELLES SAP
 
 - [Using Control Structures in ABAP — SAP Learning](https://learning.sap.com/courses/basic-abap-programming/using-control-structures-in-abap_a4d7803e-eac2-458e-acf9-8628289f3701)
 - [WHILE — ABAP Keyword Documentation](https://help.sap.com/doc/abapdocu_latest_index_htm/latest/en-US/ABAPWHILE_SHORTREF.html)

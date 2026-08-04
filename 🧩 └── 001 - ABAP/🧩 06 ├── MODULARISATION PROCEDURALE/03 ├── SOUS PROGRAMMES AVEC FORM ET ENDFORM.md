@@ -1,6 +1,6 @@
-# SOUS-PROGRAMMES AVEC FORM ET ENDFORM
+# 3. SOUS-PROGRAMMES AVEC FORM ET ENDFORM
 
-## RÉSULTAT ATTENDU
+## 3.A RÉSULTAT ATTENDU
 
 - Définir un sous-programme local
 - Comprendre le rôle de `FORM` et `ENDFORM`
@@ -8,7 +8,7 @@
 - Déclarer des données locales
 - Identifier les limites de ce mécanisme
 
-## SYNTAXE MINIMALE
+## 3.B SYNTAXE MINIMALE
 
 ```abap
 FORM form_name.
@@ -20,7 +20,7 @@ ENDFORM.
 
 Le sous-programme doit être défini dans un programme qui autorise les sous-programmes, directement ou au moyen d’un include rattaché à ce programme.
 
-## PREMIER EXEMPLE
+## 3.C PREMIER EXEMPLE
 
 ```abap
 REPORT z_demo_form_01.
@@ -33,7 +33,7 @@ FORM display_message.
 ENDFORM.
 ```
 
-## DONNÉES LOCALES
+## 3.D DONNÉES LOCALES
 
 ```abap
 FORM build_label.
@@ -46,7 +46,7 @@ ENDFORM.
 
 `lv_label` est créé lors de l’appel et n’est accessible qu’à l’intérieur du sous-programme.
 
-## NOMMER PAR UNE ACTION
+## 3.E NOMMER PAR UNE ACTION
 
 Un sous-programme réalise un traitement. Son nom doit donc exprimer une action.
 
@@ -59,7 +59,7 @@ Un sous-programme réalise un traitement. Son nom doit donc exprimer une action.
 
 La longueur maximale et les conventions exactes dépendent de la version ABAP et des règles du projet. La priorité reste un nom non ambigu.
 
-## PAS D’IMBRICATION
+## 3.F PAS D’IMBRICATION
 
 Une définition `FORM ... ENDFORM` ne doit pas être placée à l’intérieur d’un autre bloc de traitement.
 
@@ -83,7 +83,7 @@ FORM display_message.
 ENDFORM.
 ```
 
-## POSITION DANS LE PROGRAMME
+## 3.G POSITION DANS LE PROGRAMME
 
 Dans un petit programme exécutable, les blocs d’événements apparaissent généralement avant les sous-programmes afin que le flux principal soit visible rapidement.
 
@@ -105,7 +105,7 @@ ENDFORM.
 
 Dans un programme plus volumineux, les sous-programmes peuvent être regroupés dans un include dédié.
 
-## LIMITES
+## 3.H LIMITES
 
 Les sous-programmes :
 
@@ -115,7 +115,7 @@ Les sous-programmes :
 - sont moins adaptés à la réutilisation transversale que les méthodes ou modules fonction ;
 - restent fréquents dans les applications classiques existantes.
 
-## POINTS À RETENIR
+## 3.I POINTS À RETENIR
 
 - `FORM` définit une procédure locale et `ENDFORM` la termine.
 - Une définition ne s’exécute pas sans appel `PERFORM`.
@@ -123,21 +123,21 @@ Les sous-programmes :
 - Le nom doit exprimer une responsabilité précise.
 - Les nouvelles architectures doivent éviter de multiplier les sous-programmes fortement couplés aux données globales.
 
-## VÉRIFICATION
+## 3.J VÉRIFICATION
 
 - Le contrôle syntaxique réussit.
 - La version active correspond au code sauvegardé.
 - L’exécution produit le résultat décrit dans le chapitre.
 - Les cas vide, limite et erreur sont testés séparément lorsque la syntaxe le permet.
 
-## ERREURS FRÉQUENTES
+## 3.K ERREURS FRÉQUENTES
 
 - Copier un exemple sans adapter les types, noms d’objets et données disponibles dans le système.
 - Tester uniquement le cas nominal et ignorer les valeurs initiales, absentes ou invalides.
 - Créer des sous-programmes avec trop de paramètres globaux.
 - Utiliser des appels externes ou dynamiques sans contrôle du nom et de l’existence.
 
-## SNIPPET À RÉUTILISER
+## 3.L SNIPPET À RÉUTILISER
 
 > [!NOTE]
 > Adapter les noms `Z*`, les types DDIC, les données et les autorisations au système cible. Effectuer un contrôle syntaxique avant activation.
@@ -158,13 +158,13 @@ FORM execute_process.
 ENDFORM.
 ```
 
-## TERMES DU LEXIQUE
+## 3.M TERMES DU LEXIQUE
 
 - [Programme exécutable](<../🧩 00 ├── LEXIQUE SAP ET ABAP/06 ├── PROGRAMMES CLASSES ET OBJETS TECHNIQUES.md#programme-executable>)
 - [Module fonction](<../🧩 00 ├── LEXIQUE SAP ET ABAP/06 ├── PROGRAMMES CLASSES ET OBJETS TECHNIQUES.md#module-fonction>)
 - [ABAP](<../🧩 00 ├── LEXIQUE SAP ET ABAP/10 └── ACRONYMES SAP.md#acro-abap>)
 
-## RÉFÉRENCES OFFICIELLES SAP
+## 3.N RÉFÉRENCES OFFICIELLES SAP
 
 - [FORM — ABAP Keyword Documentation](https://help.sap.com/doc/abapdocu_latest_index_htm/latest/en-US/ABAPFORM.html)
 - [Source Code Modularization — ABAP Keyword Documentation](https://help.sap.com/doc/abapdocu_latest_index_htm/latest/en-US/ABENSOURCE_CODE_MODULAR_GUIDL.html)

@@ -1,6 +1,6 @@
-# ANALYSER LE TEMPS D’EXÉCUTION AVEC SAT
+# 14. ANALYSER LE TEMPS D’EXÉCUTION AVEC SAT
 
-## RÉSULTAT ATTENDU
+## 14.A RÉSULTAT ATTENDU
 
 - Mesurer l’exécution d’un programme ABAP
 - Distinguer temps ABAP, base de données et système
@@ -8,7 +8,7 @@
 - Limiter la trace au scénario utile
 - Utiliser le résultat pour formuler une hypothèse
 
-## RÔLE DE SAT
+## 14.B RÔLE DE SAT
 
 La transaction `SAT` réalise une analyse d’exécution ABAP. Elle mesure les appels et temps consommés pendant un scénario enregistré.
 
@@ -20,7 +20,7 @@ Elle convient pour analyser :
 - méthode ;
 - unité de traitement reproductible.
 
-## PRÉPARATION
+## 14.C PRÉPARATION
 
 Définir avant l’enregistrement :
 
@@ -33,7 +33,7 @@ Définir avant l’enregistrement :
 
 Une trace trop large produit un résultat difficile à exploiter.
 
-## LECTURE DU RÉSULTAT
+## 14.D LECTURE DU RÉSULTAT
 
 Analyser notamment :
 
@@ -53,14 +53,14 @@ flowchart LR
     C --> E["Chemin d exécution"]
 ```
 
-## TEMPS PROPRE ET CUMULÉ
+## 14.E TEMPS PROPRE ET CUMULÉ
 
 - **Temps propre** : temps consommé directement dans l’unité mesurée.
 - **Temps cumulé** : temps de l’unité et des traitements qu’elle appelle.
 
 Une méthode peut avoir un temps propre faible mais un temps cumulé élevé parce qu’elle appelle une lecture SQL coûteuse.
 
-## INTERPRÉTATION
+## 14.F INTERPRÉTATION
 
 Ne pas corriger uniquement la ligne la plus lente sans contexte. Vérifier :
 
@@ -71,7 +71,7 @@ Ne pas corriger uniquement la ligne la plus lente sans contexte. Vérifier :
 - algorithme ;
 - possibilité de regrouper le traitement.
 
-## LIMITES
+## 14.G LIMITES
 
 `SAT` mesure une exécution donnée. Un résultat peut varier selon :
 
@@ -85,41 +85,41 @@ Ne pas corriger uniquement la ligne la plus lente sans contexte. Vérifier :
 
 Comparer des scénarios similaires et répéter si nécessaire.
 
-## PROCESS
+## 14.H PROCESS
 
-### Étape 1 — Définir une mesure reproductible
+### 14.H.1 Étape 1 — Définir une mesure reproductible
 
 Fixer programme ou transaction, utilisateur, sélection, volume et résultat attendu. Exécuter une fois pour confirmer que le scénario est stable.
 
-### Étape 2 — Configurer SAT
+### 14.H.2 Étape 2 — Configurer SAT
 
 Ouvrir `SAT`, créer ou sélectionner une variante et limiter les composants enregistrés à l’analyse nécessaire. Choisir mesure de programme, transaction ou utilisateur selon le point d’entrée réel.
 
-### Étape 3 — Enregistrer une seule exécution
+### 14.H.3 Étape 3 — Enregistrer une seule exécution
 
 Démarrer la mesure, reproduire uniquement l’action ciblée puis arrêter. Écarter les temps de saisie utilisateur qui ne font pas partie du traitement serveur.
 
-### Étape 4 — Lire du global vers le détail
+### 14.H.4 Étape 4 — Lire du global vers le détail
 
 Examiner temps total, hit list et hiérarchie d’appels. Distinguer temps brut, temps net, nombre d’appels et part base de données. Descendre jusqu’à l’unité consommant réellement le temps.
 
-### Étape 5 — Corriger puis comparer
+### 14.H.5 Étape 5 — Corriger puis comparer
 
 Modifier une cause, réexécuter avec la même variante et les mêmes données, puis comparer temps et nombre d’appels. La correction est validée si le coût diminue sans modifier le résultat fonctionnel.
 
-## VÉRIFICATION
+## 14.I VÉRIFICATION
 
 - Le scénario reproduit correspond au même utilisateur, mandant, transaction et jeu de données.
 - L’horodatage et l’identifiant de l’analyse sont conservés.
 - La cause retenue est soutenue par une ligne source, une trace ou une valeur observée.
 - Après correction, le même scénario ne reproduit plus le défaut et le résultat métier reste identique.
 
-## ERREURS FRÉQUENTES
+## 14.J ERREURS FRÉQUENTES
 
 - Modifier les données dans le débogueur puis considérer le résultat comme reproductible.
 - Laisser une trace active trop longtemps.
 
-## FICHE DE CONTRÔLE À COPIER
+## 14.K FICHE DE CONTRÔLE À COPIER
 
 ```text
 Système / SID       :
@@ -134,14 +134,14 @@ Horodatage          :
 Ordre de transport  :
 ```
 
-## TERMES DU LEXIQUE
+## 14.L TERMES DU LEXIQUE
 
 - [Breakpoint](<../🧩 00 ├── LEXIQUE SAP ET ABAP/08 ├── EXECUTION EXPLOITATION ET ADMINISTRATION.md#breakpoint>)
 - [Watchpoint](<../🧩 00 ├── LEXIQUE SAP ET ABAP/08 ├── EXECUTION EXPLOITATION ET ADMINISTRATION.md#watchpoint>)
 - [Dump ABAP](<../🧩 00 ├── LEXIQUE SAP ET ABAP/08 ├── EXECUTION EXPLOITATION ET ADMINISTRATION.md#dump-abap>)
 - [Trace](<../🧩 00 ├── LEXIQUE SAP ET ABAP/08 ├── EXECUTION EXPLOITATION ET ADMINISTRATION.md#trace>)
 
-## RÉFÉRENCES OFFICIELLES SAP
+## 14.M RÉFÉRENCES OFFICIELLES SAP
 
 - [Analyzing Performance with the ABAP Runtime Analysis — SAP Help Portal](https://help.sap.com/docs/ABAP_PLATFORM_NEW/ba879a6e2ea04d9bb94c7ccd7cdac446/3c74c6163ce4459888bc06dedda37685.html)
 - [Runtime Analysis — SAP Help Portal](https://help.sap.com/docs/SAP_NETWEAVER_750/ba879a6e2ea04d9bb94c7ccd7cdac446/4a2f5264cfc4044fe10000000a421937.html)

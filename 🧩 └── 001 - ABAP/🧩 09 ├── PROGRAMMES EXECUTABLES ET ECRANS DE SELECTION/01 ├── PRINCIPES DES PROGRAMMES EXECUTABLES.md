@@ -1,6 +1,6 @@
-# PRINCIPES DES PROGRAMMES EXÉCUTABLES
+# 1. PRINCIPES DES PROGRAMMES EXÉCUTABLES
 
-## RÉSULTAT ATTENDU
+## 1.A RÉSULTAT ATTENDU
 
 - Comprendre le rôle d’un programme exécutable ABAP
 - Identifier son point d’entrée et son cycle général
@@ -8,7 +8,7 @@
 - Délimiter son usage dans une architecture SAP
 - Préparer un programme compatible avec SAP GUI
 
-## DÉFINITION
+## 1.B DÉFINITION
 
 Un **programme exécutable** est un objet du Repository ABAP pouvant être lancé directement. Il est généralement introduit par l’instruction `REPORT`.
 
@@ -25,7 +25,7 @@ flowchart LR
     C --> D["Restitution ou mise à jour"]
 ```
 
-## RESPONSABILITÉS HABITUELLES
+## 1.C RESPONSABILITÉS HABITUELLES
 
 Un programme exécutable peut notamment :
 
@@ -38,7 +38,7 @@ Un programme exécutable peut notamment :
 
 Un programme exécutable n’est pas une couche métier réutilisable à lui seul. La logique importante doit être placée dans des procédures ou classes dédiées, puis appelée depuis le point d’entrée du programme.
 
-## STRUCTURE RECOMMANDÉE
+## 1.D STRUCTURE RECOMMANDÉE
 
 ```abap
 REPORT zdev_flight_report.
@@ -51,7 +51,7 @@ START-OF-SELECTION.
 
 Le bloc événementiel orchestre le traitement. Il ne doit pas contenir toute l’implémentation lorsque celle-ci devient significative.
 
-## PROGRAMME EXÉCUTABLE ET TRANSACTION
+## 1.E PROGRAMME EXÉCUTABLE ET TRANSACTION
 
 Un programme peut être lancé :
 
@@ -63,7 +63,7 @@ Un programme peut être lancé :
 
 Le mode de lancement ne remplace pas les contrôles d’autorisation métier dans le code.
 
-## PÉRIMÈTRE DU DOSSIER
+## 1.F PÉRIMÈTRE DU DOSSIER
 
 Ce dossier couvre :
 
@@ -77,21 +77,21 @@ Ce dossier couvre :
 
 Les ALV, dynpros, jobs d’arrière-plan et messages avancés seront détaillés dans des dossiers distincts.
 
-## VÉRIFICATION
+## 1.G VÉRIFICATION
 
 - Le contrôle syntaxique réussit.
 - La version active correspond au code sauvegardé.
 - L’exécution produit le résultat décrit dans le chapitre.
 - Les cas vide, limite et erreur sont testés séparément lorsque la syntaxe le permet.
 
-## ERREURS FRÉQUENTES
+## 1.H ERREURS FRÉQUENTES
 
 - Copier un exemple sans adapter les types, noms d’objets et données disponibles dans le système.
 - Tester uniquement le cas nominal et ignorer les valeurs initiales, absentes ou invalides.
 - Mettre une logique lourde dans les événements de validation de l’écran.
 - Créer une variante contenant des valeurs obsolètes ou sensibles.
 
-## SNIPPET À RÉUTILISER
+## 1.I SNIPPET À RÉUTILISER
 
 > [!NOTE]
 > Adapter les noms `Z*`, les types DDIC, les données et les autorisations au système cible. Effectuer un contrôle syntaxique avant activation.
@@ -105,19 +105,19 @@ START-OF-SELECTION.
   lcl_application=>run( p_carr ).
 ```
 
-## TERMES DU LEXIQUE
+## 1.J TERMES DU LEXIQUE
 
 - [Programme exécutable](<../🧩 00 ├── LEXIQUE SAP ET ABAP/06 ├── PROGRAMMES CLASSES ET OBJETS TECHNIQUES.md#programme-executable>)
 - [Variante](<../🧩 00 ├── LEXIQUE SAP ET ABAP/06 ├── PROGRAMMES CLASSES ET OBJETS TECHNIQUES.md#variante>)
 - [Transaction](<../🧩 00 ├── LEXIQUE SAP ET ABAP/02 ├── SAP GUI NAVIGATION ET TRANSACTIONS.md#transaction>)
 - [Dynpro](<../🧩 00 ├── LEXIQUE SAP ET ABAP/02 ├── SAP GUI NAVIGATION ET TRANSACTIONS.md#dynpro>)
 
-## MODÈLE DE DÉMONSTRATION SFLIGHT
+## 1.K MODÈLE DE DÉMONSTRATION SFLIGHT
 
 > [!NOTE]
 > Les tables `SCARR`, `SPFLI` et `SFLIGHT` appartiennent au modèle de démonstration SAP et peuvent être absentes ou non alimentées dans certains systèmes. Dans ce cas, remplacer les exemples par une table Z de démonstration ou par une source en lecture seule autorisée, sans modifier une table applicative standard.
 
-## RÉFÉRENCES OFFICIELLES SAP
+## 1.L RÉFÉRENCES OFFICIELLES SAP
 
 - [REPORT — ABAP Keyword Documentation](https://help.sap.com/doc/abapdocu_latest_index_htm/latest/en-US/ABAPREPORT.html)
 - [Event Control — SAP Help Portal](https://help.sap.com/docs/ABAP_PLATFORM_NEW/7bfe8cdcfbb040dcb6702dada8c3e2f0/0b32146b63054bb293de32877a6ebfe9.html)

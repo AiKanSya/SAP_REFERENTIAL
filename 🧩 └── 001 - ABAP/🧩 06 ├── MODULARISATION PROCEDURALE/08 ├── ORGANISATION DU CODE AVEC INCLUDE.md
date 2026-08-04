@@ -1,6 +1,6 @@
-# ORGANISATION DU CODE AVEC INCLUDE
+# 8. ORGANISATION DU CODE AVEC INCLUDE
 
-## RÉSULTAT ATTENDU
+## 8.A RÉSULTAT ATTENDU
 
 - Comprendre le rôle d’un include ABAP
 - Séparer un programme volumineux en unités source
@@ -8,7 +8,7 @@
 - Utiliser des conventions de nommage cohérentes
 - Éviter de confondre include et procédure
 
-## DÉFINITION
+## 8.B DÉFINITION
 
 Un include ABAP est un programme include dont le contenu source est intégré au programme qui utilise l’instruction `INCLUDE`.
 
@@ -27,7 +27,7 @@ flowchart LR
     C --> D
 ```
 
-## CE QU’UN INCLUDE NE FAIT PAS
+## 8.C CE QU’UN INCLUDE NE FAIT PAS
 
 Un include :
 
@@ -39,7 +39,7 @@ Un include :
 
 Il s’agit d’un mécanisme d’organisation du code source.
 
-## ORGANISATION CLASSIQUE
+## 8.D ORGANISATION CLASSIQUE
 
 Pour un programme procédural volumineux, une convention fréquente est :
 
@@ -65,7 +65,7 @@ START-OF-SELECTION.
   PERFORM execute_process.
 ```
 
-## ORDRE DES INCLUDES
+## 8.E ORDRE DES INCLUDES
 
 L’ordre des instructions `INCLUDE` influence la visibilité source et la structure résultante.
 
@@ -78,7 +78,7 @@ Une organisation habituelle place :
 
 Le contrôle de syntaxe doit porter sur l’ensemble généré, pas uniquement sur un fichier isolé.
 
-## CRÉATION DANS SAP GUI
+## 8.F CRÉATION DANS SAP GUI
 
 Les includes peuvent être créés et ouverts depuis :
 
@@ -88,7 +88,7 @@ Les includes peuvent être créés et ouverts depuis :
 
 Ils appartiennent à un package et doivent être transportés avec les autres objets du programme.
 
-## RISQUES
+## 8.G RISQUES
 
 - dépendance excessive aux globales déclarées dans `_TOP` ;
 - ordre d’inclusion fragile ;
@@ -97,7 +97,7 @@ Ils appartiennent à un package et doivent être transportés avec les autres ob
 - même include réutilisé dans des contextes incompatibles ;
 - activation oubliée d’un include modifié.
 
-## BONNES PRATIQUES
+## 8.H BONNES PRATIQUES
 
 - un include doit correspondre à une catégorie claire de code ;
 - conserver des noms liés au programme principal ;
@@ -105,7 +105,7 @@ Ils appartiennent à un package et doivent être transportés avec les autres ob
 - préférer les procédures ou classes pour créer une vraie abstraction ;
 - vérifier les usages avant de modifier un include partagé.
 
-## POINTS À RETENIR
+## 8.I POINTS À RETENIR
 
 - `INCLUDE` organise le code source sans fournir d’encapsulation.
 - Le contenu de l’include est intégré au programme utilisant l’instruction.
@@ -113,15 +113,15 @@ Ils appartiennent à un package et doivent être transportés avec les autres ob
 - L’ordre des includes doit être cohérent.
 - Un include ne remplace pas une interface de procédure.
 
-## PROCESS
+## 8.J PROCESS
 
-### Étape 1 — Définir le contenu de chaque include
+### 8.J.1 Étape 1 — Définir le contenu de chaque include
 
 Lister les catégories du programme : déclarations globales, écran de sélection, événements et sous-programmes. Affecter une seule catégorie principale à chaque include selon la convention du projet, par exemple `_TOP` et `_F01`.
 
 Un include ne doit pas être créé pour masquer un découpage fonctionnel absent. Il ne fournit ni interface ni encapsulation.
 
-### Étape 2 — Créer les includes depuis le programme principal
+### 8.J.2 Étape 2 — Créer les includes depuis le programme principal
 
 1. Ouvrir le programme dans `SE80`.
 2. Ajouter l’instruction `INCLUDE z_nom_include.` à l’emplacement prévu.
@@ -130,35 +130,35 @@ Un include ne doit pas être créé pour masquer un découpage fonctionnel absen
 
 Si le nom existe déjà, l’ouvrir et vérifier son propriétaire et ses utilisations avant de le réemployer.
 
-### Étape 3 — Déplacer le code dans l’ordre correct
+### 8.J.3 Étape 3 — Déplacer le code dans l’ordre correct
 
 Déplacer d’abord les déclarations vers l’include chargé avant leurs utilisations, puis les sous-programmes vers l’include dédié. Conserver les blocs d’événements dans un ordre qui rend le flux principal lisible.
 
 Après chaque déplacement, contrôler la syntaxe du programme principal, pas uniquement celle de l’include.
 
-### Étape 4 — Contrôler les dépendances et le transport
+### 8.J.4 Étape 4 — Contrôler les dépendances et le transport
 
 Utiliser la liste d’utilisation de chaque include pour confirmer ses programmes consommateurs. Vérifier dans `SE09`/`SE10` que programme principal et nouveaux includes appartiennent à la livraison prévue.
 
-### Étape 5 — Valider l’exécution
+### 8.J.5 Étape 5 — Valider l’exécution
 
 Activer l’ensemble proposé, exécuter les mêmes données qu’avant le découpage et comparer le résultat. L’organisation est terminée lorsque tous les includes sont actifs, transportés et que le comportement du programme reste identique.
 
-## VÉRIFICATION
+## 8.K VÉRIFICATION
 
 - Le scénario reproduit correspond au même utilisateur, mandant, transaction et jeu de données.
 - L’horodatage et l’identifiant de l’analyse sont conservés.
 - La cause retenue est soutenue par une ligne source, une trace ou une valeur observée.
 - Après correction, le même scénario ne reproduit plus le défaut et le résultat métier reste identique.
 
-## ERREURS FRÉQUENTES
+## 8.L ERREURS FRÉQUENTES
 
 - Copier un exemple sans adapter les types, noms d’objets et données disponibles dans le système.
 - Tester uniquement le cas nominal et ignorer les valeurs initiales, absentes ou invalides.
 - Créer des sous-programmes avec trop de paramètres globaux.
 - Utiliser des appels externes ou dynamiques sans contrôle du nom et de l’existence.
 
-## SNIPPET À RÉUTILISER
+## 8.M SNIPPET À RÉUTILISER
 
 > [!NOTE]
 > Adapter les noms `Z*`, les types DDIC, les données et les autorisations au système cible. Effectuer un contrôle syntaxique avant activation.
@@ -174,13 +174,13 @@ START-OF-SELECTION.
   PERFORM execute_process.
 ```
 
-## TERMES DU LEXIQUE
+## 8.N TERMES DU LEXIQUE
 
 - [Programme exécutable](<../🧩 00 ├── LEXIQUE SAP ET ABAP/06 ├── PROGRAMMES CLASSES ET OBJETS TECHNIQUES.md#programme-executable>)
 - [Module fonction](<../🧩 00 ├── LEXIQUE SAP ET ABAP/06 ├── PROGRAMMES CLASSES ET OBJETS TECHNIQUES.md#module-fonction>)
 - [ABAP](<../🧩 00 ├── LEXIQUE SAP ET ABAP/10 └── ACRONYMES SAP.md#acro-abap>)
 
-## RÉFÉRENCES OFFICIELLES SAP
+## 8.O RÉFÉRENCES OFFICIELLES SAP
 
 - [include program — ABAP Keyword Documentation](https://help.sap.com/doc/abapdocu_latest_index_htm/latest/en-US/ABENINCLUDE_PROGRAM_GLOSRY.html)
 - [Source Code Organization — ABAP Keyword Documentation](https://help.sap.com/doc/abapdocu_latest_index_htm/latest/en-US/ABENSOURCE_CODE_ORGA_GDL.html)

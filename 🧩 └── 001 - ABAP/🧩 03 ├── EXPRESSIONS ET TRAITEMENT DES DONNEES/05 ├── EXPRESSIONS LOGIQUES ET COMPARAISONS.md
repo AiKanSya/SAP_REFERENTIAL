@@ -1,6 +1,6 @@
-# EXPRESSIONS LOGIQUES ET COMPARAISONS
+# 5. EXPRESSIONS LOGIQUES ET COMPARAISONS
 
-## RÉSULTAT ATTENDU
+## 5.A RÉSULTAT ATTENDU
 
 - Construire une expression logique
 - Comparer des valeurs numériques et textuelles
@@ -8,7 +8,7 @@
 - Combiner plusieurs conditions avec `AND`, `OR` et `NOT`
 - Comprendre les risques liés aux conversions pendant une comparaison
 
-## RÉSULTAT LOGIQUE
+## 5.B RÉSULTAT LOGIQUE
 
 Une expression logique produit un résultat vrai ou faux. Elle est utilisée par les structures de contrôle et par certaines expressions conditionnelles.
 
@@ -29,7 +29,7 @@ IF lv_quantity > 0.
 ENDIF.
 ```
 
-## OPÉRATEURS DE COMPARAISON
+## 5.C OPÉRATEURS DE COMPARAISON
 
 | Symbolique | Mot-clé | Signification     |
 | ---------- | ------- | ----------------- |
@@ -48,7 +48,7 @@ IF lv_quantity >= 10.
 ENDIF.
 ```
 
-## COMBINAISON DE CONDITIONS
+## 5.D COMBINAISON DE CONDITIONS
 
 ```abap
 IF lv_quantity > 0 AND lv_quantity <= 100.
@@ -71,9 +71,9 @@ IF ( lv_status = 'A' OR lv_status = 'B' )
 ENDIF.
 ```
 
-## PRÉDICATS USUELS
+## 5.E PRÉDICATS USUELS
 
-### Valeur initiale
+### 5.E.1 Valeur initiale
 
 ```abap
 IF lv_text IS INITIAL.
@@ -87,7 +87,7 @@ IF lv_text IS NOT INITIAL.
 ENDIF.
 ```
 
-### Référence liée
+### 5.E.2 Référence liée
 
 ```abap
 IF lr_data IS BOUND.
@@ -95,7 +95,7 @@ IF lr_data IS BOUND.
 ENDIF.
 ```
 
-### Field-symbol affecté
+### 5.E.3 Field-symbol affecté
 
 ```abap
 IF <lv_value> IS ASSIGNED.
@@ -103,7 +103,7 @@ IF <lv_value> IS ASSIGNED.
 ENDIF.
 ```
 
-## OPÉRATEURS POUR CHAÎNES DE CARACTÈRES
+## 5.F OPÉRATEURS POUR CHAÎNES DE CARACTÈRES
 
 | Opérateur | Signification                                      |
 | --------- | -------------------------------------------------- |
@@ -132,7 +132,7 @@ IF lv_code CP `ABAP-*`.
 ENDIF.
 ```
 
-## COMPARAISON ET CONVERSION
+## 5.G COMPARAISON ET CONVERSION
 
 Lorsque les opérandes n’ont pas le même type, ABAP applique des règles de comparaison et peut convertir une valeur.
 
@@ -147,7 +147,7 @@ ENDIF.
 
 Cette possibilité ne justifie pas un modèle de données incohérent. Comparer des objets ayant une sémantique et des types compatibles réduit les résultats inattendus.
 
-## ABAP_BOOL
+## 5.H ABAP_BOOL
 
 ABAP classique utilise souvent le type `abap_bool` et les constantes :
 
@@ -163,21 +163,21 @@ lv_is_valid = xsdbool( lv_quantity > 0 ).
 
 `xsdbool( )` transforme le résultat d’une expression logique en valeur de type `abap_bool`.
 
-## VÉRIFICATION
+## 5.I VÉRIFICATION
 
 - Le contrôle syntaxique réussit.
 - La version active correspond au code sauvegardé.
 - L’exécution produit le résultat décrit dans le chapitre.
 - Les cas vide, limite et erreur sont testés séparément lorsque la syntaxe le permet.
 
-## ERREURS FRÉQUENTES
+## 5.J ERREURS FRÉQUENTES
 
 - Copier un exemple sans adapter les types, noms d’objets et données disponibles dans le système.
 - Tester uniquement le cas nominal et ignorer les valeurs initiales, absentes ou invalides.
 - S’appuyer sur une conversion implicite pouvant tronquer ou arrondir.
 - Ignorer l’encodage et les formats externes.
 
-## SNIPPET À RÉUTILISER
+## 5.K SNIPPET À RÉUTILISER
 
 > [!NOTE]
 > Adapter les noms `Z*`, les types DDIC, les données et les autorisations au système cible. Effectuer un contrôle syntaxique avant activation.
@@ -191,13 +191,13 @@ IF lv_number = lv_text.
 ENDIF.
 ```
 
-## TERMES DU LEXIQUE
+## 5.L TERMES DU LEXIQUE
 
 - [Expression](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#expression>)
 - [Instruction ABAP](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#instruction-abap>)
 - [Type de données](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#type-donnees>)
 
-## RÉFÉRENCES OFFICIELLES SAP
+## 5.M RÉFÉRENCES OFFICIELLES SAP
 
 - [Logical Expressions — ABAP Keyword Documentation](https://help.sap.com/doc/abapdocu_latest_index_htm/latest/en-US/ABENLOG_EXP_SHORTREF.html)
 - [Character-Like Comparison Operators — ABAP Keyword Documentation](https://help.sap.com/doc/abapdocu_latest_index_htm/latest/en-US/ABENLOGEXP_STRINGS.html)

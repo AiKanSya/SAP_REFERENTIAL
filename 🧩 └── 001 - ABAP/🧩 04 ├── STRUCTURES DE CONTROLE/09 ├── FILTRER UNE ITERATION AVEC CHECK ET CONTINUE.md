@@ -1,6 +1,6 @@
-# FILTRER UNE ITÉRATION AVEC CHECK ET CONTINUE
+# 9. FILTRER UNE ITÉRATION AVEC CHECK ET CONTINUE
 
-## RÉSULTAT ATTENDU
+## 9.A RÉSULTAT ATTENDU
 
 - Passer à l’itération suivante sans exécuter la fin du bloc
 - Distinguer `CHECK` et `CONTINUE`
@@ -8,7 +8,7 @@
 - Réduire l’imbrication avec des gardes
 - Utiliser ces instructions sans masquer le flux principal
 
-## CHECK DANS UNE BOUCLE
+## 9.B CHECK DANS UNE BOUCLE
 
 Dans une boucle, `CHECK condition` poursuit l’itération seulement si la condition est vraie. Si elle est fausse, l’exécution passe à l’itération suivante.
 
@@ -28,7 +28,7 @@ flowchart TD
     C --> D
 ```
 
-## CONTINUE
+## 9.C CONTINUE
 
 `CONTINUE` passe immédiatement à l’itération suivante.
 
@@ -44,7 +44,7 @@ ENDDO.
 
 Les deux exemples produisent le même résultat.
 
-## DIFFÉRENCE D’INTENTION
+## 9.D DIFFÉRENCE D’INTENTION
 
 | Instruction       | Intention                                                                  |
 | ----------------- | -------------------------------------------------------------------------- |
@@ -53,7 +53,7 @@ Les deux exemples produisent le même résultat.
 
 `CHECK` est une garde conditionnelle concise. `CONTINUE` est utile après plusieurs instructions ou dans une branche explicite.
 
-## RÉDUIRE L’IMBRICATION
+## 9.E RÉDUIRE L’IMBRICATION
 
 Version imbriquée :
 
@@ -80,7 +80,7 @@ ENDDO.
 
 Les gardes rendent le chemin nominal plus visible lorsque les exclusions sont simples.
 
-## CHECK HORS D’UNE BOUCLE
+## 9.F CHECK HORS D’UNE BOUCLE
 
 Hors d’une boucle, un `CHECK` dont la condition est fausse quitte le bloc de traitement courant.
 
@@ -99,7 +99,7 @@ Ce comportement est différent du passage à l’itération suivante.
 > [!WARNING]
 > La portée de `CHECK` dépend de son emplacement. Dans une boucle, il agit sur l’itération. Hors boucle, il quitte le bloc de traitement. Une utilisation éloignée du début du bloc peut rendre le flux difficile à comprendre.
 
-## CHOISIR UNE FORME LISIBLE
+## 9.G CHOISIR UNE FORME LISIBLE
 
 Préférer une structure explicite lorsque le message d’erreur ou le traitement d’exclusion est important.
 
@@ -112,7 +112,7 @@ ENDIF.
 WRITE: / 'Valeur traitée :', p_value.
 ```
 
-## LIMITER LE NOMBRE DE SORTIES
+## 9.H LIMITER LE NOMBRE DE SORTIES
 
 Une succession excessive de `CHECK` et `CONTINUE` peut fragmenter le traitement.
 
@@ -123,21 +123,21 @@ Bon compromis :
 - éviter un `CONTINUE` caché au milieu d’un long bloc ;
 - documenter les exclusions métier non évidentes.
 
-## VÉRIFICATION
+## 9.I VÉRIFICATION
 
 - Le contrôle syntaxique réussit.
 - La version active correspond au code sauvegardé.
 - L’exécution produit le résultat décrit dans le chapitre.
 - Les cas vide, limite et erreur sont testés séparément lorsque la syntaxe le permet.
 
-## ERREURS FRÉQUENTES
+## 9.J ERREURS FRÉQUENTES
 
 - Copier un exemple sans adapter les types, noms d’objets et données disponibles dans le système.
 - Tester uniquement le cas nominal et ignorer les valeurs initiales, absentes ou invalides.
 - Créer une boucle sans condition de sortie fiable.
 - Utiliser `CHECK`, `CONTINUE`, `EXIT` ou `RETURN` sans rendre le flux lisible.
 
-## SNIPPET À RÉUTILISER
+## 9.K SNIPPET À RÉUTILISER
 
 > [!NOTE]
 > Adapter les noms `Z*`, les types DDIC, les données et les autorisations au système cible. Effectuer un contrôle syntaxique avant activation.
@@ -152,12 +152,12 @@ START-OF-SELECTION.
   WRITE: / 'Valeur traitée :', p_value.
 ```
 
-## TERMES DU LEXIQUE
+## 9.L TERMES DU LEXIQUE
 
 - [Instruction ABAP](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#instruction-abap>)
 - [Expression](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#expression>)
 
-## RÉFÉRENCES OFFICIELLES SAP
+## 9.M RÉFÉRENCES OFFICIELLES SAP
 
 - [CHECK — ABAP Keyword Documentation](https://help.sap.com/doc/abapdocu_latest_index_htm/latest/en-US/index.htm?file=abapcheck.htm)
 - [CONTINUE — ABAP Keyword Documentation](https://help.sap.com/doc/abapdocu_latest_index_htm/latest/en-US/index.htm?file=abapcontinue.htm)

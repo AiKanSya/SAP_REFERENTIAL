@@ -1,6 +1,6 @@
-# COMPTEUR DE BOUCLE SY-INDEX
+# 8. COMPTEUR DE BOUCLE SY-INDEX
 
-## RÉSULTAT ATTENDU
+## 8.A RÉSULTAT ATTENDU
 
 - Comprendre la valeur de `sy-index`
 - L’utiliser dans les boucles `DO` et `WHILE`
@@ -8,7 +8,7 @@
 - Éviter de le considérer comme une variable métier
 - Copier sa valeur lorsqu’elle doit être conservée
 
-## RÔLE DE SY-INDEX
+## 8.B RÔLE DE SY-INDEX
 
 `sy-index` est un champ système qui contient le numéro du passage courant dans une boucle `DO` ou `WHILE`.
 
@@ -20,7 +20,7 @@ ENDDO.
 
 La première itération porte l’index `1`.
 
-## UTILISATION AVEC WHILE
+## 8.C UTILISATION AVEC WHILE
 
 ```abap
 DATA lv_value TYPE i VALUE 10.
@@ -34,7 +34,7 @@ ENDWHILE.
 
 `sy-index` compte les itérations ; il ne remplace pas la variable qui pilote la condition.
 
-## BOUCLES IMBRIQUÉES
+## 8.D BOUCLES IMBRIQUÉES
 
 Dans une boucle imbriquée, `sy-index` représente la boucle la plus interne actuellement exécutée.
 
@@ -64,7 +64,7 @@ flowchart TD
 
 Sans copie de l’index externe, sa valeur n’est pas directement disponible pendant l’exécution de la boucle interne.
 
-## NE PAS UTILISER SY-INDEX COMME ÉTAT MÉTIER
+## 8.E NE PAS UTILISER SY-INDEX COMME ÉTAT MÉTIER
 
 À éviter :
 
@@ -88,7 +88,7 @@ DO 5 TIMES.
 ENDDO.
 ```
 
-## CONSERVER UNE VALEUR
+## 8.F CONSERVER UNE VALEUR
 
 Lorsque la valeur doit être utilisée après une imbrication ou transmise à un autre traitement, la copier immédiatement.
 
@@ -101,7 +101,7 @@ DO 10 TIMES.
 ENDDO.
 ```
 
-## SY-INDEX ET SY-TABIX
+## 8.G SY-INDEX ET SY-TABIX
 
 Ne pas confondre :
 
@@ -112,7 +112,7 @@ Ne pas confondre :
 
 `sy-tabix` sera traité avec les tables internes. Sa valeur ne correspond pas au compteur général d’une boucle `DO`.
 
-## BONNES PRATIQUES
+## 8.H BONNES PRATIQUES
 
 - utiliser `sy-index` uniquement dans le contexte immédiat de la boucle ;
 - copier sa valeur avant une boucle imbriquée ;
@@ -120,21 +120,21 @@ Ne pas confondre :
 - ne pas dépendre de sa valeur après la fin de la boucle ;
 - utiliser un nom explicite pour chaque niveau d’imbrication.
 
-## VÉRIFICATION
+## 8.I VÉRIFICATION
 
 - Le contrôle syntaxique réussit.
 - La version active correspond au code sauvegardé.
 - L’exécution produit le résultat décrit dans le chapitre.
 - Les cas vide, limite et erreur sont testés séparément lorsque la syntaxe le permet.
 
-## ERREURS FRÉQUENTES
+## 8.J ERREURS FRÉQUENTES
 
 - Copier un exemple sans adapter les types, noms d’objets et données disponibles dans le système.
 - Tester uniquement le cas nominal et ignorer les valeurs initiales, absentes ou invalides.
 - Créer une boucle sans condition de sortie fiable.
 - Utiliser `CHECK`, `CONTINUE`, `EXIT` ou `RETURN` sans rendre le flux lisible.
 
-## SNIPPET À RÉUTILISER
+## 8.K SNIPPET À RÉUTILISER
 
 > [!NOTE]
 > Adapter les noms `Z*`, les types DDIC, les données et les autorisations au système cible. Effectuer un contrôle syntaxique avant activation.
@@ -155,12 +155,12 @@ DO 2 TIMES.
 ENDDO.
 ```
 
-## TERMES DU LEXIQUE
+## 8.L TERMES DU LEXIQUE
 
 - [Instruction ABAP](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#instruction-abap>)
 - [Expression](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#expression>)
 
-## RÉFÉRENCES OFFICIELLES SAP
+## 8.M RÉFÉRENCES OFFICIELLES SAP
 
 - [Using Control Structures in ABAP — SAP Learning](https://learning.sap.com/courses/basic-abap-programming/using-control-structures-in-abap_a4d7803e-eac2-458e-acf9-8628289f3701)
 - [System Fields — ABAP Keyword Documentation](https://help.sap.com/doc/abapdocu_latest_index_htm/latest/en-US/index.htm?file=abensystem_fields.htm)

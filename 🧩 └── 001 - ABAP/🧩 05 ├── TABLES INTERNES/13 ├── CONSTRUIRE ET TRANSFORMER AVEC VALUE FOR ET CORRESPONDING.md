@@ -1,6 +1,6 @@
-# CONSTRUIRE ET TRANSFORMER AVEC VALUE, FOR ET CORRESPONDING
+# 13. CONSTRUIRE ET TRANSFORMER AVEC VALUE, FOR ET CORRESPONDING
 
-## RÉSULTAT ATTENDU
+## 13.A RÉSULTAT ATTENDU
 
 - Construire une table avec `VALUE`
 - Transformer une table avec une itération `FOR`
@@ -8,7 +8,7 @@
 - Utiliser `BASE` pour conserver des données existantes
 - Identifier les dépendances à la version ABAP
 
-## VALUE
+## 13.B VALUE
 
 ```abap
 DATA lt_products TYPE STANDARD TABLE OF ty_product
@@ -19,7 +19,7 @@ lt_products = VALUE #(
   ( matnr = 'MAT-002' maktx = 'Produit 2' stock = 20 ) ).
 ```
 
-## BASE
+## 13.C BASE
 
 ```abap
 lt_products = VALUE #(
@@ -29,7 +29,7 @@ lt_products = VALUE #(
 
 `BASE` reprend le contenu d’une table avant d’ajouter les nouvelles lignes de l’expression.
 
-## FOR
+## 13.D FOR
 
 ```abap
 " Traiter la collection sans lecture SQL dans la boucle.
@@ -44,7 +44,7 @@ lt_available_products = VALUE #(
 
 L’expression parcourt la table source et construit la table résultat.
 
-## TRANSFORMER LE TYPE DE LIGNE
+## 13.E TRANSFORMER LE TYPE DE LIGNE
 
 ```abap
 " Traiter la collection sans lecture SQL dans la boucle.
@@ -62,7 +62,7 @@ lt_labels = VALUE #(
     text  = |{ ls_product-matnr } - { ls_product-maktx }| ) ).
 ```
 
-## CORRESPONDING
+## 13.F CORRESPONDING
 
 ```abap
 lt_target = CORRESPONDING #( lt_source ).
@@ -70,7 +70,7 @@ lt_target = CORRESPONDING #( lt_source ).
 
 Pour chaque ligne, les composants de même nom et de type compatible sont copiés.
 
-### Mapping explicite
+### 13.F.1 Mapping explicite
 
 ```abap
 lt_target = CORRESPONDING #(
@@ -79,7 +79,7 @@ lt_target = CORRESPONDING #(
           product_text = maktx ).
 ```
 
-### Exclure un composant
+### 13.F.2 Exclure un composant
 
 ```abap
 lt_target = CORRESPONDING #(
@@ -87,7 +87,7 @@ lt_target = CORRESPONDING #(
   EXCEPT technical_field ).
 ```
 
-## COMBINER FOR ET EXPRESSIONS DE TABLE
+## 13.G COMBINER FOR ET EXPRESSIONS DE TABLE
 
 ```abap
 " Accéder à la ligne par une clé adaptée au besoin.
@@ -99,7 +99,7 @@ lt_result = VALUE #(
                      OPTIONAL ) ) ).
 ```
 
-## LISIBILITÉ
+## 13.H LISIBILITÉ
 
 Les expressions constructeurs réduisent le code impératif, mais une expression trop imbriquée devient difficile à déboguer.
 
@@ -110,26 +110,26 @@ Préférer plusieurs étapes nommées lorsque :
 - des messages ou traces doivent être produits ;
 - l’expression dépasse une lecture immédiate.
 
-## COMPATIBILITÉ
+## 13.I COMPATIBILITÉ
 
 > [!NOTE]
 > `VALUE`, les itérations `FOR` et les variantes modernes de `CORRESPONDING` dépendent de la version ABAP. Vérifier la documentation accessible depuis le système avant de retenir cette syntaxe dans un développement destiné à plusieurs paysages SAP.
 
-## VÉRIFICATION
+## 13.J VÉRIFICATION
 
 - Le contrôle syntaxique réussit.
 - La version active correspond au code sauvegardé.
 - L’exécution produit le résultat décrit dans le chapitre.
 - Les cas vide, limite et erreur sont testés séparément lorsque la syntaxe le permet.
 
-## ERREURS FRÉQUENTES
+## 13.K ERREURS FRÉQUENTES
 
 - Copier un exemple sans adapter les types, noms d’objets et données disponibles dans le système.
 - Tester uniquement le cas nominal et ignorer les valeurs initiales, absentes ou invalides.
 - Utiliser une table standard pour des recherches massives par clé sans mesure.
 - Modifier une copie de ligne alors que la table devait être mise à jour.
 
-## SNIPPET À RÉUTILISER
+## 13.L SNIPPET À RÉUTILISER
 
 > [!NOTE]
 > Adapter les noms `Z*`, les types DDIC, les données et les autorisations au système cible. Effectuer un contrôle syntaxique avant activation.
@@ -150,14 +150,14 @@ lt_labels = VALUE #(
     text  = |{ ls_product-matnr } - { ls_product-maktx }| ) ).
 ```
 
-## TERMES DU LEXIQUE
+## 13.M TERMES DU LEXIQUE
 
 - [Table interne](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#table-interne>)
 - [Structure](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#structure-abap>)
 - [Field-symbol](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#field-symbol>)
 - [Référence](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#reference>)
 
-## RÉFÉRENCES OFFICIELLES SAP
+## 13.N RÉFÉRENCES OFFICIELLES SAP
 
 - [Processing the Contents of Internal Tables — SAP Learning](https://learning.sap.com/courses/deepening-your-abap-programming-knowledge/processing-the-contents-of-internal-tables_b69864af-3b88-4887-83c8-7ac6701add94)
 - [VALUE, Internal Tables — ABAP Keyword Documentation](https://help.sap.com/doc/abapdocu_latest_index_htm/latest/en-US/ABENVALUE_CONSTRUCTOR_PARAMS_ITAB.html)

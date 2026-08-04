@@ -1,13 +1,13 @@
-# IMPLÉMENTATION, DONNÉES GLOBALES ET INCLUDES
+# 7. IMPLÉMENTATION, DONNÉES GLOBALES ET INCLUDES
 
-## RÉSULTAT ATTENDU
+## 7.A RÉSULTAT ATTENDU
 
 - Situer le code du module dans le Function Pool
 - Utiliser correctement variables locales et données globales
 - Structurer les includes du groupe
 - Limiter les effets de bord
 
-## CODE GÉNÉRÉ
+## 7.B CODE GÉNÉRÉ
 
 Le Function Builder génère le bloc :
 
@@ -24,7 +24,7 @@ ENDFUNCTION.
 
 Écrire le traitement entre `FUNCTION` et `ENDFUNCTION`. Ne pas modifier manuellement les éléments générés de l’interface dans le commentaire technique.
 
-## DONNÉES LOCALES
+## 7.C DONNÉES LOCALES
 
 Déclarer localement les données nécessaires au traitement :
 
@@ -42,7 +42,7 @@ Une donnée locale :
 - évite les états persistants ;
 - clarifie la responsabilité du module.
 
-## INCLUDE TOP
+## 7.D INCLUDE TOP
 
 L’include `...TOP` contient les déclarations globales du groupe. Il peut héberger :
 
@@ -53,7 +53,7 @@ L’include `...TOP` contient les déclarations globales du groupe. Il peut héb
 
 Éviter d’y placer toutes les variables par habitude.
 
-## INCLUDES COMPLÉMENTAIRES
+## 7.E INCLUDES COMPLÉMENTAIRES
 
 Selon les conventions du projet, des includes peuvent séparer :
 
@@ -70,7 +70,7 @@ flowchart TD
     A --> E["OXX et IXX : dynpros éventuels"]
 ```
 
-## DÉPENDANCES
+## 7.F DÉPENDANCES
 
 Un module fonction doit pouvoir être compris à partir de :
 
@@ -81,43 +81,43 @@ Un module fonction doit pouvoir être compris à partir de :
 
 Une variable globale modifiée par un autre module du groupe constitue une dépendance cachée. La supprimer ou la documenter précisément.
 
-## PROCESS
+## 7.G PROCESS
 
-### Étape 1 — Localiser le source généré
+### 7.G.1 Étape 1 — Localiser le source généré
 
 Depuis `SE37`, naviguer vers le groupe dans `SE80`. Identifier l’include du module et l’include TOP ; ne modifier pas les parties générées hors des zones prévues.
 
-### Étape 2 — Implémenter depuis la signature
+### 7.G.2 Étape 2 — Implémenter depuis la signature
 
 Valider d’abord les imports, exécuter le traitement puis alimenter toutes les sorties. Ne lire une donnée globale que si elle représente explicitement l’état partagé du groupe.
 
-### Étape 3 — Réduire les globales
+### 7.G.3 Étape 3 — Réduire les globales
 
 Pour chaque globale utilisée, rechercher tous les modules consommateurs. Remplacer par variable locale ou paramètre lorsque sa conservation entre appels n’est pas indispensable.
 
-### Étape 4 — Traiter erreurs et transaction
+### 7.G.4 Étape 4 — Traiter erreurs et transaction
 
 Déclencher l’exception ou le retour prévu au point où la cause est connue. Ne lancer ni commit ni rollback sauf si le contrat du module en fait explicitement le propriétaire.
 
-### Étape 5 — Tester l’indépendance
+### 7.G.5 Étape 5 — Tester l’indépendance
 
 Exécuter le module seul, puis après un autre module du groupe. Les résultats doivent rester identiques pour les mêmes entrées, sauf état partagé documenté. Activer le groupe complet et vérifier ses includes.
 
-## VÉRIFICATION
+## 7.H VÉRIFICATION
 
 - Le contrôle syntaxique réussit.
 - La version active correspond au code sauvegardé.
 - L’exécution produit le résultat décrit dans le chapitre.
 - Les cas vide, limite et erreur sont testés séparément lorsque la syntaxe le permet.
 
-## ERREURS FRÉQUENTES
+## 7.I ERREURS FRÉQUENTES
 
 - Copier un exemple sans adapter les types, noms d’objets et données disponibles dans le système.
 - Tester uniquement le cas nominal et ignorer les valeurs initiales, absentes ou invalides.
 - Appeler un module fonction sans lire sa documentation et ses exceptions.
 - Supposer qu’une BAPI effectue automatiquement le commit.
 
-## SNIPPET À RÉUTILISER
+## 7.J SNIPPET À RÉUTILISER
 
 > [!NOTE]
 > Adapter les noms `Z*`, les types DDIC, les données et les autorisations au système cible. Effectuer un contrôle syntaxique avant activation.
@@ -133,7 +133,7 @@ FUNCTION z_dev_calculate_total.
 ENDFUNCTION.
 ```
 
-## TERMES DU LEXIQUE
+## 7.K TERMES DU LEXIQUE
 
 - [Module fonction](<../🧩 00 ├── LEXIQUE SAP ET ABAP/06 ├── PROGRAMMES CLASSES ET OBJETS TECHNIQUES.md#module-fonction>)
 - [Function group](<../🧩 00 ├── LEXIQUE SAP ET ABAP/06 ├── PROGRAMMES CLASSES ET OBJETS TECHNIQUES.md#function-group>)
@@ -141,7 +141,7 @@ ENDFUNCTION.
 - [BAPI](<../🧩 00 ├── LEXIQUE SAP ET ABAP/10 └── ACRONYMES SAP.md#acro-bapi>)
 - [Destination RFC](<../🧩 00 ├── LEXIQUE SAP ET ABAP/07 ├── INTERFACES ET INTEGRATION.md#destination-rfc>)
 
-## RÉFÉRENCES OFFICIELLES SAP
+## 7.L RÉFÉRENCES OFFICIELLES SAP
 
 - [Understanding Function Module Code — SAP Help Portal](https://help.sap.com/docs/ABAP_PLATFORM_NEW/bd833c8355f34e96a6e83096b38bf192/d1801f1c454211d189710000e8322d00.html)
 - [Creating New Function Modules — SAP Help Portal](https://help.sap.com/docs/ABAP_PLATFORM_NEW/bd833c8355f34e96a6e83096b38bf192/d1801ee8454211d189710000e8322d00.html)

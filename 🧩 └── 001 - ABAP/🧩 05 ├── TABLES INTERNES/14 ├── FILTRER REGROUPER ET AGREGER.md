@@ -1,6 +1,6 @@
-# FILTRER, REGROUPER ET AGRÉGER
+# 14. FILTRER, REGROUPER ET AGRÉGER
 
-## RÉSULTAT ATTENDU
+## 14.A RÉSULTAT ATTENDU
 
 - Extraire un sous-ensemble avec `FILTER`
 - Regrouper des lignes avec `LOOP AT ... GROUP BY`
@@ -8,7 +8,7 @@
 - Agréger des lignes avec `COLLECT`
 - Choisir entre traitement impératif et expression
 
-## FILTER
+## 14.B FILTER
 
 ```abap
 " Traiter la collection sans lecture SQL dans la boucle.
@@ -31,7 +31,7 @@ lt_category_a = FILTER #(
   WHERE category = 'A' ).
 ```
 
-## LOOP AT GROUP BY
+## 14.C LOOP AT GROUP BY
 
 ```abap
 " Traiter la collection sans lecture SQL dans la boucle.
@@ -49,7 +49,7 @@ ENDLOOP.
 
 Le premier parcours construit des groupes. `LOOP AT GROUP` parcourt les membres du groupe courant.
 
-## GROUPE STRUCTURÉ
+## 14.D GROUPE STRUCTURÉ
 
 ```abap
 " Traiter la collection sans lecture SQL dans la boucle.
@@ -62,7 +62,7 @@ LOOP AT lt_products INTO DATA(ls_product)
 ENDLOOP.
 ```
 
-## REDUCE
+## 14.E REDUCE
 
 ```abap
 " Traiter la collection sans lecture SQL dans la boucle.
@@ -74,7 +74,7 @@ DATA(lv_total_stock) = REDUCE i(
 
 `REDUCE` retourne une valeur calculée à partir d’une itération.
 
-## COLLECT
+## 14.F COLLECT
 
 `COLLECT` recherche une ligne selon la clé primaire. Si elle existe, les composants numériques non-clés sont additionnés. Sinon, la ligne est insérée.
 
@@ -99,7 +99,7 @@ ENDLOOP.
 > [!IMPORTANT]
 > `COLLECT` n’est adapté que lorsque son comportement d’agrégation numérique par clé correspond exactement au besoin. Ne pas l’utiliser comme simple mécanisme générique de déduplication.
 
-## COMPARAISON
+## 14.G COMPARAISON
 
 | Besoin                                            | Mécanisme                             |
 | ------------------------------------------------- | ------------------------------------- |
@@ -109,25 +109,25 @@ ENDLOOP.
 | Additionner des composants numériques par clé     | `COLLECT`                             |
 | Ajouter règles, messages et traitements complexes | `LOOP AT` explicite                   |
 
-## COMPATIBILITÉ
+## 14.H COMPATIBILITÉ
 
 Les expressions `FILTER`, `REDUCE` et les groupements modernes ne sont pas disponibles sur toutes les versions ABAP. Prévoir une alternative avec `LOOP AT`, `READ TABLE` et `INSERT` lorsque le code doit fonctionner sur des systèmes anciens.
 
-## VÉRIFICATION
+## 14.I VÉRIFICATION
 
 - Le contrôle syntaxique réussit.
 - La version active correspond au code sauvegardé.
 - L’exécution produit le résultat décrit dans le chapitre.
 - Les cas vide, limite et erreur sont testés séparément lorsque la syntaxe le permet.
 
-## ERREURS FRÉQUENTES
+## 14.J ERREURS FRÉQUENTES
 
 - Copier un exemple sans adapter les types, noms d’objets et données disponibles dans le système.
 - Tester uniquement le cas nominal et ignorer les valeurs initiales, absentes ou invalides.
 - Utiliser une table standard pour des recherches massives par clé sans mesure.
 - Modifier une copie de ligne alors que la table devait être mise à jour.
 
-## SNIPPET À RÉUTILISER
+## 14.K SNIPPET À RÉUTILISER
 
 > [!NOTE]
 > Adapter les noms `Z*`, les types DDIC, les données et les autorisations au système cible. Effectuer un contrôle syntaxique avant activation.
@@ -150,14 +150,14 @@ LOOP AT lt_products INTO DATA(ls_product).
 ENDLOOP.
 ```
 
-## TERMES DU LEXIQUE
+## 14.L TERMES DU LEXIQUE
 
 - [Table interne](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#table-interne>)
 - [Structure](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#structure-abap>)
 - [Field-symbol](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#field-symbol>)
 - [Référence](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#reference>)
 
-## RÉFÉRENCES OFFICIELLES SAP
+## 14.M RÉFÉRENCES OFFICIELLES SAP
 
 - [Processing the Contents of Internal Tables — SAP Learning](https://learning.sap.com/courses/deepening-your-abap-programming-knowledge/processing-the-contents-of-internal-tables_b69864af-3b88-4887-83c8-7ac6701add94)
 - [FILTER — ABAP Keyword Documentation](https://help.sap.com/doc/abapdocu_latest_index_htm/latest/en-US/ABENCONSTRUCTOR_EXPR_FILTER.html)

@@ -1,6 +1,6 @@
-# OBJETS DU REPOSITORY ABAP
+# 2. OBJETS DU REPOSITORY ABAP
 
-## RÉSULTAT ATTENDU
+## 2.A RÉSULTAT ATTENDU
 
 - Comprendre le rôle du Repository ABAP
 - Identifier les principales familles d’objets de développement
@@ -8,7 +8,7 @@
 - Comprendre les versions active et inactive
 - Retrouver les dépendances d’un objet dans SAP GUI
 
-## VUE D’ENSEMBLE
+## 2.B VUE D’ENSEMBLE
 
 ```mermaid
 flowchart TD
@@ -21,7 +21,7 @@ flowchart TD
     B --> H["Extensions"]
 ```
 
-## DÉFINITION
+## 2.C DÉFINITION
 
 Le **Repository ABAP** contient les objets de développement d’un système ABAP. Ces objets sont enregistrés dans la base de données du système et sont utilisés par l’environnement d’exécution ABAP.
 
@@ -30,7 +30,7 @@ Le Repository ne correspond pas à un répertoire local du poste de travail. Le 
 > [!IMPORTANT]
 > En environnement classique SAP GUI, plusieurs développeurs travaillent sur le même Repository central. Les verrous, les versions inactives et les ordres de transport servent à maîtriser les modifications concurrentes.
 
-## PRINCIPALES FAMILLES D’OBJETS
+## 2.D PRINCIPALES FAMILLES D’OBJETS
 
 | Famille               | Exemples                                                                | Transactions courantes         |
 | --------------------- | ----------------------------------------------------------------------- | ------------------------------ |
@@ -45,7 +45,7 @@ Le Repository ne correspond pas à un répertoire local du poste de travail. Le 
 
 Cette liste n’est pas exhaustive. Un objet peut également posséder des sous-objets qui ne sont pas gérés comme des objets indépendants.
 
-## OBJET GLOBAL ET ÉLÉMENT LOCAL
+## 2.E OBJET GLOBAL ET ÉLÉMENT LOCAL
 
 Un objet global du Repository possède un nom unique dans son espace de noms et peut être référencé depuis d’autres objets lorsque les règles techniques l’autorisent.
 
@@ -67,7 +67,7 @@ flowchart LR
     A --> E["Textes et variantes"]
 ```
 
-## ANNUAIRE DES OBJETS
+## 2.F ANNUAIRE DES OBJETS
 
 L’annuaire des objets du Repository gère notamment :
 
@@ -82,7 +82,7 @@ La table technique `TADIR` est fréquemment utilisée pour analyser les entrées
 > [!CAUTION]
 > Ne jamais modifier directement les tables techniques du Repository. Utiliser les outils SAP prévus à cet effet.
 
-## ESPACES DE NOMS
+## 2.G ESPACES DE NOMS
 
 Les développements client utilisent généralement :
 
@@ -91,7 +91,7 @@ Les développements client utilisent généralement :
 
 Les objets SAP standard ne doivent pas être modifiés directement sans mécanisme d’extension ou procédure explicitement validée.
 
-## VERSION ACTIVE ET VERSION INACTIVE
+## 2.H VERSION ACTIVE ET VERSION INACTIVE
 
 Lorsqu’un objet est modifié puis enregistré, une version inactive peut coexister avec la version active.
 
@@ -111,7 +111,7 @@ flowchart LR
     D -->|"Non"| C
 ```
 
-## VERROUS DE MODIFICATION
+## 2.I VERROUS DE MODIFICATION
 
 Lorsqu’un utilisateur modifie un objet, SAP peut poser un verrou afin d’empêcher une modification concurrente incompatible.
 
@@ -122,9 +122,9 @@ Un objet verrouillé doit être traité avec prudence :
 - ne pas supprimer un verrou sans validation ;
 - coordonner les changements portant sur le même objet.
 
-## RECHERCHE ET NAVIGATION
+## 2.J RECHERCHE ET NAVIGATION
 
-### SE80
+### 2.J.1 SE80
 
 L’Object Navigator permet de naviguer par :
 
@@ -135,11 +135,11 @@ L’Object Navigator permet de naviguer par :
 - objet local ;
 - type d’objet disponible dans le Repository Browser.
 
-### SYSTÈME D’INFORMATION DU REPOSITORY
+### 2.J.2 SYSTÈME D’INFORMATION DU REPOSITORY
 
 Le Repository Information System permet de rechercher des objets selon plusieurs critères techniques.
 
-### LISTE D’UTILISATIONS
+### 2.J.3 LISTE D’UTILISATIONS
 
 La liste d’utilisations permet d’identifier les consommateurs d’un objet. Elle doit être consultée avant :
 
@@ -152,9 +152,9 @@ La liste d’utilisations permet d’identifier les consommateurs d’un objet. 
 > [!IMPORTANT]
 > Une liste d’utilisations ne garantit pas toujours l’identification des appels dynamiques construits à l’exécution.
 
-## PROCESS
+## 2.K PROCESS
 
-### Étape 1 — Ouvrir le navigateur d’objets
+### 2.K.1 Étape 1 — Ouvrir le navigateur d’objets
 
 1. Saisir `/nSE80` dans le champ de commande.
 2. Dans la liste située au-dessus de l’arborescence, choisir le type d’objet correspondant à l’information disponible : programme, classe/interface, groupe de fonctions, package ou objet local.
@@ -162,7 +162,7 @@ La liste d’utilisations permet d’identifier les consommateurs d’un objet. 
 
 Ne choisir le type « Package » que pour explorer un ensemble d’objets. Si le nom commence par `ZCL_` mais qu’une recherche de programme échoue, recommencer avec le type classe/interface.
 
-### Étape 2 — Confirmer l’identité de l’objet
+### 2.K.2 Étape 2 — Confirmer l’identité de l’objet
 
 1. Rester d’abord en mode **Afficher**.
 2. Vérifier le titre, le type technique et le nom affichés.
@@ -171,7 +171,7 @@ Ne choisir le type « Package » que pour explorer un ensemble d’objets. Si le
 
 Si SE80 propose de créer l’objet, annuler : le nom ou le type saisi ne correspond pas à un objet existant dans ce système.
 
-### Étape 3 — Identifier la structure et les dépendances
+### 2.K.3 Étape 3 — Identifier la structure et les dépendances
 
 1. Sélectionner le nœud principal de l’objet.
 2. Ouvrir chaque sous-objet utile sans modifier son contenu.
@@ -180,7 +180,7 @@ Si SE80 propose de créer l’objet, annuler : le nom ou le type saisi ne corres
 
 Une liste vide peut signifier qu’aucune référence statique n’existe ; elle ne détecte pas nécessairement les appels dont le nom est construit dynamiquement.
 
-### Étape 4 — Relever les informations de transport
+### 2.K.4 Étape 4 — Relever les informations de transport
 
 1. Ouvrir l’entrée de répertoire de l’objet depuis les fonctions de navigation de SE80.
 2. Relever le package, le responsable, le système d’origine et la couche de transport disponible via le package.
@@ -188,24 +188,24 @@ Une liste vide peut signifier qu’aucune référence statique n’existe ; elle
 
 Un objet affecté à `$TMP` est local et ne sera pas transporté par un ordre Workbench normal. Ne pas le réaffecter sans connaître la destination attendue.
 
-### Étape 5 — Autoriser ou refuser la modification
+### 2.K.5 Étape 5 — Autoriser ou refuser la modification
 
 Passer en mode modification uniquement après avoir confirmé le système, le mandant, le nom, le type, le package et le périmètre de dépendances.
 
 Le contrôle est terminé lorsque l’objet analysé est identifié sans ambiguïté et que ses principaux sous-objets, appelants et informations de transport sont connus.
 
-## VÉRIFICATION
+## 2.L VÉRIFICATION
 
 - Le lecteur peut expliquer la différence entre cette notion et les concepts proches.
 - Le choix technique est justifié par un besoin concret, pas uniquement par habitude.
 - Les limites liées à la release, aux autorisations et au contexte d’exécution sont identifiées.
 
-## ERREURS FRÉQUENTES
+## 2.M ERREURS FRÉQUENTES
 
 - Intervenir dans le mauvais système ou mandant.
 - Confondre sauvegarde et activation.
 
-## FICHE DE CONTRÔLE À COPIER
+## 2.N FICHE DE CONTRÔLE À COPIER
 
 ```text
 Système / SID       :
@@ -220,7 +220,7 @@ Horodatage          :
 Ordre de transport  :
 ```
 
-## TERMES DU LEXIQUE
+## 2.O TERMES DU LEXIQUE
 
 - [Repository ABAP](<../🧩 00 ├── LEXIQUE SAP ET ABAP/03 ├── REPOSITORY PACKAGES ET TRANSPORTS.md#repository-abap>)
 - [ABAP](<../🧩 00 ├── LEXIQUE SAP ET ABAP/10 └── ACRONYMES SAP.md#acro-abap>)
@@ -229,7 +229,7 @@ Ordre de transport  :
 - [SAP GUI](<../🧩 00 ├── LEXIQUE SAP ET ABAP/02 ├── SAP GUI NAVIGATION ET TRANSACTIONS.md#sap-gui>)
 - [Transaction](<../🧩 00 ├── LEXIQUE SAP ET ABAP/02 ├── SAP GUI NAVIGATION ET TRANSACTIONS.md#transaction>)
 
-## RÉFÉRENCES OFFICIELLES SAP
+## 2.P RÉFÉRENCES OFFICIELLES SAP
 
 - [Overview of the ABAP Workbench](https://help.sap.com/docs/ABAP_PLATFORM_BW4HANA/bd833c8355f34e96a6e83096b38bf192/d18018d1454211d189710000e8322d00.html)
 - [Object Directory](https://help.sap.com/docs/ABAP_PLATFORM_NEW/4a368c163b08418890a406d413933ba7/5738e06c4eb711d182bf0000e829fbfe.html)

@@ -1,13 +1,13 @@
-# PRINCIPES ET TECHNOLOGIES ALV
+# 1. PRINCIPES ET TECHNOLOGIES ALV
 
-## RÉSULTAT ATTENDU
+## 1.A RÉSULTAT ATTENDU
 
 - Comprendre le rôle de l’ALV dans SAP GUI
 - Identifier les principales technologies ALV
 - Distinguer affichage, interaction et édition
 - Choisir une solution adaptée au besoin
 
-## DÉFINITION
+## 1.B DÉFINITION
 
 **ALV** signifie **SAP List Viewer**. Il fournit des composants standard pour présenter des données tabulaires avec des fonctions déjà disponibles : tri, filtre, changement de colonnes, totalisation, export et variantes de mise en page.
 
@@ -21,7 +21,7 @@ flowchart LR
     D --> E["Actions utilisateur"]
 ```
 
-## TECHNOLOGIES PRINCIPALES
+## 1.C TECHNOLOGIES PRINCIPALES
 
 | Technologie          | Objet principal                     | Usage dominant                                    |
 | -------------------- | ----------------------------------- | ------------------------------------------------- |
@@ -29,7 +29,7 @@ flowchart LR
 | ALV Grid Control     | `CL_GUI_ALV_GRID`                   | Contrôle fin, événements, cellules éditables      |
 | Fonctions classiques | `REUSE_ALV_GRID_DISPLAY` et famille | Maintenance de programmes historiques             |
 
-## RESPONSABILITÉS
+## 1.D RESPONSABILITÉS
 
 Un développement ALV sépare normalement :
 
@@ -41,31 +41,31 @@ Un développement ALV sépare normalement :
 
 Cette séparation évite de placer des accès base de données ou des règles métier directement dans les gestionnaires d’événements de l’écran.
 
-## LIMITES
+## 1.E LIMITES
 
 - Un ALV n’est pas un écran métier complet.
 - Un ALV ne remplace pas les contrôles d’autorisation.
 - Un ALV éditable ne sauvegarde rien automatiquement.
 - Les fonctions disponibles varient selon le type d’ALV et le mode d’affichage.
 
-## VÉRIFICATION
+## 1.F VÉRIFICATION
 
 - Le lecteur peut expliquer la différence entre cette notion et les concepts proches.
 - Le choix technique est justifié par un besoin concret, pas uniquement par habitude.
 - Les limites liées à la release, aux autorisations et au contexte d’exécution sont identifiées.
 
-## ERREURS FRÉQUENTES
+## 1.G ERREURS FRÉQUENTES
 
 - Afficher un volume non borné dans l’ALV.
 - Rendre une cellule éditable sans validation ni sauvegarde transactionnelle.
 
-## TERMES DU LEXIQUE
+## 1.H TERMES DU LEXIQUE
 
 - [ALV](<../🧩 00 ├── LEXIQUE SAP ET ABAP/10 └── ACRONYMES SAP.md#acro-alv>)
 - [SALV](<../🧩 00 ├── LEXIQUE SAP ET ABAP/10 └── ACRONYMES SAP.md#acro-salv>)
 - [Table interne](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#table-interne>)
 
-## RÉFÉRENCES OFFICIELLES SAP
+## 1.I RÉFÉRENCES OFFICIELLES SAP
 
 - [ABAP List Viewer (ALV) — SAP Help Portal](https://help.sap.com/docs/SUPPORT_CONTENT/nwtech/3362694342.html)
 - [Main ALV Classes — SAP Help Portal](https://help.sap.com/docs/ABAP_PLATFORM_NEW/b1c834a22d05483b8a75710743b5ff26/4ec1f117076868b8e10000000a42189e.html)

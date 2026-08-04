@@ -1,11 +1,11 @@
-# REPOSITORY, PACKAGES ET TRANSPORTS
+# 3. REPOSITORY, PACKAGES ET TRANSPORTS
 
 Définitions liées aux objets de développement, à leur organisation et à leur transport entre systèmes.
 
 Chaque entrée présente une définition concise, un exemple, un repère pratique et, lorsque nécessaire, une distinction avec une notion proche.
 
 <a id="import-transport"></a>
-## IMPORT
+## 3.A IMPORT
 
 **Définition.** Chargement d’un ordre exporté dans un système cible.
 
@@ -19,7 +19,7 @@ Chaque entrée présente une définition concise, un exemple, un repère pratiqu
 ---
 
 <a id="liberation-transport"></a>
-## LIBÉRATION
+## 3.B LIBÉRATION
 
 **Définition.** Action qui clôt une tâche ou un ordre et prépare l’export de son contenu.
 
@@ -33,7 +33,7 @@ Chaque entrée présente une définition concise, un exemple, un repère pratiqu
 ---
 
 <a id="namespace-client"></a>
-## NAMESPACE CLIENT
+## 3.C NAMESPACE CLIENT
 
 **Définition.** Espace de noms réservé aux développements spécifiques, souvent préfixés par `Z` ou `Y`.
 
@@ -47,7 +47,7 @@ Chaque entrée présente une définition concise, un exemple, un repère pratiqu
 ---
 
 <a id="objet-local-tmp"></a>
-## OBJET LOCAL $TMP
+## 3.D OBJET LOCAL $TMP
 
 **Définition.** Objet affecté au package local `$TMP`, non destiné au transport vers un autre système.
 
@@ -61,7 +61,7 @@ Chaque entrée présente une définition concise, un exemple, un repère pratiqu
 ---
 
 <a id="objet-repository"></a>
-## OBJET REPOSITORY
+## 3.E OBJET REPOSITORY
 
 **Définition.** Unité de développement gérée par le Repository et le système de transport.
 
@@ -75,7 +75,7 @@ Chaque entrée présente une définition concise, un exemple, un repère pratiqu
 ---
 
 <a id="ordre-customizing"></a>
-## ORDRE CUSTOMIZING
+## 3.F ORDRE CUSTOMIZING
 
 **Définition.** Type d’ordre utilisé principalement pour transporter du paramétrage dépendant du mandant.
 
@@ -89,7 +89,7 @@ Chaque entrée présente une définition concise, un exemple, un repère pratiqu
 ---
 
 <a id="ordre-transport"></a>
-## ORDRE DE TRANSPORT
+## 3.G ORDRE DE TRANSPORT
 
 **Définition.** Conteneur qui regroupe des modifications à exporter puis importer dans d’autres systèmes.
 
@@ -103,7 +103,7 @@ Chaque entrée présente une définition concise, un exemple, un repère pratiqu
 ---
 
 <a id="ordre-workbench"></a>
-## ORDRE WORKBENCH
+## 3.H ORDRE WORKBENCH
 
 **Définition.** Type d’ordre utilisé principalement pour les objets Repository et les modifications inter-mandants.
 
@@ -117,7 +117,7 @@ Chaque entrée présente une définition concise, un exemple, un repère pratiqu
 ---
 
 <a id="package"></a>
-## PACKAGE
+## 3.I PACKAGE
 
 **Définition.** Conteneur logique qui regroupe les objets de développement et détermine notamment leur transportabilité.
 
@@ -131,7 +131,7 @@ Chaque entrée présente une définition concise, un exemple, un repère pratiqu
 ---
 
 <a id="repository-abap"></a>
-## REPOSITORY ABAP
+## 3.J REPOSITORY ABAP
 
 **Définition.** Ensemble central des objets de développement d’un système ABAP.
 
@@ -145,7 +145,7 @@ Chaque entrée présente une définition concise, un exemple, un repère pratiqu
 ---
 
 <a id="tache-transport"></a>
-## TÂCHE DE TRANSPORT
+## 3.K TÂCHE DE TRANSPORT
 
 **Définition.** Sous-conteneur affecté à un utilisateur dans un ordre de transport.
 
@@ -157,7 +157,7 @@ Chaque entrée présente une définition concise, un exemple, un repère pratiqu
 
 ---
 
-## Références SAP
+## 3.L Références SAP
 
 - [ABAP Programming Language — SAP Help Portal](https://help.sap.com/docs/ABAP_PLATFORM/66906ae3920c4fc684cf588290fb9267/d3d5c132973b404db980ba6ae0889be7.html)
 - [SAP GUI for Windows — SAP Help Portal](https://help.sap.com/docs/r/product/sap_gui_for_windows)

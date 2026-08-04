@@ -1,6 +1,6 @@
-# TYPES DE TABLE DU DICTIONNAIRE
+# 6. TYPES DE TABLE DU DICTIONNAIRE
 
-## RÉSULTAT ATTENDU
+## 6.A RÉSULTAT ATTENDU
 
 - Définir un type global de table interne
 - Choisir un type de ligne
@@ -8,7 +8,7 @@
 - Réutiliser le type dans plusieurs programmes
 - Distinguer type de table DDIC et table persistante
 
-## DÉFINITION
+## 6.B DÉFINITION
 
 Un type de table DDIC définit le type d’une table interne globale.
 
@@ -18,7 +18,7 @@ Il ne crée aucune table dans la base de données.
 DATA lt_messages TYPE ztt_message.
 ```
 
-## COMPOSANTS DU TYPE
+## 6.C COMPOSANTS DU TYPE
 
 Un type de table comprend :
 
@@ -35,7 +35,7 @@ flowchart LR
     D --> E["Table interne ABAP"]
 ```
 
-## TYPE DE LIGNE
+## 6.D TYPE DE LIGNE
 
 Le type de ligne peut être :
 
@@ -46,7 +46,7 @@ Le type de ligne peut être :
 
 Pour une table métier comportant plusieurs colonnes, utiliser généralement une structure dédiée.
 
-## CATÉGORIES DE TABLE
+## 6.E CATÉGORIES DE TABLE
 
 | Catégorie | Organisation             | Usage principal                   |
 | --------- | ------------------------ | --------------------------------- |
@@ -56,7 +56,7 @@ Pour une table métier comportant plusieurs colonnes, utiliser généralement un
 
 Le choix doit refléter les accès réels. Il ne doit pas être effectué uniquement par habitude.
 
-## CLÉ
+## 6.F CLÉ
 
 La clé peut être :
 
@@ -67,7 +67,7 @@ La clé peut être :
 
 Une table hachée exige une clé unique. Une table triée peut utiliser une clé unique ou non unique.
 
-## EXEMPLE DE CONCEPTION
+## 6.G EXEMPLE DE CONCEPTION
 
 Structure de ligne : `ZST_MESSAGE`
 
@@ -84,7 +84,7 @@ Type de table : `ZTT_MESSAGE`
 - catégorie : table standard ;
 - clé : standard ou vide selon le besoin.
 
-## TYPE DE TABLE ET TABLE DE BASE DE DONNÉES
+## 6.H TYPE DE TABLE ET TABLE DE BASE DE DONNÉES
 
 | Objet                   | Réside en mémoire interne | Persiste en base |
 | ----------------------- | ------------------------: | ---------------: |
@@ -92,7 +92,7 @@ Type de table : `ZTT_MESSAGE`
 | Table interne ABAP      |                       Oui |              Non |
 | Table transparente DDIC |           Non directement |              Oui |
 
-## POINTS À RETENIR
+## 6.I POINTS À RETENIR
 
 - Un type de table DDIC est un type global de table interne.
 - Il dépend d’un type de ligne et d’une catégorie de table.
@@ -100,48 +100,48 @@ Type de table : `ZTT_MESSAGE`
 - Il ne crée aucun objet physique en base.
 - Les opérations sur les tables internes restent détaillées dans le dossier dédié.
 
-## PROCESS
+## 6.J PROCESS
 
-### Étape 1 — Définir la ligne et les accès attendus
+### 6.J.1 Étape 1 — Définir la ligne et les accès attendus
 
 Identifier le type de ligne partagé et les opérations dominantes : parcours séquentiel, lecture par clé exacte ou maintien trié. Le choix `STANDARD`, `SORTED` ou `HASHED` découle de ces accès, pas du volume seul.
 
-### Étape 2 — Créer le type de table
+### 6.J.2 Étape 2 — Créer le type de table
 
 1. Ouvrir `SE11`, choisir **Type de données** et saisir un nom client.
 2. Choisir **Type table**.
 3. Renseigner comme type de ligne une structure ou un élément DDIC actif.
 4. Sélectionner la catégorie de table décidée.
 
-### Étape 3 — Définir la clé
+### 6.J.3 Étape 3 — Définir la clé
 
 Pour une table triée ou hachée, déclarer explicitement les composants constituant l’unicité ou l’ordre. Choisir `UNIQUE` uniquement si deux lignes portant la même clé sont fonctionnellement interdites.
 
 Si l’activation refuse la clé, vérifier que chaque composant appartient au type de ligne et qu’il possède un type autorisé pour cette catégorie.
 
-### Étape 4 — Activer puis déclarer une table
+### 6.J.4 Étape 4 — Activer puis déclarer une table
 
 Contrôler, activer puis déclarer une table interne avec `TYPE z...`. Insérer deux lignes distinctes et effectuer une lecture avec la clé définie.
 
-### Étape 5 — Tester les contraintes
+### 6.J.5 Étape 5 — Tester les contraintes
 
 Pour une clé unique, tenter une deuxième insertion avec la même clé et traiter le résultat prévu. Le type est validé lorsque l’accès attendu fonctionne et que les doublons sont acceptés ou refusés conformément au contrat.
 
-## VÉRIFICATION
+## 6.K VÉRIFICATION
 
 - Le contrôle de cohérence ne retourne aucune erreur bloquante.
 - L’objet est actif et son entrée de répertoire pointe vers le package attendu.
 - La liste d’utilisation et les dépendances correspondent au périmètre prévu.
 - Pour une table Z, la structure active et la structure de base sont cohérentes.
 
-## ERREURS FRÉQUENTES
+## 6.L ERREURS FRÉQUENTES
 
 - Copier un exemple sans adapter les types, noms d’objets et données disponibles dans le système.
 - Tester uniquement le cas nominal et ignorer les valeurs initiales, absentes ou invalides.
 - Modifier un objet standard au lieu d’utiliser une extension.
 - Activer une table sans vérifier clé, paramètres techniques et impact base.
 
-## SNIPPET À RÉUTILISER
+## 6.M SNIPPET À RÉUTILISER
 
 > [!NOTE]
 > Adapter les noms `Z*`, les types DDIC, les données et les autorisations au système cible. Effectuer un contrôle syntaxique avant activation.
@@ -150,7 +150,7 @@ Pour une clé unique, tenter une deuxième insertion avec la même clé et trait
 DATA lt_messages TYPE ztt_message.
 ```
 
-## TERMES DU LEXIQUE
+## 6.N TERMES DU LEXIQUE
 
 - [ABAP Dictionary](<../🧩 00 ├── LEXIQUE SAP ET ABAP/05 ├── DONNEES DICTIONNAIRE ET BASE DE DONNEES.md#abap-dictionary>)
 - [Domaine](<../🧩 00 ├── LEXIQUE SAP ET ABAP/05 ├── DONNEES DICTIONNAIRE ET BASE DE DONNEES.md#domaine>)
@@ -158,7 +158,7 @@ DATA lt_messages TYPE ztt_message.
 - [Table transparente](<../🧩 00 ├── LEXIQUE SAP ET ABAP/05 ├── DONNEES DICTIONNAIRE ET BASE DE DONNEES.md#table-transparente>)
 - [MANDT](<../🧩 00 ├── LEXIQUE SAP ET ABAP/05 ├── DONNEES DICTIONNAIRE ET BASE DE DONNEES.md#mandt>)
 
-## RÉFÉRENCES OFFICIELLES SAP
+## 6.O RÉFÉRENCES OFFICIELLES SAP
 
 - [Defining Dictionary Table Types — SAP Learning](https://learning.sap.com/courses/building-data-models-with-the-abap-dictionary-and-abap-core-data-services/defining-dictionary-table-types_df502cc6-441f-4fdc-aa9e-cc81caf6919c)
 - [Data Types in the ABAP Dictionary — SAP Help Portal](https://help.sap.com/docs/SAP_NETWEAVER_740/ec1c9c8191b74de98feb94001a95dd76/cf21f2e5446011d189700000e8322d00.html)

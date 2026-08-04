@@ -1,12 +1,12 @@
-# OBJETS, SOUS-OBJETS ET IDENTIFIANTS
+# 3. OBJETS, SOUS-OBJETS ET IDENTIFIANTS
 
-## RÉSULTAT ATTENDU
+## 3.A RÉSULTAT ATTENDU
 
 - Définir une nomenclature stable
 - Utiliser correctement l’objet, le sous-objet et le numéro externe
 - Éviter la multiplication incontrôlée des objets de journal
 
-## OBJET
+## 3.B OBJET
 
 L’objet représente un domaine fonctionnel ou une application durable, par exemple :
 
@@ -16,7 +16,7 @@ L’objet représente un domaine fonctionnel ou une application durable, par exe
 
 L’objet ne doit pas correspondre à un numéro de ticket, une version ou un programme temporaire.
 
-## SOUS-OBJET
+## 3.C SOUS-OBJET
 
 Le sous-objet distingue des processus cohérents au sein du domaine :
 
@@ -27,7 +27,7 @@ Le sous-objet distingue des processus cohérents au sein du domaine :
 | `ZINT_CPI`   | `PRODUCTS`  | Extraction produits         |
 | `ZINT_CPI`   | `ORDERS`    | Extraction commandes        |
 
-## NUMÉRO EXTERNE
+## 3.D NUMÉRO EXTERNE
 
 Le champ `EXTNUMBER` doit permettre de retrouver un traitement sans connaître son numéro technique. Il peut contenir :
 
@@ -41,7 +41,7 @@ Le champ `EXTNUMBER` doit permettre de retrouver un traitement sans connaître s
 ls_log-extnumber = |IMPORT_PRODUCTS_{ sy-datum }_{ sy-uzeit }|.
 ```
 
-## RÈGLES
+## 3.E RÈGLES
 
 - garder la même sémantique pour un objet dans tous les programmes ;
 - ne pas mettre de données sensibles dans l’identifiant externe ;
@@ -49,47 +49,47 @@ ls_log-extnumber = |IMPORT_PRODUCTS_{ sy-datum }_{ sy-uzeit }|.
 - documenter la convention de nommage dans le dépôt technique ;
 - réutiliser un objet existant si le domaine et les autorisations sont identiques.
 
-## PROCESS
+## 3.F PROCESS
 
-### ÉTAPE 1 — CARTOGRAPHIER LE DOMAINE FONCTIONNEL
+### 3.F.1 ÉTAPE 1 — CARTOGRAPHIER LE DOMAINE FONCTIONNEL
 
 Regrouper les traitements ayant le même propriétaire, les mêmes autorisations et la même politique de rétention. Définir un objet par domaine durable, pas par report, ticket ou version. Vérifier les objets existants dans `SLG0` avant d’en créer un nouveau.
 
-### ÉTAPE 2 — DÉFINIR LES SOUS-OBJETS
+### 3.F.2 ÉTAPE 2 — DÉFINIR LES SOUS-OBJETS
 
 Découper le domaine par processus réellement filtrable : import, export, création ou synchronisation. Limiter le nombre de sous-objets et documenter leur sémantique. Deux traitements partageant un nom mais pas les mêmes exploitants ne doivent pas être regroupés artificiellement.
 
-### ÉTAPE 3 — DÉFINIR L’IDENTIFIANT EXTERNE
+### 3.F.3 ÉTAPE 3 — DÉFINIR L’IDENTIFIANT EXTERNE
 
 Choisir une clé disponible dès le début du traitement : identifiant de lot, fichier, document ou corrélation. Définir format, longueur, casse et règle d’unicité. N’y placer aucune donnée confidentielle utilisée seulement pour le diagnostic interne.
 
-### ÉTAPE 4 — CRÉER ET TRANSPORTER LA CONFIGURATION
+### 3.F.4 ÉTAPE 4 — CRÉER ET TRANSPORTER LA CONFIGURATION
 
 Maintenir l’objet et les sous-objets dans `SLG0`, avec descriptions explicites. Affecter le package et la demande de transport. Vérifier la présence de la configuration dans le système cible avant d’exécuter le programme.
 
-### ÉTAPE 5 — UTILISER DES CONSTANTES DANS LE CODE
+### 3.F.5 ÉTAPE 5 — UTILISER DES CONSTANTES DANS LE CODE
 
 Centraliser objet et sous-objet dans une classe ou interface Z. Construire l’identifiant externe dans une méthode dédiée et contrôlée. Éviter les littéraux divergents répétés dans plusieurs programmes.
 
-### ÉTAPE 6 — TESTER LA RECHERCHE OPÉRATIONNELLE
+### 3.F.6 ÉTAPE 6 — TESTER LA RECHERCHE OPÉRATIONNELLE
 
 Créer plusieurs journaux avec des lots différents, puis les retrouver dans `SLG1` par objet, sous-objet, identifiant et période. Vérifier qu’un exploitant peut isoler une exécution sans connaître le numéro interne BAL.
 
-## VÉRIFICATION
+## 3.G VÉRIFICATION
 
 - Le journal est retrouvable dans `SLG1` avec objet, sous-objet et période.
 - Chaque erreur contient un contexte permettant d’identifier l’enregistrement concerné.
 - Le log est sauvegardé même lorsque le traitement se termine avec des erreurs gérées.
 - Aucune donnée sensible inutile n’est enregistrée.
 
-## ERREURS FRÉQUENTES
+## 3.H ERREURS FRÉQUENTES
 
 - Copier un exemple sans adapter les types, noms d’objets et données disponibles dans le système.
 - Tester uniquement le cas nominal et ignorer les valeurs initiales, absentes ou invalides.
 - Enregistrer uniquement un texte générique sans clé métier.
 - Journaliser des mots de passe, tokens ou données personnelles inutiles.
 
-## SNIPPET À RÉUTILISER
+## 3.I SNIPPET À RÉUTILISER
 
 > [!NOTE]
 > Adapter les noms `Z*`, les types DDIC, les données et les autorisations au système cible. Effectuer un contrôle syntaxique avant activation.
@@ -98,13 +98,13 @@ Créer plusieurs journaux avec des lots différents, puis les retrouver dans `SL
 ls_log-extnumber = |IMPORT_PRODUCTS_{ sy-datum }_{ sy-uzeit }|.
 ```
 
-## TERMES DU LEXIQUE
+## 3.J TERMES DU LEXIQUE
 
 - [Application Log](<../🧩 00 ├── LEXIQUE SAP ET ABAP/08 ├── EXECUTION EXPLOITATION ET ADMINISTRATION.md#application-log>)
 - [BAL](<../🧩 00 ├── LEXIQUE SAP ET ABAP/10 └── ACRONYMES SAP.md#acro-bal>)
 - [Job](<../🧩 00 ├── LEXIQUE SAP ET ABAP/06 ├── PROGRAMMES CLASSES ET OBJETS TECHNIQUES.md#job>)
 
-## RÉFÉRENCES OFFICIELLES SAP
+## 3.K RÉFÉRENCES OFFICIELLES SAP
 
 - [Which Data Can Be Collected? — SAP Help Portal](https://help.sap.com/docs/SAP_NETWEAVER_AS_ABAP_752/addb96cd90c945dfb3182865363bbc47/4e2106b735d44180e10000000a15822b.html)
 - [Analyze Logs — SAP Help Portal](https://help.sap.com/docs/ABAP_PLATFORM_NEW/addb96cd90c945dfb3182865363bbc47/4e21048535d44180e10000000a15822b.html)

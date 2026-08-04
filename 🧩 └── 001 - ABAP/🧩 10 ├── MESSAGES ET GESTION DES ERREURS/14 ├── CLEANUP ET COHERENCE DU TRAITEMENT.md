@@ -1,6 +1,6 @@
-# CLEANUP ET COHÉRENCE DU TRAITEMENT
+# 14. CLEANUP ET COHÉRENCE DU TRAITEMENT
 
-## RÉSULTAT ATTENDU
+## 14.A RÉSULTAT ATTENDU
 
 - Comprendre le rôle du bloc `CLEANUP`
 - Restaurer un état avant propagation
@@ -8,7 +8,7 @@
 - Préserver la cohérence des données en mémoire
 - Choisir des opérations de nettoyage sûres
 
-## PRINCIPE
+## 14.B PRINCIPE
 
 Un bloc `CLEANUP` appartient à une structure `TRY`. Il est utilisé lorsqu’une exception quitte la structure sans être gérée par un `CATCH` de cette structure et qu’un nettoyage doit être effectué avant la propagation.
 
@@ -24,7 +24,7 @@ ENDTRY.
 
 Le comportement exact doit être vérifié selon la forme utilisée et la version ABAP. `CLEANUP` n’est pas l’équivalent général d’un bloc `FINALLY` exécuté dans tous les cas.
 
-## RÉSULTAT ATTENDU DU NETTOYAGE
+## 14.C RÉSULTAT ATTENDU DU NETTOYAGE
 
 Le nettoyage peut servir à :
 
@@ -41,7 +41,7 @@ flowchart TD
     C --> D["Propagation de l’exception"]
 ```
 
-## NE PAS MASQUER L’EXCEPTION
+## 14.D NE PAS MASQUER L’EXCEPTION
 
 Le nettoyage ne doit pas remplacer l’erreur d’origine par une nouvelle erreur sans conserver la cause.
 
@@ -52,13 +52,13 @@ Si l’opération de nettoyage peut elle-même échouer, définir une stratégie
 - produire une trace technique ;
 - éviter une seconde erreur qui masque la première.
 
-## CLEANUP ET TRANSACTION
+## 14.E CLEANUP ET TRANSACTION
 
 `CLEANUP` ne constitue pas automatiquement une annulation de SAP LUW. Il ne remplace pas une conception transactionnelle correcte.
 
 Ne pas placer mécaniquement `ROLLBACK WORK` dans chaque nettoyage. La décision de valider ou annuler une transaction appartient à une frontière métier clairement définie.
 
-## ALTERNATIVE PAR CONCEPTION
+## 14.F ALTERNATIVE PAR CONCEPTION
 
 Une ressource peut parfois être gérée par une classe encapsulant son cycle de vie, ce qui réduit le besoin de nettoyage dispersé.
 
@@ -74,7 +74,7 @@ ENDTRY.
 
 Cette forme explicite peut être plus lisible lorsqu’une exception est traitée puis relancée.
 
-## CAS À ÉVITER
+## 14.G CAS À ÉVITER
 
 - utiliser `CLEANUP` pour afficher un message utilisateur ;
 - effectuer un traitement métier supplémentaire ;
@@ -82,21 +82,21 @@ Cette forme explicite peut être plus lisible lorsqu’une exception est traité
 - ignorer la cause initiale ;
 - supposer que le bloc s’exécute après tout succès normal.
 
-## VÉRIFICATION
+## 14.H VÉRIFICATION
 
 - Le contrôle syntaxique réussit.
 - La version active correspond au code sauvegardé.
 - L’exécution produit le résultat décrit dans le chapitre.
 - Les cas vide, limite et erreur sont testés séparément lorsque la syntaxe le permet.
 
-## ERREURS FRÉQUENTES
+## 14.I ERREURS FRÉQUENTES
 
 - Copier un exemple sans adapter les types, noms d’objets et données disponibles dans le système.
 - Tester uniquement le cas nominal et ignorer les valeurs initiales, absentes ou invalides.
 - Afficher un message technique incompréhensible à l’utilisateur.
 - Attraper une exception sans action ni propagation.
 
-## SNIPPET À RÉUTILISER
+## 14.J SNIPPET À RÉUTILISER
 
 > [!NOTE]
 > Adapter les noms `Z*`, les types DDIC, les données et les autorisations au système cible. Effectuer un contrôle syntaxique avant activation.
@@ -111,12 +111,12 @@ TRY.
 ENDTRY.
 ```
 
-## TERMES DU LEXIQUE
+## 14.K TERMES DU LEXIQUE
 
 - [Exception](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#exception>)
 - [Dump ABAP](<../🧩 00 ├── LEXIQUE SAP ET ABAP/08 ├── EXECUTION EXPLOITATION ET ADMINISTRATION.md#dump-abap>)
 
-## RÉFÉRENCES OFFICIELLES SAP
+## 14.L RÉFÉRENCES OFFICIELLES SAP
 
 - [TRY — ABAP Keyword Documentation](https://help.sap.com/doc/abapdocu_latest_index_htm/latest/en-US/ABAPTRY.html)
 - [Handling Exceptions — SAP Help Portal](https://help.sap.com/docs/SAP_NETWEAVER_700/10a002cd6c531014b5e1cb16d2455072/a9b8eef8fe9411d4b2ee0050dadfb92b.html)

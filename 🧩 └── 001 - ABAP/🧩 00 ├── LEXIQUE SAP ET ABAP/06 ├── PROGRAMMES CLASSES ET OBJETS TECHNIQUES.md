@@ -1,11 +1,11 @@
-# PROGRAMMES, CLASSES ET OBJETS TECHNIQUES
+# 6. PROGRAMMES, CLASSES ET OBJETS TECHNIQUES
 
 Définitions des principaux objets techniques exécutables ou réutilisables dans un système ABAP.
 
 Chaque entrée présente une définition concise, un exemple, un repère pratique et, lorsque nécessaire, une distinction avec une notion proche.
 
 <a id="alv"></a>
-## ALV
+## 6.A ALV
 
 **Définition.** ABAP List Viewer, ensemble de technologies d’affichage tabulaire avec tri, filtre, total et variantes.
 
@@ -19,7 +19,7 @@ Chaque entrée présente une définition concise, un exemple, un repère pratiqu
 ---
 
 <a id="bapi"></a>
-## BAPI
+## 6.B BAPI
 
 **Définition.** Interface métier publiée autour d’un Business Object SAP, généralement implémentée par un module fonction RFC.
 
@@ -33,7 +33,7 @@ Chaque entrée présente une définition concise, un exemple, un repère pratiqu
 ---
 
 <a id="class-builder-se24"></a>
-## CLASS BUILDER (SE24)
+## 6.C CLASS BUILDER (SE24)
 
 **Définition.** Outil SAP GUI utilisé pour créer, afficher, modifier, tester et documenter les classes et interfaces globales ABAP.
 
@@ -47,7 +47,7 @@ Chaque entrée présente une définition concise, un exemple, un repère pratiqu
 ---
 
 <a id="class-pool"></a>
-## CLASS POOL
+## 6.D CLASS POOL
 
 **Définition.** Programme technique généré qui contient la définition et l’implémentation d’une classe globale ABAP.
 
@@ -61,7 +61,7 @@ Chaque entrée présente une définition concise, un exemple, un repère pratiqu
 ---
 
 <a id="classe-test"></a>
-## CLASSE DE TEST
+## 6.E CLASSE DE TEST
 
 **Définition.** Classe locale déclarée `FOR TESTING` contenant des méthodes exécutées par ABAP Unit.
 
@@ -75,7 +75,7 @@ Chaque entrée présente une définition concise, un exemple, un repère pratiqu
 ---
 
 <a id="classe-globale"></a>
-## CLASSE GLOBALE
+## 6.F CLASSE GLOBALE
 
 **Définition.** Classe Repository réutilisable dans le système ABAP.
 
@@ -89,7 +89,7 @@ Chaque entrée présente une définition concise, un exemple, un repère pratiqu
 ---
 
 <a id="classe-locale"></a>
-## CLASSE LOCALE
+## 6.G CLASSE LOCALE
 
 **Définition.** Classe définie dans le code source d’un programme, d’un include ou d’un Class Pool et visible uniquement dans ce contexte de compilation.
 
@@ -103,7 +103,7 @@ Chaque entrée présente une définition concise, un exemple, un repère pratiqu
 ---
 
 <a id="function-group"></a>
-## FUNCTION GROUP
+## 6.H FUNCTION GROUP
 
 **Définition.** Programme conteneur regroupant des modules fonction et des données globales partagées.
 
@@ -117,7 +117,7 @@ Chaque entrée présente une définition concise, un exemple, un repère pratiqu
 ---
 
 <a id="interface-globale"></a>
-## INTERFACE GLOBALE
+## 6.I INTERFACE GLOBALE
 
 **Définition.** Interface ABAP Objects enregistrée comme objet Repository et réutilisable par plusieurs classes et programmes.
 
@@ -131,7 +131,7 @@ Chaque entrée présente une définition concise, un exemple, un repère pratiqu
 ---
 
 <a id="job"></a>
-## JOB
+## 6.J JOB
 
 **Définition.** Traitement planifié en arrière-plan composé d’une ou plusieurs étapes.
 
@@ -145,7 +145,7 @@ Chaque entrée présente une définition concise, un exemple, un repère pratiqu
 ---
 
 <a id="classe-messages"></a>
-## MESSAGE CLASS
+## 6.K MESSAGE CLASS
 
 **Définition.** Objet `SE91` contenant des messages numérotés et traduisibles.
 
@@ -159,7 +159,7 @@ Chaque entrée présente une définition concise, un exemple, un repère pratiqu
 ---
 
 <a id="module-fonction"></a>
-## MODULE FONCTION
+## 6.L MODULE FONCTION
 
 **Définition.** Procédure globale appelée avec `CALL FUNCTION` et définie dans un groupe de fonctions.
 
@@ -173,7 +173,7 @@ Chaque entrée présente une définition concise, un exemple, un repère pratiqu
 ---
 
 <a id="module-pool"></a>
-## MODULE POOL
+## 6.M MODULE POOL
 
 **Définition.** Programme ABAP classique pilotant des dynpros au moyen de modules PBO et PAI.
 
@@ -187,7 +187,7 @@ Chaque entrée présente une définition concise, un exemple, un repère pratiqu
 ---
 
 <a id="programme-executable"></a>
-## PROGRAMME EXÉCUTABLE
+## 6.N PROGRAMME EXÉCUTABLE
 
 **Définition.** Programme ABAP de type report pouvant être lancé directement, généralement avec `F8` ou par une transaction.
 
@@ -201,7 +201,7 @@ Chaque entrée présente une définition concise, un exemple, un repère pratiqu
 ---
 
 <a id="rfc"></a>
-## RFC
+## 6.O RFC
 
 **Définition.** Remote Function Call, mécanisme permettant d’appeler un module fonction compatible dans un autre contexte ou système.
 
@@ -215,7 +215,7 @@ Chaque entrée présente une définition concise, un exemple, un repère pratiqu
 ---
 
 <a id="spool"></a>
-## SPOOL
+## 6.P SPOOL
 
 **Définition.** Infrastructure stockant et acheminant les sorties imprimables produites par les traitements SAP.
 
@@ -229,7 +229,7 @@ Chaque entrée présente une définition concise, un exemple, un repère pratiqu
 ---
 
 <a id="transaction-se93"></a>
-## TRANSACTION SE93
+## 6.Q TRANSACTION SE93
 
 **Définition.** Objet Repository associant un code de transaction à une cible de démarrage.
 
@@ -243,7 +243,7 @@ Chaque entrée présente une définition concise, un exemple, un repère pratiqu
 ---
 
 <a id="variante"></a>
-## VARIANTE
+## 6.R VARIANTE
 
 **Définition.** Enregistrement réutilisable des valeurs d’un écran de sélection.
 
@@ -255,7 +255,7 @@ Chaque entrée présente une définition concise, un exemple, un repère pratiqu
 
 ---
 
-## Références SAP
+## 6.S Références SAP
 
 - [ABAP Programming Language — SAP Help Portal](https://help.sap.com/docs/ABAP_PLATFORM/66906ae3920c4fc684cf588290fb9267/d3d5c132973b404db980ba6ae0889be7.html)
 - [SAP GUI for Windows — SAP Help Portal](https://help.sap.com/docs/r/product/sap_gui_for_windows)

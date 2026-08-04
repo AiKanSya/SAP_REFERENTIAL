@@ -1,6 +1,6 @@
-# BONNES PRATIQUES ET CHECKLIST
+# 17. BONNES PRATIQUES ET CHECKLIST
 
-## RÉSULTAT ATTENDU
+## 17.A RÉSULTAT ATTENDU
 
 - Concevoir un programme exécutable maintenable
 - Sécuriser l’écran de sélection
@@ -8,7 +8,7 @@
 - Préparer l’exécution en dialogue et en arrière-plan
 - Vérifier le programme avant livraison
 
-## STRUCTURE RECOMMANDÉE
+## 17.B STRUCTURE RECOMMANDÉE
 
 ```abap
 REPORT zdev_business_report.
@@ -33,7 +33,7 @@ START-OF-SELECTION.
 
 Les événements orchestrent. La logique métier reste dans des unités réutilisables.
 
-## ÉCRAN DE SÉLECTION
+## 17.C ÉCRAN DE SÉLECTION
 
 - limiter le nombre de champs ;
 - utiliser les types DDIC ;
@@ -44,7 +44,7 @@ Les événements orchestrent. La logique métier reste dans des unités réutili
 - valider les relations entre champs ;
 - conserver la compatibilité avec les variantes.
 
-## TRAITEMENT
+## 17.D TRAITEMENT
 
 - effectuer les contrôles d’autorisation ;
 - séparer lecture, traitement et restitution ;
@@ -54,7 +54,7 @@ Les événements orchestrent. La logique métier reste dans des unités réutili
 - produire des messages exploitables ;
 - prévoir un mode test pour les traitements de masse lorsque le besoin le justifie.
 
-## ARRIÈRE-PLAN
+## 17.E ARRIÈRE-PLAN
 
 - ne pas utiliser de dialogue obligatoire ;
 - éviter les dépendances au frontend SAP GUI ;
@@ -63,7 +63,7 @@ Les événements orchestrent. La logique métier reste dans des unités réutili
 - traiter les erreurs sans intervention immédiate ;
 - vérifier `sy-batch` uniquement lorsqu’un comportement différent est réellement nécessaire.
 
-## PERFORMANCE
+## 17.F PERFORMANCE
 
 - limiter les critères trop ouverts ;
 - appliquer les filtres dans ABAP SQL ;
@@ -71,7 +71,7 @@ Les événements orchestrent. La logique métier reste dans des unités réutili
 - afficher un avertissement avant un traitement particulièrement large ;
 - mesurer les scénarios réels avec les outils adaptés.
 
-## CHECKLIST
+## 17.G CHECKLIST
 
 - [ ] Le programme est-il de type exécutable et affecté au bon package ?
 - [ ] Le point d’entrée `START-OF-SELECTION` est-il explicite ?
@@ -86,21 +86,21 @@ Les événements orchestrent. La logique métier reste dans des unités réutili
 - [ ] La sortie est-elle adaptée au besoin réel ?
 - [ ] La documentation décrit-elle les impacts productifs ?
 
-## VÉRIFICATION
+## 17.H VÉRIFICATION
 
 - Le contrôle syntaxique réussit.
 - La version active correspond au code sauvegardé.
 - L’exécution produit le résultat décrit dans le chapitre.
 - Les cas vide, limite et erreur sont testés séparément lorsque la syntaxe le permet.
 
-## ERREURS FRÉQUENTES
+## 17.I ERREURS FRÉQUENTES
 
 - Copier un exemple sans adapter les types, noms d’objets et données disponibles dans le système.
 - Tester uniquement le cas nominal et ignorer les valeurs initiales, absentes ou invalides.
 - Mettre une logique lourde dans les événements de validation de l’écran.
 - Créer une variante contenant des valeurs obsolètes ou sensibles.
 
-## SNIPPET À RÉUTILISER
+## 17.J SNIPPET À RÉUTILISER
 
 > [!NOTE]
 > Adapter les noms `Z*`, les types DDIC, les données et les autorisations au système cible. Effectuer un contrôle syntaxique avant activation.
@@ -126,14 +126,14 @@ START-OF-SELECTION.
   ).
 ```
 
-## TERMES DU LEXIQUE
+## 17.K TERMES DU LEXIQUE
 
 - [Programme exécutable](<../🧩 00 ├── LEXIQUE SAP ET ABAP/06 ├── PROGRAMMES CLASSES ET OBJETS TECHNIQUES.md#programme-executable>)
 - [Variante](<../🧩 00 ├── LEXIQUE SAP ET ABAP/06 ├── PROGRAMMES CLASSES ET OBJETS TECHNIQUES.md#variante>)
 - [Transaction](<../🧩 00 ├── LEXIQUE SAP ET ABAP/02 ├── SAP GUI NAVIGATION ET TRANSACTIONS.md#transaction>)
 - [Dynpro](<../🧩 00 ├── LEXIQUE SAP ET ABAP/02 ├── SAP GUI NAVIGATION ET TRANSACTIONS.md#dynpro>)
 
-## RÉFÉRENCES OFFICIELLES SAP
+## 17.L RÉFÉRENCES OFFICIELLES SAP
 
 - [REPORT — ABAP Keyword Documentation](https://help.sap.com/doc/abapdocu_latest_index_htm/latest/en-US/ABAPREPORT.html)
 - [Selection Screens — Overview — ABAP Keyword Documentation](https://help.sap.com/doc/abapdocu_latest_index_htm/latest/en-US/ABENSELECTION_SCREEN_OVERVIEW.html)

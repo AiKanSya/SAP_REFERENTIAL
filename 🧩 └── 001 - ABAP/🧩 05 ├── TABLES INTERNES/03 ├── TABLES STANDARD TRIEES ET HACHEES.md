@@ -1,6 +1,6 @@
-# TABLES STANDARD, TRIÉES ET HACHÉES
+# 3. TABLES STANDARD, TRIÉES ET HACHÉES
 
-## RÉSULTAT ATTENDU
+## 3.A RÉSULTAT ATTENDU
 
 - Connaître les trois catégories de tables internes
 - Comprendre leurs organisations respectives
@@ -8,7 +8,7 @@
 - Choisir une catégorie selon le besoin fonctionnel
 - Éviter l’utilisation systématique de `STANDARD TABLE`
 
-## LES TROIS CATÉGORIES
+## 3.B LES TROIS CATÉGORIES
 
 | Catégorie ABAP   | Organisation                                      | Index primaire | Clé primaire           |
 | ---------------- | ------------------------------------------------- | -------------: | ---------------------- |
@@ -27,7 +27,7 @@ flowchart TD
 
 Ce diagramme est une première orientation. Le volume, les insertions, les parcours partiels et les clés secondaires peuvent modifier le choix final.
 
-## STANDARD TABLE
+## 3.C STANDARD TABLE
 
 ```abap
 DATA lt_products TYPE STANDARD TABLE OF ty_product
@@ -46,7 +46,7 @@ Caractéristiques principales :
 READ TABLE lt_products INTO DATA(ls_product) INDEX 1.
 ```
 
-## SORTED TABLE
+## 3.D SORTED TABLE
 
 ```abap
 DATA lt_products TYPE SORTED TABLE OF ty_product
@@ -64,7 +64,7 @@ Caractéristiques principales :
 > [!WARNING]
 > Ne pas utiliser `APPEND` comme instruction générique pour alimenter une table triée. Utiliser `INSERT`, qui respecte la catégorie et la clé de la table.
 
-## HASHED TABLE
+## 3.E HASHED TABLE
 
 ```abap
 DATA lt_products TYPE HASHED TABLE OF ty_product
@@ -85,7 +85,7 @@ READ TABLE lt_products
   WITH TABLE KEY matnr = 'MAT-001'.
 ```
 
-## COMPARAISON D’USAGE
+## 3.F COMPARAISON D’USAGE
 
 | Besoin dominant                                            | Catégorie généralement adaptée          |
 | ---------------------------------------------------------- | --------------------------------------- |
@@ -95,7 +95,7 @@ READ TABLE lt_products
 | Accéder par numéro de ligne                                | `STANDARD TABLE` ou `SORTED TABLE`      |
 | Garantir l’unicité d’une clé                               | `SORTED TABLE` unique ou `HASHED TABLE` |
 
-## EXEMPLE COMPARATIF
+## 3.G EXEMPLE COMPARATIF
 
 ```abap
 TYPES: BEGIN OF ty_product,
@@ -115,7 +115,7 @@ DATA lt_hashed TYPE HASHED TABLE OF ty_product
 
 Le type de ligne est identique. La stratégie de stockage et d’accès est différente.
 
-## RÈGLE DE CONCEPTION
+## 3.H RÈGLE DE CONCEPTION
 
 Choisir la catégorie à partir des accès réels :
 
@@ -126,21 +126,21 @@ Choisir la catégorie à partir des accès réels :
 - unicité attendue ;
 - fréquence des insertions et modifications.
 
-## VÉRIFICATION
+## 3.I VÉRIFICATION
 
 - Le contrôle syntaxique réussit.
 - La version active correspond au code sauvegardé.
 - L’exécution produit le résultat décrit dans le chapitre.
 - Les cas vide, limite et erreur sont testés séparément lorsque la syntaxe le permet.
 
-## ERREURS FRÉQUENTES
+## 3.J ERREURS FRÉQUENTES
 
 - Copier un exemple sans adapter les types, noms d’objets et données disponibles dans le système.
 - Tester uniquement le cas nominal et ignorer les valeurs initiales, absentes ou invalides.
 - Utiliser une table standard pour des recherches massives par clé sans mesure.
 - Modifier une copie de ligne alors que la table devait être mise à jour.
 
-## SNIPPET À RÉUTILISER
+## 3.K SNIPPET À RÉUTILISER
 
 > [!NOTE]
 > Adapter les noms `Z*`, les types DDIC, les données et les autorisations au système cible. Effectuer un contrôle syntaxique avant activation.
@@ -152,14 +152,14 @@ READ TABLE lt_products
   WITH TABLE KEY matnr = 'MAT-001'.
 ```
 
-## TERMES DU LEXIQUE
+## 3.L TERMES DU LEXIQUE
 
 - [Table interne](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#table-interne>)
 - [Structure](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#structure-abap>)
 - [Field-symbol](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#field-symbol>)
 - [Référence](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#reference>)
 
-## RÉFÉRENCES OFFICIELLES SAP
+## 3.M RÉFÉRENCES OFFICIELLES SAP
 
 - [Working with Sorted and Hashed Tables — SAP Learning](https://learning.sap.com/courses/deepening-your-abap-programming-knowledge/working-with-sorted-and-hashed-tables_de84be91-c7db-4166-95cf-2b036c8d5558)
 - [Technical Properties of Internal Tables — SAP Help Portal](https://help.sap.com/docs/abap-cloud/abap-concepts/internal-table-setup)

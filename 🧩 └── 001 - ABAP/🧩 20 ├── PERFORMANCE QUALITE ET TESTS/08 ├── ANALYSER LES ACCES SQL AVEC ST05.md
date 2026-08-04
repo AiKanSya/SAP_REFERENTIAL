@@ -1,36 +1,36 @@
-# ANALYSER LES ACCES SQL AVEC ST05
+# 8. ANALYSER LES ACCES SQL AVEC ST05
 
-## RÉSULTAT ATTENDU
+## 8.A RÉSULTAT ATTENDU
 
 Tracer précisément les accès SQL exécutés pendant un scénario court et reproductible.
 
-## PROCESS
+## 8.B PROCESS
 
-### ÉTAPE 1 — PRÉPARER DEUX SESSIONS
+### 8.B.1 ÉTAPE 1 — PRÉPARER DEUX SESSIONS
 
 Dans la première, ouvrir `ST05`; dans la seconde, préparer l’application juste avant l’action lente. Relever utilisateur, mandant, données et heure. Utiliser un utilisateur dédié lorsque possible pour réduire le bruit.
 
-### ÉTAPE 2 — CONFIGURER LA TRACE SQL
+### 8.B.2 ÉTAPE 2 — CONFIGURER LA TRACE SQL
 
 Sélectionner la trace SQL et limiter le périmètre à l’utilisateur ou au contexte autorisé. Vérifier qu’aucune trace concurrente incompatible n’est active. Ne pas lancer une trace globale prolongée sans coordination Basis.
 
-### ÉTAPE 3 — ACTIVER, EXÉCUTER, DÉSACTIVER
+### 8.B.3 ÉTAPE 3 — ACTIVER, EXÉCUTER, DÉSACTIVER
 
 Activer immédiatement avant l’action, reproduire une seule fois puis désactiver sans attendre. Noter l’horodatage. Si le scénario échoue, conserver l’état fonctionnel exact qui correspond à la trace.
 
-### ÉTAPE 4 — FILTRER ET REGROUPER
+### 8.B.4 ÉTAPE 4 — FILTRER ET REGROUPER
 
 Afficher la trace, limiter à l’intervalle et regrouper les instructions identiques. Trier par temps cumulé, temps moyen, exécutions et lignes. Identifier la source ABAP des entrées dominantes.
 
-### ÉTAPE 5 — ANALYSER L’ACCÈS
+### 8.B.5 ÉTAPE 5 — ANALYSER L’ACCÈS
 
 Examiner prédicats, valeurs, cardinalité et plan lorsque disponible. Rechercher SQL en boucle, sélection trop large, conversion empêchant un accès efficace ou index inadapté. Ne pas conclure sur le seul temps d’une exécution isolée.
 
-### ÉTAPE 6 — REJOUER APRÈS CORRECTION
+### 8.B.6 ÉTAPE 6 — REJOUER APRÈS CORRECTION
 
 Tracer le même scénario avec le même volume. Comparer nombre d’instructions, lignes et temps cumulé. Supprimer les traces inutiles selon les règles du système et conserver uniquement les preuves nécessaires.
 
-## Informations à examiner
+## 8.C Informations à examiner
 
 - durée totale et moyenne ;
 - nombre d’exécutions ;
@@ -39,7 +39,7 @@ Tracer le même scénario avec le même volume. Comparer nombre d’instructions
 - source ABAP appelante ;
 - plan d’exécution lorsque disponible.
 
-## Signaux fréquents
+## 8.D Signaux fréquents
 
 | Signal                           | Hypothèse                      |
 | -------------------------------- | ------------------------------ |
@@ -55,32 +55,32 @@ flowchart LR
     C --> D["Regrouper et analyser"]
 ```
 
-## Discipline d’utilisation
+## 8.E Discipline d’utilisation
 
 La trace peut capturer des données techniques sensibles et produire un volume important. Cibler l’utilisateur, limiter la durée et désactiver la trace immédiatement après le scénario. Ne pas lancer une trace globale prolongée sans coordination avec l’administration.
 
-## Après correction
+## 8.F Après correction
 
 Répéter exactement le même scénario et comparer le nombre d’accès, le temps cumulé et le volume retourné.
 
-## Références SAP officielles
+## 8.G Références SAP officielles
 
 - [SAP Help Portal — SQL Trace Analysis](https://help.sap.com/docs/ABAP_PLATFORM_NEW/ba879a6e2ea04d9bb94c7ccd7cdac446/d1801f89454211d189710000e8322d00.html)
 - [SAP Help Portal — ABAP Performance and Tuning](https://help.sap.com/docs/SUPPORT_CONTENT/ABAP/3353523595.html)
 
-## VÉRIFICATION
+## 8.H VÉRIFICATION
 
 - Le scénario reproduit correspond au même utilisateur, mandant, transaction et jeu de données.
 - L’horodatage et l’identifiant de l’analyse sont conservés.
 - La cause retenue est soutenue par une ligne source, une trace ou une valeur observée.
 - Après correction, le même scénario ne reproduit plus le défaut et le résultat métier reste identique.
 
-## ERREURS FRÉQUENTES
+## 8.I ERREURS FRÉQUENTES
 
 - Optimiser sans mesure de référence.
 - Accepter un finding critique sans correction ni justification formelle.
 
-## FICHE DE CONTRÔLE À COPIER
+## 8.J FICHE DE CONTRÔLE À COPIER
 
 ```text
 Système / SID       :
@@ -95,7 +95,7 @@ Horodatage          :
 Ordre de transport  :
 ```
 
-## TERMES DU LEXIQUE
+## 8.K TERMES DU LEXIQUE
 
 - [ATC](<../🧩 00 ├── LEXIQUE SAP ET ABAP/10 └── ACRONYMES SAP.md#acro-atc>)
 - [ABAP](<../🧩 00 ├── LEXIQUE SAP ET ABAP/10 └── ACRONYMES SAP.md#acro-abap>)

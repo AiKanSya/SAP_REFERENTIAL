@@ -1,13 +1,13 @@
-# RECHERCHER ET ANALYSER AVEC SE37
+# 3. RECHERCHER ET ANALYSER AVEC SE37
 
-## RÉSULTAT ATTENDU
+## 3.A RÉSULTAT ATTENDU
 
 - Rechercher un module fonction existant avant d’en créer un
 - Lire son interface, son code et sa documentation
 - Identifier son groupe, son package et son type de traitement
 - Analyser ses appels et dépendances
 
-## TRANSACTION SE37
+## 3.B TRANSACTION SE37
 
 `SE37` ouvre le **Function Builder**. Elle permet de créer, afficher, modifier, tester et documenter un module fonction.
 
@@ -21,7 +21,7 @@ flowchart LR
     D --> E["Réutiliser ou créer"]
 ```
 
-## RECHERCHE
+## 3.C RECHERCHE
 
 Dans `SE37` :
 
@@ -33,7 +33,7 @@ Dans `SE37` :
 
 Utiliser les jokers uniquement comme support. Une fonction trouvée par son nom n’est pas automatiquement une API autorisée.
 
-## ONGLETS À CONTRÔLER
+## 3.D ONGLETS À CONTRÔLER
 
 | Zone          | Vérification                       |
 | ------------- | ---------------------------------- |
@@ -46,7 +46,7 @@ Utiliser les jokers uniquement comme support. Une fonction trouvée par son nom 
 | Code source   | Implémentation et dépendances      |
 | Documentation | Contrat, contraintes et effets     |
 
-## ANALYSE DES DÉPENDANCES
+## 3.E ANALYSE DES DÉPENDANCES
 
 Utiliser notamment :
 
@@ -56,7 +56,7 @@ Utiliser notamment :
 - recherche de messages, classes, tables et modules appelés ;
 - documentation du module et de ses paramètres.
 
-## ATTENTION AUX MODULES SAP
+## 3.F ATTENTION AUX MODULES SAP
 
 La présence d’un module standard dans `SE37` ne garantit pas qu’il constitue une API publique. Vérifier :
 
@@ -68,40 +68,40 @@ La présence d’un module standard dans `SE37` ne garantit pas qu’il constitu
 
 Ne pas appeler directement une fonction standard non documentée comme API simplement parce qu’un test `SE37` fonctionne.
 
-## PROCESS
+## 3.G PROCESS
 
-### Étape 1 — Rechercher avec un critère vérifiable
+### 3.G.1 Étape 1 — Rechercher avec un critère vérifiable
 
 Ouvrir `SE37` et utiliser le nom partiel, la recherche Repository ou le groupe de fonctions connu. Comparer plusieurs candidats ; un nom ressemblant au besoin n’est pas une preuve de compatibilité.
 
-### Étape 2 — Vérifier le statut et la documentation
+### 3.G.2 Étape 2 — Vérifier le statut et la documentation
 
 Ouvrir chaque candidat en affichage. Lire texte court, documentation, attribut RFC/update et éventuelles restrictions d’utilisation.
 
-### Étape 3 — Analyser la signature
+### 3.G.3 Étape 3 — Analyser la signature
 
 Relever paramètres obligatoires, structures `RETURN`, exceptions et types. Écarter le module si l’entrée nécessaire n’est pas représentée ou si une sortie importante reste implicite.
 
-### Étape 4 — Examiner appels et dépendances
+### 3.G.4 Étape 4 — Examiner appels et dépendances
 
 Utiliser la liste d’utilisation pour trouver des appelants comparables. Lire le source pour identifier autorisations, tables et appels transactionnels.
 
-### Étape 5 — Tester sans effet destructif
+### 3.G.5 Étape 5 — Tester sans effet destructif
 
 Dans l’outil de test, saisir une clé connue en affichage et contrôler toutes les sorties. L’analyse est terminée lorsque le module choisi possède un contrat compatible et un comportement confirmé par un cas réel.
 
-## VÉRIFICATION
+## 3.H VÉRIFICATION
 
 - Le lecteur peut expliquer la différence entre cette notion et les concepts proches.
 - Le choix technique est justifié par un besoin concret, pas uniquement par habitude.
 - Les limites liées à la release, aux autorisations et au contexte d’exécution sont identifiées.
 
-## ERREURS FRÉQUENTES
+## 3.I ERREURS FRÉQUENTES
 
 - Appeler un module fonction sans lire sa documentation et ses exceptions.
 - Supposer qu’une BAPI effectue automatiquement le commit.
 
-## FICHE DE CONTRÔLE À COPIER
+## 3.J FICHE DE CONTRÔLE À COPIER
 
 ```text
 Système / SID       :
@@ -116,7 +116,7 @@ Horodatage          :
 Ordre de transport  :
 ```
 
-## TERMES DU LEXIQUE
+## 3.K TERMES DU LEXIQUE
 
 - [Module fonction](<../🧩 00 ├── LEXIQUE SAP ET ABAP/06 ├── PROGRAMMES CLASSES ET OBJETS TECHNIQUES.md#module-fonction>)
 - [Function group](<../🧩 00 ├── LEXIQUE SAP ET ABAP/06 ├── PROGRAMMES CLASSES ET OBJETS TECHNIQUES.md#function-group>)
@@ -124,7 +124,7 @@ Ordre de transport  :
 - [BAPI](<../🧩 00 ├── LEXIQUE SAP ET ABAP/10 └── ACRONYMES SAP.md#acro-bapi>)
 - [Destination RFC](<../🧩 00 ├── LEXIQUE SAP ET ABAP/07 ├── INTERFACES ET INTEGRATION.md#destination-rfc>)
 
-## RÉFÉRENCES OFFICIELLES SAP
+## 3.L RÉFÉRENCES OFFICIELLES SAP
 
 - [Looking Up Function Modules — SAP Help Portal](https://help.sap.com/docs/ABAP_PLATFORM_NEW/bd833c8355f34e96a6e83096b38bf192/d1801ec1454211d189710000e8322d00.html)
 - [Calling Function Modules From Your Programs — SAP Help Portal](https://help.sap.com/docs/ABAP_PLATFORM_NEW/bd833c8355f34e96a6e83096b38bf192/d1801edb454211d189710000e8322d00.html)

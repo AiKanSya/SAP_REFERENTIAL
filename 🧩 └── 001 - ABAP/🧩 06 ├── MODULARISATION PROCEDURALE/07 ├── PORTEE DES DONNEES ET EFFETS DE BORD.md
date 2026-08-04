@@ -1,6 +1,6 @@
-# PORTÉE DES DONNÉES ET EFFETS DE BORD
+# 7. PORTÉE DES DONNÉES ET EFFETS DE BORD
 
-## RÉSULTAT ATTENDU
+## 7.A RÉSULTAT ATTENDU
 
 - Distinguer données globales et locales
 - Comprendre les dépendances implicites
@@ -8,7 +8,7 @@
 - Identifier les risques liés aux modifications globales
 - Concevoir des sous-programmes prévisibles
 
-## DONNÉES GLOBALES
+## 7.B DONNÉES GLOBALES
 
 Une donnée déclarée dans la partie globale du programme est accessible depuis les blocs de traitement et sous-programmes appartenant à ce programme.
 
@@ -22,7 +22,7 @@ ENDFORM.
 
 Le sous-programme ne déclare aucune sortie, mais modifie pourtant l’état du programme.
 
-## DONNÉES LOCALES
+## 7.C DONNÉES LOCALES
 
 ```abap
 FORM calculate_total
@@ -39,7 +39,7 @@ ENDFORM.
 
 `lv_raw_total` n’existe que pendant l’exécution du sous-programme.
 
-## EFFET DE BORD
+## 7.D EFFET DE BORD
 
 Un effet de bord est une modification observable en dehors du résultat explicitement annoncé par l’interface.
 
@@ -66,7 +66,7 @@ ENDFORM.
 
 L’appelant doit connaître deux dépendances globales non visibles dans l’appel.
 
-## RENDRE LES DÉPENDANCES EXPLICITES
+## 7.E RENDRE LES DÉPENDANCES EXPLICITES
 
 ```abap
 FORM validate_input
@@ -83,7 +83,7 @@ ENDFORM.
 
 Cette interface reste procédurale, mais l’appel expose les données modifiées.
 
-## INITIALISER LES SORTIES
+## 7.F INITIALISER LES SORTIES
 
 Une procédure doit définir clairement si elle :
 
@@ -109,11 +109,11 @@ ENDFORM.
 
 Le contrat doit être documenté lorsqu’il n’est pas évident.
 
-## MASQUAGE DES NOMS
+## 7.G MASQUAGE DES NOMS
 
 Éviter de réutiliser localement le nom d’une donnée globale. Même lorsque le langage permet une résolution non ambiguë, le lecteur peut se tromper sur la donnée réellement manipulée.
 
-## RÈGLES PRATIQUES
+## 7.H RÈGLES PRATIQUES
 
 - passer les données nécessaires par l’interface ;
 - limiter les globales aux états réellement partagés ;
@@ -122,7 +122,7 @@ Le contrat doit être documenté lorsqu’il n’est pas évident.
 - éviter les procédures qui lisent et modifient de nombreuses globales ;
 - documenter les effets persistants ou les mises à jour externes.
 
-## POINTS À RETENIR
+## 7.I POINTS À RETENIR
 
 - Une globale crée une dépendance implicite.
 - Une variable locale limite la portée d’une modification.
@@ -130,21 +130,21 @@ Le contrat doit être documenté lorsqu’il n’est pas évident.
 - Un résultat caché dans une globale est plus difficile à tester et à maintenir.
 - Une forte dépendance aux globales indique souvent qu’une refactorisation est nécessaire.
 
-## VÉRIFICATION
+## 7.J VÉRIFICATION
 
 - Le contrôle syntaxique réussit.
 - La version active correspond au code sauvegardé.
 - L’exécution produit le résultat décrit dans le chapitre.
 - Les cas vide, limite et erreur sont testés séparément lorsque la syntaxe le permet.
 
-## ERREURS FRÉQUENTES
+## 7.K ERREURS FRÉQUENTES
 
 - Copier un exemple sans adapter les types, noms d’objets et données disponibles dans le système.
 - Tester uniquement le cas nominal et ignorer les valeurs initiales, absentes ou invalides.
 - Créer des sous-programmes avec trop de paramètres globaux.
 - Utiliser des appels externes ou dynamiques sans contrôle du nom et de l’existence.
 
-## SNIPPET À RÉUTILISER
+## 7.L SNIPPET À RÉUTILISER
 
 > [!NOTE]
 > Adapter les noms `Z*`, les types DDIC, les données et les autorisations au système cible. Effectuer un contrôle syntaxique avant activation.
@@ -163,13 +163,13 @@ FORM build_messages
 ENDFORM.
 ```
 
-## TERMES DU LEXIQUE
+## 7.M TERMES DU LEXIQUE
 
 - [Programme exécutable](<../🧩 00 ├── LEXIQUE SAP ET ABAP/06 ├── PROGRAMMES CLASSES ET OBJETS TECHNIQUES.md#programme-executable>)
 - [Module fonction](<../🧩 00 ├── LEXIQUE SAP ET ABAP/06 ├── PROGRAMMES CLASSES ET OBJETS TECHNIQUES.md#module-fonction>)
 - [ABAP](<../🧩 00 ├── LEXIQUE SAP ET ABAP/10 └── ACRONYMES SAP.md#acro-abap>)
 
-## RÉFÉRENCES OFFICIELLES SAP
+## 7.N RÉFÉRENCES OFFICIELLES SAP
 
 - [Source Code Modularization — ABAP Keyword Documentation](https://help.sap.com/doc/abapdocu_latest_index_htm/latest/en-US/ABENSOURCE_CODE_MODULAR_GUIDL.html)
 - [Source Code Organization — ABAP Keyword Documentation](https://help.sap.com/doc/abapdocu_latest_index_htm/latest/en-US/ABENSOURCE_CODE_ORGA_GDL.html)

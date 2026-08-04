@@ -1,6 +1,6 @@
-# CLASSES D’EXCEPTION ET CATÉGORIES
+# 8. CLASSES D’EXCEPTION ET CATÉGORIES
 
-## RÉSULTAT ATTENDU
+## 8.A RÉSULTAT ATTENDU
 
 - Comprendre les exceptions basées sur des classes
 - Identifier la hiérarchie issue de `CX_ROOT`
@@ -8,7 +8,7 @@
 - Choisir une catégorie cohérente
 - Préparer la création d’une exception client
 
-## PRINCIPE
+## 8.B PRINCIPE
 
 Une exception de classe est un objet qui représente une situation d’erreur. Elle peut contenir :
 
@@ -27,19 +27,19 @@ flowchart TD
 
 Une classe d’exception client commence généralement par `ZCX_` ou `YCX_` selon les conventions du système.
 
-## CX_STATIC_CHECK
+## 8.C CX_STATIC_CHECK
 
 Une exception héritant de `CX_STATIC_CHECK` force le développeur à la traiter ou à la déclarer explicitement dans les interfaces concernées. Le contrôle syntaxique vérifie cette obligation.
 
 Elle convient lorsque le contrat doit imposer une décision explicite à l’appelant.
 
-## CX_DYNAMIC_CHECK
+## 8.D CX_DYNAMIC_CHECK
 
 Une exception héritant de `CX_DYNAMIC_CHECK` doit être déclarée lorsqu’elle est propagée par une procédure. Le contrôle statique aux différents niveaux d’appel est moins strict que pour `CX_STATIC_CHECK`.
 
 Elle convient à certaines situations dont l’occurrence dépend fortement des données ou de l’environnement d’exécution.
 
-## CX_NO_CHECK
+## 8.E CX_NO_CHECK
 
 Une exception héritant de `CX_NO_CHECK` peut être propagée sans déclaration explicite dans l’interface.
 
@@ -47,7 +47,7 @@ Elle convient aux erreurs qu’il serait excessif de déclarer dans chaque nivea
 
 L’absence d’obligation de déclaration ne signifie pas que l’exception doit être ignorée.
 
-## CHOIX DE LA CATÉGORIE
+## 8.F CHOIX DE LA CATÉGORIE
 
 | Besoin                                                         | Catégorie possible |
 | -------------------------------------------------------------- | ------------------ |
@@ -57,7 +57,7 @@ L’absence d’obligation de déclaration ne signifie pas que l’exception doi
 
 Le choix doit être effectué selon le contrat attendu, pas selon la volonté d’éviter une erreur de syntaxe.
 
-## CLASSES STANDARD CX_SY
+## 8.G CLASSES STANDARD CX_SY
 
 Le runtime ABAP utilise de nombreuses classes prédéfinies commençant par `CX_SY_`, par exemple pour :
 
@@ -69,52 +69,52 @@ Le runtime ABAP utilise de nombreuses classes prédéfinies commençant par `CX_
 
 La documentation de chaque instruction indique les exceptions pouvant être levées.
 
-## CRÉATION DANS SAP GUI
+## 8.H CRÉATION DANS SAP GUI
 
 Une classe d’exception peut être créée avec les outils du Workbench, notamment `SE24` ou `SE80` selon l’organisation du projet.
 
 La création détaillée des classes sera approfondie dans le dossier ABAP Objects. Dans ce dossier, l’objectif est d’utiliser correctement leur contrat d’erreur.
 
-## PROCESS
+## 8.I PROCESS
 
-### Étape 1 — Définir le contrat d’erreur
+### 8.I.1 Étape 1 — Définir le contrat d’erreur
 
 Lister les situations que l’appelant peut raisonnablement traiter. Regrouper dans une même classe les erreurs du même domaine et séparer les défauts techniques des validations métier lorsque leur traitement diffère.
 
-### Étape 2 — Choisir la catégorie
+### 8.I.2 Étape 2 — Choisir la catégorie
 
 Utiliser `CX_STATIC_CHECK` lorsque l’appelant doit déclarer ou intercepter l’erreur, `CX_DYNAMIC_CHECK` pour une erreur vérifiable à l’exécution sans déclaration obligatoire, et `CX_NO_CHECK` uniquement pour une situation que les appelants ordinaires ne doivent pas gérer localement.
 
-### Étape 3 — Créer la classe dans SE24
+### 8.I.3 Étape 3 — Créer la classe dans SE24
 
 Créer une classe d’exception client héritant de la catégorie choisie. Définir les attributs nécessaires au diagnostic, les textes d’exception et, si nécessaire, le chaînage `PREVIOUS`.
 
-### Étape 4 — Déclarer et lever
+### 8.I.4 Étape 4 — Déclarer et lever
 
 Ajouter `RAISING` à la signature lorsque la catégorie le requiert. Lever l’exception au point où la cause est connue, avec les valeurs de contexte déjà validées.
 
-### Étape 5 — Tester le contrat
+### 8.I.5 Étape 5 — Tester le contrat
 
 Créer un test qui provoque chaque texte, vérifie les attributs et contrôle la conservation de l’exception précédente. La classe est validée lorsque l’appelant peut distinguer les cas sans analyser une chaîne de texte libre.
 
-## VÉRIFICATION
+## 8.J VÉRIFICATION
 
 - Le lecteur peut expliquer la différence entre cette notion et les concepts proches.
 - Le choix technique est justifié par un besoin concret, pas uniquement par habitude.
 - Les limites liées à la release, aux autorisations et au contexte d’exécution sont identifiées.
 
-## ERREURS FRÉQUENTES
+## 8.K ERREURS FRÉQUENTES
 
 - Afficher un message technique incompréhensible à l’utilisateur.
 - Attraper une exception sans action ni propagation.
 
-## TERMES DU LEXIQUE
+## 8.L TERMES DU LEXIQUE
 
 - [Classe](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#classe>)
 - [Exception](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#exception>)
 - [Dump ABAP](<../🧩 00 ├── LEXIQUE SAP ET ABAP/08 ├── EXECUTION EXPLOITATION ET ADMINISTRATION.md#dump-abap>)
 
-## RÉFÉRENCES OFFICIELLES SAP
+## 8.M RÉFÉRENCES OFFICIELLES SAP
 
 - [Exception Categories — ABAP Keyword Documentation](https://help.sap.com/doc/abapdocu_latest_index_htm/latest/en-US/ABENEXCEPTION_CATEGORIES.html)
 - [Exception Classes for ABAP Statements — ABAP Keyword Documentation](https://help.sap.com/doc/abapdocu_latest_index_htm/latest/en-US/ABENABAP_EXCEPTION_CLASSES.html)

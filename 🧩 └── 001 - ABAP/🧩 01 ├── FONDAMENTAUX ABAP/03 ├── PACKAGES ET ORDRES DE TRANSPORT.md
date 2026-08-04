@@ -1,6 +1,6 @@
-# PACKAGES ET ORDRES DE TRANSPORT
+# 3. PACKAGES ET ORDRES DE TRANSPORT
 
-## RÉSULTAT ATTENDU
+## 3.A RÉSULTAT ATTENDU
 
 - Comprendre le rôle d’un package ABAP
 - Distinguer objet local et objet transportable
@@ -8,7 +8,7 @@
 - Différencier requête Workbench et requête de Customizing
 - Appliquer une séquence de transport sûre
 
-## VUE D’ENSEMBLE
+## 3.B VUE D’ENSEMBLE
 
 ```mermaid
 flowchart LR
@@ -20,7 +20,7 @@ flowchart LR
     F --> G["Import dans le système cible"]
 ```
 
-## PACKAGE ABAP
+## 3.C PACKAGE ABAP
 
 Un package organise les objets du Repository qui appartiennent à un même périmètre technique ou applicatif.
 
@@ -34,7 +34,7 @@ Il porte notamment des informations utiles pour :
 > [!IMPORTANT]
 > Le package n’est pas un simple dossier visuel. Il participe au cycle de vie et au transport des objets.
 
-## PACKAGE LOCAL `$TMP`
+## 3.D PACKAGE LOCAL `$TMP`
 
 Le package `$TMP` est destiné aux objets locaux non transportés.
 
@@ -53,7 +53,7 @@ Utilisations inadaptées :
 
 Un objet local peut être réaffecté ultérieurement à un package transportable avec les outils du Workbench.
 
-## PACKAGE TRANSPORTABLE
+## 3.E PACKAGE TRANSPORTABLE
 
 Lors de la création d’un objet dans un package transportable, SAP demande généralement un ordre de transport.
 
@@ -67,7 +67,7 @@ flowchart TD
     D --> E["Objet enregistré dans la tâche"]
 ```
 
-## STRUCTURE D’UN ORDRE DE TRANSPORT
+## 3.F STRUCTURE D’UN ORDRE DE TRANSPORT
 
 Une requête Workbench contient généralement une ou plusieurs tâches.
 
@@ -88,9 +88,9 @@ Requête Workbench
 
 La tâche doit être libérée avant la requête parente.
 
-## WORKBENCH ET CUSTOMIZING
+## 3.G WORKBENCH ET CUSTOMIZING
 
-### REQUÊTE WORKBENCH
+### 3.G.1 REQUÊTE WORKBENCH
 
 Elle transporte principalement les objets du Repository et certaines données dépendantes de la configuration technique.
 
@@ -102,14 +102,14 @@ Exemples :
 - modules fonction ;
 - objets de service ou d’extension selon leur technologie.
 
-### REQUÊTE DE CUSTOMIZING
+### 3.G.2 REQUÊTE DE CUSTOMIZING
 
 Elle transporte principalement du paramétrage dépendant du mandant lorsque ce paramétrage est enregistré dans le système de transport.
 
 > [!NOTE]
 > Un développeur ABAP travaille surtout avec des requêtes Workbench, mais doit reconnaître les deux catégories pour éviter de mélanger code et paramétrage sans justification.
 
-## TRANSACTIONS PRINCIPALES
+## 3.H TRANSACTIONS PRINCIPALES
 
 | Transaction | Usage principal                                                             |
 | ----------- | --------------------------------------------------------------------------- |
@@ -120,7 +120,7 @@ Elle transporte principalement du paramétrage dépendant du mandant lorsque ce 
 
 Les fonctions exactes accessibles dépendent des autorisations.
 
-## SÉQUENCE DE TRAVAIL
+## 3.I SÉQUENCE DE TRAVAIL
 
 1. identifier le package cible ;
 2. sélectionner ou créer la requête adaptée au périmètre de livraison ;
@@ -142,7 +142,7 @@ flowchart LR
     F --> G["Tester dans la cible"]
 ```
 
-## CONTRÔLES AVANT LIBÉRATION
+## 3.J CONTRÔLES AVANT LIBÉRATION
 
 - la requête correspond au bon projet ou ticket ;
 - aucun objet sans rapport n’est présent ;
@@ -155,7 +155,7 @@ flowchart LR
 > [!CAUTION]
 > Après libération d’une requête, sa liste d’objets ne doit plus être considérée comme un espace de travail modifiable. Une correction supplémentaire doit être enregistrée dans une autre requête selon le processus du projet.
 
-## ERREURS FRÉQUENTES
+## 3.K ERREURS FRÉQUENTES
 
 | Erreur                                              | Conséquence                                      |
 | --------------------------------------------------- | ------------------------------------------------ |
@@ -165,9 +165,9 @@ flowchart LR
 | Libérer dans le mauvais ordre                       | Dépendance non satisfaite                        |
 | Transporter sans test après import                  | Défaut découvert tardivement                     |
 
-## PROCESS
+## 3.L PROCESS
 
-### Étape 1 — Affecter le bon package
+### 3.L.1 Étape 1 — Affecter le bon package
 
 1. Lors de la première sauvegarde, saisir le package fourni par le projet.
 2. Vérifier son libellé et son composant avant de valider.
@@ -175,7 +175,7 @@ flowchart LR
 
 Si le package attendu est inconnu, annuler l’affectation. Choisir un package arbitraire peut envoyer l’objet vers une mauvaise couche de transport.
 
-### Étape 2 — Affecter une tâche de transport
+### 3.L.2 Étape 2 — Affecter une tâche de transport
 
 1. Dans la demande de transport, rechercher l’ordre Workbench prévu pour la livraison.
 2. Sélectionner la tâche appartenant à votre utilisateur.
@@ -184,7 +184,7 @@ Si le package attendu est inconnu, annuler l’affectation. Choisir un package a
 
 L’objet doit apparaître sous une tâche, elle-même rattachée à l’ordre parent. Un ordre d’un autre sujet ne doit pas être réutilisé pour éviter une livraison non maîtrisée.
 
-### Étape 3 — Contrôler le contenu dans SE09 ou SE10
+### 3.L.3 Étape 3 — Contrôler le contenu dans SE09 ou SE10
 
 1. Ouvrir `/nSE09` ou `/nSE10`.
 2. Rechercher par numéro d’ordre ou propriétaire.
@@ -194,7 +194,7 @@ L’objet doit apparaître sous une tâche, elle-même rattachée à l’ordre p
 
 Un objet absent peut ne pas avoir été sauvegardé, être enregistré dans une autre tâche ou relever d’un transport Customizing distinct.
 
-### Étape 4 — Vérifier les dépendances de livraison
+### 3.L.4 Étape 4 — Vérifier les dépendances de livraison
 
 1. Identifier les dépendances nécessaires : élément de données, structure, table, classe, message, enhancement ou Customizing.
 2. Rechercher leur ordre respectif.
@@ -202,7 +202,7 @@ Un objet absent peut ne pas avoir été sauvegardé, être enregistré dans une 
 
 Le but n’est pas de placer tous les objets dans le même ordre, mais d’empêcher qu’un objet soit importé avant une dépendance indispensable.
 
-### Étape 5 — Préparer puis libérer
+### 3.L.5 Étape 5 — Préparer puis libérer
 
 1. Exécuter les contrôles syntaxiques et statiques prévus.
 2. Activer tous les objets dépendants.
@@ -213,13 +213,13 @@ Le but n’est pas de placer tous les objets dans le même ordre, mais d’empê
 
 Après libération, vérifier le journal. Le processus est terminé lorsque l’ordre est libéré sans erreur, contient exactement le périmètre validé et est disponible pour la chaîne de transport attendue.
 
-## VÉRIFICATION
+## 3.M VÉRIFICATION
 
 - Le lecteur peut expliquer la différence entre cette notion et les concepts proches.
 - Le choix technique est justifié par un besoin concret, pas uniquement par habitude.
 - Les limites liées à la release, aux autorisations et au contexte d’exécution sont identifiées.
 
-## FICHE DE CONTRÔLE À COPIER
+## 3.N FICHE DE CONTRÔLE À COPIER
 
 ```text
 Système / SID       :
@@ -234,7 +234,7 @@ Horodatage          :
 Ordre de transport  :
 ```
 
-## TERMES DU LEXIQUE
+## 3.O TERMES DU LEXIQUE
 
 - [Package](<../🧩 00 ├── LEXIQUE SAP ET ABAP/03 ├── REPOSITORY PACKAGES ET TRANSPORTS.md#package>)
 - [Système SAP](<../🧩 00 ├── LEXIQUE SAP ET ABAP/01 ├── SYSTEMES ENVIRONNEMENTS ET MANDANTS.md#systeme-sap>)
@@ -243,7 +243,7 @@ Ordre de transport  :
 - [Transaction](<../🧩 00 ├── LEXIQUE SAP ET ABAP/02 ├── SAP GUI NAVIGATION ET TRANSACTIONS.md#transaction>)
 - [Repository ABAP](<../🧩 00 ├── LEXIQUE SAP ET ABAP/03 ├── REPOSITORY PACKAGES ET TRANSPORTS.md#repository-abap>)
 
-## RÉFÉRENCES OFFICIELLES SAP
+## 3.P RÉFÉRENCES OFFICIELLES SAP
 
 - [Transport Organizer — Concept](https://help.sap.com/docs/ABAP_PLATFORM_BW4HANA/4a368c163b08418890a406d413933ba7/5738dd924eb711d182bf0000e829fbfe.html)
 - [Object Directory](https://help.sap.com/docs/ABAP_PLATFORM_NEW/4a368c163b08418890a406d413933ba7/5738e06c4eb711d182bf0000e829fbfe.html)

@@ -1,6 +1,6 @@
-# ACTIVATION, AJUSTEMENT BASE ET ANALYSE DES DÉPENDANCES
+# 16. ACTIVATION, AJUSTEMENT BASE ET ANALYSE DES DÉPENDANCES
 
-## RÉSULTAT ATTENDU
+## 16.A RÉSULTAT ATTENDU
 
 - Comprendre la différence entre version inactive et active
 - Activer les objets dans un ordre cohérent
@@ -8,7 +8,7 @@
 - Utiliser SE14 avec prudence
 - Analyser les dépendances avant et après modification
 
-## VERSION ACTIVE ET VERSION INACTIVE
+## 16.B VERSION ACTIVE ET VERSION INACTIVE
 
 L’enregistrement conserve les modifications dans une version inactive.
 
@@ -24,7 +24,7 @@ flowchart LR
 
 Une erreur d’activation laisse généralement la dernière version active utilisable, tandis que les nouvelles modifications restent inactives.
 
-## ORDRE D’ACTIVATION
+## 16.C ORDRE D’ACTIVATION
 
 Activer d’abord les dépendances de bas niveau :
 
@@ -36,7 +36,7 @@ Activer d’abord les dépendances de bas niveau :
 
 Les outils peuvent proposer une activation collective, mais les erreurs restent plus simples à diagnostiquer lorsque les dépendances sont comprises.
 
-## IMPACT D’UNE MODIFICATION
+## 16.D IMPACT D’UNE MODIFICATION
 
 Exemples de modifications à risque :
 
@@ -50,7 +50,7 @@ Exemples de modifications à risque :
 
 Une modification indirecte d’un domaine ou d’un élément de données peut affecter plusieurs tables.
 
-## AJUSTEMENT DE BASE
+## 16.E AJUSTEMENT DE BASE
 
 Lorsque la définition active d’une table ne correspond plus à la structure physique, un ajustement est nécessaire.
 
@@ -69,7 +69,7 @@ flowchart TD
     D --> E["Contrôle des données et de l’indisponibilité"]
 ```
 
-## PRUDENCE AVEC SE14
+## 16.F PRUDENCE AVEC SE14
 
 Une conversion peut :
 
@@ -81,7 +81,7 @@ Une conversion peut :
 
 Ne pas lancer une suppression, recréation ou conversion sur un environnement productif sans procédure validée, sauvegarde et coordination avec l’administration technique.
 
-## ANALYSE DES DÉPENDANCES
+## 16.G ANALYSE DES DÉPENDANCES
 
 Avant la modification :
 
@@ -98,7 +98,7 @@ Après l’activation :
 - tester les lectures et écritures principales ;
 - rechercher les objets inactifs ou incohérents.
 
-## POINTS À RETENIR
+## 16.H POINTS À RETENIR
 
 - Enregistrer ne signifie pas activer.
 - Les objets de base doivent être activés avant leurs consommateurs.
@@ -106,41 +106,41 @@ Après l’activation :
 - SE14 est un outil technique puissant et potentiellement destructif.
 - La liste d’utilisation et les tests de non-régression sont obligatoires avant une modification structurante.
 
-## PROCESS
+## 16.I PROCESS
 
-### Étape 1 — Identifier l’écart
+### 16.I.1 Étape 1 — Identifier l’écart
 
 Ouvrir l’objet dans `SE11`, vérifier son statut puis comparer définition active et version modifiée. Pour une table, utiliser les outils de base de données afin de distinguer erreur DDIC, objet physique manquant et conversion nécessaire.
 
-### Étape 2 — Analyser les dépendances
+### 16.I.2 Étape 2 — Analyser les dépendances
 
 Consulter la liste d’utilisation et l’ordre d’activation : domaines, éléments de données, structures et tables. Corriger d’abord l’objet le plus bas dans la chaîne.
 
-### Étape 3 — Évaluer le risque sur les données
+### 16.I.3 Étape 3 — Évaluer le risque sur les données
 
 Avant une réduction de longueur, un changement de type ou de clé, mesurer les lignes existantes et rechercher les valeurs incompatibles. Une activation technique ne doit pas être utilisée pour découvrir le risque en production.
 
-### Étape 4 — Activer ou planifier l’ajustement
+### 16.I.4 Étape 4 — Activer ou planifier l’ajustement
 
 Pour un changement sans conversion, activer dans l’ordre des dépendances. Si un ajustement de base est nécessaire, analyser le journal et planifier l’opération avec Basis selon le volume et l’indisponibilité potentielle.
 
-### Étape 5 — Vérifier après opération
+### 16.I.5 Étape 5 — Vérifier après opération
 
 Comparer à nouveau DDIC et base, exécuter une lecture représentative et contrôler les objets dépendants inactifs. La correction est terminée uniquement lorsqu’aucun écart structurel ni objet dépendant invalide ne subsiste.
 
-## VÉRIFICATION
+## 16.J VÉRIFICATION
 
 - Le contrôle de cohérence ne retourne aucune erreur bloquante.
 - L’objet est actif et son entrée de répertoire pointe vers le package attendu.
 - La liste d’utilisation et les dépendances correspondent au périmètre prévu.
 - Pour une table Z, la structure active et la structure de base sont cohérentes.
 
-## ERREURS FRÉQUENTES
+## 16.K ERREURS FRÉQUENTES
 
 - Modifier un objet standard au lieu d’utiliser une extension.
 - Activer une table sans vérifier clé, paramètres techniques et impact base.
 
-## FICHE DE CONTRÔLE À COPIER
+## 16.L FICHE DE CONTRÔLE À COPIER
 
 ```text
 Système / SID       :
@@ -155,7 +155,7 @@ Horodatage          :
 Ordre de transport  :
 ```
 
-## TERMES DU LEXIQUE
+## 16.M TERMES DU LEXIQUE
 
 - [ABAP Dictionary](<../🧩 00 ├── LEXIQUE SAP ET ABAP/05 ├── DONNEES DICTIONNAIRE ET BASE DE DONNEES.md#abap-dictionary>)
 - [Domaine](<../🧩 00 ├── LEXIQUE SAP ET ABAP/05 ├── DONNEES DICTIONNAIRE ET BASE DE DONNEES.md#domaine>)
@@ -163,7 +163,7 @@ Ordre de transport  :
 - [Table transparente](<../🧩 00 ├── LEXIQUE SAP ET ABAP/05 ├── DONNEES DICTIONNAIRE ET BASE DE DONNEES.md#table-transparente>)
 - [MANDT](<../🧩 00 ├── LEXIQUE SAP ET ABAP/05 ├── DONNEES DICTIONNAIRE ET BASE DE DONNEES.md#mandt>)
 
-## RÉFÉRENCES OFFICIELLES SAP
+## 16.N RÉFÉRENCES OFFICIELLES SAP
 
 - [Adjustment of Database Structures — SAP Help Portal](https://help.sap.com/docs/SAP_NETWEAVER_740/ec1c9c8191b74de98feb94001a95dd76/cf21f1ab446011d189700000e8322d00.html)
 - [Handling Changes to Database Tables — SAP Learning](https://learning.sap.com/courses/building-data-models-with-the-abap-dictionary-and-abap-core-data-services/handling-changes-to-database-tables_d6d6d97a-979e-4efe-b5c3-f3e3d85332fb)

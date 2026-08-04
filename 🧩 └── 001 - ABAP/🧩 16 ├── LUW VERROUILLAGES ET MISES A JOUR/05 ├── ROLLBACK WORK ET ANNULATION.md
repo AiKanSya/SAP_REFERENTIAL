@@ -1,12 +1,12 @@
-# `ROLLBACK WORK` ET ANNULATION
+# 5. `ROLLBACK WORK` ET ANNULATION
 
-## RÉSULTAT ATTENDU
+## 5.A RÉSULTAT ATTENDU
 
 - Annuler la SAP LUW courante
 - Comprendre les effets sur les mises à jour enregistrées
 - Différencier annulation technique et compensation métier
 
-## UTILISATION
+## 5.B UTILISATION
 
 ```abap
 UPDATE zdev_order
@@ -21,7 +21,7 @@ ENDIF.
 
 `ROLLBACK WORK` déclenche un rollback des modifications non validées et supprime les modules de mise à jour enregistrés dans la SAP LUW courante.
 
-## LIMITES
+## 5.C LIMITES
 
 Un rollback ne peut pas annuler :
 
@@ -40,51 +40,51 @@ flowchart TD
     B -->|"Oui"| D["Traitement compensatoire"]
 ```
 
-## RÈGLE
+## 5.D RÈGLE
 
 Détecter les erreurs avant les effets irréversibles. Une architecture qui dépend d’un rollback après des appels externes est fragile.
 
-## PROCESS
+## 5.E PROCESS
 
-### ÉTAPE 1 — DÉFINIR CE QUI EST ENCORE ANNULABLE
+### 5.E.1 ÉTAPE 1 — DÉFINIR CE QUI EST ENCORE ANNULABLE
 
 Lister les écritures effectuées depuis la dernière borne transactionnelle. Séparer les modifications non validées, les modules de mise à jour seulement enregistrés, les données déjà commitées et les effets externes. `ROLLBACK WORK` ne couvre que le contexte transactionnel encore ouvert.
 
-### ÉTAPE 2 — DÉTECTER L’ERREUR AVANT UN EFFET IRRÉVERSIBLE
+### 5.E.2 ÉTAPE 2 — DÉTECTER L’ERREUR AVANT UN EFFET IRRÉVERSIBLE
 
 Exécuter les contrôles structurels et métier avant l’envoi d’un fichier, d’un message ou d’un appel externe. Après chaque écriture Open SQL ou appel d’API, traiter le retour au niveau qui connaît l’unité métier complète.
 
-### ÉTAPE 3 — EXÉCUTER LE ROLLBACK DEPUIS L’ORCHESTRATEUR
+### 5.E.3 ÉTAPE 3 — EXÉCUTER LE ROLLBACK DEPUIS L’ORCHESTRATEUR
 
 Lorsque l’unité ne peut plus réussir, appeler `ROLLBACK WORK` une seule fois au niveau d’orchestration. Ne pas exécuter de commit dans un gestionnaire d’erreur. Restituer ensuite la cause initiale sans la remplacer par un message générique d’annulation.
 
-### ÉTAPE 4 — TRAITER LES VERROUS ET RESSOURCES
+### 5.E.4 ÉTAPE 4 — TRAITER LES VERROUS ET RESSOURCES
 
 Vérifier la libération des verrous selon leur `_SCOPE`. Libérer explicitement ceux dont le contrat l’exige et fermer les ressources non transactionnelles ouvertes par le programme. Un rollback base de données ne ferme pas automatiquement un fichier externe selon l’intention métier.
 
-### ÉTAPE 5 — DÉCLENCHER UNE COMPENSATION SI NÉCESSAIRE
+### 5.E.5 ÉTAPE 5 — DÉCLENCHER UNE COMPENSATION SI NÉCESSAIRE
 
 Si une étape a déjà été validée ou exécutée dans un autre système, appeler une procédure métier dédiée : annulation de document, contre-écriture ou message compensatoire. Journaliser séparément l’échec initial et le résultat de la compensation.
 
-### ÉTAPE 6 — VÉRIFIER L’ÉTAT FINAL
+### 5.E.6 ÉTAPE 6 — VÉRIFIER L’ÉTAT FINAL
 
 Contrôler les tables, `SM13`, `SM12` et les systèmes externes. Tester une erreur avant écriture, après écriture non validée et après effet externe. Chaque scénario doit aboutir à un état cohérent ou à un statut de reprise explicite.
 
-## VÉRIFICATION
+## 5.F VÉRIFICATION
 
 - Les données sont toutes validées ou toutes annulées selon le cas testé.
 - Les verrous sont libérés à la fin du traitement normal et après erreur.
 - Aucune update en erreur inattendue ne reste dans `SM13`.
 - Les collisions concurrentes produisent un message contrôlé, pas une incohérence.
 
-## ERREURS FRÉQUENTES
+## 5.G ERREURS FRÉQUENTES
 
 - Copier un exemple sans adapter les types, noms d’objets et données disponibles dans le système.
 - Tester uniquement le cas nominal et ignorer les valeurs initiales, absentes ou invalides.
 - Supprimer manuellement un verrou sans comprendre son propriétaire.
 - Relancer une update en erreur sans vérifier l’état métier.
 
-## SNIPPET À RÉUTILISER
+## 5.H SNIPPET À RÉUTILISER
 
 > [!NOTE]
 > Adapter les noms `Z*`, les types DDIC, les données et les autorisations au système cible. Effectuer un contrôle syntaxique avant activation.
@@ -100,7 +100,7 @@ IF sy-subrc <> 0.
 ENDIF.
 ```
 
-## TERMES DU LEXIQUE
+## 5.I TERMES DU LEXIQUE
 
 - [ROLLBACK WORK](<../🧩 00 ├── LEXIQUE SAP ET ABAP/08 ├── EXECUTION EXPLOITATION ET ADMINISTRATION.md#rollback-work>)
 - [SAP LUW](<../🧩 00 ├── LEXIQUE SAP ET ABAP/08 ├── EXECUTION EXPLOITATION ET ADMINISTRATION.md#sap-luw>)
@@ -109,7 +109,7 @@ ENDIF.
 - [Enqueue server](<../🧩 00 ├── LEXIQUE SAP ET ABAP/08 ├── EXECUTION EXPLOITATION ET ADMINISTRATION.md#enqueue-server>)
 - [Update task](<../🧩 00 ├── LEXIQUE SAP ET ABAP/08 ├── EXECUTION EXPLOITATION ET ADMINISTRATION.md#update-task>)
 
-## RÉFÉRENCES OFFICIELLES SAP
+## 5.J RÉFÉRENCES OFFICIELLES SAP
 
 - [ROLLBACK WORK — ABAP Keyword Documentation](https://help.sap.com/docs/ABAP_PLATFORM_NEW/8132142fd1a144a59303663a03a7c2d4/54f5462a9604498382319304869a4280.html)
 - [LUWs in ABAP — SAP Help Portal](https://help.sap.com/docs/ABAP_PLATFORM_NEW/8132142fd1a144a59303663a03a7c2d4/54f5462a9604498382319304869a4280.html)

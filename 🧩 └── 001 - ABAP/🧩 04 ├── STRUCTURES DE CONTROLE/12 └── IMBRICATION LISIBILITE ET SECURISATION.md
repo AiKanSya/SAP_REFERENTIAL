@@ -1,6 +1,6 @@
-# IMBRICATION, LISIBILITÉ ET SÉCURISATION
+# 12. IMBRICATION, LISIBILITÉ ET SÉCURISATION
 
-## RÉSULTAT ATTENDU
+## 12.A RÉSULTAT ATTENDU
 
 - Limiter la profondeur des structures imbriquées
 - Séparer règles métier et mécanismes de boucle
@@ -8,7 +8,7 @@
 - Préparer les cas de test de chaque branche
 - Construire un flux de traitement vérifiable
 
-## COÛT DE L’IMBRICATION
+## 12.B COÛT DE L’IMBRICATION
 
 Chaque niveau supplémentaire augmente le nombre de chemins possibles et la difficulté de lecture.
 
@@ -45,7 +45,7 @@ ENDDO.
 
 Le chemin principal reste aligné à gauche.
 
-## SÉPARER LES RESPONSABILITÉS
+## 12.C SÉPARER LES RESPONSABILITÉS
 
 Une boucle ne doit pas cumuler sans nécessité :
 
@@ -58,7 +58,7 @@ Une boucle ne doit pas cumuler sans nécessité :
 
 La modularisation permettra d’extraire ces responsabilités dans des procédures ou méthodes dédiées.
 
-## PROTÉGER LES BOUCLES
+## 12.D PROTÉGER LES BOUCLES
 
 Pour toute boucle conditionnelle, identifier :
 
@@ -79,7 +79,7 @@ flowchart TD
     B -->|""Fausse""| G["Fin normale"]
 ```
 
-## EXEMPLE SÉCURISÉ
+## 12.E EXEMPLE SÉCURISÉ
 
 ```abap
 PARAMETERS p_target TYPE i DEFAULT 7.
@@ -113,7 +113,7 @@ START-OF-SELECTION.
   ENDIF.
 ```
 
-## MATRICE DE CHOIX
+## 12.F MATRICE DE CHOIX
 
 | Besoin                                | Instruction principale | Instruction complémentaire éventuelle |
 | ------------------------------------- | ---------------------- | ------------------------------------- |
@@ -126,7 +126,7 @@ START-OF-SELECTION.
 | Quitter la boucle                     | `EXIT`                 | Indicateur de résultat                |
 | Quitter le bloc courant               | `RETURN`               | Message ou journalisation             |
 
-## CAS DE TEST MINIMAUX
+## 12.G CAS DE TEST MINIMAUX
 
 Pour une condition :
 
@@ -144,7 +144,7 @@ Pour une boucle :
 - limite maximale atteinte ;
 - condition qui reste fausse dès le départ.
 
-## CONTRÔLE DANS LE DEBUGGER ABAP
+## 12.H CONTRÔLE DANS LE DEBUGGER ABAP
 
 Placer des points d’arrêt :
 
@@ -162,7 +162,7 @@ Surveiller notamment :
 - le nombre d’itérations ;
 - les valeurs limites.
 
-## RÈGLES DE SYNTHÈSE
+## 12.I RÈGLES DE SYNTHÈSE
 
 - choisir la structure la plus spécifique au besoin ;
 - classer les conditions par priorité métier ;
@@ -173,9 +173,9 @@ Surveiller notamment :
 - tester chaque branche et chaque mode de sortie ;
 - ne pas utiliser une construction moderne sans vérifier la version ABAP cible.
 
-## PROCESS
+## 12.J PROCESS
 
-### Étape 1 — Cartographier les chemins imbriqués
+### 12.J.1 Étape 1 — Cartographier les chemins imbriqués
 
 1. Ouvrir la méthode ou le programme en mode affichage.
 2. Repérer les blocs `IF`, `CASE`, `LOOP`, `DO` et `WHILE` imbriqués.
@@ -184,13 +184,13 @@ Surveiller notamment :
 
 Si une condition ne correspond qu’à un cas d’erreur, elle est candidate à une clause de garde. Ne modifier encore aucun branchement : cette étape sert à conserver le comportement existant.
 
-### Étape 2 — Prouver le comportement avant refactorisation
+### 12.J.2 Étape 2 — Prouver le comportement avant refactorisation
 
 Préparer au minimum un cas de test par branche : cas nominal, objet inactif, autorisation refusée et limite de boucle. Exécuter les tests et conserver les résultats observables.
 
 Sans résultat de référence, une réduction visuelle de l’imbrication peut modifier silencieusement le flux métier.
 
-### Étape 3 — Extraire les sorties anticipées
+### 12.J.3 Étape 3 — Extraire les sorties anticipées
 
 1. Traiter en premier les entrées invalides ou les conditions bloquantes.
 2. Utiliser `RETURN`, `CONTINUE`, `CHECK` ou une exception uniquement selon la portée voulue.
@@ -198,31 +198,31 @@ Sans résultat de référence, une réduction visuelle de l’imbrication peut m
 
 Après chaque déplacement, relancer le cas correspondant. Si une sortie quitte une méthode entière au lieu d’une boucle, annuler et choisir l’instruction adaptée à la portée.
 
-### Étape 4 — Sécuriser les boucles conditionnelles
+### 12.J.4 Étape 4 — Sécuriser les boucles conditionnelles
 
 Pour chaque `DO` ou `WHILE`, vérifier l’état initial, la condition de poursuite, l’instruction qui modifie cet état et la sortie normale. Ajouter une limite technique lorsque la condition dépend d’un état externe ou complexe.
 
 Le test de limite doit produire un résultat contrôlé : message, exception ou journal. Une boucle interrompue sans diagnostic reste inexploitable.
 
-### Étape 5 — Valider tous les chemins
+### 12.J.5 Étape 5 — Valider tous les chemins
 
 Relancer exactement les cas conservés à l’étape 2. Comparer résultats, messages et effets de bord. La refactorisation est terminée lorsque le chemin nominal est lisible, chaque sortie est explicite et aucun comportement observé n’a changé.
 
-## VÉRIFICATION
+## 12.K VÉRIFICATION
 
 - Le scénario reproduit correspond au même utilisateur, mandant, transaction et jeu de données.
 - L’horodatage et l’identifiant de l’analyse sont conservés.
 - La cause retenue est soutenue par une ligne source, une trace ou une valeur observée.
 - Après correction, le même scénario ne reproduit plus le défaut et le résultat métier reste identique.
 
-## ERREURS FRÉQUENTES
+## 12.L ERREURS FRÉQUENTES
 
 - Copier un exemple sans adapter les types, noms d’objets et données disponibles dans le système.
 - Tester uniquement le cas nominal et ignorer les valeurs initiales, absentes ou invalides.
 - Créer une boucle sans condition de sortie fiable.
 - Utiliser `CHECK`, `CONTINUE`, `EXIT` ou `RETURN` sans rendre le flux lisible.
 
-## SNIPPET À RÉUTILISER
+## 12.M SNIPPET À RÉUTILISER
 
 > [!NOTE]
 > Adapter les noms `Z*`, les types DDIC, les données et les autorisations au système cible. Effectuer un contrôle syntaxique avant activation.
@@ -259,12 +259,12 @@ START-OF-SELECTION.
   ENDIF.
 ```
 
-## TERMES DU LEXIQUE
+## 12.N TERMES DU LEXIQUE
 
 - [Instruction ABAP](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#instruction-abap>)
 - [Expression](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#expression>)
 
-## RÉFÉRENCES OFFICIELLES SAP
+## 12.O RÉFÉRENCES OFFICIELLES SAP
 
 - [Using Control Structures in ABAP — SAP Learning](https://learning.sap.com/courses/basic-abap-programming/using-control-structures-in-abap_a4d7803e-eac2-458e-acf9-8628289f3701)
 - [Branch Code Coverage — SAP Help Portal](https://help.sap.com/docs/ABAP_PLATFORM_NEW/ba879a6e2ea04d9bb94c7ccd7cdac446/7f27a2638ee64d1d97dd53c69c562e7b.html)

@@ -1,12 +1,12 @@
-# CLASSES LOCALES DANS UN CLASS POOL
+# 22. CLASSES LOCALES DANS UN CLASS POOL
 
-## RÉSULTAT ATTENDU
+## 22.A RÉSULTAT ATTENDU
 
 - Positionner correctement les classes locales dans un développement centré sur `SE24`.
 - Créer un helper privé ou une classe de test locale.
 - Éviter de rendre locale une classe destinée à être réutilisée.
 
-## POSITIONNEMENT
+## 22.B POSITIONNEMENT
 
 Les classes globales sont le choix principal pour les services réutilisables. Les classes locales restent pertinentes pour :
 
@@ -15,33 +15,33 @@ Les classes globales sont le choix principal pour les services réutilisables. L
 - une classe de test ABAP Unit ;
 - un double de test local.
 
-## CAS D’USAGE
+## 22.C CAS D’USAGE
 
 La classe globale `ZCL_DEV_CSV_IMPORTER` a besoin d’un parseur privé spécifique à son implémentation. Aucun autre objet ne doit l’utiliser. `LCL_CSV_PARSER` reste local au Class Pool.
 
-## PROCESS
+## 22.D PROCESS
 
-### Étape 1 — Vérifier la portée locale
+### 22.D.1 Étape 1 — Vérifier la portée locale
 
 Confirmer que la classe sert uniquement au class pool et ne doit pas être appelée par un autre objet Repository. Sinon créer une classe globale.
 
-### Étape 2 — Ouvrir les sections locales
+### 22.D.2 Étape 2 — Ouvrir les sections locales
 
 Depuis `SE24` ou `SE80`, accéder aux définitions et implémentations locales prévues. Ne placer pas le code dans une zone générée du Class Builder.
 
-### Étape 3 — Déclarer avant utilisation
+### 22.D.3 Étape 3 — Déclarer avant utilisation
 
 Créer la définition locale avec visibilité minimale et signature complète. Si la classe globale référence le type avant sa définition complète, ajouter la déclaration différée appropriée.
 
-### Étape 4 — Implémenter dans la zone correspondante
+### 22.D.4 Étape 4 — Implémenter dans la zone correspondante
 
 Ajouter les méthodes dans l’implémentation locale. Contrôler que les dépendances au global class pool sont intentionnelles.
 
-### Étape 5 — Activer et tester
+### 22.D.5 Étape 5 — Activer et tester
 
 Activer la classe globale complète puis exécuter le test consommateur. La classe locale est validée lorsqu’aucun objet externe ne dépend de son nom.
 
-## CODE À ADAPTER
+## 22.E CODE À ADAPTER
 
 ```abap
 " Définir le contrat et limiter l’API publique au besoin réel.
@@ -59,7 +59,7 @@ CLASS lcl_csv_parser IMPLEMENTATION.
 ENDCLASS.
 ```
 
-## QUAND PROMOUVOIR LA CLASSE EN GLOBAL
+## 22.F QUAND PROMOUVOIR LA CLASSE EN GLOBAL
 
 Promouvoir la classe si :
 
@@ -68,23 +68,23 @@ Promouvoir la classe si :
 - son interface doit être documentée et transportée indépendamment ;
 - elle doit être injectée depuis l’extérieur.
 
-## CONTRÔLE
+## 22.G CONTRÔLE
 
 La liste des utilisations reste limitée au Class Pool. Aucun consommateur externe ne dépend d’un détail local.
 
-## ERREURS FRÉQUENTES
+## 22.H ERREURS FRÉQUENTES
 
 - Définir localement toute l’architecture d’un report et empêcher la réutilisation.
 - Utiliser une classe locale pour contourner les règles de package.
 - Placer une responsabilité métier importante dans un helper invisible et non documenté.
 
-## COMPATIBILITÉ S/4HANA
+## 22.I COMPATIBILITÉ S/4HANA
 
 - Statut : compatible avec le développement ABAP classique sur SAP S/4HANA.
 - Vérifier la syntaxe exacte avec l’aide `F1` du système cible lorsque plusieurs versions d’ABAP Platform sont prises en charge.
 - Les objets globaux doivent être créés dans le package et l’ordre de transport du projet.
 
-## RÉFÉRENCES OFFICIELLES SAP
+## 22.J RÉFÉRENCES OFFICIELLES SAP
 
 - [Creating Local Definitions and Implementations — SAP Help Portal](https://help.sap.com/docs/ABAP_PLATFORM_NEW/bd833c8355f34e96a6e83096b38bf192/b5693ecb185011d5969b00a0c94260a5.html)
 - [Classes — SAP Help Portal](https://help.sap.com/docs/PRODUCT_ID/10a002cd6c531014b5e1cb16d2455072/c3225b5c54f411d194a60000e8353423.html)

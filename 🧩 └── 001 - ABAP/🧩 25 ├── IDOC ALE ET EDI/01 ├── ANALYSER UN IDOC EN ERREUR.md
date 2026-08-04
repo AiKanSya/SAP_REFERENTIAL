@@ -1,17 +1,17 @@
-# ANALYSER UN IDOC EN ERREUR
+# 1. ANALYSER UN IDOC EN ERREUR
 
-## RÉSULTAT ATTENDU
+## 1.A RÉSULTAT ATTENDU
 
 Identifier la cause exacte d’un IDoc entrant ou sortant en erreur, corriger la cause puis retraiter sans créer de doublon métier.
 
-## PRÉREQUIS
+## 1.B PRÉREQUIS
 
 - Numéro de l’IDoc ou intervalle précis de création.
 - Sens du flux : entrant ou sortant.
 - Message type, partenaire et système émetteur/récepteur attendus.
 - Autorisations d’affichage `WE02`, de configuration `WE20`/`WE21` et, si nécessaire, de retraitement `BD87`.
 
-## DONNÉES À RELEVER DANS WE02
+## 1.C DONNÉES À RELEVER DANS WE02
 
 | Zone | Valeur à relever | Utilité |
 |---|---|---|
@@ -23,41 +23,41 @@ Identifier la cause exacte d’un IDoc entrant ou sortant en erreur, corriger la
 | Current status | Code et texte long | Localiser l’étape en défaut |
 | Segments | Segment, occurrence, valeur | Identifier la donnée fautive |
 
-## PROCESS
+## 1.D PROCESS
 
-### ÉTAPE 1 — OUVRIR L’IDOC ET FIGER LE CONTEXTE
+### 1.D.1 ÉTAPE 1 — OUVRIR L’IDOC ET FIGER LE CONTEXTE
 
 Rechercher l’IDoc dans `WE02` ou `WE05` avec son numéro ou un intervalle précis. Relever le sens, le message type, le basic type, l’extension, les partenaires, la date, l’heure et le statut courant.
 
-### ÉTAPE 2 — LIRE LE PREMIER STATUT QUI EXPLIQUE L’ÉCHEC
+### 1.D.2 ÉTAPE 2 — LIRE LE PREMIER STATUT QUI EXPLIQUE L’ÉCHEC
 
 Ouvrir les statuts dans leur ordre chronologique et lire le texte long du premier défaut pertinent. Déterminer si l’erreur apparaît avant la transmission, pendant la syntaxe IDoc ou après l’entrée dans l’application métier.
 
-### ÉTAPE 3 — CONTRÔLER LE CONTROL RECORD ET LES SEGMENTS
+### 1.D.3 ÉTAPE 3 — CONTRÔLER LE CONTROL RECORD ET LES SEGMENTS
 
 Comparer les valeurs du control record à l’interface attendue. Examiner ensuite le segment signalé, sa hiérarchie, son occurrence et ses champs sans modifier directement `EDIDC`, `EDID4` ou `EDIDS`.
 
-### ÉTAPE 4 — VÉRIFIER LA CONFIGURATION DU FLUX
+### 1.D.4 ÉTAPE 4 — VÉRIFIER LA CONFIGURATION DU FLUX
 
 Pour un outbound, contrôler dans `WE20` le profil partenaire et dans `WE21` le port ; vérifier aussi le process code et le modèle de distribution si ALE est utilisé. Pour un inbound, relever le process code, son mode de traitement et le module fonction ou workflow associé.
 
-### ÉTAPE 5 — CLASSER ET CORRIGER LA CAUSE
+### 1.D.5 ÉTAPE 5 — CLASSER ET CORRIGER LA CAUSE
 
 Corriger à la source la donnée métier, le Customizing, le partenaire, le port ou le code responsable. Ne pas retraiter tant que la même cause produit encore le même statut.
 
-### ÉTAPE 6 — RECHERCHER UN EFFET MÉTIER EXISTANT
+### 1.D.6 ÉTAPE 6 — RECHERCHER UN EFFET MÉTIER EXISTANT
 
 Avant toute répétition, rechercher le document créé, les relations IDoc-document et les écritures partielles. Cette vérification détermine si le retraitement est sûr ou risque de créer un doublon.
 
-### ÉTAPE 7 — RETRAITER DE MANIÈRE CIBLÉE
+### 1.D.7 ÉTAPE 7 — RETRAITER DE MANIÈRE CIBLÉE
 
 Utiliser `BD87` uniquement pour les IDocs dont le statut et le processus autorisent le retraitement. Limiter la sélection au numéro contrôlé et conserver le journal de l’opération.
 
-### ÉTAPE 8 — VALIDER LE RÉSULTAT FINAL
+### 1.D.8 ÉTAPE 8 — VALIDER LE RÉSULTAT FINAL
 
 Rouvrir l’IDoc, vérifier le nouveau statut, le document métier attendu et l’absence de doublon. Rechercher d’autres IDocs bloqués par la même cause avant de clôturer l’incident.
 
-## CLASSER LE STATUT
+## 1.E CLASSER LE STATUT
 
 Les codes exacts doivent être interprétés avec leur texte et la documentation du système. La séparation opérationnelle reste :
 
@@ -68,14 +68,14 @@ Les codes exacts doivent être interprétés avec leur texte et la documentation
 - erreur applicative pendant la création du document ;
 - traitement terminé avec succès.
 
-## CONTRÔLE POSITIF
+## 1.F CONTRÔLE POSITIF
 
 - Le statut final correspond à un traitement réussi pour le sens du flux.
 - Le document applicatif attendu existe une seule fois.
 - La relation entre IDoc et document métier est consultable.
 - Aucun IDoc parallèle du même message reste en erreur pour la même cause.
 
-## ERREURS FRÉQUENTES
+## 1.G ERREURS FRÉQUENTES
 
 | Symptôme | Cause probable | Correction |
 |---|---|---|
@@ -86,10 +86,10 @@ Les codes exacts doivent être interprétés avec leur texte et la documentation
 | Doublon métier | Document créé avant l’erreur de statut | Rechercher le document avant retraitement |
 | IDoc modifié directement | Intervention dans `EDIDC`, `EDID4` ou `EDIDS` | Utiliser les outils IDoc et corriger la source |
 
-## COMPATIBILITÉ S/4HANA
+## 1.H COMPATIBILITÉ S/4HANA
 
 Statut : compatible. Vérifier que le message et le basic type restent ceux officiellement prévus par l’application S/4HANA concernée.
 
-## RÉFÉRENCES OFFICIELLES SAP
+## 1.I RÉFÉRENCES OFFICIELLES SAP
 
 - [ALE Distribution — Transactions — SAP Help Portal](https://help.sap.com/docs/SUPPORT_CONTENT/erpscm/3362167812.html)

@@ -1,6 +1,6 @@
-# TYPES LOCAUX AVEC `TYPES`
+# 6. TYPES LOCAUX AVEC `TYPES`
 
-## RÉSULTAT ATTENDU
+## 6.A RÉSULTAT ATTENDU
 
 - Définir un type local réutilisable avec `TYPES`
 - Distinguer définition de type et création d’un objet de données
@@ -8,7 +8,7 @@
 - Comprendre la portée d’un type local
 - Choisir entre type local et type global du Dictionnaire ABAP
 
-## `TYPES` NE CRÉE PAS DE VARIABLE
+## 6.B `TYPES` NE CRÉE PAS DE VARIABLE
 
 ```abap
 TYPES ty_customer_id TYPE c LENGTH 10.
@@ -29,7 +29,7 @@ flowchart LR
     B --> D["DATA lv_payer_id TYPE ty_customer_id"]
 ```
 
-## TYPE ÉLÉMENTAIRE LOCAL
+## 6.C TYPE ÉLÉMENTAIRE LOCAL
 
 ```abap
 TYPES ty_percentage TYPE p LENGTH 3 DECIMALS 2.
@@ -40,7 +40,7 @@ DATA lv_tax_rate      TYPE ty_percentage.
 
 L’intérêt est de centraliser une définition technique utilisée plusieurs fois dans la même zone de visibilité.
 
-## TYPE BASÉ SUR UN TYPE GLOBAL
+## 6.D TYPE BASÉ SUR UN TYPE GLOBAL
 
 ```abap
 TYPES ty_company_code TYPE bukrs.
@@ -48,7 +48,7 @@ TYPES ty_company_code TYPE bukrs.
 
 Cet alias local peut améliorer la lisibilité dans certains contextes, mais il ne faut pas multiplier les alias qui masquent inutilement le type métier global.
 
-## TYPE STRUCTURÉ LOCAL
+## 6.E TYPE STRUCTURÉ LOCAL
 
 ```abap
 TYPES:
@@ -73,7 +73,7 @@ ls_employee-first_name = 'Ada'.
 ls_employee-last_name  = 'Lovelace'.
 ```
 
-## TYPES IMBRIQUÉS
+## 6.F TYPES IMBRIQUÉS
 
 ```abap
 TYPES:
@@ -98,7 +98,7 @@ DATA ls_customer TYPE ty_customer.
 ls_customer-address-city = 'Paris'.
 ```
 
-## PORTÉE
+## 6.G PORTÉE
 
 Un type déclaré dans la partie globale d’un programme est utilisable dans les blocs de traitement et procédures de ce programme.
 
@@ -116,7 +116,7 @@ ENDFORM.
 
 Pour une classe locale ou globale, la visibilité dépend de la section et de l’emplacement de la déclaration.
 
-## TYPE LOCAL OU DICTIONNAIRE ABAP
+## 6.H TYPE LOCAL OU DICTIONNAIRE ABAP
 
 | Besoin                                       | Choix généralement adapté                               |
 | -------------------------------------------- | ------------------------------------------------------- |
@@ -129,7 +129,7 @@ Pour une classe locale ou globale, la visibilité dépend de la section et de l�
 > [!IMPORTANT]
 > Ne créer un type global que lorsqu’un partage réel ou une sémantique globale le justifie. Un type global devient un contrat utilisé par d’autres objets.
 
-## TYPES TABULAIRES
+## 6.I TYPES TABULAIRES
 
 `TYPES` permet également de définir des types de tables internes :
 
@@ -139,7 +139,7 @@ TYPES ty_texts TYPE STANDARD TABLE OF string WITH EMPTY KEY.
 
 Cette syntaxe est indiquée ici pour situer le rôle de `TYPES`. Les catégories de tables, les clés et les opérations associées seront traitées dans le dossier consacré aux tables internes.
 
-## CONVENTIONS DE NOMMAGE
+## 6.J CONVENTIONS DE NOMMAGE
 
 Les préfixes suivants sont fréquents :
 
@@ -152,7 +152,7 @@ Les préfixes suivants sont fréquents :
 
 Aucun de ces préfixes n’est imposé par le langage. Le projet doit appliquer une convention homogène.
 
-## EXEMPLE COMPLET
+## 6.K EXEMPLE COMPLET
 
 ```abap
 REPORT zdemo_local_types.
@@ -177,21 +177,21 @@ WRITE: / ls_order-order_id,
          ls_order-amount.
 ```
 
-## VÉRIFICATION
+## 6.L VÉRIFICATION
 
 - Le contrôle syntaxique réussit.
 - La version active correspond au code sauvegardé.
 - L’exécution produit le résultat décrit dans le chapitre.
 - Les cas vide, limite et erreur sont testés séparément lorsque la syntaxe le permet.
 
-## ERREURS FRÉQUENTES
+## 6.M ERREURS FRÉQUENTES
 
 - Copier un exemple sans adapter les types, noms d’objets et données disponibles dans le système.
 - Tester uniquement le cas nominal et ignorer les valeurs initiales, absentes ou invalides.
 - Choisir un type trop générique ou dépendant d’une variable existante sans justification.
 - Utiliser une référence ou un field-symbol non lié.
 
-## SNIPPET À RÉUTILISER
+## 6.N SNIPPET À RÉUTILISER
 
 > [!NOTE]
 > Adapter les noms `Z*`, les types DDIC, les données et les autorisations au système cible. Effectuer un contrôle syntaxique avant activation.
@@ -219,7 +219,7 @@ WRITE: / ls_order-order_id,
          ls_order-amount.
 ```
 
-## TERMES DU LEXIQUE
+## 6.O TERMES DU LEXIQUE
 
 - [Type de données](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#type-donnees>)
 - [Objet de données](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#objet-donnees>)
@@ -228,7 +228,7 @@ WRITE: / ls_order-order_id,
 - [Field-symbol](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#field-symbol>)
 - [Référence](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#reference>)
 
-## RÉFÉRENCES OFFICIELLES SAP
+## 6.P RÉFÉRENCES OFFICIELLES SAP
 
 - [TYPES — ABAP Keyword Documentation](https://help.sap.com/doc/abapdocu_latest_index_htm/latest/en-US/ABAPTYPES.html)
 - [Declaration of Local Data Types — SAP Help Portal](https://help.sap.com/docs/abap-cloud/abap-concepts/declaration-of-local-data-types)

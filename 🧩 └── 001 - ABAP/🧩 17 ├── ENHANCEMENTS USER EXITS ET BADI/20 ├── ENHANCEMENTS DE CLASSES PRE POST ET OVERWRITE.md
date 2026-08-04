@@ -1,12 +1,12 @@
-# ENHANCEMENTS DE CLASSES : PRE, POST ET OVERWRITE
+# 20. ENHANCEMENTS DE CLASSES : PRE, POST ET OVERWRITE
 
-## RÉSULTAT ATTENDU
+## 20.A RÉSULTAT ATTENDU
 
 - Étendre une classe globale sans la modifier directement
 - Comprendre pre-method, post-method et overwrite-method
 - Évaluer les risques de remplacement d’une méthode
 
-## MODES
+## 20.B MODES
 
 | Mode             | Moment d’exécution                              | Effet                |
 | ---------------- | ----------------------------------------------- | -------------------- |
@@ -23,7 +23,7 @@ flowchart LR
 
 Une overwrite-method ne peut pas être combinée avec des pre/post methods pour la même méthode d’origine.
 
-## AUTRES EXTENSIONS DE CLASSE
+## 20.C AUTRES EXTENSIONS DE CLASSE
 
 Selon l’objet et la version, le framework permet notamment :
 
@@ -32,7 +32,7 @@ Selon l’objet et la version, le framework permet notamment :
 - ajout de paramètres facultatifs ;
 - amélioration d’interfaces ou de groupes de fonctions.
 
-## RISQUES
+## 20.D RISQUES
 
 L’overwrite-method copie implicitement la responsabilité du code standard. Les corrections futures de SAP dans la méthode d’origine ne sont plus exécutées. Ce mécanisme doit rester exceptionnel.
 
@@ -43,45 +43,45 @@ Pour un pre/post method :
 - éviter de modifier un état interne non prévu ;
 - mesurer les effets sur toutes les sous-classes et tous les appelants.
 
-## PROCESS
+## 20.E PROCESS
 
-### ÉTAPE 1 — ANALYSER LA MÉTHODE STANDARD
+### 20.E.1 ÉTAPE 1 — ANALYSER LA MÉTHODE STANDARD
 
 Ouvrir la classe et la méthode en affichage dans `SE24` ou `SE80`. Relever la signature, les préconditions, les effets, les exceptions et les appelants. Reproduire le scénario avec un breakpoint afin de confirmer les valeurs d’entrée et de sortie.
 
-### ÉTAPE 2 — CHOISIR LE TYPE D’ENHANCEMENT
+### 20.E.2 ÉTAPE 2 — CHOISIR LE TYPE D’ENHANCEMENT
 
 Utiliser un pré-exit pour préparer ou valider avant le code standard, un post-exit pour compléter le résultat après le standard, et un overwrite uniquement lorsque le remplacement complet est indispensable. Documenter pourquoi une BAdI, un point explicite ou une composition ne couvre pas le besoin.
 
-### ÉTAPE 3 — MESURER LES DONNÉES DISPONIBLES
+### 20.E.3 ÉTAPE 3 — MESURER LES DONNÉES DISPONIBLES
 
 Vérifier les paramètres et attributs accessibles à l’option retenue. Déterminer quelles valeurs peuvent être modifiées et comment le standard les consomme. Pour un overwrite, inventorier toutes les branches standard qui ne s’exécuteront plus.
 
-### ÉTAPE 4 — CRÉER L’IMPLÉMENTATION
+### 20.E.4 ÉTAPE 4 — CRÉER L’IMPLÉMENTATION
 
 Depuis les opérations d’enhancement de la classe, créer une enhancement implementation Z et le bloc pré, post ou overwrite. Affecter le package et le transport. Conserver le code du bloc minimal et déléguer le métier à une classe Z.
 
-### ÉTAPE 5 — TESTER L’ORDRE ET LES EXCEPTIONS
+### 20.E.5 ÉTAPE 5 — TESTER L’ORDRE ET LES EXCEPTIONS
 
 Poser des breakpoints dans le pré-exit, la méthode standard et le post-exit afin de confirmer la séquence. Tester un retour normal et chaque exception pertinente. Pour un overwrite, comparer les résultats à un référentiel standard sur toutes les variantes métier.
 
-### ÉTAPE 6 — ENCADRER LE RISQUE D’UPGRADE
+### 20.E.6 ÉTAPE 6 — ENCADRER LE RISQUE D’UPGRADE
 
 Activer et transporter l’ensemble des objets, puis consigner la version et le contenu standard remplacé. Après une mise à niveau, comparer la méthode livrée par SAP et réévaluer l’overwrite avant réactivation. Une nouvelle correction standard ignorée doit être traitée explicitement.
 
-## VÉRIFICATION
+## 20.F VÉRIFICATION
 
 - L’implémentation ou le projet est actif et transporté dans le bon ordre.
 - Un breakpoint confirme que le point d’extension est appelé dans le scénario visé.
 - Le comportement standard reste inchangé hors du périmètre fonctionnel prévu.
 - Aucune modification directe d’un objet SAP standard n’a été créée.
 
-## ERREURS FRÉQUENTES
+## 20.G ERREURS FRÉQUENTES
 
 - Choisir le premier exit trouvé sans vérifier le moment exact de l’appel.
 - Créer plusieurs implémentations concurrentes sans règles de filtre.
 
-## FICHE DE CONTRÔLE À COPIER
+## 20.H FICHE DE CONTRÔLE À COPIER
 
 ```text
 Système / SID       :
@@ -96,14 +96,14 @@ Horodatage          :
 Ordre de transport  :
 ```
 
-## TERMES DU LEXIQUE
+## 20.I TERMES DU LEXIQUE
 
 - [Classe](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#classe>)
 - [BAdI](<../🧩 00 ├── LEXIQUE SAP ET ABAP/10 └── ACRONYMES SAP.md#acro-badi>)
 - [BTE](<../🧩 00 ├── LEXIQUE SAP ET ABAP/10 └── ACRONYMES SAP.md#acro-bte>)
 - [Objet Repository](<../🧩 00 ├── LEXIQUE SAP ET ABAP/03 ├── REPOSITORY PACKAGES ET TRANSPORTS.md#objet-repository>)
 
-## RÉFÉRENCES OFFICIELLES SAP
+## 20.J RÉFÉRENCES OFFICIELLES SAP
 
 - [Enhancements to Classes and Interfaces — SAP Help Portal](https://help.sap.com/docs/ABAP_PLATFORM_NEW/46a2cfc13d25463b8b9a3d2a3c3ba0d9/584fb541d3d52d31e10000000a155106.html)
 - [Enhancing Components of Global Classes — SAP Help Portal](https://help.sap.com/docs/SAP_NETWEAVER_AS_ABAP_FOR_SOH_740/46a2cfc13d25463b8b9a3d2a3c3ba0d9/86b83142680d5c33e10000000a155106.html)

@@ -1,6 +1,6 @@
-# TYPES ÉLÉMENTAIRES INTÉGRÉS
+# 2. TYPES ÉLÉMENTAIRES INTÉGRÉS
 
-## RÉSULTAT ATTENDU
+## 2.A RÉSULTAT ATTENDU
 
 - Identifier les types élémentaires ABAP les plus courants
 - Distinguer les types caractère, numériques et octets
@@ -8,7 +8,7 @@
 - Déclarer correctement une longueur et un nombre de décimales
 - Éviter les choix de types incompatibles avec la donnée métier
 
-## CATÉGORIES PRINCIPALES
+## 2.B CATÉGORIES PRINCIPALES
 
 ```mermaid
 flowchart TD
@@ -22,7 +22,7 @@ flowchart TD
 
 Les types disponibles dépendent de la version du serveur ABAP. Les types présentés ci-dessous couvrent les types usuels des systèmes ABAP classiques récents.
 
-## TYPES CARACTÈRE
+## 2.C TYPES CARACTÈRE
 
 | Type     | Longueur           | Usage principal                                                 |
 | -------- | ------------------ | --------------------------------------------------------------- |
@@ -32,7 +32,7 @@ Les types disponibles dépendent de la version du serveur ABAP. Les types prése
 | `d`      | Fixe, 8 caractères | Date interne au format `YYYYMMDD`                               |
 | `t`      | Fixe, 6 caractères | Heure interne au format `HHMMSS`                                |
 
-### TYPE `c`
+### 2.C.1 TYPE `c`
 
 ```abap
 DATA lv_code TYPE c LENGTH 10 VALUE 'ABAP'.
@@ -40,7 +40,7 @@ DATA lv_code TYPE c LENGTH 10 VALUE 'ABAP'.
 
 La zone conserve une longueur fixe. Les positions non utilisées sont complétées par des espaces.
 
-### TYPE `string`
+### 2.C.2 TYPE `string`
 
 ```abap
 DATA lv_description TYPE string VALUE `Description de longueur variable`.
@@ -48,7 +48,7 @@ DATA lv_description TYPE string VALUE `Description de longueur variable`.
 
 `string` convient aux textes dont la longueur varie. Il ne faut pas l’utiliser automatiquement pour chaque champ métier : un type du Dictionnaire ABAP peut porter une sémantique et une longueur attendues par les interfaces SAP.
 
-### TYPE `n`
+### 2.C.3 TYPE `n`
 
 ```abap
 DATA lv_sequence TYPE n LENGTH 6 VALUE '123'.
@@ -62,7 +62,7 @@ La valeur est représentée comme une suite de chiffres et complétée avec des 
 
 `n` n’est pas un type destiné aux calculs arithmétiques. Il est adapté à certains identifiants ou compteurs textuels lorsque la représentation avec zéros initiaux est significative.
 
-### TYPES `d` ET `t`
+### 2.C.4 TYPES `d` ET `t`
 
 ```abap
 DATA lv_date TYPE d VALUE '20260731'.
@@ -71,7 +71,7 @@ DATA lv_time TYPE t VALUE '113000'.
 
 L’affichage externe dépend des paramètres utilisateur et des instructions de formatage. La représentation interne reste compacte.
 
-## TYPES NUMÉRIQUES
+## 2.D TYPES NUMÉRIQUES
 
 | Type         | Caractéristique                    | Usage typique                                     |
 | ------------ | ---------------------------------- | ------------------------------------------------- |
@@ -82,7 +82,7 @@ L’affichage externe dépend des paramètres utilisateur et des instructions de
 | `decfloat16` | Virgule flottante décimale         | Calcul décimal à précision décimale               |
 | `decfloat34` | Virgule flottante décimale étendue | Calcul décimal nécessitant davantage de précision |
 
-### ENTIER
+### 2.D.1 ENTIER
 
 ```abap
 DATA lv_counter TYPE i VALUE 5.
@@ -90,7 +90,7 @@ DATA lv_counter TYPE i VALUE 5.
 
 Utiliser `i` lorsqu’aucune partie décimale n’est nécessaire et que la plage du type est suffisante.
 
-### NOMBRE COMPACTÉ `p`
+### 2.D.2 NOMBRE COMPACTÉ `p`
 
 ```abap
 DATA lv_amount TYPE p LENGTH 8 DECIMALS 2 VALUE '1250.75'.
@@ -102,7 +102,7 @@ DATA lv_amount TYPE p LENGTH 8 DECIMALS 2 VALUE '1250.75'.
 
 Pour les montants et quantités SAP, préférer un type métier du Dictionnaire lorsque le contexte fournit une devise ou une unité de référence.
 
-### NOMBRES FLOTTANTS
+### 2.D.3 NOMBRES FLOTTANTS
 
 ```abap
 DATA lv_measure TYPE decfloat34 VALUE '12.3456789'.
@@ -110,7 +110,7 @@ DATA lv_measure TYPE decfloat34 VALUE '12.3456789'.
 
 `f` utilise une représentation binaire et peut produire des approximations décimales. Il ne constitue donc pas le choix par défaut pour les montants financiers.
 
-## TYPES OCTETS
+## 2.E TYPES OCTETS
 
 | Type      | Longueur | Usage principal                       |
 | --------- | -------- | ------------------------------------- |
@@ -124,7 +124,7 @@ DATA lv_binary TYPE xstring.
 
 Ces types sont utilisés pour des contenus binaires, des identifiants techniques ou certaines interfaces. Ils ne représentent pas du texte.
 
-## VALEURS INITIALES USUELLES
+## 2.F VALEURS INITIALES USUELLES
 
 | Type ou catégorie | Valeur initiale  |
 | ----------------- | ---------------- |
@@ -137,7 +137,7 @@ Ces types sont utilisés pour des contenus binaires, des identifiants techniques
 | `x`               | Octets à zéro    |
 | `xstring`         | Séquence vide    |
 
-## EXEMPLE COMPARATIF
+## 2.G EXEMPLE COMPARATIF
 
 ```abap
 REPORT zdemo_types_elementaires.
@@ -155,7 +155,7 @@ WRITE: / 'Identifiant :', lv_id_text,
 
 Même si `lv_id_text` et `lv_count` affichent des chiffres, leurs usages sont différents : le premier représente une chaîne numérique formatée, le second une valeur entière calculable.
 
-## ERREURS FRÉQUENTES
+## 2.H ERREURS FRÉQUENTES
 
 | Erreur                                               | Conséquence                                   |
 | ---------------------------------------------------- | --------------------------------------------- |
@@ -165,14 +165,14 @@ Même si `lv_id_text` et `lv_count` affichent des chiffres, leurs usages sont di
 | Choisir une longueur `p` insuffisante                | Débordement arithmétique                      |
 | Confondre `xstring` et `string`                      | Mauvaise interprétation du contenu            |
 
-## VÉRIFICATION
+## 2.I VÉRIFICATION
 
 - Le contrôle syntaxique réussit.
 - La version active correspond au code sauvegardé.
 - L’exécution produit le résultat décrit dans le chapitre.
 - Les cas vide, limite et erreur sont testés séparément lorsque la syntaxe le permet.
 
-## SNIPPET À RÉUTILISER
+## 2.J SNIPPET À RÉUTILISER
 
 > [!NOTE]
 > Adapter les noms `Z*`, les types DDIC, les données et les autorisations au système cible. Effectuer un contrôle syntaxique avant activation.
@@ -191,7 +191,7 @@ WRITE: / 'Identifiant :', lv_id_text,
        / 'Libellé     :', lv_label.
 ```
 
-## TERMES DU LEXIQUE
+## 2.K TERMES DU LEXIQUE
 
 - [Type de données](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#type-donnees>)
 - [Objet de données](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#objet-donnees>)
@@ -200,7 +200,7 @@ WRITE: / 'Identifiant :', lv_id_text,
 - [Field-symbol](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#field-symbol>)
 - [Référence](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#reference>)
 
-## RÉFÉRENCES OFFICIELLES SAP
+## 2.L RÉFÉRENCES OFFICIELLES SAP
 
 - [Predefined ABAP Types — ABAP Keyword Documentation](https://help.sap.com/doc/abapdocu_latest_index_htm/latest/en-US/ABENBUILT_IN_TYPES_COMPLETE.html)
 - [Predefined Numeric ABAP Types — ABAP Keyword Documentation](https://help.sap.com/doc/abapdocu_latest_index_htm/latest/en-US/ABENBUILT_IN_TYPES_NUMERIC.html)

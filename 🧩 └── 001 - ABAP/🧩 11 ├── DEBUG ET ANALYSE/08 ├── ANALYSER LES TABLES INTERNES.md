@@ -1,6 +1,6 @@
-# ANALYSER LES TABLES INTERNES
+# 8. ANALYSER LES TABLES INTERNES
 
-## RÉSULTAT ATTENDU
+## 8.A RÉSULTAT ATTENDU
 
 - Afficher le contenu d’une table interne
 - Identifier son type, sa clé et son volume
@@ -8,7 +8,7 @@
 - Contrôler les références ou structures imbriquées
 - Modifier temporairement une ligne à des fins de diagnostic
 
-## TABLE TOOL
+## 8.B TABLE TOOL
 
 Le débogueur ABAP fournit un outil spécialisé pour les tables internes. Il permet notamment de :
 
@@ -19,7 +19,7 @@ Le débogueur ABAP fournit un outil spécialisé pour les tables internes. Il pe
 - filtrer et trier l’affichage ;
 - modifier, ajouter ou supprimer temporairement des lignes selon le contexte.
 
-## PREMIERS CONTRÔLES
+## 8.C PREMIERS CONTRÔLES
 
 Avant d’examiner les lignes, vérifier :
 
@@ -38,7 +38,7 @@ flowchart TD
     D --> E["Filtre sur la clé métier"]
 ```
 
-## FILTRER LE CONTENU
+## 8.D FILTRER LE CONTENU
 
 Pour une table volumineuse, filtrer sur une clé pertinente :
 
@@ -50,7 +50,7 @@ Pour une table volumineuse, filtrer sur une clé pertinente :
 
 Ne pas parcourir manuellement des milliers de lignes si le critère de divergence est connu.
 
-## STRUCTURES IMBRIQUÉES ET RÉFÉRENCES
+## 8.E STRUCTURES IMBRIQUÉES ET RÉFÉRENCES
 
 Le configurateur de colonnes peut permettre d’ajouter :
 
@@ -60,7 +60,7 @@ Le configurateur de colonnes peut permettre d’ajouter :
 
 Cette vue facilite l’analyse sans modifier le type ou le code source.
 
-## MODIFICATION TEMPORAIRE
+## 8.F MODIFICATION TEMPORAIRE
 
 Modifier une table dans le débogueur permet de tester une hypothèse, par exemple :
 
@@ -71,7 +71,7 @@ Modifier une table dans le débogueur permet de tester une hypothèse, par exemp
 
 Cette manipulation ne constitue pas une correction. Elle peut changer le résultat du scénario et doit être documentée.
 
-## ERREURS FRÉQUENTES
+## 8.G ERREURS FRÉQUENTES
 
 - table initiale car le `SELECT` n’a rien retourné ;
 - filtre trop restrictif ;
@@ -81,34 +81,34 @@ Cette manipulation ne constitue pas une correction. Elle peut changer le résult
 - field-symbol encore lié à la ligne actuelle ;
 - tri incompatible avec le traitement suivant.
 
-## PROCESS
+## 8.H PROCESS
 
-### Étape 1 — Relever la définition
+### 8.H.1 Étape 1 — Relever la définition
 
 Afficher catégorie `STANDARD`, `SORTED` ou `HASHED`, type de ligne, clé primaire et clés secondaires. Ces propriétés déterminent l’ordre et les accès possibles.
 
-### Étape 2 — Filtrer sur le cas métier
+### 8.H.2 Étape 2 — Filtrer sur le cas métier
 
 Relever le nombre de lignes puis filtrer sur la clé du scénario. Contrôler le format interne avant de conclure qu’une ligne est absente.
 
-### Étape 3 — Chercher doublons ou valeurs inattendues
+### 8.H.3 Étape 3 — Chercher doublons ou valeurs inattendues
 
 Afficher uniquement les colonnes utiles et comparer les clés identiques. Pour une table unique, rechercher l’insertion ayant échoué ou remplacé une ligne.
 
-### Étape 4 — Suivre l’opération de modification
+### 8.H.4 Étape 4 — Suivre l’opération de modification
 
 Arrêter avant `INSERT`, `APPEND`, `MODIFY` ou `DELETE`. Contrôler ligne source, `SY-SUBRC`, `SY-TABIX` lorsqu’il est pertinent et contenu après l’opération.
 
 La cause est prouvée lorsque l’instruction qui ajoute, omet ou altère la ligne est identifiée avec ses valeurs d’entrée.
 
-## VÉRIFICATION
+## 8.I VÉRIFICATION
 
 - Le scénario reproduit correspond au même utilisateur, mandant, transaction et jeu de données.
 - L’horodatage et l’identifiant de l’analyse sont conservés.
 - La cause retenue est soutenue par une ligne source, une trace ou une valeur observée.
 - Après correction, le même scénario ne reproduit plus le défaut et le résultat métier reste identique.
 
-## FICHE DE CONTRÔLE À COPIER
+## 8.J FICHE DE CONTRÔLE À COPIER
 
 ```text
 Système / SID       :
@@ -123,14 +123,14 @@ Horodatage          :
 Ordre de transport  :
 ```
 
-## TERMES DU LEXIQUE
+## 8.K TERMES DU LEXIQUE
 
 - [Breakpoint](<../🧩 00 ├── LEXIQUE SAP ET ABAP/08 ├── EXECUTION EXPLOITATION ET ADMINISTRATION.md#breakpoint>)
 - [Watchpoint](<../🧩 00 ├── LEXIQUE SAP ET ABAP/08 ├── EXECUTION EXPLOITATION ET ADMINISTRATION.md#watchpoint>)
 - [Dump ABAP](<../🧩 00 ├── LEXIQUE SAP ET ABAP/08 ├── EXECUTION EXPLOITATION ET ADMINISTRATION.md#dump-abap>)
 - [Trace](<../🧩 00 ├── LEXIQUE SAP ET ABAP/08 ├── EXECUTION EXPLOITATION ET ADMINISTRATION.md#trace>)
 
-## RÉFÉRENCES OFFICIELLES SAP
+## 8.L RÉFÉRENCES OFFICIELLES SAP
 
 - [The Table Tool: Work With Internal Tables in the ABAP Debugger — SAP Help Portal](https://help.sap.com/docs/ABAP_PLATFORM_NEW/ba879a6e2ea04d9bb94c7ccd7cdac446/492db60934e414d0e10000000a42189b.html)
 - [Standard ABAP Debugger — SAP Help Portal](https://help.sap.com/docs/SAP_NETWEAVER_AS_ABAP_751_IP/ba879a6e2ea04d9bb94c7ccd7cdac446/49250c884d7216b5e10000000a42189d.html)

@@ -1,10 +1,10 @@
-# MAITRISER MEMOIRE COPIES ET VOLUMES
+# 6. MAITRISER MEMOIRE COPIES ET VOLUMES
 
-## RÉSULTAT ATTENDU
+## 6.A RÉSULTAT ATTENDU
 
 Limiter la consommation mémoire sans introduire de libérations prématurées ou de code obscur.
 
-## Principales sources de consommation
+## 6.B Principales sources de consommation
 
 - tables internes volumineuses ;
 - copies de structures ou de tables ;
@@ -13,7 +13,7 @@ Limiter la consommation mémoire sans introduire de libérations prématurées o
 - résultats SQL surdimensionnés ;
 - transformations créant plusieurs versions complètes des mêmes données.
 
-## Copier ou référencer
+## 6.C Copier ou référencer
 
 ```abap
 LOOP AT lt_data ASSIGNING FIELD-SYMBOL(<ls_data>).
@@ -23,7 +23,7 @@ ENDLOOP.
 
 `ASSIGNING` ou `REFERENCE INTO` peut réduire les copies. La référence ne doit toutefois pas survivre inutilement au contexte qui possède les données.
 
-## CLEAR et FREE
+## 6.D CLEAR et FREE
 
 - `CLEAR` remet une variable à sa valeur initiale.
 - `FREE` libère aussi les ressources dynamiques associées lorsque cela est pertinent.
@@ -35,7 +35,7 @@ FREE lt_large_result.
 
 Cette instruction est utile lorsqu’une grande table n’est plus nécessaire alors que le traitement continue longtemps.
 
-## Mesurer avec le Memory Inspector
+## 6.E Mesurer avec le Memory Inspector
 
 Comparer deux snapshots : avant le chargement, après le traitement et éventuellement après libération. Examiner les catégories mémoire et les chemins de référence qui empêchent la collecte.
 
@@ -46,57 +46,57 @@ flowchart LR
     C --> D["Comparaison des objets"]
 ```
 
-## Priorité
+## 6.F Priorité
 
 Réduire d’abord le volume lu et conservé. Une micro-optimisation de quelques structures ne compense pas une extraction inutile de millions de lignes.
 
-## PROCESS
+## 6.G PROCESS
 
-### ÉTAPE 1 — REPRODUIRE LE PIC MÉMOIRE
+### 6.G.1 ÉTAPE 1 — REPRODUIRE LE PIC MÉMOIRE
 
 Fixer programme, variante, volume et étape où la consommation augmente. Relever les tailles de sélections, tables internes et transformations. Éviter de mesurer un scénario réduit qui n’atteint pas le comportement problématique.
 
-### ÉTAPE 2 — PRENDRE DES SNAPSHOTS COMPARABLES
+### 6.G.2 ÉTAPE 2 — PRENDRE DES SNAPSHOTS COMPARABLES
 
 Avec Memory Inspector, capturer avant le chargement, après le pic et après le nettoyage attendu. Nommer les snapshots avec l’étape et l’horodatage. Comparer classes d’objets, tables et chemins de référence.
 
-### ÉTAPE 3 — IDENTIFIER LA RÉTENTION
+### 6.G.3 ÉTAPE 3 — IDENTIFIER LA RÉTENTION
 
 Déterminer si la mémoire provient du volume nécessaire, de copies, d’un cache non borné ou de références maintenant des objets accessibles. Remonter le chemin de référence avant d’ajouter `FREE` au hasard.
 
-### ÉTAPE 4 — RÉDUIRE À LA SOURCE
+### 6.G.4 ÉTAPE 4 — RÉDUIRE À LA SOURCE
 
 Limiter les colonnes et lignes SQL, traiter par paquets, libérer les résultats intermédiaires et éviter plusieurs représentations complètes. Utiliser `ASSIGNING` ou références pour les accès en place lorsque leur durée de vie reste maîtrisée.
 
-### ÉTAPE 5 — LIBÉRER AU BON MOMENT
+### 6.G.5 ÉTAPE 5 — LIBÉRER AU BON MOMENT
 
 Utiliser `FREE` pour une grande donnée réellement devenue inutile alors que le processus continue. Laisser la fin de portée gérer les variables locales ordinaires. Ne pas libérer une table encore référencée ou nécessaire à une reprise.
 
-### ÉTAPE 6 — REPRENDRE LES SNAPSHOTS ET TESTS
+### 6.G.6 ÉTAPE 6 — REPRENDRE LES SNAPSHOTS ET TESTS
 
 Répéter le même volume et comparer pic, mémoire retenue et durée. Vérifier le résultat métier et la stabilité en batch. Une baisse mémoire accompagnée d’un temps ou d’un nombre de lectures excessif doit être évaluée globalement.
 
-## Références SAP officielles
+## 6.H Références SAP officielles
 
 - [SAP Help Portal — Memory Inspector Concepts](https://help.sap.com/docs/ABAP_PLATFORM_NEW/ba879a6e2ea04d9bb94c7ccd7cdac446/8884fb5269d34838a1f119b41dcdbc57.html)
 - [SAP Help Portal — ABAP Performance and Tuning](https://help.sap.com/docs/SUPPORT_CONTENT/ABAP/3353523595.html)
 - [ABAP Keyword Documentation — Internal Tables Performance Notes](https://help.sap.com/doc/abapdocu_latest_index_htm/latest/en-US/abenitab_perfo.html)
 
-## VÉRIFICATION
+## 6.I VÉRIFICATION
 
 - Le résultat fonctionnel est identique avant et après optimisation.
 - La mesure est répétée avec le même jeu de données et le même contexte.
 - Les contrôles statiques ne retournent plus de finding bloquant.
 - Les tests automatiques couvrent les cas nominal, limites et erreurs attendues.
 
-## ERREURS FRÉQUENTES
+## 6.J ERREURS FRÉQUENTES
 
 - Copier un exemple sans adapter les types, noms d’objets et données disponibles dans le système.
 - Tester uniquement le cas nominal et ignorer les valeurs initiales, absentes ou invalides.
 - Optimiser sans mesure de référence.
 - Accepter un finding critique sans correction ni justification formelle.
 
-## SNIPPET À RÉUTILISER
+## 6.K SNIPPET À RÉUTILISER
 
 > [!NOTE]
 > Adapter les noms `Z*`, les types DDIC, les données et les autorisations au système cible. Effectuer un contrôle syntaxique avant activation.
@@ -107,7 +107,7 @@ LOOP AT lt_data ASSIGNING FIELD-SYMBOL(<ls_data>).
 ENDLOOP.
 ```
 
-## TERMES DU LEXIQUE
+## 6.L TERMES DU LEXIQUE
 
 - [ATC](<../🧩 00 ├── LEXIQUE SAP ET ABAP/10 └── ACRONYMES SAP.md#acro-atc>)
 - [ABAP](<../🧩 00 ├── LEXIQUE SAP ET ABAP/10 └── ACRONYMES SAP.md#acro-abap>)

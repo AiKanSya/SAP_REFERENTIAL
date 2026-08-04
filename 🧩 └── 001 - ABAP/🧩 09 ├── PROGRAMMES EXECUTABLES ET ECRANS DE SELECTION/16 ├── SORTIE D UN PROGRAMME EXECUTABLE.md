@@ -1,6 +1,6 @@
-# SORTIE D’UN PROGRAMME EXÉCUTABLE
+# 16. SORTIE D’UN PROGRAMME EXÉCUTABLE
 
-## RÉSULTAT ATTENDU
+## 16.A RÉSULTAT ATTENDU
 
 - Produire une sortie simple avec `WRITE`
 - Comprendre la liste ABAP classique
@@ -8,7 +8,7 @@
 - Anticiper le comportement en arrière-plan
 - Choisir le bon mécanisme de sortie
 
-## SORTIE SIMPLE
+## 16.B SORTIE SIMPLE
 
 ```abap
 START-OF-SELECTION.
@@ -22,7 +22,7 @@ WRITE: / sy-uline,
        / 'Nombre de lignes :', lines( lt_result ).
 ```
 
-## EN-TÊTE DE PAGE
+## 16.C EN-TÊTE DE PAGE
 
 ```abap
 TOP-OF-PAGE.
@@ -32,7 +32,7 @@ TOP-OF-PAGE.
 
 Cet événement est déclenché lors de la création d’une nouvelle page de liste, selon le traitement de sortie.
 
-## LISTES INTERACTIVES CLASSIQUES
+## 16.D LISTES INTERACTIVES CLASSIQUES
 
 Des événements comme `AT LINE-SELECTION` permettent de créer des listes de détail. Cette technique est historique et ne doit pas être choisie par défaut pour une nouvelle restitution tabulaire.
 
@@ -43,7 +43,7 @@ Préférer :
 - spool pour un traitement de fond ;
 - fichier ou interface lorsque le contrat l’exige.
 
-## EXÉCUTION EN ARRIÈRE-PLAN
+## 16.E EXÉCUTION EN ARRIÈRE-PLAN
 
 Une sortie de liste produite en arrière-plan peut être enregistrée dans le spool.
 
@@ -56,7 +56,7 @@ flowchart LR
 
 Une boîte de dialogue SAP GUI ne peut pas remplacer une sortie de fond exploitable.
 
-## SÉPARER TRAITEMENT ET AFFICHAGE
+## 16.F SÉPARER TRAITEMENT ET AFFICHAGE
 
 ```abap
 START-OF-SELECTION.
@@ -71,7 +71,7 @@ Cette séparation facilite :
 - l’exécution sans interface ;
 - la réutilisation du traitement.
 
-## LIMITES DE WRITE
+## 16.G LIMITES DE WRITE
 
 `WRITE` reste pertinent pour :
 
@@ -82,21 +82,21 @@ Cette séparation facilite :
 
 Il est insuffisant pour les besoins avancés de tri, filtre, export, variantes d’affichage et colonnes dynamiques.
 
-## VÉRIFICATION
+## 16.H VÉRIFICATION
 
 - Le contrôle syntaxique réussit.
 - La version active correspond au code sauvegardé.
 - L’exécution produit le résultat décrit dans le chapitre.
 - Les cas vide, limite et erreur sont testés séparément lorsque la syntaxe le permet.
 
-## ERREURS FRÉQUENTES
+## 16.I ERREURS FRÉQUENTES
 
 - Copier un exemple sans adapter les types, noms d’objets et données disponibles dans le système.
 - Tester uniquement le cas nominal et ignorer les valeurs initiales, absentes ou invalides.
 - Mettre une logique lourde dans les événements de validation de l’écran.
 - Créer une variante contenant des valeurs obsolètes ou sensibles.
 
-## SNIPPET À RÉUTILISER
+## 16.J SNIPPET À RÉUTILISER
 
 > [!NOTE]
 > Adapter les noms `Z*`, les types DDIC, les données et les autorisations au système cible. Effectuer un contrôle syntaxique avant activation.
@@ -107,14 +107,14 @@ START-OF-SELECTION.
   lcl_output=>display( lt_result ).
 ```
 
-## TERMES DU LEXIQUE
+## 16.K TERMES DU LEXIQUE
 
 - [Programme exécutable](<../🧩 00 ├── LEXIQUE SAP ET ABAP/06 ├── PROGRAMMES CLASSES ET OBJETS TECHNIQUES.md#programme-executable>)
 - [Variante](<../🧩 00 ├── LEXIQUE SAP ET ABAP/06 ├── PROGRAMMES CLASSES ET OBJETS TECHNIQUES.md#variante>)
 - [Transaction](<../🧩 00 ├── LEXIQUE SAP ET ABAP/02 ├── SAP GUI NAVIGATION ET TRANSACTIONS.md#transaction>)
 - [Dynpro](<../🧩 00 ├── LEXIQUE SAP ET ABAP/02 ├── SAP GUI NAVIGATION ET TRANSACTIONS.md#dynpro>)
 
-## RÉFÉRENCES OFFICIELLES SAP
+## 16.L RÉFÉRENCES OFFICIELLES SAP
 
 - [Lists — Overview — ABAP Keyword Documentation](https://help.sap.com/doc/abapdocu_751_index_htm/7.51/en-US/ABENLIST_OVERVIEW.html)
 - [WRITE — ABAP Keyword Documentation](https://help.sap.com/doc/abapdocu_latest_index_htm/latest/en-US/ABAPWRITE.html)

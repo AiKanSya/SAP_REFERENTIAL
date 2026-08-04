@@ -1,6 +1,6 @@
-# PORTÉE, DURÉE DE VIE ET `STATICS`
+# 12. PORTÉE, DURÉE DE VIE ET `STATICS`
 
-## RÉSULTAT ATTENDU
+## 12.A RÉSULTAT ATTENDU
 
 - Distinguer portée et durée de vie
 - Identifier les données globales et locales
@@ -8,7 +8,7 @@
 - Utiliser `STATICS` uniquement lorsque la conservation d’état est volontaire
 - Limiter les dépendances provoquées par les données globales
 
-## PORTÉE ET DURÉE DE VIE
+## 12.B PORTÉE ET DURÉE DE VIE
 
 La **portée** détermine les zones du code dans lesquelles un nom est visible.
 
@@ -24,7 +24,7 @@ flowchart LR
 
 Ces deux notions sont liées, mais elles ne sont pas identiques.
 
-## DONNÉES GLOBALES D’UN PROGRAMME
+## 12.C DONNÉES GLOBALES D’UN PROGRAMME
 
 ```abap
 REPORT zdemo_scope.
@@ -42,7 +42,7 @@ Les données globales existent pendant l’instance d’exécution du programme 
 > [!CAUTION]
 > Une donnée globale peut être modifiée depuis plusieurs traitements. Cette facilité augmente les effets de bord et complique les tests.
 
-## DONNÉES LOCALES D’UNE PROCÉDURE
+## 12.D DONNÉES LOCALES D’UNE PROCÉDURE
 
 ```abap
 FORM calculate_total USING    iv_net   TYPE i
@@ -59,7 +59,7 @@ ENDFORM.
 
 Les méthodes, modules fonction et sous-routines possèdent leurs propres contextes locaux.
 
-## BLOCS D’ÉVÉNEMENT
+## 12.E BLOCS D’ÉVÉNEMENT
 
 Les blocs tels que `START-OF-SELECTION` ne sont pas des procédures locales autonomes.
 
@@ -72,7 +72,7 @@ Dans un programme exécutable classique, il est préférable de placer clairemen
 
 Cette organisation évite de donner l’impression qu’une déclaration située visuellement dans un bloc d’événement possède une portée locale comparable à celle d’une méthode.
 
-## MASQUAGE DE NOMS
+## 12.F MASQUAGE DE NOMS
 
 Une donnée locale peut porter le même nom qu’une donnée déclarée dans un contexte externe selon les règles du langage. Le nom local masque alors l’autre objet dans sa portée.
 
@@ -88,7 +88,7 @@ ENDFORM.
 
 Cette pratique est techniquement possible, mais produit une ambiguïté inutile. Utiliser des noms distincts.
 
-## `STATICS`
+## 12.G `STATICS`
 
 `STATICS` déclare une donnée locale statique dans une procédure. Sa valeur est conservée entre les appels de cette procédure au sein de la session interne.
 
@@ -119,7 +119,7 @@ Sortie :
 
 Une variable locale déclarée avec `DATA` aurait été réinitialisée à chaque appel.
 
-## LIMITES DE `STATICS`
+## 12.H LIMITES DE `STATICS`
 
 Une donnée statique introduit un état caché dans la procédure.
 
@@ -133,7 +133,7 @@ Risques :
 
 Utiliser `STATICS` uniquement lorsque la conservation entre appels constitue explicitement le comportement attendu.
 
-## INITIALISATION
+## 12.I INITIALISATION
 
 Une variable locale `DATA` reçoit sa valeur initiale à chaque entrée dans la procédure.
 
@@ -150,7 +150,7 @@ Chaque appel affiche `1`.
 
 Une donnée `STATICS` est initialisée lors de sa première création, puis conserve sa valeur.
 
-## DONNÉES GLOBALES OU PARAMÈTRES
+## 12.J DONNÉES GLOBALES OU PARAMÈTRES
 
 Préférer les paramètres lorsqu’une procédure a besoin d’une donnée externe :
 
@@ -172,7 +172,7 @@ ENDFORM.
 
 Les dépendances explicites améliorent la compréhension, le test et la réutilisation.
 
-## SYNTHÈSE
+## 12.K SYNTHÈSE
 
 | Déclaration                   | Portée habituelle    | Conservation entre appels             |
 | ----------------------------- | -------------------- | ------------------------------------- |
@@ -182,7 +182,7 @@ Les dépendances explicites améliorent la compréhension, le test et la réutil
 | Constante locale              | Procédure            | Valeur immuable pendant son existence |
 | Objet anonyme référencé       | Selon les références | Tant qu’il reste accessible           |
 
-## EXEMPLE COMPLET
+## 12.L EXEMPLE COMPLET
 
 ```abap
 REPORT zdemo_lifetime.
@@ -206,21 +206,21 @@ ENDFORM.
 
 `lv_message` est recréée à chaque appel. `sv_call_count` conserve son état entre les deux appels.
 
-## VÉRIFICATION
+## 12.M VÉRIFICATION
 
 - Le contrôle syntaxique réussit.
 - La version active correspond au code sauvegardé.
 - L’exécution produit le résultat décrit dans le chapitre.
 - Les cas vide, limite et erreur sont testés séparément lorsque la syntaxe le permet.
 
-## ERREURS FRÉQUENTES
+## 12.N ERREURS FRÉQUENTES
 
 - Copier un exemple sans adapter les types, noms d’objets et données disponibles dans le système.
 - Tester uniquement le cas nominal et ignorer les valeurs initiales, absentes ou invalides.
 - Choisir un type trop générique ou dépendant d’une variable existante sans justification.
 - Utiliser une référence ou un field-symbol non lié.
 
-## SNIPPET À RÉUTILISER
+## 12.O SNIPPET À RÉUTILISER
 
 > [!NOTE]
 > Adapter les noms `Z*`, les types DDIC, les données et les autorisations au système cible. Effectuer un contrôle syntaxique avant activation.
@@ -245,7 +245,7 @@ FORM display_call USING iv_text TYPE c.
 ENDFORM.
 ```
 
-## TERMES DU LEXIQUE
+## 12.P TERMES DU LEXIQUE
 
 - [Type de données](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#type-donnees>)
 - [Objet de données](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#objet-donnees>)
@@ -254,7 +254,7 @@ ENDFORM.
 - [Field-symbol](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#field-symbol>)
 - [Référence](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#reference>)
 
-## RÉFÉRENCES OFFICIELLES SAP
+## 12.Q RÉFÉRENCES OFFICIELLES SAP
 
 - [Validity and Lifetime of Data Objects — ABAP Keyword Documentation](https://help.sap.com/doc/abapdocu_latest_index_htm/latest/en-US/ABENLIFETIME_DATA_OBJECTS.html)
 - [Visibility of Data Objects — ABAP Keyword Documentation](https://help.sap.com/doc/abapdocu_latest_index_htm/latest/en-US/ABENVISIBILITY_DATA_OBJECTS.html)

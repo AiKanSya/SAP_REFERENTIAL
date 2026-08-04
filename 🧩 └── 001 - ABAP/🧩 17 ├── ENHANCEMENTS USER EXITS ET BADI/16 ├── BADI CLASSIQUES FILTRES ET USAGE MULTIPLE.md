@@ -1,16 +1,16 @@
-# BAdI CLASSIQUES, FILTRES ET USAGE MULTIPLE
+# 16. BAdI CLASSIQUES, FILTRES ET USAGE MULTIPLE
 
-## RÉSULTAT ATTENDU
+## 16.A RÉSULTAT ATTENDU
 
 - Maintenir une implémentation de BAdI classique
 - Comprendre la sélection par filtre
 - Anticiper l’ordre et la multiplicité des appels
 
-## BAdI CLASSIQUE
+## 16.B BAdI CLASSIQUE
 
 Les BAdI classiques utilisent le modèle historique du BAdI Builder. Ils restent fréquents dans les applications ECC et certains composants S/4HANA. Depuis AS ABAP 7.0, SAP distingue les BAdI classiques des BAdI intégrés au Enhancement Framework.
 
-## FILTRES
+## 16.C FILTRES
 
 Une définition filter-dependent sélectionne une ou plusieurs implémentations selon une valeur fournie par l’application. L’implémentation doit maintenir les valeurs de filtre qu’elle prend en charge.
 
@@ -22,7 +22,7 @@ flowchart LR
 
 Ne pas coder dans la méthode une seconde logique de sélection qui duplique inutilement le filtre configuré.
 
-## USAGE MULTIPLE
+## 16.D USAGE MULTIPLE
 
 Avec multiple-use, plusieurs implémentations peuvent être exécutées. Le code ne doit pas dépendre d’un ordre non garanti, sauf contrat explicite de l’application.
 
@@ -33,7 +33,7 @@ Avec multiple-use, plusieurs implémentations peuvent être exécutées. Le code
 - des commits dans une implémentation ;
 - une dépendance au nom technique d’une autre implémentation.
 
-## DIAGNOSTIC
+## 16.E DIAGNOSTIC
 
 - afficher les implémentations actives dans `SE18` ou `SE19` ;
 - vérifier les valeurs de filtre ;
@@ -41,45 +41,45 @@ Avec multiple-use, plusieurs implémentations peuvent être exécutées. Le code
 - contrôler la multiplicité et l’ordre observé ;
 - mesurer le temps si le BAdI est appelé dans une boucle.
 
-## PROCESS
+## 16.F PROCESS
 
-### ÉTAPE 1 — RELEVER LES ATTRIBUTS DE LA DÉFINITION
+### 16.F.1 ÉTAPE 1 — RELEVER LES ATTRIBUTS DE LA DÉFINITION
 
 Dans `SE18`, vérifier si la BAdI est à usage simple ou multiple et si elle possède un filtre. Ouvrir le type du filtre et la documentation. Identifier dans le code appelant la valeur exacte utilisée pour la sélection runtime.
 
-### ÉTAPE 2 — CARTOGRAPHIER LES IMPLÉMENTATIONS
+### 16.F.2 ÉTAPE 2 — CARTOGRAPHIER LES IMPLÉMENTATIONS
 
 Lister les implémentations actives avec leurs classes et plages de filtre. Repérer les valeurs qui se recouvrent et les implémentations sans filtre restrictif. Pour l’usage multiple, analyser le code sans dépendre d’un ordre non garanti par le contrat.
 
-### ÉTAPE 3 — DÉFINIR UNE MATRICE DE SÉLECTION
+### 16.F.3 ÉTAPE 3 — DÉFINIR UNE MATRICE DE SÉLECTION
 
 Pour chaque valeur de filtre significative, indiquer quelles implémentations doivent être sélectionnées et le résultat attendu. Ajouter les valeurs initiales, inconnues et limites. Cette matrice sert de preuve avant et après activation.
 
-### ÉTAPE 4 — IMPLÉMENTER SANS DÉPENDANCE CROISÉE
+### 16.F.4 ÉTAPE 4 — IMPLÉMENTER SANS DÉPENDANCE CROISÉE
 
 Créer ou ajuster les filtres dans `SE19`, puis isoler la logique de chaque implémentation. Ne pas supposer qu’une autre implémentation a déjà modifié un paramètre. Si un ordre métier est indispensable, centraliser l’orchestration dans une seule implémentation maîtrisée.
 
-### ÉTAPE 5 — TESTER CHAQUE LIGNE DE LA MATRICE
+### 16.F.5 ÉTAPE 5 — TESTER CHAQUE LIGNE DE LA MATRICE
 
 Poser des breakpoints dans toutes les implémentations candidates et exécuter le scénario pour chaque valeur. Relever les implémentations appelées, les paramètres avant/après et le résultat final. Corriger tout chevauchement non prévu.
 
-### ÉTAPE 6 — CONTRÔLER ACTIVATION ET TRANSPORT
+### 16.F.6 ÉTAPE 6 — CONTRÔLER ACTIVATION ET TRANSPORT
 
 Vérifier que les classes et implémentations sont actives et incluses dans les demandes attendues. Rejouer la matrice dans le système cible, car les implémentations présentes et leur activation peuvent différer entre environnements.
 
-## VÉRIFICATION
+## 16.G VÉRIFICATION
 
 - L’implémentation ou le projet est actif et transporté dans le bon ordre.
 - Un breakpoint confirme que le point d’extension est appelé dans le scénario visé.
 - Le comportement standard reste inchangé hors du périmètre fonctionnel prévu.
 - Aucune modification directe d’un objet SAP standard n’a été créée.
 
-## ERREURS FRÉQUENTES
+## 16.H ERREURS FRÉQUENTES
 
 - Choisir le premier exit trouvé sans vérifier le moment exact de l’appel.
 - Créer plusieurs implémentations concurrentes sans règles de filtre.
 
-## FICHE DE CONTRÔLE À COPIER
+## 16.I FICHE DE CONTRÔLE À COPIER
 
 ```text
 Système / SID       :
@@ -94,13 +94,13 @@ Horodatage          :
 Ordre de transport  :
 ```
 
-## TERMES DU LEXIQUE
+## 16.J TERMES DU LEXIQUE
 
 - [BAdI](<../🧩 00 ├── LEXIQUE SAP ET ABAP/10 └── ACRONYMES SAP.md#acro-badi>)
 - [BTE](<../🧩 00 ├── LEXIQUE SAP ET ABAP/10 └── ACRONYMES SAP.md#acro-bte>)
 - [Objet Repository](<../🧩 00 ├── LEXIQUE SAP ET ABAP/03 ├── REPOSITORY PACKAGES ET TRANSPORTS.md#objet-repository>)
 
-## RÉFÉRENCES OFFICIELLES SAP
+## 16.K RÉFÉRENCES OFFICIELLES SAP
 
 - [Classic BAdIs — SAP Help Portal](https://help.sap.com/docs/ABAP_PLATFORM_NEW/2b28ffa716c24348903f8ffbfeb81df8/e6d54d3c596f0b26e10000000a11402f.html)
 - [Implementing a Filter-Dependent Classic BAdI — SAP Help Portal](https://help.sap.com/docs/ABAP_PLATFORM_2020/2b28ffa716c24348903f8ffbfeb81df8/9790e24662d6d8478cf1f392108c5df0.html)

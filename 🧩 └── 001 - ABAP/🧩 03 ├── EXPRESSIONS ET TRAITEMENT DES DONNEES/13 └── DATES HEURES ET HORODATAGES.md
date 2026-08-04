@@ -1,6 +1,6 @@
-# DATES, HEURES ET HORODATAGES
+# 13. DATES, HEURES ET HORODATAGES
 
-## RÉSULTAT ATTENDU
+## 13.A RÉSULTAT ATTENDU
 
 - Manipuler les types classiques `d` et `t`
 - Utiliser les champs système de date et d’heure
@@ -8,7 +8,7 @@
 - Comprendre la limite des calculs directs sur les heures
 - Convertir une date et une heure en horodatage avec un fuseau horaire
 
-## TYPES CLASSIQUES
+## 13.B TYPES CLASSIQUES
 
 | Type | Format interne | Exemple    |
 | ---- | -------------- | ---------- |
@@ -22,7 +22,7 @@ DATA lv_time TYPE t VALUE '115000'.
 
 Ces formats sont internes. L’affichage utilisateur dépend notamment des paramètres utilisateur et des options de formatage.
 
-## CHAMPS SYSTÈME
+## 13.C CHAMPS SYSTÈME
 
 Champs usuels :
 
@@ -36,7 +36,7 @@ Champs usuels :
 
 La valeur appropriée dépend du besoin technique et fonctionnel. Ne pas supposer que l’heure du serveur, l’heure utilisateur et l’heure UTC sont identiques.
 
-## METTRE À JOUR L’HEURE SYSTÈME
+## 13.D METTRE À JOUR L’HEURE SYSTÈME
 
 Les champs `sy-datum` et `sy-uzeit` correspondent au moment où l’environnement d’exécution les a renseignés. Pour actualiser ces valeurs pendant un traitement long :
 
@@ -44,7 +44,7 @@ Les champs `sy-datum` et `sy-uzeit` correspondent au moment où l’environnemen
 GET TIME.
 ```
 
-## CALCULS SUR LES DATES
+## 13.E CALCULS SUR LES DATES
 
 Ajouter ou retirer des jours :
 
@@ -66,7 +66,7 @@ DATA lv_days       TYPE i.
 lv_days = lv_end_date - lv_start_date.
 ```
 
-## EXTRACTION DES COMPOSANTES
+## 13.F EXTRACTION DES COMPOSANTES
 
 ```abap
 DATA lv_year  TYPE c LENGTH 4.
@@ -80,7 +80,7 @@ lv_day   = sy-datum+6(2).
 
 Cette extraction lit la représentation interne. Elle ne remplace pas une API de calendrier pour calculer le dernier jour d’un mois, les jours ouvrés ou les périodes fiscales.
 
-## CALCULS SUR LES HEURES
+## 13.G CALCULS SUR LES HEURES
 
 ABAP peut interpréter une heure comme un nombre de secondes depuis minuit dans certains calculs.
 
@@ -97,7 +97,7 @@ Résultat : `6300` secondes.
 > [!WARNING]
 > Une simple soustraction d’heures ne gère pas correctement tous les cas traversant minuit, les changements de fuseau horaire ou les changements d’heure saisonniers. Utiliser des horodatages lorsque le contexte temporel complet est nécessaire.
 
-## HORODATAGE
+## 13.H HORODATAGE
 
 Un horodatage représente un instant absolu. Dans l’ABAP classique, les types DDIC `TIMESTAMP` et `TIMESTAMPL` sont couramment utilisés selon la précision attendue.
 
@@ -109,7 +109,7 @@ GET TIME STAMP FIELD lv_timestamp.
 
 L’horodatage obtenu est fondé sur UTC.
 
-## CONVERSION AVEC FUSEAU HORAIRE
+## 13.I CONVERSION AVEC FUSEAU HORAIRE
 
 Date et heure locales vers horodatage :
 
@@ -143,7 +143,7 @@ flowchart LR
     E --> F["Date et heure locales"]
 ```
 
-## AFFICHAGE
+## 13.J AFFICHAGE
 
 ```abap
 DATA(lv_date_text) = |{ sy-datlo DATE = USER }|.
@@ -152,7 +152,7 @@ DATA(lv_time_text) = |{ sy-timlo TIME = USER }|.
 
 Le format d’affichage ne doit pas être utilisé comme format interne d’échange, sauf contrat d’interface explicite.
 
-## CAS NÉCESSITANT UNE API MÉTIER
+## 13.K CAS NÉCESSITANT UNE API MÉTIER
 
 Ne pas implémenter manuellement sans vérifier les API SAP disponibles :
 
@@ -164,21 +164,21 @@ Ne pas implémenter manuellement sans vérifier les API SAP disponibles :
 - changements de fuseau horaire ;
 - durée entre deux instants internationaux.
 
-## VÉRIFICATION
+## 13.L VÉRIFICATION
 
 - Le contrôle syntaxique réussit.
 - La version active correspond au code sauvegardé.
 - L’exécution produit le résultat décrit dans le chapitre.
 - Les cas vide, limite et erreur sont testés séparément lorsque la syntaxe le permet.
 
-## ERREURS FRÉQUENTES
+## 13.M ERREURS FRÉQUENTES
 
 - Copier un exemple sans adapter les types, noms d’objets et données disponibles dans le système.
 - Tester uniquement le cas nominal et ignorer les valeurs initiales, absentes ou invalides.
 - S’appuyer sur une conversion implicite pouvant tronquer ou arrondir.
 - Ignorer l’encodage et les formats externes.
 
-## SNIPPET À RÉUTILISER
+## 13.N SNIPPET À RÉUTILISER
 
 > [!NOTE]
 > Adapter les noms `Z*`, les types DDIC, les données et les autorisations au système cible. Effectuer un contrôle syntaxique avant activation.
@@ -188,13 +188,13 @@ DATA(lv_date_text) = |{ sy-datlo DATE = USER }|.
 DATA(lv_time_text) = |{ sy-timlo TIME = USER }|.
 ```
 
-## TERMES DU LEXIQUE
+## 13.O TERMES DU LEXIQUE
 
 - [Instruction ABAP](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#instruction-abap>)
 - [Expression](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#expression>)
 - [Type de données](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#type-donnees>)
 
-## RÉFÉRENCES OFFICIELLES SAP
+## 13.P RÉFÉRENCES OFFICIELLES SAP
 
 - [Calculating with Dates, Times, and Timestamps — SAP Learning](https://learning.sap.com/courses/deepening-your-abap-programming-knowledge/calculating-with-dates-times-and-timestamps_a393cf01-946e-487b-a690-0aab8fc49a39)
 - [Date and Time Processing — ABAP Keyword Documentation](https://help.sap.com/doc/abapdocu_latest_index_htm/latest/en-US/ABENDATE_TIME_SOURCE_FIELDS.html)

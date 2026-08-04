@@ -1,13 +1,13 @@
-# INTERFACES BAPI, STRUCTURES X ET RETURN
+# 19. INTERFACES BAPI, STRUCTURES X ET RETURN
 
-## RÉSULTAT ATTENDU
+## 19.A RÉSULTAT ATTENDU
 
 - Lire une interface BAPI complexe
 - Comprendre les structures de données et structures `X`
 - Interpréter `BAPIRET2`
 - Déterminer le succès métier avant le commit
 
-## STRUCTURES MÉTIER
+## 19.B STRUCTURES MÉTIER
 
 Les BAPI utilisent souvent des structures DDIC dédiées. Leur nom reflète généralement l’objet et l’opération, mais seule la documentation fait foi.
 
@@ -20,7 +20,7 @@ Exemples de catégories :
 - extensions ;
 - messages de retour.
 
-## STRUCTURES X
+## 19.C STRUCTURES X
 
 Certaines BAPI de modification utilisent une structure parallèle dite **X**. Elle indique quels champs doivent être pris en compte.
 
@@ -33,7 +33,7 @@ ls_datax-description = abap_true.
 
 Une valeur fournie sans indicateur peut être ignorée. Un indicateur fourni avec une valeur initiale peut signifier que le champ doit être effacé. Vérifier la documentation de la BAPI.
 
-## RETOUR BAPIRET2
+## 19.D RETOUR BAPIRET2
 
 Une structure `BAPIRET2` contient notamment :
 
@@ -46,7 +46,7 @@ Une structure `BAPIRET2` contient notamment :
 | `MESSAGE_V1` à `V4`         | Variables du message                |
 | `PARAMETER`, `ROW`, `FIELD` | Localisation éventuelle de l’erreur |
 
-## TYPES DE MESSAGE
+## 19.E TYPES DE MESSAGE
 
 Les conventions courantes utilisent :
 
@@ -66,11 +66,11 @@ DATA(lv_has_error) = xsdbool(
 
 Adapter cette logique au contrat précis : certaines interfaces utilisent aussi d’autres indicateurs ou des exceptions.
 
-## EXTENSIONIN ET EXTENSIONOUT
+## 19.F EXTENSIONIN ET EXTENSIONOUT
 
 Certaines BAPI proposent des conteneurs d’extension pour des champs clients. Leur remplissage dépend de structures prévues et de mécanismes d’extension spécifiques. Ne pas sérialiser arbitrairement des données sans respecter la documentation.
 
-## DIAGNOSTIC
+## 19.G DIAGNOSTIC
 
 Conserver tous les messages utiles et pas uniquement le premier. Pour chaque message, enregistrer au minimum :
 
@@ -81,43 +81,43 @@ Conserver tous les messages utiles et pas uniquement le premier. Pour chaque mes
 - clé métier ;
 - corrélation du traitement.
 
-## PROCESS
+## 19.H PROCESS
 
-### Étape 1 — Aligner donnée et indicateur
+### 19.H.1 Étape 1 — Aligner donnée et indicateur
 
 Ouvrir la structure métier et sa structure `X`. Pour chaque champ à modifier, renseigner la valeur dans la structure métier et l’indicateur correspondant dans la structure `X`.
 
-### Étape 2 — Distinguer initial et non modifié
+### 19.H.2 Étape 2 — Distinguer initial et non modifié
 
 Pour effacer une valeur, transmettre sa valeur initiale et positionner l’indicateur `X`. Pour conserver la valeur existante, laisser l’indicateur vide. Tester explicitement cette différence.
 
-### Étape 3 — Alimenter les clés
+### 19.H.3 Étape 3 — Alimenter les clés
 
 Renseigner les clés dans les deux structures si l’interface l’exige. Pour les tables de positions, aligner chaque ligne métier avec sa ligne d’indicateurs par la même clé.
 
-### Étape 4 — Lire toute la table RETURN
+### 19.H.4 Étape 4 — Lire toute la table RETURN
 
 Parcourir toutes les lignes, pas seulement la première. Classer `A`, `E`, `X` comme échec et conserver identifiant, numéro, variables et texte pour le diagnostic.
 
-### Étape 5 — Vérifier l’effet
+### 19.H.5 Étape 5 — Vérifier l’effet
 
 Sans erreur bloquante, exécuter le commit prévu puis relire l’objet avec une API officielle. Le test est validé lorsque seuls les champs marqués changent et qu’une erreur provoque un rollback.
 
-## VÉRIFICATION
+## 19.I VÉRIFICATION
 
 - Le contrôle syntaxique réussit.
 - La version active correspond au code sauvegardé.
 - L’exécution produit le résultat décrit dans le chapitre.
 - Les cas vide, limite et erreur sont testés séparément lorsque la syntaxe le permet.
 
-## ERREURS FRÉQUENTES
+## 19.J ERREURS FRÉQUENTES
 
 - Copier un exemple sans adapter les types, noms d’objets et données disponibles dans le système.
 - Tester uniquement le cas nominal et ignorer les valeurs initiales, absentes ou invalides.
 - Appeler un module fonction sans lire sa documentation et ses exceptions.
 - Supposer qu’une BAPI effectue automatiquement le commit.
 
-## SNIPPET À RÉUTILISER
+## 19.K SNIPPET À RÉUTILISER
 
 > [!NOTE]
 > Adapter les noms `Z*`, les types DDIC, les données et les autorisations au système cible. Effectuer un contrôle syntaxique avant activation.
@@ -128,7 +128,7 @@ DATA(lv_has_error) = xsdbool(
   line_exists( lt_return[ type = 'A' ] ) ).
 ```
 
-## TERMES DU LEXIQUE
+## 19.L TERMES DU LEXIQUE
 
 - [Structure](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#structure-abap>)
 - [BAPI](<../🧩 00 ├── LEXIQUE SAP ET ABAP/10 └── ACRONYMES SAP.md#acro-bapi>)
@@ -137,7 +137,7 @@ DATA(lv_has_error) = xsdbool(
 - [Function group](<../🧩 00 ├── LEXIQUE SAP ET ABAP/06 ├── PROGRAMMES CLASSES ET OBJETS TECHNIQUES.md#function-group>)
 - [RFC](<../🧩 00 ├── LEXIQUE SAP ET ABAP/10 └── ACRONYMES SAP.md#acro-rfc>)
 
-## RÉFÉRENCES OFFICIELLES SAP
+## 19.M RÉFÉRENCES OFFICIELLES SAP
 
 - [Describing Remote Function Calls and BAPIs — SAP Learning](https://learning.sap.com/courses/technical-implementation-and-operation-i-of-sap-s-4hana-and-sap-business-suite/describing-remote-function-calls-and-bapis)
 - [Transaction Model for Developing BAPIs — SAP Help Portal](https://help.sap.com/docs/SAP_ERP/67ae2d27aed945b7bd0ad1d2185ec217/4d5b102ba1483d8fe10000000a42189e.html)

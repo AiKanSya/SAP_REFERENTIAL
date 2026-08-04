@@ -1,6 +1,6 @@
-# CODES RETOUR ET SY-SUBRC
+# 7. CODES RETOUR ET SY-SUBRC
 
-## RÉSULTAT ATTENDU
+## 7.A RÉSULTAT ATTENDU
 
 - Comprendre le rôle de `sy-subrc`
 - Contrôler un code retour immédiatement
@@ -8,7 +8,7 @@
 - Éviter les tests génériques incorrects
 - Choisir entre code retour et exception
 
-## PRINCIPE
+## 7.B PRINCIPE
 
 Certaines instructions ABAP renseignent le champ système `sy-subrc` afin d’indiquer leur résultat.
 
@@ -25,7 +25,7 @@ ENDIF.
 
 La signification des valeurs dépend de l’instruction. `0` signifie généralement que l’opération a réussi, mais les autres valeurs ne sont pas universelles.
 
-## CONTRÔLE IMMÉDIAT
+## 7.C CONTRÔLE IMMÉDIAT
 
 ```mermaid
 flowchart LR
@@ -46,7 +46,7 @@ ENDIF.
 
 Le code retour doit être testé avant toute instruction susceptible de le modifier.
 
-## VALEURS SPÉCIFIQUES
+## 7.D VALEURS SPÉCIFIQUES
 
 Certaines instructions distinguent plusieurs résultats non nuls.
 
@@ -67,7 +67,7 @@ ENDCASE.
 
 Ne pas inventer la signification de `4`, `8` ou d’une autre valeur. Vérifier la documentation de l’instruction concernée.
 
-## CONSERVER LE CODE RETOUR
+## 7.E CONSERVER LE CODE RETOUR
 
 ```abap
 DATA lv_subrc TYPE sysubrc.
@@ -80,7 +80,7 @@ lv_subrc = sy-subrc.
 
 La copie permet de différer le traitement sans dépendre de la valeur volatile de `sy-subrc`.
 
-## CODE RETOUR OU EXCEPTION
+## 7.F CODE RETOUR OU EXCEPTION
 
 | Situation                                         | Mécanisme adapté                                |
 | ------------------------------------------------- | ----------------------------------------------- |
@@ -92,7 +92,7 @@ La copie permet de différer le traitement sans dépendre de la valeur volatile 
 
 Une interface moderne réutilisable ne doit pas obliger l’appelant à deviner un code numérique non documenté.
 
-## ERREUR À ÉVITER
+## 7.G ERREUR À ÉVITER
 
 ```abap
 IF sy-subrc = 0.
@@ -102,21 +102,21 @@ ENDIF.
 
 Sans instruction immédiatement identifiable avant ce test, le code est ambigu et fragile.
 
-## VÉRIFICATION
+## 7.H VÉRIFICATION
 
 - Le contrôle syntaxique réussit.
 - La version active correspond au code sauvegardé.
 - L’exécution produit le résultat décrit dans le chapitre.
 - Les cas vide, limite et erreur sont testés séparément lorsque la syntaxe le permet.
 
-## ERREURS FRÉQUENTES
+## 7.I ERREURS FRÉQUENTES
 
 - Copier un exemple sans adapter les types, noms d’objets et données disponibles dans le système.
 - Tester uniquement le cas nominal et ignorer les valeurs initiales, absentes ou invalides.
 - Afficher un message technique incompréhensible à l’utilisateur.
 - Attraper une exception sans action ni propagation.
 
-## SNIPPET À RÉUTILISER
+## 7.J SNIPPET À RÉUTILISER
 
 > [!NOTE]
 > Adapter les noms `Z*`, les types DDIC, les données et les autorisations au système cible. Effectuer un contrôle syntaxique avant activation.
@@ -134,12 +134,12 @@ CASE sy-subrc.
 ENDCASE.
 ```
 
-## TERMES DU LEXIQUE
+## 7.K TERMES DU LEXIQUE
 
 - [Exception](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#exception>)
 - [Dump ABAP](<../🧩 00 ├── LEXIQUE SAP ET ABAP/08 ├── EXECUTION EXPLOITATION ET ADMINISTRATION.md#dump-abap>)
 
-## RÉFÉRENCES OFFICIELLES SAP
+## 7.L RÉFÉRENCES OFFICIELLES SAP
 
 - [Return Code — ABAP Programming Guideline](https://help.sap.com/doc/abapdocu_latest_index_htm/latest/en-US/ABENRETURN_CODE_GUIDL.html)
 - [ABAP Statements Overview — ABAP Keyword Documentation](https://help.sap.com/doc/abapdocu_latest_index_htm/latest/en-US/ABENABAP_STATEMENTS_OVERVIEW.html)

@@ -1,6 +1,6 @@
-# MODIFIER DES LIGNES
+# 10. MODIFIER DES LIGNES
 
-## RÉSULTAT ATTENDU
+## 10.A RÉSULTAT ATTENDU
 
 - Modifier une ligne par index ou par clé
 - Utiliser `MODIFY ... TRANSPORTING`
@@ -8,7 +8,7 @@
 - Modifier directement avec une expression de table
 - Comprendre les restrictions portant sur les clés
 
-## MODIFIER PAR INDEX
+## 10.B MODIFIER PAR INDEX
 
 ```abap
 " Accéder à la ligne par une clé adaptée au besoin.
@@ -22,7 +22,7 @@ ENDIF.
 
 Cette variante concerne les tables d’index.
 
-## MODIFIER PAR CLÉ
+## 10.C MODIFIER PAR CLÉ
 
 ```abap
 ls_product-matnr = 'MAT-001'.
@@ -33,7 +33,7 @@ MODIFY TABLE lt_products FROM ls_product.
 
 La ligne cible est identifiée au moyen de la clé de table applicable.
 
-## TRANSPORTING
+## 10.D TRANSPORTING
 
 `TRANSPORTING` limite les composants remplacés.
 
@@ -46,7 +46,7 @@ MODIFY lt_products
 
 Seuls `stock` et `status` sont modifiés pour les lignes qui respectent le filtre.
 
-## MODIFIER DANS LOOP AVEC INTO
+## 10.E MODIFIER DANS LOOP AVEC INTO
 
 ```abap
 " Traiter la collection sans lecture SQL dans la boucle.
@@ -57,7 +57,7 @@ LOOP AT lt_products INTO DATA(ls_product)
 ENDLOOP.
 ```
 
-## MODIFIER DANS LOOP AVEC ASSIGNING
+## 10.F MODIFIER DANS LOOP AVEC ASSIGNING
 
 ```abap
 " Traiter la collection sans lecture SQL dans la boucle.
@@ -69,7 +69,7 @@ ENDLOOP.
 
 Cette forme est plus directe lorsqu’aucune copie n’est nécessaire.
 
-## EXPRESSION DE TABLE À GAUCHE
+## 10.G EXPRESSION DE TABLE À GAUCHE
 
 ```abap
 " Accéder à la ligne par une clé adaptée au besoin.
@@ -87,7 +87,7 @@ IF line_exists( lt_products[ matnr = 'MAT-001' ] ).
 ENDIF.
 ```
 
-## MODIFIER UNE CLÉ
+## 10.H MODIFIER UNE CLÉ
 
 Pour une table triée ou hachée, ne pas modifier directement les composants de la clé primaire de manière à contredire l’organisation de la table.
 
@@ -100,7 +100,7 @@ flowchart TD
     E --> F["Contrôler sy-subrc"]
 ```
 
-## SY-SUBRC
+## 10.I SY-SUBRC
 
 Contrôler `sy-subrc` lorsqu’une modification peut ne trouver aucune ligne ou violer une contrainte de clé.
 
@@ -112,7 +112,7 @@ IF sy-subrc <> 0.
 ENDIF.
 ```
 
-## CHOISIR LA TECHNIQUE
+## 10.J CHOISIR LA TECHNIQUE
 
 | Situation                           | Technique                           |
 | ----------------------------------- | ----------------------------------- |
@@ -122,21 +122,21 @@ ENDIF.
 | Modification pendant un parcours    | `LOOP ... ASSIGNING`                |
 | Modification concise d’un composant | Expression de table à gauche        |
 
-## VÉRIFICATION
+## 10.K VÉRIFICATION
 
 - Le contrôle syntaxique réussit.
 - La version active correspond au code sauvegardé.
 - L’exécution produit le résultat décrit dans le chapitre.
 - Les cas vide, limite et erreur sont testés séparément lorsque la syntaxe le permet.
 
-## ERREURS FRÉQUENTES
+## 10.L ERREURS FRÉQUENTES
 
 - Copier un exemple sans adapter les types, noms d’objets et données disponibles dans le système.
 - Tester uniquement le cas nominal et ignorer les valeurs initiales, absentes ou invalides.
 - Utiliser une table standard pour des recherches massives par clé sans mesure.
 - Modifier une copie de ligne alors que la table devait être mise à jour.
 
-## SNIPPET À RÉUTILISER
+## 10.M SNIPPET À RÉUTILISER
 
 > [!NOTE]
 > Adapter les noms `Z*`, les types DDIC, les données et les autorisations au système cible. Effectuer un contrôle syntaxique avant activation.
@@ -151,14 +151,14 @@ IF sy-subrc = 0.
 ENDIF.
 ```
 
-## TERMES DU LEXIQUE
+## 10.N TERMES DU LEXIQUE
 
 - [Table interne](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#table-interne>)
 - [Structure](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#structure-abap>)
 - [Field-symbol](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#field-symbol>)
 - [Référence](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#reference>)
 
-## RÉFÉRENCES OFFICIELLES SAP
+## 10.O RÉFÉRENCES OFFICIELLES SAP
 
 - [Modifying Table Content — SAP Help Portal](https://help.sap.com/docs/abap-cloud/abap-concepts/modifying-table-content)
 - [MODIFY itab — ABAP Keyword Documentation](https://help.sap.com/doc/abapdocu_latest_index_htm/latest/en-US/ABAPMODIFY_ITAB.html)

@@ -1,6 +1,6 @@
-# PROPAGER UNE EXCEPTION AVEC RAISING
+# 11. PROPAGER UNE EXCEPTION AVEC RAISING
 
-## RÉSULTAT ATTENDU
+## 11.A RÉSULTAT ATTENDU
 
 - Déclarer les exceptions d’une procédure
 - Comprendre la propagation
@@ -8,7 +8,7 @@
 - Préserver le contrat d’une méthode
 - Éviter les interfaces trop générales
 
-## PRINCIPE
+## 11.B PRINCIPE
 
 Une procédure peut traiter l’exception elle-même ou la transmettre à son appelant.
 
@@ -19,7 +19,7 @@ flowchart LR
     B --> D["Propagation avec RAISING"]
 ```
 
-## DÉCLARATION DANS UNE MÉTHODE
+## 11.C DÉCLARATION DANS UNE MÉTHODE
 
 ```abap
 " Isoler le comportement afin de pouvoir l’exécuter avec ABAP Unit.
@@ -50,7 +50,7 @@ METHOD read_product.
 ENDMETHOD.
 ```
 
-## TRAITER OU PROPAGER
+## 11.D TRAITER OU PROPAGER
 
 Traiter localement lorsque la procédure sait :
 
@@ -61,13 +61,13 @@ Traiter localement lorsque la procédure sait :
 
 Propager lorsque la décision appartient au niveau appelant.
 
-## CATÉGORIE ET DÉCLARATION
+## 11.E CATÉGORIE ET DÉCLARATION
 
 Les exceptions issues de `CX_STATIC_CHECK` et `CX_DYNAMIC_CHECK` doivent être déclarées lorsqu’elles sont propagées par une procédure. Les exceptions issues de `CX_NO_CHECK` peuvent traverser une interface sans déclaration explicite.
 
 La catégorie `CX_STATIC_CHECK` impose en plus des contrôles syntaxiques destinés à forcer la prise en compte de l’exception.
 
-## CONVERTIR UNE EXCEPTION
+## 11.F CONVERTIR UNE EXCEPTION
 
 ```abap
 " Propager ou traiter l’erreur au niveau qui sait prendre une décision.
@@ -82,7 +82,7 @@ ENDTRY.
 
 La couche supérieure ne dépend plus directement d’une exception technique SQL. La cause reste accessible via `PREVIOUS`.
 
-## ÉVITER UNE INTERFACE TROP GÉNÉRALE
+## 11.G ÉVITER UNE INTERFACE TROP GÉNÉRALE
 
 ```abap
 " Exemple à éviter : comparer avec la correction décrite après le bloc.
@@ -93,7 +93,7 @@ Une déclaration aussi large ne décrit pas le contrat réel. Elle oblige l’ap
 
 Déclarer les classes pertinentes ou une superclasse applicative maîtrisée, par exemple `ZCX_DEV_ERROR`.
 
-## FRONTIÈRE DE PRÉSENTATION
+## 11.H FRONTIÈRE DE PRÉSENTATION
 
 Une méthode métier ne doit pas transformer systématiquement ses exceptions en `MESSAGE`. Le programme appelant peut être :
 
@@ -105,21 +105,21 @@ Une méthode métier ne doit pas transformer systématiquement ses exceptions en
 
 La propagation préserve la réutilisabilité.
 
-## VÉRIFICATION
+## 11.I VÉRIFICATION
 
 - Le contrôle syntaxique réussit.
 - La version active correspond au code sauvegardé.
 - L’exécution produit le résultat décrit dans le chapitre.
 - Les cas vide, limite et erreur sont testés séparément lorsque la syntaxe le permet.
 
-## ERREURS FRÉQUENTES
+## 11.J ERREURS FRÉQUENTES
 
 - Copier un exemple sans adapter les types, noms d’objets et données disponibles dans le système.
 - Tester uniquement le cas nominal et ignorer les valeurs initiales, absentes ou invalides.
 - Afficher un message technique incompréhensible à l’utilisateur.
 - Attraper une exception sans action ni propagation.
 
-## SNIPPET À RÉUTILISER
+## 11.K SNIPPET À RÉUTILISER
 
 > [!NOTE]
 > Adapter les noms `Z*`, les types DDIC, les données et les autorisations au système cible. Effectuer un contrôle syntaxique avant activation.
@@ -140,12 +140,12 @@ METHOD read_product.
 ENDMETHOD.
 ```
 
-## TERMES DU LEXIQUE
+## 11.L TERMES DU LEXIQUE
 
 - [Exception](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#exception>)
 - [Dump ABAP](<../🧩 00 ├── LEXIQUE SAP ET ABAP/08 ├── EXECUTION EXPLOITATION ET ADMINISTRATION.md#dump-abap>)
 
-## RÉFÉRENCES OFFICIELLES SAP
+## 11.M RÉFÉRENCES OFFICIELLES SAP
 
 - [Handling and Propagating Exceptions — ABAP Programming Guideline](https://help.sap.com/doc/abapdocu_latest_index_htm/latest/en-US/ABENHANDL_PROP_EXCEPT_GUIDL.html)
 - [Exception Categories — ABAP Keyword Documentation](https://help.sap.com/doc/abapdocu_latest_index_htm/latest/en-US/ABENEXCEPTION_CATEGORIES.html)

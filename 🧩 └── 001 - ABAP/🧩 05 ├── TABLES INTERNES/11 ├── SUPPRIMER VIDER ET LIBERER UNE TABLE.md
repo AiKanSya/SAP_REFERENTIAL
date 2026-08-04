@@ -1,6 +1,6 @@
-# SUPPRIMER, VIDER ET LIBÉRER UNE TABLE
+# 11. SUPPRIMER, VIDER ET LIBÉRER UNE TABLE
 
-## RÉSULTAT ATTENDU
+## 11.A RÉSULTAT ATTENDU
 
 - Supprimer une ou plusieurs lignes
 - Distinguer `DELETE`, `CLEAR`, `REFRESH` et `FREE`
@@ -8,7 +8,7 @@
 - Comprendre l’impact sur le contenu et la mémoire
 - Éviter les suppressions dépendantes d’un index instable
 
-## SUPPRIMER PAR INDEX
+## 11.B SUPPRIMER PAR INDEX
 
 ```abap
 " Exemple à éviter : comparer avec la correction décrite après le bloc.
@@ -21,7 +21,7 @@ ENDIF.
 
 Cette variante concerne les tables d’index.
 
-## SUPPRIMER PAR CLÉ
+## 11.C SUPPRIMER PAR CLÉ
 
 ```abap
 " Exemple à éviter : comparer avec la correction décrite après le bloc.
@@ -35,7 +35,7 @@ Pour une clé libre :
 DELETE lt_products WHERE category = 'OBSOLETE'.
 ```
 
-## SUPPRIMER LA LIGNE COURANTE
+## 11.D SUPPRIMER LA LIGNE COURANTE
 
 Dans une boucle :
 
@@ -56,7 +56,7 @@ Une variante souvent plus lisible consiste à supprimer directement avec `WHERE`
 DELETE lt_products WHERE obsolete = abap_true.
 ```
 
-## CLEAR
+## 11.E CLEAR
 
 ```abap
 CLEAR lt_products.
@@ -64,7 +64,7 @@ CLEAR lt_products.
 
 Pour une table interne, `CLEAR` supprime toutes les lignes et place la table dans son état initial.
 
-## REFRESH
+## 11.F REFRESH
 
 ```abap
 REFRESH lt_products.
@@ -72,7 +72,7 @@ REFRESH lt_products.
 
 `REFRESH` vide également la table. Pour du nouveau code, `CLEAR` est généralement plus homogène avec les autres objets de données.
 
-## FREE
+## 11.G FREE
 
 ```abap
 FREE lt_products.
@@ -80,7 +80,7 @@ FREE lt_products.
 
 `FREE` vide la table et demande la libération de la mémoire qu’elle occupait, au-delà de la simple remise à l’état initial.
 
-## COMPARAISON
+## 11.H COMPARAISON
 
 | Instruction |       Lignes supprimées | Intention principale                                |
 | ----------- | ----------------------: | --------------------------------------------------- |
@@ -89,13 +89,13 @@ FREE lt_products.
 | `REFRESH`   |                  Toutes | Ancienne instruction spécifique aux tables internes |
 | `FREE`      |                  Toutes | Réinitialiser et libérer la mémoire occupée         |
 
-## QUAND UTILISER FREE
+## 11.I QUAND UTILISER FREE
 
 `FREE` peut être pertinent lorsqu’une table très volumineuse ne sera plus utilisée pendant une longue suite du traitement.
 
 Ne pas appeler systématiquement `FREE` après chaque utilisation. La gestion mémoire doit répondre à un besoin réel et mesuré.
 
-## EXEMPLE SÉCURISÉ
+## 11.J EXEMPLE SÉCURISÉ
 
 ```abap
 DELETE lt_products WHERE stock = 0 AND obsolete = abap_true.
@@ -105,21 +105,21 @@ IF sy-subrc = 0.
 ENDIF.
 ```
 
-## VÉRIFICATION
+## 11.K VÉRIFICATION
 
 - Le contrôle syntaxique réussit.
 - La version active correspond au code sauvegardé.
 - L’exécution produit le résultat décrit dans le chapitre.
 - Les cas vide, limite et erreur sont testés séparément lorsque la syntaxe le permet.
 
-## ERREURS FRÉQUENTES
+## 11.L ERREURS FRÉQUENTES
 
 - Copier un exemple sans adapter les types, noms d’objets et données disponibles dans le système.
 - Tester uniquement le cas nominal et ignorer les valeurs initiales, absentes ou invalides.
 - Utiliser une table standard pour des recherches massives par clé sans mesure.
 - Modifier une copie de ligne alors que la table devait être mise à jour.
 
-## SNIPPET À RÉUTILISER
+## 11.M SNIPPET À RÉUTILISER
 
 > [!NOTE]
 > Adapter les noms `Z*`, les types DDIC, les données et les autorisations au système cible. Effectuer un contrôle syntaxique avant activation.
@@ -132,14 +132,14 @@ IF sy-subrc = 0.
 ENDIF.
 ```
 
-## TERMES DU LEXIQUE
+## 11.N TERMES DU LEXIQUE
 
 - [Table interne](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#table-interne>)
 - [Structure](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#structure-abap>)
 - [Field-symbol](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#field-symbol>)
 - [Référence](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#reference>)
 
-## RÉFÉRENCES OFFICIELLES SAP
+## 11.O RÉFÉRENCES OFFICIELLES SAP
 
 - [DELETE itab — ABAP Keyword Documentation](https://help.sap.com/doc/abapdocu_latest_index_htm/latest/en-US/ABAPDELETE_ITAB.html)
 - [CLEAR — ABAP Keyword Documentation](https://help.sap.com/doc/abapdocu_latest_index_htm/latest/en-US/ABAPCLEAR.html)

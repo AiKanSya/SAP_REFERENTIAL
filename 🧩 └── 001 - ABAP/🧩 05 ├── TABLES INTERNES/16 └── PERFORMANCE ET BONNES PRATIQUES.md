@@ -1,6 +1,6 @@
-# PERFORMANCE ET BONNES PRATIQUES
+# 16. PERFORMANCE ET BONNES PRATIQUES
 
-## RÉSULTAT ATTENDU
+## 16.A RÉSULTAT ATTENDU
 
 - Choisir une table interne selon les accès réels
 - Réduire les copies et recherches inutiles
@@ -8,7 +8,7 @@
 - Concevoir des clés adaptées
 - Mesurer avant d’optimiser
 
-## PARTIR DU MODE D’ACCÈS
+## 16.B PARTIR DU MODE D’ACCÈS
 
 Le choix d’une table interne ne doit pas reposer uniquement sur le volume.
 
@@ -30,7 +30,7 @@ flowchart TD
     E --> F["Ajuster sur preuve"]
 ```
 
-## RÈGLES DE CHOIX
+## 16.C RÈGLES DE CHOIX
 
 | Scénario                                                | Choix initial raisonnable                      |
 | ------------------------------------------------------- | ---------------------------------------------- |
@@ -39,7 +39,7 @@ flowchart TD
 | Accès par clé partielle ou parcours dans l’ordre de clé | Table triée                                    |
 | Plusieurs chemins d’accès répétés                       | Clé primaire adaptée et clé secondaire mesurée |
 
-## ÉVITER LES RECHERCHES LINÉAIRES RÉPÉTÉES
+## 16.D ÉVITER LES RECHERCHES LINÉAIRES RÉPÉTÉES
 
 Problème :
 
@@ -61,7 +61,7 @@ Solutions possibles :
 - clé secondaire ;
 - refonte du chargement ou du traitement.
 
-## ÉVITER LES COPIES INUTILES
+## 16.E ÉVITER LES COPIES INUTILES
 
 Pour modifier les lignes :
 
@@ -91,7 +91,7 @@ READ TABLE lt_products
   WITH KEY matnr = p_matnr.
 ```
 
-## BINARY SEARCH
+## 16.F BINARY SEARCH
 
 `READ TABLE ... BINARY SEARCH` ne doit être utilisé que sur une table standard correctement triée selon les composants et l’ordre requis par la recherche.
 
@@ -99,7 +99,7 @@ Une incohérence entre le tri et la clé de recherche produit un résultat incor
 
 Préférer une table triée avec clé explicite lorsque la recherche binaire fait partie du comportement permanent de la table.
 
-## LIMITER LES BOUCLES IMBRIQUÉES
+## 16.G LIMITER LES BOUCLES IMBRIQUÉES
 
 Une boucle imbriquée sur deux grandes tables peut multiplier fortement le nombre d’itérations.
 
@@ -110,7 +110,7 @@ Avant de conserver ce schéma :
 - filtrer au plus tôt ;
 - envisager une autre construction des données.
 
-## NE PAS SUR-OPTIMISER
+## 16.H NE PAS SUR-OPTIMISER
 
 Une table hachée ou plusieurs clés secondaires ne sont pas automatiquement meilleures.
 
@@ -124,7 +124,7 @@ Elles ont aussi un coût :
 
 Pour une petite table parcourue une fois, une table standard peut être suffisante et plus lisible.
 
-## MESURER
+## 16.I MESURER
 
 Utiliser les outils disponibles dans SAP GUI pour confirmer un problème :
 
@@ -133,7 +133,7 @@ Utiliser les outils disponibles dans SAP GUI pour confirmer un problème :
 - débogueur pour vérifier les volumes et les accès ;
 - ABAP Test Cockpit ou Code Inspector pour les contrôles statiques selon le système.
 
-## CHECKLIST
+## 16.J CHECKLIST
 
 - [ ] La catégorie correspond-elle au mode de lecture dominant ?
 - [ ] La clé primaire représente-t-elle l’accès principal ?
@@ -144,21 +144,21 @@ Utiliser les outils disponibles dans SAP GUI pour confirmer un problème :
 - [ ] Les boucles imbriquées ont-elles été analysées avec les volumes réels ?
 - [ ] L’optimisation repose-t-elle sur une mesure ?
 
-## VÉRIFICATION
+## 16.K VÉRIFICATION
 
 - Le contrôle syntaxique réussit.
 - La version active correspond au code sauvegardé.
 - L’exécution produit le résultat décrit dans le chapitre.
 - Les cas vide, limite et erreur sont testés séparément lorsque la syntaxe le permet.
 
-## ERREURS FRÉQUENTES
+## 16.L ERREURS FRÉQUENTES
 
 - Copier un exemple sans adapter les types, noms d’objets et données disponibles dans le système.
 - Tester uniquement le cas nominal et ignorer les valeurs initiales, absentes ou invalides.
 - Utiliser une table standard pour des recherches massives par clé sans mesure.
 - Modifier une copie de ligne alors que la table devait être mise à jour.
 
-## SNIPPET À RÉUTILISER
+## 16.M SNIPPET À RÉUTILISER
 
 > [!NOTE]
 > Adapter les noms `Z*`, les types DDIC, les données et les autorisations au système cible. Effectuer un contrôle syntaxique avant activation.
@@ -169,14 +169,14 @@ IF line_exists( lt_products[ matnr = p_matnr ] ).
 ENDIF.
 ```
 
-## TERMES DU LEXIQUE
+## 16.N TERMES DU LEXIQUE
 
 - [Table interne](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#table-interne>)
 - [Structure](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#structure-abap>)
 - [Field-symbol](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#field-symbol>)
 - [Référence](<../🧩 00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#reference>)
 
-## RÉFÉRENCES OFFICIELLES SAP
+## 16.O RÉFÉRENCES OFFICIELLES SAP
 
 - [Working with Sorted and Hashed Tables — SAP Learning](https://learning.sap.com/courses/deepening-your-abap-programming-knowledge/working-with-sorted-and-hashed-tables_de84be91-c7db-4166-95cf-2b036c8d5558)
 - [Improving Internal Table Performance Using Secondary Keys — SAP Learning](https://learning.sap.com/courses/deepening-your-abap-programming-knowledge/improving-internal-table-performance-using-secondary-keys_b426a7ff-a881-4270-95d9-9933e03a37f1)

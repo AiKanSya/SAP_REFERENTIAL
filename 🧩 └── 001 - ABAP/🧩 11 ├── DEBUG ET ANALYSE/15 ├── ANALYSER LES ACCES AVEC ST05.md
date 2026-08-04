@@ -1,6 +1,6 @@
-# ANALYSER LES ACCÈS AVEC ST05
+# 15. ANALYSER LES ACCÈS AVEC ST05
 
-## RÉSULTAT ATTENDU
+## 15.A RÉSULTAT ATTENDU
 
 - Utiliser `ST05` pour observer les accès SQL
 - Restreindre la trace à l’utilisateur et au scénario
@@ -8,35 +8,35 @@
 - Repérer répétitions, lectures massives et accès non sélectifs
 - Désactiver immédiatement la trace après reproduction
 
-## RÔLE DE ST05
+## 15.B RÔLE DE ST05
 
 La transaction `ST05` fournit des fonctions de trace système, notamment la trace SQL. Selon le système, elle peut aussi couvrir d’autres catégories techniques comme les accès buffer, les contrôles d’autorisation, les enqueues ou les appels RFC.
 
 Ce chapitre se concentre sur l’usage développeur pour comprendre les accès produits par un traitement ABAP.
 
-## PROCESS
+## 15.C PROCESS
 
-### Étape 1 — Préparer une requête reproductible
+### 15.C.1 Étape 1 — Préparer une requête reproductible
 
 Fixer utilisateur, programme, sélection et volume. Exécuter une fois sans trace et confirmer le résultat fonctionnel.
 
-### Étape 2 — Activer un périmètre restrictif
+### 15.C.2 Étape 2 — Activer un périmètre restrictif
 
 Ouvrir `ST05`, choisir la trace SQL et cibler l’utilisateur ou le contexte disponible. Vérifier qu’aucune trace concurrente incompatible n’est active.
 
-### Étape 3 — Capturer uniquement l’action utile
+### 15.C.3 Étape 3 — Capturer uniquement l’action utile
 
 Activer, exécuter une seule fois puis désactiver immédiatement. Une trace contenant connexion, navigation et plusieurs tests rend les temps difficiles à attribuer.
 
-### Étape 4 — Filtrer et agréger
+### 15.C.4 Étape 4 — Filtrer et agréger
 
 Afficher la trace, filtrer sur programme ou table, puis regrouper les instructions identiques. Examiner durée cumulée, exécutions, lignes examinées et lignes retournées.
 
-### Étape 5 — Analyser la cause
+### 15.C.5 Étape 5 — Analyser la cause
 
 Distinguer requête lente unique, requête répétée en boucle, prédicat non sélectif et volume excessif. Ouvrir l’explication du plan lorsque nécessaire.
 
-### Étape 6 — Mesurer après correction
+### 15.C.6 Étape 6 — Mesurer après correction
 
 Répéter exactement la capture. La correction est validée lorsque temps, exécutions ou volume diminuent avec un résultat fonctionnel inchangé.
 
@@ -48,7 +48,7 @@ flowchart LR
     D --> E["Identifier les accès dominants"]
 ```
 
-## INFORMATIONS À EXAMINER
+## 15.D INFORMATIONS À EXAMINER
 
 - instruction SQL ;
 - table ou vue ;
@@ -60,7 +60,7 @@ flowchart LR
 - préparation et exécution ;
 - répétition de requêtes identiques.
 
-## SIGNES CLASSIQUES
+## 15.E SIGNES CLASSIQUES
 
 - `SELECT` dans une boucle ;
 - requête exécutée des milliers de fois ;
@@ -70,11 +70,11 @@ flowchart LR
 - accès à une table non nécessaire ;
 - récupération de toutes les colonnes.
 
-## TRACE D AUTORISATION
+## 15.F TRACE D AUTORISATION
 
 La trace système peut également aider à analyser certains contrôles d’autorisation. Limiter le périmètre et interpréter les résultats avec le responsable sécurité ; un contrôle échoué peut être volontaire et suivi d’une alternative autorisée.
 
-## PRÉCAUTIONS
+## 15.G PRÉCAUTIONS
 
 - ne jamais laisser la trace active ;
 - éviter une trace globale sur un système chargé ;
@@ -82,19 +82,19 @@ La trace système peut également aider à analyser certains contrôles d’auto
 - supprimer les données de trace devenues inutiles ;
 - protéger les résultats contenant des valeurs techniques ou métier.
 
-## VÉRIFICATION
+## 15.H VÉRIFICATION
 
 - Le scénario reproduit correspond au même utilisateur, mandant, transaction et jeu de données.
 - L’horodatage et l’identifiant de l’analyse sont conservés.
 - La cause retenue est soutenue par une ligne source, une trace ou une valeur observée.
 - Après correction, le même scénario ne reproduit plus le défaut et le résultat métier reste identique.
 
-## ERREURS FRÉQUENTES
+## 15.I ERREURS FRÉQUENTES
 
 - Modifier les données dans le débogueur puis considérer le résultat comme reproductible.
 - Laisser une trace active trop longtemps.
 
-## FICHE DE CONTRÔLE À COPIER
+## 15.J FICHE DE CONTRÔLE À COPIER
 
 ```text
 Système / SID       :
@@ -109,14 +109,14 @@ Horodatage          :
 Ordre de transport  :
 ```
 
-## TERMES DU LEXIQUE
+## 15.K TERMES DU LEXIQUE
 
 - [Breakpoint](<../🧩 00 ├── LEXIQUE SAP ET ABAP/08 ├── EXECUTION EXPLOITATION ET ADMINISTRATION.md#breakpoint>)
 - [Watchpoint](<../🧩 00 ├── LEXIQUE SAP ET ABAP/08 ├── EXECUTION EXPLOITATION ET ADMINISTRATION.md#watchpoint>)
 - [Dump ABAP](<../🧩 00 ├── LEXIQUE SAP ET ABAP/08 ├── EXECUTION EXPLOITATION ET ADMINISTRATION.md#dump-abap>)
 - [Trace](<../🧩 00 ├── LEXIQUE SAP ET ABAP/08 ├── EXECUTION EXPLOITATION ET ADMINISTRATION.md#trace>)
 
-## RÉFÉRENCES OFFICIELLES SAP
+## 15.L RÉFÉRENCES OFFICIELLES SAP
 
 - [SQL Performance Monitoring — SAP Help Portal](https://help.sap.com/docs/ABAP_PLATFORM_NEW/a24970c68fcf4770a64bf9a78e3719e2/355d59ff44ce4f789d6b29cda7ec45fa.html)
 - [Preparations for SQL Trace — SAP Help Portal](https://help.sap.com/docs/ABAP_PLATFORM_NEW/a24970c68fcf4770a64bf9a78e3719e2/9f6bbd60512c488499c02065ceb6033b.html)
