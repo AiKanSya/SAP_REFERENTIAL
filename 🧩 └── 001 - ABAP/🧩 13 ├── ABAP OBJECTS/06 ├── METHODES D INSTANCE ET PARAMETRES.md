@@ -35,6 +35,20 @@ Calculer le total d’une liste de lignes de commande sans modifier la table fou
 
 ## CODE À ADAPTER
 
+Signature publique à créer dans `SE24` :
+
+```abap
+METHODS calculate_total
+  IMPORTING
+    it_items TYPE zdev_item_tab
+  RETURNING
+    VALUE(rv_total) TYPE zdev_amount.
+```
+
+`ZDEV_ITEM_TAB` doit être un type de table dont la ligne expose le composant `AMOUNT` de type compatible avec `ZDEV_AMOUNT`.
+
+Implémentation de la méthode :
+
 ```abap
 " Définir le contrat et limiter l’API publique au besoin réel.
 METHOD calculate_total.
@@ -45,7 +59,7 @@ METHOD calculate_total.
 ENDMETHOD.
 ```
 
-Appel :
+Appel depuis un consommateur disposant d’une référence `LO_SERVICE` et d’une table `LT_ITEMS` correctement typées :
 
 ```abap
 DATA(lv_total) = lo_service->calculate_total( lt_items ).

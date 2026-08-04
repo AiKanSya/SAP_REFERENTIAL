@@ -32,6 +32,17 @@ flowchart TD
 
 ## CODE À ADAPTER
 
+Signature du constructeur à créer dans `SE24` :
+
+```abap
+METHODS constructor
+  IMPORTING
+    io_repository   TYPE REF TO zif_dev_repository
+    iv_company_code TYPE bukrs
+  RAISING
+    zcx_dev_configuration.
+```
+
 ```abap
 " Définir le contrat et limiter l’API publique au besoin réel.
 METHOD constructor.
@@ -49,6 +60,12 @@ ENDMETHOD.
 ## CONSTRUCTEUR DE CLASSE
 
 `CLASS_CONSTRUCTOR` s’exécute automatiquement avant le premier accès à un composant statique de la classe. Il ne possède pas de paramètres. Il doit rester court et ne pas provoquer d’effets de bord difficiles à anticiper.
+
+Déclaration dans la section privée :
+
+```abap
+CLASS-METHODS class_constructor.
+```
 
 ```abap
 " Définir le contrat et limiter l’API publique au besoin réel.

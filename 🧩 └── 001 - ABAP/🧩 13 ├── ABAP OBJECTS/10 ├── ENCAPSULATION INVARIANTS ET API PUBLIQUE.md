@@ -18,6 +18,22 @@ Une classe `ZCL_MM_RESERVATION` expose `RESERVE` et `RELEASE`, mais pas l’attr
 
 ## CODE À ADAPTER
 
+API publique et état privé correspondants :
+
+```abap
+PUBLIC SECTION.
+  METHODS reserve
+    IMPORTING iv_quantity TYPE zdev_quantity
+    RAISING   zcx_dev_invalid_quantity.
+
+  METHODS get_reserved_quantity
+    RETURNING VALUE(rv_quantity) TYPE zdev_quantity.
+
+PRIVATE SECTION.
+  DATA mv_available TYPE zdev_quantity.
+  DATA mv_reserved  TYPE zdev_quantity.
+```
+
 ```abap
 " Définir le contrat et limiter l’API publique au besoin réel.
 METHOD reserve.

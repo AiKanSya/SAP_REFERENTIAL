@@ -29,6 +29,25 @@ flowchart LR
 
 ## CODE À ADAPTER
 
+Signatures publiques de la classe d’orchestration :
+
+```abap
+METHODS constructor
+  IMPORTING
+    io_validator  TYPE REF TO zif_dev_validator
+    io_repository TYPE REF TO zif_dev_order_repository
+    io_logger     TYPE REF TO zif_dev_logger.
+
+METHODS create_order
+  IMPORTING is_order TYPE zdev_order
+  RETURNING VALUE(rv_order_id) TYPE zdev_order_id
+  RAISING   zcx_dev_invalid_order.
+
+METHODS is_valid
+  IMPORTING is_order TYPE zdev_order
+  RETURNING VALUE(rv_valid) TYPE abap_bool.
+```
+
 ```abap
 " Définir le contrat et limiter l’API publique au besoin réel.
 METHOD constructor.

@@ -29,6 +29,16 @@ Une classe de base calcule un prix standard. Une sous-classe spécialisée ajout
 
 ## CODE À ADAPTER
 
+La superclasse doit déclarer cette méthode dans sa section publique ou protégée. La sous-classe la marque ensuite comme redéfinie dans `SE24`.
+
+```abap
+METHODS calculate_price
+  IMPORTING is_item TYPE zdev_item
+  RETURNING VALUE(rv_price) TYPE zdev_amount.
+```
+
+La sous-classe doit également déclarer `CALCULATE_REGULATORY_FEE` avec une entrée `ZDEV_ITEM` et un retour `ZDEV_AMOUNT`.
+
 ```abap
 " Définir le contrat et limiter l’API publique au besoin réel.
 METHOD calculate_price.

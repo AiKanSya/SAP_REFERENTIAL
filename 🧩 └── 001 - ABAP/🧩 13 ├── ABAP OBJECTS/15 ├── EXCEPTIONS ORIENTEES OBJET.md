@@ -23,10 +23,21 @@ Une classe de repository ne trouve pas un objet demandé. Elle ne doit ni affich
 
 ## CODE À ADAPTER
 
+Signature publique du repository :
+
+```abap
+METHODS get_by_id
+  IMPORTING iv_id TYPE zdev_entity_id
+  RETURNING VALUE(rs_entity) TYPE zdev_entity
+  RAISING   zcx_dev_not_found.
+```
+
 ```abap
 " Lire uniquement les colonnes et les lignes nécessaires.
 METHOD get_by_id.
-  SELECT SINGLE *
+  SELECT SINGLE entity_id,
+                description,
+                status
     FROM zdev_entity
     WHERE entity_id = @iv_id
     INTO @rs_entity.

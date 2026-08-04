@@ -34,6 +34,22 @@ ENDMETHOD.
 
 ## CLASSE CONSOMMATRICE
 
+Signatures et attribut de `ZCL_DEV_VALIDITY_SERVICE` :
+
+```abap
+PUBLIC SECTION.
+  METHODS constructor
+    IMPORTING io_clock TYPE REF TO zif_dev_clock
+    RAISING   zcx_dev_configuration.
+
+  METHODS is_expired
+    IMPORTING iv_valid_to TYPE d
+    RETURNING VALUE(rv_expired) TYPE abap_bool.
+
+PRIVATE SECTION.
+  DATA mo_clock TYPE REF TO zif_dev_clock.
+```
+
 ```abap
 " Définir le contrat et limiter l’API publique au besoin réel.
 METHOD constructor.

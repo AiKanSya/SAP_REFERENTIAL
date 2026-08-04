@@ -38,6 +38,16 @@ Créer une classe `ZCL_DEV_TEXT_FORMATTER` réutilisable qui normalise un texte 
 
 ## IMPLÉMENTATION
 
+Signature publique à créer dans `SE24` :
+
+```abap
+METHODS normalize
+  IMPORTING
+    iv_text TYPE string
+  RETURNING
+    VALUE(rv_text) TYPE string.
+```
+
 ```abap
 " Définir le contrat et limiter l’API publique au besoin réel.
 METHOD normalize.

@@ -28,6 +28,9 @@
 
 ## RÈGLES DE CONCEPTION
 
+- Toute implémentation `METHOD ... ENDMETHOD` doit être accompagnée de sa déclaration `METHODS` ou `CLASS-METHODS` avec les types, les catégories de paramètres et les exceptions.
+- Tout appel isolé doit identifier le type statique de la référence appelante et l’origine des données transmises.
+- Les types fictifs `ZDEV_*` doivent être décrits par les composants utilisés dans le snippet.
 - Garder l’état interne privé.
 - Exposer une API publique minimale.
 - Utiliser une interface lorsque plusieurs implémentations ou un remplacement de test sont nécessaires.

@@ -29,6 +29,8 @@ Un traitement long publie sa progression. Plusieurs consommateurs peuvent réagi
 EVENTS progress_changed
   EXPORTING VALUE(ev_percent) TYPE i.
 
+METHODS execute.
+
 METHOD execute.
   DO 10 TIMES.
     " Traitement d'une étape.
@@ -40,6 +42,14 @@ ENDMETHOD.
 ```
 
 ## CODE GESTIONNAIRE À ADAPTER
+
+Signature à déclarer dans la classe réceptrice :
+
+```abap
+METHODS on_progress_changed
+  FOR EVENT progress_changed OF zcl_dev_service
+  IMPORTING ev_percent.
+```
 
 ```abap
 " Définir le contrat et limiter l’API publique au besoin réel.

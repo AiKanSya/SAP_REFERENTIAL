@@ -24,6 +24,15 @@ DATA(lv_discount) = lo_strategy->calculate( is_context ).
 
 L’adapter implémente l’interface attendue et traduit l’appel vers l’objet existant.
 
+Contrat attendu par le consommateur :
+
+```abap
+INTERFACE zif_dev_logger PUBLIC.
+  METHODS info
+    IMPORTING iv_message TYPE string.
+ENDINTERFACE.
+```
+
 ```abap
 " Définir le contrat et limiter l’API publique au besoin réel.
 METHOD zif_dev_logger~info.
