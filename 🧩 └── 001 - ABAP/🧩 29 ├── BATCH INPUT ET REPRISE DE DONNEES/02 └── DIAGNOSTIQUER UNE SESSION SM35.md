@@ -11,19 +11,39 @@ Identifier le dynpro, le champ, la commande ou la donnée qui bloque une session
 - Autorisation de traiter la session dans `SM35`.
 - Données métier permettant de vérifier les documents déjà créés.
 
-## PROCÉDURE RAPIDE
+## PROCESS
 
-1. Rechercher la session dans `SM35` avec son nom et sa date.
-2. Consulter son journal avant toute nouvelle exécution.
-3. Relever transaction, programme, dynpro et message du premier échec.
-4. Traiter la session au premier plan pour observer l’écran exact.
-5. Noter le champ positionné, le contenu transmis et le `BDC_OKCODE`.
-6. Créer un nouvel enregistrement `SHDB` sur la même version S/4HANA.
-7. Comparer chaque entrée `BDCDATA` avec l’enregistrement actuel.
-8. Corriger le générateur, pas la table technique de la session.
-9. Rechercher les documents déjà créés par les étapes réussies.
-10. Générer une nouvelle session avec un petit échantillon et la traiter au premier plan.
-11. Passer au mode erreur puis au traitement de fond uniquement après validation.
+### ÉTAPE 1 — IDENTIFIER LA SESSION
+
+Rechercher dans `SM35` le nom, l’utilisateur créateur et la date attendus. Relever son statut, le nombre de transactions et l’heure du dernier traitement.
+
+### ÉTAPE 2 — LIRE LE JOURNAL AVANT TOUTE RELANCE
+
+Ouvrir le journal et identifier le premier échec. Relever la transaction, le programme, le dynpro, le message complet et la clé source correspondante.
+
+### ÉTAPE 3 — REJOUER AU PREMIER PLAN
+
+Traiter uniquement l’entrée concernée au premier plan. Observer l’écran exact, le champ positionné, la valeur transmise, les popups éventuels et le `BDC_OKCODE` refusé.
+
+### ÉTAPE 4 — PRODUIRE UN NOUVEL ENREGISTREMENT SHDB
+
+Enregistrer le même scénario et les mêmes données sur la version S/4HANA cible. Comparer chaque `PROGRAM`, `DYNPRO`, `FNAM`, `FVAL` et marqueur `DYNBEGIN` avec le générateur actuel.
+
+### ÉTAPE 5 — CORRIGER LE GÉNÉRATEUR
+
+Adapter le programme qui construit `BDCDATA`, les conversions externes ou la branche fonctionnelle. Ne pas modifier directement les tables techniques de la session défaillante.
+
+### ÉTAPE 6 — RECHERCHER LES SUCCÈS PARTIELS
+
+Contrôler les documents déjà créés par les étapes précédentes et associer chaque document à sa clé source. Déterminer si la reprise doit ignorer, annuler ou compléter ces résultats.
+
+### ÉTAPE 7 — CRÉER UNE NOUVELLE SESSION DE TEST
+
+Générer une session distincte contenant un petit échantillon. La traiter d’abord au premier plan, puis en affichage sur erreur après validation.
+
+### ÉTAPE 8 — VALIDER LE TRAITEMENT DE FOND
+
+Passer au mode de fond uniquement lorsque l’échantillon termine sans erreur. Vérifier les journaux, les documents créés et l’absence de doublon avant de traiter le volume complet.
 
 ## DONNÉES À COMPARER
 

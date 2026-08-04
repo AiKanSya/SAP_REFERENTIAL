@@ -15,27 +15,51 @@ Créer une copie de test d’un IDoc représentatif, modifier les données du sc
 
 `WE19` peut appeler le traitement applicatif réel. Un test entrant peut créer ou modifier un document ; un test sortant peut transmettre un message à un système connecté. Ne pas l’utiliser en production pour une expérimentation.
 
-## PROCÉDURE — TEST INBOUND STANDARD
+## PROCESS
 
-1. Relever dans `WE02` le numéro de l’IDoc modèle et son document métier.
-2. Ouvrir `WE19` et choisir l’utilisation d’un IDoc existant comme modèle.
-3. Saisir le numéro puis créer la copie de travail.
-4. Vérifier le control record : message type, basic type, extension, émetteur et récepteur.
-5. Modifier uniquement les segments nécessaires au scénario.
-6. Utiliser une nouvelle clé métier lorsque le traitement n’accepte pas les doublons.
-7. Choisir le traitement entrant standard afin d’utiliser la configuration réelle du partner profile.
-8. Exécuter et relever le numéro du nouvel IDoc.
-9. Ouvrir ce nouvel IDoc dans `WE02` et lire tous ses statuts.
-10. Contrôler le document applicatif créé ou l’erreur attendue.
+### ÉTAPE 1 — ISOLER L’ENVIRONNEMENT DE TEST
 
-## PROCÉDURE — TESTER UN MODULE INBOUND IDENTIFIÉ
+Vérifier que les partenaires, ports et destinations ne peuvent pas atteindre un système productif. Utiliser des données dédiées et identifier les documents métier que le test peut créer ou modifier.
+
+### ÉTAPE 2 — CHOISIR UN IDOC MODÈLE
+
+Dans `WE02`, relever le numéro d’un IDoc techniquement proche, son basic type, son extension, son message type, ses partenaires et son document métier. Ne pas modifier l’IDoc original.
+
+### ÉTAPE 3 — CRÉER LA COPIE DANS WE19
+
+Choisir l’utilisation d’un IDoc existant, saisir son numéro et créer la copie de travail. Vérifier le control record avant toute modification de segment.
+
+### ÉTAPE 4 — ADAPTER UNIQUEMENT LE SCÉNARIO
+
+Modifier les champs nécessaires au cas testé en respectant longueurs, formats, hiérarchie et cardinalités. Utiliser une nouvelle clé métier lorsque le traitement interdit ou déduplique les répétitions.
+
+### ÉTAPE 5 — EXÉCUTER LE TRAITEMENT STANDARD
+
+Choisir le traitement inbound standard afin d’utiliser le profil partenaire et le process code réels. Exécuter une fois et relever immédiatement le numéro du nouvel IDoc.
+
+### ÉTAPE 6 — ANALYSER LE NOUVEL IDOC
+
+Ouvrir ce numéro dans `WE02`, lire tous les statuts et vérifier le document applicatif ou l’erreur attendue. Confirmer que le modèle original est resté inchangé.
+
+### ÉTAPE 7 — CONTRÔLER LES EFFETS ET NETTOYER
+
+Rechercher les documents, mises à jour, messages sortants et appels externes produits. Appliquer la procédure de suppression ou d’annulation des données de test sans modifier les tables IDoc directement.
+
+## ISOLER UN MODULE INBOUND IDENTIFIÉ
 
 L’appel direct d’un module contourne une partie de la détermination standard. L’utiliser uniquement pour isoler le code après avoir prouvé que le partner profile et le process code sont corrects.
 
-1. Identifier le module depuis le process code configuré.
-2. Choisir dans `WE19` l’option d’appel adaptée.
-3. Exécuter avec le même contenu que le test standard.
-4. Comparer les résultats afin de séparer configuration et logique applicative.
+### ÉTAPE 1 — IDENTIFIER LE MODULE
+
+Relever le module depuis le process code configuré dans le système, puis confirmer sa signature et son rôle avant l’appel direct.
+
+### ÉTAPE 2 — REJOUER LE MÊME CONTENU
+
+Choisir dans `WE19` l’option d’appel adaptée et utiliser exactement les données du test standard afin que la comparaison reste exploitable.
+
+### ÉTAPE 3 — COMPARER LES DEUX CHEMINS
+
+Si l’appel direct réussit alors que le traitement standard échoue, concentrer le diagnostic sur le profil partenaire, le process code ou le couplage. Si les deux échouent de la même façon, analyser la logique applicative ou les données.
 
 ## POINTS À MODIFIER
 

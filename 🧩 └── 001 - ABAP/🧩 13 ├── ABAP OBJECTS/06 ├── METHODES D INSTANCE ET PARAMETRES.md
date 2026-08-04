@@ -26,7 +26,7 @@ Décider que `CALCULATE_TOTAL` reçoit une table d’articles et retourne un mon
 
 ### Étape 2 — Créer la méthode
 
-Dans **Méthodes**, créer `CALCULATE_TOTAL`, niveau instance, visibilité publique. Ouvrir immédiatement les paramètres.
+Dans **Méthodes**, créer `CALCULATE_TOTAL`, niveau instance, visibilité publique. Ouvrir immédiatement les paramètres et ne pas activer une méthode vide dont la signature n’a pas encore été définie. Vérifier que le nom décrit le résultat du calcul sans exposer son implémentation.
 
 ### Étape 3 — Créer la signature complète
 

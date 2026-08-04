@@ -88,7 +88,7 @@ Toujours répondre séparément à quatre questions :
 3. **Pourquoi** cette donnée ou ce chemin est-il obtenu ?
 4. **Quelle correction minimale** rétablit la règle attendue ?
 
-## PROCÉDURE PAS À PAS
+## PROCESS
 
 ### Étape 1 — Définir le symptôme
 

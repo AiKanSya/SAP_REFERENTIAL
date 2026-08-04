@@ -175,7 +175,7 @@ Selon le programme, analyser également :
 - [ ] aucun objet sans rapport n’est présent dans la requête ;
 - [ ] le test après import est défini.
 
-## PROCÉDURE PAS À PAS
+## PROCESS
 
 ### Étape 1 — Créer une version inactive observable
 

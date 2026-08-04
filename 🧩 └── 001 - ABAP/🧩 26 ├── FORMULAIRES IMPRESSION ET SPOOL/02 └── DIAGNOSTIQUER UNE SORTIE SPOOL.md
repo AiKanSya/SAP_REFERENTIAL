@@ -11,16 +11,35 @@ Déterminer si l’échec provient de la génération ABAP, de la requête spool
 - Périphérique de sortie attendu.
 - Autorisations d’affichage dans `SP01`.
 
-## PROCÉDURE RAPIDE
+## PROCESS
 
-1. Rechercher la requête dans `SP01` avec un intervalle de temps limité.
-2. Relever numéro, propriétaire, titre, statut, périphérique, format, pages et taille.
-3. Afficher le contenu de la requête.
-4. Si le contenu est absent ou incorrect, revenir au programme ou formulaire générateur.
-5. Si le contenu est correct, afficher les requêtes de sortie associées et leur journal.
-6. Contrôler le périphérique, le serveur spool et la méthode d’accès avec l’équipe Basis.
-7. Vérifier la file ou le service d’impression externe lorsque SAP confirme l’envoi.
-8. Relancer uniquement après avoir déterminé si l’impression précédente a déjà atteint le périphérique.
+### ÉTAPE 1 — RECHERCHER LA REQUÊTE DANS SP01
+
+Limiter la sélection à l’utilisateur, au programme, au titre et à l’intervalle du test. Relever le numéro de spool, le propriétaire, le statut, le périphérique, le format, le nombre de pages et la taille.
+
+### ÉTAPE 2 — VÉRIFIER LE CONTENU GÉNÉRÉ
+
+Afficher le contenu dans SAP. S’il est absent, incomplet ou incorrect, revenir au programme, au Smart Form ou au formulaire Adobe avant d’analyser l’infrastructure d’impression.
+
+### ÉTAPE 3 — EXAMINER LES REQUÊTES DE SORTIE
+
+Si le contenu est correct, ouvrir les requêtes de sortie associées. Relever leur statut, leur heure, leur tentative, leur périphérique et le texte complet du journal.
+
+### ÉTAPE 4 — CONTRÔLER LA CONFIGURATION SAP
+
+Avec l’équipe Basis, vérifier le périphérique, le serveur spool, le format de page et la méthode d’accès. Comparer ces valeurs à une sortie réussie utilisant la même chaîne d’impression.
+
+### ÉTAPE 5 — SUIVRE LA SORTIE HORS DE SAP
+
+Lorsque SAP indique que la requête a été transmise, rechercher le document dans la file du système d’exploitation, du serveur d’impression ou du prestataire externe avec l’identifiant et l’heure relevés.
+
+### ÉTAPE 6 — DÉCIDER DE LA RELANCE
+
+Ne répéter l’impression qu’après avoir déterminé si la tentative précédente a déjà atteint le périphérique. Une relance sans contrôle peut produire un doublon physique malgré un statut SAP ambigu.
+
+### ÉTAPE 7 — VALIDER LE RETOUR À LA NORMALE
+
+Relancer une seule sortie contrôlée, confirmer le nouveau statut, l’absence de doublon et la réception physique. Conserver les numéros de spool et de sortie comme preuve du diagnostic.
 
 ## ARBRE DE DIAGNOSTIC
 

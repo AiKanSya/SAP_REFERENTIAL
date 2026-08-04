@@ -53,7 +53,7 @@ Déclarer sa dépendance `TYPE REF TO` l’interface. Supprimer tout `CASE` sur 
 
 ### Étape 3 — Injecter la première classe
 
-Affecter l’instance puis exécuter la méthode. Conserver entrées et résultat comme cas de référence.
+Affecter au consommateur une référence vers la première implémentation, puis exécuter la méthode via le type interface. Conserver les entrées, le résultat et les effets observables comme cas de référence pour la substitution suivante.
 
 ### Étape 4 — Substituer la seconde
 

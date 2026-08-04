@@ -77,7 +77,7 @@ Compléter les valeurs courtes avec le caractère prévu. Rejeter ou traiter exp
 
 ### Étape 4 — Assembler et contrôler la ligne
 
-Concaténer les champs formatés dans l’ordre spécifié, puis vérifier la longueur finale avant `TRANSFER`.
+Concaténer les champs formatés dans l’ordre spécifié, puis comparer la longueur finale à la longueur contractuelle avant `TRANSFER`. Rejeter la ligne et journaliser sa clé source si la longueur diffère ; ne pas compléter ou tronquer l’enregistrement après ce contrôle.
 
 ### Étape 5 — Lire par positions documentées
 

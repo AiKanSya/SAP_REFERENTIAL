@@ -4,6 +4,36 @@
 
 Créer une demande d’envoi contenant un sujet, un corps texte et un destinataire Internet.
 
+## PROCESS
+
+### ÉTAPE 1 — VÉRIFIER LE CANAL D’ENVOI
+
+Confirmer avec l’administration que SAPconnect est configuré pour le système et que l’adresse de test est autorisée. Utiliser un destinataire contrôlé en développement afin d’éviter un envoi externe involontaire.
+
+### ÉTAPE 2 — CONSTRUIRE LE CORPS ET LE SUJET
+
+Préparer le corps dans `BCSY_TEXT` et fixer un sujet compréhensible. Ne pas insérer de secret ni de donnée personnelle non nécessaire dans le message.
+
+### ÉTAPE 3 — CRÉER LA DEMANDE ET LE DOCUMENT
+
+Appeler `CL_BCS=>CREATE_PERSISTENT`, créer le document avec `CL_DOCUMENT_BCS=>CREATE_DOCUMENT`, puis l’affecter à la demande avec `SET_DOCUMENT`.
+
+### ÉTAPE 4 — AJOUTER UN DESTINATAIRE VALIDÉ
+
+Créer l’adresse avec `CL_CAM_ADDRESS_BCS=>CREATE_INTERNET_ADDRESS` puis l’ajouter à la demande. Valider l’adresse fonctionnellement avant l’appel ; sa forme syntaxique ne prouve pas que le destinataire est autorisé.
+
+### ÉTAPE 5 — ENVOYER ET TRAITER LE RÉSULTAT
+
+Appeler `SEND` sans écran d’erreur interactif pour un traitement automatisé. Contrôler la valeur retournée et intercepter `CX_BCS` afin de journaliser le défaut technique sans exposer des informations internes à l’utilisateur.
+
+### ÉTAPE 6 — RESPECTER LA FRONTIÈRE DE COMMIT
+
+Dans un rapport autonome, exécuter le commit après la création de la demande. Dans une transaction métier, laisser l’unité appelante décider du commit afin de ne pas valider prématurément d’autres écritures.
+
+### ÉTAPE 7 — CONTRÔLER LA DEMANDE DANS SOST
+
+Rechercher la demande par heure, expéditeur, destinataire et sujet. Distinguer sa création, son transfert par SAPconnect et la livraison finale par l’infrastructure externe.
+
 ## CODE PRÊT À ADAPTER
 
 ```abap
@@ -23,7 +53,7 @@ TRY.
       cl_cam_address_bcs=>create_internet_address( 'destinataire@example.com' ) ).
 
     DATA(lv_sent_to_all) = lo_send_request->send( i_with_error_screen = abap_false ).
-    COMMIT WORK. "BCS persiste la demande d’envoi ; le routage reste asynchrone.
+    COMMIT WORK. " BCS persiste la demande d’envoi ; le routage reste asynchrone.
 
     IF lv_sent_to_all = abap_false.
       MESSAGE e001(zdemo) WITH 'Destinataire non accepté'.

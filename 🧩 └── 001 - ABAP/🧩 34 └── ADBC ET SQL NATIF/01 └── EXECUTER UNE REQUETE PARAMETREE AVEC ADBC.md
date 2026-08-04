@@ -25,6 +25,40 @@ ADBC exécute du SQL natif. Le traitement automatique du mandant d’ABAP SQL ne
 
 Les noms de tables et de colonnes ne peuvent pas être remplacés par les marqueurs `?`. S’ils doivent être dynamiques, ils doivent provenir d’une liste blanche contrôlée.
 
+## PROCESS
+
+### ÉTAPE 1 — PROUVER LE BESOIN DE SQL NATIF
+
+Écrire d’abord l’équivalent en ABAP SQL. Conserver ADBC uniquement si une fonction native indispensable manque et si cette dépendance à SAP HANA est validée par l’architecture.
+
+### ÉTAPE 2 — IDENTIFIER LE PÉRIMÈTRE DE DONNÉES
+
+Relever la table, les colonnes, les types et la dépendance au mandant. Exécuter les contrôles d’autorisation métier avant la lecture ; ADBC ne reprend pas automatiquement les règles applicatives du programme.
+
+### ÉTAPE 3 — ÉCRIRE UNE INSTRUCTION PARAMÉTRÉE
+
+Placer un marqueur `?` pour chaque valeur. Ne concaténer aucune saisie dans le texte SQL. Si un nom d’objet doit varier, le sélectionner dans une liste fermée avant de construire l’instruction.
+
+### ÉTAPE 4 — LIER LES PARAMÈTRES DANS L’ORDRE
+
+Déclarer des variables dont les types correspondent aux colonnes, puis appeler `SET_PARAM` exactement dans l’ordre des marqueurs. Pour une table dépendante du mandant, lier explicitement `SY-MANDT` via une variable typée.
+
+### ÉTAPE 5 — EXÉCUTER ET LIRE LE RÉSULTAT
+
+Appeler `EXECUTE_QUERY`, déclarer les paramètres de sortie du result set puis exécuter `NEXT`. Vérifier le code retourné avant d’utiliser les valeurs reçues.
+
+### ÉTAPE 6 — FERMER LA RESSOURCE
+
+Appeler `CLOSE` après la dernière ligne et dans le traitement d’erreur lorsque le result set est lié. Le premier défaut SQL doit rester le diagnostic principal si la fermeture échoue aussi.
+
+### ÉTAPE 7 — COMPARER AVEC ABAP SQL
+
+Exécuter les deux variantes avec une valeur existante et une valeur absente. Comparer résultat et trace `ST05`; ne conserver ADBC que si le motif natif reste démontré.
+
+### ÉTAPE 8 — TESTER LES CAS DE SÉCURITÉ
+
+Tester un ordre de paramètres incorrect en développement, une valeur contenant des caractères SQL, un nom dynamique refusé et un filtre de mandant explicite. Vérifier que chaque anomalie est interceptée ou rejetée avant l’exécution.
+
 ## CODE PRÊT À ADAPTER
 
 ```abap
@@ -42,7 +76,7 @@ START-OF-SELECTION.
   TRY.
       DATA(lo_statement) = NEW cl_sql_statement( ).
 
-      "Les appels SET_PARAM suivent exactement l’ordre des marqueurs ?.
+      " Les appels SET_PARAM suivent exactement l’ordre des marqueurs ?.
       lo_statement->set_param( REF #( lv_mandt ) ).
       lo_statement->set_param( REF #( lv_bukrs ) ).
 
@@ -52,7 +86,7 @@ START-OF-SELECTION.
         && ` WHERE MANDT = ?`
         && ` AND BUKRS = ?` ).
 
-      "Le paramètre de sortie reçoit la première colonne de la ligne lue.
+      " Le paramètre de sortie reçoit la première colonne de la ligne lue.
       lo_result->set_param( REF #( lv_count ) ).
 
       IF lo_result->next( ) <> 1.
@@ -67,13 +101,13 @@ START-OF-SELECTION.
       WRITE: / |Société { lv_bukrs } trouvée : { lv_count }|.
 
     CATCH cx_sql_exception INTO DATA(lx_sql).
-      "Dans un programme productif, écrire le détail technique dans un journal
-      "et présenter à l’utilisateur un message fonctionnel contrôlé.
+      " Dans un programme productif, écrire le détail technique dans un journal
+      " et présenter à l’utilisateur un message fonctionnel contrôlé.
       IF lo_result IS BOUND.
         TRY.
             lo_result->close( ).
           CATCH cx_sql_exception.
-            "Le premier défaut SQL reste le diagnostic principal.
+            " Le premier défaut SQL reste le diagnostic principal.
         ENDTRY.
       ENDIF.
 

@@ -112,7 +112,7 @@ Description directe du résultat.
 - Version ou composant requis.
 - Autorisation ou objet nécessaire.
 
-## PROCÉDURE RAPIDE
+## PROCESS
 
 1. Ouvrir la transaction.
 2. Renseigner les valeurs.

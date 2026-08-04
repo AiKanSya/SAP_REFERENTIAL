@@ -78,7 +78,7 @@ Ouvrir `ST12`, sélectionner trace ABAP, SQL ou les deux, puis définir le conte
 
 ### Étape 3 — Capturer le scénario
 
-Démarrer, reproduire une fois puis arrêter. Conserver l’identifiant, l’horodatage et les données utilisées.
+Démarrer les traces juste avant l’action, reproduire le scénario une seule fois puis arrêter immédiatement l’enregistrement. Conserver l’identifiant de trace, l’horodatage, l’utilisateur, la transaction et les données utilisées afin de pouvoir répéter exactement la mesure.
 
 ### Étape 4 — Analyser les deux axes
 

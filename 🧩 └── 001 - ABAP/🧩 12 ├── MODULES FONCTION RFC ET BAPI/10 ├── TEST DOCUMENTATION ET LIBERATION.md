@@ -99,7 +99,7 @@ Le test direct ne remplace pas :
 - un test de rollback ;
 - un test automatisé autour de la logique métier.
 
-## PROCÉDURE PAS À PAS
+## PROCESS
 
 ### Étape 1 — Compléter la documentation
 

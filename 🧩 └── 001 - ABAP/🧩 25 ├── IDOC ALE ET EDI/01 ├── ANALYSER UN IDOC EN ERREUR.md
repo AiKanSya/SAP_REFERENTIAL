@@ -23,18 +23,39 @@ Identifier la cause exacte d’un IDoc entrant ou sortant en erreur, corriger la
 | Current status | Code et texte long | Localiser l’étape en défaut |
 | Segments | Segment, occurrence, valeur | Identifier la donnée fautive |
 
-## PROCÉDURE RAPIDE
+## PROCESS
 
-1. Ouvrir l’IDoc dans `WE02` ou `WE05`.
-2. Afficher le dernier statut en erreur et son texte long.
-3. Identifier si l’erreur précède ou suit l’appel applicatif.
-4. Examiner le control record et les segments sans modifier les tables techniques.
-5. Pour l’outbound, contrôler le partner profile dans `WE20`, le port dans `WE21`, le process code et le modèle de distribution si ALE est utilisé.
-6. Pour l’inbound, identifier dans `WE20` le process code, son mode de traitement et le module fonction ou workflow associé.
-7. Corriger la donnée source, le Customizing ou le code responsable.
-8. Vérifier si un document métier a déjà été créé avant tout retraitement.
-9. Retraiter avec `BD87` uniquement si le statut et la procédure métier le permettent.
-10. Contrôler le nouveau statut et le document métier résultant.
+### ÉTAPE 1 — OUVRIR L’IDOC ET FIGER LE CONTEXTE
+
+Rechercher l’IDoc dans `WE02` ou `WE05` avec son numéro ou un intervalle précis. Relever le sens, le message type, le basic type, l’extension, les partenaires, la date, l’heure et le statut courant.
+
+### ÉTAPE 2 — LIRE LE PREMIER STATUT QUI EXPLIQUE L’ÉCHEC
+
+Ouvrir les statuts dans leur ordre chronologique et lire le texte long du premier défaut pertinent. Déterminer si l’erreur apparaît avant la transmission, pendant la syntaxe IDoc ou après l’entrée dans l’application métier.
+
+### ÉTAPE 3 — CONTRÔLER LE CONTROL RECORD ET LES SEGMENTS
+
+Comparer les valeurs du control record à l’interface attendue. Examiner ensuite le segment signalé, sa hiérarchie, son occurrence et ses champs sans modifier directement `EDIDC`, `EDID4` ou `EDIDS`.
+
+### ÉTAPE 4 — VÉRIFIER LA CONFIGURATION DU FLUX
+
+Pour un outbound, contrôler dans `WE20` le profil partenaire et dans `WE21` le port ; vérifier aussi le process code et le modèle de distribution si ALE est utilisé. Pour un inbound, relever le process code, son mode de traitement et le module fonction ou workflow associé.
+
+### ÉTAPE 5 — CLASSER ET CORRIGER LA CAUSE
+
+Corriger à la source la donnée métier, le Customizing, le partenaire, le port ou le code responsable. Ne pas retraiter tant que la même cause produit encore le même statut.
+
+### ÉTAPE 6 — RECHERCHER UN EFFET MÉTIER EXISTANT
+
+Avant toute répétition, rechercher le document créé, les relations IDoc-document et les écritures partielles. Cette vérification détermine si le retraitement est sûr ou risque de créer un doublon.
+
+### ÉTAPE 7 — RETRAITER DE MANIÈRE CIBLÉE
+
+Utiliser `BD87` uniquement pour les IDocs dont le statut et le processus autorisent le retraitement. Limiter la sélection au numéro contrôlé et conserver le journal de l’opération.
+
+### ÉTAPE 8 — VALIDER LE RÉSULTAT FINAL
+
+Rouvrir l’IDoc, vérifier le nouveau statut, le document métier attendu et l’absence de doublon. Rechercher d’autres IDocs bloqués par la même cause avant de clôturer l’incident.
 
 ## CLASSER LE STATUT
 

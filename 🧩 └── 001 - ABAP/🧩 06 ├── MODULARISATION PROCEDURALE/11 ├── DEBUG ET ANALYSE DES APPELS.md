@@ -25,15 +25,35 @@ ENDFORM.
 
 `BREAK-POINT` ne doit pas rester dans le code productif. Utiliser de préférence un point d’arrêt de session ou externe depuis l’éditeur ou le débogueur.
 
-## PAS À PAS
+## PROCESS
 
-Lorsqu’un `PERFORM` est atteint :
+### ÉTAPE 1 — PLACER UN POINT D’ARRÊT NON PERSISTANT
 
-- **Entrer dans** exécute la première instruction du sous-programme ;
-- **Exécuter** traite l’appel comme une seule étape et s’arrête après son retour ;
-- **Retour** poursuit jusqu’à la sortie du bloc courant selon les fonctions du débogueur disponible.
+Poser un point d’arrêt de session sur la première instruction du `FORM` ou sur le `PERFORM` appelant. Ne pas ajouter durablement `BREAK-POINT` au code destiné à être transporté.
 
-Les libellés exacts et raccourcis peuvent varier selon la version du nouveau ou de l’ancien débogueur ABAP.
+### ÉTAPE 2 — REPRODUIRE LE SCÉNARIO EXACT
+
+Exécuter le programme avec les mêmes paramètres et données que le défaut. Lorsque le débogueur s’arrête, relever le nom du programme, le sous-programme appelé et les valeurs des paramètres réels.
+
+### ÉTAPE 3 — ENTRER DANS LE PERFORM
+
+Utiliser **Entrer dans** pour exécuter la première instruction du sous-programme. **Exécuter** traite l’appel comme une seule étape et s’arrête après son retour ; **Retour** poursuit jusqu’à la sortie du bloc courant selon le débogueur utilisé.
+
+### ÉTAPE 4 — COMPARER PARAMÈTRES RÉELS ET FORMELS
+
+À l’entrée, comparer l’ordre, le type et la valeur des paramètres `USING` et `CHANGING`. Après chaque instruction sensible, vérifier si un passage par référence modifie immédiatement la donnée de l’appelant ou si `VALUE(...)` utilise une copie locale.
+
+### ÉTAPE 5 — LOCALISER LES EFFETS DE BORD
+
+Si une globale change sans apparaître dans l’interface, poser un watchpoint sur cette donnée puis relancer. À l’arrêt, lire la pile d’appels et identifier l’instruction exacte qui effectue la modification.
+
+### ÉTAPE 6 — CONTRÔLER LES APPELS DYNAMIQUES
+
+Pour `PERFORM (lv_form_name)`, relever le nom construit, le programme cible et les paramètres. Vérifier que la valeur provient d’une liste maîtrisée et correspond à une routine réellement prévue par le programme.
+
+### ÉTAPE 7 — VALIDER LA CORRECTION
+
+Corriger l’ordre des paramètres, la portée des données ou la dépendance globale identifiée. Rejouer le scénario nominal et un cas limite, puis supprimer les breakpoints et watchpoints créés pour l’analyse.
 
 ## PILE D’APPELS
 

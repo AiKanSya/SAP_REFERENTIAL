@@ -24,19 +24,43 @@ Déterminer comment un objet d’archivage sélectionne, écrit, vérifie puis s
 | Lecture | Comment l’utilisateur retrouve-t-il une donnée archivée ? |
 | Information structure | Quelle recherche Archive Information System est disponible ? |
 
-## PROCÉDURE RAPIDE
+## PROCESS
 
-1. Ouvrir l’objet dans `SARA` et lire sa documentation complète.
-2. Examiner le Customizing et les dépendances avec d’autres objets.
-3. Identifier tous les programmes associés et leurs variantes existantes.
-4. Contrôler les sessions antérieures : statut, fichier, job, spool et journal.
-5. Définir un périmètre de test minimal dont les clés métier sont connues.
-6. Exécuter d’abord le mode test du programme d’écriture lorsqu’il existe.
-7. Exécuter l’écriture réelle dans le système de test.
-8. Vérifier le fichier et le journal avant toute suppression.
-9. Tester l’affichage ou la lecture des objets archivés.
-10. Exécuter la suppression uniquement après validation formelle du fichier.
-11. Vérifier l’absence en base, la présence dans l’archive et l’accès fonctionnel.
+### ÉTAPE 1 — LIRE LE CONTRAT DE L’OBJET
+
+Ouvrir l’objet dans `SARA` et lire sa documentation complète. Relever les tables couvertes, les dépendances, les règles de résidence, les statuts métier et l’ordre des programmes.
+
+### ÉTAPE 2 — EXAMINER LE CUSTOMIZING
+
+Contrôler les paramètres, les variantes, le stockage, les structures d’information et les objets dépendants. Ne pas réutiliser une variante existante sans vérifier sa sélection et son propriétaire.
+
+### ÉTAPE 3 — ANALYSER LES SESSIONS ANTÉRIEURES
+
+Relever pour les dernières sessions le statut, le fichier d’archive, le job, le spool, les journaux et l’état de suppression. Une écriture terminée ne signifie pas que les données ont déjà été supprimées.
+
+### ÉTAPE 4 — DÉFINIR UN ÉCHANTILLON TRAÇABLE
+
+Choisir un petit ensemble de clés métier dont l’état en base et les dépendances sont connus. Documenter le nombre attendu avant toute exécution.
+
+### ÉTAPE 5 — EXÉCUTER LE TEST D’ÉCRITURE
+
+Lancer le mode test lorsqu’il existe et analyser chaque objet sélectionné ou rejeté. Corriger les règles de résidence, statuts ou dépendances avant l’écriture réelle.
+
+### ÉTAPE 6 — CRÉER LE FICHIER D’ARCHIVE
+
+Exécuter le programme d’écriture en environnement de test. Vérifier le job, le journal, le nombre d’objets et le stockage effectif du fichier.
+
+### ÉTAPE 7 — TESTER LA LECTURE AVANT SUPPRESSION
+
+Utiliser l’outil de lecture ou l’Archive Information System prévu par l’objet. Confirmer que les clés de l’échantillon sont consultables dans le fichier produit.
+
+### ÉTAPE 8 — AUTORISER ET EXÉCUTER LA SUPPRESSION
+
+Lancer le programme de suppression uniquement après validation formelle du fichier, de la lecture et du journal. Conserver la variante et la preuve d’autorisation selon la gouvernance du système.
+
+### ÉTAPE 9 — CONTRÔLER L’ÉTAT FINAL
+
+Vérifier l’absence des données dans les tables actives, leur présence dans l’archive, leur accessibilité fonctionnelle et l’absence d’objet dépendant incohérent.
 
 ## CONTRÔLE AVANT SUPPRESSION
 

@@ -10,6 +10,32 @@ Choisir entre appel empilé, remplacement de l’écran suivant et retour à l�
 - Champ OK_CODE déclaré et affecté à chaque écran.
 - Fonctions `DETAIL`, `NEXT` et `BACK` présentes dans le statut GUI.
 
+## PROCESS
+
+### ÉTAPE 1 — DESSINER LE PARCOURS DES ÉCRANS
+
+Lister pour chaque commande l’écran source, l’écran cible et le retour attendu. Choisir un appel empilé uniquement lorsque l’utilisateur doit revenir au point qui suit `CALL SCREEN`.
+
+### ÉTAPE 2 — PRÉPARER LES STATUTS GUI
+
+Créer les fonctions `DETAIL`, `NEXT`, `BACK`, `CANCEL` et `EXIT` dans les statuts concernés. Vérifier que le champ OK_CODE de chaque dynpro alimente la variable traitée dans son module PAI.
+
+### ÉTAPE 3 — IMPLÉMENTER L’APPEL EMPILÉ
+
+Pour ouvrir le détail `0200` puis reprendre le traitement de `0100`, utiliser `CALL SCREEN 0200`. Dans `0200`, exécuter `LEAVE TO SCREEN 0` pour revenir à l’appelant.
+
+### ÉTAPE 4 — IMPLÉMENTER LE REMPLACEMENT D’ÉCRAN
+
+Pour terminer immédiatement `0100` et poursuivre sur `0200`, exécuter `SET SCREEN 0200` puis `LEAVE SCREEN`. Ne pas utiliser `CALL SCREEN` si aucun retour sur la ligne suivante n’est attendu.
+
+### ÉTAPE 5 — TRAITER LES COMMANDES DE SORTIE
+
+Copier `GV_OK_CODE` dans une variable locale, vider immédiatement la variable globale puis traiter la copie. Utiliser `LEAVE TO SCREEN 0` pour fermer le niveau courant et `LEAVE PROGRAM` uniquement pour terminer l’application.
+
+### ÉTAPE 6 — ACTIVER ET TESTER LA PILE
+
+Activer les deux dynpros, leurs flux, statuts et modules. Poser des breakpoints PBO/PAI, exécuter plusieurs cycles `DETAIL`/`BACK` puis `NEXT`/`BACK` et vérifier que la pile ne croît pas à chaque navigation.
+
 ## CODE PRÊT À ADAPTER
 
 ```abap
@@ -19,16 +45,16 @@ MODULE user_command_0100 INPUT.
 
   CASE lv_ok_code.
     WHEN 'DETAIL'.
-      "Empile 0200 ; son retour reprend après CALL SCREEN.
+      " Empile 0200 ; son retour reprend après CALL SCREEN.
       CALL SCREEN 0200.
 
     WHEN 'NEXT'.
-      "Définit le prochain écran puis termine immédiatement 0100.
+      " Définit le prochain écran puis termine immédiatement 0100.
       SET SCREEN 0200.
       LEAVE SCREEN.
 
     WHEN 'BACK'.
-      "Retourne à l’écran qui a appelé le dynpro courant.
+      " Retourne à l’écran qui a appelé le dynpro courant.
       LEAVE TO SCREEN 0.
   ENDCASE.
 ENDMODULE.

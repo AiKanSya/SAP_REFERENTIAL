@@ -95,7 +95,7 @@ Comparer le chemin attendu au chemin réel. Remonter pile, paramètres et valeur
 
 ### Étape 5 — Corriger une cause
 
-Modifier uniquement la cause prouvée. Contrôler, activer et documenter l’objet réellement responsable.
+Modifier uniquement la cause prouvée. Exécuter le contrôle syntaxique et les tests de l’objet réellement responsable, puis l’activer avec ses dépendances. Documenter le lien entre la preuve observée, la correction et le résultat attendu.
 
 ### Étape 6 — Vérifier et clôturer
 
