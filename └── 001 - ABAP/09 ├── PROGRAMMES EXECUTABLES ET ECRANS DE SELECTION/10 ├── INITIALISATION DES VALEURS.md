@@ -1,0 +1,135 @@
+# INITIALISATION DES VALEURS
+
+## OBJECTIFS
+
+- Distinguer `DEFAULT` et `INITIALIZATION`
+- Calculer des valeurs initiales dynamiques
+- Alimenter plusieurs lignes de sélection
+- Respecter les variantes et la mémoire utilisateur
+- Éviter de réinitialiser les saisies à chaque affichage
+
+## ÉVÉNEMENT INITIALIZATION
+
+`INITIALIZATION` est déclenché avant le premier traitement de l’écran de sélection standard.
+
+```abap
+INITIALIZATION.
+  p_date = sy-datum.
+```
+
+Il convient aux valeurs dépendant du contexte d’exécution.
+
+## DEFAULT OU INITIALIZATION
+
+| Besoin                              | Technique                              |
+| ----------------------------------- | -------------------------------------- |
+| Valeur littérale fixe               | `DEFAULT`                              |
+| Date système                        | `INITIALIZATION`                       |
+| Calcul de période                   | `INITIALIZATION`                       |
+| Plusieurs lignes d’un select-option | `INITIALIZATION`                       |
+| Valeur pilotée par variante         | Laisser la variante alimenter le champ |
+
+## INTERVALLE DE DATES INITIAL
+
+```abap
+SELECT-OPTIONS s_date FOR sy-datum.
+
+INITIALIZATION.
+  APPEND VALUE #(
+    sign   = 'I'
+    option = 'BT'
+    low    = sy-datum - 30
+    high   = sy-datum
+  ) TO s_date.
+```
+
+Le calcul de date doit rester cohérent avec le besoin métier. Une période de 30 jours n’est pas équivalente au mois civil précédent.
+
+## NE PAS ÉCRASER LES VALEURS
+
+`AT SELECTION-SCREEN OUTPUT` est déclenché avant chaque affichage. Une affectation inconditionnelle dans cet événement peut écraser :
+
+- la saisie utilisateur ;
+- une valeur de variante ;
+- une valeur passée par `SUBMIT` ;
+- une correction après message d’erreur.
+
+```abap
+AT SELECTION-SCREEN OUTPUT.
+  p_date = sy-datum. " À éviter
+```
+
+Utiliser cet événement pour les propriétés d’écran, pas pour réinitialiser systématiquement les données.
+
+## INITIALISATION CONDITIONNELLE
+
+Lorsque l’objet peut déjà être alimenté, contrôler son état :
+
+```abap
+INITIALIZATION.
+  IF s_date[] IS INITIAL.
+    APPEND VALUE #(
+      sign   = 'I'
+      option = 'EQ'
+      low    = sy-datum
+    ) TO s_date.
+  ENDIF.
+```
+
+## PROCÉDURE PAS À PAS
+
+1. Saisir `/nSAT`.
+2. Créer ou sélectionner une variante de mesure adaptée.
+3. Définir le programme, la transaction ou l’utilisateur à mesurer.
+4. Démarrer la mesure puis reproduire une seule fois le scénario.
+5. Arrêter et analyser le hit list, la hiérarchie d’appels et les temps nets.
+6. Répéter la mesure après correction avec les mêmes données et le même contexte.
+
+## VÉRIFICATION
+
+- Le scénario reproduit correspond au même utilisateur, mandant, transaction et jeu de données.
+- L’horodatage et l’identifiant de l’analyse sont conservés.
+- La cause retenue est soutenue par une ligne source, une trace ou une valeur observée.
+- Après correction, le même scénario ne reproduit plus le défaut et le résultat métier reste identique.
+
+## ERREURS FRÉQUENTES
+
+- Copier un exemple sans adapter les types, noms d’objets et données disponibles dans le système.
+- Tester uniquement le cas nominal et ignorer les valeurs initiales, absentes ou invalides.
+- Mettre une logique lourde dans les événements de validation de l’écran.
+- Créer une variante contenant des valeurs obsolètes ou sensibles.
+
+## SNIPPET À RÉUTILISER
+
+> [!NOTE]
+> Adapter les noms `Z*`, les types DDIC, les données et les autorisations au système cible. Effectuer un contrôle syntaxique avant activation.
+
+```abap
+SELECT-OPTIONS s_date FOR sy-datum.
+
+INITIALIZATION.
+  APPEND VALUE #(
+    sign   = 'I'
+    option = 'BT'
+    low    = sy-datum - 30
+    high   = sy-datum
+  ) TO s_date.
+```
+
+## TERMES DU LEXIQUE
+
+- [Programme exécutable](<../00 ├── LEXIQUE SAP ET ABAP/06 ├── PROGRAMMES CLASSES ET OBJETS TECHNIQUES.md#programme-executable>)
+- [Variante](<../00 ├── LEXIQUE SAP ET ABAP/06 ├── PROGRAMMES CLASSES ET OBJETS TECHNIQUES.md#variante>)
+- [Transaction](<../00 ├── LEXIQUE SAP ET ABAP/02 ├── SAP GUI NAVIGATION ET TRANSACTIONS.md#transaction>)
+- [Dynpro](<../00 ├── LEXIQUE SAP ET ABAP/02 ├── SAP GUI NAVIGATION ET TRANSACTIONS.md#dynpro>)
+
+## RÉFÉRENCES OFFICIELLES SAP
+
+- [INITIALIZATION — ABAP Keyword Documentation](https://help.sap.com/doc/abapdocu_latest_index_htm/latest/en-US/ABAPINITIALIZATION.html)
+- [Selection Screen Processing — SAP Help Portal](https://help.sap.com/docs/SAP_NETWEAVER_700/a85596deeb19418982bee031d1fd1427/4a43c40d5a503f04e10000000a421937.html)
+- [SELECT-OPTIONS, Value Options — ABAP Keyword Documentation](https://help.sap.com/doc/abapdocu_latest_index_htm/latest/en-US/abapselect-options_value.htm)
+
+
+---
+
+[Chapitre suivant — VALIDATION AVEC AT SELECTION-SCREEN](<./11 ├── VALIDATION AVEC AT SELECTION SCREEN.md>)

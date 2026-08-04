@@ -1,0 +1,97 @@
+# PRINCIPES DES MODULES FONCTION
+
+## OBJECTIFS
+
+- Situer le module fonction parmi les unités de modularisation ABAP
+- Comprendre son rôle d’interface globale réutilisable
+- Distinguer module fonction local, RFC et BAPI
+- Identifier les cas où une classe constitue un meilleur choix
+
+## DÉFINITION
+
+Un **module fonction** est une procédure globale gérée dans le Function Builder. Il appartient obligatoirement à un **groupe de fonctions** et peut être appelé depuis tout programme ABAP autorisé.
+
+Contrairement à un sous-programme `FORM`, son interface est enregistrée dans le Repository ABAP et peut être analysée indépendamment du programme appelant.
+
+```mermaid
+flowchart LR
+    A["Programme appelant"] --> B["Interface du module fonction"]
+    B --> C["Implémentation dans le groupe de fonctions"]
+    C --> D["Résultats ou erreurs"]
+```
+
+## CARACTÉRISTIQUES
+
+Un module fonction possède :
+
+- un nom global dans le système ABAP ;
+- une interface typée ;
+- une documentation ;
+- une implémentation ABAP ;
+- un groupe de fonctions propriétaire ;
+- éventuellement des exceptions ;
+- un type de traitement : normal, distant ou mise à jour.
+
+## FAMILLES DE MODULES
+
+| Famille                        | Utilisation                                                         |
+| ------------------------------ | ------------------------------------------------------------------- |
+| Module fonction normal         | Réutilisation interne au système ABAP                               |
+| Module fonction distant        | Appel par RFC depuis un autre système ou processus                  |
+| Module fonction de mise à jour | Exécution différée dans la tâche de mise à jour                     |
+| BAPI                           | Interface métier stable, généralement implémentée par un module RFC |
+
+## CHOIX D ARCHITECTURE
+
+Créer un module fonction lorsque :
+
+- une API existante impose cette technologie ;
+- le traitement doit être appelé par RFC ;
+- un framework SAP attend un module fonction ;
+- une BAPI ou une interface classique doit être consommée ;
+- un traitement doit être enregistré en tâche de mise à jour.
+
+Pour une nouvelle logique purement interne et orientée objet, préférer généralement une classe et des méthodes. Ne pas créer un module fonction uniquement pour éviter de structurer correctement le code.
+
+## RÈGLE ESSENTIELLE
+
+Un module fonction constitue une **frontière d’interface**. Le contrat d’entrée, de sortie et d’erreur doit être plus stable que son implémentation.
+
+## PROCÉDURE PAS À PAS
+
+1. Saisir `/nSE37`.
+2. Entrer le nom du module fonction puis choisir **Afficher**, **Modifier** ou **Créer** selon l’autorisation.
+3. Analyser les onglets Import, Export, Changing, Tables et Exceptions.
+4. Lire la documentation et le code source avant tout appel.
+5. Utiliser **Test/Exécuter** avec des données non destructives.
+6. Pour un module Z, contrôler, activer puis tester les cas nominal et d’erreur.
+
+## VÉRIFICATION
+
+- Le lecteur peut expliquer la différence entre cette notion et les concepts proches.
+- Le choix technique est justifié par un besoin concret, pas uniquement par habitude.
+- Les limites liées à la release, aux autorisations et au contexte d’exécution sont identifiées.
+
+## ERREURS FRÉQUENTES
+
+- Appeler un module fonction sans lire sa documentation et ses exceptions.
+- Supposer qu’une BAPI effectue automatiquement le commit.
+
+## TERMES DU LEXIQUE
+
+- [Module fonction](<../00 ├── LEXIQUE SAP ET ABAP/06 ├── PROGRAMMES CLASSES ET OBJETS TECHNIQUES.md#module-fonction>)
+- [Function group](<../00 ├── LEXIQUE SAP ET ABAP/06 ├── PROGRAMMES CLASSES ET OBJETS TECHNIQUES.md#function-group>)
+- [RFC](<../00 ├── LEXIQUE SAP ET ABAP/10 └── ACRONYMES SAP.md#acro-rfc>)
+- [BAPI](<../00 ├── LEXIQUE SAP ET ABAP/10 └── ACRONYMES SAP.md#acro-bapi>)
+- [Destination RFC](<../00 ├── LEXIQUE SAP ET ABAP/07 ├── INTERFACES ET INTEGRATION.md#destination-rfc>)
+
+## RÉFÉRENCES OFFICIELLES SAP
+
+- [Modularization with Function Modules — SAP Help Portal](https://help.sap.com/docs/SAP_NETWEAVER_AS_ABAP_752/c238d694b825421f940829321ffa326a/4ec1cbf46e391014adc9fffe4e204223.html)
+- [Working with ABAP Function Groups and Modules — SAP Help Portal](https://help.sap.com/docs/ABAP_PLATFORM_NEW/c238d694b825421f940829321ffa326a/5b3370ee088a4e2b9579da3f6e994456.html)
+- [Describing Remote Function Calls and BAPIs — SAP Learning](https://learning.sap.com/courses/technical-implementation-and-operation-i-of-sap-s-4hana-and-sap-business-suite/describing-remote-function-calls-and-bapis)
+
+
+---
+
+[Chapitre suivant — GROUPES DE FONCTIONS ET PROGRAMMES GÉNÉRÉS](<./02 ├── GROUPES DE FONCTIONS ET PROGRAMMES GENERES.md>)

@@ -1,0 +1,129 @@
+# TEXTES D’EXCEPTION ET INTERFACES T100
+
+## OBJECTIFS
+
+- Associer une exception à une classe de messages
+- Comprendre `IF_T100_MESSAGE`
+- Comprendre `IF_T100_DYN_MSG`
+- Récupérer un texte traduit
+- Réutiliser un message intercepté
+
+## POURQUOI UTILISER T100
+
+Une exception doit fournir un texte compréhensible, stable et traduisible. Les messages T100 répondent à ce besoin.
+
+```mermaid
+flowchart LR
+    A["Classe d’exception"] --> B["Interface T100"]
+    B --> C["Classe et numéro de message"]
+    C --> D["Texte traduit"]
+```
+
+## IF_T100_MESSAGE
+
+L’interface `IF_T100_MESSAGE` permet d’associer des identifiants de texte définis dans la classe d’exception à des messages T100.
+
+Lors de la création de la classe d’exception dans le Workbench, les outils SAP peuvent générer les éléments nécessaires selon les options choisies.
+
+L’appelant peut ensuite récupérer le texte :
+
+```abap
+CATCH zcx_dev_product_not_found INTO DATA(lx_not_found).
+  DATA(lv_text) = lx_not_found->get_text( ).
+```
+
+## IF_T100_DYN_MSG
+
+L’interface `IF_T100_DYN_MSG` étend le mécanisme pour permettre l’association dynamique d’un message T100 à l’exception.
+
+Exemple conceptuel :
+
+```abap
+RAISE EXCEPTION TYPE zcx_dev_error
+  MESSAGE ID 'ZDEV_MSG'
+          TYPE 'E'
+        NUMBER '001'
+          WITH iv_matnr.
+```
+
+La disponibilité exacte de certaines formes syntaxiques dépend de la version ABAP. Vérifier la documentation du système cible.
+
+## RÉUTILISER UN MESSAGE EXISTANT
+
+Une couche peut intercepter un message ou une erreur provenant d’une API, puis la représenter sous forme d’exception sans perdre :
+
+- la classe ;
+- le numéro ;
+- les variables ;
+- le texte traduit ;
+- la cause précédente.
+
+Cette conservation est préférable à la création d’un texte générique comme `Erreur technique`.
+
+## TEXTID
+
+Une classe d’exception peut définir plusieurs constantes `TEXTID`, chaque constante représentant une situation précise.
+
+```abap
+RAISE EXCEPTION TYPE zcx_dev_product
+  EXPORTING
+    textid = zcx_dev_product=>not_found
+    matnr  = iv_matnr.
+```
+
+Le `TEXTID` rend l’erreur identifiable sans analyser son texte.
+
+## GET_TEXT ET GET_LONGTEXT
+
+Les exceptions héritent de fonctionnalités permettant d’obtenir leur texte. Le texte court sert à la restitution immédiate. Un texte long peut fournir des informations complémentaires si la classe et son référentiel le prévoient.
+
+Le programme ne doit pas dépendre du contenu littéral du texte pour prendre une décision.
+
+Mauvais :
+
+```abap
+IF lx_error->get_text( ) CS 'introuvable'.
+```
+
+Correct : intercepter une classe ou analyser un identifiant stable.
+
+## VÉRIFICATION
+
+- Le contrôle syntaxique réussit.
+- La version active correspond au code sauvegardé.
+- L’exécution produit le résultat décrit dans le chapitre.
+- Les cas vide, limite et erreur sont testés séparément lorsque la syntaxe le permet.
+
+## ERREURS FRÉQUENTES
+
+- Copier un exemple sans adapter les types, noms d’objets et données disponibles dans le système.
+- Tester uniquement le cas nominal et ignorer les valeurs initiales, absentes ou invalides.
+- Afficher un message technique incompréhensible à l’utilisateur.
+- Attraper une exception sans action ni propagation.
+
+## SNIPPET À RÉUTILISER
+
+> [!NOTE]
+> Adapter les noms `Z*`, les types DDIC, les données et les autorisations au système cible. Effectuer un contrôle syntaxique avant activation.
+
+```abap
+CATCH zcx_dev_product_not_found INTO DATA(lx_not_found).
+  DATA(lv_text) = lx_not_found->get_text( ).
+```
+
+## TERMES DU LEXIQUE
+
+- [Exception](<../00 ├── LEXIQUE SAP ET ABAP/04 ├── LANGAGE ET DEVELOPPEMENT ABAP.md#exception>)
+- [Interface](<../00 ├── LEXIQUE SAP ET ABAP/07 ├── INTERFACES ET INTEGRATION.md#interface-integration>)
+- [Dump ABAP](<../00 ├── LEXIQUE SAP ET ABAP/08 ├── EXECUTION EXPLOITATION ET ADMINISTRATION.md#dump-abap>)
+
+## RÉFÉRENCES OFFICIELLES SAP
+
+- [Exception Classes for Messages — ABAP Keyword Documentation](https://help.sap.com/doc/abapdocu_latest_index_htm/latest/en-US/ABENMESSAGE_EXCEPTIONS.html)
+- [Message Interface Reuse Example — ABAP Keyword Documentation](https://help.sap.com/doc/abapdocu_latest_index_htm/latest/en-US/ABENMESSAGE_INTERFACE_REUSE_ABEXA.html)
+- [Creating an Exception Class — SAP Help Portal](https://help.sap.com/docs/ABAP_PLATFORM_NEW/bd833c8355f34e96a6e83096b38bf192/92823e6017aa11d5969b00a0c94260a5.html)
+
+
+---
+
+[Chapitre suivant — EXCEPTIONS SYSTÈME CX_SY](<./13 ├── EXCEPTIONS SYSTEME CX SY.md>)
