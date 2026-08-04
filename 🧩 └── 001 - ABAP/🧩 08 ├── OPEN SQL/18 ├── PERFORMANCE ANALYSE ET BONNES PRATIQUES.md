@@ -129,3 +129,8 @@ Répéter exactement l’étape 2, comparer durée, exécutions et volumes puis 
 - [Statements and Operations Measured by SQL Monitor — SAP Help Portal](https://help.sap.com/docs/SAP_NETWEAVER_AS_ABAP_751_IP/a24970c68fcf4770a64bf9a78e3719e2/abad64f273364c86b4cc9c9e18762f7f.html)
 - [ABAP SQL — ABAP Keyword Documentation](https://help.sap.com/doc/abapdocu_latest_index_htm/latest/en-US/ABENABAP_SQL_OVIEW.html)
 - [Deepening Your ABAP Programming Knowledge — SAP Learning](https://learning.sap.com/courses/deepening-your-abap-programming-knowledge)
+
+
+---
+
+[Chapitre suivant — LIRE UNE CDS PROTÉGÉE ET UTILISER WITH PRIVILEGED ACCESS](<./19 └── LIRE UNE CDS PROTEGEE ET UTILISER WITH PRIVILEGED ACCESS.md>)

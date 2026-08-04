@@ -10,6 +10,7 @@ Bloquer la livraison d’un développement ABAP qui expose une action ou une don
 - Les contrôles couvrent les dimensions métier, pas seulement `S_TCODE`.
 - Les entrées externes sont validées en type, longueur, domaine et volume.
 - Les noms dynamiques proviennent d’une liste blanche.
+- Chaque `WITH PRIVILEGED ACCESS` est justifié, précédé d’un contrôle explicite et limité aux lignes et colonnes nécessaires.
 - Aucun secret, mot de passe ou jeton n’est codé en dur ou écrit dans les journaux.
 - Aucun chemin de fichier externe n’est utilisé directement.
 - Les appels RFC, HTTP et SOAP appliquent des contrôles dans le système cible.
@@ -41,9 +42,12 @@ Pour chaque action sensible, confirmer :
 - les dimensions organisationnelles ;
 - l’emplacement du contrôle avant l’opération ;
 - le traitement immédiat de `SY-SUBRC` ;
-- l’utilisateur réel pour les jobs, workflows et RFC.
+- l’utilisateur réel pour les jobs, workflows et RFC ;
+- les lectures CDS qui désactivent la DCL avec `WITH PRIVILEGED ACCESS`.
 
 Tracer un scénario représentatif avec `STAUTHTRACE` et comparer les valeurs au concept de rôles.
+
+Pour chaque lecture CDS privilégiée, comparer le résultat normal au résultat privilégié et vérifier qu’un utilisateur refusé n’atteint jamais le `SELECT`.
 
 ### Étape 4 — Exécuter les contrôles statiques
 
@@ -91,3 +95,8 @@ Aucune anomalie de sécurité ouverte ne peut être compensée par la seule rest
 - [Authorization Checks in Your Own Developments — SAP SE, SAP S/4HANA](https://help.sap.com/docs/ABAP_PLATFORM_NEW/88c6b8647c8d40b39eb554e2d7b6bda1/5267167f439b11d1896f0000e8322d00.html)
 - [File Authorization — SAP SE, SAP S/4HANA 2025 FPS01](https://help.sap.com/docs/ABAP_PLATFORM_NEW/7bfe8cdcfbb040dcb6702dada8c3e2f0/dc545b5a743047b6b468bbadd0085ce2.html)
 - [RFC Authorizations — SAP SE, SAP NetWeaver AS ABAP](https://help.sap.com/docs/ABAP_PLATFORM_NEW/c495ada972d045b2be2869f5573af8e7/488de31b81cd0e27e10000000a421937.html)
+- [Access Control — SAP SE, SAP S/4HANA 2025 FPS01](https://help.sap.com/docs/ABAP_PLATFORM_NEW/67e4075c942e43d4a9f6f891a8dafcf4/85cb9cf7c3eb442b82451a8294747785.html)
+
+## CHAPITRE ASSOCIÉ
+
+- [Lire une CDS protégée et utiliser WITH PRIVILEGED ACCESS](<../🧩 08 ├── OPEN SQL/19 └── LIRE UNE CDS PROTEGEE ET UTILISER WITH PRIVILEGED ACCESS.md>)
