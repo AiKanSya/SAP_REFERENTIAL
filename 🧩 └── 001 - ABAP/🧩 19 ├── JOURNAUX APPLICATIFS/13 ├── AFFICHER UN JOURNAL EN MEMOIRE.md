@@ -43,14 +43,31 @@ Le profil BAL est une structure technique `BAL_S_PROF`. Il ne s’agit pas d’u
 
 L’affichage immédiat exige une session dialogue. Il ne doit pas être utilisé comme dépendance d’un traitement batch. En arrière-plan, sauvegarder le journal et fournir son objet, son sous-objet et son identifiant externe dans le spool ou le journal de job.
 
-## PROCÉDURE PAS À PAS
+## PROCESS
 
-1. Saisir `/nSLG1`.
-2. Renseigner objet, sous-objet, identifiant externe, utilisateur et période selon les informations du traitement.
-3. Exécuter la recherche.
-4. Ouvrir le journal correspondant au bon horodatage.
-5. Analyser l’en-tête, les niveaux de gravité et le contexte des messages.
-6. Exporter ou transmettre uniquement les informations nécessaires, sans données sensibles inutiles.
+### ÉTAPE 1 — VÉRIFIER LE CONTEXTE DIALOGUE
+
+Réserver l’affichage immédiat à une session SAP GUI. En batch, ne pas appeler l’API d’affichage ; sauvegarder le journal et écrire ses critères de recherche dans le spool ou le journal de job.
+
+### ÉTAPE 2 — PRÉPARER LES HANDLES CIBLÉS
+
+Ajouter à `BAL_T_LOGH` uniquement les handles à afficher. Vérifier leur existence en mémoire. Ne pas afficher implicitement tous les journaux chargés par d’autres composants de la session.
+
+### ÉTAPE 3 — CHOISIR LE PROFIL
+
+Appeler la fonction de profil correspondant au besoin : journal unique, sans arbre, popup ou niveau de détail. Récupérer `BAL_S_PROF` puis modifier seulement les attributs compris et nécessaires.
+
+### ÉTAPE 4 — APPELER `BAL_DSP_LOG_DISPLAY`
+
+Passer la table de handles et le profil. Traiter les exceptions de l’API. L’affichage ne persiste pas le journal ; il montre l’état actuellement présent dans la mémoire BAL.
+
+### ÉTAPE 5 — TESTER L’INTERACTION UTILISATEUR
+
+Vérifier navigation, texte long, contexte, niveaux de détail et retour au programme. Tester un journal vide, plusieurs messages et plusieurs handles. Ne pas supposer qu’une fermeture de popup signifie une sauvegarde.
+
+### ÉTAPE 6 — SAUVEGARDER SELON LE CONTRAT
+
+Après ou avant l’affichage selon le flux, appeler explicitement `BAL_DB_SAVE` si le journal doit être conservé. Rechercher ensuite dans `SLG1`. Tester aussi le programme comme job pour confirmer l’absence d’appel GUI.
 
 ## VÉRIFICATION
 
@@ -100,7 +117,6 @@ CALL FUNCTION 'BAL_DSP_LOG_DISPLAY'
 
 - [Log Display — SAP Help Portal](https://help.sap.com/docs/SAP_NETWEAVER_731_BW_ABAP/addb96cd90c945dfb3182865363bbc47/4e2102fa35d44180e10000000a15822b.html)
 - [Function Module Overview — SAP Help Portal](https://help.sap.com/docs/ABAP_PLATFORM_NEW/addb96cd90c945dfb3182865363bbc47/4e23b1720771417fe10000000a15822b.html)
-
 
 ---
 

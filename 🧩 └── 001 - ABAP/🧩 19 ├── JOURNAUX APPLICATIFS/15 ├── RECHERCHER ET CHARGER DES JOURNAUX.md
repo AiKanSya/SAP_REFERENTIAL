@@ -60,6 +60,32 @@ Toujours fournir des filtres sélectifs :
 
 Une recherche générique sur l’ensemble des journaux n’est pas une stratégie de monitoring acceptable.
 
+## PROCESS
+
+### ÉTAPE 1 — DÉFINIR DES CRITÈRES SÉLECTIFS
+
+Exiger au minimum l’objet et une période bornée. Ajouter sous-objet, identifiant externe, programme ou utilisateur lorsque disponibles. Refuser dans un programme opérationnel une recherche sans limite susceptible de charger tout l’historique.
+
+### ÉTAPE 2 — CONSTRUIRE `BAL_S_LFIL`
+
+Initialiser une structure de filtre neuve. Remplir les tables de ranges avec `SIGN`, `OPTION`, `LOW` et `HIGH` cohérents. Utiliser `CP` uniquement lorsqu’un motif est réellement nécessaire et contrôlé.
+
+### ÉTAPE 3 — APPELER `BAL_DB_SEARCH`
+
+Passer le filtre et récupérer `BALHDR_T`. Contrôler le retour avant d’examiner les résultats. Limiter ou arrêter le traitement si le nombre d’en-têtes dépasse le seuil prévu par l’outil.
+
+### ÉTAPE 4 — SÉLECTIONNER LES EN-TÊTES UTILES
+
+Comparer numéro, identifiant, objet, date, utilisateur et programme. Ne charger que les journaux appartenant au scénario. Conserver leur numéro pour le diagnostic et l’affichage.
+
+### ÉTAPE 5 — CHARGER AVEC `BAL_DB_LOAD`
+
+Passer les en-têtes sélectionnés et contrôler le retour. Après chargement, rechercher les handles en mémoire ou utiliser les API de lecture adaptées. Ne pas supposer qu’un en-tête trouvé signifie que tous ses messages sont déjà chargés.
+
+### ÉTAPE 6 — AFFICHER ET NETTOYER LA MÉMOIRE
+
+Afficher les handles chargés avec un profil BAL ou lire leurs messages. Vérifier le résultat attendu, puis retirer uniquement ces journaux de la mémoire globale lorsqu’ils ne sont plus utiles. Tester une recherche sans résultat et une recherche retournant plusieurs exécutions.
+
 ## VÉRIFICATION
 
 - Le journal est retrouvable dans `SLG1` avec objet, sous-objet et période.
@@ -115,7 +141,6 @@ CALL FUNCTION 'BAL_DB_SEARCH'
 
 - [Database Interface — SAP Help Portal](https://help.sap.com/docs/ABAP_PLATFORM_NEW/addb96cd90c945dfb3182865363bbc47/4e21021635d44180e10000000a15822b.html)
 - [Application Log Methodology Part II — SAP Help Portal](https://help.sap.com/docs/SUPPORT_CONTENT/ABAP/3353524102.html)
-
 
 ---
 

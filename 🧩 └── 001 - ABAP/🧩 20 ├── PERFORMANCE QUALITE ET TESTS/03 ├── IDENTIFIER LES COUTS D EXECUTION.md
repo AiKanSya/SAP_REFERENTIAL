@@ -49,14 +49,31 @@ Réduire une boucle ABAP ne corrige pas une requête ramenant dix fois trop de c
 - [SAP Help Portal — Analyzing Performance with ABAP Runtime Analysis](https://help.sap.com/docs/ABAP_PLATFORM_NEW/ba879a6e2ea04d9bb94c7ccd7cdac446/3c74c6163ce4459888bc06dedda37685.html)
 - [SAP Help Portal — SQL Trace Analysis](https://help.sap.com/docs/ABAP_PLATFORM_NEW/ba879a6e2ea04d9bb94c7ccd7cdac446/d1801f89454211d189710000e8322d00.html)
 
-## PROCÉDURE PAS À PAS
+## PROCESS
 
-1. Saisir `/nSAT`.
-2. Créer ou sélectionner une variante de mesure adaptée.
-3. Définir le programme, la transaction ou l’utilisateur à mesurer.
-4. Démarrer la mesure puis reproduire une seule fois le scénario.
-5. Arrêter et analyser le hit list, la hiérarchie d’appels et les temps nets.
-6. Répéter la mesure après correction avec les mêmes données et le même contexte.
+### ÉTAPE 1 — DÉCOMPOSER LE TEMPS OBSERVÉ
+
+Relever durée totale, temps CPU, base de données, appels externes, attente de verrou et traitement frontend lorsque disponibles. Identifier la catégorie dominante avant de choisir l’outil de détail.
+
+### ÉTAPE 2 — MESURER LE CODE ABAP AVEC `SAT`
+
+Tracer un scénario court et ouvrir la hit list et la hiérarchie d’appels. Trier par temps net puis par nombre d’appels. Repérer les méthodes coûteuses, boucles et conversions, sans attribuer au code appelant le temps réellement passé dans un sous-appel.
+
+### ÉTAPE 3 — MESURER LE SQL AVEC `ST05`
+
+Si la base domine, activer une trace limitée à l’utilisateur, exécuter une fois puis désactiver immédiatement. Regrouper les instructions et relever exécutions, durée, lignes et source ABAP. Identifier SQL en boucle, filtre insuffisant ou accès coûteux.
+
+### ÉTAPE 4 — MESURER VOLUME ET MÉMOIRE
+
+Relever tailles de tables internes, copies complètes, résultats SQL et snapshots mémoire autour de la phase suspecte. Distinguer mémoire temporaire libérée en fin de portée et objet retenu par une référence longue.
+
+### ÉTAPE 5 — CLASSER PAR IMPACT ET FRÉQUENCE
+
+Combiner coût unitaire, nombre d’exécutions et fréquence en production. Prioriser un coût cumulé élevé et un code réellement utilisé. Ne pas optimiser une méthode rarement appelée pendant qu’un SQL répétitif domine le scénario.
+
+### ÉTAPE 6 — PROUVER LA CAUSE PAR UNE MODIFICATION CIBLÉE
+
+Modifier une seule source de coût, exécuter les tests puis remesurer. La cause est confirmée si la métrique correspondante baisse avec un résultat identique. Conserver les captures avant/après.
 
 ## VÉRIFICATION
 

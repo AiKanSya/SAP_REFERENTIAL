@@ -61,14 +61,31 @@ La modification est retenue uniquement si elle améliore la métrique visée san
 - [SAP Help Portal — SQL Trace Analysis](https://help.sap.com/docs/ABAP_PLATFORM_NEW/ba879a6e2ea04d9bb94c7ccd7cdac446/d1801f89454211d189710000e8322d00.html)
 - [SAP Help Portal — Memory Inspector Concepts](https://help.sap.com/docs/ABAP_PLATFORM_NEW/ba879a6e2ea04d9bb94c7ccd7cdac446/8884fb5269d34838a1f119b41dcdbc57.html)
 
-## PROCÉDURE PAS À PAS
+## PROCESS
 
-1. Saisir `/nSAT`.
-2. Créer ou sélectionner une variante de mesure adaptée.
-3. Définir le programme, la transaction ou l’utilisateur à mesurer.
-4. Démarrer la mesure puis reproduire une seule fois le scénario.
-5. Arrêter et analyser le hit list, la hiérarchie d’appels et les temps nets.
-6. Répéter la mesure après correction avec les mêmes données et le même contexte.
+### ÉTAPE 1 — FORMULER LE SYMPTÔME MESURABLE
+
+Définir l’action lente, l’utilisateur, le volume, l’heure et la limite attendue. Séparer temps de réponse, temps CPU, temps SQL, attente et mémoire. Éviter des objectifs vagues comme « rendre le programme plus rapide ».
+
+### ÉTAPE 2 — CONSTRUIRE UN SCÉNARIO REPRODUCTIBLE
+
+Fixer variante, clés métier, état des données, mandant et type d’exécution. Réduire le scénario à une action. Noter les effets de cache ou d’échauffement et décider si la première exécution doit être exclue ou mesurée séparément.
+
+### ÉTAPE 3 — CHOISIR L’OUTIL SELON L’HYPOTHÈSE
+
+Utiliser `SAT` pour la répartition du temps ABAP, `ST05` pour une trace SQL courte, `SQLM` pour une observation agrégée, `SWLT` pour prioriser et Memory Inspector pour la mémoire. Définir le périmètre et la durée avant activation.
+
+### ÉTAPE 4 — CAPTURER LA RÉFÉRENCE
+
+Exécuter le scénario sans autre activité volontaire et conserver la mesure, son identifiant, l’horodatage, l’utilisateur et le volume. Relever appels dominants, SQL, lignes et mémoire. Ne pas modifier le code avant cette capture.
+
+### ÉTAPE 5 — MODIFIER LA CAUSE PROUVÉE
+
+Appliquer une correction limitée et expliquer le mécanisme attendu : moins d’exécutions, moins de lignes, accès par clé ou copie évitée. Exécuter les tests fonctionnels avant la seconde mesure.
+
+### ÉTAPE 6 — COMPARER SUR LES MÊMES BASES
+
+Relancer le même scénario et comparer temps total, temps du composant, nombre d’appels, volume et résultat. Si le gain n’est pas reproductible, retirer ou réévaluer la modification au lieu de conclure sur une mesure isolée.
 
 ## VÉRIFICATION
 

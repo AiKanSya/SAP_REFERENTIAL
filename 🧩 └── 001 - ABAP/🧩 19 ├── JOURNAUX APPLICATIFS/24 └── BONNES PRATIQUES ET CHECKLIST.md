@@ -48,14 +48,31 @@ flowchart LR
 
 La classe de journalisation doit rester un adaptateur. Elle ne doit pas décider seule du rollback, de la poursuite ou du statut métier du traitement.
 
-## PROCÉDURE PAS À PAS
+## PROCESS
 
-1. Saisir `/nSE91`.
-2. Entrer une classe de messages Z puis choisir **Créer** ou **Modifier**.
-3. Ajouter un numéro libre et un texte court ; utiliser `&1` à `&4` pour les variables.
-4. Enregistrer dans le package et l’ordre appropriés.
-5. Activer si le système le demande.
-6. Appeler le message depuis un report de test et vérifier le texte dans la langue de connexion.
+### ÉTAPE 1 — VALIDER LA CONFIGURATION ET LA NOMENCLATURE
+
+Contrôler objet et sous-objets dans `SLG0`, descriptions, package, transports et séparation des autorisations. Vérifier que l’identifiant externe relie le log au document, fichier, job ou message d’origine.
+
+### ÉTAPE 2 — CONTRÔLER L’ADAPTATEUR DE JOURNALISATION
+
+Vérifier que le code métier passe par une classe Z, que les handles restent internes et que toutes les erreurs BAL sont traitées. Confirmer que la classe de log ne décide pas du commit ou du statut métier à la place de l’orchestrateur.
+
+### ÉTAPE 3 — CONTRÔLER LA QUALITÉ DES MESSAGES
+
+Examiner gravité, T100, variables, classe de problème, détail, tri et contexte. Chaque erreur doit indiquer l’unité, la cause et l’action possible. Supprimer les succès unitaires répétitifs et les textes génériques non actionnables.
+
+### ÉTAPE 4 — CONTRÔLER LUW, BATCH ET REPRISE
+
+Tester sauvegarde sur succès, erreur gérée et rollback. Pour un job, vérifier le résumé dans `SM37` et la référence `SLG1`. Rejouer le même lot et confirmer l’idempotence ainsi que la création d’un log distinct corrélé.
+
+### ÉTAPE 5 — CONTRÔLER SÉCURITÉ ET VOLUMÉTRIE
+
+Tester `S_APPL_LOG` avec des rôles représentatifs. Rechercher secrets, données personnelles et payloads dans tous les types de message. Mesurer le nombre maximal de messages, la durée de sauvegarde et la lisibilité dans `SLG1`.
+
+### ÉTAPE 6 — CONTRÔLER LE CYCLE DE VIE
+
+Vérifier expiration, sélection `SLG2`, job de suppression ou archivage `BC_SBAL`. Tester la conservation d’un log non expiré et le retrait d’un log expiré. Documenter propriétaire, fréquence et preuve du dernier nettoyage.
 
 ## VÉRIFICATION
 

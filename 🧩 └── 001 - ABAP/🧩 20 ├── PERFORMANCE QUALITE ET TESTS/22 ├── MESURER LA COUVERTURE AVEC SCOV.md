@@ -44,14 +44,31 @@ Une branche métier critique non couverte est prioritaire. Une ligne technique s
 - [SAP Help Portal — Coverage Analyzer](https://help.sap.com/docs/ABAP_PLATFORM_NEW/ba879a6e2ea04d9bb94c7ccd7cdac446/49216c634ab514cde10000000a42189b.html)
 - [SAP Help Portal — ABAP Unit](https://help.sap.com/docs/ABAP_PLATFORM_NEW/ba879a6e2ea04d9bb94c7ccd7cdac446/491cfd8926bc14cde10000000a42189b.html)
 
-## PROCÉDURE PAS À PAS
+## PROCESS
 
-1. Lire la définition et identifier les prérequis du chapitre.
-2. Choisir un objet Z ou un scénario de démonstration sans impact métier.
-3. Reproduire l’exemple dans un système de développement et relever les données d’entrée.
-4. Contrôler la syntaxe ou la configuration avant activation/exécution.
-5. Comparer le résultat observé avec la section **Vérification**.
-6. Documenter toute différence liée à la release, aux autorisations ou au paramétrage du système.
+### ÉTAPE 1 — DÉFINIR LE PÉRIMÈTRE ET LE SCÉNARIO
+
+Lister classes, programmes ou package à mesurer et les tests censés les couvrir. Définir les cas nominal, limites et erreur. La couverture mesure l’exécution du code, pas la pertinence des assertions.
+
+### ÉTAPE 2 — CRÉER UNE MESURE DANS `SCOV`
+
+Saisir `/nSCOV`, créer ou sélectionner une mesure et renseigner le périmètre selon les fonctions disponibles. Limiter utilisateur et objets pour éviter du bruit. Relever les paramètres de la session.
+
+### ÉTAPE 3 — DÉMARRER LA COLLECTE
+
+Activer la mesure juste avant les tests. Exécuter ABAP Unit puis les scénarios d’intégration prévus sous les utilisateurs inclus. Éviter des activités non liées qui augmenteraient artificiellement la couverture.
+
+### ÉTAPE 4 — ARRÊTER ET OUVRIR LE RÉSULTAT
+
+Désactiver la collecte dès la fin. Afficher la couverture par objet, méthode et branche lorsque disponible. Identifier le code non exécuté important et les chemins seulement couverts par un test sans assertion utile.
+
+### ÉTAPE 5 — AJOUTER DES TESTS CIBLÉS
+
+Créer un test pour chaque branche métier significative non couverte, sans viser mécaniquement 100 %. Si le code est inaccessible ou obsolète, analyser sa suppression plutôt que d’écrire un test artificiel.
+
+### ÉTAPE 6 — REJOUER ET ÉVALUER LA QUALITÉ
+
+Relancer la même mesure et comparer. Vérifier que les nouveaux tests échouent quand la règle est rompue. Conserver couverture, scénarios et limites connues dans la preuve de non-régression.
 
 ## VÉRIFICATION
 

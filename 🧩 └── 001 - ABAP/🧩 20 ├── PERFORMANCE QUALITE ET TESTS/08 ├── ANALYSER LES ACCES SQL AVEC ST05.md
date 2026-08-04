@@ -4,13 +4,31 @@
 
 Tracer précisément les accès SQL exécutés pendant un scénario court et reproductible.
 
-## Procédure sûre
+## PROCESS
 
-1. Ouvrir `ST05`.
-2. Activer la trace SQL pour le bon utilisateur ou contexte.
-3. Exécuter immédiatement le scénario ciblé.
-4. Désactiver la trace sans attendre.
-5. Afficher la trace et regrouper les instructions identiques.
+### ÉTAPE 1 — PRÉPARER DEUX SESSIONS
+
+Dans la première, ouvrir `ST05`; dans la seconde, préparer l’application juste avant l’action lente. Relever utilisateur, mandant, données et heure. Utiliser un utilisateur dédié lorsque possible pour réduire le bruit.
+
+### ÉTAPE 2 — CONFIGURER LA TRACE SQL
+
+Sélectionner la trace SQL et limiter le périmètre à l’utilisateur ou au contexte autorisé. Vérifier qu’aucune trace concurrente incompatible n’est active. Ne pas lancer une trace globale prolongée sans coordination Basis.
+
+### ÉTAPE 3 — ACTIVER, EXÉCUTER, DÉSACTIVER
+
+Activer immédiatement avant l’action, reproduire une seule fois puis désactiver sans attendre. Noter l’horodatage. Si le scénario échoue, conserver l’état fonctionnel exact qui correspond à la trace.
+
+### ÉTAPE 4 — FILTRER ET REGROUPER
+
+Afficher la trace, limiter à l’intervalle et regrouper les instructions identiques. Trier par temps cumulé, temps moyen, exécutions et lignes. Identifier la source ABAP des entrées dominantes.
+
+### ÉTAPE 5 — ANALYSER L’ACCÈS
+
+Examiner prédicats, valeurs, cardinalité et plan lorsque disponible. Rechercher SQL en boucle, sélection trop large, conversion empêchant un accès efficace ou index inadapté. Ne pas conclure sur le seul temps d’une exécution isolée.
+
+### ÉTAPE 6 — REJOUER APRÈS CORRECTION
+
+Tracer le même scénario avec le même volume. Comparer nombre d’instructions, lignes et temps cumulé. Supprimer les traces inutiles selon les règles du système et conserver uniquement les preuves nécessaires.
 
 ## Informations à examiner
 

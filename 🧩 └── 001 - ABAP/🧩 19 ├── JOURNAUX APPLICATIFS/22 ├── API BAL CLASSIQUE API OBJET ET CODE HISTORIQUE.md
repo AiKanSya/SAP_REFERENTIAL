@@ -37,14 +37,31 @@ Pour un nouveau développement classique :
 3. conserver `APPL_LOG_*` uniquement lors de la maintenance d’un programme existant ;
 4. ne pas mélanger plusieurs familles d’API dans le même composant sans raison.
 
-## PROCÉDURE PAS À PAS
+## PROCESS
 
-1. Saisir `/nSE24`.
-2. Entrer le nom d’une classe globale Z puis choisir **Créer**, ou afficher une classe existante.
-3. Maintenir définition, visibilité, types, attributs et méthodes dans les onglets appropriés.
-4. Implémenter les méthodes dans l’éditeur.
-5. Contrôler et activer la classe complète.
-6. Utiliser la fonction de test ou un report Z appelant pour vérifier le comportement.
+### ÉTAPE 1 — IDENTIFIER LA RELEASE ET LE MODÈLE DE DÉVELOPPEMENT
+
+Relever la version ABAP Platform, le périmètre classique SAP GUI et les API réellement disponibles. Vérifier les modules `BAL_*` dans `SE37` et les classes `CL_BALI_*` ou interfaces `IF_BALI_*` dans `SE24` sans supposer leur présence.
+
+### ÉTAPE 2 — ANALYSER LE CODE EXISTANT
+
+Rechercher les appels `APPL_LOG_*`, `BAL_*` et `CL_BALI_*` dans le composant. Cartographier création, ajout, affichage, sauvegarde et nettoyage. Ne pas remplacer une API historique avant d’avoir compris sa LUW et son format de journal.
+
+### ÉTAPE 3 — CHOISIR UNE FAMILLE UNIQUE PAR ADAPTATEUR
+
+Pour un développement classique compatible avec le système cible, retenir l’API supportée qui couvre création, messages, exceptions et persistance. Ne pas mélanger plusieurs familles à l’intérieur d’un même cycle de log sans besoin prouvé.
+
+### ÉTAPE 4 — CRÉER UNE INTERFACE Z DE JOURNALISATION
+
+Définir des méthodes métier telles que démarrer, ajouter un message, ajouter une exception, sauvegarder et obtenir l’identifiant. Cacher handles et structures BAL derrière l’implémentation. L’appelant décide encore de poursuivre, rollback ou statut métier.
+
+### ÉTAPE 5 — IMPLÉMENTER ET TESTER L’ADAPTATEUR
+
+Brancher l’API choisie et contrôler toutes ses erreurs. Utiliser une implémentation factice pour les tests du code métier. Tester succès, erreur d’objet `SLG0`, log plein, échec de sauvegarde et plusieurs journaux concurrents.
+
+### ÉTAPE 6 — MIGRER PROGRESSIVEMENT LE CODE HISTORIQUE
+
+Remplacer les appels directs derrière l’interface Z par scénario, sans changer simultanément le comportement transactionnel. Comparer le contenu `SLG1`, les identifiants, les autorisations et la rétention avant de retirer l’ancienne API.
 
 ## VÉRIFICATION
 
@@ -84,7 +101,6 @@ Ordre de transport  :
 - [Create Application Log — SAP Help Portal](https://help.sap.com/docs/SAP_NETWEAVER_700/1090027b6c5310149844b23fcc030a11/2afa0216493111d182b70000e829fbfe.html)
 - [Create a New Application Log — SAP Help Portal](https://help.sap.com/docs/ABAP_PLATFORM_NEW/b5670aaaa2364a29935f40b16499972d/f7c20f7b2fce4fbaba79ae0c5182d869.html)
 - [Function Module Overview — SAP Help Portal](https://help.sap.com/docs/ABAP_PLATFORM_NEW/addb96cd90c945dfb3182865363bbc47/4e23b1720771417fe10000000a15822b.html)
-
 
 ---
 

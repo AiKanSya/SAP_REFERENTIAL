@@ -20,18 +20,35 @@ SAP documente plusieurs programmes de démonstration :
 
 Analyser ces programmes dans `SE38` ou `SE80` avant d’inventer une implémentation spécifique.
 
-## PLAN DE TEST
+## PROCESS
 
-1. vérifier l’objet et le sous-objet dans `SLG0` ;
-2. créer un journal ;
-3. ajouter un message `S`, `W` et `E` ;
-4. ajouter une exception ;
-5. afficher le journal en mémoire ;
-6. sauvegarder ;
-7. rechercher dans `SLG1` ;
-8. rechercher par programme avec `BAL_DB_SEARCH` ;
-9. charger et réafficher ;
-10. tester les autorisations avec un utilisateur représentatif.
+### ÉTAPE 1 — ÉTUDIER LES DÉMONSTRATIONS STANDARD
+
+Ouvrir les programmes `SBAL_DEMO_*` disponibles dans `SE38` ou `SE80`. Vérifier leur documentation et leur code sur la release cible. Exécuter uniquement les exemples autorisés dans un système de développement.
+
+### ÉTAPE 2 — CONFIGURER UN OBJET DE TEST
+
+Créer ou utiliser un objet et un sous-objet Z dédiés dans `SLG0`. Définir un identifiant externe unique. Ne pas tester avec un objet productif si la démonstration peut créer ou supprimer des journaux persistants.
+
+### ÉTAPE 3 — TESTER LE CYCLE EN MÉMOIRE
+
+Créer le log, ajouter un message `S`, `W`, `E`, un texte libre et une exception. Contrôler chaque retour et conserver les handles. Afficher le journal en dialogue avec un profil adapté.
+
+### ÉTAPE 4 — TESTER LA PERSISTANCE
+
+Sauvegarder uniquement le handle créé, relever le numéro persistant puis rechercher dans `SLG1`. Comparer en-tête, messages, niveaux et contexte. Tester aussi le comportement après rollback selon la stratégie retenue.
+
+### ÉTAPE 5 — TESTER RECHERCHE ET CHARGEMENT
+
+Construire un filtre sélectif pour `BAL_DB_SEARCH`, charger l’en-tête retourné avec `BAL_DB_LOAD`, puis réafficher le handle. Nettoyer ensuite la mémoire. Vérifier qu’un autre log présent dans la session n’est pas affecté.
+
+### ÉTAPE 6 — DIAGNOSTIQUER UN LOG ABSENT
+
+Contrôler successivement configuration `SLG0`, en-tête, retour de `BAL_LOG_CREATE`, handle des ajouts, retour de `BAL_DB_SAVE`, LUW, filtres `SLG1` et autorisations. Conserver la première étape en échec avant de modifier le code.
+
+### ÉTAPE 7 — TESTER UN UTILISATEUR REPRÉSENTATIF
+
+Exécuter la recherche et l’affichage avec le rôle d’exploitation réel. Vérifier le refus sur un autre objet et l’absence de données sensibles. Documenter les objets d’autorisation et le résultat de chaque scénario.
 
 ## JOURNAL ABSENT DANS SLG1
 
@@ -94,7 +111,6 @@ Ordre de transport  :
 - [Function Module Overview — SAP Help Portal](https://help.sap.com/docs/ABAP_PLATFORM_NEW/addb96cd90c945dfb3182865363bbc47/4e23b1720771417fe10000000a15822b.html)
 - [Log Display — SAP Help Portal](https://help.sap.com/docs/SAP_NETWEAVER_731_BW_ABAP/addb96cd90c945dfb3182865363bbc47/4e2102fa35d44180e10000000a15822b.html)
 - [Database Interface — SAP Help Portal](https://help.sap.com/docs/ABAP_PLATFORM_NEW/addb96cd90c945dfb3182865363bbc47/4e21021635d44180e10000000a15822b.html)
-
 
 ---
 

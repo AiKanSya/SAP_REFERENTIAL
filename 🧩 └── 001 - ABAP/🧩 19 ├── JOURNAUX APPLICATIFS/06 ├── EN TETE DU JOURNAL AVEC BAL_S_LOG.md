@@ -43,15 +43,31 @@ L’en-tête peut aussi porter :
 
 Ne pas dupliquer dans l’en-tête toutes les informations déjà présentes dans les messages. L’en-tête doit permettre d’identifier l’exécution, pas reproduire son contenu complet.
 
-## PROCÉDURE PAS À PAS
+## PROCESS
 
-1. Saisir `/nSE11`.
-2. Choisir le type d’objet DDIC correspondant au chapitre.
-3. Entrer le nom technique ; utiliser **Afficher** pour un objet existant ou **Créer** pour un objet Z autorisé.
-4. Renseigner les attributs et composants en suivant les règles du chapitre.
-5. Lancer le contrôle de cohérence.
-6. Activer l’objet et traiter chaque message avant de poursuivre.
-7. Utiliser la liste d’utilisation et, pour les tables, vérifier les paramètres techniques et la structure physique.
+### ÉTAPE 1 — VALIDER OBJET ET SOUS-OBJET
+
+Vérifier dans `SLG0` la combinaison à utiliser. Centraliser ces valeurs dans des constantes. Ne pas construire dynamiquement un sous-objet à partir d’une donnée métier non configurée.
+
+### ÉTAPE 2 — CRÉER LA STRUCTURE D’EN-TÊTE
+
+Déclarer une structure `BAL_S_LOG` et l’initialiser pour chaque nouvelle exécution. Ne pas réutiliser un en-tête conservant l’identifiant ou l’expiration d’un traitement précédent.
+
+### ÉTAPE 3 — RENSEIGNER LES CHAMPS DE RECHERCHE
+
+Affecter `OBJECT`, `SUBOBJECT`, `EXTNUMBER` et `ALPROG` avec des valeurs stables. Utiliser `sy-repid` uniquement si le programme courant représente réellement le point d’entrée opérationnel. Construire `EXTNUMBER` sans donnée sensible.
+
+### ÉTAPE 4 — DÉFINIR LE CYCLE DE VIE
+
+Renseigner la date d’expiration ou les autres attributs uniquement selon la politique de rétention du domaine. Éviter une valeur arbitraire différente des règles d’exploitation et de conformité.
+
+### ÉTAPE 5 — CRÉER LE LOG ET CONTRÔLER LE RETOUR
+
+Passer l’en-tête à `BAL_LOG_CREATE`, récupérer `BALLOGHNDL` et traiter `LOG_HEADER_INCONSISTENT`. Interrompre ou basculer vers un mécanisme de secours explicite si aucun handle valide n’est obtenu.
+
+### ÉTAPE 6 — VÉRIFIER L’EN-TÊTE PERSISTÉ
+
+Ajouter un message, sauvegarder le handle puis rechercher le journal dans `SLG1`. Comparer objet, sous-objet, identifiant externe, programme, utilisateur et expiration au contrat défini.
 
 ## VÉRIFICATION
 
@@ -93,7 +109,6 @@ ls_log-del_before = abap_true.
 
 - [Which Data Can Be Collected? — SAP Help Portal](https://help.sap.com/docs/SAP_NETWEAVER_AS_ABAP_752/addb96cd90c945dfb3182865363bbc47/4e2106b735d44180e10000000a15822b.html)
 - [Set Header Information — SAP Help Portal](https://help.sap.com/docs/ABAP_PLATFORM_NEW/b5670aaaa2364a29935f40b16499972d/b962eb9ce95048eea479e6e7b38fb481.html)
-
 
 ---
 

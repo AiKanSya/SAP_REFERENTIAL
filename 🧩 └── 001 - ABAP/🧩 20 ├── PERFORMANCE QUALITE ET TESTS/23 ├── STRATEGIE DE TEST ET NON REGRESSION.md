@@ -45,14 +45,31 @@ Prioriser les règles financières, autorisations, conversions d’unité, dates
 - [SAP Help Portal — Coverage Analyzer](https://help.sap.com/docs/ABAP_PLATFORM_NEW/ba879a6e2ea04d9bb94c7ccd7cdac446/49216c634ab514cde10000000a42189b.html)
 - [SAP Help Portal — ATC Quality Checking](https://help.sap.com/docs/ABAP_PLATFORM_NEW/c238d694b825421f940829321ffa326a/4ec1a1126e391014adc9fffe4e204223.html)
 
-## PROCÉDURE PAS À PAS
+## PROCESS
 
-1. Lire la définition et identifier les prérequis du chapitre.
-2. Choisir un objet Z ou un scénario de démonstration sans impact métier.
-3. Reproduire l’exemple dans un système de développement et relever les données d’entrée.
-4. Contrôler la syntaxe ou la configuration avant activation/exécution.
-5. Comparer le résultat observé avec la section **Vérification**.
-6. Documenter toute différence liée à la release, aux autorisations ou au paramétrage du système.
+### ÉTAPE 1 — CARTOGRAPHIER LES RISQUES DE LA MODIFICATION
+
+Lister règles modifiées, appelants, tables, interfaces, autorisations, jobs et volumes. Classer les risques par impact et probabilité. Relier chaque risque à au moins une preuve de test.
+
+### ÉTAPE 2 — RÉPARTIR LES TESTS PAR NIVEAU
+
+Utiliser ABAP Unit pour la logique déterministe, tests d’intégration pour base et API, tests de transaction pour le flux, contrôles d’autorisation pour les rôles et mesures dédiées pour la performance. Ne faire pas porter toutes les preuves à une recette manuelle unique.
+
+### ÉTAPE 3 — DÉFINIR DONNÉES ET RÉSULTATS ATTENDUS
+
+Créer des cas nominaux, limites, erreurs et non-régression avec clés identifiables. Définir les résultats avant exécution. Prévoir nettoyage et idempotence afin que les tests soient répétables.
+
+### ÉTAPE 4 — AUTOMATISER LE SOCLE RAPIDE
+
+Ajouter les tests ABAP Unit au composant et les exécuter avec syntaxe, SLIN et ATC. Garder ce socle rapide, sans effets persistants et indépendant de l’ordre. Corriger tout test instable avant d’élargir la couverture.
+
+### ÉTAPE 5 — EXÉCUTER L’INTÉGRATION ET LA PERFORMANCE
+
+Tester le processus complet sous un utilisateur représentatif, puis mesurer le scénario critique avec le volume défini. Comparer aux références fonctionnelles et temporelles. Conserver journaux, variantes et horodatages.
+
+### ÉTAPE 6 — CONSTRUIRE LA MATRICE DE LIVRAISON
+
+Pour chaque risque, indiquer test, système, donnée, résultat et statut. Aucun risque majeur ne doit rester couvert par une affirmation sans preuve. Documenter les limites acceptées avec propriétaire et échéance.
 
 ## VÉRIFICATION
 

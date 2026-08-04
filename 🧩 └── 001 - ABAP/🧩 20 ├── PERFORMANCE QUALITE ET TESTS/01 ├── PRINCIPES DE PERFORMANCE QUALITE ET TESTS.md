@@ -50,14 +50,31 @@ Un développement est prêt lorsque son comportement est démontré, ses finding
 - [SAP Help Portal — ATC Quality Checking](https://help.sap.com/docs/ABAP_PLATFORM_NEW/c238d694b825421f940829321ffa326a/4ec1a1126e391014adc9fffe4e204223.html)
 - [SAP Help Portal — ABAP Unit](https://help.sap.com/docs/ABAP_PLATFORM_NEW/ba879a6e2ea04d9bb94c7ccd7cdac446/491cfd8926bc14cde10000000a42189b.html)
 
-## PROCÉDURE PAS À PAS
+## PROCESS
 
-1. Saisir `/nSAT`.
-2. Créer ou sélectionner une variante de mesure adaptée.
-3. Définir le programme, la transaction ou l’utilisateur à mesurer.
-4. Démarrer la mesure puis reproduire une seule fois le scénario.
-5. Arrêter et analyser le hit list, la hiérarchie d’appels et les temps nets.
-6. Répéter la mesure après correction avec les mêmes données et le même contexte.
+### ÉTAPE 1 — FIGER LE COMPORTEMENT ATTENDU
+
+Définir entrées, résultat, volume, utilisateur, mandant et contexte d’exécution. Créer des tests couvrant cas nominal, limites et erreurs avant une optimisation ou refonte. Sans oracle fonctionnel, une amélioration de temps peut masquer une régression.
+
+### ÉTAPE 2 — ÉTABLIR UNE MESURE DE RÉFÉRENCE
+
+Exécuter un scénario représentatif et conserver durée, accès SQL, mémoire, compteurs et horodatage. Choisir `SAT`, `ST05`, `SQLM`, Memory Inspector ou un autre outil selon le coût suspecté. Ne pas cumuler des traces inutiles.
+
+### ÉTAPE 3 — LOCALISER LE COÛT DOMINANT
+
+Identifier une méthode, une instruction SQL, une boucle, un volume ou une copie soutenus par la mesure. Distinguer temps propre, temps appelé, attente et nombre d’exécutions. Formuler une cause vérifiable avant de modifier le code.
+
+### ÉTAPE 4 — CORRIGER UNE SEULE CAUSE
+
+Réduire le volume lu, le nombre d’allers-retours, la complexité d’accès ou les copies selon la preuve. Conserver un code lisible et une sémantique identique. Ne pas remplacer une API stable par une astuce non mesurée.
+
+### ÉTAPE 5 — EXÉCUTER LES CONTRÔLES DE QUALITÉ
+
+Lancer contrôle syntaxique, SLIN, SCI ou ATC selon la gouvernance, puis les tests ABAP Unit et tests d’intégration pertinents. Corriger les findings introduits. Une amélioration locale n’est acceptable que si le périmètre complet reste valide.
+
+### ÉTAPE 6 — REMESURER ET COMPARER
+
+Répéter le même scénario avec le même volume et le même contexte. Comparer les métriques avant/après et le résultat métier. Conserver la mesure uniquement si le gain est réel, stable et supérieur au coût de complexité ajouté.
 
 ## ERREURS FRÉQUENTES
 

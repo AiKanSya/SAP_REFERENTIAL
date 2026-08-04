@@ -40,6 +40,32 @@ Tenir compte des types, décimales, arrondis, dates et ordres de lignes. Pour un
 
 Le message doit indiquer le comportement attendu et le contexte, pas seulement « test KO ».
 
+## PROCESS
+
+### ÉTAPE 1 — FORMULER UNE ATTENTE UNIQUE
+
+Écrire le comportement en termes d’entrée, action et résultat observable. Choisir une valeur attendue indépendante de l’implémentation. Si plusieurs résultats n’appartiennent pas au même comportement, créer plusieurs tests.
+
+### ÉTAPE 2 — CHOISIR L’ASSERTION LA PLUS PRÉCISE
+
+Utiliser `ASSERT_EQUALS` pour une valeur, `ASSERT_INITIAL` ou `ASSERT_NOT_INITIAL` pour l’état initial, `ASSERT_TRUE`/`FALSE` pour un booléen et `ASSERT_BOUND` pour une référence. Réserver `FAIL` à l’absence d’un événement attendu comme une exception.
+
+### ÉTAPE 3 — NORMALISER UNIQUEMENT LA SÉMANTIQUE NON SIGNIFICATIVE
+
+Trier une table si l’ordre n’appartient pas au contrat. Normaliser les arrondis, fuseaux ou formats selon les règles métier. Ne pas supprimer une différence qui devrait justement faire échouer le test.
+
+### ÉTAPE 4 — AJOUTER UN MESSAGE ACTIONNABLE
+
+Renseigner `MSG` avec le comportement et le contexte utile. Ne pas y placer un simple doublon de la valeur réelle ni une donnée sensible. Le développeur doit comprendre l’intention sans relire tout le test.
+
+### ÉTAPE 5 — VÉRIFIER QUE LE TEST DÉTECTE LE DÉFAUT
+
+Dans un essai local, modifier temporairement l’entrée ou l’attente et confirmer l’échec sur l’assertion prévue. Restaurer immédiatement. Un test qui reste vert malgré un comportement faux ne protège rien.
+
+### ÉTAPE 6 — EXÉCUTER LE GROUPE COMPLET
+
+Relancer tous les tests du composant et vérifier qu’un échec n’est pas masqué par une exception précédente ou une fixture partagée. Conserver des assertions peu nombreuses et directement liées au nom de la méthode.
+
 ## Références SAP officielles
 
 - [SAP Help Portal — ABAP Unit](https://help.sap.com/docs/ABAP_PLATFORM_NEW/ba879a6e2ea04d9bb94c7ccd7cdac446/491cfd8926bc14cde10000000a42189b.html)

@@ -43,14 +43,31 @@ Il détecte des problèmes reconnaissables statiquement. Il ne valide ni le rés
 
 - [ABAP Keyword Documentation — Extended Program Check](https://help.sap.com/doc/abapdocu_latest_index_htm/latest/en-US/ABENEXTENDED_PROGRAM_CHECK_GUIDL.html)
 
-## PROCÉDURE PAS À PAS
+## PROCESS
 
-1. Lire la définition et identifier les prérequis du chapitre.
-2. Choisir un objet Z ou un scénario de démonstration sans impact métier.
-3. Reproduire l’exemple dans un système de développement et relever les données d’entrée.
-4. Contrôler la syntaxe ou la configuration avant activation/exécution.
-5. Comparer le résultat observé avec la section **Vérification**.
-6. Documenter toute différence liée à la release, aux autorisations ou au paramétrage du système.
+### ÉTAPE 1 — ACTIVER UNE VERSION SYNTACTIQUEMENT VALIDE
+
+Contrôler et activer le programme et ses includes. SLIN analyse le code disponible, mais ne remplace pas le contrôle syntaxique. Relever la version et le système utilisés.
+
+### ÉTAPE 2 — LANCER SLIN SUR LE BON PÉRIMÈTRE
+
+Saisir `/nSLIN` ou utiliser l’entrée de contrôle étendu de l’éditeur. Renseigner le programme, la classe ou l’objet supporté puis sélectionner les groupes de contrôles nécessaires. Exécuter sans élargir inutilement à tout le système.
+
+### ÉTAPE 3 — CLASSER LES MESSAGES
+
+Regrouper les findings par flux de données, interface, exception, instruction dangereuse ou code inaccessible. Ouvrir la documentation de chaque règle. Commencer par les erreurs susceptibles de produire un défaut runtime.
+
+### ÉTAPE 4 — NAVIGUER VERS LA SOURCE
+
+Ouvrir la ligne indiquée et analyser le chemin d’exécution complet. Vérifier les types, valeurs initiales et appels. Ne pas neutraliser le finding par un pragma ou pseudo-commentaire avant d’avoir prouvé son absence d’impact.
+
+### ÉTAPE 5 — CORRIGER ET TESTER LE CAS SIGNALÉ
+
+Modifier le code, ajouter un test reproduisant la condition puis exécuter le périmètre fonctionnel. Pour un finding considéré faux positif, conserver la preuve et appliquer uniquement le mécanisme d’exemption autorisé.
+
+### ÉTAPE 6 — RELANCER SLIN ET ATC
+
+Vérifier la disparition du message et l’absence de nouveaux findings. Exécuter ensuite la variante ATC ou SCI du projet, plus large que SLIN, avant livraison.
 
 ## VÉRIFICATION
 

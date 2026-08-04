@@ -43,14 +43,31 @@ L’objet d’archivage `BC_SBAL` permet d’archiver les journaux applicatifs. 
 - documenter la responsabilité du nettoyage ;
 - surveiller les tables techniques et les temps de sélection `SLG1`.
 
-## PROCÉDURE PAS À PAS
+## PROCESS
 
-1. Saisir `/nSLG1`.
-2. Renseigner objet, sous-objet, identifiant externe, utilisateur et période selon les informations du traitement.
-3. Exécuter la recherche.
-4. Ouvrir le journal correspondant au bon horodatage.
-5. Analyser l’en-tête, les niveaux de gravité et le contexte des messages.
-6. Exporter ou transmettre uniquement les informations nécessaires, sans données sensibles inutiles.
+### ÉTAPE 1 — DÉFINIR LA POLITIQUE PAR OBJET
+
+Pour chaque objet et sous-objet, fixer durée opérationnelle, obligation d’audit, données personnelles, volumétrie et besoin de reprise. Déterminer qui autorise la suppression et si l’archivage `BC_SBAL` est requis.
+
+### ÉTAPE 2 — ALIGNER LA DATE D’EXPIRATION
+
+Lors de la création du log, renseigner la date de suppression uniquement selon cette politique. Vérifier plusieurs journaux dans `SLG1` et confirmer que leur expiration correspond au domaine. Corriger le producteur avant de planifier une purge incohérente.
+
+### ÉTAPE 3 — TESTER LA SÉLECTION DANS `SLG2`
+
+Saisir `/nSLG2`, filtrer sur objet, sous-objet et période ou expiration. Commencer dans un environnement non productif et examiner le périmètre sélectionné. Ne jamais lancer une suppression sans filtre compris et validé.
+
+### ÉTAPE 4 — PLANIFIER LA SUPPRESSION EN BATCH
+
+Pour un volume important, sauvegarder la sélection dans une variante et planifier le programme standard via la procédure d’exploitation. Utiliser un utilisateur technique autorisé. Conserver le journal du job et les critères appliqués.
+
+### ÉTAPE 5 — UTILISER L’ARCHIVAGE SI NÉCESSAIRE
+
+Avec l’équipe archivage, configurer l’objet `BC_SBAL`, exécuter d’abord l’écriture des archives puis la suppression des données archivées. Tester lecture et restitution selon les obligations avant la première purge productive.
+
+### ÉTAPE 6 — CONTRÔLER APRÈS TRAITEMENT
+
+Comparer nombre de journaux, période accessible et volumétrie avant/après. Vérifier dans `SLG1` qu’un log à conserver reste présent et qu’un log expiré est supprimé ou archivé. Surveiller régulièrement la durée des recherches et la croissance des tables BAL.
 
 ## VÉRIFICATION
 
@@ -90,7 +107,6 @@ Ordre de transport  :
 - [Archiving Object BC_SBAL — SAP Help Portal](https://help.sap.com/docs/ABAP_PLATFORM_NEW/addb96cd90c945dfb3182865363bbc47/4e4a2209872c3b0fe10000000a42189e.html)
 - [Deletion of Business Application Logs — SAP Help Portal](https://help.sap.com/docs/btc/security-guide/deletion-of-business-application-logs)
 - [Database Interface — SAP Help Portal](https://help.sap.com/docs/ABAP_PLATFORM_NEW/addb96cd90c945dfb3182865363bbc47/4e21021635d44180e10000000a15822b.html)
-
 
 ---
 

@@ -43,6 +43,32 @@ Ces objectifs sont différents. Aucun mode unique ne convient à tous les traite
 
 Ne pas ajouter un `COMMIT WORK` uniquement pour sauvegarder le journal sans analyser son impact sur la transaction métier. Un commit mal placé découpe la SAP LUW et peut rendre un rollback impossible.
 
+## PROCESS
+
+### ÉTAPE 1 — DÉFINIR LA RELATION AVEC LA TRANSACTION MÉTIER
+
+Décider si le journal doit être validé avec les données métier, être sauvegardé en update task ou survivre à un rollback. Documenter ce comportement pour les succès et les erreurs. Ne pas choisir le mode uniquement pour rendre `SLG1` immédiatement visible.
+
+### ÉTAPE 2 — CONSTITUER LA TABLE DE HANDLES
+
+Ajouter à `BAL_T_LOGH` uniquement les journaux créés par le composant. Vérifier chaque handle et éliminer les doublons. Éviter `I_SAVE_ALL` dans une bibliothèque réutilisable.
+
+### ÉTAPE 3 — APPELER `BAL_DB_SAVE`
+
+Passer la table dans `I_T_LOG_HANDLE` et récupérer les numéros créés si l’appelant doit les conserver. Contrôler `sy-subrc` immédiatement. Restituer une erreur de journalisation distincte de l’erreur métier initiale.
+
+### ÉTAPE 4 — GÉRER L’ÉCHEC DE SAUVEGARDE
+
+Selon la criticité, écrire un message dans le journal de job, le spool ou une trace de secours. Ne pas lancer un commit supplémentaire ni masquer l’échec du traitement principal. Conserver l’identifiant externe afin de corréler une tentative ultérieure.
+
+### ÉTAPE 5 — TERMINER LA LUW AU BON NIVEAU
+
+Laisser l’orchestrateur métier exécuter commit ou rollback conformément au contrat. Vérifier le comportement de la sauvegarde BAL dans les deux chemins. Une API de journalisation ne doit pas posséder implicitement le commit global.
+
+### ÉTAPE 6 — CONTRÔLER NUMÉRO ET VISIBILITÉ
+
+Après validation, rechercher le journal dans `SLG1` et rapprocher handle, identifiant externe et numéro persistant. Tester un succès, un rollback métier et un échec de sauvegarde simulé dans un scénario Z contrôlé.
+
 ## VÉRIFICATION
 
 - Le journal est retrouvable dans `SLG1` avec objet, sous-objet et période.
@@ -87,7 +113,6 @@ ENDIF.
 
 - [Database Interface — SAP Help Portal](https://help.sap.com/docs/ABAP_PLATFORM_NEW/addb96cd90c945dfb3182865363bbc47/4e21021635d44180e10000000a15822b.html)
 - [Writing Application Logs to the Database — SAP Help Portal](https://help.sap.com/docs/ABAP_PLATFORM_NEW/b5670aaaa2364a29935f40b16499972d/d15d974dfca34671ae3b62ddf0baf8ae.html)
-
 
 ---
 

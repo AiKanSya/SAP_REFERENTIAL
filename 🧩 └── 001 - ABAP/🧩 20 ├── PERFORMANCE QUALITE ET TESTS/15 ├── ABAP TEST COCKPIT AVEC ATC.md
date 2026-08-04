@@ -47,14 +47,31 @@ Les variantes, contrôles disponibles, blocages de transport et transactions d�
 - [SAP Help Portal — ATC Quality Checking](https://help.sap.com/docs/ABAP_PLATFORM_NEW/c238d694b825421f940829321ffa326a/4ec1a1126e391014adc9fffe4e204223.html)
 - [SAP Help Portal — Running Local Quality Checks with ATC](https://help.sap.com/docs/ABAP_PLATFORM_NEW/ba879a6e2ea04d9bb94c7ccd7cdac446/ca5e041535c0491db596d3ca6658cd7d.html)
 
-## PROCÉDURE PAS À PAS
+## PROCESS
 
-1. Saisir `/nATC` ou utiliser l’entrée ATC disponible dans le système.
-2. Choisir une variante de contrôle autorisée.
-3. Lancer le contrôle sur l’objet, le package ou l’ordre de transport.
-4. Classer les findings par priorité et corriger d’abord les erreurs bloquantes.
-5. Demander une exemption uniquement avec justification, propriétaire et échéance.
-6. Relancer le contrôle avant libération.
+### ÉTAPE 1 — IDENTIFIER LE MODE ATC DU SYSTÈME
+
+Vérifier si les contrôles sont locaux, centraux ou intégrés aux transports. Relever la variante obligatoire et la version cible. Utiliser l’entrée `ATC` ou l’action de contrôle disponible sur les objets selon la configuration.
+
+### ÉTAPE 2 — DÉFINIR LE PÉRIMÈTRE
+
+Sélectionner objet, package ou demande contenant tous les développements livrés. Inclure dépendances et objets générés pertinents. Éviter un contrôle limité au seul fichier récemment ouvert.
+
+### ÉTAPE 3 — LANCER LE RUN
+
+Choisir la variante autorisée, exécuter et conserver l’identifiant, la date et le périmètre. Pour un contrôle central, attendre la fin du run et vérifier la version du code analysée.
+
+### ÉTAPE 4 — ANALYSER PAR PRIORITÉ
+
+Ouvrir chaque finding, sa documentation et la navigation source. Classer les erreurs bloquantes, les avertissements et les informations selon la gouvernance. Vérifier si le finding porte sur le code Z ou une dépendance non modifiable.
+
+### ÉTAPE 5 — CORRIGER ET TESTER
+
+Corriger la cause, contrôler la syntaxe et exécuter ABAP Unit ainsi que les tests fonctionnels. Pour une exemption, fournir contexte, preuve de non-applicabilité, propriétaire et échéance. Ne pas utiliser une exemption comme report indéfini.
+
+### ÉTAPE 6 — RELANCER AVANT LIBÉRATION
+
+Exécuter le même contrôle sur la version finale de la demande. Vérifier le statut des exemptions et l’absence de finding bloquant. Conserver le résultat de référence associé au transport.
 
 ## VÉRIFICATION
 

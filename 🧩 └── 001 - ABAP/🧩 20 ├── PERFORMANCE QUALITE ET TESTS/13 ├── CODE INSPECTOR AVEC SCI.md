@@ -45,14 +45,31 @@ ATC réutilise l’infrastructure et les contrôles du Code Inspector, tout en a
 - [SAP Help Portal — Creating Code Inspections](https://help.sap.com/docs/ABAP_PLATFORM_NEW/ba879a6e2ea04d9bb94c7ccd7cdac446/4926dff4c93016b8e10000000a42189d.html)
 - [SAP Help Portal — ATC Quality Checking](https://help.sap.com/docs/ABAP_PLATFORM_NEW/c238d694b825421f940829321ffa326a/4ec1a1126e391014adc9fffe4e204223.html)
 
-## PROCÉDURE PAS À PAS
+## PROCESS
 
-1. Saisir `/nSCI`.
-2. Créer ou sélectionner une variante de contrôles approuvée par le projet.
-3. Créer une inspection sur le package, l’objet ou l’ensemble de transport visé.
-4. Exécuter l’inspection.
-5. Analyser chaque finding, corriger la cause ou documenter l’exception selon la gouvernance.
-6. Relancer jusqu’à obtenir le niveau de qualité attendu.
+### ÉTAPE 1 — CHOISIR LA VARIANTE APPROUVÉE
+
+Saisir `/nSCI` et sélectionner une variante existante correspondant aux règles du projet. Ouvrir sa définition en affichage pour connaître les contrôles et priorités. Ne pas créer une variante plus permissive afin de faire disparaître des findings.
+
+### ÉTAPE 2 — DÉFINIR LE PÉRIMÈTRE D’OBJETS
+
+Créer ou sélectionner une liste d’objets : objet individuel, package, ensemble ou demande selon les possibilités du système. Vérifier que les includes et classes dépendantes livrés sont couverts.
+
+### ÉTAPE 3 — CRÉER L’INSPECTION
+
+Associer la variante et le périmètre, donner un nom explicite puis lancer l’exécution. Conserver la date, l’utilisateur et le périmètre. Éviter de réutiliser une ancienne inspection après modification du code sans la relancer.
+
+### ÉTAPE 4 — ANALYSER LES FINDINGS
+
+Trier par priorité et catégorie. Ouvrir la documentation et naviguer vers la source. Distinguer défaut, risque, dette et message non applicable avec une justification technique vérifiable.
+
+### ÉTAPE 5 — CORRIGER ET EXÉCUTER LES TESTS
+
+Corriger d’abord les findings bloquants, puis relancer les tests ABAP Unit et fonctionnels. Utiliser une exemption ou pseudo-commentaire uniquement selon la gouvernance, avec motif spécifique.
+
+### ÉTAPE 6 — RELANCER L’INSPECTION
+
+Exécuter de nouveau sur le même périmètre et comparer les résultats. Vérifier qu’aucun finding nouveau n’est introduit. Conserver le run final comme preuve de livraison si la procédure du projet l’exige.
 
 ## VÉRIFICATION
 

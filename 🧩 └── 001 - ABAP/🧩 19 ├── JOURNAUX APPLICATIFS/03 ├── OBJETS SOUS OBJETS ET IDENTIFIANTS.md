@@ -49,6 +49,32 @@ ls_log-extnumber = |IMPORT_PRODUCTS_{ sy-datum }_{ sy-uzeit }|.
 - documenter la convention de nommage dans le dépôt technique ;
 - réutiliser un objet existant si le domaine et les autorisations sont identiques.
 
+## PROCESS
+
+### ÉTAPE 1 — CARTOGRAPHIER LE DOMAINE FONCTIONNEL
+
+Regrouper les traitements ayant le même propriétaire, les mêmes autorisations et la même politique de rétention. Définir un objet par domaine durable, pas par report, ticket ou version. Vérifier les objets existants dans `SLG0` avant d’en créer un nouveau.
+
+### ÉTAPE 2 — DÉFINIR LES SOUS-OBJETS
+
+Découper le domaine par processus réellement filtrable : import, export, création ou synchronisation. Limiter le nombre de sous-objets et documenter leur sémantique. Deux traitements partageant un nom mais pas les mêmes exploitants ne doivent pas être regroupés artificiellement.
+
+### ÉTAPE 3 — DÉFINIR L’IDENTIFIANT EXTERNE
+
+Choisir une clé disponible dès le début du traitement : identifiant de lot, fichier, document ou corrélation. Définir format, longueur, casse et règle d’unicité. N’y placer aucune donnée confidentielle utilisée seulement pour le diagnostic interne.
+
+### ÉTAPE 4 — CRÉER ET TRANSPORTER LA CONFIGURATION
+
+Maintenir l’objet et les sous-objets dans `SLG0`, avec descriptions explicites. Affecter le package et la demande de transport. Vérifier la présence de la configuration dans le système cible avant d’exécuter le programme.
+
+### ÉTAPE 5 — UTILISER DES CONSTANTES DANS LE CODE
+
+Centraliser objet et sous-objet dans une classe ou interface Z. Construire l’identifiant externe dans une méthode dédiée et contrôlée. Éviter les littéraux divergents répétés dans plusieurs programmes.
+
+### ÉTAPE 6 — TESTER LA RECHERCHE OPÉRATIONNELLE
+
+Créer plusieurs journaux avec des lots différents, puis les retrouver dans `SLG1` par objet, sous-objet, identifiant et période. Vérifier qu’un exploitant peut isoler une exécution sans connaître le numéro interne BAL.
+
 ## VÉRIFICATION
 
 - Le journal est retrouvable dans `SLG1` avec objet, sous-objet et période.
@@ -82,7 +108,6 @@ ls_log-extnumber = |IMPORT_PRODUCTS_{ sy-datum }_{ sy-uzeit }|.
 
 - [Which Data Can Be Collected? — SAP Help Portal](https://help.sap.com/docs/SAP_NETWEAVER_AS_ABAP_752/addb96cd90c945dfb3182865363bbc47/4e2106b735d44180e10000000a15822b.html)
 - [Analyze Logs — SAP Help Portal](https://help.sap.com/docs/ABAP_PLATFORM_NEW/addb96cd90c945dfb3182865363bbc47/4e21048535d44180e10000000a15822b.html)
-
 
 ---
 

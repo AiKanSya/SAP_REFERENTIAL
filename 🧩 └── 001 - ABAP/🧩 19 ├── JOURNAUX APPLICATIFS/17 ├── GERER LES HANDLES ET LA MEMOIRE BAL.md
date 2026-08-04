@@ -39,6 +39,32 @@ CALL FUNCTION 'BAL_LOG_MSG_ADD'
 
 Après sauvegarde et affichage, retirer le journal de la mémoire lorsqu’il n’est plus utile. Ne pas appeler `BAL_GLB_MEMORY_REFRESH` depuis une bibliothèque générique sans connaître les autres journaux chargés par l’application.
 
+## PROCESS
+
+### ÉTAPE 1 — ATTRIBUER LA PROPRIÉTÉ DES HANDLES
+
+Le composant qui crée ou charge un journal conserve son `BALLOGHNDL`. Stocker les handles dans une instance ou un contexte d’exécution, pas dans une variable globale partagée sans cycle de vie défini.
+
+### ÉTAPE 2 — TRANSMETTRE LE HANDLE EXPLICITEMENT
+
+Passer `I_LOG_HANDLE` à chaque ajout, lecture, affichage et sauvegarde. Refuser un handle initial. Ne pas dépendre du journal implicite par défaut dès que plusieurs composants peuvent utiliser BAL dans la même session.
+
+### ÉTAPE 3 — VÉRIFIER L’EXISTENCE EN MÉMOIRE
+
+Avant une opération tardive, utiliser `BAL_LOG_EXIST` ou la recherche globale adaptée pour confirmer que le journal est encore chargé. Traiter l’absence comme une erreur de cycle de vie, pas en créant silencieusement un nouveau log.
+
+### ÉTAPE 4 — RECHERCHER ET LIRE CIBLÉ
+
+Utiliser `BAL_GLB_SEARCH_LOG`, `BAL_GLB_SEARCH_MSG`, `BAL_LOG_HDR_READ` ou `BAL_LOG_MSG_READ` avec des critères et handles précis. Vérifier que le résultat appartient à l’exécution courante avant de le modifier ou de l’afficher.
+
+### ÉTAPE 5 — SAUVEGARDER AVANT LE NETTOYAGE
+
+Persister les handles requis selon la stratégie de LUW, puis vérifier le retour. Retirer ensuite un journal avec `BAL_LOG_REFRESH` lorsqu’il n’est plus utile. Le nettoyage mémoire n’équivaut pas à une suppression en base.
+
+### ÉTAPE 6 — TESTER PLUSIEURS JOURNAUX DANS LA MÊME SESSION
+
+Créer deux logs avec des identifiants distincts, ajouter des messages alternés, sauvegarder et afficher chaque handle séparément. Nettoyer le premier puis vérifier que le second reste intact. Ce test détecte les usages dangereux de la mémoire globale.
+
 ## VÉRIFICATION
 
 - Le journal est retrouvable dans `SLG1` avec objet, sous-objet et période.
@@ -77,7 +103,6 @@ CALL FUNCTION 'BAL_LOG_MSG_ADD'
 
 - [Function Module Overview — SAP Help Portal](https://help.sap.com/docs/ABAP_PLATFORM_NEW/addb96cd90c945dfb3182865363bbc47/4e23b1720771417fe10000000a15822b.html)
 - [Basics — SAP Help Portal](https://help.sap.com/docs/ABAP_PLATFORM_NEW/addb96cd90c945dfb3182865363bbc47/4e21029235d44180e10000000a15822b.html)
-
 
 ---
 

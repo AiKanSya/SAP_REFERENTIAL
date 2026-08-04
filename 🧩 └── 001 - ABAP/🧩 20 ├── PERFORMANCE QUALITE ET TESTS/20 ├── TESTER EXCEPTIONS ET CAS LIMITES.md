@@ -42,6 +42,32 @@ Il n’est pas nécessaire de tester toutes les valeurs. Regrouper les entrées 
 
 Lorsque le comportement utilise des messages classiques, préférer isoler la logique métier dans une méthode qui retourne un résultat ou lève une exception. Les tests deviennent plus simples et moins dépendants du contexte Dynpro.
 
+## PROCESS
+
+### ÉTAPE 1 — PARTITIONNER LES ENTRÉES
+
+Lister classes d’équivalence, minimum, maximum, juste avant/après chaque borne, initial, vide, doublon et valeur invalide. Sélectionner une valeur représentative par classe plus les limites où le comportement change.
+
+### ÉTAPE 2 — DÉCLARER UN TEST PAR COMPORTEMENT
+
+Créer une méthode `FOR TESTING` dont le nom indique l’entrée et le résultat : rejet d’une quantité négative, acceptation de zéro ou table vide. Éviter un seul test parcourant tous les cas sans diagnostic précis.
+
+### ÉTAPE 3 — TESTER UNE EXCEPTION ATTENDUE
+
+Appeler la méthode dans `TRY`. Immédiatement après, utiliser `CL_ABAP_UNIT_ASSERT=>FAIL` si aucune exception n’est levée. Intercepter ensuite la classe exacte attendue, pas `CX_ROOT` si le contrat est plus précis.
+
+### ÉTAPE 4 — VÉRIFIER LE CONTENU DE L’EXCEPTION
+
+Comparer attribut, texte T100, previous ou raison selon le contrat public de la classe. Ne pas dépendre d’un texte traduit si un identifiant stable existe. Vérifier aussi qu’une exception différente n’est pas acceptée silencieusement.
+
+### ÉTAPE 5 — TESTER LES BORNES POSITIVES
+
+Ajouter les cas juste valides autour de la règle afin de détecter les erreurs `>`/`>=` et les arrondis. Tester tables vides, une ligne et doublons selon le modèle. Utiliser des dates fixes injectées plutôt que `sy-datum` implicite.
+
+### ÉTAPE 6 — EXÉCUTER INDÉPENDAMMENT
+
+Lancer chaque cas seul puis le groupe complet. Vérifier absence d’état persistant et résultat identique à chaque répétition. Compléter par un test d’intégration lorsque l’erreur dépend d’une base, d’une autorisation ou d’un framework.
+
 ## Références SAP officielles
 
 - [SAP Help Portal — ABAP Unit](https://help.sap.com/docs/ABAP_PLATFORM_NEW/ba879a6e2ea04d9bb94c7ccd7cdac446/491cfd8926bc14cde10000000a42189b.html)

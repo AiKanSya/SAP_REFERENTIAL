@@ -48,6 +48,32 @@ Ne jamais enregistrer directement :
 - données bancaires complètes ;
 - contenu métier sensible non nécessaire au diagnostic.
 
+## PROCESS
+
+### ÉTAPE 1 — CHOISIR ENTRE T100 ET TEXTE LIBRE
+
+Utiliser T100 pour un message stable, traduisible et réutilisable. Réserver le texte libre à une information technique fortement dynamique. Vérifier qu’aucune variable ne contient de secret ou de donnée personnelle inutile.
+
+### ÉTAPE 2 — CONSTRUIRE UN TEXTE BORNÉ
+
+Préparer le texte dans un champ compatible avec la signature de `BAL_LOG_MSG_ADD_FREE_TEXT`. Inclure la clé de corrélation utile et l’action réalisée, sans copier un payload complet. Contrôler la longueur afin d’éviter une troncature silencieuse.
+
+### ÉTAPE 3 — AJOUTER LE TEXTE AU HANDLE
+
+Passer `I_LOG_HANDLE`, le type de message, la classe de problème et le texte. Traiter `LOG_NOT_FOUND`, `MSG_INCONSISTENT` et `LOG_IS_FULL`. Une erreur d’ajout doit suivre la politique de secours du composant.
+
+### ÉTAPE 4 — CAPTURER UN MESSAGE SYSTÈME IMMÉDIATEMENT
+
+Après une API renseignant `sy-msgid`, `sy-msgno`, `sy-msgty` et `sy-msgv1` à `sy-msgv4`, copier ces valeurs avant toute autre instruction susceptible de les écraser. Construire ensuite `BAL_S_MSG` et appeler `BAL_LOG_MSG_ADD`.
+
+### ÉTAPE 5 — SAUVEGARDER LE JOURNAL CIBLÉ
+
+Passer uniquement le handle concerné à `BAL_DB_SAVE`. Contrôler le retour et respecter la stratégie de LUW. Ne pas exécuter un commit supplémentaire uniquement pour un texte de diagnostic.
+
+### ÉTAPE 6 — VÉRIFIER RENDU ET CONFIDENTIALITÉ
+
+Ouvrir le journal dans `SLG1` et vérifier texte, gravité, troncature et recherche. Tester des accents, une valeur longue et une erreur système réelle. Faire relire le contenu du journal du point de vue des autorisations et de la protection des données.
+
 ## VÉRIFICATION
 
 - Le journal est retrouvable dans `SLG1` avec objet, sous-objet et période.
@@ -95,7 +121,6 @@ CALL FUNCTION 'BAL_LOG_MSG_ADD_FREE_TEXT'
 
 - [Basics — SAP Help Portal](https://help.sap.com/docs/ABAP_PLATFORM_NEW/addb96cd90c945dfb3182865363bbc47/4e21029235d44180e10000000a15822b.html)
 - [Function Module Overview — SAP Help Portal](https://help.sap.com/docs/ABAP_PLATFORM_NEW/addb96cd90c945dfb3182865363bbc47/4e23b1720771417fe10000000a15822b.html)
-
 
 ---
 

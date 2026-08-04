@@ -60,14 +60,31 @@ L’instruction `MESSAGE ... INTO` formate le texte sans interrompre le traiteme
 - variables structurées ;
 - recherche plus précise par classe et numéro.
 
-## PROCÉDURE PAS À PAS
+## PROCESS
 
-1. Saisir `/nSE91`.
-2. Entrer une classe de messages Z puis choisir **Créer** ou **Modifier**.
-3. Ajouter un numéro libre et un texte court ; utiliser `&1` à `&4` pour les variables.
-4. Enregistrer dans le package et l’ordre appropriés.
-5. Activer si le système le demande.
-6. Appeler le message depuis un report de test et vérifier le texte dans la langue de connexion.
+### ÉTAPE 1 — CRÉER LE MESSAGE DANS `SE91`
+
+Créer ou ouvrir une classe Z, choisir un numéro libre et rédiger un texte stable avec au maximum les variables prévues. Maintenir les traductions nécessaires. Éviter d’insérer directement un texte sensible dans une variable.
+
+### ÉTAPE 2 — CRÉER LE JOURNAL ET CONSERVER SON HANDLE
+
+Construire l’en-tête, appeler `BAL_LOG_CREATE` et vérifier le handle. Le message ne doit être ajouté qu’après une création réussie. Utiliser un objet et un sous-objet configurés dans `SLG0`.
+
+### ÉTAPE 3 — CONSTRUIRE `BAL_S_MSG`
+
+Renseigner `MSGTY`, `MSGID`, `MSGNO` et `MSGV1` à `MSGV4` avec les types attendus. Définir la classe de problème et le niveau de détail si le scénario les utilise. Ne pas transformer un succès en erreur uniquement pour le rendre visible.
+
+### ÉTAPE 4 — APPELER `BAL_LOG_MSG_ADD`
+
+Passer le handle et la structure de message, puis traiter `LOG_NOT_FOUND`, `MSG_INCONSISTENT` et `LOG_IS_FULL`. Contrôler `sy-subrc` avant d’ajouter le message suivant.
+
+### ÉTAPE 5 — SAUVEGARDER LE JOURNAL
+
+Ajouter le handle à une table `BAL_T_LOGH` et appeler `BAL_DB_SAVE`. Aligner la sauvegarde sur la LUW du traitement. Ne pas utiliser `I_SAVE_ALL` dans un composant qui ne possède pas tous les logs de la session.
+
+### ÉTAPE 6 — VÉRIFIER TEXTE ET VARIABLES
+
+Ouvrir le journal dans `SLG1` avec plusieurs langues de connexion si elles sont supportées. Vérifier gravité, texte, variables, texte long et recherche. Tester aussi une classe, un numéro ou un type de message incohérents.
 
 ## VÉRIFICATION
 
@@ -119,7 +136,6 @@ CALL FUNCTION 'BAL_LOG_MSG_ADD'
 - [Basics — SAP Help Portal](https://help.sap.com/docs/ABAP_PLATFORM_NEW/addb96cd90c945dfb3182865363bbc47/4e21029235d44180e10000000a15822b.html)
 - [Which Data Can Be Collected? — SAP Help Portal](https://help.sap.com/docs/SAP_NETWEAVER_AS_ABAP_752/addb96cd90c945dfb3182865363bbc47/4e2106b735d44180e10000000a15822b.html)
 - [Application Log Methodology Part II — SAP Help Portal](https://help.sap.com/docs/SUPPORT_CONTENT/ABAP/3353524102.html)
-
 
 ---
 

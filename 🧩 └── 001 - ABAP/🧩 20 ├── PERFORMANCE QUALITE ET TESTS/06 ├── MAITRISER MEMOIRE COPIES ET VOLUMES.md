@@ -50,6 +50,32 @@ flowchart LR
 
 Réduire d’abord le volume lu et conservé. Une micro-optimisation de quelques structures ne compense pas une extraction inutile de millions de lignes.
 
+## PROCESS
+
+### ÉTAPE 1 — REPRODUIRE LE PIC MÉMOIRE
+
+Fixer programme, variante, volume et étape où la consommation augmente. Relever les tailles de sélections, tables internes et transformations. Éviter de mesurer un scénario réduit qui n’atteint pas le comportement problématique.
+
+### ÉTAPE 2 — PRENDRE DES SNAPSHOTS COMPARABLES
+
+Avec Memory Inspector, capturer avant le chargement, après le pic et après le nettoyage attendu. Nommer les snapshots avec l’étape et l’horodatage. Comparer classes d’objets, tables et chemins de référence.
+
+### ÉTAPE 3 — IDENTIFIER LA RÉTENTION
+
+Déterminer si la mémoire provient du volume nécessaire, de copies, d’un cache non borné ou de références maintenant des objets accessibles. Remonter le chemin de référence avant d’ajouter `FREE` au hasard.
+
+### ÉTAPE 4 — RÉDUIRE À LA SOURCE
+
+Limiter les colonnes et lignes SQL, traiter par paquets, libérer les résultats intermédiaires et éviter plusieurs représentations complètes. Utiliser `ASSIGNING` ou références pour les accès en place lorsque leur durée de vie reste maîtrisée.
+
+### ÉTAPE 5 — LIBÉRER AU BON MOMENT
+
+Utiliser `FREE` pour une grande donnée réellement devenue inutile alors que le processus continue. Laisser la fin de portée gérer les variables locales ordinaires. Ne pas libérer une table encore référencée ou nécessaire à une reprise.
+
+### ÉTAPE 6 — REPRENDRE LES SNAPSHOTS ET TESTS
+
+Répéter le même volume et comparer pic, mémoire retenue et durée. Vérifier le résultat métier et la stabilité en batch. Une baisse mémoire accompagnée d’un temps ou d’un nombre de lectures excessif doit être évaluée globalement.
+
 ## Références SAP officielles
 
 - [SAP Help Portal — Memory Inspector Concepts](https://help.sap.com/docs/ABAP_PLATFORM_NEW/ba879a6e2ea04d9bb94c7ccd7cdac446/8884fb5269d34838a1f119b41dcdbc57.html)

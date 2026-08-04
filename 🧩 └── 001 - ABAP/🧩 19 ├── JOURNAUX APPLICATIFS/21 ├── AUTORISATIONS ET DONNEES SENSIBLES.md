@@ -44,14 +44,31 @@ Masquer ou tronquer les valeurs. Préférer un identifiant de corrélation perme
 
 Tester les rôles avec `SU53` après un refus et faire analyser la trace d’autorisation avec les outils Basis appropriés. Ne pas contourner un refus en élargissant `S_APPL_LOG` à tous les objets sans justification.
 
-## PROCÉDURE PAS À PAS
+## PROCESS
 
-1. Saisir `/nSAT`.
-2. Créer ou sélectionner une variante de mesure adaptée.
-3. Définir le programme, la transaction ou l’utilisateur à mesurer.
-4. Démarrer la mesure puis reproduire une seule fois le scénario.
-5. Arrêter et analyser le hit list, la hiérarchie d’appels et les temps nets.
-6. Répéter la mesure après correction avec les mêmes données et le même contexte.
+### ÉTAPE 1 — CLASSER LES DONNÉES JOURNALISÉES
+
+Lister les identifiants, messages, contextes et payloads envisagés. Marquer secrets, données personnelles, financières ou techniques sensibles. Supprimer tout champ qui n’est pas nécessaire au diagnostic et définir les règles de masquage restantes.
+
+### ÉTAPE 2 — DÉCOUPER OBJETS ET SOUS-OBJETS
+
+Séparer les domaines dont les populations autorisées diffèrent. Vérifier que la nomenclature `SLG0` permet d’appliquer `S_APPL_LOG` sans donner accès à des journaux étrangers au rôle. Ne pas utiliser un objet unique pour toutes les applications Z.
+
+### ÉTAPE 3 — CONSTRUIRE LES RÔLES MINIMAUX
+
+Avec l’équipe sécurité, définir `ACTVT`, `ALG_OBJECT` et `ALG_SUBOBJ` strictement nécessaires. Distinguer consultation, administration et suppression. L’autorisation de transaction ne remplace pas le contrôle sur les objets de journal.
+
+### ÉTAPE 4 — TESTER UTILISATEUR AUTORISÉ ET REFUSÉ
+
+Créer des logs de deux périmètres, puis ouvrir `SLG1` avec des utilisateurs représentatifs. Vérifier l’accès au périmètre autorisé et le refus de l’autre. Après un refus, utiliser `SU53` ou une trace ciblée selon la procédure sécurité.
+
+### ÉTAPE 5 — VÉRIFIER LE CONTENU RÉEL
+
+Examiner en-têtes, variables T100, textes libres, exceptions et contextes dans `SLG1`. Tester les erreurs techniques, car elles contiennent souvent plus d’informations que le cas nominal. Confirmer qu’aucun secret complet n’apparaît dans un export ou un spool.
+
+### ÉTAPE 6 — VALIDER RÉTENTION ET TRAÇABILITÉ
+
+Aligner la durée de conservation sur la sensibilité et les obligations. Tester suppression ou archivage avec les mêmes rôles. Documenter propriétaire, justification des champs conservés et procédure de traitement d’un incident de confidentialité.
 
 ## VÉRIFICATION
 
@@ -90,7 +107,6 @@ Ordre de transport  :
 
 - [Authorization Objects — SAP Help Portal](https://help.sap.com/docs/SAP_ERP/da5ab0fa48b34143a25d0e08448f5219/9301c5536a51204be10000000a174cb4.html)
 - [Application Logging — SAP Help Portal](https://help.sap.com/docs/ABAP_PLATFORM_NEW/864321b9b3dd487d94c70f6a007b0397/c769bcc9f36611d3a6510000e835363f.html)
-
 
 ---
 

@@ -9,7 +9,7 @@ Remplacer ponctuellement une dépendance difficile à contrôler dans un test un
 Le code productif déclare une couture :
 
 ```abap
-" Mesurer la requête avec un volume représentatif avant de l’optimiser.
+" Isoler cet accès direct uniquement pour tester le code existant.
 TEST-SEAM read_configuration.
   SELECT SINGLE value
     FROM zdev_config
@@ -53,6 +53,32 @@ Pendant l’exécution de cette méthode de test, l’injection remplace le cont
 
 Pour un nouveau code objet, préférer une dépendance passée au constructeur ou à une méthode. Utiliser `TEST-SEAM` principalement pour rendre testable un code existant sans refonte immédiate.
 
+## PROCESS
+
+### ÉTAPE 1 — VÉRIFIER LA RELEASE
+
+Contrôler la disponibilité de `TEST-SEAM` et `TEST-INJECTION` sur le système cible. Si la syntaxe n’est pas supportée, utiliser une interface injectable ou une autre technique compatible. Ne copier pas l’exemple sans contrôle syntaxique.
+
+### ÉTAPE 2 — ISOLER UNE DÉPENDANCE PRÉCISE
+
+Choisir un accès direct difficile à contrôler : lecture de configuration, date ou appel legacy. Encadrer uniquement cette zone avec un nom de seam stable. Ne pas englober la logique métier que le test doit réellement exécuter.
+
+### ÉTAPE 3 — CONSERVER UN COMPORTEMENT PRODUCTIF INCHANGÉ
+
+Placer le code existant entre `TEST-SEAM` et `END-TEST-SEAM` sans modifier sa sémantique. Contrôler et activer. Exécuter les tests fonctionnels avant d’ajouter l’injection.
+
+### ÉTAPE 4 — CRÉER L’INJECTION DANS LE TEST
+
+Dans la méthode `FOR TESTING`, déclarer `TEST-INJECTION` avec le même nom et affecter un résultat déterministe. Fournir uniquement les données que le seam productif aurait produites.
+
+### ÉTAPE 5 — APPELER LE CODE ET ASSERTIR
+
+Exécuter la méthode publique du composant ; l’injection remplace le seam pendant ce test. Vérifier le résultat observable. Ajouter un autre test avec une injection différente pour les erreurs ou valeurs limites.
+
+### ÉTAPE 6 — PLANIFIER LA REFACTORISATION
+
+Documenter la dépendance masquée par le seam. Lorsqu’une évolution le permet, extraire une interface et injecter l’implémentation au constructeur. Retirer alors seam et injections après équivalence des tests.
+
 ## Références SAP officielles
 
 - [ABAP Keyword Documentation — TEST-INJECTION](https://help.sap.com/doc/abapdocu_latest_index_htm/latest/en-US/ABAPTEST-INJECTION_SHORTREF.html)
@@ -78,7 +104,7 @@ Pour un nouveau code objet, préférer une dépendance passée au constructeur o
 > Adapter les noms `Z*`, les types DDIC, les données et les autorisations au système cible. Effectuer un contrôle syntaxique avant activation.
 
 ```abap
-" Mesurer la requête avec un volume représentatif avant de l’optimiser.
+" Isoler cet accès direct uniquement pour tester le code existant.
 TEST-SEAM read_configuration.
   SELECT SINGLE value
     FROM zdev_config

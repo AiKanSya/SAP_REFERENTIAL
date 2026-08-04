@@ -43,14 +43,31 @@ La collecte doit être bornée, documentée et arrêtée après usage. Exporter 
 - [SAP Help Portal — SQL Monitor](https://help.sap.com/docs/ABAP_PLATFORM_NEW/a24970c68fcf4770a64bf9a78e3719e2/1ec2329419b64f3992a9c342437d3a0f.html)
 - [SAP Help Portal — SQL Performance Tuning Worklist](https://help.sap.com/docs/SAP_NETWEAVER_AS_ABAP_FOR_SOH_740/a24970c68fcf4770a64bf9a78e3719e2/713ff185b9b347aaacbe3ada28d4fa72.html)
 
-## PROCÉDURE PAS À PAS
+## PROCESS
 
-1. Saisir `/nST05` dans une session dédiée.
-2. Choisir la trace SQL et limiter le périmètre à l’utilisateur concerné.
-3. Activer la trace juste avant la reproduction.
-4. Exécuter le scénario dans l’autre session.
-5. Désactiver immédiatement la trace.
-6. Afficher la trace et analyser durée, nombre d’exécutions, lignes et index utilisés.
+### ÉTAPE 1 — DÉFINIR LA PÉRIODE D’OBSERVATION
+
+Choisir le système, la fenêtre, les utilisateurs ou applications et le problème à mesurer. Obtenir l’accord d’administration requis. SQLM sert à collecter une charge agrégée ; il ne remplace pas une trace ST05 courte pour un appel unique.
+
+### ÉTAPE 2 — CONFIGURER ET ACTIVER SQLM
+
+Saisir `/nSQLM`, définir le périmètre disponible sur la release puis activer la collecte. Relever l’heure de début et la configuration. Éviter une activation indéfinie sans propriétaire ni date de fin.
+
+### ÉTAPE 3 — LAISSER S’EXÉCUTER LA CHARGE REPRÉSENTATIVE
+
+Exécuter les transactions, jobs ou interfaces pendant la fenêtre choisie. Noter les volumes et événements particuliers. Ne pas mélanger une période anormale avec une charge nominale sans l’indiquer.
+
+### ÉTAPE 4 — ARRÊTER ET AFFICHER LES DONNÉES
+
+Désactiver la collecte à la fin prévue. Ouvrir les résultats et filtrer par objet, source ou contexte. Trier par temps cumulé, nombre d’exécutions et lignes afin d’identifier les coûts réellement fréquents.
+
+### ÉTAPE 5 — NAVIGUER VERS LE CODE SOURCE
+
+Pour les accès prioritaires, relever programme, include et position. Vérifier la logique et reproduire si nécessaire avec `ST05` ou `SAT` pour obtenir le détail absent de l’agrégat. Ne corriger que les instructions dont le contexte d’exécution est compris.
+
+### ÉTAPE 6 — COMPARER DEUX FENÊTRES
+
+Après correction, collecter une période comparable en durée et en charge. Comparer exécutions, temps cumulé et volume. Conserver les paramètres des deux sessions pour éviter une conclusion fondée sur des charges différentes.
 
 ## VÉRIFICATION
 

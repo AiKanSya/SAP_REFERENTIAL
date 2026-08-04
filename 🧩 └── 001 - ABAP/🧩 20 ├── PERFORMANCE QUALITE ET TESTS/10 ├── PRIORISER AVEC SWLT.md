@@ -52,14 +52,31 @@ Conserver la worklist initiale, la justification du choix, la correction et les 
 - [SAP Help Portal — SQL Monitor](https://help.sap.com/docs/ABAP_PLATFORM_NEW/a24970c68fcf4770a64bf9a78e3719e2/1ec2329419b64f3992a9c342437d3a0f.html)
 - [SAP Help Portal — Code Inspector](https://help.sap.com/docs/ABAP_PLATFORM_NEW/ba879a6e2ea04d9bb94c7ccd7cdac446/49205531d0fc14cfe10000000a42189b.html)
 
-## PROCÉDURE PAS À PAS
+## PROCESS
 
-1. Lire la définition et identifier les prérequis du chapitre.
-2. Choisir un objet Z ou un scénario de démonstration sans impact métier.
-3. Reproduire l’exemple dans un système de développement et relever les données d’entrée.
-4. Contrôler la syntaxe ou la configuration avant activation/exécution.
-5. Comparer le résultat observé avec la section **Vérification**.
-6. Documenter toute différence liée à la release, aux autorisations ou au paramétrage du système.
+### ÉTAPE 1 — PRÉPARER LES DONNÉES D’USAGE
+
+Collecter avec SQLM une période représentative et correctement bornée. Vérifier que les applications et jobs cibles ont réellement été exécutés. Une priorisation sans données d’usage ne distingue pas le code critique du code dormant.
+
+### ÉTAPE 2 — CHOISIR LES CONTRÔLES STATIQUES
+
+Sélectionner la variante SCI ou ATC adaptée aux problèmes SQL et performance recherchés. Vérifier sa portée, ses priorités et la release. Ne pas modifier la variante centrale pour un besoin ponctuel sans gouvernance.
+
+### ÉTAPE 3 — LANCER L’ANALYSE DANS `SWLT`
+
+Saisir `/nSWLT`, sélectionner les données SQLM, la période et la variante statique disponibles. Exécuter la combinaison. Conserver les paramètres afin de pouvoir reproduire la liste.
+
+### ÉTAPE 4 — TRIER PAR IMPACT RUNTIME
+
+Examiner les findings qui correspondent à du code réellement exécuté et coûteux. Relever objet, source, fréquence et métrique. Distinguer un finding grave mais rare d’un coût modéré répété des millions de fois.
+
+### ÉTAPE 5 — CONFIRMER CHAQUE CANDIDAT
+
+Ouvrir le code, comprendre la sémantique puis utiliser `ST05` ou `SAT` si un détail runtime manque. Corriger une cause à la fois et exécuter les tests. Ne pas appliquer mécaniquement une proposition statique à un contexte non compris.
+
+### ÉTAPE 6 — RECOLLECTER ET RECLASSER
+
+Après correction, collecter une fenêtre comparable puis relancer SWLT. Vérifier la baisse du coût et l’absence de nouveau finding. Documenter les éléments non corrigés avec leur impact et leur justification.
 
 ## VÉRIFICATION
 

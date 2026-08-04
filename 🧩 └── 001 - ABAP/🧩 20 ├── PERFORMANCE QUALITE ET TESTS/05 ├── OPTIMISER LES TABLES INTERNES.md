@@ -54,6 +54,32 @@ ENDLOOP.
 
 Décrire les opérations dominantes, choisir la clé, mesurer sur un volume représentatif, puis vérifier que la structure reste lisible et cohérente avec le modèle métier.
 
+## PROCESS
+
+### ÉTAPE 1 — INVENTORIER LES ACCÈS
+
+Pour la table concernée, compter insertions, lectures exactes, lectures partielles, parcours complets, tris et modifications. Relever le volume représentatif. Ne pas choisir la catégorie uniquement à partir de la taille maximale.
+
+### ÉTAPE 2 — CHOISIR CATÉGORIE ET CLÉ
+
+Utiliser une table standard pour les ajouts et parcours séquentiels, triée pour les accès par préfixe de clé et parcours ordonnés, hachée pour les accès exacts fréquents par clé unique. Déclarer la clé correspondant au besoin métier.
+
+### ÉTAPE 3 — ADAPTER LES LECTURES
+
+Utiliser les expressions de table, `READ TABLE ... WITH TABLE KEY` ou la clé secondaire appropriée. Traiter explicitement l’absence de ligne avec `OPTIONAL`, `line_exists` ou une gestion d’exception selon le contrat. Ne pas ajouter `BINARY SEARCH` sans tri compatible prouvé.
+
+### ÉTAPE 4 — RÉDUIRE LES COPIES
+
+Utiliser `ASSIGNING` ou `REFERENCE INTO` lors d’une modification en place. Éviter de copier plusieurs fois une table complète entre méthodes si une interface par référence ou un résultat plus petit suffit. Conserver des références seulement pendant la durée utile.
+
+### ÉTAPE 5 — MESURER SUR LE PROFIL RÉEL
+
+Créer un test ou benchmark contrôlé avec le volume et le ratio de lectures/écritures attendus. Comparer temps et mémoire de l’ancienne et de la nouvelle structure. Inclure le coût de construction, tri et maintenance des clés secondaires.
+
+### ÉTAPE 6 — VALIDER LA SÉMANTIQUE
+
+Exécuter les tests sur doublons, ordre, clé initiale, modification de clé et ligne absente. Vérifier qu’une clé unique nouvellement déclarée ne rejette pas des données métier valides et que le résultat reste identique.
+
 ## Références SAP officielles
 
 - [ABAP Keyword Documentation — Internal Tables Performance Notes](https://help.sap.com/doc/abapdocu_latest_index_htm/latest/en-US/abenitab_perfo.html)

@@ -47,14 +47,31 @@ flowchart TD
 - [SAP Help Portal — ATC Quality Checking](https://help.sap.com/docs/ABAP_PLATFORM_NEW/c238d694b825421f940829321ffa326a/4ec1a1126e391014adc9fffe4e204223.html)
 - [SAP Help Portal — ATC Exemptions](https://help.sap.com/docs/ABAP_PLATFORM_NEW/ba879a6e2ea04d9bb94c7ccd7cdac446/3a759579e173410caa551e0d428bd7d6.html)
 
-## PROCÉDURE PAS À PAS
+## PROCESS
 
-1. Saisir `/nATC` ou utiliser l’entrée ATC disponible dans le système.
-2. Choisir une variante de contrôle autorisée.
-3. Lancer le contrôle sur l’objet, le package ou l’ordre de transport.
-4. Classer les findings par priorité et corriger d’abord les erreurs bloquantes.
-5. Demander une exemption uniquement avec justification, propriétaire et échéance.
-6. Relancer le contrôle avant libération.
+### ÉTAPE 1 — OUVRIR LE RUN EXACT
+
+Relever variante, périmètre, date et version analysée. Ouvrir le résultat ATC correspondant à la dernière exécution, pas un run antérieur. Regrouper les findings par priorité, contrôle et objet.
+
+### ÉTAPE 2 — COMPRENDRE LA RÈGLE
+
+Lire la documentation, la ligne source et le contexte. Reproduire si le finding dépend d’un type, d’un appel ou d’une donnée. Distinguer une erreur réelle d’un code standard ou généré hors du périmètre de correction.
+
+### ÉTAPE 3 — CORRIGER LA CAUSE
+
+Modifier le code avec la solution la plus simple respectant la règle. Ajouter ou adapter les tests. Relancer le contrôle sur l’objet pour obtenir un retour rapide, puis sur le périmètre complet.
+
+### ÉTAPE 4 — PRÉPARER UNE EXEMPTION JUSTIFIÉE
+
+Si la correction est impossible ou non applicable, documenter la raison précise, le risque résiduel, la preuve et l’échéance. Définir le propriétaire qui devra réévaluer la décision. Limiter l’exemption à l’objet et au finding nécessaires.
+
+### ÉTAPE 5 — SOUMETTRE ET SUIVRE LA DÉCISION
+
+Utiliser le workflow d’exemption configuré. Ne pas considérer la demande comme acceptée avant décision. Vérifier le statut et les conditions posées par l’approbateur.
+
+### ÉTAPE 6 — RELANCER ET AUDITER
+
+Exécuter ATC sur la version finale et vérifier que les findings corrigés ont disparu et que les exemptions valides sont reconnues. Suivre les échéances ; une exemption expirée redevient un finding à traiter.
 
 ## VÉRIFICATION
 

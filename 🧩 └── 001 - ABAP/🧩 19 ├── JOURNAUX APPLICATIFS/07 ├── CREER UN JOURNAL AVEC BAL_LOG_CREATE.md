@@ -55,6 +55,32 @@ La création échoue notamment lorsque :
 
 Ne pas ignorer `sy-subrc`. Sans handle valide, les appels suivants ne produisent pas de journal exploitable.
 
+## PROCESS
+
+### ÉTAPE 1 — PRÉPARER LA CONFIGURATION
+
+Vérifier l’objet et le sous-objet dans `SLG0`. Définir l’identifiant externe et la politique de rétention. Exécuter le test avec un objet Z transporté dans le système courant.
+
+### ÉTAPE 2 — INITIALISER `BAL_S_LOG`
+
+Créer une structure neuve et renseigner objet, sous-objet, identifiant et programme. Contrôler la longueur et le contenu de chaque champ avant l’appel. Ne pas transmettre une structure issue d’un précédent traitement.
+
+### ÉTAPE 3 — APPELER `BAL_LOG_CREATE`
+
+Passer l’en-tête dans `I_S_LOG` et récupérer `E_LOG_HANDLE`. Traiter `LOG_HEADER_INCONSISTENT` séparément des autres erreurs. Contrôler `sy-subrc` immédiatement après le module.
+
+### ÉTAPE 4 — CONSERVER LE HANDLE DANS LE BON COMPOSANT
+
+Stocker le handle dans l’objet responsable de l’exécution et le transmettre explicitement à chaque ajout, affichage et sauvegarde. Ne pas dépendre du journal par défaut de la mémoire globale BAL.
+
+### ÉTAPE 5 — TESTER LE PREMIER MESSAGE
+
+Ajouter un message d’information au handle et contrôler le retour. En cas de `LOG_NOT_FOUND`, vérifier que le handle n’a pas été écrasé ou retiré de la mémoire. Ne pas poursuivre silencieusement avec un autre journal.
+
+### ÉTAPE 6 — SAUVEGARDER ET RECHERCHER
+
+Sauvegarder uniquement ce handle, puis rechercher dans `SLG1` par objet et identifiant externe. Tester aussi un objet inexistant, un sous-objet invalide et un handle initial pour confirmer la gestion des erreurs.
+
 ## VÉRIFICATION
 
 - Le journal est retrouvable dans `SLG1` avec objet, sous-objet et période.
@@ -109,7 +135,6 @@ ENDIF.
 
 - [Basics — SAP Help Portal](https://help.sap.com/docs/ABAP_PLATFORM_NEW/addb96cd90c945dfb3182865363bbc47/4e21029235d44180e10000000a15822b.html)
 - [Function Module Overview — SAP Help Portal](https://help.sap.com/docs/ABAP_PLATFORM_NEW/addb96cd90c945dfb3182865363bbc47/4e23b1720771417fe10000000a15822b.html)
-
 
 ---
 

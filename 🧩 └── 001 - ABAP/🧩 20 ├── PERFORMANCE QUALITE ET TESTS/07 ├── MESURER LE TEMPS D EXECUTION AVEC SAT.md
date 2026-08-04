@@ -4,14 +4,31 @@
 
 Utiliser `SAT` pour localiser le temps consommé dans le code ABAP et les appels qu’il déclenche.
 
-## Procédure
+## PROCESS
 
-1. Ouvrir la transaction `SAT`.
-2. Choisir le type d’exécution : programme, transaction, module fonction ou utilisateur externe selon le besoin.
-3. Définir une variante de mesure ciblée.
-4. Exécuter le scénario une seule fois pendant l’enregistrement.
-5. Ouvrir l’évaluation et trier les résultats par temps net ou temps brut.
-6. Naviguer vers les appels dominants.
+### ÉTAPE 1 — PRÉPARER LE SCÉNARIO
+
+Noter programme ou transaction, utilisateur, variante, jeu de données et action unique. Définir le résultat fonctionnel et une mesure de référence. Réduire les activités parallèles non nécessaires.
+
+### ÉTAPE 2 — CRÉER UNE VARIANTE SAT CIBLÉE
+
+Saisir `/nSAT`, choisir le type d’exécution et limiter les composants ou instructions enregistrés selon le besoin. Conserver assez de détail pour la pile suspecte sans produire une trace disproportionnée.
+
+### ÉTAPE 3 — ENREGISTRER UNE SEULE REPRODUCTION
+
+Démarrer la mesure, exécuter exactement l’action puis arrêter. Éviter navigation et temps d’attente utilisateur dans la fenêtre. Relever l’identifiant et l’horodatage de l’évaluation.
+
+### ÉTAPE 4 — ANALYSER LA HIT LIST
+
+Trier par temps net, temps brut et nombre d’appels. Identifier les routines dominantes et distinguer leur temps propre du temps des sous-appels. Vérifier si la base ou un appel externe explique le coût.
+
+### ÉTAPE 5 — NAVIGUER DANS LA HIÉRARCHIE
+
+Remonter de l’appel coûteux jusqu’au point métier qui le répète. Ouvrir la source et corréler les volumes. Formuler une correction portant sur la cause : réduction d’appels, algorithme ou données traitées.
+
+### ÉTAPE 6 — COMPARER APRÈS CORRECTION
+
+Rejouer la même variante SAT avec les mêmes données. Comparer temps net, brut, appels et résultat. Conserver les deux évaluations et exécuter les tests de non-régression.
 
 ## Lire les résultats
 

@@ -57,14 +57,31 @@ Le journal doit distinguer :
 - échec technique ;
 - exécution annulée.
 
-## PROCÉDURE PAS À PAS
+## PROCESS
 
-1. Lire la définition et identifier les prérequis du chapitre.
-2. Choisir un objet Z ou un scénario de démonstration sans impact métier.
-3. Reproduire l’exemple dans un système de développement et relever les données d’entrée.
-4. Contrôler la syntaxe ou la configuration avant activation/exécution.
-5. Comparer le résultat observé avec la section **Vérification**.
-6. Documenter toute différence liée à la release, aux autorisations ou au paramétrage du système.
+### ÉTAPE 1 — CORRÉLER LE LOG AU LOT
+
+Utiliser comme identifiant externe le fichier, le message, le lot ou une clé de reprise stable. Ajouter le même identifiant aux tables de pilotage et aux sorties. L’exploitant doit passer d’un outil à l’autre sans recherche approximative.
+
+### ÉTAPE 2 — ÉCRIRE UN EN-TÊTE DE DÉMARRAGE
+
+Journaliser le type de traitement, la version de format, le périmètre, l’heure et le mode test. Pour un fichier, ajouter taille et preuve de complétude utiles. Ne pas enregistrer le contenu brut ni les secrets.
+
+### ÉTAPE 3 — COMPTER PLUTÔT QUE JOURNALISER CHAQUE SUCCÈS
+
+Maintenir des compteurs lus, valides, réussis, avertis, rejetés et en erreur. Ajouter des messages seulement aux changements d’étape et aux anomalies. Utiliser la cumulation pour les erreurs identiques lorsque les clés détaillées existent ailleurs.
+
+### ÉTAPE 4 — CONSERVER LE CONTEXTE DES REJETS
+
+Pour chaque rejet, enregistrer numéro de ligne, document ou unité, règle et cause. Utiliser un contexte DDIC ou un fichier de rejets pour les grands volumes. Définir un seuil empêchant le journal BAL de devenir le stockage de toutes les données sources.
+
+### ÉTAPE 5 — ÉCRIRE LE STATUT FINAL ET LA REPRISE
+
+Ajouter un message synthétisant succès complet, partiel, fonctionnel, technique ou annulé. Indiquer la première unité non validée ou l’identifiant de reprise. Sauvegarder même après une erreur gérée selon la stratégie transactionnelle définie.
+
+### ÉTAPE 6 — TESTER VOLUME ET REJEU
+
+Exécuter un lot nominal, vide, partiellement invalide, interrompu et dupliqué. Vérifier lisibilité dans `SLG1`, taille, temps de sauvegarde, compteurs et absence de données sensibles. La relance doit produire un nouveau log corrélé sans doubler le résultat métier.
 
 ## VÉRIFICATION
 
@@ -104,7 +121,6 @@ Ordre de transport  :
 
 - [Application Log – Guidelines for Developers — SAP Help Portal](https://help.sap.com/docs/SAP_NETWEAVER_AS_ABAP_FOR_SOH_740/addb96cd90c945dfb3182865363bbc47/4e21000f35d44180e10000000a15822b.html)
 - [Which Data Can Be Collected? — SAP Help Portal](https://help.sap.com/docs/SAP_NETWEAVER_AS_ABAP_752/addb96cd90c945dfb3182865363bbc47/4e2106b735d44180e10000000a15822b.html)
-
 
 ---
 

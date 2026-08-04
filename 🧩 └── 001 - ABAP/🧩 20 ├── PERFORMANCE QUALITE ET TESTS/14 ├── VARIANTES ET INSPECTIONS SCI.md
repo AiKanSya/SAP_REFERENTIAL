@@ -41,14 +41,31 @@ Ne pas comparer deux inspections si la variante, le jeu d’objets ou la version
 - [SAP Help Portal — Code Inspector](https://help.sap.com/docs/ABAP_PLATFORM_NEW/ba879a6e2ea04d9bb94c7ccd7cdac446/49205531d0fc14cfe10000000a42189b.html)
 - [SAP Help Portal — Creating Code Inspections](https://help.sap.com/docs/ABAP_PLATFORM_NEW/ba879a6e2ea04d9bb94c7ccd7cdac446/4926dff4c93016b8e10000000a42189d.html)
 
-## PROCÉDURE PAS À PAS
+## PROCESS
 
-1. Saisir `/nSCI`.
-2. Créer ou sélectionner une variante de contrôles approuvée par le projet.
-3. Créer une inspection sur le package, l’objet ou l’ensemble de transport visé.
-4. Exécuter l’inspection.
-5. Analyser chaque finding, corriger la cause ou documenter l’exception selon la gouvernance.
-6. Relancer jusqu’à obtenir le niveau de qualité attendu.
+### ÉTAPE 1 — DÉFINIR L’OBJECTIF DE LA VARIANTE
+
+Lister les règles obligatoires : syntaxe, sécurité, performance, robustesse et conventions. Définir les priorités et les versions cibles. Partir d’une variante centrale ou de référence au lieu d’une sélection arbitraire de contrôles.
+
+### ÉTAPE 2 — CRÉER LA VARIANTE DANS `SCI`
+
+Créer une variante Z avec description, propriétaire et périmètre d’usage. Ajouter les contrôles et paramétrer leurs options. Enregistrer de façon transportable ou locale selon la gouvernance explicitement choisie.
+
+### ÉTAPE 3 — TESTER LA VARIANTE SUR DES OBJETS CONNUS
+
+Exécuter une inspection sur un objet contenant des défauts représentatifs et sur un objet conforme. Vérifier que les findings et priorités correspondent à l’intention. Ajuster la variante avant son adoption par le projet.
+
+### ÉTAPE 4 — CRÉER L’INSPECTION DE LIVRAISON
+
+Sélectionner variante et ensemble d’objets exacts : package ou demande de transport. Donner un nom contenant périmètre et date. Lancer puis conserver l’identifiant de résultat.
+
+### ÉTAPE 5 — GÉRER LES FINDINGS
+
+Attribuer chaque finding, corriger la cause et exécuter les tests. Documenter les exceptions avec règle, ligne, justification et échéance. Ne pas retirer un contrôle de la variante pour résoudre un cas isolé.
+
+### ÉTAPE 6 — VERSIONNER LA GOUVERNANCE
+
+Après changement de variante, informer les consommateurs et relancer les périmètres concernés. Conserver la date d’entrée en vigueur et les différences. Aligner SCI et ATC afin d’éviter des résultats contradictoires au moment du transport.
 
 ## VÉRIFICATION
 

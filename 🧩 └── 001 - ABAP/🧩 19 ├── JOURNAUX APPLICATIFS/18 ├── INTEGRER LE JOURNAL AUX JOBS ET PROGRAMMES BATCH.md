@@ -40,14 +40,31 @@ WRITE: / |Journal SLG1 : ZDEV_LOG / IMPORT / { lv_extnumber }|.
 
 Un job peut techniquement se terminer correctement alors que des éléments métier ont été rejetés. Le programme doit définir explicitement les seuils qui provoquent une terminaison anormale, un simple avertissement ou un succès partiel.
 
-## PROCÉDURE PAS À PAS
+## PROCESS
 
-1. Saisir `/nATC` ou utiliser l’entrée ATC disponible dans le système.
-2. Choisir une variante de contrôle autorisée.
-3. Lancer le contrôle sur l’objet, le package ou l’ordre de transport.
-4. Classer les findings par priorité et corriger d’abord les erreurs bloquantes.
-5. Demander une exemption uniquement avec justification, propriétaire et échéance.
-6. Relancer le contrôle avant libération.
+### ÉTAPE 1 — CRÉER UN IDENTIFIANT D’EXÉCUTION
+
+Construire dès le démarrage un identifiant externe à partir du lot, fichier ou numéro de job. Renseigner objet, sous-objet, programme et expiration dans `BAL_S_LOG`, puis créer le journal. Écrire cet identifiant dans le journal de job.
+
+### ÉTAPE 2 — JOURNALISER LES PARAMÈTRES EFFECTIFS
+
+Ajouter un message de démarrage contenant uniquement les paramètres nécessaires : périmètre, mode test et taille de paquet. Ne jamais recopier une variante complète si elle contient des valeurs sensibles.
+
+### ÉTAPE 3 — JOURNALISER PAR ÉTAPE ET PAR ANOMALIE
+
+Ajouter un message au début et à la fin des phases majeures. Pour le volume, utiliser compteurs et cumulation ; conserver les clés seulement pour les rejets. Distinguer erreur technique, rejet fonctionnel et avertissement.
+
+### ÉTAPE 4 — INTERCEPTER LA FRONTIÈRE DU JOB
+
+Au niveau supérieur du report, intercepter les exceptions non récupérables, les ajouter au journal puis définir le statut final. Conserver la cause initiale. Ne pas afficher le log avec `BAL_DSP_LOG_DISPLAY` en arrière-plan.
+
+### ÉTAPE 5 — SAUVEGARDER ET ÉCRIRE LE RÉSUMÉ
+
+Sauvegarder le handle selon la LUW, puis écrire dans le journal de job objet, sous-objet, identifiant, compteurs et résultat global. Contrôler l’échec de sauvegarde séparément afin que l’exploitation sache que le log détaillé manque.
+
+### ÉTAPE 6 — CONTRÔLER DANS `SM37` ET `SLG1`
+
+Exécuter le report comme job avec l’utilisateur technique. Depuis `SM37`, récupérer l’identifiant puis ouvrir le log dans `SLG1`. Tester succès, succès partiel, exception et relance ; vérifier l’absence de doublons métier.
 
 ## VÉRIFICATION
 
@@ -82,7 +99,6 @@ WRITE: / |Journal SLG1 : ZDEV_LOG / IMPORT / { lv_extnumber }|.
 
 - [Logging Application Jobs — SAP Help Portal](https://help.sap.com/docs/SAP_NETWEAVER_AS_ABAP_752/b4367b1cec3243c4989f0ff3d727c4ab/3882707a014c4b5e85d31c459bfb8652.html)
 - [Application Log – Guidelines for Developers — SAP Help Portal](https://help.sap.com/docs/SAP_NETWEAVER_AS_ABAP_FOR_SOH_740/addb96cd90c945dfb3182865363bbc47/4e21000f35d44180e10000000a15822b.html)
-
 
 ---
 

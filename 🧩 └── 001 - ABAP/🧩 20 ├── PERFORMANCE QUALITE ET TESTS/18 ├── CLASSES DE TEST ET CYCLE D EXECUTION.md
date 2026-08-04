@@ -53,6 +53,32 @@ ENDCLASS.
 
 Chaque test doit pouvoir s’exécuter seul. `setup` ne doit pas dépendre des modifications réalisées par un test précédent. Les ressources partagées dans `class_setup` doivent être en lecture seule ou réinitialisées.
 
+## PROCESS
+
+### ÉTAPE 1 — INVENTORIER LES DONNÉES DE FIXTURE
+
+Séparer les objets coûteux et immuables partagés par la classe des données propres à chaque test. Éviter les tables ou singletons modifiés qui conserveraient un état entre méthodes.
+
+### ÉTAPE 2 — DÉCLARER LE CYCLE
+
+Déclarer `class_setup` et `class_teardown` comme méthodes de classe si nécessaires, puis `setup` et `teardown` comme méthodes d’instance. Déclarer les scénarios avec `FOR TESTING`. Utiliser uniquement les méthodes de cycle réellement utiles.
+
+### ÉTAPE 3 — INITIALISER LE PARTAGE IMMUTABLE
+
+Dans `class_setup`, créer les ressources de lecture coûteuses utilisées par tous les tests. Ne pas créer une donnée mutable que les scénarios modifieront. Prévoir son nettoyage symétrique si elle utilise une ressource externe au runtime ABAP.
+
+### ÉTAPE 4 — RECRÉER LE COMPOSANT AVANT CHAQUE TEST
+
+Dans `setup`, instancier le code sous test et ses doubles avec un état initial connu. Remettre tous les attributs modifiables à zéro. Le résultat ne doit dépendre ni de l’ordre ni d’une exécution précédente.
+
+### ÉTAPE 5 — NETTOYER SANS MASQUER LES ÉCHECS
+
+Dans `teardown`, libérer les ressources propres au scénario sans supprimer une preuve nécessaire au diagnostic. Dans `class_teardown`, nettoyer les ressources partagées. Éviter les commits ou suppressions larges.
+
+### ÉTAPE 6 — EXÉCUTER ISOLÉMENT ET EN GROUPE
+
+Lancer chaque méthode seule, puis toute la classe dans un ordre différent si l’outil le permet. Un résultat divergent révèle une dépendance de fixture. Corriger l’isolation avant d’ajouter de nouveaux scénarios.
+
 ## Références SAP officielles
 
 - [SAP Help Portal — ABAP Unit Test Execution Sequence](https://help.sap.com/docs/ABAP_PLATFORM_NEW/c238d694b825421f940829321ffa326a/baf1b5eb64254b8e8a4e5e79437cd441.html)

@@ -54,14 +54,31 @@ Pour chaque anomalie, relever :
 6. messages précédents expliquant le contexte ;
 7. données techniques du message.
 
-## PROCÉDURE PAS À PAS
+## PROCESS
 
-1. Saisir `/nSLG1`.
-2. Renseigner objet, sous-objet, identifiant externe, utilisateur et période selon les informations du traitement.
-3. Exécuter la recherche.
-4. Ouvrir le journal correspondant au bon horodatage.
-5. Analyser l’en-tête, les niveaux de gravité et le contexte des messages.
-6. Exporter ou transmettre uniquement les informations nécessaires, sans données sensibles inutiles.
+### ÉTAPE 1 — RECUEILLIR LES CRITÈRES DE CORRÉLATION
+
+Relever objet, sous-objet, identifiant externe, programme, utilisateur, mandant et intervalle. Pour un job, récupérer l’heure exacte dans `SM37`; pour une interface, utiliser le fichier, lot ou message de corrélation.
+
+### ÉTAPE 2 — FILTRER DANS `SLG1`
+
+Saisir `/nSLG1`, renseigner les critères les plus sélectifs disponibles et exécuter. Élargir progressivement la période ou l’identifiant seulement si aucun résultat n’apparaît. Une recherche globale ne constitue pas un diagnostic reproductible.
+
+### ÉTAPE 3 — IDENTIFIER LE BON EN-TÊTE
+
+Comparer identifiant externe, programme, utilisateur, date de création et expiration. Ouvrir uniquement le journal correspondant au traitement visé. Conserver son numéro technique si une analyse approfondie est nécessaire.
+
+### ÉTAPE 4 — LIRE LA PREMIÈRE CAUSE
+
+Parcourir les messages dans l’ordre, en tenant compte du niveau de détail et de la gravité. Identifier le dernier point réussi et la première erreur. Déplier le contexte et le texte long avant de conclure.
+
+### ÉTAPE 5 — CORRÉLER AVEC LE RÉSULTAT MÉTIER
+
+Vérifier la clé indiquée dans les tables, documents ou fichiers concernés. Comparer les compteurs du journal au résultat persistant. Un message d’erreur isolé peut représenter un rejet prévu plutôt qu’un échec global.
+
+### ÉTAPE 6 — PARTAGER UNE PREUVE MINIMALE
+
+Exporter ou transmettre uniquement l’en-tête, les messages et le contexte nécessaires. Masquer les données sensibles. Conserver objet, identifiant externe, horodatage et cause prouvée dans le ticket ou le diagnostic.
 
 ## VÉRIFICATION
 
@@ -101,7 +118,6 @@ Ordre de transport  :
 - [Analyze Logs — SAP Help Portal](https://help.sap.com/docs/ABAP_PLATFORM_NEW/addb96cd90c945dfb3182865363bbc47/4e21048535d44180e10000000a15822b.html)
 - [Displaying Logs — SAP Help Portal](https://help.sap.com/docs/ABAP_PLATFORM/addb96cd90c945dfb3182865363bbc47/4e21041a35d44180e10000000a15822b.html)
 - [Application Log – User Guidelines — SAP Help Portal](https://help.sap.com/docs/SAP_S4HANA_ON-PREMISE/f63dd39a28bb4b90adbf9e608aff58ea/4e23ac220771417fe10000000a15822b.html)
-
 
 ---
 

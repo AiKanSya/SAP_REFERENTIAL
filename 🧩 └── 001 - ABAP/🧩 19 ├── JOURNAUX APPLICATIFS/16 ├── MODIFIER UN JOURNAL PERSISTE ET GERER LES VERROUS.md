@@ -39,14 +39,31 @@ Les fonctions principales sont :
 
 Le statut d’un journal est informatif. Il ne remplace pas un statut persistant dans la table métier. Un processus critique ne doit pas dépendre uniquement de `BAL_S_LOG-ALSTATE` pour savoir s’il est terminé.
 
-## PROCÉDURE PAS À PAS
+## PROCESS
 
-1. Lire la définition et identifier les prérequis du chapitre.
-2. Choisir un objet Z ou un scénario de démonstration sans impact métier.
-3. Reproduire l’exemple dans un système de développement et relever les données d’entrée.
-4. Contrôler la syntaxe ou la configuration avant activation/exécution.
-5. Comparer le résultat observé avec la section **Vérification**.
-6. Documenter toute différence liée à la release, aux autorisations ou au paramétrage du système.
+### ÉTAPE 1 — JUSTIFIER LA MODIFICATION HISTORIQUE
+
+Définir pourquoi un journal existant doit changer et pourquoi un nouveau journal ne suffit pas. Identifier son numéro, son objet et son propriétaire. Ne pas utiliser BAL comme table de statut métier mutable.
+
+### ÉTAPE 2 — RECHERCHER LE JOURNAL EXACT
+
+Construire un filtre sélectif, appeler `BAL_DB_SEARCH` et vérifier qu’un seul en-tête correspond au numéro ou à l’identifiant attendu. Interrompre si la sélection est ambiguë.
+
+### ÉTAPE 3 — ACQUÉRIR LE VERROU BAL
+
+Appeler `BAL_DB_ENQUEUE` selon sa signature active avant le chargement destiné à modification. Traiter une collision comme un conflit contrôlé. Limiter la durée du verrou en préparant toutes les données avant cet appel.
+
+### ÉTAPE 4 — CHARGER ET MODIFIER EN MÉMOIRE
+
+Charger le journal, retrouver son handle et lire l’en-tête ou les messages ciblés. Appeler `BAL_LOG_HDR_CHANGE`, `BAL_LOG_MSG_CHANGE` ou `BAL_LOG_MSG_DELETE` uniquement sur les handles validés. Contrôler chaque retour.
+
+### ÉTAPE 5 — SAUVEGARDER ET DÉVERROUILLER
+
+Sauvegarder le handle modifié avec `BAL_DB_SAVE`, puis appeler `BAL_DB_DEQUEUE` dans le chemin nominal et les chemins d’erreur. Ne pas laisser un verrou actif après une exception gérée.
+
+### ÉTAPE 6 — VÉRIFIER LA CONCURRENCE ET L’HISTORIQUE
+
+Ouvrir le journal dans `SLG1` et confirmer uniquement les modifications prévues. Tester deux sessions sur le même journal, une erreur avant sauvegarde et une erreur après chargement. Vérifier que l’historique reste fidèle au traitement initial.
 
 ## VÉRIFICATION
 
@@ -86,7 +103,6 @@ Ordre de transport  :
 - [Function Module Overview — SAP Help Portal](https://help.sap.com/docs/ABAP_PLATFORM_NEW/addb96cd90c945dfb3182865363bbc47/4e23b1720771417fe10000000a15822b.html)
 - [Database Interface — SAP Help Portal](https://help.sap.com/docs/ABAP_PLATFORM_NEW/addb96cd90c945dfb3182865363bbc47/4e21021635d44180e10000000a15822b.html)
 - [Which Data Can Be Collected? — SAP Help Portal](https://help.sap.com/docs/SAP_NETWEAVER_AS_ABAP_752/addb96cd90c945dfb3182865363bbc47/4e2106b735d44180e10000000a15822b.html)
-
 
 ---
 

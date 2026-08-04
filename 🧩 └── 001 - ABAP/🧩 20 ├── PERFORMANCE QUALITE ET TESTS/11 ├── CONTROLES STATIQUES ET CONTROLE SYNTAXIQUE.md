@@ -44,14 +44,31 @@ Ils peuvent supprimer certains messages, mais ne corrigent pas la cause. Leur us
 - [SAP Help Portal — Code Inspector](https://help.sap.com/docs/ABAP_PLATFORM_NEW/ba879a6e2ea04d9bb94c7ccd7cdac446/49205531d0fc14cfe10000000a42189b.html)
 - [SAP Help Portal — ATC Quality Checking](https://help.sap.com/docs/ABAP_PLATFORM_NEW/c238d694b825421f940829321ffa326a/4ec1a1126e391014adc9fffe4e204223.html)
 
-## PROCÉDURE PAS À PAS
+## PROCESS
 
-1. Saisir `/nSCI`.
-2. Créer ou sélectionner une variante de contrôles approuvée par le projet.
-3. Créer une inspection sur le package, l’objet ou l’ensemble de transport visé.
-4. Exécuter l’inspection.
-5. Analyser chaque finding, corriger la cause ou documenter l’exception selon la gouvernance.
-6. Relancer jusqu’à obtenir le niveau de qualité attendu.
+### ÉTAPE 1 — CONTRÔLER LA SYNTAXE DE L’OBJET
+
+Depuis l’éditeur, lancer le contrôle syntaxique sur la version active et les includes concernés. Traiter chaque erreur avant activation. Vérifier également les objets dépendants modifiés, car un objet isolé peut rester cohérent alors que l’ensemble ne l’est pas.
+
+### ÉTAPE 2 — ACTIVER DANS L’ORDRE DES DÉPENDANCES
+
+Activer types DDIC, interfaces, classes et programmes selon leur dépendance. Contrôler les messages d’activation. Ne pas utiliser une version inactive différente de celle exécutée pour valider un test.
+
+### ÉTAPE 3 — LANCER LE CONTRÔLE ÉTENDU
+
+Exécuter SLIN sur le programme ou l’objet lorsque l’outil le supporte. Analyser les avertissements sur flux de données, exceptions, conversions et code inaccessible. Distinguer un faux positif prouvé d’un message seulement gênant.
+
+### ÉTAPE 4 — EXÉCUTER SCI OU ATC
+
+Utiliser la variante approuvée sur l’objet, le package ou la demande. Conserver l’identifiant du run et la version analysée. Les contrôles centraux ATC priment selon la gouvernance du projet.
+
+### ÉTAPE 5 — CORRIGER ET TESTER
+
+Pour chaque finding, ouvrir la ligne, comprendre la règle et corriger la cause. Exécuter ABAP Unit et les tests d’intégration concernés. Une correction statique ne doit pas changer silencieusement le comportement métier.
+
+### ÉTAPE 6 — RELANCER SUR LE PÉRIMÈTRE LIVRÉ
+
+Répéter syntaxe, activation et contrôles sur tous les objets de la demande. Vérifier qu’aucun finding bloquant ne subsiste et que toute exemption possède justification, propriétaire et échéance.
 
 ## VÉRIFICATION
 

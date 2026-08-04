@@ -50,6 +50,32 @@ Les tests unitaires devraient généralement être courts et sans effet persista
 
 ABAP Unit ne remplace pas les tests d’intégration, d’autorisation, de performance ou de recette métier. Il protège la logique locale et accélère la détection des régressions.
 
+## PROCESS
+
+### ÉTAPE 1 — CHOISIR UNE UNITÉ OBSERVABLE
+
+Sélectionner une méthode dont l’entrée et le résultat sont déterministes. Isoler les accès base, horloge, utilisateur et appels externes derrière des interfaces lorsque possible. Définir un comportement unique à protéger.
+
+### ÉTAPE 2 — CRÉER LA CLASSE DE TEST LOCALE
+
+Dans l’objet productif, ajouter une classe locale `FOR TESTING`, `FINAL`, avec `DURATION` et `RISK LEVEL` conformes au test. Garder ses données dans la section privée et utiliser un nom décrivant le composant testé.
+
+### ÉTAPE 3 — DÉCLARER UNE MÉTHODE `FOR TESTING`
+
+Nommer la méthode selon le comportement attendu, sans préfixe générique. Préparer ses entrées dans le test ou dans `setup`. Un test ne doit pas dépendre de l’exécution préalable d’une autre méthode.
+
+### ÉTAPE 4 — EXÉCUTER ET ASSERTIR
+
+Appeler l’unité, récupérer son résultat puis utiliser `CL_ABAP_UNIT_ASSERT` avec valeur attendue explicite et message utile. Ne recopier pas dans le test le même algorithme que la méthode productrice.
+
+### ÉTAPE 5 — LANCER ABAP UNIT
+
+Exécuter les tests depuis l’éditeur ou l’outil disponible sur l’objet. Ouvrir le détail d’un échec, corriger le code ou l’attente puis relancer. Vérifier que le test échoue réellement lorsque le comportement est volontairement rompu dans un essai local contrôlé.
+
+### ÉTAPE 6 — INTÉGRER AU CONTRÔLE DE LIVRAISON
+
+Exécuter la classe, le package ou la demande complète selon la procédure. Conserver des tests courts, sans commit ni donnée persistante. Ajouter des tests d’intégration séparés pour les contrats que l’unité ne couvre pas.
+
 ## Références SAP officielles
 
 - [SAP Help Portal — ABAP Unit](https://help.sap.com/docs/ABAP_PLATFORM_NEW/ba879a6e2ea04d9bb94c7ccd7cdac446/491cfd8926bc14cde10000000a42189b.html)

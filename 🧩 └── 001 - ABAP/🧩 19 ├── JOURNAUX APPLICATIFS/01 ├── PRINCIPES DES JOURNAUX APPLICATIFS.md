@@ -43,14 +43,31 @@ Un journal regroupe un en-tête et une suite de messages. Il permet de reconstit
 
 Un même traitement peut utiliser plusieurs de ces mécanismes. Le journal applicatif ne doit pas masquer une exception ou remplacer une gestion transactionnelle correcte.
 
-## PROCÉDURE PAS À PAS
+## PROCESS
 
-1. Saisir `/nST22`.
-2. Choisir la période correspondant à la reproduction.
-3. Filtrer par utilisateur, transaction ou runtime error lorsque nécessaire.
-4. Ouvrir le dump et relever le nom de l’erreur, l’exception, le programme et la ligne source.
-5. Lire les sections **Error analysis**, **How to correct the error** et **Source Code Extract**.
-6. Corréler le dump avec les données d’entrée et la version active du code.
+### ÉTAPE 1 — DÉFINIR LE CONSOMMATEUR DU JOURNAL
+
+Identifier qui doit diagnostiquer le traitement, pendant combien de temps et avec quels critères. Définir les questions auxquelles le journal doit répondre : exécution, unité métier, étape, résultat et cause d’échec.
+
+### ÉTAPE 2 — CHOISIR OBJET, SOUS-OBJET ET IDENTIFIANT
+
+Réutiliser un objet `SLG0` correspondant au domaine et un sous-objet correspondant au processus. Construire un identifiant externe stable et recherchable : lot, fichier, document ou message. Exclure les mots de passe, jetons et données personnelles inutiles.
+
+### ÉTAPE 3 — CRÉER LE JOURNAL EN MÉMOIRE
+
+Construire un en-tête `BAL_S_LOG`, appeler l’API de création et conserver le handle retourné. Contrôler immédiatement l’erreur de configuration. Aucun ajout ne doit être tenté avec un handle initial ou non valide.
+
+### ÉTAPE 4 — AJOUTER DES MESSAGES STRUCTURÉS
+
+Utiliser des messages T100 pour les événements stables et traduisibles, du texte libre uniquement pour un diagnostic dynamique, et l’API d’exception pour préserver le contexte d’une exception. Associer gravité, classe de problème, détail et clé métier de manière cohérente.
+
+### ÉTAPE 5 — SAUVEGARDER SELON LA LUW
+
+Décider si le journal est atomique avec la transaction métier ou s’il doit survivre à son rollback. Sauvegarder uniquement les handles du composant. Ne jamais ajouter un `COMMIT WORK` uniquement pour rendre le journal visible sans analyser la SAP LUW.
+
+### ÉTAPE 6 — PROUVER LA RECHERCHE ET LA RÉTENTION
+
+Rechercher l’exécution dans `SLG1` avec objet, sous-objet, identifiant et période. Vérifier le contenu, les autorisations et les messages d’erreur. Tester la politique de suppression ou d’archivage afin que le journal reste exploitable sans croissance indéfinie.
 
 ## VÉRIFICATION
 
@@ -89,7 +106,6 @@ Ordre de transport  :
 
 - [Application Log – Guidelines for Developers — SAP Help Portal](https://help.sap.com/docs/SAP_NETWEAVER_AS_ABAP_FOR_SOH_740/addb96cd90c945dfb3182865363bbc47/4e21000f35d44180e10000000a15822b.html)
 - [Application Logging — SAP Help Portal](https://help.sap.com/docs/ABAP_PLATFORM_NEW/864321b9b3dd487d94c70f6a007b0397/c769bcc9f36611d3a6510000e835363f.html)
-
 
 ---
 

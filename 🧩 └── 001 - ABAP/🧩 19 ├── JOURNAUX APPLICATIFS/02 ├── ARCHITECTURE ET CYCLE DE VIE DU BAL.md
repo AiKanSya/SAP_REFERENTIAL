@@ -43,14 +43,31 @@ Les données persistées sont gérées par le framework BAL. Le code applicatif 
 
 Encapsuler le BAL dans une classe ou un composant applicatif évite de disperser les appels de modules fonction dans tout le programme. L’appelant doit manipuler des opérations métier comme `ADD_SUCCESS`, `ADD_WARNING`, `ADD_EXCEPTION` et `SAVE`.
 
-## PROCÉDURE PAS À PAS
+## PROCESS
 
-1. Saisir `/nSLG1`.
-2. Renseigner objet, sous-objet, identifiant externe, utilisateur et période selon les informations du traitement.
-3. Exécuter la recherche.
-4. Ouvrir le journal correspondant au bon horodatage.
-5. Analyser l’en-tête, les niveaux de gravité et le contexte des messages.
-6. Exporter ou transmettre uniquement les informations nécessaires, sans données sensibles inutiles.
+### ÉTAPE 1 — CONFIGURER LE DOMAINE
+
+Créer ou vérifier l’objet et ses sous-objets dans `SLG0`. Transporter cette configuration avant le code qui l’utilise. Conserver une nomenclature stable entre dialogue, batch et interfaces du même domaine.
+
+### ÉTAPE 2 — CRÉER UN EN-TÊTE D’EXÉCUTION
+
+Renseigner objet, sous-objet, identifiant externe, programme et expiration si le contrat l’utilise. Appeler `BAL_LOG_CREATE` et conserver le handle dans le composant responsable du journal.
+
+### ÉTAPE 3 — COLLECTER LES MESSAGES
+
+Ajouter les messages au handle exact pendant le traitement. Structurer les messages par unité métier et limiter les succès répétitifs. Contrôler `sy-subrc` de chaque appel BAL susceptible d’échouer.
+
+### ÉTAPE 4 — AFFICHER OU EXPOSER LE JOURNAL COURANT
+
+En dialogue, afficher le journal en mémoire seulement si le scénario le requiert. En batch, écrire un résumé dans le journal de job et conserver l’identifiant externe permettant l’ouverture dans `SLG1`.
+
+### ÉTAPE 5 — PERSISTER LES HANDLES CIBLÉS
+
+Appeler `BAL_DB_SAVE` avec la table des handles appartenant au traitement. Aligner la sauvegarde avec la stratégie de commit et contrôler son retour. Récupérer les numéros persistants si un lien technique doit être conservé.
+
+### ÉTAPE 6 — RECHERCHER, CHARGER ET NETTOYER
+
+Vérifier le journal dans `SLG1`, puis tester `BAL_DB_SEARCH` et `BAL_DB_LOAD` avec des critères sélectifs si le programme doit le relire. Retirer ensuite de la mémoire uniquement les handles devenus inutiles. Appliquer la rétention définie au niveau de l’objet.
 
 ## VÉRIFICATION
 
@@ -90,7 +107,6 @@ Ordre de transport  :
 - [Basics — SAP Help Portal](https://help.sap.com/docs/ABAP_PLATFORM_NEW/addb96cd90c945dfb3182865363bbc47/4e21029235d44180e10000000a15822b.html)
 - [Database Interface — SAP Help Portal](https://help.sap.com/docs/ABAP_PLATFORM_NEW/addb96cd90c945dfb3182865363bbc47/4e21021635d44180e10000000a15822b.html)
 - [Function Module Overview — SAP Help Portal](https://help.sap.com/docs/ABAP_PLATFORM_NEW/addb96cd90c945dfb3182865363bbc47/4e23b1720771417fe10000000a15822b.html)
-
 
 ---
 

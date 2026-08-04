@@ -43,14 +43,31 @@ Définir une convention projet, par exemple :
 
 Le contexte permet d’associer à un message une structure DDIC contenant, par exemple, un document, un poste ou un identifiant de fichier. SAP limite la taille du contexte. Utiliser des champs de type caractère simplifie la compatibilité Unicode.
 
-## PROCÉDURE PAS À PAS
+## PROCESS
 
-1. Lire la définition et identifier les prérequis du chapitre.
-2. Choisir un objet Z ou un scénario de démonstration sans impact métier.
-3. Reproduire l’exemple dans un système de développement et relever les données d’entrée.
-4. Contrôler la syntaxe ou la configuration avant activation/exécution.
-5. Comparer le résultat observé avec la section **Vérification**.
-6. Documenter toute différence liée à la release, aux autorisations ou au paramétrage du système.
+### ÉTAPE 1 — DÉFINIR UNE CONVENTION DE NIVEAUX
+
+Documenter le sens de chaque `DETLEVEL` utilisé : résumé, étape, unité métier ou trace technique. Définir aussi les classes de problème et leur usage. La convention doit être commune aux programmes partageant le même objet BAL.
+
+### ÉTAPE 2 — QUALIFIER CHAQUE MESSAGE
+
+Lors de la construction de `BAL_S_MSG`, renseigner `MSGTY`, `PROBCLASS` et `DETLEVEL` selon l’impact réel. Distinguer une erreur rejetant une ligne d’une erreur arrêtant le lot. Ne pas classer tous les messages en niveau maximal.
+
+### ÉTAPE 3 — DÉFINIR LE TRI APPLICATIF
+
+Construire `ALSORT` à partir d’une clé déterministe si l’ordre d’affichage doit regrouper document, poste ou étape. Vérifier sa longueur et sa stabilité. Ne pas utiliser un texte traduit comme clé de tri.
+
+### ÉTAPE 4 — CRÉER UN CONTEXTE DDIC MINIMAL
+
+Définir une structure DDIC contenant les identifiants nécessaires au diagnostic : lot, document, poste ou fichier. Utiliser des types compatibles avec les limites BAL et exclure les données sensibles. Affecter ce contexte aux messages concernés.
+
+### ÉTAPE 5 — SAUVEGARDER ET AFFICHER PAR NIVEAU
+
+Persister le journal, puis l’ouvrir dans `SLG1` ou avec un profil BAL tenant compte du niveau de détail. Vérifier que le résumé reste lisible sans les traces fines et que le diagnostic complet apparaît lorsque le niveau est élargi.
+
+### ÉTAPE 6 — TESTER VOLUME ET FILTRAGE
+
+Générer des messages de plusieurs types, classes et niveaux avec des clés différentes. Contrôler tri, filtres, contexte et performances d’affichage. Retirer les traces de niveau élevé non nécessaires à l’exploitation permanente.
 
 ## VÉRIFICATION
 
@@ -90,7 +107,6 @@ Ordre de transport  :
 
 - [Which Data Can Be Collected? — SAP Help Portal](https://help.sap.com/docs/SAP_NETWEAVER_AS_ABAP_752/addb96cd90c945dfb3182865363bbc47/4e2106b735d44180e10000000a15822b.html)
 - [Log Display — SAP Help Portal](https://help.sap.com/docs/SAP_NETWEAVER_731_BW_ABAP/addb96cd90c945dfb3182865363bbc47/4e2102fa35d44180e10000000a15822b.html)
-
 
 ---
 

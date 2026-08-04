@@ -57,14 +57,31 @@ Après modification, comparer : nombre d’exécutions, temps cumulé, lignes ex
 - [SAP Help Portal — SQL Trace Analysis](https://help.sap.com/docs/ABAP_PLATFORM_NEW/ba879a6e2ea04d9bb94c7ccd7cdac446/d1801f89454211d189710000e8322d00.html)
 - [SAP Help Portal — SQL Monitor](https://help.sap.com/docs/ABAP_PLATFORM_NEW/a24970c68fcf4770a64bf9a78e3719e2/1ec2329419b64f3992a9c342437d3a0f.html)
 
-## PROCÉDURE PAS À PAS
+## PROCESS
 
-1. Saisir `/nST05` dans une session dédiée.
-2. Choisir la trace SQL et limiter le périmètre à l’utilisateur concerné.
-3. Activer la trace juste avant la reproduction.
-4. Exécuter le scénario dans l’autre session.
-5. Désactiver immédiatement la trace.
-6. Afficher la trace et analyser durée, nombre d’exécutions, lignes et index utilisés.
+### ÉTAPE 1 — CAPTURER LE SQL RÉEL
+
+Dans `ST05`, tracer un utilisateur et un scénario courts. Désactiver immédiatement puis regrouper les instructions identiques. Relever le SQL dominant, sa source ABAP, son nombre d’exécutions, ses lignes et son temps cumulé.
+
+### ÉTAPE 2 — VÉRIFIER LA SÉLECTION
+
+Examiner champs sélectionnés, prédicats, jointures et cardinalité. Remplacer `SELECT *` lorsque seules quelques colonnes sont nécessaires et pousser les filtres stables vers la base. Préserver la sémantique des valeurs initiales et des clients.
+
+### ÉTAPE 3 — SUPPRIMER LES ALLERS-RETOURS RÉPÉTITIFS
+
+Rechercher les `SELECT` dans des boucles et les lectures unitaires répétées. Regrouper par jointure, expression SQL ou lecture en masse lorsque les volumes et la logique le permettent. Ne pas charger toute une table pour éviter quelques requêtes ciblées.
+
+### ÉTAPE 4 — ALIGNER ACCÈS ET CLÉS
+
+Vérifier dans le DDIC et le plan d’accès les champs exploitables par la clé ou les index existants. Ajuster les prédicats avant d’envisager un nouvel index, décision qui doit être analysée avec l’administration base et les impacts d’écriture.
+
+### ÉTAPE 5 — TESTER LES VOLUMES ET CAS LIMITES
+
+Exécuter données absentes, une ligne, nombreuses lignes, plages initiales et valeurs dupliquées. Vérifier ordre, agrégats et doublons après une nouvelle jointure ou un `FOR ALL ENTRIES`. Protéger explicitement une table de sélection vide lorsque cette construction est utilisée.
+
+### ÉTAPE 6 — REJOUER `ST05`
+
+Tracer exactement le même scénario et comparer exécutions, lignes, temps cumulé et résultat fonctionnel. Valider le gain sur un volume représentatif et exécuter ATC/tests avant livraison.
 
 ## VÉRIFICATION
 

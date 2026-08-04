@@ -56,14 +56,31 @@ La livraison ne repose pas sur « le programme fonctionne sur mon cas ». Elle r
 - [SAP Help Portal — ABAP Unit](https://help.sap.com/docs/ABAP_PLATFORM_NEW/ba879a6e2ea04d9bb94c7ccd7cdac446/491cfd8926bc14cde10000000a42189b.html)
 - [SAP Help Portal — ABAP Performance and Tuning](https://help.sap.com/docs/SUPPORT_CONTENT/ABAP/3353523595.html)
 
-## PROCÉDURE PAS À PAS
+## PROCESS
 
-1. Saisir `/nSAT`.
-2. Créer ou sélectionner une variante de mesure adaptée.
-3. Définir le programme, la transaction ou l’utilisateur à mesurer.
-4. Démarrer la mesure puis reproduire une seule fois le scénario.
-5. Arrêter et analyser le hit list, la hiérarchie d’appels et les temps nets.
-6. Répéter la mesure après correction avec les mêmes données et le même contexte.
+### ÉTAPE 1 — FIGER LE PÉRIMÈTRE LIVRÉ
+
+Lister tous les objets de la demande, dépendances DDIC, classes, programmes, messages et paramétrages. Vérifier qu’ils sont actifs et transportables. Comparer cette liste au besoin et aux objets réellement modifiés.
+
+### ÉTAPE 2 — EXÉCUTER LES CONTRÔLES STATIQUES
+
+Lancer syntaxe, activation, SLIN et la variante ATC/SCI obligatoire sur le périmètre final. Corriger les findings bloquants. Vérifier les exemptions, leur approbation, leur propriétaire et leur échéance.
+
+### ÉTAPE 3 — EXÉCUTER LES TESTS AUTOMATIQUES
+
+Lancer ABAP Unit au niveau de l’objet puis du package. Ouvrir chaque échec et éliminer les dépendances d’ordre ou de données. Contrôler la couverture des branches critiques avec SCOV lorsque requise.
+
+### ÉTAPE 4 — EXÉCUTER LA NON-RÉGRESSION FONCTIONNELLE
+
+Tester cas cible, cas hors périmètre, limites, erreurs, autorisations et rollback avec des données identifiées. Vérifier interfaces, jobs, journaux et spools concernés. Conserver les preuves et résultats attendus.
+
+### ÉTAPE 5 — VALIDER LA PERFORMANCE
+
+Pour tout scénario sensible, comparer la mesure finale à la référence avec le même volume et le même contexte. Contrôler SQL, mémoire et temps. Ne pas accepter une dégradation non expliquée parce que les tests fonctionnels sont verts.
+
+### ÉTAPE 6 — CONTRÔLER LE TRANSPORT ET LE RETOUR ARRIÈRE
+
+Vérifier ordre d’import, prérequis, variantes et procédure de validation dans le système cible. Définir la remise en cohérence si le déploiement échoue après des changements non réversibles. Libérer uniquement lorsque les preuves sont rattachées au périmètre final.
 
 ## VÉRIFICATION
 
