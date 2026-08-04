@@ -1,0 +1,16 @@
+[System]
+Name=
+Description=
+Client=001
+[User]
+Name=
+Language=
+[Function]
+Title=Debugger
+Command=/h
+Type=SystemCommand
+[Configuration]
+GuiSize=Maximized
+WorkDir=
+[Options]
+Reuse=1
